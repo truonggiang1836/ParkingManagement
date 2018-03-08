@@ -807,6 +807,47 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void dgvTicketMonthList_MouseClick(object sender, MouseEventArgs ev)
+        {
+            if (ev.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                MenuItem menuItem = new MenuItem("Xóa");
+                int currentRow = dgvTicketMonthList.HitTest(ev.X, ev.Y).RowIndex;
+                menuItem.Click += new EventHandler((s, e) => Delete_TicketMonth_Click(s, e, currentRow));
+                m.MenuItems.Add(menuItem);
+
+                m.Show(dgvTicketMonthList, new Point(ev.X, ev.Y));
+
+            }
+        }
+
+        void Delete_TicketMonth_Click(Object sender, System.EventArgs e, int currentRow)
+        {
+            showConfirmDeleteTicketMonth(currentRow);
+        }
+
+        private void deleteTicketMonth(int currentRow)
+        {
+            int identify = Convert.ToInt32(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthIdentify"].Value);
+            TicketMonthDAO.Delete(identify);
+            loadTicketMonthData();
+        }
+
+        private void showConfirmDeleteTicketMonth(int currentRow)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không?", "Xóa dữ liệu", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                deleteTicketMonth(currentRow);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
         /*
         Car data
         */
@@ -937,20 +978,6 @@ namespace ParkingMangement.GUI
         private void btnSearchCarTicketMonth_Click(object sender, EventArgs e)
         {
             searchCarTicketMonth();
-        }
-
-        private void dgvTicketMonthList_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                ContextMenu m = new ContextMenu();
-                m.MenuItems.Add(new MenuItem("Xóa"));
-
-                int currentMouseOverRow = dgvTicketMonthList.HitTest(e.X, e.Y).RowIndex;
-
-                m.Show(dgvTicketMonthList, new Point(e.X, e.Y));
-
-            }
         }
     }
 }

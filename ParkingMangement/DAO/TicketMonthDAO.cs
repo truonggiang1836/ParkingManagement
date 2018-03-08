@@ -35,5 +35,11 @@ namespace ParkingMangement.DAO
                 + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount + "' where Identify =" + ticketMonthDTO.Identify;
             Database.ExcuNonQuery(sql);
         }
+
+        public static void Delete(int identify)
+        {
+            string sql = "delete from [TicketMonth] where Identify =" + identify;
+            Database.ExcuNonQuery(sql);
+        }
     }
 }
