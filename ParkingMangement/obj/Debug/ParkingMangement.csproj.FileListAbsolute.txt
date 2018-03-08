@@ -1,0 +1,64 @@
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\ParkingMangement.exe.config
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\ParkingMangement.exe
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\ParkingMangement.pdb
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormStaffManagement.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.Properties.Resources.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.csproj.GenerateResource.Cache
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.csproj.CoreCompileInputs.cache
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.exe
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.pdb
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteStaff.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditStaff.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormVehicleManagement.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.csprojResolveAssemblyReference.cache
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteVehicle.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditVehicle.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteTicket.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditTicket.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormTicketManagement.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\ParkingMangement.exe.config
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\ParkingMangement.exe
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\ParkingMangement.pdb
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteStaff.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteTicket.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteVehicle.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditStaff.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditTicket.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditVehicle.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormStaffManagement.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormTicketManagement.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormVehicleManagement.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.Properties.Resources.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.csproj.GenerateResource.Cache
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.exe
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.pdb
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLy.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLy.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.FormLogin.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormNhanVien.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.FormLogin.resources
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormNhanVien.resources
+C:\Users\Truong Giang\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\LibUsbDotNet.dll
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\bin\Debug\LibUsbDotNet.dll
+C:\Users\WIN10-GIANGNT\Google Drive\WORK\VCC WORK\Parking Mangement\ParkingMangement\ParkingMangement\obj\Debug\ParkingMangement.csprojResolveAssemblyReference.cache
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.exe.config
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.exe
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.pdb
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\bin\Debug\LibUsbDotNet.dll
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csprojResolveAssemblyReference.cache
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteStaff.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteTicket.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteVehicle.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditStaff.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditTicket.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditVehicle.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.FormLogin.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLy.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormStaffManagement.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormNhanVien.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormTicketManagement.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormVehicleManagement.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.Properties.Resources.resources
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csproj.GenerateResource.Cache
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.exe
+E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.pdb
