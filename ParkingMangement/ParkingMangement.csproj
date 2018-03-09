@@ -48,8 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\BlackCarDAO.cs" />
     <Compile Include="DAO\CarDAO.cs" />
     <Compile Include="DAO\CardDAO.cs" />
+    <Compile Include="DAO\ConfigDAO.cs" />
     <Compile Include="DAO\FunctionalDAO.CS" />
     <Compile Include="DAO\PartDAO.cs" />
     <Compile Include="DAO\SexDAO.CS" />

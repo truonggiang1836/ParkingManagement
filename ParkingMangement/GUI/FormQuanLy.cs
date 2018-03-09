@@ -25,6 +25,14 @@ namespace ParkingMangement.GUI
             loadUserInfoTab();
         }
 
+        private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                Util.showConfirmLogoutPopup(this);
+            }
+        }
+
         /*
         User data
         */
@@ -583,6 +591,10 @@ namespace ParkingMangement.GUI
                     int Index = dgvCardList.CurrentRow.Index;
                     loadCardInfoFromDataGridViewRow(Index);
                 }
+            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyXeRaVao"])
+            {
+                loadBlackCarList();
+                loadConfig();
             }
         }
 
@@ -851,6 +863,27 @@ namespace ParkingMangement.GUI
         /*
         Car data
         */
+
+        private void loadBlackCarList()
+        {
+            DataTable data = BlackCarDAO.GetAllData();
+            dgvBlackCarList.DataSource = data;
+        }
+
+        private void loadConfig()
+        {
+            tbTotalSpace.Text = ConfigDAO.GetTotalSpace().ToString();
+            tbTicketMonthSpace.Text = ConfigDAO.GetTicketMonthSpace().ToString();
+            tbTicketMonthLimit.Text = ConfigDAO.GetTicketMonthLimit().ToString();
+            tbNightLimit.Text = ConfigDAO.GetNightLimit().ToString();
+        }
+
+        private void addBlackCar()
+        {
+            string digit = tbBlackCarDigit.Text;
+            BlackCarDAO.Insert(digit);
+        }
+
         private void loadCarList()
         {
             DataTable data = CarDAO.GetAllTicketDayData();
@@ -962,14 +995,6 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                Util.showConfirmLogoutPopup(this);
-            }
-        }
-
         private void btnSearchCar_Click(object sender, EventArgs e)
         {
             searchCar();
@@ -978,6 +1003,53 @@ namespace ParkingMangement.GUI
         private void btnSearchCarTicketMonth_Click(object sender, EventArgs e)
         {
             searchCarTicketMonth();
+        }
+
+        private void btnAddBlackCar_Click(object sender, EventArgs e)
+        {
+            addBlackCar();
+            loadBlackCarList();
+        }
+
+        void Delete_BlackCar_Click(Object sender, System.EventArgs e, int currentRow)
+        {
+            showConfirmDeleteBlackCar(currentRow);
+        }
+
+        private void deleteBlackCar(int currentRow)
+        {
+            int identify = Convert.ToInt32(dgvBlackCarList.Rows[currentRow].Cells["BlackCarIdentify"].Value);
+            BlackCarDAO.Delete(identify);
+            loadBlackCarList();
+        }
+
+        private void showConfirmDeleteBlackCar(int currentRow)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không?", "Xóa dữ liệu", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                deleteBlackCar(currentRow);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void dgvBlackCarList_MouseClick(object sender, MouseEventArgs ev)
+        {
+            if (ev.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                MenuItem menuItem = new MenuItem("Xóa");
+                int currentRow = dgvBlackCarList.HitTest(ev.X, ev.Y).RowIndex;
+                menuItem.Click += new EventHandler((s, e) => Delete_BlackCar_Click(s, e, currentRow));
+                m.MenuItems.Add(menuItem);
+
+                m.Show(dgvBlackCarList, new Point(ev.X, ev.Y));
+
+            }
         }
     }
 }
