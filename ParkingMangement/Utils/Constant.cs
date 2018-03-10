@@ -11,6 +11,7 @@ namespace ParkingMangement.Utils
         // common
         public static string sMessageCommonError = "Có lỗi xảy ra";
         public static string sMessageDuplicateDataError = "Dữ liệu đã tồn tại";
+        public static string sMessageInvalidError = "Dữ liệu không hợp lệ";
         public static string FUNCTION_ID_NHAN_VIEN = "Nh";
 
         // user

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingMangement.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -66,6 +67,13 @@ namespace ParkingMangement.DAO
             {
                 return -1;
             }
+        }
+
+        public static void Update(ConfigDTO configDTO)
+        {
+            string sql = "update [Config] set TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
+                + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit;
+            Database.ExcuNonQuery(sql);
         }
     }
 }

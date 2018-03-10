@@ -62,3 +62,25 @@ E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\Parkin
 E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csproj.GenerateResource.Cache
 E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.exe
 E:\USERS\GIANGNT\GIT\MY WORK\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.pdb
+E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.exe.config
+E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.exe
+E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.pdb
+E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\LibUsbDotNet.dll
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csprojResolveAssemblyReference.cache
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteStaff.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteTicket.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormDeleteVehicle.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditStaff.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditTicket.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormEditVehicle.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.FormLogin.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLy.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormStaffManagement.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormNhanVien.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormTicketManagement.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormVehicleManagement.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.Properties.Resources.resources
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csproj.GenerateResource.Cache
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csproj.CoreCompileInputs.cache
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.exe
+E:\WORK\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.pdb

@@ -12,7 +12,7 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
+            string sql = "select TicketLog.Identify, TicketLog.ProcessDate, LogType.LogTypeName, TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
                 " TicketMonth.Company, TicketMonth.Email, TicketMonth.Address, TicketMonth.CarKind, TicketMonth.ChargesAmount, Part.PartName," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID order by TicketMonth.Identify asc";
             return Database.ExcuQuery(sql);

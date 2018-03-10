@@ -595,6 +595,9 @@ namespace ParkingMangement.GUI
             {
                 loadBlackCarList();
                 loadConfig();
+            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
+            {
+                loadTicketLogData();
             }
         }
 
@@ -634,6 +637,12 @@ namespace ParkingMangement.GUI
         /*
         Ticket Month data
         */
+
+        private void loadTicketLogData()
+        {
+            DataTable data = TicketLogDAO.GetAllData();
+            dgvTicketLogList.DataSource = data;
+        }
 
         private void loadTicketMonthData()
         {
@@ -873,8 +882,8 @@ namespace ParkingMangement.GUI
         private void loadConfig()
         {
             tbTotalSpace.Text = ConfigDAO.GetTotalSpace().ToString();
-            tbTicketMonthSpace.Text = ConfigDAO.GetTicketMonthSpace().ToString();
-            tbTicketMonthLimit.Text = ConfigDAO.GetTicketMonthLimit().ToString();
+            tbTicketSpace.Text = ConfigDAO.GetTicketMonthSpace().ToString();
+            tbTicketLimitDay.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit.Text = ConfigDAO.GetNightLimit().ToString();
         }
 
@@ -1050,6 +1059,92 @@ namespace ParkingMangement.GUI
                 m.Show(dgvBlackCarList, new Point(ev.X, ev.Y));
 
             }
+        }
+
+        private void btnSaveConfig_Click(object sender, EventArgs e)
+        {
+            saveConfig();
+        }
+
+        private void saveConfig()
+        {
+            ConfigDTO configDTO = new ConfigDTO();
+            int totalSpace = -1;
+            if (int.TryParse(tbTotalSpace.Text, out totalSpace))
+            {
+                if (totalSpace >= 0)
+                {
+                    configDTO.TotalSpace = totalSpace;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+            int ticketSpace = -1;
+            if (int.TryParse(tbTicketSpace.Text, out ticketSpace))
+            {
+                if (ticketSpace >= 0)
+                {
+                    configDTO.TicketSpace = ticketSpace;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+
+            int ticketLimitDay = -1;
+            if (int.TryParse(tbTicketLimitDay.Text, out ticketLimitDay))
+            {
+                if (ticketLimitDay >= 0)
+                {
+                    configDTO.TicketLimitDay = ticketLimitDay;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+
+            int nightLimit = -1;
+            if (int.TryParse(tbNightLimit.Text, out nightLimit))
+            {
+                if (nightLimit >= 0)
+                {
+                    configDTO.NightLimit = nightLimit;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+            ConfigDAO.Update(configDTO);
         }
     }
 }

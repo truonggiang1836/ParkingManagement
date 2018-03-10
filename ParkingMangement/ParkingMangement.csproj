@@ -56,10 +56,12 @@
     <Compile Include="DAO\PartDAO.cs" />
     <Compile Include="DAO\SexDAO.CS" />
     <Compile Include="DAO\TicketMonthDAO.cs" />
+    <Compile Include="DAO\TicketLogDAO.cs" />
     <Compile Include="DAO\UserDAO.CS" />
     <Compile Include="DAO\WorkDAO.cs" />
     <Compile Include="DTO\CardDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
+    <Compile Include="DTO\ConfigDTO.cs" />
     <Compile Include="DTO\PartDTO.cs" />
     <Compile Include="DTO\TicketMonthDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
