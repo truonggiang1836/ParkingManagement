@@ -345,7 +345,7 @@
             this.btnTicketMonthCancelEdit = new System.Windows.Forms.Button();
             this.btnTicketMonthEdit = new System.Windows.Forms.Button();
             this.label64 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tbTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.tabPageGiaHanVeThang = new System.Windows.Forms.TabPage();
             this.dataGridView8 = new System.Windows.Forms.DataGridView();
@@ -3366,7 +3366,7 @@
             this.tabPage8.Controls.Add(this.btnTicketMonthCancelEdit);
             this.tabPage8.Controls.Add(this.btnTicketMonthEdit);
             this.tabPage8.Controls.Add(this.label64);
-            this.tabPage8.Controls.Add(this.textBox8);
+            this.tabPage8.Controls.Add(this.tbTicketMonthKeyWordSearch);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -3670,14 +3670,14 @@
             this.label64.TabIndex = 13;
             this.label64.Text = "Tìm kiếm";
             // 
-            // textBox8
+            // tbTicketMonthKeyWordSearch
             // 
-            this.textBox8.Enabled = false;
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(121, 10);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(211, 26);
-            this.textBox8.TabIndex = 12;
+            this.tbTicketMonthKeyWordSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTicketMonthKeyWordSearch.Location = new System.Drawing.Point(121, 10);
+            this.tbTicketMonthKeyWordSearch.Name = "tbTicketMonthKeyWordSearch";
+            this.tbTicketMonthKeyWordSearch.Size = new System.Drawing.Size(211, 26);
+            this.tbTicketMonthKeyWordSearch.TabIndex = 12;
+            this.tbTicketMonthKeyWordSearch.TextChanged += new System.EventHandler(this.tbTicketMonthKeyWordSearch_TextChanged);
             // 
             // tabPage17
             // 
@@ -5213,7 +5213,7 @@
         private System.Windows.Forms.TabPage tabPage8;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox tbTicketMonthKeyWordSearch;
         private System.Windows.Forms.TabPage tabPage17;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Button btnTicketMonthCancelEdit;

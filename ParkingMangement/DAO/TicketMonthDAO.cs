@@ -10,11 +10,13 @@ namespace ParkingMangement.DAO
 {
     class TicketMonthDAO
     {
+        private static string sqlGetAllData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
+                " TicketMonth.Company, TicketMonth.Email, TicketMonth.Address, TicketMonth.CarKind, TicketMonth.ChargesAmount, Part.PartName," +
+                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID";
+        private static string sqlOrderByIdentify = " order by TicketMonth.Identify asc";
         public static DataTable GetAllData()
         {
-            string sql = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
-                " TicketMonth.Company, TicketMonth.Email, TicketMonth.Address, TicketMonth.CarKind, TicketMonth.ChargesAmount, Part.PartName," +
-                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID order by TicketMonth.Identify asc";
+            string sql = sqlGetAllData + sqlOrderByIdentify;
             return Database.ExcuQuery(sql);
         }
 
@@ -40,6 +42,20 @@ namespace ParkingMangement.DAO
         {
             string sql = "delete from [TicketMonth] where Identify =" + identify;
             Database.ExcuNonQuery(sql);
+        }
+
+        public static DataTable searchData(string key)
+        {
+            string sql = sqlGetAllData;
+            if (!string.IsNullOrEmpty(key))
+            {
+                sql += " and (TicketMonth.Identify like '%" + key + "%' or TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
+                    + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.CMND like '%" + key + "%' or TicketMonth.Email like '%"
+                    + key + "%' or TicketMonth.Company like '%" + key + "%' or TicketMonth.Address like '%" + key + "%' or TicketMonth.CarKind like '%"
+                    + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or Part.PartName like '%" + key + "%')";
+            }
+            sql += sqlOrderByIdentify;
+            return Database.ExcuQuery(sql);
         }
     }
 }

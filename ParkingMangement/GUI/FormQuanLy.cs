@@ -656,6 +656,12 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void searchTicketMonthData()
+        {
+            string key = tbTicketMonthKeyWordSearch.Text;
+            dgvTicketMonthList.DataSource = TicketMonthDAO.searchData(key);
+        }
+
         private void searchTicketLogData()
         {
             string key = tbTicketLogKeyWordSearch.Text;
@@ -969,6 +975,11 @@ namespace ParkingMangement.GUI
         private void btnSearchTicketLog_Click(object sender, EventArgs e)
         {
             searchTicketLogData();
+        }
+
+        private void tbTicketMonthKeyWordSearch_TextChanged(object sender, EventArgs e)
+        {
+            searchTicketMonthData();
         }
 
         /*
