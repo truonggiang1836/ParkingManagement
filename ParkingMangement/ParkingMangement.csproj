@@ -53,6 +53,7 @@
     <Compile Include="DAO\CardDAO.cs" />
     <Compile Include="DAO\ConfigDAO.cs" />
     <Compile Include="DAO\FunctionalDAO.CS" />
+    <Compile Include="DAO\LogTypeDAO.cs" />
     <Compile Include="DAO\PartDAO.cs" />
     <Compile Include="DAO\SexDAO.CS" />
     <Compile Include="DAO\TicketMonthDAO.cs" />

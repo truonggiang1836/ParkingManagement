@@ -597,7 +597,7 @@ namespace ParkingMangement.GUI
                 loadConfig();
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
-                loadTicketLogData();
+                loadTabPageTicketLog();
             }
         }
 
@@ -638,9 +638,45 @@ namespace ParkingMangement.GUI
         Ticket Month data
         */
 
+        private void loadTabPageTicketLog()
+        {
+            loadTicketLogData();
+            loadTicketLogTypeData();
+            loadPartDataWithFieldAllToComboBox(cbPartNameTicketLogSearch);
+        }
+
         private void loadTicketLogData()
         {
             DataTable data = TicketLogDAO.GetAllData();
+            dgvTicketLogList.DataSource = data;
+
+            if (dgvTicketLogList.Rows.Count > 0)
+            {
+                loadTicketLogInfoFromDataGridViewRow(0);
+            }
+        }
+
+        private void searchTicketLogData()
+        {
+            string key = tbTicketLogKeyWordSearch.Text;
+            string ticketLogID = null;
+            if (cbTicketLogNameSearch.SelectedIndex > 0)
+            {
+                DataRow ticketLoDataRow = ((DataRowView) cbTicketLogNameSearch.SelectedItem).Row;
+                ticketLogID = Convert.ToString(ticketLoDataRow["LogTypeID"]);
+            }
+            string partID = null;
+            if (cbPartNameTicketLogSearch.SelectedIndex > 0)
+            {
+                DataRow partDataRow = ((DataRowView) cbPartNameTicketLogSearch.SelectedItem).Row;
+                partID = Convert.ToString(partDataRow["PartID"]);
+            }
+            DateTime registrationDate = dtTicketLogRegistrationDateSearch.Value;
+            registrationDate = new DateTime(registrationDate.Year, registrationDate.Month, registrationDate.Day, 0, 0, 0);
+            DateTime expirationDate = dtTicketLogExpirationDateSearch.Value;
+            expirationDate = new DateTime(expirationDate.Year, expirationDate.Month, expirationDate.Day, 23, 59, 59);
+
+            DataTable data = TicketLogDAO.searchData(key, ticketLogID, partID, registrationDate, expirationDate);
             dgvTicketLogList.DataSource = data;
         }
 
@@ -648,8 +684,17 @@ namespace ParkingMangement.GUI
         {
             DataTable data = TicketMonthDAO.GetAllData();
             dgvTicketMonthList.DataSource = data;
-            int lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
+            int lastIdentify = 0;
+            if (data != null)
+            {
+                lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
+            }
             tbTicketMonthIdentifyCreate.Text = lastIdentify + 1 + "";
+
+            if (dgvTicketMonthList.Rows.Count > 0)
+            {
+                loadTicketMonthInfoFromDataGridViewRow(0);
+            }
         }
 
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -685,6 +730,7 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.DayUnlimit = DateTime.Now;
 
             TicketMonthDAO.Insert(ticketMonthDTO);
+            clearInputTicketMonthInfo();
             loadTicketMonthData();
         }
 
@@ -791,6 +837,47 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void loadTicketLogTypeData()
+        {
+            DataTable dt = LogTypeDAO.GetTicketLog();
+            DataRow dr = dt.NewRow();
+            dr["LogTypeName"] = "Tất cả";
+            dt.Rows.InsertAt(dr, 0);
+            cbTicketLogNameSearch.DataSource = dt;
+            cbTicketLogNameSearch.DisplayMember = "LogTypeName";
+            cbTicketLogNameSearch.ValueMember = "LogTypeID";
+        }
+
+        private void loadTicketLogInfoFromDataGridViewRow(int Index)
+        {
+            string processType = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["LogTypeName"].Value);
+            tbTicketLogProcessType.Text = processType;
+            string processDate = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["ProcessDate"].Value);
+            tbTicketLogProcessDate.Text = processDate;
+            string nameUser = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["NameUser_Log"].Value);
+            tbTicketLogNameUser.Text = nameUser;
+            string ticketMonthID = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["TicketMonthID_Log"].Value);
+            tbTicketLogTicketMonthID.Text = ticketMonthID;
+            string digit = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["Digit_Log"].Value);
+            tbTicketLogDigit.Text = digit;
+            string customerName = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["CustomerName_Log"].Value);
+            tbTicketLogCustomerName.Text = customerName;
+            string cmnd = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["CMND_Log"].Value);
+            tbTicketLogCMND.Text = cmnd;
+            string email = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["Email_Log"].Value);
+            tbTicketLogEmail.Text = email;
+            string address = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["Address_Log"].Value);
+            tbTicketLogAddress.Text = address;
+            string carKind = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["CarKind_Log"].Value);
+            tbTicketLogCarKind.Text = carKind;
+            string partName = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["PartName_Log"].Value);
+            tbTicketLogPartName.Text = partName;
+            string registrationDate = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["RegistrationDate_Log"].Value);
+            tbTicketLogRegistrationDate.Text = registrationDate;
+            string expirationDate = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["ExpirationDate_Log"].Value);
+            tbTicketLogExpirationDate.Text = expirationDate;
+        }
+
         private void btnTicketMonthCreate_Click(object sender, EventArgs e)
         {
             if (checkCreateTicketMonthData())
@@ -839,7 +926,6 @@ namespace ParkingMangement.GUI
                 m.MenuItems.Add(menuItem);
 
                 m.Show(dgvTicketMonthList, new Point(ev.X, ev.Y));
-
             }
         }
 
@@ -867,6 +953,22 @@ namespace ParkingMangement.GUI
             {
                 //do something else
             }
+        }
+
+        private void dgvTicketLogList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Index = dgvTicketLogList.CurrentRow.Index;
+            loadTicketLogInfoFromDataGridViewRow(Index);
+        }
+
+        private void btnShowAllTicketLog_Click(object sender, EventArgs e)
+        {
+            loadTicketLogData();
+        }
+
+        private void btnSearchTicketLog_Click(object sender, EventArgs e)
+        {
+            searchTicketLogData();
         }
 
         /*

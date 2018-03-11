@@ -224,47 +224,47 @@
             this.tabPageXemNhatKyVeThang = new System.Windows.Forms.TabPage();
             this.panel22 = new System.Windows.Forms.Panel();
             this.label93 = new System.Windows.Forms.Label();
-            this.textBox40 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogExpirationDate = new System.Windows.Forms.TextBox();
             this.label94 = new System.Windows.Forms.Label();
-            this.textBox41 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogRegistrationDate = new System.Windows.Forms.TextBox();
             this.label95 = new System.Windows.Forms.Label();
-            this.textBox42 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogPartName = new System.Windows.Forms.TextBox();
             this.label96 = new System.Windows.Forms.Label();
-            this.textBox43 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogCarKind = new System.Windows.Forms.TextBox();
             this.label97 = new System.Windows.Forms.Label();
-            this.textBox44 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogAddress = new System.Windows.Forms.TextBox();
             this.label98 = new System.Windows.Forms.Label();
-            this.textBox45 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogEmail = new System.Windows.Forms.TextBox();
             this.label91 = new System.Windows.Forms.Label();
-            this.textBox38 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogCMND = new System.Windows.Forms.TextBox();
             this.label88 = new System.Windows.Forms.Label();
-            this.textBox35 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogCustomerName = new System.Windows.Forms.TextBox();
             this.label89 = new System.Windows.Forms.Label();
-            this.textBox36 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogDigit = new System.Windows.Forms.TextBox();
             this.label90 = new System.Windows.Forms.Label();
-            this.textBox37 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogTicketMonthID = new System.Windows.Forms.TextBox();
             this.label87 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogNameUser = new System.Windows.Forms.TextBox();
             this.label86 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogProcessDate = new System.Windows.Forms.TextBox();
             this.label85 = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogProcessType = new System.Windows.Forms.TextBox();
             this.dgvTicketLogList = new System.Windows.Forms.DataGridView();
             this.panel20 = new System.Windows.Forms.Panel();
             this.button27 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
+            this.btnShowAllTicketLog = new System.Windows.Forms.Button();
             this.panel21 = new System.Windows.Forms.Panel();
             this.label84 = new System.Windows.Forms.Label();
-            this.dateTimePicker16 = new System.Windows.Forms.DateTimePicker();
+            this.dtTicketLogExpirationDateSearch = new System.Windows.Forms.DateTimePicker();
             this.label83 = new System.Windows.Forms.Label();
-            this.dateTimePicker15 = new System.Windows.Forms.DateTimePicker();
-            this.button25 = new System.Windows.Forms.Button();
+            this.dtTicketLogRegistrationDateSearch = new System.Windows.Forms.DateTimePicker();
+            this.btnSearchTicketLog = new System.Windows.Forms.Button();
             this.label82 = new System.Windows.Forms.Label();
             this.label81 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbPartNameTicketLogSearch = new System.Windows.Forms.ComboBox();
+            this.cbTicketLogNameSearch = new System.Windows.Forms.ComboBox();
             this.label80 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.tbTicketLogKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPageTaoMoiVeThang = new System.Windows.Forms.TabPage();
             this.dgvTicketMonthList = new System.Windows.Forms.DataGridView();
             this.TicketMonthIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -2450,31 +2450,31 @@
             // panel22
             // 
             this.panel22.Controls.Add(this.label93);
-            this.panel22.Controls.Add(this.textBox40);
+            this.panel22.Controls.Add(this.tbTicketLogExpirationDate);
             this.panel22.Controls.Add(this.label94);
-            this.panel22.Controls.Add(this.textBox41);
+            this.panel22.Controls.Add(this.tbTicketLogRegistrationDate);
             this.panel22.Controls.Add(this.label95);
-            this.panel22.Controls.Add(this.textBox42);
+            this.panel22.Controls.Add(this.tbTicketLogPartName);
             this.panel22.Controls.Add(this.label96);
-            this.panel22.Controls.Add(this.textBox43);
+            this.panel22.Controls.Add(this.tbTicketLogCarKind);
             this.panel22.Controls.Add(this.label97);
-            this.panel22.Controls.Add(this.textBox44);
+            this.panel22.Controls.Add(this.tbTicketLogAddress);
             this.panel22.Controls.Add(this.label98);
-            this.panel22.Controls.Add(this.textBox45);
+            this.panel22.Controls.Add(this.tbTicketLogEmail);
             this.panel22.Controls.Add(this.label91);
-            this.panel22.Controls.Add(this.textBox38);
+            this.panel22.Controls.Add(this.tbTicketLogCMND);
             this.panel22.Controls.Add(this.label88);
-            this.panel22.Controls.Add(this.textBox35);
+            this.panel22.Controls.Add(this.tbTicketLogCustomerName);
             this.panel22.Controls.Add(this.label89);
-            this.panel22.Controls.Add(this.textBox36);
+            this.panel22.Controls.Add(this.tbTicketLogDigit);
             this.panel22.Controls.Add(this.label90);
-            this.panel22.Controls.Add(this.textBox37);
+            this.panel22.Controls.Add(this.tbTicketLogTicketMonthID);
             this.panel22.Controls.Add(this.label87);
-            this.panel22.Controls.Add(this.textBox33);
+            this.panel22.Controls.Add(this.tbTicketLogNameUser);
             this.panel22.Controls.Add(this.label86);
-            this.panel22.Controls.Add(this.textBox22);
+            this.panel22.Controls.Add(this.tbTicketLogProcessDate);
             this.panel22.Controls.Add(this.label85);
-            this.panel22.Controls.Add(this.textBox21);
+            this.panel22.Controls.Add(this.tbTicketLogProcessType);
             this.panel22.Location = new System.Drawing.Point(322, 6);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(828, 287);
@@ -2490,12 +2490,13 @@
             this.label93.TabIndex = 29;
             this.label93.Text = "Ngày KT";
             // 
-            // textBox40
+            // tbTicketLogExpirationDate
             // 
-            this.textBox40.Location = new System.Drawing.Point(469, 185);
-            this.textBox40.Name = "textBox40";
-            this.textBox40.Size = new System.Drawing.Size(252, 22);
-            this.textBox40.TabIndex = 28;
+            this.tbTicketLogExpirationDate.Location = new System.Drawing.Point(469, 185);
+            this.tbTicketLogExpirationDate.Name = "tbTicketLogExpirationDate";
+            this.tbTicketLogExpirationDate.ReadOnly = true;
+            this.tbTicketLogExpirationDate.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogExpirationDate.TabIndex = 28;
             // 
             // label94
             // 
@@ -2507,12 +2508,13 @@
             this.label94.TabIndex = 27;
             this.label94.Text = "Ngày BĐ";
             // 
-            // textBox41
+            // tbTicketLogRegistrationDate
             // 
-            this.textBox41.Location = new System.Drawing.Point(469, 151);
-            this.textBox41.Name = "textBox41";
-            this.textBox41.Size = new System.Drawing.Size(252, 22);
-            this.textBox41.TabIndex = 26;
+            this.tbTicketLogRegistrationDate.Location = new System.Drawing.Point(469, 151);
+            this.tbTicketLogRegistrationDate.Name = "tbTicketLogRegistrationDate";
+            this.tbTicketLogRegistrationDate.ReadOnly = true;
+            this.tbTicketLogRegistrationDate.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogRegistrationDate.TabIndex = 26;
             // 
             // label95
             // 
@@ -2524,12 +2526,13 @@
             this.label95.TabIndex = 25;
             this.label95.Text = "Loại xe";
             // 
-            // textBox42
+            // tbTicketLogPartName
             // 
-            this.textBox42.Location = new System.Drawing.Point(469, 117);
-            this.textBox42.Name = "textBox42";
-            this.textBox42.Size = new System.Drawing.Size(252, 22);
-            this.textBox42.TabIndex = 24;
+            this.tbTicketLogPartName.Location = new System.Drawing.Point(469, 117);
+            this.tbTicketLogPartName.Name = "tbTicketLogPartName";
+            this.tbTicketLogPartName.ReadOnly = true;
+            this.tbTicketLogPartName.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogPartName.TabIndex = 24;
             // 
             // label96
             // 
@@ -2541,12 +2544,13 @@
             this.label96.TabIndex = 23;
             this.label96.Text = "Hiệu xe";
             // 
-            // textBox43
+            // tbTicketLogCarKind
             // 
-            this.textBox43.Location = new System.Drawing.Point(469, 83);
-            this.textBox43.Name = "textBox43";
-            this.textBox43.Size = new System.Drawing.Size(252, 22);
-            this.textBox43.TabIndex = 22;
+            this.tbTicketLogCarKind.Location = new System.Drawing.Point(469, 83);
+            this.tbTicketLogCarKind.Name = "tbTicketLogCarKind";
+            this.tbTicketLogCarKind.ReadOnly = true;
+            this.tbTicketLogCarKind.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogCarKind.TabIndex = 22;
             // 
             // label97
             // 
@@ -2558,12 +2562,13 @@
             this.label97.TabIndex = 21;
             this.label97.Text = "Địa chỉ";
             // 
-            // textBox44
+            // tbTicketLogAddress
             // 
-            this.textBox44.Location = new System.Drawing.Point(469, 49);
-            this.textBox44.Name = "textBox44";
-            this.textBox44.Size = new System.Drawing.Size(252, 22);
-            this.textBox44.TabIndex = 20;
+            this.tbTicketLogAddress.Location = new System.Drawing.Point(469, 49);
+            this.tbTicketLogAddress.Name = "tbTicketLogAddress";
+            this.tbTicketLogAddress.ReadOnly = true;
+            this.tbTicketLogAddress.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogAddress.TabIndex = 20;
             // 
             // label98
             // 
@@ -2575,12 +2580,13 @@
             this.label98.TabIndex = 19;
             this.label98.Text = "Email";
             // 
-            // textBox45
+            // tbTicketLogEmail
             // 
-            this.textBox45.Location = new System.Drawing.Point(469, 15);
-            this.textBox45.Name = "textBox45";
-            this.textBox45.Size = new System.Drawing.Size(252, 22);
-            this.textBox45.TabIndex = 18;
+            this.tbTicketLogEmail.Location = new System.Drawing.Point(469, 15);
+            this.tbTicketLogEmail.Name = "tbTicketLogEmail";
+            this.tbTicketLogEmail.ReadOnly = true;
+            this.tbTicketLogEmail.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogEmail.TabIndex = 18;
             // 
             // label91
             // 
@@ -2592,12 +2598,13 @@
             this.label91.TabIndex = 17;
             this.label91.Text = "CMND";
             // 
-            // textBox38
+            // tbTicketLogCMND
             // 
-            this.textBox38.Location = new System.Drawing.Point(92, 219);
-            this.textBox38.Name = "textBox38";
-            this.textBox38.Size = new System.Drawing.Size(252, 22);
-            this.textBox38.TabIndex = 16;
+            this.tbTicketLogCMND.Location = new System.Drawing.Point(92, 219);
+            this.tbTicketLogCMND.Name = "tbTicketLogCMND";
+            this.tbTicketLogCMND.ReadOnly = true;
+            this.tbTicketLogCMND.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogCMND.TabIndex = 16;
             // 
             // label88
             // 
@@ -2609,12 +2616,13 @@
             this.label88.TabIndex = 15;
             this.label88.Text = "Tên";
             // 
-            // textBox35
+            // tbTicketLogCustomerName
             // 
-            this.textBox35.Location = new System.Drawing.Point(92, 185);
-            this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new System.Drawing.Size(252, 22);
-            this.textBox35.TabIndex = 14;
+            this.tbTicketLogCustomerName.Location = new System.Drawing.Point(92, 185);
+            this.tbTicketLogCustomerName.Name = "tbTicketLogCustomerName";
+            this.tbTicketLogCustomerName.ReadOnly = true;
+            this.tbTicketLogCustomerName.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogCustomerName.TabIndex = 14;
             // 
             // label89
             // 
@@ -2626,12 +2634,13 @@
             this.label89.TabIndex = 13;
             this.label89.Text = "Biển số";
             // 
-            // textBox36
+            // tbTicketLogDigit
             // 
-            this.textBox36.Location = new System.Drawing.Point(92, 151);
-            this.textBox36.Name = "textBox36";
-            this.textBox36.Size = new System.Drawing.Size(252, 22);
-            this.textBox36.TabIndex = 12;
+            this.tbTicketLogDigit.Location = new System.Drawing.Point(92, 151);
+            this.tbTicketLogDigit.Name = "tbTicketLogDigit";
+            this.tbTicketLogDigit.ReadOnly = true;
+            this.tbTicketLogDigit.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogDigit.TabIndex = 12;
             // 
             // label90
             // 
@@ -2643,12 +2652,13 @@
             this.label90.TabIndex = 11;
             this.label90.Text = "Mã thẻ";
             // 
-            // textBox37
+            // tbTicketLogTicketMonthID
             // 
-            this.textBox37.Location = new System.Drawing.Point(92, 117);
-            this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new System.Drawing.Size(252, 22);
-            this.textBox37.TabIndex = 10;
+            this.tbTicketLogTicketMonthID.Location = new System.Drawing.Point(92, 117);
+            this.tbTicketLogTicketMonthID.Name = "tbTicketLogTicketMonthID";
+            this.tbTicketLogTicketMonthID.ReadOnly = true;
+            this.tbTicketLogTicketMonthID.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogTicketMonthID.TabIndex = 10;
             // 
             // label87
             // 
@@ -2660,12 +2670,13 @@
             this.label87.TabIndex = 9;
             this.label87.Text = "Người xử lý";
             // 
-            // textBox33
+            // tbTicketLogNameUser
             // 
-            this.textBox33.Location = new System.Drawing.Point(92, 83);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(252, 22);
-            this.textBox33.TabIndex = 8;
+            this.tbTicketLogNameUser.Location = new System.Drawing.Point(92, 83);
+            this.tbTicketLogNameUser.Name = "tbTicketLogNameUser";
+            this.tbTicketLogNameUser.ReadOnly = true;
+            this.tbTicketLogNameUser.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogNameUser.TabIndex = 8;
             // 
             // label86
             // 
@@ -2677,12 +2688,13 @@
             this.label86.TabIndex = 7;
             this.label86.Text = "Ngày xử lý";
             // 
-            // textBox22
+            // tbTicketLogProcessDate
             // 
-            this.textBox22.Location = new System.Drawing.Point(92, 49);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(252, 22);
-            this.textBox22.TabIndex = 6;
+            this.tbTicketLogProcessDate.Location = new System.Drawing.Point(92, 49);
+            this.tbTicketLogProcessDate.Name = "tbTicketLogProcessDate";
+            this.tbTicketLogProcessDate.ReadOnly = true;
+            this.tbTicketLogProcessDate.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogProcessDate.TabIndex = 6;
             // 
             // label85
             // 
@@ -2694,12 +2706,13 @@
             this.label85.TabIndex = 5;
             this.label85.Text = "Loại xử lý";
             // 
-            // textBox21
+            // tbTicketLogProcessType
             // 
-            this.textBox21.Location = new System.Drawing.Point(92, 15);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(252, 22);
-            this.textBox21.TabIndex = 4;
+            this.tbTicketLogProcessType.Location = new System.Drawing.Point(92, 15);
+            this.tbTicketLogProcessType.Name = "tbTicketLogProcessType";
+            this.tbTicketLogProcessType.ReadOnly = true;
+            this.tbTicketLogProcessType.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogProcessType.TabIndex = 4;
             // 
             // dgvTicketLogList
             // 
@@ -2724,19 +2737,20 @@
             this.dgvTicketLogList.Name = "dgvTicketLogList";
             this.dgvTicketLogList.Size = new System.Drawing.Size(1144, 312);
             this.dgvTicketLogList.TabIndex = 1;
+            this.dgvTicketLogList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTicketLogList_CellClick);
             // 
             // panel20
             // 
             this.panel20.Controls.Add(this.button27);
-            this.panel20.Controls.Add(this.button16);
+            this.panel20.Controls.Add(this.btnShowAllTicketLog);
             this.panel20.Controls.Add(this.panel21);
-            this.panel20.Controls.Add(this.button25);
+            this.panel20.Controls.Add(this.btnSearchTicketLog);
             this.panel20.Controls.Add(this.label82);
             this.panel20.Controls.Add(this.label81);
-            this.panel20.Controls.Add(this.comboBox5);
-            this.panel20.Controls.Add(this.comboBox4);
+            this.panel20.Controls.Add(this.cbPartNameTicketLogSearch);
+            this.panel20.Controls.Add(this.cbTicketLogNameSearch);
             this.panel20.Controls.Add(this.label80);
-            this.panel20.Controls.Add(this.textBox20);
+            this.panel20.Controls.Add(this.tbTicketLogKeyWordSearch);
             this.panel20.Location = new System.Drawing.Point(6, 6);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(299, 287);
@@ -2752,23 +2766,24 @@
             this.button27.Text = "XUẤT EXCEL";
             this.button27.UseVisualStyleBackColor = true;
             // 
-            // button16
+            // btnShowAllTicketLog
             // 
-            this.button16.ForeColor = System.Drawing.Color.Blue;
-            this.button16.Location = new System.Drawing.Point(168, 209);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(114, 30);
-            this.button16.TabIndex = 27;
-            this.button16.Text = "XEM TẤT CẢ";
-            this.button16.UseVisualStyleBackColor = true;
+            this.btnShowAllTicketLog.ForeColor = System.Drawing.Color.Blue;
+            this.btnShowAllTicketLog.Location = new System.Drawing.Point(168, 209);
+            this.btnShowAllTicketLog.Name = "btnShowAllTicketLog";
+            this.btnShowAllTicketLog.Size = new System.Drawing.Size(114, 30);
+            this.btnShowAllTicketLog.TabIndex = 27;
+            this.btnShowAllTicketLog.Text = "XEM TẤT CẢ";
+            this.btnShowAllTicketLog.UseVisualStyleBackColor = true;
+            this.btnShowAllTicketLog.Click += new System.EventHandler(this.btnShowAllTicketLog_Click);
             // 
             // panel21
             // 
             this.panel21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel21.Controls.Add(this.label84);
-            this.panel21.Controls.Add(this.dateTimePicker16);
+            this.panel21.Controls.Add(this.dtTicketLogExpirationDateSearch);
             this.panel21.Controls.Add(this.label83);
-            this.panel21.Controls.Add(this.dateTimePicker15);
+            this.panel21.Controls.Add(this.dtTicketLogRegistrationDateSearch);
             this.panel21.Location = new System.Drawing.Point(17, 113);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(265, 83);
@@ -2784,13 +2799,13 @@
             this.label84.TabIndex = 15;
             this.label84.Text = "Kết thúc";
             // 
-            // dateTimePicker16
+            // dtTicketLogExpirationDateSearch
             // 
-            this.dateTimePicker16.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker16.Location = new System.Drawing.Point(82, 47);
-            this.dateTimePicker16.Name = "dateTimePicker16";
-            this.dateTimePicker16.Size = new System.Drawing.Size(164, 22);
-            this.dateTimePicker16.TabIndex = 14;
+            this.dtTicketLogExpirationDateSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtTicketLogExpirationDateSearch.Location = new System.Drawing.Point(82, 47);
+            this.dtTicketLogExpirationDateSearch.Name = "dtTicketLogExpirationDateSearch";
+            this.dtTicketLogExpirationDateSearch.Size = new System.Drawing.Size(164, 22);
+            this.dtTicketLogExpirationDateSearch.TabIndex = 14;
             // 
             // label83
             // 
@@ -2802,23 +2817,24 @@
             this.label83.TabIndex = 13;
             this.label83.Text = "Bắt đầu";
             // 
-            // dateTimePicker15
+            // dtTicketLogRegistrationDateSearch
             // 
-            this.dateTimePicker15.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker15.Location = new System.Drawing.Point(82, 14);
-            this.dateTimePicker15.Name = "dateTimePicker15";
-            this.dateTimePicker15.Size = new System.Drawing.Size(164, 22);
-            this.dateTimePicker15.TabIndex = 9;
+            this.dtTicketLogRegistrationDateSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtTicketLogRegistrationDateSearch.Location = new System.Drawing.Point(82, 14);
+            this.dtTicketLogRegistrationDateSearch.Name = "dtTicketLogRegistrationDateSearch";
+            this.dtTicketLogRegistrationDateSearch.Size = new System.Drawing.Size(164, 22);
+            this.dtTicketLogRegistrationDateSearch.TabIndex = 9;
             // 
-            // button25
+            // btnSearchTicketLog
             // 
-            this.button25.ForeColor = System.Drawing.Color.Blue;
-            this.button25.Location = new System.Drawing.Point(17, 209);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(114, 30);
-            this.button25.TabIndex = 26;
-            this.button25.Text = "XEM";
-            this.button25.UseVisualStyleBackColor = true;
+            this.btnSearchTicketLog.ForeColor = System.Drawing.Color.Blue;
+            this.btnSearchTicketLog.Location = new System.Drawing.Point(17, 209);
+            this.btnSearchTicketLog.Name = "btnSearchTicketLog";
+            this.btnSearchTicketLog.Size = new System.Drawing.Size(114, 30);
+            this.btnSearchTicketLog.TabIndex = 26;
+            this.btnSearchTicketLog.Text = "XEM";
+            this.btnSearchTicketLog.UseVisualStyleBackColor = true;
+            this.btnSearchTicketLog.Click += new System.EventHandler(this.btnSearchTicketLog_Click);
             // 
             // label82
             // 
@@ -2840,23 +2856,23 @@
             this.label81.TabIndex = 11;
             this.label81.Text = "Thao tác";
             // 
-            // comboBox5
+            // cbPartNameTicketLogSearch
             // 
-            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(99, 73);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(183, 24);
-            this.comboBox5.TabIndex = 10;
+            this.cbPartNameTicketLogSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPartNameTicketLogSearch.FormattingEnabled = true;
+            this.cbPartNameTicketLogSearch.Location = new System.Drawing.Point(99, 73);
+            this.cbPartNameTicketLogSearch.Name = "cbPartNameTicketLogSearch";
+            this.cbPartNameTicketLogSearch.Size = new System.Drawing.Size(183, 24);
+            this.cbPartNameTicketLogSearch.TabIndex = 10;
             // 
-            // comboBox4
+            // cbTicketLogNameSearch
             // 
-            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(99, 43);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(183, 24);
-            this.comboBox4.TabIndex = 9;
+            this.cbTicketLogNameSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTicketLogNameSearch.FormattingEnabled = true;
+            this.cbTicketLogNameSearch.Location = new System.Drawing.Point(99, 43);
+            this.cbTicketLogNameSearch.Name = "cbTicketLogNameSearch";
+            this.cbTicketLogNameSearch.Size = new System.Drawing.Size(183, 24);
+            this.cbTicketLogNameSearch.TabIndex = 9;
             // 
             // label80
             // 
@@ -2868,12 +2884,12 @@
             this.label80.TabIndex = 3;
             this.label80.Text = "Tìm kiếm";
             // 
-            // textBox20
+            // tbTicketLogKeyWordSearch
             // 
-            this.textBox20.Location = new System.Drawing.Point(99, 15);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(183, 22);
-            this.textBox20.TabIndex = 2;
+            this.tbTicketLogKeyWordSearch.Location = new System.Drawing.Point(99, 15);
+            this.tbTicketLogKeyWordSearch.Name = "tbTicketLogKeyWordSearch";
+            this.tbTicketLogKeyWordSearch.Size = new System.Drawing.Size(183, 22);
+            this.tbTicketLogKeyWordSearch.TabIndex = 2;
             // 
             // tabPageTaoMoiVeThang
             // 
@@ -4757,6 +4773,7 @@
             this.LogTypeName.DataPropertyName = "LogTypeName";
             this.LogTypeName.HeaderText = "Loại XL";
             this.LogTypeName.Name = "LogTypeName";
+            this.LogTypeName.Width = 200;
             // 
             // ProcessDate
             // 
@@ -4817,6 +4834,7 @@
             this.Email_Log.DataPropertyName = "Email";
             this.Email_Log.HeaderText = "Email";
             this.Email_Log.Name = "Email_Log";
+            this.Email_Log.Width = 150;
             // 
             // CMND_Log
             // 
@@ -5256,47 +5274,47 @@
         private System.Windows.Forms.Button btnTicketMonthCreate;
         private System.Windows.Forms.Panel panel22;
         private System.Windows.Forms.Label label93;
-        private System.Windows.Forms.TextBox textBox40;
+        private System.Windows.Forms.TextBox tbTicketLogExpirationDate;
         private System.Windows.Forms.Label label94;
-        private System.Windows.Forms.TextBox textBox41;
+        private System.Windows.Forms.TextBox tbTicketLogRegistrationDate;
         private System.Windows.Forms.Label label95;
-        private System.Windows.Forms.TextBox textBox42;
+        private System.Windows.Forms.TextBox tbTicketLogPartName;
         private System.Windows.Forms.Label label96;
-        private System.Windows.Forms.TextBox textBox43;
+        private System.Windows.Forms.TextBox tbTicketLogCarKind;
         private System.Windows.Forms.Label label97;
-        private System.Windows.Forms.TextBox textBox44;
+        private System.Windows.Forms.TextBox tbTicketLogAddress;
         private System.Windows.Forms.Label label98;
-        private System.Windows.Forms.TextBox textBox45;
+        private System.Windows.Forms.TextBox tbTicketLogEmail;
         private System.Windows.Forms.Label label91;
-        private System.Windows.Forms.TextBox textBox38;
+        private System.Windows.Forms.TextBox tbTicketLogCMND;
         private System.Windows.Forms.Label label88;
-        private System.Windows.Forms.TextBox textBox35;
+        private System.Windows.Forms.TextBox tbTicketLogCustomerName;
         private System.Windows.Forms.Label label89;
-        private System.Windows.Forms.TextBox textBox36;
+        private System.Windows.Forms.TextBox tbTicketLogDigit;
         private System.Windows.Forms.Label label90;
-        private System.Windows.Forms.TextBox textBox37;
+        private System.Windows.Forms.TextBox tbTicketLogTicketMonthID;
         private System.Windows.Forms.Label label87;
-        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.TextBox tbTicketLogNameUser;
         private System.Windows.Forms.Label label86;
-        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.TextBox tbTicketLogProcessDate;
         private System.Windows.Forms.Label label85;
-        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.TextBox tbTicketLogProcessType;
         private System.Windows.Forms.DataGridView dgvTicketLogList;
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Button button27;
-        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button btnShowAllTicketLog;
         private System.Windows.Forms.Panel panel21;
         private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.DateTimePicker dateTimePicker16;
+        private System.Windows.Forms.DateTimePicker dtTicketLogExpirationDateSearch;
         private System.Windows.Forms.Label label83;
-        private System.Windows.Forms.DateTimePicker dateTimePicker15;
-        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.DateTimePicker dtTicketLogRegistrationDateSearch;
+        private System.Windows.Forms.Button btnSearchTicketLog;
         private System.Windows.Forms.Label label82;
         private System.Windows.Forms.Label label81;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbPartNameTicketLogSearch;
+        private System.Windows.Forms.ComboBox cbTicketLogNameSearch;
         private System.Windows.Forms.Label label80;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox tbTicketLogKeyWordSearch;
         private System.Windows.Forms.DateTimePicker dateTimePicker10;
         private System.Windows.Forms.DomainUpDown domainUpDown7;
         private System.Windows.Forms.DateTimePicker dateTimePicker9;
