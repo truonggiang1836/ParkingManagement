@@ -250,6 +250,21 @@
             this.label85 = new System.Windows.Forms.Label();
             this.tbTicketLogProcessType = new System.Windows.Forms.TextBox();
             this.dgvTicketLogList = new System.Windows.Forms.DataGridView();
+            this.TicketLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LogTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProcessDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameUser_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TicketMonthIdentify_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TicketMonthID_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Digit_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegistrationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpirationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMND_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarKind_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel20 = new System.Windows.Forms.Panel();
             this.button27 = new System.Windows.Forms.Button();
             this.btnShowAllTicketLog = new System.Windows.Forms.Button();
@@ -348,36 +363,25 @@
             this.tbTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPage17 = new System.Windows.Forms.TabPage();
             this.tabPageGiaHanVeThang = new System.Windows.Forms.TabPage();
-            this.dataGridView8 = new System.Windows.Forms.DataGridView();
-            this.Column59 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column60 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column61 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column62 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column64 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column65 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column66 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column67 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column68 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column69 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvRenewTicketMonthList = new System.Windows.Forms.DataGridView();
             this.panel27 = new System.Windows.Forms.Panel();
-            this.button28 = new System.Windows.Forms.Button();
+            this.btnRenewByPlusDate = new System.Windows.Forms.Button();
             this.label113 = new System.Windows.Forms.Label();
-            this.textBox48 = new System.Windows.Forms.TextBox();
+            this.tbRenewPlusDate = new System.Windows.Forms.TextBox();
             this.panel25 = new System.Windows.Forms.Panel();
             this.label104 = new System.Windows.Forms.Label();
-            this.dateTimePicker19 = new System.Windows.Forms.DateTimePicker();
+            this.dtRenewExpirationDate = new System.Windows.Forms.DateTimePicker();
             this.label105 = new System.Windows.Forms.Label();
             this.dateTimePicker20 = new System.Windows.Forms.DateTimePicker();
-            this.button31 = new System.Windows.Forms.Button();
+            this.btnRenewByExpirationDate = new System.Windows.Forms.Button();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label99 = new System.Windows.Forms.Label();
-            this.textBox49 = new System.Windows.Forms.TextBox();
+            this.tbRenewTicketMonthDaysRemainingSearch = new System.Windows.Forms.TextBox();
             this.button29 = new System.Windows.Forms.Button();
-            this.button30 = new System.Windows.Forms.Button();
+            this.btnNearExpiredTicketMonthSearch = new System.Windows.Forms.Button();
             this.label102 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
-            this.textBox46 = new System.Windows.Forms.TextBox();
+            this.tbRenewTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPageDoiVeThang = new System.Windows.Forms.TabPage();
             this.tabPageKichHoatVeThang = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -468,21 +472,17 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.TicketLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProcessDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameUser_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TicketMonthIdentify_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TicketMonthID_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Digit_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegistrationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExpirationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMND_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarKind_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewIsChosen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column60 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column61 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column64 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column65 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column66 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column67 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column68 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -540,7 +540,7 @@
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPageGiaHanVeThang.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRenewTicketMonthList)).BeginInit();
             this.panel27.SuspendLayout();
             this.panel25.SuspendLayout();
             this.panel23.SuspendLayout();
@@ -2739,6 +2739,98 @@
             this.dgvTicketLogList.TabIndex = 1;
             this.dgvTicketLogList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTicketLogList_CellClick);
             // 
+            // TicketLogIdentify
+            // 
+            this.TicketLogIdentify.DataPropertyName = "Identify";
+            this.TicketLogIdentify.HeaderText = "STT";
+            this.TicketLogIdentify.Name = "TicketLogIdentify";
+            // 
+            // LogTypeName
+            // 
+            this.LogTypeName.DataPropertyName = "LogTypeName";
+            this.LogTypeName.HeaderText = "Loại XL";
+            this.LogTypeName.Name = "LogTypeName";
+            this.LogTypeName.Width = 200;
+            // 
+            // ProcessDate
+            // 
+            this.ProcessDate.DataPropertyName = "ProcessDate";
+            this.ProcessDate.HeaderText = "Ngày XL";
+            this.ProcessDate.Name = "ProcessDate";
+            // 
+            // NameUser_Log
+            // 
+            this.NameUser_Log.DataPropertyName = "NameUser";
+            this.NameUser_Log.HeaderText = "Người XL";
+            this.NameUser_Log.Name = "NameUser_Log";
+            // 
+            // TicketMonthIdentify_Log
+            // 
+            this.TicketMonthIdentify_Log.DataPropertyName = "TicketMonthIdentify";
+            this.TicketMonthIdentify_Log.HeaderText = "STT thẻ";
+            this.TicketMonthIdentify_Log.Name = "TicketMonthIdentify_Log";
+            // 
+            // TicketMonthID_Log
+            // 
+            this.TicketMonthID_Log.DataPropertyName = "TicketMonthID";
+            this.TicketMonthID_Log.HeaderText = "Mã thẻ";
+            this.TicketMonthID_Log.Name = "TicketMonthID_Log";
+            // 
+            // Digit_Log
+            // 
+            this.Digit_Log.DataPropertyName = "Digit";
+            this.Digit_Log.HeaderText = "Biển số";
+            this.Digit_Log.Name = "Digit_Log";
+            // 
+            // RegistrationDate_Log
+            // 
+            this.RegistrationDate_Log.DataPropertyName = "RegistrationDate";
+            this.RegistrationDate_Log.HeaderText = "Ngày BĐ";
+            this.RegistrationDate_Log.Name = "RegistrationDate_Log";
+            // 
+            // ExpirationDate_Log
+            // 
+            this.ExpirationDate_Log.DataPropertyName = "ExpirationDate";
+            this.ExpirationDate_Log.HeaderText = "Ngày KT";
+            this.ExpirationDate_Log.Name = "ExpirationDate_Log";
+            // 
+            // CustomerName_Log
+            // 
+            this.CustomerName_Log.DataPropertyName = "CustomerName";
+            this.CustomerName_Log.HeaderText = "Tên KH";
+            this.CustomerName_Log.Name = "CustomerName_Log";
+            // 
+            // Address_Log
+            // 
+            this.Address_Log.DataPropertyName = "Address";
+            this.Address_Log.HeaderText = "Địa chỉ";
+            this.Address_Log.Name = "Address_Log";
+            // 
+            // Email_Log
+            // 
+            this.Email_Log.DataPropertyName = "Email";
+            this.Email_Log.HeaderText = "Email";
+            this.Email_Log.Name = "Email_Log";
+            this.Email_Log.Width = 150;
+            // 
+            // CMND_Log
+            // 
+            this.CMND_Log.DataPropertyName = "CMND";
+            this.CMND_Log.HeaderText = "CMND";
+            this.CMND_Log.Name = "CMND_Log";
+            // 
+            // PartName_Log
+            // 
+            this.PartName_Log.DataPropertyName = "PartName";
+            this.PartName_Log.HeaderText = "Loại xe";
+            this.PartName_Log.Name = "PartName_Log";
+            // 
+            // CarKind_Log
+            // 
+            this.CarKind_Log.DataPropertyName = "CarKind";
+            this.CarKind_Log.HeaderText = "Hiệu xe";
+            this.CarKind_Log.Name = "CarKind_Log";
+            // 
             // panel20
             // 
             this.panel20.Controls.Add(this.button27);
@@ -3690,7 +3782,7 @@
             // 
             // tabPageGiaHanVeThang
             // 
-            this.tabPageGiaHanVeThang.Controls.Add(this.dataGridView8);
+            this.tabPageGiaHanVeThang.Controls.Add(this.dgvRenewTicketMonthList);
             this.tabPageGiaHanVeThang.Controls.Add(this.panel27);
             this.tabPageGiaHanVeThang.Controls.Add(this.panel25);
             this.tabPageGiaHanVeThang.Controls.Add(this.panel23);
@@ -3702,101 +3794,47 @@
             this.tabPageGiaHanVeThang.Text = "Gia hạn - Thông tin hết hạn vé tháng";
             this.tabPageGiaHanVeThang.UseVisualStyleBackColor = true;
             // 
-            // dataGridView8
+            // dgvRenewTicketMonthList
             // 
-            this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView8.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column59,
+            this.dgvRenewTicketMonthList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRenewTicketMonthList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.RenewIsChosen,
             this.Column60,
             this.Column61,
-            this.Column62,
+            this.RenewIdentify,
             this.Column63,
             this.Column64,
             this.Column65,
             this.Column66,
             this.Column67,
             this.Column68,
-            this.Column69});
-            this.dataGridView8.Location = new System.Drawing.Point(6, 199);
-            this.dataGridView8.Name = "dataGridView8";
-            this.dataGridView8.Size = new System.Drawing.Size(1144, 412);
-            this.dataGridView8.TabIndex = 4;
-            // 
-            // Column59
-            // 
-            this.Column59.HeaderText = "Chọn";
-            this.Column59.Name = "Column59";
-            // 
-            // Column60
-            // 
-            this.Column60.HeaderText = "Loại";
-            this.Column60.Name = "Column60";
-            // 
-            // Column61
-            // 
-            this.Column61.HeaderText = "Số ngày";
-            this.Column61.Name = "Column61";
-            // 
-            // Column62
-            // 
-            this.Column62.HeaderText = "STT";
-            this.Column62.Name = "Column62";
-            // 
-            // Column63
-            // 
-            this.Column63.HeaderText = "Biển số";
-            this.Column63.Name = "Column63";
-            // 
-            // Column64
-            // 
-            this.Column64.HeaderText = "Tên";
-            this.Column64.Name = "Column64";
-            // 
-            // Column65
-            // 
-            this.Column65.HeaderText = "Công ty";
-            this.Column65.Name = "Column65";
-            // 
-            // Column66
-            // 
-            this.Column66.HeaderText = "Giới hạn giờ";
-            this.Column66.Name = "Column66";
-            // 
-            // Column67
-            // 
-            this.Column67.HeaderText = "Tiền thu";
-            this.Column67.Name = "Column67";
-            // 
-            // Column68
-            // 
-            this.Column68.HeaderText = "Ngày ĐK";
-            this.Column68.Name = "Column68";
-            // 
-            // Column69
-            // 
-            this.Column69.HeaderText = "Ngày HH";
-            this.Column69.Name = "Column69";
+            this.RenewExpirationDate});
+            this.dgvRenewTicketMonthList.Location = new System.Drawing.Point(6, 199);
+            this.dgvRenewTicketMonthList.Name = "dgvRenewTicketMonthList";
+            this.dgvRenewTicketMonthList.Size = new System.Drawing.Size(1144, 412);
+            this.dgvRenewTicketMonthList.TabIndex = 4;
             // 
             // panel27
             // 
             this.panel27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel27.Controls.Add(this.button28);
+            this.panel27.Controls.Add(this.btnRenewByPlusDate);
             this.panel27.Controls.Add(this.label113);
-            this.panel27.Controls.Add(this.textBox48);
+            this.panel27.Controls.Add(this.tbRenewPlusDate);
             this.panel27.Location = new System.Drawing.Point(786, 21);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(342, 162);
             this.panel27.TabIndex = 3;
             // 
-            // button28
+            // btnRenewByPlusDate
             // 
-            this.button28.ForeColor = System.Drawing.Color.Blue;
-            this.button28.Location = new System.Drawing.Point(30, 109);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(278, 36);
-            this.button28.TabIndex = 28;
-            this.button28.Text = "GIA HẠN CỘNG DỒN NGÀY";
-            this.button28.UseVisualStyleBackColor = true;
+            this.btnRenewByPlusDate.ForeColor = System.Drawing.Color.Blue;
+            this.btnRenewByPlusDate.Location = new System.Drawing.Point(30, 109);
+            this.btnRenewByPlusDate.Name = "btnRenewByPlusDate";
+            this.btnRenewByPlusDate.Size = new System.Drawing.Size(278, 36);
+            this.btnRenewByPlusDate.TabIndex = 28;
+            this.btnRenewByPlusDate.Text = "GIA HẠN CỘNG DỒN NGÀY";
+            this.btnRenewByPlusDate.UseVisualStyleBackColor = true;
+            this.btnRenewByPlusDate.Click += new System.EventHandler(this.btnRenewByPlusDate_Click);
             // 
             // label113
             // 
@@ -3808,21 +3846,21 @@
             this.label113.TabIndex = 3;
             this.label113.Text = "Số ngày gia hạn";
             // 
-            // textBox48
+            // tbRenewPlusDate
             // 
-            this.textBox48.Location = new System.Drawing.Point(175, 68);
-            this.textBox48.Name = "textBox48";
-            this.textBox48.Size = new System.Drawing.Size(133, 22);
-            this.textBox48.TabIndex = 2;
+            this.tbRenewPlusDate.Location = new System.Drawing.Point(175, 68);
+            this.tbRenewPlusDate.Name = "tbRenewPlusDate";
+            this.tbRenewPlusDate.Size = new System.Drawing.Size(133, 22);
+            this.tbRenewPlusDate.TabIndex = 2;
             // 
             // panel25
             // 
             this.panel25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel25.Controls.Add(this.label104);
-            this.panel25.Controls.Add(this.dateTimePicker19);
+            this.panel25.Controls.Add(this.dtRenewExpirationDate);
             this.panel25.Controls.Add(this.label105);
             this.panel25.Controls.Add(this.dateTimePicker20);
-            this.panel25.Controls.Add(this.button31);
+            this.panel25.Controls.Add(this.btnRenewByExpirationDate);
             this.panel25.Location = new System.Drawing.Point(408, 21);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(342, 162);
@@ -3838,13 +3876,13 @@
             this.label104.TabIndex = 31;
             this.label104.Text = "Ngày kết thúc";
             // 
-            // dateTimePicker19
+            // dtRenewExpirationDate
             // 
-            this.dateTimePicker19.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker19.Location = new System.Drawing.Point(144, 69);
-            this.dateTimePicker19.Name = "dateTimePicker19";
-            this.dateTimePicker19.Size = new System.Drawing.Size(164, 22);
-            this.dateTimePicker19.TabIndex = 30;
+            this.dtRenewExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtRenewExpirationDate.Location = new System.Drawing.Point(144, 69);
+            this.dtRenewExpirationDate.Name = "dtRenewExpirationDate";
+            this.dtRenewExpirationDate.Size = new System.Drawing.Size(164, 22);
+            this.dtRenewExpirationDate.TabIndex = 30;
             // 
             // label105
             // 
@@ -3864,26 +3902,27 @@
             this.dateTimePicker20.Size = new System.Drawing.Size(164, 22);
             this.dateTimePicker20.TabIndex = 28;
             // 
-            // button31
+            // btnRenewByExpirationDate
             // 
-            this.button31.ForeColor = System.Drawing.Color.Blue;
-            this.button31.Location = new System.Drawing.Point(30, 109);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(278, 36);
-            this.button31.TabIndex = 27;
-            this.button31.Text = "GIA HẠN THEO NGÀY ĐÃ CHỌN";
-            this.button31.UseVisualStyleBackColor = true;
+            this.btnRenewByExpirationDate.ForeColor = System.Drawing.Color.Blue;
+            this.btnRenewByExpirationDate.Location = new System.Drawing.Point(30, 109);
+            this.btnRenewByExpirationDate.Name = "btnRenewByExpirationDate";
+            this.btnRenewByExpirationDate.Size = new System.Drawing.Size(278, 36);
+            this.btnRenewByExpirationDate.TabIndex = 27;
+            this.btnRenewByExpirationDate.Text = "GIA HẠN THEO NGÀY ĐÃ CHỌN";
+            this.btnRenewByExpirationDate.UseVisualStyleBackColor = true;
+            this.btnRenewByExpirationDate.Click += new System.EventHandler(this.btnRenewByExpirationDate_Click);
             // 
             // panel23
             // 
             this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel23.Controls.Add(this.label99);
-            this.panel23.Controls.Add(this.textBox49);
+            this.panel23.Controls.Add(this.tbRenewTicketMonthDaysRemainingSearch);
             this.panel23.Controls.Add(this.button29);
-            this.panel23.Controls.Add(this.button30);
+            this.panel23.Controls.Add(this.btnNearExpiredTicketMonthSearch);
             this.panel23.Controls.Add(this.label102);
             this.panel23.Controls.Add(this.label103);
-            this.panel23.Controls.Add(this.textBox46);
+            this.panel23.Controls.Add(this.tbRenewTicketMonthKeyWordSearch);
             this.panel23.Location = new System.Drawing.Point(30, 21);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(342, 162);
@@ -3899,12 +3938,12 @@
             this.label99.TabIndex = 29;
             this.label99.Text = "(Tìm theo stt, địa chỉ, biển số, tên khách hàng)";
             // 
-            // textBox49
+            // tbRenewTicketMonthDaysRemainingSearch
             // 
-            this.textBox49.Location = new System.Drawing.Point(153, 71);
-            this.textBox49.Name = "textBox49";
-            this.textBox49.Size = new System.Drawing.Size(165, 22);
-            this.textBox49.TabIndex = 28;
+            this.tbRenewTicketMonthDaysRemainingSearch.Location = new System.Drawing.Point(153, 71);
+            this.tbRenewTicketMonthDaysRemainingSearch.Name = "tbRenewTicketMonthDaysRemainingSearch";
+            this.tbRenewTicketMonthDaysRemainingSearch.Size = new System.Drawing.Size(165, 22);
+            this.tbRenewTicketMonthDaysRemainingSearch.TabIndex = 28;
             // 
             // button29
             // 
@@ -3916,15 +3955,16 @@
             this.button29.Text = "XUẤT EXCEL";
             this.button29.UseVisualStyleBackColor = true;
             // 
-            // button30
+            // btnNearExpiredTicketMonthSearch
             // 
-            this.button30.ForeColor = System.Drawing.Color.Blue;
-            this.button30.Location = new System.Drawing.Point(17, 109);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(114, 36);
-            this.button30.TabIndex = 26;
-            this.button30.Text = "TÌM THẺ";
-            this.button30.UseVisualStyleBackColor = true;
+            this.btnNearExpiredTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
+            this.btnNearExpiredTicketMonthSearch.Location = new System.Drawing.Point(17, 109);
+            this.btnNearExpiredTicketMonthSearch.Name = "btnNearExpiredTicketMonthSearch";
+            this.btnNearExpiredTicketMonthSearch.Size = new System.Drawing.Size(114, 36);
+            this.btnNearExpiredTicketMonthSearch.TabIndex = 26;
+            this.btnNearExpiredTicketMonthSearch.Text = "TÌM THẺ";
+            this.btnNearExpiredTicketMonthSearch.UseVisualStyleBackColor = true;
+            this.btnNearExpiredTicketMonthSearch.Click += new System.EventHandler(this.btnNearExpiredTicketMonthSearch_Click);
             // 
             // label102
             // 
@@ -3946,12 +3986,12 @@
             this.label103.TabIndex = 3;
             this.label103.Text = "Thông tin";
             // 
-            // textBox46
+            // tbRenewTicketMonthKeyWordSearch
             // 
-            this.textBox46.Location = new System.Drawing.Point(153, 15);
-            this.textBox46.Name = "textBox46";
-            this.textBox46.Size = new System.Drawing.Size(165, 22);
-            this.textBox46.TabIndex = 2;
+            this.tbRenewTicketMonthKeyWordSearch.Location = new System.Drawing.Point(153, 15);
+            this.tbRenewTicketMonthKeyWordSearch.Name = "tbRenewTicketMonthKeyWordSearch";
+            this.tbRenewTicketMonthKeyWordSearch.Size = new System.Drawing.Size(165, 22);
+            this.tbRenewTicketMonthKeyWordSearch.TabIndex = 2;
             // 
             // tabPageDoiVeThang
             // 
@@ -4762,97 +4802,72 @@
             this.tabPage10.Text = "Xem hộp đen";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // TicketLogIdentify
+            // RenewIsChosen
             // 
-            this.TicketLogIdentify.DataPropertyName = "Identify";
-            this.TicketLogIdentify.HeaderText = "STT";
-            this.TicketLogIdentify.Name = "TicketLogIdentify";
+            this.RenewIsChosen.HeaderText = "Chọn";
+            this.RenewIsChosen.Name = "RenewIsChosen";
+            this.RenewIsChosen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RenewIsChosen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // LogTypeName
+            // Column60
             // 
-            this.LogTypeName.DataPropertyName = "LogTypeName";
-            this.LogTypeName.HeaderText = "Loại XL";
-            this.LogTypeName.Name = "LogTypeName";
-            this.LogTypeName.Width = 200;
+            this.Column60.DataPropertyName = "PartName";
+            this.Column60.HeaderText = "Loại";
+            this.Column60.Name = "Column60";
             // 
-            // ProcessDate
+            // Column61
             // 
-            this.ProcessDate.DataPropertyName = "ProcessDate";
-            this.ProcessDate.HeaderText = "Ngày XL";
-            this.ProcessDate.Name = "ProcessDate";
+            this.Column61.DataPropertyName = "DaysRemaining";
+            this.Column61.HeaderText = "Số ngày";
+            this.Column61.Name = "Column61";
             // 
-            // NameUser_Log
+            // RenewIdentify
             // 
-            this.NameUser_Log.DataPropertyName = "NameUser";
-            this.NameUser_Log.HeaderText = "Người XL";
-            this.NameUser_Log.Name = "NameUser_Log";
+            this.RenewIdentify.DataPropertyName = "Identify";
+            this.RenewIdentify.HeaderText = "STT";
+            this.RenewIdentify.Name = "RenewIdentify";
             // 
-            // TicketMonthIdentify_Log
+            // Column63
             // 
-            this.TicketMonthIdentify_Log.DataPropertyName = "TicketMonthIdentify";
-            this.TicketMonthIdentify_Log.HeaderText = "STT thẻ";
-            this.TicketMonthIdentify_Log.Name = "TicketMonthIdentify_Log";
+            this.Column63.DataPropertyName = "Digit";
+            this.Column63.HeaderText = "Biển số";
+            this.Column63.Name = "Column63";
             // 
-            // TicketMonthID_Log
+            // Column64
             // 
-            this.TicketMonthID_Log.DataPropertyName = "TicketMonthID";
-            this.TicketMonthID_Log.HeaderText = "Mã thẻ";
-            this.TicketMonthID_Log.Name = "TicketMonthID_Log";
+            this.Column64.DataPropertyName = "CustomerName";
+            this.Column64.HeaderText = "Tên";
+            this.Column64.Name = "Column64";
             // 
-            // Digit_Log
+            // Column65
             // 
-            this.Digit_Log.DataPropertyName = "Digit";
-            this.Digit_Log.HeaderText = "Biển số";
-            this.Digit_Log.Name = "Digit_Log";
+            this.Column65.DataPropertyName = "Address";
+            this.Column65.HeaderText = "Địa chỉ";
+            this.Column65.Name = "Column65";
             // 
-            // RegistrationDate_Log
+            // Column66
             // 
-            this.RegistrationDate_Log.DataPropertyName = "RegistrationDate";
-            this.RegistrationDate_Log.HeaderText = "Ngày BĐ";
-            this.RegistrationDate_Log.Name = "RegistrationDate_Log";
+            this.Column66.HeaderText = "Giới hạn giờ";
+            this.Column66.Name = "Column66";
+            this.Column66.Visible = false;
             // 
-            // ExpirationDate_Log
+            // Column67
             // 
-            this.ExpirationDate_Log.DataPropertyName = "ExpirationDate";
-            this.ExpirationDate_Log.HeaderText = "Ngày KT";
-            this.ExpirationDate_Log.Name = "ExpirationDate_Log";
+            this.Column67.DataPropertyName = "ChargesAmount";
+            this.Column67.HeaderText = "Tiền thu";
+            this.Column67.Name = "Column67";
             // 
-            // CustomerName_Log
+            // Column68
             // 
-            this.CustomerName_Log.DataPropertyName = "CustomerName";
-            this.CustomerName_Log.HeaderText = "Tên KH";
-            this.CustomerName_Log.Name = "CustomerName_Log";
+            this.Column68.DataPropertyName = "RegistrationDate";
+            this.Column68.HeaderText = "Ngày ĐK";
+            this.Column68.Name = "Column68";
             // 
-            // Address_Log
+            // RenewExpirationDate
             // 
-            this.Address_Log.DataPropertyName = "Address";
-            this.Address_Log.HeaderText = "Địa chỉ";
-            this.Address_Log.Name = "Address_Log";
-            // 
-            // Email_Log
-            // 
-            this.Email_Log.DataPropertyName = "Email";
-            this.Email_Log.HeaderText = "Email";
-            this.Email_Log.Name = "Email_Log";
-            this.Email_Log.Width = 150;
-            // 
-            // CMND_Log
-            // 
-            this.CMND_Log.DataPropertyName = "CMND";
-            this.CMND_Log.HeaderText = "CMND";
-            this.CMND_Log.Name = "CMND_Log";
-            // 
-            // PartName_Log
-            // 
-            this.PartName_Log.DataPropertyName = "PartName";
-            this.PartName_Log.HeaderText = "Loại xe";
-            this.PartName_Log.Name = "PartName_Log";
-            // 
-            // CarKind_Log
-            // 
-            this.CarKind_Log.DataPropertyName = "CarKind";
-            this.CarKind_Log.HeaderText = "Hiệu xe";
-            this.CarKind_Log.Name = "CarKind_Log";
+            this.RenewExpirationDate.DataPropertyName = "ExpirationDate";
+            this.RenewExpirationDate.HeaderText = "Ngày HH";
+            this.RenewExpirationDate.Name = "RenewExpirationDate";
             // 
             // FormQuanLy
             // 
@@ -4943,7 +4958,7 @@
             this.panel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPageGiaHanVeThang.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRenewTicketMonthList)).EndInit();
             this.panel27.ResumeLayout(false);
             this.panel27.PerformLayout();
             this.panel25.ResumeLayout(false);
@@ -5321,34 +5336,23 @@
         private System.Windows.Forms.DomainUpDown domainUpDown6;
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.Label label113;
-        private System.Windows.Forms.TextBox textBox48;
+        private System.Windows.Forms.TextBox tbRenewPlusDate;
         private System.Windows.Forms.Panel panel25;
-        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button btnRenewByExpirationDate;
         private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.TextBox textBox49;
+        private System.Windows.Forms.TextBox tbRenewTicketMonthDaysRemainingSearch;
         private System.Windows.Forms.Button button29;
-        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button btnNearExpiredTicketMonthSearch;
         private System.Windows.Forms.Label label102;
         private System.Windows.Forms.Label label103;
-        private System.Windows.Forms.TextBox textBox46;
+        private System.Windows.Forms.TextBox tbRenewTicketMonthKeyWordSearch;
         private System.Windows.Forms.Label label99;
         private System.Windows.Forms.Label label104;
-        private System.Windows.Forms.DateTimePicker dateTimePicker19;
+        private System.Windows.Forms.DateTimePicker dtRenewExpirationDate;
         private System.Windows.Forms.Label label105;
         private System.Windows.Forms.DateTimePicker dateTimePicker20;
-        private System.Windows.Forms.Button button28;
-        private System.Windows.Forms.DataGridView dataGridView8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column59;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column60;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column61;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column62;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column63;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column64;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column65;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column66;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column67;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column68;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column69;
+        private System.Windows.Forms.Button btnRenewByPlusDate;
+        private System.Windows.Forms.DataGridView dgvRenewTicketMonthList;
         private System.Windows.Forms.DataGridView dgvWorkList;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -5427,5 +5431,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CMND_Log;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartName_Log;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarKind_Log;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RenewIsChosen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column60;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column61;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RenewIdentify;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column63;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column64;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column65;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column66;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column67;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column68;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RenewExpirationDate;
     }
 }

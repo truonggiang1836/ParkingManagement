@@ -662,6 +662,32 @@ namespace ParkingMangement.GUI
             dgvTicketMonthList.DataSource = TicketMonthDAO.searchData(key);
         }
 
+        private void searchNearExpiredTicketMonthData()
+        {
+            string key = tbRenewTicketMonthKeyWordSearch.Text;
+            if (!string.IsNullOrWhiteSpace(tbRenewTicketMonthDaysRemainingSearch.Text)) {
+                int daysRemaining = 0;
+                if (int.TryParse(tbRenewTicketMonthDaysRemainingSearch.Text, out daysRemaining))
+                {
+                    if (daysRemaining < 0)
+                    {
+                        MessageBox.Show(Constant.sMessageInvalidError);
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+                dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTictketData(key, daysRemaining);
+            } else
+            {
+                dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTictketData(key, null);
+            }
+            
+        }
+
         private void searchTicketLogData()
         {
             string key = tbTicketLogKeyWordSearch.Text;
@@ -703,6 +729,12 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void loadRenewTicketMonthData()
+        {
+            DataTable data = TicketMonthDAO.GetAllNearExpiredTictketData(DateTime.Now);
+            dgvRenewTicketMonthList.DataSource = data;
+        }
+
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
@@ -710,7 +742,11 @@ namespace ParkingMangement.GUI
                 loadTicketMonthData();
                 loadPartDataToComboBox(cbTicketMonthPartCreate);
                 loadPartDataToComboBox(cbTicketMonthPartEdit);
+            } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
+            {
+                loadRenewTicketMonthData();
             }
+                
         }
 
         private void addTicketMonth()
@@ -980,6 +1016,11 @@ namespace ParkingMangement.GUI
         private void tbTicketMonthKeyWordSearch_TextChanged(object sender, EventArgs e)
         {
             searchTicketMonthData();
+        }
+
+        private void btnNearExpiredTicketMonthSearch_Click(object sender, EventArgs e)
+        {
+            searchNearExpiredTicketMonthData();
         }
 
         /*
@@ -1258,6 +1299,74 @@ namespace ParkingMangement.GUI
             }
 
             ConfigDAO.Update(configDTO);
+        }
+
+        private void btnRenewByExpirationDate_Click(object sender, EventArgs e)
+        {
+            if (!isChosenRenewTicketMonthData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseTicketMonthError);
+                return;
+            }
+            DateTime expirationDate = dtRenewExpirationDate.Value.Date;
+            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
+                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
+                if (isChoose)
+                {
+                    TicketMonthDAO.updateTictketByExpirationDate(expirationDate, identify);
+                }
+            }
+            loadRenewTicketMonthData();
+        }
+
+        private bool isChosenRenewTicketMonthData()
+        {
+            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
+                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void btnRenewByPlusDate_Click(object sender, EventArgs e)
+        {
+            if (!isChosenRenewTicketMonthData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseTicketMonthError);
+                return;
+            }
+            int plusDate = 0;
+            if (int.TryParse(tbRenewPlusDate.Text, out plusDate))
+            {
+                if (plusDate <= 0)
+                {
+                    MessageBox.Show(Constant.sMessageRenewPlusDateInvalidError);
+                    return;
+                }
+            } else
+            {
+                MessageBox.Show(Constant.sMessageRenewPlusDateInvalidError);
+                return;
+            }
+            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
+                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
+                DateTime expirationDate = Convert.ToDateTime(row.Cells["RenewExpirationDate"].Value);
+                expirationDate = expirationDate.AddDays(plusDate);
+                if (isChoose)
+                {
+                    TicketMonthDAO.updateTictketByExpirationDate(expirationDate, identify);
+                }
+            }
+            loadRenewTicketMonthData();
         }
     }
 }
