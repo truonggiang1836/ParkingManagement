@@ -735,6 +735,12 @@ namespace ParkingMangement.GUI
             dgvRenewTicketMonthList.DataSource = data;
         }
 
+        private void loadLostTicketMonthData()
+        {
+            DataTable data = TicketMonthDAO.GetAllLostTictketData();
+            dgvLostTicketMonthList.DataSource = data;
+        }
+
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
@@ -745,8 +751,10 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
             {
                 loadRenewTicketMonthData();
+            } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
+            {
+                loadLostTicketMonthData();
             }
-                
         }
 
         private void addTicketMonth()
@@ -765,8 +773,8 @@ namespace ParkingMangement.GUI
             DataRow dataRow = ((DataRowView)cbTicketMonthPartCreate.SelectedItem).Row;
             ticketMonthDTO.IdPart = Convert.ToString(dataRow["PartID"]);
            
-            ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateCreate.Value;
-            ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateCreate.Value;
+            ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateCreate.Value.Date;
+            ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateCreate.Value.Date;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountCreate.Text;
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
@@ -792,8 +800,8 @@ namespace ParkingMangement.GUI
             DataRow dataRow = ((DataRowView)cbTicketMonthPartEdit.SelectedItem).Row;
             ticketMonthDTO.IdPart = Convert.ToString(dataRow["PartID"]);
 
-            ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value;
-            ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateEdit.Value;
+            ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value.Date;
+            ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateEdit.Value.Date;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountEdit.Text;
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
@@ -1301,6 +1309,20 @@ namespace ParkingMangement.GUI
             ConfigDAO.Update(configDTO);
         }
 
+        private bool isChosenRenewTicketMonthData()
+        {
+            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
+                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void btnRenewByExpirationDate_Click(object sender, EventArgs e)
         {
             if (!isChosenRenewTicketMonthData())
@@ -1319,20 +1341,6 @@ namespace ParkingMangement.GUI
                 }
             }
             loadRenewTicketMonthData();
-        }
-
-        private bool isChosenRenewTicketMonthData()
-        {
-            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
-            {
-                bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
-                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
-                if (isChoose)
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         private void btnRenewByPlusDate_Click(object sender, EventArgs e)
@@ -1367,6 +1375,11 @@ namespace ParkingMangement.GUI
                 }
             }
             loadRenewTicketMonthData();
+        }
+
+        private void btnSaveLostCard_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

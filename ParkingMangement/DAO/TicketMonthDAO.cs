@@ -17,6 +17,8 @@ namespace ParkingMangement.DAO
         private static string sqlGetAllNearExpiredTictketData = "select Part.PartName, TicketMonth.Identify, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID";
 
+        private static string sqlGetAllLostTictketData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, Car.DateLostCard, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from [TicketMonth], [Part], [Car], [UserCar] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = Car.ID and TicketMonth.Account = UserCar.ID";
+
         private static string sqlOrderByIdentify = " order by TicketMonth.Identify asc";
         public static DataTable GetAllData()
         {
@@ -123,6 +125,14 @@ namespace ParkingMangement.DAO
         {
             string sql = "update [TicketMonth] set ExpirationDate = '" + expirationDate + "' where Identify = " + identify;
             Database.ExcuNonQuery(sql);
+        }
+
+        public static DataTable GetAllLostTictketData()
+        {
+            string sql = sqlGetAllLostTictketData;
+            sql += sqlOrderByIdentify;
+            DataTable data = Database.ExcuQuery(sql);
+            return data;
         }
     }
 }
