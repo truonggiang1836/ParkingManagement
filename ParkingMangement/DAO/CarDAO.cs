@@ -104,5 +104,11 @@ namespace ParkingMangement.DAO
                 data.Rows[row].SetField("IDOut", userNameOut);
             }
         }
+
+        public static void updateLostCard(string id, DateTime dateLostCard)
+        {
+            string sql = "update [Car] set IsLostCard = 1 and DateLostCard = '" + dateLostCard + "' where ID = '" + id+ "'";
+            Database.ExcuNonQuery(sql);
+        }
     }
 }

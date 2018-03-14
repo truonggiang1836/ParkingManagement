@@ -739,6 +739,10 @@ namespace ParkingMangement.GUI
         {
             DataTable data = TicketMonthDAO.GetAllLostTictketData();
             dgvLostTicketMonthList.DataSource = data;
+            if (data != null)
+            {
+                loadLostTicketMonthInfoFromDataGridViewRow(0);
+            }
         }
 
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -928,6 +932,41 @@ namespace ParkingMangement.GUI
             tbTicketLogExpirationDate.Text = expirationDate;
         }
 
+        private void searchLostTicketMonth()
+        {
+            string key = tbLostTicketMonthKeyWordSearch.Text;
+            dgvLostTicketMonthList.DataSource = TicketMonthDAO.searchLostTicketData(key);
+        }
+
+        private void deleteTicketMonth(int currentRow)
+        {
+            int identify = Convert.ToInt32(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthIdentify"].Value);
+            TicketMonthDAO.Delete(identify);
+            loadTicketMonthData();
+        }
+
+        private void showConfirmDeleteTicketMonth(int currentRow)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không?", "Xóa dữ liệu", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                deleteTicketMonth(currentRow);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void loadLostTicketMonthInfoFromDataGridViewRow(int Index)
+        {
+            string identify = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostCardIdentify"].Value);
+            tbLostTicketMonthIdentify.Text = identify;
+            string id = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostCardID"].Value);
+            tbLostTicketMonthID.Text = id;
+        }
+
         private void btnTicketMonthCreate_Click(object sender, EventArgs e)
         {
             if (checkCreateTicketMonthData())
@@ -984,27 +1023,6 @@ namespace ParkingMangement.GUI
             showConfirmDeleteTicketMonth(currentRow);
         }
 
-        private void deleteTicketMonth(int currentRow)
-        {
-            int identify = Convert.ToInt32(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthIdentify"].Value);
-            TicketMonthDAO.Delete(identify);
-            loadTicketMonthData();
-        }
-
-        private void showConfirmDeleteTicketMonth(int currentRow)
-        {
-            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không?", "Xóa dữ liệu", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                //do something
-                deleteTicketMonth(currentRow);
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
-        }
-
         private void dgvTicketLogList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int Index = dgvTicketLogList.CurrentRow.Index;
@@ -1029,6 +1047,34 @@ namespace ParkingMangement.GUI
         private void btnNearExpiredTicketMonthSearch_Click(object sender, EventArgs e)
         {
             searchNearExpiredTicketMonthData();
+        }
+
+        private void btnLostTicketMonthSearch_Click(object sender, EventArgs e)
+        {
+            searchLostTicketMonth();
+        }
+
+        private void dgvLostTicketMonthList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Index = e.RowIndex;
+            int Count = dgvLostTicketMonthList.Rows.Count;
+            if (Index < Count - 1)
+            {
+                loadLostTicketMonthInfoFromDataGridViewRow(Index);
+            }
+        }
+
+        private void upDateLostTicketMonth()
+        {
+            if (string.IsNullOrWhiteSpace(tbLostTicketMonthID.Text))
+            {
+                MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
+                return;
+            }
+            int identify = Convert.ToInt32(tbLostTicketMonthIdentify.Text);
+            string id = tbLostTicketMonthID.Text;
+            TicketMonthDAO.updateTictketByID(id, identify);
+            loadLostTicketMonthData();
         }
 
         /*
@@ -1380,6 +1426,11 @@ namespace ParkingMangement.GUI
         private void btnSaveLostCard_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnLostTicketMonthUpdate_Click(object sender, EventArgs e)
+        {
+            upDateLostTicketMonth();
         }
     }
 }
