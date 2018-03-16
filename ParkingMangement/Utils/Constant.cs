@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ParkingMangement.Utils
 {
@@ -37,5 +38,8 @@ namespace ParkingMangement.Utils
         public static string sMessageTicketMonthDigitNullError = "Biển số không được rỗng";
         public static string sMessageNoChooseTicketMonthError = "Vui lòng chọn vé tháng cần gia hạn";
         public static string sMessageRenewPlusDateInvalidError = "Số ngày gia hạn không hợp lệ";
+
+        // Config
+        public static string IMAGE_FOLDER = Application.StartupPath + @"\Images\";
     }
 }

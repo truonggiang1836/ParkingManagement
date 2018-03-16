@@ -13,7 +13,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = "select UserCar.UserID, UserCar.Account, UserCar.Pass, UserCar.NameUser, Sex.SexName, Functional.FunctionName from [UserCar], [Functional], [Sex] " +
-                "where Functional.FunctionID = UserCar.IDFunct AND Sex.SexID = UserCar.SexID";
+                "where Functional.FunctionID = UserCar.IDFunct and Sex.SexID = UserCar.SexID order by UserCar.UserID asc";
             return Database.ExcuQuery(sql);
         }
 
@@ -60,6 +60,12 @@ namespace ParkingMangement.DAO
             {
                 return "";
             }
+        }
+
+        public static void Delete(string userID)
+        {
+            string sql = "delete from [UserCar] where UserID = '" + userID + "'";
+            Database.ExcuNonQuery(sql);
         }
     }
 }

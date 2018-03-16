@@ -256,6 +256,46 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void dgvUserList_MouseClick(object sender, MouseEventArgs ev)
+        {
+            if (ev.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                MenuItem menuItem = new MenuItem("Xóa");
+                int currentRow = dgvUserList.HitTest(ev.X, ev.Y).RowIndex;
+                menuItem.Click += new EventHandler((s, e) => Delete_User_Click(s, e, currentRow));
+                m.MenuItems.Add(menuItem);
+
+                m.Show(dgvUserList, new Point(ev.X, ev.Y));
+            }
+        }
+
+        void Delete_User_Click(Object sender, System.EventArgs e, int currentRow)
+        {
+            showConfirmDeleteUser(currentRow);
+        }
+
+        private void showConfirmDeleteUser(int currentRow)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có muốn xóa không?", "Xóa dữ liệu", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                deleteUser(currentRow);
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void deleteUser(int currentRow)
+        {
+            string userID = Convert.ToString(dgvUserList.Rows[currentRow].Cells["ID"].Value);
+            UserDAO.Delete(userID);
+            loadUserList();
+        }
+
         /*
         Part data
         */
@@ -758,6 +798,9 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
                 loadLostTicketMonthData();
+            } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
+            {
+                
             }
         }
 
@@ -1431,6 +1474,40 @@ namespace ParkingMangement.GUI
         private void btnLostTicketMonthUpdate_Click(object sender, EventArgs e)
         {
             upDateLostTicketMonth();
+        }
+
+        private void loadCarInfoFromDataGridViewRow(int Index)
+        {
+            string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
+            if (!string.IsNullOrEmpty(image1))
+            {
+                pictureBoxCarLogImage1.Image = Image.FromFile(Constant.IMAGE_FOLDER + image1);
+            }
+            string image2 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages2"].Value);
+            if (!string.IsNullOrEmpty(image2))
+            {
+                pictureBoxCarLogImage2.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+            }
+            string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
+            if (!string.IsNullOrEmpty(image3))
+            {
+                pictureBoxCarLogImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image3);
+            }
+            string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
+            if (!string.IsNullOrEmpty(image4))
+            {
+                pictureBoxCarLogImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image4);
+            }
+        }
+
+        private void dgvCarList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Index = e.RowIndex;
+            int Count = dgvCarList.RowCount;
+            if (Index < Count - 1)
+            {
+                loadCarInfoFromDataGridViewRow(Index);
+            }
         }
     }
 }

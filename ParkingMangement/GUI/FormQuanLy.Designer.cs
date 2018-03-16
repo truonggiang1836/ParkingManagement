@@ -418,6 +418,14 @@
             this.btnLostTicketMonthUpdate = new System.Windows.Forms.Button();
             this.tbLostTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPageKichHoatVeThang = new System.Windows.Forms.TabPage();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button13 = new System.Windows.Forms.Button();
+            this.label92 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnAllTicketMonthSearch = new System.Windows.Forms.Button();
+            this.label110 = new System.Windows.Forms.Label();
+            this.tbAllTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
+            this.dgvAllTicketMonthList = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPageQuanLyXeRaVao = new System.Windows.Forms.TabPage();
             this.tabQuanLyXe = new System.Windows.Forms.TabControl();
@@ -440,22 +448,6 @@
             this.tbNightLimit = new System.Windows.Forms.TextBox();
             this.tabPageTraCuuVaoRa = new System.Windows.Forms.TabPage();
             this.dgvCarList = new System.Windows.Forms.DataGridView();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.dateTimePickerCarTimeOut = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerCarTimeIn = new System.Windows.Forms.DateTimePicker();
@@ -469,7 +461,7 @@
             this.label41 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.btnSearchCar = new System.Windows.Forms.Button();
             this.btnSaveLostCard = new System.Windows.Forms.Button();
@@ -506,14 +498,6 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.label92 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.label110 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button13 = new System.Windows.Forms.Button();
             this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -525,6 +509,29 @@
             this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -590,6 +597,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLostTicketMonthList)).BeginInit();
             this.panel24.SuspendLayout();
             this.tabPageKichHoatVeThang.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllTicketMonthList)).BeginInit();
             this.tabPageQuanLyXeRaVao.SuspendLayout();
             this.tabQuanLyXe.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -598,13 +607,17 @@
             this.tabPageTraCuuVaoRa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
+            this.panel12.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -682,6 +695,7 @@
             this.dgvUserList.Size = new System.Drawing.Size(753, 323);
             this.dgvUserList.TabIndex = 0;
             this.dgvUserList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserList_CellClick);
+            this.dgvUserList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvUserList_MouseClick);
             // 
             // ID
             // 
@@ -4360,7 +4374,7 @@
             // tabPageKichHoatVeThang
             // 
             this.tabPageKichHoatVeThang.Controls.Add(this.panel5);
-            this.tabPageKichHoatVeThang.Controls.Add(this.dataGridView1);
+            this.tabPageKichHoatVeThang.Controls.Add(this.dgvAllTicketMonthList);
             this.tabPageKichHoatVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageKichHoatVeThang.Name = "tabPageKichHoatVeThang";
             this.tabPageKichHoatVeThang.Padding = new System.Windows.Forms.Padding(3);
@@ -4368,6 +4382,98 @@
             this.tabPageKichHoatVeThang.TabIndex = 4;
             this.tabPageKichHoatVeThang.Text = "Kích hoạt thẻ tháng";
             this.tabPageKichHoatVeThang.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.button13);
+            this.panel5.Controls.Add(this.label92);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.btnAllTicketMonthSearch);
+            this.panel5.Controls.Add(this.label110);
+            this.panel5.Controls.Add(this.tbAllTicketMonthKeyWordSearch);
+            this.panel5.Location = new System.Drawing.Point(340, 16);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(479, 162);
+            this.panel5.TabIndex = 7;
+            // 
+            // button13
+            // 
+            this.button13.ForeColor = System.Drawing.Color.Blue;
+            this.button13.Location = new System.Drawing.Point(308, 96);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(150, 36);
+            this.button13.TabIndex = 28;
+            this.button13.Text = "KÍCH HOẠT THẺ";
+            this.button13.UseVisualStyleBackColor = true;
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label92.Location = new System.Drawing.Point(14, 51);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(275, 16);
+            this.label92.TabIndex = 29;
+            this.label92.Text = "(Tìm theo stt, địa chỉ, biển số, tên khách hàng)";
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(163, 96);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 36);
+            this.button1.TabIndex = 27;
+            this.button1.Text = "XUẤT EXCEL";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnAllTicketMonthSearch
+            // 
+            this.btnAllTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
+            this.btnAllTicketMonthSearch.Location = new System.Drawing.Point(17, 96);
+            this.btnAllTicketMonthSearch.Name = "btnAllTicketMonthSearch";
+            this.btnAllTicketMonthSearch.Size = new System.Drawing.Size(114, 36);
+            this.btnAllTicketMonthSearch.TabIndex = 26;
+            this.btnAllTicketMonthSearch.Text = "TÌM THẺ";
+            this.btnAllTicketMonthSearch.UseVisualStyleBackColor = true;
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label110.Location = new System.Drawing.Point(14, 27);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(63, 16);
+            this.label110.TabIndex = 3;
+            this.label110.Text = "Thông tin";
+            // 
+            // tbAllTicketMonthKeyWordSearch
+            // 
+            this.tbAllTicketMonthKeyWordSearch.Location = new System.Drawing.Point(153, 24);
+            this.tbAllTicketMonthKeyWordSearch.Name = "tbAllTicketMonthKeyWordSearch";
+            this.tbAllTicketMonthKeyWordSearch.Size = new System.Drawing.Size(200, 22);
+            this.tbAllTicketMonthKeyWordSearch.TabIndex = 2;
+            // 
+            // dgvAllTicketMonthList
+            // 
+            this.dgvAllTicketMonthList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAllTicketMonthList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCheckBoxColumn1,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn20,
+            this.dataGridViewTextBoxColumn24,
+            this.dataGridViewTextBoxColumn25,
+            this.dataGridViewTextBoxColumn27,
+            this.dataGridViewTextBoxColumn26,
+            this.dataGridViewTextBoxColumn28,
+            this.dataGridViewTextBoxColumn29,
+            this.dataGridViewTextBoxColumn30});
+            this.dgvAllTicketMonthList.Location = new System.Drawing.Point(6, 191);
+            this.dgvAllTicketMonthList.Name = "dgvAllTicketMonthList";
+            this.dgvAllTicketMonthList.ReadOnly = true;
+            this.dgvAllTicketMonthList.Size = new System.Drawing.Size(1144, 412);
+            this.dgvAllTicketMonthList.TabIndex = 6;
             // 
             // tabPage5
             // 
@@ -4581,6 +4687,10 @@
             this.dgvCarList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column19,
+            this.CarLogImages,
+            this.CarLogImages2,
+            this.CarLogImages3,
+            this.CarLogImages4,
             this.Column20,
             this.CarID,
             this.Column22,
@@ -4600,102 +4710,7 @@
             this.dgvCarList.Name = "dgvCarList";
             this.dgvCarList.Size = new System.Drawing.Size(1138, 302);
             this.dgvCarList.TabIndex = 1;
-            // 
-            // Column19
-            // 
-            this.Column19.DataPropertyName = "Identify";
-            this.Column19.HeaderText = "STT";
-            this.Column19.Name = "Column19";
-            // 
-            // Column20
-            // 
-            this.Column20.DataPropertyName = "SmartCardIdentify";
-            this.Column20.HeaderText = "STT thẻ";
-            this.Column20.Name = "Column20";
-            // 
-            // CarID
-            // 
-            this.CarID.DataPropertyName = "ID";
-            this.CarID.HeaderText = "Mã thẻ";
-            this.CarID.Name = "CarID";
-            // 
-            // Column22
-            // 
-            this.Column22.DataPropertyName = "Sign";
-            this.Column22.HeaderText = "Ký hiệu";
-            this.Column22.Name = "Column22";
-            // 
-            // Column23
-            // 
-            this.Column23.DataPropertyName = "Digit";
-            this.Column23.HeaderText = "Biển số";
-            this.Column23.Name = "Column23";
-            // 
-            // Column24
-            // 
-            this.Column24.DataPropertyName = "PartName";
-            this.Column24.HeaderText = "Loại xe";
-            this.Column24.Name = "Column24";
-            // 
-            // Column25
-            // 
-            this.Column25.DataPropertyName = "TimeStart";
-            this.Column25.HeaderText = "Thời gian vào";
-            this.Column25.Name = "Column25";
-            // 
-            // Column26
-            // 
-            this.Column26.DataPropertyName = "TimeEnd";
-            this.Column26.HeaderText = "Thời gian ra";
-            this.Column26.Name = "Column26";
-            // 
-            // Column27
-            // 
-            this.Column27.DataPropertyName = "Cost";
-            this.Column27.HeaderText = "Giá tiền";
-            this.Column27.Name = "Column27";
-            // 
-            // Column28
-            // 
-            this.Column28.DataPropertyName = "IDTicketMonth";
-            this.Column28.HeaderText = "Thẻ tháng";
-            this.Column28.Name = "Column28";
-            // 
-            // Column29
-            // 
-            this.Column29.DataPropertyName = "IDIn";
-            this.Column29.HeaderText = "Người vào";
-            this.Column29.Name = "Column29";
-            // 
-            // Column30
-            // 
-            this.Column30.DataPropertyName = "IDOut";
-            this.Column30.HeaderText = "Người ra";
-            this.Column30.Name = "Column30";
-            // 
-            // Column31
-            // 
-            this.Column31.DataPropertyName = "IsLostCard";
-            this.Column31.HeaderText = "Mất  thẻ";
-            this.Column31.Name = "Column31";
-            // 
-            // Column32
-            // 
-            this.Column32.DataPropertyName = "Computer";
-            this.Column32.HeaderText = "Máy";
-            this.Column32.Name = "Column32";
-            // 
-            // Column33
-            // 
-            this.Column33.DataPropertyName = "Account";
-            this.Column33.HeaderText = "Tài khoản";
-            this.Column33.Name = "Column33";
-            // 
-            // Column34
-            // 
-            this.Column34.DataPropertyName = "DateUpdate";
-            this.Column34.HeaderText = "Ngày xử lý";
-            this.Column34.Name = "Column34";
+            this.dgvCarList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarList_CellClick);
             // 
             // panel10
             // 
@@ -4822,6 +4837,7 @@
             // panel13
             // 
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel13.Controls.Add(this.pictureBoxCarLogImage3);
             this.panel13.Location = new System.Drawing.Point(683, 149);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(222, 138);
@@ -4830,23 +4846,25 @@
             // panel14
             // 
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel14.Controls.Add(this.pictureBoxImage1);
+            this.panel14.Controls.Add(this.pictureBoxCarLogImage1);
             this.panel14.Location = new System.Drawing.Point(683, 7);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(222, 138);
             this.panel14.TabIndex = 17;
             // 
-            // pictureBoxImage1
+            // pictureBoxCarLogImage1
             // 
-            this.pictureBoxImage1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxImage1.Name = "pictureBoxImage1";
-            this.pictureBoxImage1.Size = new System.Drawing.Size(214, 130);
-            this.pictureBoxImage1.TabIndex = 0;
-            this.pictureBoxImage1.TabStop = false;
+            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
+            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage1.TabIndex = 0;
+            this.pictureBoxCarLogImage1.TabStop = false;
             // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.pictureBoxCarLogImage4);
             this.panel12.Location = new System.Drawing.Point(909, 149);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(222, 138);
@@ -4943,6 +4961,7 @@
             // panel11
             // 
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Controls.Add(this.pictureBoxCarLogImage2);
             this.panel11.Location = new System.Drawing.Point(909, 7);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(222, 138);
@@ -5159,98 +5178,6 @@
             this.tabPage10.Text = "Xem hộp đen";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn20,
-            this.dataGridViewTextBoxColumn24,
-            this.dataGridViewTextBoxColumn25,
-            this.dataGridViewTextBoxColumn27,
-            this.dataGridViewTextBoxColumn26,
-            this.dataGridViewTextBoxColumn28,
-            this.dataGridViewTextBoxColumn29,
-            this.dataGridViewTextBoxColumn30});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 191);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1144, 412);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button13);
-            this.panel5.Controls.Add(this.label92);
-            this.panel5.Controls.Add(this.button1);
-            this.panel5.Controls.Add(this.button9);
-            this.panel5.Controls.Add(this.label110);
-            this.panel5.Controls.Add(this.textBox2);
-            this.panel5.Location = new System.Drawing.Point(340, 16);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(479, 162);
-            this.panel5.TabIndex = 7;
-            // 
-            // label92
-            // 
-            this.label92.AutoSize = true;
-            this.label92.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label92.Location = new System.Drawing.Point(14, 51);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(275, 16);
-            this.label92.TabIndex = 29;
-            this.label92.Text = "(Tìm theo stt, địa chỉ, biển số, tên khách hàng)";
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.Color.Blue;
-            this.button1.Location = new System.Drawing.Point(163, 96);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 36);
-            this.button1.TabIndex = 27;
-            this.button1.Text = "XUẤT EXCEL";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.ForeColor = System.Drawing.Color.Blue;
-            this.button9.Location = new System.Drawing.Point(17, 96);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(114, 36);
-            this.button9.TabIndex = 26;
-            this.button9.Text = "TÌM THẺ";
-            this.button9.UseVisualStyleBackColor = true;
-            // 
-            // label110
-            // 
-            this.label110.AutoSize = true;
-            this.label110.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label110.Location = new System.Drawing.Point(14, 27);
-            this.label110.Name = "label110";
-            this.label110.Size = new System.Drawing.Size(63, 16);
-            this.label110.TabIndex = 3;
-            this.label110.Text = "Thông tin";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(153, 24);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 22);
-            this.textBox2.TabIndex = 2;
-            // 
-            // button13
-            // 
-            this.button13.ForeColor = System.Drawing.Color.Blue;
-            this.button13.Location = new System.Drawing.Point(308, 96);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(150, 36);
-            this.button13.TabIndex = 28;
-            this.button13.Text = "KÍCH HOẠT THẺ";
-            this.button13.UseVisualStyleBackColor = true;
-            // 
             // dataGridViewCheckBoxColumn1
             // 
             this.dataGridViewCheckBoxColumn1.HeaderText = "Chọn";
@@ -5296,6 +5223,7 @@
             // 
             // dataGridViewTextBoxColumn27
             // 
+            this.dataGridViewTextBoxColumn27.DataPropertyName = "Company";
             this.dataGridViewTextBoxColumn27.HeaderText = "Công ty";
             this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
             this.dataGridViewTextBoxColumn27.ReadOnly = true;
@@ -5328,6 +5256,153 @@
             this.dataGridViewTextBoxColumn30.HeaderText = "Ngày truy cập";
             this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
             this.dataGridViewTextBoxColumn30.ReadOnly = true;
+            // 
+            // Column19
+            // 
+            this.Column19.DataPropertyName = "Identify";
+            this.Column19.HeaderText = "STT";
+            this.Column19.Name = "Column19";
+            // 
+            // CarLogImages
+            // 
+            this.CarLogImages.DataPropertyName = "Images";
+            this.CarLogImages.HeaderText = "Images";
+            this.CarLogImages.Name = "CarLogImages";
+            // 
+            // CarLogImages2
+            // 
+            this.CarLogImages2.DataPropertyName = "Images2";
+            this.CarLogImages2.HeaderText = "Images2";
+            this.CarLogImages2.Name = "CarLogImages2";
+            // 
+            // CarLogImages3
+            // 
+            this.CarLogImages3.DataPropertyName = "Images3";
+            this.CarLogImages3.HeaderText = "Images3";
+            this.CarLogImages3.Name = "CarLogImages3";
+            // 
+            // CarLogImages4
+            // 
+            this.CarLogImages4.DataPropertyName = "Images4";
+            this.CarLogImages4.HeaderText = "Images4";
+            this.CarLogImages4.Name = "CarLogImages4";
+            // 
+            // Column20
+            // 
+            this.Column20.DataPropertyName = "SmartCardIdentify";
+            this.Column20.HeaderText = "STT thẻ";
+            this.Column20.Name = "Column20";
+            // 
+            // CarID
+            // 
+            this.CarID.DataPropertyName = "ID";
+            this.CarID.HeaderText = "Mã thẻ";
+            this.CarID.Name = "CarID";
+            // 
+            // Column22
+            // 
+            this.Column22.DataPropertyName = "Sign";
+            this.Column22.HeaderText = "Ký hiệu";
+            this.Column22.Name = "Column22";
+            // 
+            // Column23
+            // 
+            this.Column23.DataPropertyName = "Digit";
+            this.Column23.HeaderText = "Biển số";
+            this.Column23.Name = "Column23";
+            // 
+            // Column24
+            // 
+            this.Column24.DataPropertyName = "PartName";
+            this.Column24.HeaderText = "Loại xe";
+            this.Column24.Name = "Column24";
+            // 
+            // Column25
+            // 
+            this.Column25.DataPropertyName = "TimeStart";
+            this.Column25.HeaderText = "Thời gian vào";
+            this.Column25.Name = "Column25";
+            // 
+            // Column26
+            // 
+            this.Column26.DataPropertyName = "TimeEnd";
+            this.Column26.HeaderText = "Thời gian ra";
+            this.Column26.Name = "Column26";
+            // 
+            // Column27
+            // 
+            this.Column27.DataPropertyName = "Cost";
+            this.Column27.HeaderText = "Giá tiền";
+            this.Column27.Name = "Column27";
+            // 
+            // Column28
+            // 
+            this.Column28.DataPropertyName = "IDTicketMonth";
+            this.Column28.HeaderText = "Thẻ tháng";
+            this.Column28.Name = "Column28";
+            // 
+            // Column29
+            // 
+            this.Column29.DataPropertyName = "IDIn";
+            this.Column29.HeaderText = "Người vào";
+            this.Column29.Name = "Column29";
+            // 
+            // Column30
+            // 
+            this.Column30.DataPropertyName = "IDOut";
+            this.Column30.HeaderText = "Người ra";
+            this.Column30.Name = "Column30";
+            // 
+            // Column31
+            // 
+            this.Column31.DataPropertyName = "IsLostCard";
+            this.Column31.HeaderText = "Mất  thẻ";
+            this.Column31.Name = "Column31";
+            // 
+            // Column32
+            // 
+            this.Column32.DataPropertyName = "Computer";
+            this.Column32.HeaderText = "Máy";
+            this.Column32.Name = "Column32";
+            // 
+            // Column33
+            // 
+            this.Column33.DataPropertyName = "Account";
+            this.Column33.HeaderText = "Tài khoản";
+            this.Column33.Name = "Column33";
+            // 
+            // Column34
+            // 
+            this.Column34.DataPropertyName = "DateUpdate";
+            this.Column34.HeaderText = "Ngày xử lý";
+            this.Column34.Name = "Column34";
+            // 
+            // pictureBoxCarLogImage4
+            // 
+            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
+            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage4.TabIndex = 1;
+            this.pictureBoxCarLogImage4.TabStop = false;
+            // 
+            // pictureBoxCarLogImage2
+            // 
+            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
+            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage2.TabIndex = 1;
+            this.pictureBoxCarLogImage2.TabStop = false;
+            // 
+            // pictureBoxCarLogImage3
+            // 
+            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
+            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage3.TabIndex = 1;
+            this.pictureBoxCarLogImage3.TabStop = false;
             // 
             // FormQuanLy
             // 
@@ -5430,6 +5505,9 @@
             this.panel24.ResumeLayout(false);
             this.panel24.PerformLayout();
             this.tabPageKichHoatVeThang.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAllTicketMonthList)).EndInit();
             this.tabPageQuanLyXeRaVao.ResumeLayout(false);
             this.tabQuanLyXe.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -5440,15 +5518,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.panel13.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
+            this.panel12.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.tabPageTraCuuVaoRaVeThang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5665,7 +5746,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CardID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CardPartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn IsUsing;
-        private System.Windows.Forms.PictureBox pictureBoxImage1;
+        private System.Windows.Forms.PictureBox pictureBoxCarLogImage1;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label48;
@@ -5917,7 +5998,30 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Label label92;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAllTicketMonthSearch;
+        private System.Windows.Forms.Label label110;
+        private System.Windows.Forms.TextBox tbAllTicketMonthKeyWordSearch;
+        private System.Windows.Forms.DataGridView dgvAllTicketMonthList;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
@@ -5933,24 +6037,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column32;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Label label92;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Label label110;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
+        private System.Windows.Forms.PictureBox pictureBoxCarLogImage3;
+        private System.Windows.Forms.PictureBox pictureBoxCarLogImage4;
+        private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
     }
 }

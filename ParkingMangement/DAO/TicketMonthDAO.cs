@@ -152,5 +152,11 @@ namespace ParkingMangement.DAO
             string sql = "update [TicketMonth] set ID = '" + id + "' where Identify = " + identify;
             Database.ExcuNonQuery(sql);
         }
+
+        public static DataTable GetSearchData()
+        {
+            string sql = sqlGetAllData + sqlOrderByIdentify;
+            return Database.ExcuQuery(sql);
+        }
     }
 }
