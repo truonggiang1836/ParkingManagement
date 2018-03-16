@@ -831,6 +831,17 @@ namespace ParkingMangement.GUI
             loadTicketMonthData();
         }
 
+        private void addTicketLog()
+        {
+            TicketLogDTO ticketLogDTO = new TicketLogDTO();
+            ticketLogDTO.LogTypeID = Constant.LOG_TYPE_CREATE_TICKET_MONTH;
+            ticketLogDTO.ProcessDate = DateTime.Now;
+            ticketLogDTO.TicketMonthID = tbTicketMonthIDCreate.Text;
+            ticketLogDTO.Account = Program.CurrentUserID;
+
+            TicketLogDAO.Insert(ticketLogDTO);
+        }
+
         private void updateTicketMonth()
         {
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
@@ -1015,6 +1026,7 @@ namespace ParkingMangement.GUI
             if (checkCreateTicketMonthData())
             {
                 addTicketMonth();
+                addTicketLog();
             }
         }
 
