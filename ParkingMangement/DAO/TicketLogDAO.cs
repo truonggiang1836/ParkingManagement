@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParkingMangement.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -42,6 +43,13 @@ namespace ParkingMangement.DAO
             }
             sql += sqlOrderByIdentify;
             return Database.ExcuQuery(sql);
+        }
+
+        public static void Insert(TicketLogDTO ticketLogDTO)
+        {
+            string sql = "insert into TicketLog(LogTypeID, ProcessDate, TicketMonthID, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketLogDTO.ProcessDate + "', '" +
+                ticketLogDTO.TicketMonthID + "', '" + ticketLogDTO.Account + "')";
+            Database.ExcuNonQuery(sql);
         }
     }
 }
