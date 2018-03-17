@@ -29,10 +29,10 @@ namespace ParkingMangement.DAO
         public static void Insert(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "insert into TicketMonth(ID, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
-                ", ChargesAmount, IDPart) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
+                ", ChargesAmount, IDPart, Account) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" + 
                 ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate + 
-                "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "')";
+                "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
             Database.ExcuNonQuery(sql);
         }
 
@@ -156,6 +156,12 @@ namespace ParkingMangement.DAO
         public static DataTable GetSearchData()
         {
             string sql = sqlGetAllData + sqlOrderByIdentify;
+            return Database.ExcuQuery(sql);
+        }
+
+        public static DataTable GetDataByID(string id)
+        {
+            string sql = "select * from [TicketMonth] where ID = '" + id + "'";
             return Database.ExcuQuery(sql);
         }
     }

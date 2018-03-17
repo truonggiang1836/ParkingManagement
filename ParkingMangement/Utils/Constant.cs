@@ -41,8 +41,8 @@ namespace ParkingMangement.Utils
 
         // Config
         public static string IMAGE_FOLDER = Application.StartupPath + @"\Images\";
-        public static int LOG_TYPE_CREATE_TICKET_MONTH = 1;
-        public static int LOG_TYPE_UPDATE_TICKET_MONTH = 2;
-        public static int LOG_TYPE_DELETE_TICKET_MONTH = 3;
+        public const int LOG_TYPE_CREATE_TICKET_MONTH = 1;
+        public const int LOG_TYPE_UPDATE_TICKET_MONTH = 2;
+        public const int LOG_TYPE_DELETE_TICKET_MONTH = 3;
     }
 }

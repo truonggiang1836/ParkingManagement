@@ -10,11 +10,10 @@ namespace ParkingMangement.DAO
 {
     class TicketLogDAO
     {
-        private static string sqlGetAllData = "select TicketLog.Identify, TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, TicketMonth.Identify as TicketMonthIdentify" +
-                ", TicketMonth.ID as TicketMonthID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND, TicketMonth.Email, " +
-                "TicketMonth.Address, TicketMonth.CarKind, Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from" +
-                " [TicketLog], [LogType], [TicketMonth], [Part], [UserCar] where TicketMonth.IDPart = Part.PartID and TicketLog.LogTypeID = LogType.LogTypeID" +
-                " and TicketLog.TicketMonthID = TicketMonth.ID and UserCar.UserID = TicketLog.Account";
+        private static string sqlGetAllData = "select TicketLog.Identify, TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, TicketLog.TicketMonthIdentify" +
+                ", TicketLog.TicketMonthID, TicketLog.Digit, TicketLog.CustomerName, TicketLog.CMND, TicketLog.Email, " +
+                "TicketLog.Address, TicketLog.CarKind, Part.PartName, TicketLog.RegistrationDate, TicketLog.ExpirationDate from" +
+                " [TicketLog], [LogType], [Part], [UserCar] where TicketLog.IDPart = Part.PartID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account";
         private static string sqlOrderByIdentify = " order by TicketLog.Identify asc";
 
         public static DataTable GetAllData()
@@ -26,12 +25,12 @@ namespace ParkingMangement.DAO
         public static DataTable searchData(string key, string ticketLogID, string partID, DateTime registrationDate, DateTime expirationDate)
         {
             string sql = sqlGetAllData;
-            sql += " and TicketMonth.RegistrationDate >= #" + registrationDate + "# and TicketMonth.ExpirationDate <= #" + expirationDate + "#";
+            sql += " and TicketLog.RegistrationDate >= #" + registrationDate + "# and TicketLog.ExpirationDate <= #" + expirationDate + "#";
             if (!string.IsNullOrEmpty(key))
             {
-                sql += " and (UserCar.NameUser like '%" + key + "%' or TicketMonth.Identify like '%" + key + "%' or TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
-                    + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.CMND like '%" + key + "%' or TicketMonth.Email like '%"
-                    + key + "%' or TicketMonth.Address like '%" + key + "%' or TicketMonth.CarKind like '%" + key + "%')";
+                sql += " and (UserCar.NameUser like '%" + key + "%' or TicketLog.TicketMonthIdentify like '%" + key + "%' or TicketLog.TicketMonthID like '%" + key + "%' or TicketLog.Digit like '%" + key
+                    + "%' or TicketLog.CustomerName like '%" + key + "%' or TicketLog.CMND like '%" + key + "%' or TicketLog.Email like '%"
+                    + key + "%' or TicketLog.Address like '%" + key + "%' or TicketLog.CarKind like '%" + key + "%')";
             }
             if (!string.IsNullOrEmpty(ticketLogID))
             {
@@ -47,8 +46,12 @@ namespace ParkingMangement.DAO
 
         public static void Insert(TicketLogDTO ticketLogDTO)
         {
-            string sql = "insert into TicketLog(LogTypeID, ProcessDate, TicketMonthID, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketLogDTO.ProcessDate + "', '" +
-                ticketLogDTO.TicketMonthID + "', '" + ticketLogDTO.Account + "')";
+            TicketMonthDTO ticketMonthDTO = ticketLogDTO.TicketMonthDTO;
+            string sql = "insert into TicketLog(LogTypeID, TicketMonthID, TicketMonthIdentify, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
+                ", ChargesAmount, IDPart, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketMonthDTO.Id + "', " + ticketMonthDTO.Identify + ", '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" +
+                ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" +
+                ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate +
+                "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
             Database.ExcuNonQuery(sql);
         }
     }

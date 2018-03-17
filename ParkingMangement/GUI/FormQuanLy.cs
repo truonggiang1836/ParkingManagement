@@ -787,7 +787,11 @@ namespace ParkingMangement.GUI
 
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
+            if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageXemNhatKyVeThang"])
+            {
+                loadTicketLogData();
+            }
+            else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
             {
                 loadTicketMonthData();
                 loadPartDataToComboBox(cbTicketMonthPartCreate);
@@ -804,9 +808,17 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void addTicketLog(int logTypeID, TicketMonthDTO ticketMonthDTO)
+        {
+            TicketLogDTO ticketLogDTO = new TicketLogDTO(logTypeID, ticketMonthDTO);
+            TicketLogDAO.Insert(ticketLogDTO);
+        }
+
         private void addTicketMonth()
         {
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
+
+            ticketMonthDTO.Identify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
             ticketMonthDTO.Id = tbTicketMonthIDCreate.Text;
             ticketMonthDTO.ProcessDate = DateTime.Now;
             ticketMonthDTO.Digit = tbTicketMonthDigitCreate.Text;
@@ -819,7 +831,8 @@ namespace ParkingMangement.GUI
 
             DataRow dataRow = ((DataRowView)cbTicketMonthPartCreate.SelectedItem).Row;
             ticketMonthDTO.IdPart = Convert.ToString(dataRow["PartID"]);
-           
+
+            ticketMonthDTO.Account = Program.CurrentUserID;
             ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateCreate.Value.Date;
             ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateCreate.Value.Date;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountCreate.Text;
@@ -829,23 +842,15 @@ namespace ParkingMangement.GUI
             TicketMonthDAO.Insert(ticketMonthDTO);
             clearInputTicketMonthInfo();
             loadTicketMonthData();
-        }
 
-        private void addTicketLog()
-        {
-            TicketLogDTO ticketLogDTO = new TicketLogDTO();
-            ticketLogDTO.LogTypeID = Constant.LOG_TYPE_CREATE_TICKET_MONTH;
-            ticketLogDTO.ProcessDate = DateTime.Now;
-            ticketLogDTO.TicketMonthID = tbTicketMonthIDCreate.Text;
-            ticketLogDTO.Account = Program.CurrentUserID;
-
-            TicketLogDAO.Insert(ticketLogDTO);
+            addTicketLog(Constant.LOG_TYPE_CREATE_TICKET_MONTH, ticketMonthDTO);
         }
 
         private void updateTicketMonth()
         {
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
             ticketMonthDTO.Identify = Convert.ToInt32(tbTicketMonthIdentifyEdit.Text);
+            ticketMonthDTO.Id = tbTicketMonthIDEdit.Text;
             ticketMonthDTO.ProcessDate = DateTime.Now;
             ticketMonthDTO.Digit = tbTicketMonthDigitEdit.Text;
             ticketMonthDTO.CustomerName = tbTicketMonthCustomerNameEdit.Text;
@@ -858,6 +863,7 @@ namespace ParkingMangement.GUI
             DataRow dataRow = ((DataRowView)cbTicketMonthPartEdit.SelectedItem).Row;
             ticketMonthDTO.IdPart = Convert.ToString(dataRow["PartID"]);
 
+            ticketMonthDTO.Account = Program.CurrentUserID;
             ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value.Date;
             ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateEdit.Value.Date;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountEdit.Text;
@@ -866,6 +872,8 @@ namespace ParkingMangement.GUI
 
             TicketMonthDAO.Update(ticketMonthDTO);
             loadTicketMonthData();
+
+            addTicketLog(Constant.LOG_TYPE_UPDATE_TICKET_MONTH, ticketMonthDTO);
         }
 
         private void clearInputTicketMonthInfo()
@@ -915,6 +923,8 @@ namespace ParkingMangement.GUI
         {
             string identify = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthIdentify"].Value);
             tbTicketMonthIdentifyEdit.Text = identify;
+            string id = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthID"].Value);
+            tbTicketMonthIDEdit.Text = id;
             string digit = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Digit"].Value);
             tbTicketMonthDigitEdit.Text = digit;
             string customerName = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["CustomerName"].Value);
@@ -995,8 +1005,55 @@ namespace ParkingMangement.GUI
         private void deleteTicketMonth(int currentRow)
         {
             int identify = Convert.ToInt32(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthIdentify"].Value);
+            string ticketMonthID = Convert.ToString(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthID"].Value);
+            addDeleteTicketMonthToLog(currentRow);
+
             TicketMonthDAO.Delete(identify);
             loadTicketMonthData();
+        }
+
+        private void addDeleteTicketMonthToLog(int Index)
+        {
+            string id = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthID"].Value);
+            DataTable data = TicketMonthDAO.GetDataByID(id);
+            TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
+            int identify = Convert.ToInt32(dgvTicketMonthList.Rows[Index].Cells["TicketMonthIdentify"].Value);
+            ticketMonthDTO.Id = id;
+            ticketMonthDTO.Identify = identify;
+            ticketMonthDTO.ProcessDate = DateTime.Now;
+            string digit = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Digit"].Value);
+            ticketMonthDTO.Digit = digit;
+            string customerName = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["CustomerName"].Value);
+            ticketMonthDTO.CustomerName = customerName;
+            string cmnd = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["CMND"].Value);
+            ticketMonthDTO.Cmnd = cmnd;
+            string company = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Company"].Value);
+            ticketMonthDTO.Company = company;
+            string email = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Email"].Value);
+            ticketMonthDTO.Email = email;
+            string address = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Address"].Value);
+            ticketMonthDTO.Address = address;
+            string carKind = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["CarKind"].Value);
+            ticketMonthDTO.CarKind = carKind;
+            string chargesAmount = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["ChargesAmount"].Value);
+            ticketMonthDTO.ChargesAmount = chargesAmount;
+            if (data.Rows.Count > 0)
+            {
+                string partId = data.Rows[0].Field<String>("IDPart");
+                ticketMonthDTO.IdPart = partId;
+            }
+            if (!string.IsNullOrEmpty(dgvTicketMonthList.Rows[Index].Cells["RegistrationDate"].Value.ToString()))
+            {
+                DateTime registrationDate = Convert.ToDateTime(dgvTicketMonthList.Rows[Index].Cells["RegistrationDate"].Value);
+                ticketMonthDTO.RegistrationDate = registrationDate;
+            }
+            if (!string.IsNullOrEmpty(dgvTicketMonthList.Rows[Index].Cells["ExpirationDate"].Value.ToString()))
+            {
+                DateTime expirationDate = Convert.ToDateTime(dgvTicketMonthList.Rows[Index].Cells["ExpirationDate"].Value);
+                ticketMonthDTO.ExpirationDate = expirationDate;
+            }
+            ticketMonthDTO.Account = Program.CurrentUserID;
+            addTicketLog(Constant.LOG_TYPE_DELETE_TICKET_MONTH, ticketMonthDTO);
         }
 
         private void showConfirmDeleteTicketMonth(int currentRow)
@@ -1026,7 +1083,6 @@ namespace ParkingMangement.GUI
             if (checkCreateTicketMonthData())
             {
                 addTicketMonth();
-                addTicketLog();
             }
         }
 
@@ -1034,6 +1090,7 @@ namespace ParkingMangement.GUI
         {
             if (checkUpdateTicketMonthData())
             {
+                //TicketLogDAO.Insert(ticketLogDTO);
                 updateTicketMonth();
             }
         }
