@@ -18,14 +18,24 @@ namespace ParkingMangement.DAO
             "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from [Car], [Part], [TicketMonth] " +
             "where Car.IDPart = Part.PartID and TicketMonth.ID = Car.IDTicketMonth";
 
+        private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
+            "Car.IsLostCard, Car.Computer, UserCar.NameUser from [Car], [UserCar] where Car.Account = UserCar.UserID";
+
         private static string sqlQueryTicketMonth = " and Car.IDTicketMonth is not null ";
         private static string sqlOrderByIdentify = " order by Car.Identify asc";
 
-        public static DataTable GetAllTicketDayData()
+        public static DataTable GetAllData()
         {
             string sql = sqlGetAllData + sqlOrderByIdentify;
             DataTable data = Database.ExcuQuery(sql);
             setUserNameForDataTable(data);
+            return data;
+        }
+
+        public static DataTable GetAllDataForCashManagement()
+        {
+            string sql = sqlGetDataForCashManagement + sqlOrderByIdentify;
+            DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 

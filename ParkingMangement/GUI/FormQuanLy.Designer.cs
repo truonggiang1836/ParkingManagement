@@ -28,6 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20});
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -331,6 +371,7 @@
             this.btnTicketMonthCreate = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.panel18 = new System.Windows.Forms.Panel();
+            this.tbTicketMonthIDEdit = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label66 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
@@ -438,6 +479,77 @@
             this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabQuanLyHeThong = new System.Windows.Forms.TabControl();
+            this.tabPageCauHinhCoBan = new System.Windows.Forms.TabPage();
+            this.tabControl3 = new System.Windows.Forms.TabControl();
+            this.tabPageCauHinhKetNoi = new System.Windows.Forms.TabPage();
+            this.button9 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label127 = new System.Windows.Forms.Label();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label128 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label129 = new System.Windows.Forms.Label();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label130 = new System.Windows.Forms.Label();
+            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.label131 = new System.Windows.Forms.Label();
+            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.label132 = new System.Windows.Forms.Label();
+            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.label133 = new System.Windows.Forms.Label();
+            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.label134 = new System.Windows.Forms.Label();
+            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.label135 = new System.Windows.Forms.Label();
+            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.label136 = new System.Windows.Forms.Label();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label137 = new System.Windows.Forms.Label();
+            this.textBox28 = new System.Windows.Forms.TextBox();
+            this.label138 = new System.Windows.Forms.Label();
+            this.textBox29 = new System.Windows.Forms.TextBox();
+            this.label139 = new System.Windows.Forms.Label();
+            this.textBox30 = new System.Windows.Forms.TextBox();
+            this.label140 = new System.Windows.Forms.Label();
+            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.label141 = new System.Windows.Forms.Label();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.label142 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.tabPageCauHinhHienThi = new System.Windows.Forms.TabPage();
+            this.tabPageQuanLyThuTienXe = new System.Windows.Forms.TabPage();
+            this.dgvCashManagementList = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn43 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn49 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn47 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn48 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel26 = new System.Windows.Forms.Panel();
+            this.label116 = new System.Windows.Forms.Label();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label115 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label114 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label112 = new System.Windows.Forms.Label();
+            this.label101 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label111 = new System.Windows.Forms.Label();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.tabPagePhanQuyenTruyCap = new System.Windows.Forms.TabPage();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tabPageNhatKyHeThong = new System.Windows.Forms.TabPage();
             this.tabPageQuanLyXeRaVao = new System.Windows.Forms.TabPage();
             this.tabQuanLyXe = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -532,7 +644,9 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.tbTicketMonthIDEdit = new System.Windows.Forms.TextBox();
+            this.button20 = new System.Windows.Forms.Button();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label117 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -600,6 +714,17 @@
             this.tabPageKichHoatVeThang.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllTicketMonthList)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            this.tabQuanLyHeThong.SuspendLayout();
+            this.tabPageCauHinhCoBan.SuspendLayout();
+            this.tabControl3.SuspendLayout();
+            this.tabPageCauHinhKetNoi.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.tabPageQuanLyThuTienXe.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCashManagementList)).BeginInit();
+            this.panel26.SuspendLayout();
+            this.tabPagePhanQuyenTruyCap.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.tabPageQuanLyXeRaVao.SuspendLayout();
             this.tabQuanLyXe.SuspendLayout();
             this.tabPage7.SuspendLayout();
@@ -3581,6 +3706,14 @@
             this.panel18.Size = new System.Drawing.Size(346, 475);
             this.panel18.TabIndex = 26;
             // 
+            // tbTicketMonthIDEdit
+            // 
+            this.tbTicketMonthIDEdit.Location = new System.Drawing.Point(17, 382);
+            this.tbTicketMonthIDEdit.Name = "tbTicketMonthIDEdit";
+            this.tbTicketMonthIDEdit.Size = new System.Drawing.Size(84, 22);
+            this.tbTicketMonthIDEdit.TabIndex = 50;
+            this.tbTicketMonthIDEdit.Visible = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -4487,14 +4620,12 @@
             // 
             // dataGridViewTextBoxColumn9
             // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "PartName";
             this.dataGridViewTextBoxColumn9.HeaderText = "Trạng thái";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn11
             // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "DaysRemaining";
             this.dataGridViewTextBoxColumn11.HeaderText = "Số ngày";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
             this.dataGridViewTextBoxColumn11.ReadOnly = true;
@@ -4537,27 +4668,27 @@
             // 
             // dataGridViewTextBoxColumn28
             // 
-            this.dataGridViewTextBoxColumn28.DataPropertyName = "ChargesAmount";
+            this.dataGridViewTextBoxColumn28.DataPropertyName = "RegistrationDate";
             this.dataGridViewTextBoxColumn28.HeaderText = "Ngày vào";
             this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
             this.dataGridViewTextBoxColumn28.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn29
             // 
-            this.dataGridViewTextBoxColumn29.DataPropertyName = "RegistrationDate";
+            this.dataGridViewTextBoxColumn29.DataPropertyName = "ExpirationDate";
             this.dataGridViewTextBoxColumn29.HeaderText = "Ngày ra";
             this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
             this.dataGridViewTextBoxColumn29.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn30
             // 
-            this.dataGridViewTextBoxColumn30.DataPropertyName = "ExpirationDate";
             this.dataGridViewTextBoxColumn30.HeaderText = "Ngày truy cập";
             this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
             this.dataGridViewTextBoxColumn30.ReadOnly = true;
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.tabQuanLyHeThong);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
@@ -4565,6 +4696,729 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "QUẢN LÝ  HỆ THỐNG";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tabQuanLyHeThong
+            // 
+            this.tabQuanLyHeThong.Controls.Add(this.tabPageCauHinhCoBan);
+            this.tabQuanLyHeThong.Controls.Add(this.tabPageQuanLyThuTienXe);
+            this.tabQuanLyHeThong.Controls.Add(this.tabPagePhanQuyenTruyCap);
+            this.tabQuanLyHeThong.Controls.Add(this.tabPageNhatKyHeThong);
+            this.tabQuanLyHeThong.Location = new System.Drawing.Point(6, 2);
+            this.tabQuanLyHeThong.Name = "tabQuanLyHeThong";
+            this.tabQuanLyHeThong.SelectedIndex = 0;
+            this.tabQuanLyHeThong.Size = new System.Drawing.Size(1158, 644);
+            this.tabQuanLyHeThong.TabIndex = 1;
+            this.tabQuanLyHeThong.SelectedIndexChanged += new System.EventHandler(this.tabQuanLyHeThong_SelectedIndexChanged);
+            // 
+            // tabPageCauHinhCoBan
+            // 
+            this.tabPageCauHinhCoBan.Controls.Add(this.tabControl3);
+            this.tabPageCauHinhCoBan.Location = new System.Drawing.Point(4, 25);
+            this.tabPageCauHinhCoBan.Name = "tabPageCauHinhCoBan";
+            this.tabPageCauHinhCoBan.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCauHinhCoBan.Size = new System.Drawing.Size(1150, 615);
+            this.tabPageCauHinhCoBan.TabIndex = 0;
+            this.tabPageCauHinhCoBan.Text = "Cấu hình cơ bản";
+            this.tabPageCauHinhCoBan.UseVisualStyleBackColor = true;
+            // 
+            // tabControl3
+            // 
+            this.tabControl3.Controls.Add(this.tabPageCauHinhKetNoi);
+            this.tabControl3.Controls.Add(this.tabPageCauHinhHienThi);
+            this.tabControl3.Location = new System.Drawing.Point(6, 6);
+            this.tabControl3.Name = "tabControl3";
+            this.tabControl3.SelectedIndex = 0;
+            this.tabControl3.Size = new System.Drawing.Size(1141, 606);
+            this.tabControl3.TabIndex = 1;
+            // 
+            // tabPageCauHinhKetNoi
+            // 
+            this.tabPageCauHinhKetNoi.Controls.Add(this.button9);
+            this.tabPageCauHinhKetNoi.Controls.Add(this.groupBox2);
+            this.tabPageCauHinhKetNoi.Location = new System.Drawing.Point(4, 25);
+            this.tabPageCauHinhKetNoi.Name = "tabPageCauHinhKetNoi";
+            this.tabPageCauHinhKetNoi.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCauHinhKetNoi.Size = new System.Drawing.Size(1133, 577);
+            this.tabPageCauHinhKetNoi.TabIndex = 0;
+            this.tabPageCauHinhKetNoi.Text = "Cấu hình kết nối";
+            this.tabPageCauHinhKetNoi.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(525, 513);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(108, 35);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "LƯU";
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label127);
+            this.groupBox2.Controls.Add(this.textBox17);
+            this.groupBox2.Controls.Add(this.label128);
+            this.groupBox2.Controls.Add(this.textBox18);
+            this.groupBox2.Controls.Add(this.label129);
+            this.groupBox2.Controls.Add(this.textBox19);
+            this.groupBox2.Controls.Add(this.label130);
+            this.groupBox2.Controls.Add(this.textBox20);
+            this.groupBox2.Controls.Add(this.label131);
+            this.groupBox2.Controls.Add(this.textBox21);
+            this.groupBox2.Controls.Add(this.label132);
+            this.groupBox2.Controls.Add(this.textBox22);
+            this.groupBox2.Controls.Add(this.label133);
+            this.groupBox2.Controls.Add(this.textBox24);
+            this.groupBox2.Controls.Add(this.label134);
+            this.groupBox2.Controls.Add(this.textBox25);
+            this.groupBox2.Controls.Add(this.label135);
+            this.groupBox2.Controls.Add(this.textBox26);
+            this.groupBox2.Controls.Add(this.label136);
+            this.groupBox2.Controls.Add(this.textBox27);
+            this.groupBox2.Controls.Add(this.label137);
+            this.groupBox2.Controls.Add(this.textBox28);
+            this.groupBox2.Controls.Add(this.label138);
+            this.groupBox2.Controls.Add(this.textBox29);
+            this.groupBox2.Controls.Add(this.label139);
+            this.groupBox2.Controls.Add(this.textBox30);
+            this.groupBox2.Controls.Add(this.label140);
+            this.groupBox2.Controls.Add(this.textBox31);
+            this.groupBox2.Controls.Add(this.label141);
+            this.groupBox2.Controls.Add(this.textBox32);
+            this.groupBox2.Controls.Add(this.label142);
+            this.groupBox2.Controls.Add(this.textBox33);
+            this.groupBox2.Location = new System.Drawing.Point(308, 9);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(516, 487);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            // 
+            // label127
+            // 
+            this.label127.AutoSize = true;
+            this.label127.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label127.Location = new System.Drawing.Point(103, 445);
+            this.label127.Name = "label127";
+            this.label127.Size = new System.Drawing.Size(46, 16);
+            this.label127.TabIndex = 39;
+            this.label127.Text = "ANPR";
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(236, 442);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(189, 22);
+            this.textBox17.TabIndex = 38;
+            // 
+            // label128
+            // 
+            this.label128.AutoSize = true;
+            this.label128.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label128.Location = new System.Drawing.Point(103, 417);
+            this.label128.Name = "label128";
+            this.label128.Size = new System.Drawing.Size(42, 16);
+            this.label128.TabIndex = 37;
+            this.label128.Text = "In/Out";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(236, 414);
+            this.textBox18.Name = "textBox18";
+            this.textBox18.Size = new System.Drawing.Size(189, 22);
+            this.textBox18.TabIndex = 36;
+            // 
+            // label129
+            // 
+            this.label129.AutoSize = true;
+            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.Location = new System.Drawing.Point(103, 389);
+            this.label129.Name = "label129";
+            this.label129.Size = new System.Drawing.Size(78, 16);
+            this.label129.TabIndex = 35;
+            this.label129.Text = "Folder USB";
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(236, 386);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.Size = new System.Drawing.Size(189, 22);
+            this.textBox19.TabIndex = 34;
+            // 
+            // label130
+            // 
+            this.label130.AutoSize = true;
+            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.Location = new System.Drawing.Point(103, 361);
+            this.label130.Name = "label130";
+            this.label130.Size = new System.Drawing.Size(79, 16);
+            this.label130.TabIndex = 33;
+            this.label130.Text = "Folder Root";
+            // 
+            // textBox20
+            // 
+            this.textBox20.Location = new System.Drawing.Point(236, 358);
+            this.textBox20.Name = "textBox20";
+            this.textBox20.Size = new System.Drawing.Size(189, 22);
+            this.textBox20.TabIndex = 32;
+            // 
+            // label131
+            // 
+            this.label131.AutoSize = true;
+            this.label131.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.Location = new System.Drawing.Point(103, 333);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(105, 16);
+            this.label131.TabIndex = 31;
+            this.label131.Text = "VALUE PARIE 2";
+            // 
+            // textBox21
+            // 
+            this.textBox21.Location = new System.Drawing.Point(236, 330);
+            this.textBox21.Name = "textBox21";
+            this.textBox21.Size = new System.Drawing.Size(189, 22);
+            this.textBox21.TabIndex = 30;
+            // 
+            // label132
+            // 
+            this.label132.AutoSize = true;
+            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label132.Location = new System.Drawing.Point(103, 305);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(105, 16);
+            this.label132.TabIndex = 29;
+            this.label132.Text = "VALUE PARIE 1";
+            // 
+            // textBox22
+            // 
+            this.textBox22.Location = new System.Drawing.Point(236, 302);
+            this.textBox22.Name = "textBox22";
+            this.textBox22.Size = new System.Drawing.Size(189, 22);
+            this.textBox22.TabIndex = 28;
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label133.Location = new System.Drawing.Point(103, 277);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(89, 16);
+            this.label133.TabIndex = 27;
+            this.label133.Text = "PORT PARIE";
+            // 
+            // textBox24
+            // 
+            this.textBox24.Location = new System.Drawing.Point(236, 274);
+            this.textBox24.Name = "textBox24";
+            this.textBox24.Size = new System.Drawing.Size(189, 22);
+            this.textBox24.TabIndex = 26;
+            // 
+            // label134
+            // 
+            this.label134.AutoSize = true;
+            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label134.Location = new System.Drawing.Point(103, 249);
+            this.label134.Name = "label134";
+            this.label134.Size = new System.Drawing.Size(44, 16);
+            this.label134.TabIndex = 25;
+            this.label134.Text = "CAM2";
+            // 
+            // textBox25
+            // 
+            this.textBox25.Location = new System.Drawing.Point(236, 246);
+            this.textBox25.Name = "textBox25";
+            this.textBox25.Size = new System.Drawing.Size(189, 22);
+            this.textBox25.TabIndex = 24;
+            // 
+            // label135
+            // 
+            this.label135.AutoSize = true;
+            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label135.Location = new System.Drawing.Point(103, 221);
+            this.label135.Name = "label135";
+            this.label135.Size = new System.Drawing.Size(44, 16);
+            this.label135.TabIndex = 23;
+            this.label135.Text = "CAM1";
+            // 
+            // textBox26
+            // 
+            this.textBox26.Location = new System.Drawing.Point(236, 218);
+            this.textBox26.Name = "textBox26";
+            this.textBox26.Size = new System.Drawing.Size(189, 22);
+            this.textBox26.TabIndex = 22;
+            // 
+            // label136
+            // 
+            this.label136.AutoSize = true;
+            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label136.Location = new System.Drawing.Point(103, 193);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(41, 16);
+            this.label136.TabIndex = 21;
+            this.label136.Text = "LED2";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Location = new System.Drawing.Point(236, 190);
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(189, 22);
+            this.textBox27.TabIndex = 20;
+            // 
+            // label137
+            // 
+            this.label137.AutoSize = true;
+            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label137.Location = new System.Drawing.Point(103, 165);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(41, 16);
+            this.label137.TabIndex = 19;
+            this.label137.Text = "LED1";
+            // 
+            // textBox28
+            // 
+            this.textBox28.Location = new System.Drawing.Point(236, 162);
+            this.textBox28.Name = "textBox28";
+            this.textBox28.Size = new System.Drawing.Size(189, 22);
+            this.textBox28.TabIndex = 18;
+            // 
+            // label138
+            // 
+            this.label138.AutoSize = true;
+            this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label138.Location = new System.Drawing.Point(103, 137);
+            this.label138.Name = "label138";
+            this.label138.Size = new System.Drawing.Size(46, 16);
+            this.label138.TabIndex = 17;
+            this.label138.Text = "RFID2";
+            // 
+            // textBox29
+            // 
+            this.textBox29.Location = new System.Drawing.Point(236, 134);
+            this.textBox29.Name = "textBox29";
+            this.textBox29.Size = new System.Drawing.Size(189, 22);
+            this.textBox29.TabIndex = 16;
+            // 
+            // label139
+            // 
+            this.label139.AutoSize = true;
+            this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label139.Location = new System.Drawing.Point(103, 109);
+            this.label139.Name = "label139";
+            this.label139.Size = new System.Drawing.Size(46, 16);
+            this.label139.TabIndex = 15;
+            this.label139.Text = "RFID1";
+            // 
+            // textBox30
+            // 
+            this.textBox30.Location = new System.Drawing.Point(236, 106);
+            this.textBox30.Name = "textBox30";
+            this.textBox30.Size = new System.Drawing.Size(189, 22);
+            this.textBox30.TabIndex = 14;
+            // 
+            // label140
+            // 
+            this.label140.AutoSize = true;
+            this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label140.Location = new System.Drawing.Point(103, 81);
+            this.label140.Name = "label140";
+            this.label140.Size = new System.Drawing.Size(91, 16);
+            this.label140.TabIndex = 13;
+            this.label140.Text = "Thư mục chứa";
+            // 
+            // textBox31
+            // 
+            this.textBox31.Location = new System.Drawing.Point(236, 78);
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(189, 22);
+            this.textBox31.TabIndex = 12;
+            // 
+            // label141
+            // 
+            this.label141.AutoSize = true;
+            this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label141.Location = new System.Drawing.Point(103, 53);
+            this.label141.Name = "label141";
+            this.label141.Size = new System.Drawing.Size(76, 16);
+            this.label141.TabIndex = 11;
+            this.label141.Text = "Ip lưu hình 2";
+            // 
+            // textBox32
+            // 
+            this.textBox32.Location = new System.Drawing.Point(236, 50);
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(189, 22);
+            this.textBox32.TabIndex = 10;
+            // 
+            // label142
+            // 
+            this.label142.AutoSize = true;
+            this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label142.Location = new System.Drawing.Point(103, 25);
+            this.label142.Name = "label142";
+            this.label142.Size = new System.Drawing.Size(76, 16);
+            this.label142.TabIndex = 9;
+            this.label142.Text = "Ip lưu hình 1";
+            // 
+            // textBox33
+            // 
+            this.textBox33.Location = new System.Drawing.Point(236, 22);
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(189, 22);
+            this.textBox33.TabIndex = 8;
+            // 
+            // tabPageCauHinhHienThi
+            // 
+            this.tabPageCauHinhHienThi.Location = new System.Drawing.Point(4, 25);
+            this.tabPageCauHinhHienThi.Name = "tabPageCauHinhHienThi";
+            this.tabPageCauHinhHienThi.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageCauHinhHienThi.Size = new System.Drawing.Size(1133, 577);
+            this.tabPageCauHinhHienThi.TabIndex = 1;
+            this.tabPageCauHinhHienThi.Text = "Cấu hình hiển thị";
+            this.tabPageCauHinhHienThi.UseVisualStyleBackColor = true;
+            // 
+            // tabPageQuanLyThuTienXe
+            // 
+            this.tabPageQuanLyThuTienXe.Controls.Add(this.dgvCashManagementList);
+            this.tabPageQuanLyThuTienXe.Controls.Add(this.panel26);
+            this.tabPageQuanLyThuTienXe.Location = new System.Drawing.Point(4, 25);
+            this.tabPageQuanLyThuTienXe.Name = "tabPageQuanLyThuTienXe";
+            this.tabPageQuanLyThuTienXe.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageQuanLyThuTienXe.Size = new System.Drawing.Size(1150, 615);
+            this.tabPageQuanLyThuTienXe.TabIndex = 1;
+            this.tabPageQuanLyThuTienXe.Text = "Quản lý thu tiền xe";
+            this.tabPageQuanLyThuTienXe.UseVisualStyleBackColor = true;
+            // 
+            // dgvCashManagementList
+            // 
+            this.dgvCashManagementList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCashManagementList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn37,
+            this.dataGridViewTextBoxColumn39,
+            this.dataGridViewTextBoxColumn41,
+            this.dataGridViewTextBoxColumn42,
+            this.dataGridViewTextBoxColumn43,
+            this.Column7,
+            this.Column8,
+            this.dataGridViewTextBoxColumn49,
+            this.dataGridViewTextBoxColumn47,
+            this.dataGridViewTextBoxColumn48});
+            this.dgvCashManagementList.Location = new System.Drawing.Point(6, 219);
+            this.dgvCashManagementList.Name = "dgvCashManagementList";
+            this.dgvCashManagementList.Size = new System.Drawing.Size(1138, 390);
+            this.dgvCashManagementList.TabIndex = 2;
+            // 
+            // dataGridViewTextBoxColumn37
+            // 
+            this.dataGridViewTextBoxColumn37.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn37.HeaderText = "Mã xe";
+            this.dataGridViewTextBoxColumn37.Name = "dataGridViewTextBoxColumn37";
+            // 
+            // dataGridViewTextBoxColumn39
+            // 
+            this.dataGridViewTextBoxColumn39.DataPropertyName = "Digit";
+            this.dataGridViewTextBoxColumn39.HeaderText = "Biển số";
+            this.dataGridViewTextBoxColumn39.Name = "dataGridViewTextBoxColumn39";
+            // 
+            // dataGridViewTextBoxColumn41
+            // 
+            this.dataGridViewTextBoxColumn41.DataPropertyName = "TimeStart";
+            this.dataGridViewTextBoxColumn41.HeaderText = "Thời gian vào";
+            this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
+            // 
+            // dataGridViewTextBoxColumn42
+            // 
+            this.dataGridViewTextBoxColumn42.DataPropertyName = "TimeEnd";
+            this.dataGridViewTextBoxColumn42.HeaderText = "Thời gian ra";
+            this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
+            // 
+            // dataGridViewTextBoxColumn43
+            // 
+            this.dataGridViewTextBoxColumn43.DataPropertyName = "Cost";
+            this.dataGridViewTextBoxColumn43.HeaderText = "Giá tiền";
+            this.dataGridViewTextBoxColumn43.Name = "dataGridViewTextBoxColumn43";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "CostBefore";
+            this.Column7.HeaderText = "Tiền trước";
+            this.Column7.Name = "Column7";
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "Note";
+            this.Column8.HeaderText = "Ghi chú";
+            this.Column8.Name = "Column8";
+            // 
+            // dataGridViewTextBoxColumn49
+            // 
+            this.dataGridViewTextBoxColumn49.DataPropertyName = "NameUser";
+            this.dataGridViewTextBoxColumn49.HeaderText = "Tài khoản";
+            this.dataGridViewTextBoxColumn49.Name = "dataGridViewTextBoxColumn49";
+            // 
+            // dataGridViewTextBoxColumn47
+            // 
+            this.dataGridViewTextBoxColumn47.DataPropertyName = "IsLostCard";
+            this.dataGridViewTextBoxColumn47.HeaderText = "Mất  thẻ";
+            this.dataGridViewTextBoxColumn47.Name = "dataGridViewTextBoxColumn47";
+            // 
+            // dataGridViewTextBoxColumn48
+            // 
+            this.dataGridViewTextBoxColumn48.DataPropertyName = "Computer";
+            this.dataGridViewTextBoxColumn48.HeaderText = "Máy tính";
+            this.dataGridViewTextBoxColumn48.Name = "dataGridViewTextBoxColumn48";
+            this.dataGridViewTextBoxColumn48.Width = 150;
+            // 
+            // panel26
+            // 
+            this.panel26.Controls.Add(this.label116);
+            this.panel26.Controls.Add(this.button19);
+            this.panel26.Controls.Add(this.button16);
+            this.panel26.Controls.Add(this.button14);
+            this.panel26.Controls.Add(this.button15);
+            this.panel26.Controls.Add(this.textBox3);
+            this.panel26.Controls.Add(this.label115);
+            this.panel26.Controls.Add(this.textBox2);
+            this.panel26.Controls.Add(this.label114);
+            this.panel26.Controls.Add(this.textBox1);
+            this.panel26.Controls.Add(this.label112);
+            this.panel26.Controls.Add(this.label101);
+            this.panel26.Controls.Add(this.dateTimePicker1);
+            this.panel26.Controls.Add(this.label111);
+            this.panel26.Controls.Add(this.dateTimePicker2);
+            this.panel26.Location = new System.Drawing.Point(6, 6);
+            this.panel26.Name = "panel26";
+            this.panel26.Size = new System.Drawing.Size(1138, 202);
+            this.panel26.TabIndex = 0;
+            // 
+            // label116
+            // 
+            this.label116.AutoSize = true;
+            this.label116.ForeColor = System.Drawing.Color.Red;
+            this.label116.Location = new System.Drawing.Point(442, 176);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(145, 16);
+            this.label116.TabIndex = 63;
+            this.label116.Text = "Chỉ cập nhật được 1 lần";
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(501, 137);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(212, 30);
+            this.button19.TabIndex = 62;
+            this.button19.Text = "Danh sách xe đã cập nhật";
+            this.button19.UseVisualStyleBackColor = true;
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(299, 137);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(173, 30);
+            this.button16.TabIndex = 61;
+            this.button16.Text = "Cập nhật mất thẻ";
+            this.button16.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(162, 137);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(108, 30);
+            this.button14.TabIndex = 60;
+            this.button14.Text = "Cập nhật";
+            this.button14.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(25, 137);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(108, 30);
+            this.button15.TabIndex = 59;
+            this.button15.Text = "Tìm kiếm";
+            this.button15.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(445, 52);
+            this.textBox3.Multiline = true;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(269, 68);
+            this.textBox3.TabIndex = 58;
+            // 
+            // label115
+            // 
+            this.label115.AutoSize = true;
+            this.label115.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label115.Location = new System.Drawing.Point(360, 55);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(52, 16);
+            this.label115.TabIndex = 57;
+            this.label115.Text = "Ghi chú";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(445, 21);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(269, 22);
+            this.textBox2.TabIndex = 56;
+            this.textBox2.Text = "0";
+            // 
+            // label114
+            // 
+            this.label114.AutoSize = true;
+            this.label114.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label114.Location = new System.Drawing.Point(360, 24);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(29, 16);
+            this.label114.TabIndex = 55;
+            this.label114.Text = "Giá";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(112, 98);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(211, 22);
+            this.textBox1.TabIndex = 54;
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label112.Location = new System.Drawing.Point(22, 101);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(63, 16);
+            this.label112.TabIndex = 53;
+            this.label112.Text = "Tìm kiếm";
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label101.Location = new System.Drawing.Point(22, 55);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(65, 16);
+            this.label101.TabIndex = 52;
+            this.label101.Text = "Đến ngày";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(112, 53);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(211, 22);
+            this.dateTimePicker1.TabIndex = 51;
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label111.Location = new System.Drawing.Point(22, 23);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(57, 16);
+            this.label111.TabIndex = 50;
+            this.label111.Text = "Từ ngày";
+            // 
+            // dateTimePicker2
+            // 
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(112, 21);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(211, 22);
+            this.dateTimePicker2.TabIndex = 47;
+            // 
+            // tabPagePhanQuyenTruyCap
+            // 
+            this.tabPagePhanQuyenTruyCap.Controls.Add(this.comboBox2);
+            this.tabPagePhanQuyenTruyCap.Controls.Add(this.label117);
+            this.tabPagePhanQuyenTruyCap.Controls.Add(this.button20);
+            this.tabPagePhanQuyenTruyCap.Controls.Add(this.flowLayoutPanel1);
+            this.tabPagePhanQuyenTruyCap.Location = new System.Drawing.Point(4, 25);
+            this.tabPagePhanQuyenTruyCap.Name = "tabPagePhanQuyenTruyCap";
+            this.tabPagePhanQuyenTruyCap.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPagePhanQuyenTruyCap.Size = new System.Drawing.Size(1150, 615);
+            this.tabPagePhanQuyenTruyCap.TabIndex = 2;
+            this.tabPagePhanQuyenTruyCap.Text = "Phân quyền truy cập";
+            this.tabPagePhanQuyenTruyCap.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.treeView1);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(387, 72);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(372, 452);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // treeView1
+            // 
+            this.treeView1.CheckBoxes = true;
+            this.treeView1.Location = new System.Drawing.Point(3, 3);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Node2";
+            treeNode1.Text = "Thông tin nhân sự";
+            treeNode2.Name = "Node5";
+            treeNode2.Text = "Dò bảng chấm công";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Quản lý nhân sự";
+            treeNode4.Name = "Node6";
+            treeNode4.Text = "Xem thống kê";
+            treeNode5.Name = "Node7";
+            treeNode5.Text = "Điều chỉnh công thức tính tiền";
+            treeNode6.Name = "Node1";
+            treeNode6.Text = "Quản lý doanh thu";
+            treeNode7.Name = "Node9";
+            treeNode7.Text = "Quản lý loại xe";
+            treeNode8.Name = "Node10";
+            treeNode8.Text = "Quản lý thẻ xe";
+            treeNode9.Name = "Node11";
+            treeNode9.Text = "Kích hoạt thẻ";
+            treeNode10.Name = "Node8";
+            treeNode10.Text = "Quản lý thẻ xe - loại xe";
+            treeNode11.Name = "Node13";
+            treeNode11.Text = "Nhật ký vé tháng";
+            treeNode12.Name = "Node14";
+            treeNode12.Text = "Cập nhật thông tin vé tháng";
+            treeNode13.Name = "Node15";
+            treeNode13.Text = "Gia hạn vé tháng";
+            treeNode14.Name = "Node16";
+            treeNode14.Text = "Mất thẻ tháng";
+            treeNode15.Name = "Node17";
+            treeNode15.Text = "Kích hoạt vé tháng";
+            treeNode16.Name = "Node12";
+            treeNode16.Text = "Quản lý vé tháng";
+            treeNode17.Name = "Node19";
+            treeNode17.Text = "Cấu hình cơ bản";
+            treeNode18.Name = "Node20";
+            treeNode18.Text = "Quản lý tiền thu";
+            treeNode19.Name = "Node21";
+            treeNode19.Text = "Phân quyền truy cập";
+            treeNode20.Name = "Node22";
+            treeNode20.Text = "Nhật ký hệ thống";
+            treeNode21.Name = "Node18";
+            treeNode21.Text = "Quản lý hệ thống";
+            treeNode22.Name = "Node23";
+            treeNode22.Text = "Quản lý xe vào ra";
+            treeNode23.Name = "Node24";
+            treeNode23.Text = "Lưu mất thẻ";
+            treeNode24.Name = "Node25";
+            treeNode24.Text = "Xem báo cáo F7";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode6,
+            treeNode10,
+            treeNode16,
+            treeNode21,
+            treeNode22,
+            treeNode23,
+            treeNode24});
+            this.treeView1.Size = new System.Drawing.Size(365, 446);
+            this.treeView1.TabIndex = 0;
+            // 
+            // tabPageNhatKyHeThong
+            // 
+            this.tabPageNhatKyHeThong.Location = new System.Drawing.Point(4, 25);
+            this.tabPageNhatKyHeThong.Name = "tabPageNhatKyHeThong";
+            this.tabPageNhatKyHeThong.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageNhatKyHeThong.Size = new System.Drawing.Size(1150, 615);
+            this.tabPageNhatKyHeThong.TabIndex = 3;
+            this.tabPageNhatKyHeThong.Text = "Nhật ký hệ thống";
+            this.tabPageNhatKyHeThong.UseVisualStyleBackColor = true;
             // 
             // tabPageQuanLyXeRaVao
             // 
@@ -5406,13 +6260,33 @@
             this.tabPage10.Text = "Xem hộp đen";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
-            // tbTicketMonthIDEdit
+            // button20
             // 
-            this.tbTicketMonthIDEdit.Location = new System.Drawing.Point(17, 382);
-            this.tbTicketMonthIDEdit.Name = "tbTicketMonthIDEdit";
-            this.tbTicketMonthIDEdit.Size = new System.Drawing.Size(84, 22);
-            this.tbTicketMonthIDEdit.TabIndex = 50;
-            this.tbTicketMonthIDEdit.Visible = false;
+            this.button20.Location = new System.Drawing.Point(520, 548);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(108, 30);
+            this.button20.TabIndex = 11;
+            this.button20.Text = "LƯU";
+            this.button20.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(520, 24);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(242, 24);
+            this.comboBox2.TabIndex = 13;
+            // 
+            // label117
+            // 
+            this.label117.AutoSize = true;
+            this.label117.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label117.Location = new System.Drawing.Point(387, 27);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(47, 16);
+            this.label117.TabIndex = 12;
+            this.label117.Text = "Quyền";
             // 
             // FormQuanLy
             // 
@@ -5518,6 +6392,20 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllTicketMonthList)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            this.tabQuanLyHeThong.ResumeLayout(false);
+            this.tabPageCauHinhCoBan.ResumeLayout(false);
+            this.tabControl3.ResumeLayout(false);
+            this.tabPageCauHinhKetNoi.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.tabPageQuanLyThuTienXe.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCashManagementList)).EndInit();
+            this.panel26.ResumeLayout(false);
+            this.panel26.PerformLayout();
+            this.tabPagePhanQuyenTruyCap.ResumeLayout(false);
+            this.tabPagePhanQuyenTruyCap.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.tabPageQuanLyXeRaVao.ResumeLayout(false);
             this.tabQuanLyXe.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
@@ -6016,17 +6904,6 @@
         private System.Windows.Forms.Label label110;
         private System.Windows.Forms.TextBox tbAllTicketMonthKeyWordSearch;
         private System.Windows.Forms.DataGridView dgvAllTicketMonthList;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages2;
@@ -6051,5 +6928,90 @@
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage4;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
         private System.Windows.Forms.TextBox tbTicketMonthIDEdit;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
+        private System.Windows.Forms.TabControl tabQuanLyHeThong;
+        private System.Windows.Forms.TabPage tabPageCauHinhCoBan;
+        private System.Windows.Forms.TabPage tabPageQuanLyThuTienXe;
+        private System.Windows.Forms.TabPage tabPagePhanQuyenTruyCap;
+        private System.Windows.Forms.TabPage tabPageNhatKyHeThong;
+        private System.Windows.Forms.TabControl tabControl3;
+        private System.Windows.Forms.TabPage tabPageCauHinhKetNoi;
+        private System.Windows.Forms.TabPage tabPageCauHinhHienThi;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label127;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label label128;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label129;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.Label label130;
+        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.Label label131;
+        private System.Windows.Forms.TextBox textBox21;
+        private System.Windows.Forms.Label label132;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Label label133;
+        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.Label label134;
+        private System.Windows.Forms.TextBox textBox25;
+        private System.Windows.Forms.Label label135;
+        private System.Windows.Forms.TextBox textBox26;
+        private System.Windows.Forms.Label label136;
+        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.TextBox textBox28;
+        private System.Windows.Forms.Label label138;
+        private System.Windows.Forms.TextBox textBox29;
+        private System.Windows.Forms.Label label139;
+        private System.Windows.Forms.TextBox textBox30;
+        private System.Windows.Forms.Label label140;
+        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.Label label141;
+        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.Label label142;
+        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.Panel panel26;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label115;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label114;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label112;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label111;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DataGridView dgvCashManagementList;
+        private System.Windows.Forms.Label label116;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn37;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn39;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn41;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn42;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn43;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn49;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn47;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn48;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label117;
+        private System.Windows.Forms.Button button20;
     }
 }

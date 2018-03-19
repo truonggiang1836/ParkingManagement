@@ -785,6 +785,12 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void loadAllTicketMonthData()
+        {
+            DataTable data = TicketMonthDAO.GetAllLostTictketData();
+            dgvAllTicketMonthList.DataSource = data;
+        }
+
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageXemNhatKyVeThang"])
@@ -1189,6 +1195,40 @@ namespace ParkingMangement.GUI
             loadLostTicketMonthData();
         }
 
+        private void loadCarInfoFromDataGridViewRow(int Index)
+        {
+            string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
+            if (!string.IsNullOrEmpty(image1))
+            {
+                pictureBoxCarLogImage1.Image = Image.FromFile(Constant.IMAGE_FOLDER + image1);
+            }
+            string image2 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages2"].Value);
+            if (!string.IsNullOrEmpty(image2))
+            {
+                pictureBoxCarLogImage2.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+            }
+            string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
+            if (!string.IsNullOrEmpty(image3))
+            {
+                pictureBoxCarLogImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image3);
+            }
+            string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
+            if (!string.IsNullOrEmpty(image4))
+            {
+                pictureBoxCarLogImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image4);
+            }
+        }
+
+        private void dgvCarList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Index = e.RowIndex;
+            int Count = dgvCarList.RowCount;
+            if (Index < Count - 1)
+            {
+                loadCarInfoFromDataGridViewRow(Index);
+            }
+        }
+
         /*
         Car data
         */
@@ -1215,7 +1255,7 @@ namespace ParkingMangement.GUI
 
         private void loadCarList()
         {
-            DataTable data = CarDAO.GetAllTicketDayData();
+            DataTable data = CarDAO.GetAllData();
             dgvCarList.DataSource = data;
         }
 
@@ -1545,37 +1585,21 @@ namespace ParkingMangement.GUI
             upDateLostTicketMonth();
         }
 
-        private void loadCarInfoFromDataGridViewRow(int Index)
+        /*
+         *System management
+         */
+
+        private void loadCarListForCashManagement()
         {
-            string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
-            if (!string.IsNullOrEmpty(image1))
-            {
-                pictureBoxCarLogImage1.Image = Image.FromFile(Constant.IMAGE_FOLDER + image1);
-            }
-            string image2 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages2"].Value);
-            if (!string.IsNullOrEmpty(image2))
-            {
-                pictureBoxCarLogImage2.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
-            }
-            string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
-            if (!string.IsNullOrEmpty(image3))
-            {
-                pictureBoxCarLogImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image3);
-            }
-            string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
-            if (!string.IsNullOrEmpty(image4))
-            {
-                pictureBoxCarLogImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image4);
-            }
+            DataTable dt = CarDAO.GetAllDataForCashManagement();
+            dgvCashManagementList.DataSource = dt;
         }
 
-        private void dgvCarList_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void tabQuanLyHeThong_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int Index = e.RowIndex;
-            int Count = dgvCarList.RowCount;
-            if (Index < Count - 1)
+            if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
-                loadCarInfoFromDataGridViewRow(Index);
+                loadCarListForCashManagement();
             }
         }
     }
