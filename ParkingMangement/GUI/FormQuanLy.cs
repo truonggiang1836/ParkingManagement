@@ -23,6 +23,8 @@ namespace ParkingMangement.GUI
         private void FormQuanLy_Load(object sender, EventArgs e)
         {
             loadUserInfoTab();
+
+            //(tabQuanLy.TabPages[1] as TabPage).Enabled = false;
         }
 
         private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)
@@ -297,8 +299,18 @@ namespace ParkingMangement.GUI
         }
 
         /*
-        Part data
-        */
+         * Revenue statistics
+         */
+
+        private void loadRevenueStatisticsData()
+        {
+            DataTable data = CarDAO.GetTotalCommonCostCarGroupByType(null, null);
+            dgvThongKeDoanhThu.DataSource = data;
+        }
+
+        /*
+         * Part data
+         */
 
         private void loadPartList()
         {
@@ -618,7 +630,11 @@ namespace ParkingMangement.GUI
 
         private void tabQuanLy_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
+            if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyDoanhThu"])
+            {
+                loadUserDataToComboBox(cbNhanVienReport);
+                loadRevenueStatisticsData();
+            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
             {
                 loadCardList();
                 loadPartDataToComboBox(cbPartNameCreate);
@@ -1601,6 +1617,14 @@ namespace ParkingMangement.GUI
             {
                 loadCarListForCashManagement();
             }
+        }
+
+        private void btnSearchSaleReport_Click(object sender, EventArgs e)
+        {
+            DateTime timeReport = dtDateSaleReport.Value;
+            DateTime startTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
+            DateTime endTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
+            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCommonCostCarGroupByType(startTimeReport, endTimeReport);
         }
     }
 }

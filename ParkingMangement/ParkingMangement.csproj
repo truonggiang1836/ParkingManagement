@@ -64,6 +64,7 @@
     <Compile Include="DTO\CarDTO.cs" />
     <Compile Include="DTO\ConfigDTO.cs" />
     <Compile Include="DTO\PartDTO.cs" />
+    <Compile Include="DTO\TicketLogDTO.cs" />
     <Compile Include="DTO\TicketMonthDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\WorkDTO.cs" />
@@ -75,53 +76,11 @@
     </Compile>
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\Database.cs" />
-    <Compile Include="GUI\FormDeleteStaff.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormDeleteStaff.Designer.cs">
-      <DependentUpon>FormDeleteStaff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormDeleteTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormDeleteTicket.Designer.cs">
-      <DependentUpon>FormDeleteTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormDeleteVehicle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormDeleteVehicle.Designer.cs">
-      <DependentUpon>FormDeleteVehicle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormEditStaff.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormEditStaff.Designer.cs">
-      <DependentUpon>FormEditStaff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormEditTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormEditTicket.Designer.cs">
-      <DependentUpon>FormEditTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormEditVehicle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormEditVehicle.Designer.cs">
-      <DependentUpon>FormEditVehicle.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormStaffManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormStaffManagement.Designer.cs">
-      <DependentUpon>FormStaffManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormNhanVien.cs">
       <SubType>Form</SubType>
@@ -129,56 +88,17 @@
     <Compile Include="GUI\FormNhanVien.Designer.cs">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\FormTicketManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormTicketManagement.Designer.cs">
-      <DependentUpon>FormTicketManagement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormVehicleManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormVehicleManagement.Designer.cs">
-      <DependentUpon>FormVehicleManagement.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Util.cs" />
-    <EmbeddedResource Include="GUI\FormDeleteStaff.resx">
-      <DependentUpon>FormDeleteStaff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormDeleteTicket.resx">
-      <DependentUpon>FormDeleteTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormDeleteVehicle.resx">
-      <DependentUpon>FormDeleteVehicle.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormEditStaff.resx">
-      <DependentUpon>FormEditStaff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormEditTicket.resx">
-      <DependentUpon>FormEditTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormEditVehicle.resx">
-      <DependentUpon>FormEditVehicle.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLy.resx">
       <DependentUpon>FormQuanLy.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormStaffManagement.resx">
-      <DependentUpon>FormStaffManagement.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormTicketManagement.resx">
-      <DependentUpon>FormTicketManagement.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormVehicleManagement.resx">
-      <DependentUpon>FormVehicleManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

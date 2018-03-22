@@ -16,6 +16,17 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static string GetPartNameByPartID(string partID)
+        {
+            string sql = "select * from [Part] where PartID = '" + partID + "'";
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                return data.Rows[0].Field<string>("PartName");
+            }
+            return "";
+        }
+
         public static void Insert(PartDTO partDTO)
         {
             string sql = "insert into Part(PartID, PartName, Sign, Amount, Limit) values ('" + partDTO.Id + "', '" + partDTO.Name + "', '" +
