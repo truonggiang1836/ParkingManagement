@@ -304,7 +304,7 @@ namespace ParkingMangement.GUI
 
         private void loadRevenueStatisticsData()
         {
-            DataTable data = CarDAO.GetTotalCommonCostCarGroupByType(null, null);
+            DataTable data = CarDAO.GetTotalCost(null, null, null);
             dgvThongKeDoanhThu.DataSource = data;
         }
 
@@ -632,6 +632,9 @@ namespace ParkingMangement.GUI
         {
             if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyDoanhThu"])
             {
+                setFormatTimeForDateTimePicker(dtStartTimeSaleReport);
+                setFormatTimeForDateTimePicker(dtEndTimeSaleReport);
+
                 loadUserDataToComboBox(cbNhanVienReport);
                 loadRevenueStatisticsData();
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
@@ -1290,7 +1293,7 @@ namespace ParkingMangement.GUI
             carDTO.TimeStart = startDate;
             DateTime endDate = dateTimePickerCarDateOut.Value;
             DateTime endTime = dateTimePickerCarTimeOut.Value;
-            endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endTime.Hour, endTime.Minute, 0);
+            endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endTime.Hour, endTime.Minute, 59);
             carDTO.TimeEnd = endDate;
             if (comboBoxTruyVanLoaiXe.SelectedIndex > 0)
             {
@@ -1352,6 +1355,13 @@ namespace ParkingMangement.GUI
             cb.ValueMember = "UserID";
         }
 
+        private void setFormatTimeForDateTimePicker(DateTimePicker dateTimePicker)
+        {
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.CustomFormat = "HH:mm"; // Only use hours and minutes
+            dateTimePicker.ShowUpDown = true;
+        }
+
         private void tabQuanLyXe_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRa"])
@@ -1361,12 +1371,9 @@ namespace ParkingMangement.GUI
                 loadUserDataToComboBox(comboBoxNhanVienRa);
                 loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
 
-                dateTimePickerCarTimeIn.Format = DateTimePickerFormat.Custom;
-                dateTimePickerCarTimeIn.CustomFormat = "HH:mm"; // Only use hours and minutes
-                dateTimePickerCarTimeIn.ShowUpDown = true;
-                dateTimePickerCarTimeOut.Format = DateTimePickerFormat.Custom;
-                dateTimePickerCarTimeOut.CustomFormat = "HH:mm"; // Only use hours and minutes
-                dateTimePickerCarTimeOut.ShowUpDown = true;
+                setFormatTimeForDateTimePicker(dateTimePickerCarTimeIn);
+                setFormatTimeForDateTimePicker(dateTimePickerCarTimeOut);
+                
             } else if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRaVeThang"])
             {
                 loadCarTicketMonthList();
@@ -1621,10 +1628,30 @@ namespace ParkingMangement.GUI
 
         private void btnSearchSaleReport_Click(object sender, EventArgs e)
         {
-            DateTime timeReport = dtDateSaleReport.Value;
-            DateTime startTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
-            DateTime endTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
-            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCommonCostCarGroupByType(startTimeReport, endTimeReport);
+            string userID = null;
+            if (cbNhanVienReport.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
+                userID = Convert.ToString(dataRow["UserID"]);
+            }
+            if (rbOneDateSaleReport.Checked)
+            {
+                DateTime timeReport = dtDateSaleReport.Value;
+                DateTime startTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
+                DateTime endTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
+                dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startTimeReport, endTimeReport, userID);
+            }
+            if (rbMultiDateSaleReport.Checked)
+            {
+                DateTime startDateReport = dtStartDateSaleReport.Value;
+                DateTime startTimeReport = dtStartTimeSaleReport.Value;
+                startDateReport = new DateTime(startDateReport.Year, startDateReport.Month, startDateReport.Day, startTimeReport.Hour, startTimeReport.Minute, 0);
+                DateTime endDateReport = dtEndDateSaleReport.Value;
+                DateTime endTimeReport = dtEndTimeSaleReport.Value;
+                endDateReport = new DateTime(endDateReport.Year, endDateReport.Month, endDateReport.Day, endTimeReport.Hour, endTimeReport.Minute, 0);
+                dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID);
+            }
+            
         }
     }
 }

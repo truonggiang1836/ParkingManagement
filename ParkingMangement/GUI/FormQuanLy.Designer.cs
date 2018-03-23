@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode57,
-            treeNode58});
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode60,
-            treeNode61});
-            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode63,
-            treeNode64,
-            treeNode65});
-            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode67,
-            treeNode68,
-            treeNode69,
-            treeNode70,
-            treeNode71});
-            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode73,
-            treeNode74,
-            treeNode75,
-            treeNode76});
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode78,
-            treeNode79,
-            treeNode80,
-            treeNode81});
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode11,
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15});
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode18,
+            treeNode19,
+            treeNode20});
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode22,
+            treeNode23,
+            treeNode24,
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -158,15 +158,13 @@
             this.cbNhanVienReport = new System.Windows.Forms.ComboBox();
             this.label48 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.dateTimePicker10 = new System.Windows.Forms.DateTimePicker();
-            this.domainUpDown7 = new System.Windows.Forms.DomainUpDown();
-            this.dateTimePicker9 = new System.Windows.Forms.DateTimePicker();
-            this.domainUpDown6 = new System.Windows.Forms.DomainUpDown();
+            this.dtEndDateSaleReport = new System.Windows.Forms.DateTimePicker();
+            this.dtStartDateSaleReport = new System.Windows.Forms.DateTimePicker();
             this.label47 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.btnSearchSaleReport = new System.Windows.Forms.Button();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rbMultiDateSaleReport = new System.Windows.Forms.RadioButton();
+            this.rbOneDateSaleReport = new System.Windows.Forms.RadioButton();
             this.dtDateSaleReport = new System.Windows.Forms.DateTimePicker();
             this.domainUpDown3 = new System.Windows.Forms.DomainUpDown();
             this.dgvThongKeDoanhThu = new System.Windows.Forms.DataGridView();
@@ -656,6 +654,8 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtStartTimeSaleReport = new System.Windows.Forms.DateTimePicker();
+            this.dtEndTimeSaleReport = new System.Windows.Forms.DateTimePicker();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -1561,15 +1561,15 @@
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.dateTimePicker10);
-            this.panel17.Controls.Add(this.domainUpDown7);
-            this.panel17.Controls.Add(this.dateTimePicker9);
-            this.panel17.Controls.Add(this.domainUpDown6);
+            this.panel17.Controls.Add(this.dtEndTimeSaleReport);
+            this.panel17.Controls.Add(this.dtStartTimeSaleReport);
+            this.panel17.Controls.Add(this.dtEndDateSaleReport);
+            this.panel17.Controls.Add(this.dtStartDateSaleReport);
             this.panel17.Controls.Add(this.label47);
             this.panel17.Controls.Add(this.label46);
             this.panel17.Controls.Add(this.btnSearchSaleReport);
-            this.panel17.Controls.Add(this.radioButton4);
-            this.panel17.Controls.Add(this.radioButton3);
+            this.panel17.Controls.Add(this.rbMultiDateSaleReport);
+            this.panel17.Controls.Add(this.rbOneDateSaleReport);
             this.panel17.Controls.Add(this.dtDateSaleReport);
             this.panel17.Controls.Add(this.domainUpDown3);
             this.panel17.Location = new System.Drawing.Point(24, 26);
@@ -1577,37 +1577,21 @@
             this.panel17.Size = new System.Drawing.Size(307, 354);
             this.panel17.TabIndex = 10;
             // 
-            // dateTimePicker10
+            // dtEndDateSaleReport
             // 
-            this.dateTimePicker10.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker10.Location = new System.Drawing.Point(31, 302);
-            this.dateTimePicker10.Name = "dateTimePicker10";
-            this.dateTimePicker10.Size = new System.Drawing.Size(122, 22);
-            this.dateTimePicker10.TabIndex = 23;
+            this.dtEndDateSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtEndDateSaleReport.Location = new System.Drawing.Point(31, 302);
+            this.dtEndDateSaleReport.Name = "dtEndDateSaleReport";
+            this.dtEndDateSaleReport.Size = new System.Drawing.Size(122, 22);
+            this.dtEndDateSaleReport.TabIndex = 23;
             // 
-            // domainUpDown7
+            // dtStartDateSaleReport
             // 
-            this.domainUpDown7.Location = new System.Drawing.Point(190, 302);
-            this.domainUpDown7.Name = "domainUpDown7";
-            this.domainUpDown7.Size = new System.Drawing.Size(56, 22);
-            this.domainUpDown7.TabIndex = 24;
-            this.domainUpDown7.Text = "00:00";
-            // 
-            // dateTimePicker9
-            // 
-            this.dateTimePicker9.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker9.Location = new System.Drawing.Point(31, 239);
-            this.dateTimePicker9.Name = "dateTimePicker9";
-            this.dateTimePicker9.Size = new System.Drawing.Size(122, 22);
-            this.dateTimePicker9.TabIndex = 21;
-            // 
-            // domainUpDown6
-            // 
-            this.domainUpDown6.Location = new System.Drawing.Point(190, 239);
-            this.domainUpDown6.Name = "domainUpDown6";
-            this.domainUpDown6.Size = new System.Drawing.Size(56, 22);
-            this.domainUpDown6.TabIndex = 22;
-            this.domainUpDown6.Text = "00:00";
+            this.dtStartDateSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtStartDateSaleReport.Location = new System.Drawing.Point(31, 239);
+            this.dtStartDateSaleReport.Name = "dtStartDateSaleReport";
+            this.dtStartDateSaleReport.Size = new System.Drawing.Size(122, 22);
+            this.dtStartDateSaleReport.TabIndex = 21;
             // 
             // label47
             // 
@@ -1637,27 +1621,27 @@
             this.btnSearchSaleReport.UseVisualStyleBackColor = true;
             this.btnSearchSaleReport.Click += new System.EventHandler(this.btnSearchSaleReport_Click);
             // 
-            // radioButton4
+            // rbMultiDateSaleReport
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(25, 165);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(94, 20);
-            this.radioButton4.TabIndex = 13;
-            this.radioButton4.Text = "Nhiều ngày";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.rbMultiDateSaleReport.AutoSize = true;
+            this.rbMultiDateSaleReport.Location = new System.Drawing.Point(25, 165);
+            this.rbMultiDateSaleReport.Name = "rbMultiDateSaleReport";
+            this.rbMultiDateSaleReport.Size = new System.Drawing.Size(94, 20);
+            this.rbMultiDateSaleReport.TabIndex = 13;
+            this.rbMultiDateSaleReport.Text = "Nhiều ngày";
+            this.rbMultiDateSaleReport.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbOneDateSaleReport
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(16, 14);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(81, 20);
-            this.radioButton3.TabIndex = 10;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Một ngày";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.rbOneDateSaleReport.AutoSize = true;
+            this.rbOneDateSaleReport.Checked = true;
+            this.rbOneDateSaleReport.Location = new System.Drawing.Point(16, 14);
+            this.rbOneDateSaleReport.Name = "rbOneDateSaleReport";
+            this.rbOneDateSaleReport.Size = new System.Drawing.Size(81, 20);
+            this.rbOneDateSaleReport.TabIndex = 10;
+            this.rbOneDateSaleReport.TabStop = true;
+            this.rbOneDateSaleReport.Text = "Một ngày";
+            this.rbOneDateSaleReport.UseVisualStyleBackColor = true;
             // 
             // dtDateSaleReport
             // 
@@ -5353,71 +5337,71 @@
             this.treeView1.CheckBoxes = true;
             this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
-            treeNode57.Name = "Node2";
-            treeNode57.Text = "Thông tin nhân sự";
-            treeNode58.Name = "Node5";
-            treeNode58.Text = "Dò bảng chấm công";
-            treeNode59.Name = "Node0";
-            treeNode59.Text = "Quản lý nhân sự";
-            treeNode60.Name = "Node6";
-            treeNode60.Text = "Xem thống kê";
-            treeNode61.Name = "Node7";
-            treeNode61.Text = "Điều chỉnh công thức tính tiền";
-            treeNode62.Name = "Node1";
-            treeNode62.Text = "Quản lý doanh thu";
-            treeNode63.Name = "Node9";
-            treeNode63.Text = "Quản lý loại xe";
-            treeNode64.Name = "Node10";
-            treeNode64.Text = "Quản lý thẻ xe";
-            treeNode65.Name = "Node11";
-            treeNode65.Text = "Kích hoạt thẻ";
-            treeNode66.Name = "Node8";
-            treeNode66.Text = "Quản lý thẻ xe - loại xe";
-            treeNode67.Name = "Node13";
-            treeNode67.Text = "Nhật ký vé tháng";
-            treeNode68.Name = "Node14";
-            treeNode68.Text = "Cập nhật thông tin vé tháng";
-            treeNode69.Name = "Node15";
-            treeNode69.Text = "Gia hạn vé tháng";
-            treeNode70.Name = "Node16";
-            treeNode70.Text = "Mất thẻ tháng";
-            treeNode71.Name = "Node17";
-            treeNode71.Text = "Kích hoạt vé tháng";
-            treeNode72.Name = "Node12";
-            treeNode72.Text = "Quản lý vé tháng";
-            treeNode73.Name = "Node19";
-            treeNode73.Text = "Cấu hình cơ bản";
-            treeNode74.Name = "Node20";
-            treeNode74.Text = "Quản lý tiền thu";
-            treeNode75.Name = "Node21";
-            treeNode75.Text = "Phân quyền truy cập";
-            treeNode76.Name = "Node22";
-            treeNode76.Text = "Nhật ký hệ thống";
-            treeNode77.Name = "Node18";
-            treeNode77.Text = "Quản lý hệ thống";
-            treeNode78.Name = "Node0";
-            treeNode78.Text = "Thiết lập ra vào";
-            treeNode79.Name = "Node1";
-            treeNode79.Text = "Tra cứu vào ra";
-            treeNode80.Name = "Node2";
-            treeNode80.Text = "Tra cứu vào ra vé tháng";
-            treeNode81.Name = "Node3";
-            treeNode81.Text = "Xem hộp đen";
-            treeNode82.Name = "Node23";
-            treeNode82.Text = "Quản lý xe vào ra";
-            treeNode83.Name = "Node24";
-            treeNode83.Text = "Lưu mất thẻ";
-            treeNode84.Name = "Node25";
-            treeNode84.Text = "Xem báo cáo F7";
+            treeNode1.Name = "Node2";
+            treeNode1.Text = "Thông tin nhân sự";
+            treeNode2.Name = "Node5";
+            treeNode2.Text = "Dò bảng chấm công";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Quản lý nhân sự";
+            treeNode4.Name = "Node6";
+            treeNode4.Text = "Xem thống kê";
+            treeNode5.Name = "Node7";
+            treeNode5.Text = "Điều chỉnh công thức tính tiền";
+            treeNode6.Name = "Node1";
+            treeNode6.Text = "Quản lý doanh thu";
+            treeNode7.Name = "Node9";
+            treeNode7.Text = "Quản lý loại xe";
+            treeNode8.Name = "Node10";
+            treeNode8.Text = "Quản lý thẻ xe";
+            treeNode9.Name = "Node11";
+            treeNode9.Text = "Kích hoạt thẻ";
+            treeNode10.Name = "Node8";
+            treeNode10.Text = "Quản lý thẻ xe - loại xe";
+            treeNode11.Name = "Node13";
+            treeNode11.Text = "Nhật ký vé tháng";
+            treeNode12.Name = "Node14";
+            treeNode12.Text = "Cập nhật thông tin vé tháng";
+            treeNode13.Name = "Node15";
+            treeNode13.Text = "Gia hạn vé tháng";
+            treeNode14.Name = "Node16";
+            treeNode14.Text = "Mất thẻ tháng";
+            treeNode15.Name = "Node17";
+            treeNode15.Text = "Kích hoạt vé tháng";
+            treeNode16.Name = "Node12";
+            treeNode16.Text = "Quản lý vé tháng";
+            treeNode17.Name = "Node19";
+            treeNode17.Text = "Cấu hình cơ bản";
+            treeNode18.Name = "Node20";
+            treeNode18.Text = "Quản lý tiền thu";
+            treeNode19.Name = "Node21";
+            treeNode19.Text = "Phân quyền truy cập";
+            treeNode20.Name = "Node22";
+            treeNode20.Text = "Nhật ký hệ thống";
+            treeNode21.Name = "Node18";
+            treeNode21.Text = "Quản lý hệ thống";
+            treeNode22.Name = "Node0";
+            treeNode22.Text = "Thiết lập ra vào";
+            treeNode23.Name = "Node1";
+            treeNode23.Text = "Tra cứu vào ra";
+            treeNode24.Name = "Node2";
+            treeNode24.Text = "Tra cứu vào ra vé tháng";
+            treeNode25.Name = "Node3";
+            treeNode25.Text = "Xem hộp đen";
+            treeNode26.Name = "Node23";
+            treeNode26.Text = "Quản lý xe vào ra";
+            treeNode27.Name = "Node24";
+            treeNode27.Text = "Lưu mất thẻ";
+            treeNode28.Name = "Node25";
+            treeNode28.Text = "Xem báo cáo F7";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode59,
-            treeNode62,
-            treeNode66,
-            treeNode72,
-            treeNode77,
-            treeNode82,
-            treeNode83,
-            treeNode84});
+            treeNode3,
+            treeNode6,
+            treeNode10,
+            treeNode16,
+            treeNode21,
+            treeNode26,
+            treeNode27,
+            treeNode28});
             this.treeView1.Size = new System.Drawing.Size(365, 446);
             this.treeView1.TabIndex = 0;
             // 
@@ -6277,7 +6261,7 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "LOẠI XE";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 120;
+            this.dataGridViewTextBoxColumn4.Width = 200;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -6285,7 +6269,6 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "LƯỢT VÀO";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -6299,6 +6282,7 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "XE TỒN";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Visible = false;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -6306,7 +6290,7 @@
             this.dataGridViewTextBoxColumn8.HeaderText = "TIỀN THU";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 120;
+            this.dataGridViewTextBoxColumn8.Width = 150;
             // 
             // Column9
             // 
@@ -6315,6 +6299,22 @@
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             this.Column9.Visible = false;
+            // 
+            // dtStartTimeSaleReport
+            // 
+            this.dtStartTimeSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtStartTimeSaleReport.Location = new System.Drawing.Point(190, 239);
+            this.dtStartTimeSaleReport.Name = "dtStartTimeSaleReport";
+            this.dtStartTimeSaleReport.Size = new System.Drawing.Size(80, 22);
+            this.dtStartTimeSaleReport.TabIndex = 28;
+            // 
+            // dtEndTimeSaleReport
+            // 
+            this.dtEndTimeSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtEndTimeSaleReport.Location = new System.Drawing.Point(190, 302);
+            this.dtEndTimeSaleReport.Name = "dtEndTimeSaleReport";
+            this.dtEndTimeSaleReport.Size = new System.Drawing.Size(80, 22);
+            this.dtEndTimeSaleReport.TabIndex = 29;
             // 
             // FormQuanLy
             // 
@@ -6680,8 +6680,8 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Button btnSearchSaleReport;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton rbMultiDateSaleReport;
+        private System.Windows.Forms.RadioButton rbOneDateSaleReport;
         private System.Windows.Forms.DateTimePicker dtDateSaleReport;
         private System.Windows.Forms.DomainUpDown domainUpDown3;
         private System.Windows.Forms.DataGridView dgvThongKeDoanhThu;
@@ -6800,10 +6800,8 @@
         private System.Windows.Forms.ComboBox cbTicketLogNameSearch;
         private System.Windows.Forms.Label label80;
         private System.Windows.Forms.TextBox tbTicketLogKeyWordSearch;
-        private System.Windows.Forms.DateTimePicker dateTimePicker10;
-        private System.Windows.Forms.DomainUpDown domainUpDown7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker9;
-        private System.Windows.Forms.DomainUpDown domainUpDown6;
+        private System.Windows.Forms.DateTimePicker dtEndDateSaleReport;
+        private System.Windows.Forms.DateTimePicker dtStartDateSaleReport;
         private System.Windows.Forms.Panel panel27;
         private System.Windows.Forms.Label label113;
         private System.Windows.Forms.TextBox tbRenewPlusDate;
@@ -7042,5 +7040,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DateTimePicker dtEndTimeSaleReport;
+        private System.Windows.Forms.DateTimePicker dtStartTimeSaleReport;
     }
 }
