@@ -36,6 +36,22 @@ namespace ParkingMangement
             }
         }
 
+        public static int ExcuValueQuery(string sql)
+        {
+            try
+            {
+                OpenConnection();
+                DataTable dt = new DataTable();
+                OleDbCommand command = connection.CreateCommand();
+                command.CommandText = sql;
+                return Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         public static DataTable ExcuQuery(string sql)
         {
             try

@@ -304,7 +304,7 @@ namespace ParkingMangement.GUI
 
         private void loadRevenueStatisticsData()
         {
-            DataTable data = CarDAO.GetTotalCost(null, null, null);
+            DataTable data = CarDAO.GetTotalCost(null, null, null, CarDAO.ALL_TICKET);
             dgvThongKeDoanhThu.DataSource = data;
         }
 
@@ -1629,29 +1629,43 @@ namespace ParkingMangement.GUI
         private void btnSearchSaleReport_Click(object sender, EventArgs e)
         {
             string userID = null;
+            int ticketType = CarDAO.ALL_TICKET;
             if (cbNhanVienReport.SelectedIndex > 0)
             {
                 DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
                 userID = Convert.ToString(dataRow["UserID"]);
             }
+
+            DateTime startDateReport = DateTime.Now;
+            DateTime endDateReport = DateTime.Now;
             if (rbOneDateSaleReport.Checked)
             {
                 DateTime timeReport = dtDateSaleReport.Value;
-                DateTime startTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
-                DateTime endTimeReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
-                dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startTimeReport, endTimeReport, userID);
+                startDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
+                endDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
+                
             }
             if (rbMultiDateSaleReport.Checked)
             {
-                DateTime startDateReport = dtStartDateSaleReport.Value;
+                startDateReport = dtStartDateSaleReport.Value;
                 DateTime startTimeReport = dtStartTimeSaleReport.Value;
                 startDateReport = new DateTime(startDateReport.Year, startDateReport.Month, startDateReport.Day, startTimeReport.Hour, startTimeReport.Minute, 0);
-                DateTime endDateReport = dtEndDateSaleReport.Value;
+                endDateReport = dtEndDateSaleReport.Value;
                 DateTime endTimeReport = dtEndTimeSaleReport.Value;
                 endDateReport = new DateTime(endDateReport.Year, endDateReport.Month, endDateReport.Day, endTimeReport.Hour, endTimeReport.Minute, 0);
-                dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID);
             }
-            
+
+            if (rbAllTicketSaleReport.Checked)
+            {
+                ticketType = CarDAO.ALL_TICKET;
+            } else if (rbCommonTicketSaleReport.Checked)
+            {
+                ticketType = CarDAO.COMMON_TICKET;
+            } else if (rbMonthTicketSaleReport.Checked)
+            {
+                ticketType = CarDAO.MONTH_TICKET;
+            }
+            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID, ticketType);
         }
     }
 }
