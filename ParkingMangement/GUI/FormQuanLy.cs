@@ -1618,6 +1618,28 @@ namespace ParkingMangement.GUI
             dgvCashManagementList.DataSource = dt;
         }
 
+        private void loadUserAcessData()
+        {
+            cbUserFunctionAccessSetting.DataSource = FunctionalDAO.GetAllDataWithoutAdmin();
+            cbUserFunctionAccessSetting.DisplayMember = "FunctionName";
+            cbUserFunctionAccessSetting.ValueMember = "FunctionID";
+            DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
+            string functionID = functionDataRow["FunctionID"].ToString();
+            loadUserAcessDataFromFunctionID(functionID);
+        }
+
+        private void cbUserFunctionAccessSetting_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
+            string functionID = functionDataRow["FunctionID"].ToString();
+            loadUserAcessDataFromFunctionID(functionID);
+        }
+
+        private void cbUserFunctionAccessSetting_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void tabQuanLyHeThong_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
@@ -1625,9 +1647,7 @@ namespace ParkingMangement.GUI
                 loadCarListForCashManagement();
             } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
             {
-                cbUserFunctionAccessSetting.DataSource = FunctionalDAO.GetAllDataWithoutAdmin();
-                cbUserFunctionAccessSetting.DisplayMember = "FunctionName";
-                cbUserFunctionAccessSetting.ValueMember = "FunctionID";
+                loadUserAcessData();
             }
         }
 
@@ -1700,11 +1720,28 @@ namespace ParkingMangement.GUI
             MessageBox.Show("Cập nhật thành công");
         }
 
+        private void loadUserAcessDataFromFunctionID(string functionID)
+        {
+            foreach (TreeNode treeNode in treeViewPhanQuyenTruyCap.Nodes)
+            {
+                treeNode.Checked = false;
+            }
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionID).Split(',');
+            foreach (string nodeID in listFunctionSec)
+            {
+                string nodeName = Constant.NODE_NAME + nodeID;
+                TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true)[0];
+                if (treeNode != null)
+                {
+                    treeNode.Checked = true;
+                }
+            }
+        }
+
         private void getFunctionSecOfCurrentUser()
         {
             string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
-            string functionSec = FunctionalDAO.GetFunctionSecByID(functionID);
-            string[] listFunctionSec = functionSec.Split(',');
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionID).Split(',');
             
             checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THONG_TIN_NHAN_SU, tabPageThongTinNhanSu);
             checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DO_BANG_CHAM_CONG, tabPageDoBangChamCong);
@@ -1733,7 +1770,7 @@ namespace ParkingMangement.GUI
             checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THIET_LAP_RA_VAO, tabPageThietLapRaVao);
             checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA, tabPageTraCuuVaoRa);
             checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA_VE_THANG, tabPageTraCuuVaoRaVeThang);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_HOP_DEN, tabPageXemHopDen);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_HOP_DEN, tabPageXemHopDen);       
         }
         private void checkShowTabPage(string[] listFunctionSec, int nodeValue, TabPage tabPage)
         {
