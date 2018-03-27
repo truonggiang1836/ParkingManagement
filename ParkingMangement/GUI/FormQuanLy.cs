@@ -23,7 +23,7 @@ namespace ParkingMangement.GUI
         private void FormQuanLy_Load(object sender, EventArgs e)
         {
             loadUserInfoTab();
-
+            getFunctionSecOfCurrentUser();
             //(tabQuanLy.TabPages[1] as TabPage).Enabled = false;
         }
 
@@ -1623,6 +1623,11 @@ namespace ParkingMangement.GUI
             if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
                 loadCarListForCashManagement();
+            } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
+            {
+                cbUserFunctionAccessSetting.DataSource = FunctionalDAO.GetAllDataWithoutAdmin();
+                cbUserFunctionAccessSetting.DisplayMember = "FunctionName";
+                cbUserFunctionAccessSetting.ValueMember = "FunctionID";
             }
         }
 
@@ -1666,6 +1671,77 @@ namespace ParkingMangement.GUI
                 ticketType = CarDAO.MONTH_TICKET;
             }
             dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID, ticketType);
+        }
+
+        private void btnSaveUserAccess_Click(object sender, EventArgs e)
+        {
+            string listNodeID = "";
+            foreach (TreeNode node in treeViewPhanQuyenTruyCap.Nodes)
+            {
+                if (node.Nodes.Count > 0)
+                {
+                    foreach (TreeNode childNode in node.Nodes)
+                    {
+                        if (childNode.Checked)
+                        {
+                            listNodeID += childNode.Name.Replace(Constant.NODE_NAME, "") + ",";
+                        }
+                    }
+                } else
+                {
+                    listNodeID += node.Name.Replace(Constant.NODE_NAME, "") + ",";
+                } 
+            }
+            listNodeID = listNodeID.Remove(listNodeID.Length - 1);
+
+            DataRow functionDataRow = ((DataRowView) cbUserFunctionAccessSetting.SelectedItem).Row;
+            string functionId = functionDataRow["FunctionID"].ToString();
+            FunctionalDAO.UpdateFunctionSec(listNodeID, functionId);
+            MessageBox.Show("Cập nhật thành công");
+        }
+
+        private void getFunctionSecOfCurrentUser()
+        {
+            string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+            string functionSec = FunctionalDAO.GetFunctionSecByID(functionID);
+            string[] listFunctionSec = functionSec.Split(',');
+            
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THONG_TIN_NHAN_SU, tabPageThongTinNhanSu);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DO_BANG_CHAM_CONG, tabPageDoBangChamCong);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DO_BANG_CHAM_CONG, tabPageDoBangChamCong);
+
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_THONG_KE, tabPageThongKeDoanhThu);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienTheoCongVan);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienLuyTien);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTongHop);
+
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_THE_XE, tabPageQuanLyTheXe);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_LOAI_XE, tabPageQuanLyLoaiXe);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_THE, tabPageKichHoatThe);
+
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_VE_THANG, tabPageXemNhatKyVeThang);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG, tabPageTaoMoiVeThang);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_GIA_HAN_VE_THANG, tabPageGiaHanVeThang);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_MAT_THE_THANG, tabPageMatVeThang);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_VE_THANG, tabPageKichHoatVeThang);
+
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAU_HINH_CO_BAN, tabPageCauHinhCoBan);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_TIEN_THU, tabPageQuanLyThuTienXe);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_PHAN_QUYEN_TRUY_CAP, tabPagePhanQuyenTruyCap);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_HE_THONG, tabPageNhatKyHeThong);
+
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THIET_LAP_RA_VAO, tabPageThietLapRaVao);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA, tabPageTraCuuVaoRa);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA_VE_THANG, tabPageTraCuuVaoRaVeThang);
+            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_HOP_DEN, tabPageXemHopDen);
+        }
+        private void checkShowTabPage(string[] listFunctionSec, int nodeValue, TabPage tabPage)
+        {
+            if (Array.IndexOf(listFunctionSec, nodeValue + "") == -1)
+            {
+
+                (tabPage as TabPage).Enabled = false;
+            }
         }
     }
 }

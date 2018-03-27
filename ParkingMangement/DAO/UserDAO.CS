@@ -62,6 +62,19 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static string GetFunctionIDByUserID(string id)
+        {
+            DataTable dt = GetUserByID(id);
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("IDFunct");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public static void Delete(string userID)
         {
             string sql = "delete from [UserCar] where UserID = '" + userID + "'";

@@ -14,5 +14,36 @@ namespace ParkingMangement.DAO
             string sql = "select * from [Functional]";
             return Database.ExcuQuery(sql);
         }
+
+        static public DataTable GetAllDataWithoutAdmin()
+        {
+            string sql = "select * from [Functional] where FunctionID <> 'Ad'";
+            return Database.ExcuQuery(sql);
+        }
+
+        public static void UpdateFunctionSec(string functionSec, string functionID)
+        {
+            string sql = "update [Functional] set FunctionSec ='" + functionSec + "' where FunctionID ='" + functionID + "'";
+            Database.ExcuNonQuery(sql);
+        }
+
+        public static DataTable GetFunctionByID(string functionID)
+        {
+            string sql = "select * from [Functional] where FunctionID = '" + functionID + "'";
+            return Database.ExcuQuery(sql);
+        }
+
+        public static string GetFunctionSecByID(string functionID)
+        {
+            DataTable dt = GetFunctionByID(functionID);
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("FunctionSec");
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }
