@@ -23,8 +23,7 @@ namespace ParkingMangement.GUI
         private void FormQuanLy_Load(object sender, EventArgs e)
         {
             loadUserInfoTab();
-            getFunctionSecOfCurrentUser();
-            //(tabQuanLy.TabPages[1] as TabPage).Enabled = false;
+            checkShowHideAllTabPage();
         }
 
         private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)
@@ -1628,16 +1627,44 @@ namespace ParkingMangement.GUI
             loadUserAcessDataFromFunctionID(functionID);
         }
 
+        private void saveUserAccessData()
+        {
+            string listNodeID = "";
+            foreach (TreeNode node in treeViewPhanQuyenTruyCap.Nodes)
+            {
+                // child node
+                if (node.Nodes.Count > 0)
+                {
+                    foreach (TreeNode childNode in node.Nodes)
+                    {
+                        if (childNode.Checked)
+                        {
+                            listNodeID += childNode.Name.Replace(Constant.NODE_NAME, "") + ",";
+                        }
+                    }
+                }
+                else
+                {
+                    // parent node
+                    if (node.Checked)
+                    {
+                        listNodeID += node.Name.Replace(Constant.NODE_NAME, "") + ",";
+                    }
+                }
+            }
+            listNodeID = listNodeID.Remove(listNodeID.Length - 1);
+
+            DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
+            string functionId = functionDataRow["FunctionID"].ToString();
+            FunctionalDAO.UpdateFunctionSec(listNodeID, functionId);
+            MessageBox.Show("Cập nhật thành công");
+        }
+
         private void cbUserFunctionAccessSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
             string functionID = functionDataRow["FunctionID"].ToString();
             loadUserAcessDataFromFunctionID(functionID);
-        }
-
-        private void cbUserFunctionAccessSetting_SelectedValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void tabQuanLyHeThong_SelectedIndexChanged(object sender, EventArgs e)
@@ -1695,29 +1722,8 @@ namespace ParkingMangement.GUI
 
         private void btnSaveUserAccess_Click(object sender, EventArgs e)
         {
-            string listNodeID = "";
-            foreach (TreeNode node in treeViewPhanQuyenTruyCap.Nodes)
-            {
-                if (node.Nodes.Count > 0)
-                {
-                    foreach (TreeNode childNode in node.Nodes)
-                    {
-                        if (childNode.Checked)
-                        {
-                            listNodeID += childNode.Name.Replace(Constant.NODE_NAME, "") + ",";
-                        }
-                    }
-                } else
-                {
-                    listNodeID += node.Name.Replace(Constant.NODE_NAME, "") + ",";
-                } 
-            }
-            listNodeID = listNodeID.Remove(listNodeID.Length - 1);
-
-            DataRow functionDataRow = ((DataRowView) cbUserFunctionAccessSetting.SelectedItem).Row;
-            string functionId = functionDataRow["FunctionID"].ToString();
-            FunctionalDAO.UpdateFunctionSec(listNodeID, functionId);
-            MessageBox.Show("Cập nhật thành công");
+            saveUserAccessData();
+            checkShowHideAllTabPage();
         }
 
         private void loadUserAcessDataFromFunctionID(string functionID)
@@ -1725,6 +1731,10 @@ namespace ParkingMangement.GUI
             foreach (TreeNode treeNode in treeViewPhanQuyenTruyCap.Nodes)
             {
                 treeNode.Checked = false;
+                foreach (TreeNode childTreeNode in treeNode.Nodes)
+                {
+                    childTreeNode.Checked = false;
+                }
             }
             string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionID).Split(',');
             foreach (string nodeID in listFunctionSec)
@@ -1738,7 +1748,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void getFunctionSecOfCurrentUser()
+        private void checkShowHideAllTabPage()
         {
             string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
             string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionID).Split(',');
@@ -1778,6 +1788,24 @@ namespace ParkingMangement.GUI
             {
 
                 (tabPage as TabPage).Enabled = false;
+            }
+        }
+
+        private void treeViewPhanQuyenTruyCap_AfterCheck(object sender, TreeViewEventArgs e)
+        {
+            checkTreeViewNode(e.Node, e.Node.Checked);
+        }
+
+        private void checkTreeViewNode(TreeNode node, Boolean isChecked)
+        {
+            foreach (TreeNode item in node.Nodes)
+            {
+                item.Checked = isChecked;
+
+                if (item.Nodes.Count > 0)
+                {
+                    checkTreeViewNode(item, isChecked);
+                }
             }
         }
     }
