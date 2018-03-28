@@ -1784,9 +1784,9 @@ namespace ParkingMangement.GUI
         }
         private void checkShowTabPage(string[] listFunctionSec, int nodeValue, TabPage tabPage)
         {
+            (tabPage as TabPage).Enabled = true;
             if (Array.IndexOf(listFunctionSec, nodeValue + "") == -1)
             {
-
                 (tabPage as TabPage).Enabled = false;
             }
         }
@@ -1801,7 +1801,6 @@ namespace ParkingMangement.GUI
             foreach (TreeNode item in node.Nodes)
             {
                 item.Checked = isChecked;
-
                 if (item.Nodes.Count > 0)
                 {
                     checkTreeViewNode(item, isChecked);
