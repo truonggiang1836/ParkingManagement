@@ -71,6 +71,18 @@ namespace ParkingMangement.Utils
                 workDTO.Computer = Environment.MachineName;
                 WorkDAO.Insert(workDTO);
             }
+
+            addLogoutLog();
+        }
+
+        private static void addLogoutLog()
+        {
+            LogDTO logDTO = new LogDTO();
+            logDTO.LogTypeID = Constant.LOG_TYPE_LOGOUT;
+            logDTO.Account = Program.CurrentUserID;
+            logDTO.ProcessDate = DateTime.Now;
+            logDTO.Computer = Environment.MachineName;
+            LogUtil.addLog(logDTO);
         }
 
         public static DateTime MillisecondToDateTime(long milliSec)

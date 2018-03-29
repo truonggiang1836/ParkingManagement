@@ -687,23 +687,23 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label147 = new System.Windows.Forms.Label();
             this.button24 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvLogList = new System.Windows.Forms.DataGridView();
             this.panel30 = new System.Windows.Forms.Panel();
             this.label148 = new System.Windows.Forms.Label();
             this.label149 = new System.Windows.Forms.Label();
             this.label150 = new System.Windows.Forms.Label();
             this.label151 = new System.Windows.Forms.Label();
-            this.label152 = new System.Windows.Forms.Label();
-            this.label153 = new System.Windows.Forms.Label();
-            this.label154 = new System.Windows.Forms.Label();
-            this.label155 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.labelLogType = new System.Windows.Forms.Label();
+            this.labelLogUserName = new System.Windows.Forms.Label();
+            this.labelLogProcessDate = new System.Windows.Forms.Label();
+            this.labelLogComputer = new System.Windows.Forms.Label();
+            this.tbLogNote = new System.Windows.Forms.TextBox();
+            this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommonLogTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommonLogProcessDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommonLogNameUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommonLogNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CommonLogComputer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -806,7 +806,7 @@
             this.panel28.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.panel29.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLogList)).BeginInit();
             this.panel30.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -5520,7 +5520,7 @@
             // tabPageNhatKyHeThong
             // 
             this.tabPageNhatKyHeThong.Controls.Add(this.panel30);
-            this.tabPageNhatKyHeThong.Controls.Add(this.dataGridView1);
+            this.tabPageNhatKyHeThong.Controls.Add(this.dgvLogList);
             this.tabPageNhatKyHeThong.Controls.Add(this.panel29);
             this.tabPageNhatKyHeThong.Location = new System.Drawing.Point(4, 25);
             this.tabPageNhatKyHeThong.Name = "tabPageNhatKyHeThong";
@@ -6686,71 +6686,30 @@
             this.button24.Text = "XEM";
             this.button24.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dgvLogList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvLogList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLogList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn31,
-            this.dataGridViewTextBoxColumn32,
-            this.dataGridViewTextBoxColumn33,
-            this.dataGridViewTextBoxColumn34,
-            this.dataGridViewTextBoxColumn52,
-            this.dataGridViewTextBoxColumn53});
-            this.dataGridView1.Location = new System.Drawing.Point(4, 312);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1141, 296);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn31
-            // 
-            this.dataGridViewTextBoxColumn31.DataPropertyName = "Identify";
-            this.dataGridViewTextBoxColumn31.HeaderText = "STT";
-            this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
-            this.dataGridViewTextBoxColumn31.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn32
-            // 
-            this.dataGridViewTextBoxColumn32.DataPropertyName = "LogTypeName";
-            this.dataGridViewTextBoxColumn32.HeaderText = "Loại XL";
-            this.dataGridViewTextBoxColumn32.Name = "dataGridViewTextBoxColumn32";
-            this.dataGridViewTextBoxColumn32.ReadOnly = true;
-            this.dataGridViewTextBoxColumn32.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn33
-            // 
-            this.dataGridViewTextBoxColumn33.DataPropertyName = "ProcessDate";
-            this.dataGridViewTextBoxColumn33.HeaderText = "Ngày XL";
-            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
-            this.dataGridViewTextBoxColumn33.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn34
-            // 
-            this.dataGridViewTextBoxColumn34.DataPropertyName = "NameUser";
-            this.dataGridViewTextBoxColumn34.HeaderText = "Người XL";
-            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
-            this.dataGridViewTextBoxColumn34.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn52
-            // 
-            this.dataGridViewTextBoxColumn52.HeaderText = "Nội dung";
-            this.dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
-            this.dataGridViewTextBoxColumn52.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn53
-            // 
-            this.dataGridViewTextBoxColumn53.DataPropertyName = "Computer";
-            this.dataGridViewTextBoxColumn53.HeaderText = "Máy tính";
-            this.dataGridViewTextBoxColumn53.Name = "dataGridViewTextBoxColumn53";
-            this.dataGridViewTextBoxColumn53.ReadOnly = true;
+            this.CommonLogTypeName,
+            this.CommonLogProcessDate,
+            this.CommonLogNameUser,
+            this.CommonLogNote,
+            this.CommonLogComputer});
+            this.dgvLogList.Location = new System.Drawing.Point(4, 312);
+            this.dgvLogList.Name = "dgvLogList";
+            this.dgvLogList.ReadOnly = true;
+            this.dgvLogList.Size = new System.Drawing.Size(1141, 296);
+            this.dgvLogList.TabIndex = 2;
+            this.dgvLogList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLogList_CellClick);
             // 
             // panel30
             // 
-            this.panel30.Controls.Add(this.textBox5);
-            this.panel30.Controls.Add(this.label155);
-            this.panel30.Controls.Add(this.label154);
-            this.panel30.Controls.Add(this.label153);
-            this.panel30.Controls.Add(this.label152);
+            this.panel30.Controls.Add(this.tbLogNote);
+            this.panel30.Controls.Add(this.labelLogComputer);
+            this.panel30.Controls.Add(this.labelLogProcessDate);
+            this.panel30.Controls.Add(this.labelLogUserName);
+            this.panel30.Controls.Add(this.labelLogType);
             this.panel30.Controls.Add(this.label151);
             this.panel30.Controls.Add(this.label150);
             this.panel30.Controls.Add(this.label149);
@@ -6804,57 +6763,106 @@
             this.label151.TabIndex = 34;
             this.label151.Text = "Máy";
             // 
-            // label152
+            // labelLogType
             // 
-            this.label152.AutoSize = true;
-            this.label152.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label152.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label152.Location = new System.Drawing.Point(102, 19);
-            this.label152.Name = "label152";
-            this.label152.Size = new System.Drawing.Size(63, 16);
-            this.label152.TabIndex = 35;
-            this.label152.Text = "Loại xử lý";
+            this.labelLogType.AutoSize = true;
+            this.labelLogType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLogType.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelLogType.Location = new System.Drawing.Point(102, 19);
+            this.labelLogType.Name = "labelLogType";
+            this.labelLogType.Size = new System.Drawing.Size(63, 16);
+            this.labelLogType.TabIndex = 35;
+            this.labelLogType.Text = "Loại xử lý";
             // 
-            // label153
+            // labelLogUserName
             // 
-            this.label153.AutoSize = true;
-            this.label153.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label153.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label153.Location = new System.Drawing.Point(102, 47);
-            this.label153.Name = "label153";
-            this.label153.Size = new System.Drawing.Size(73, 16);
-            this.label153.TabIndex = 36;
-            this.label153.Text = "Người xử lý";
+            this.labelLogUserName.AutoSize = true;
+            this.labelLogUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLogUserName.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelLogUserName.Location = new System.Drawing.Point(102, 47);
+            this.labelLogUserName.Name = "labelLogUserName";
+            this.labelLogUserName.Size = new System.Drawing.Size(73, 16);
+            this.labelLogUserName.TabIndex = 36;
+            this.labelLogUserName.Text = "Người xử lý";
             // 
-            // label154
+            // labelLogProcessDate
             // 
-            this.label154.AutoSize = true;
-            this.label154.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label154.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label154.Location = new System.Drawing.Point(658, 19);
-            this.label154.Name = "label154";
-            this.label154.Size = new System.Drawing.Size(41, 16);
-            this.label154.TabIndex = 37;
-            this.label154.Text = "Ngày";
+            this.labelLogProcessDate.AutoSize = true;
+            this.labelLogProcessDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLogProcessDate.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelLogProcessDate.Location = new System.Drawing.Point(658, 19);
+            this.labelLogProcessDate.Name = "labelLogProcessDate";
+            this.labelLogProcessDate.Size = new System.Drawing.Size(41, 16);
+            this.labelLogProcessDate.TabIndex = 37;
+            this.labelLogProcessDate.Text = "Ngày";
             // 
-            // label155
+            // labelLogComputer
             // 
-            this.label155.AutoSize = true;
-            this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label155.ForeColor = System.Drawing.Color.DarkGreen;
-            this.label155.Location = new System.Drawing.Point(658, 47);
-            this.label155.Name = "label155";
-            this.label155.Size = new System.Drawing.Size(34, 16);
-            this.label155.TabIndex = 38;
-            this.label155.Text = "Máy";
+            this.labelLogComputer.AutoSize = true;
+            this.labelLogComputer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLogComputer.ForeColor = System.Drawing.Color.DarkGreen;
+            this.labelLogComputer.Location = new System.Drawing.Point(658, 47);
+            this.labelLogComputer.Name = "labelLogComputer";
+            this.labelLogComputer.Size = new System.Drawing.Size(34, 16);
+            this.labelLogComputer.TabIndex = 38;
+            this.labelLogComputer.Text = "Máy";
             // 
-            // textBox5
+            // tbLogNote
             // 
-            this.textBox5.Location = new System.Drawing.Point(5, 74);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(857, 212);
-            this.textBox5.TabIndex = 39;
+            this.tbLogNote.Location = new System.Drawing.Point(5, 74);
+            this.tbLogNote.Multiline = true;
+            this.tbLogNote.Name = "tbLogNote";
+            this.tbLogNote.ReadOnly = true;
+            this.tbLogNote.Size = new System.Drawing.Size(857, 212);
+            this.tbLogNote.TabIndex = 39;
+            // 
+            // dataGridViewTextBoxColumn31
+            // 
+            this.dataGridViewTextBoxColumn31.DataPropertyName = "Identify";
+            this.dataGridViewTextBoxColumn31.HeaderText = "STT";
+            this.dataGridViewTextBoxColumn31.Name = "dataGridViewTextBoxColumn31";
+            this.dataGridViewTextBoxColumn31.ReadOnly = true;
+            this.dataGridViewTextBoxColumn31.Width = 50;
+            // 
+            // CommonLogTypeName
+            // 
+            this.CommonLogTypeName.DataPropertyName = "LogTypeName";
+            this.CommonLogTypeName.HeaderText = "Loại XL";
+            this.CommonLogTypeName.Name = "CommonLogTypeName";
+            this.CommonLogTypeName.ReadOnly = true;
+            this.CommonLogTypeName.Width = 250;
+            // 
+            // CommonLogProcessDate
+            // 
+            this.CommonLogProcessDate.DataPropertyName = "ProcessDate";
+            this.CommonLogProcessDate.HeaderText = "Ngày XL";
+            this.CommonLogProcessDate.Name = "CommonLogProcessDate";
+            this.CommonLogProcessDate.ReadOnly = true;
+            this.CommonLogProcessDate.Width = 150;
+            // 
+            // CommonLogNameUser
+            // 
+            this.CommonLogNameUser.DataPropertyName = "NameUser";
+            this.CommonLogNameUser.HeaderText = "Người XL";
+            this.CommonLogNameUser.Name = "CommonLogNameUser";
+            this.CommonLogNameUser.ReadOnly = true;
+            this.CommonLogNameUser.Width = 150;
+            // 
+            // CommonLogNote
+            // 
+            this.CommonLogNote.DataPropertyName = "LogNote";
+            this.CommonLogNote.HeaderText = "Nội dung";
+            this.CommonLogNote.Name = "CommonLogNote";
+            this.CommonLogNote.ReadOnly = true;
+            this.CommonLogNote.Width = 340;
+            // 
+            // CommonLogComputer
+            // 
+            this.CommonLogComputer.DataPropertyName = "Computer";
+            this.CommonLogComputer.HeaderText = "Máy tính";
+            this.CommonLogComputer.Name = "CommonLogComputer";
+            this.CommonLogComputer.ReadOnly = true;
+            this.CommonLogComputer.Width = 150;
             // 
             // FormQuanLy
             // 
@@ -7003,7 +7011,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLogList)).EndInit();
             this.panel30.ResumeLayout(false);
             this.panel30.PerformLayout();
             this.ResumeLayout(false);
@@ -7616,13 +7624,7 @@
         private System.Windows.Forms.Label label150;
         private System.Windows.Forms.Label label149;
         private System.Windows.Forms.Label label148;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn32;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn52;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn53;
+        private System.Windows.Forms.DataGridView dgvLogList;
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.Button button24;
         private System.Windows.Forms.Label label147;
@@ -7635,10 +7637,16 @@
         private System.Windows.Forms.Label label145;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label146;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label155;
-        private System.Windows.Forms.Label label154;
-        private System.Windows.Forms.Label label153;
-        private System.Windows.Forms.Label label152;
+        private System.Windows.Forms.TextBox tbLogNote;
+        private System.Windows.Forms.Label labelLogComputer;
+        private System.Windows.Forms.Label labelLogProcessDate;
+        private System.Windows.Forms.Label labelLogUserName;
+        private System.Windows.Forms.Label labelLogType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogProcessDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogNameUser;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogNote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogComputer;
     }
 }

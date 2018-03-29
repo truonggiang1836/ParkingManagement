@@ -15,6 +15,7 @@ using System.Windows.Forms;
 using System.Net;
 using System.IO;
 using Emgu.CV;
+using Emgu.CV.Structure;
 
 namespace ParkingMangement.GUI
 {
@@ -45,19 +46,24 @@ namespace ParkingMangement.GUI
             //loadAforge();
             //loadData();
             //readCard();
+            writeCard();
         }
 
         private void readCard()
         {
-            serialPort = new SerialPort();// if u r not used Serial Port Tool
-            serialPort.PortName = "COM3";
-            serialPort.BaudRate = 6646;
+            serialPort = new SerialPort("COM1");// if u r not used Serial Port Tool
+            serialPort.BaudRate = 9600;
             serialPort.DataBits = 8;
             serialPort.Parity = Parity.None;
             serialPort.StopBits = StopBits.One;
-            serialPort.Open();
-            serialPort.ReadTimeout = 2000;
+            //serialPort.Handshake = Handshake.None;
+
+            //serialPort.ReadTimeout = 2000;
             serialPort.DataReceived += new SerialDataReceivedEventHandler(Fun_DataReceived);
+
+            serialPort.Open();
+            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine();
             serialPort.Close();
         }
         //Delegate for the Reading the Tag while RFID Card come to the Range.
@@ -65,13 +71,58 @@ namespace ParkingMangement.GUI
         private delegate void SetTextDeleg(string text);
         void Fun_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            Thread.Sleep(500);
-            data = serialPort.ReadLine();
-            this.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { data });
+            //Thread.Sleep(500);
+            //data = serialPort.ReadLine();
+            //this.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { data });
+            SerialPort sp = (SerialPort)sender;
+            string indata = serialPort.ReadExisting();
+            MessageBox.Show("Data Received:");
+            MessageBox.Show(indata);
         }
         private void Fun_IsDataReceived(string data)
         {
             labelCardID.Text = data.Trim();
+        }
+
+        private string writeCard()
+        {
+            try
+            {
+                System.IO.Ports.SerialPort Serial1 = new System.IO.Ports.SerialPort("COM1", 9600, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
+                //Serial1.DtrEnable = true;
+                //Serial1.RtsEnable = true;
+                //Serial1.ReadTimeout = 3000;
+
+                var MessageBufferRequest = new byte[8] { 1, 3, 0, 28, 0, 1, 69, 204 };
+                var MessageBufferReply = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+                int BufferLength = 8;
+
+                if (!Serial1.IsOpen)
+                {
+                    Serial1.Open();
+                }
+
+                try
+                {
+                    Serial1.Write(MessageBufferRequest, 0, BufferLength);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    return "";
+                }
+
+                System.Threading.Thread.Sleep(100);
+
+                Serial1.Read(MessageBufferReply, 0, 7);
+
+                return MessageBufferReply[3].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return "";
+            }
         }
 
         private void FormNhanVien_KeyDown(object sender, KeyEventArgs e)
@@ -90,9 +141,9 @@ namespace ParkingMangement.GUI
             CvInvoke.UseOpenCL = false;
             try
             {
-                _capture = new Emgu.CV.Capture("rtsp://admin:bmv333999@192.168.1.190:888/Streaming/Channels/101");
+                //_capture = new Emgu.CV.Capture("rtsp://admin:bmv333999@192.168.1.190:888/Streaming/Channels/101");
                 //_capture = new Emgu.CV.Capture("http://admin:bmv333999@192.168.1.190:888");
-                //_capture = new Emgu.CV.Capture("http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg");
+                _capture = new Emgu.CV.Capture("http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg");
                 //_capture = new Emgu.CV.Capture(0);
                 Application.Idle += ProcessFrame;
             }
@@ -110,7 +161,8 @@ namespace ParkingMangement.GUI
                 imageBoxPicture1.Image = _capture.QueryFrame();
                 if (imageBoxPicture1.Image != null)
                 {
-                    imageBoxCamera1.Image.Save(Constant.IMAGE_FOLDER + DateTime.Now.Ticks + ".jpg");
+                    string path = Constant.IMAGE_FOLDER + DateTime.Now.Ticks + ".jpg";
+                    _capture.QueryFrame().Save(path);
                 }
                 _isSaveToFile = !_isSaveToFile;
             }

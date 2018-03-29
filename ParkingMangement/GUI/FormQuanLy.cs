@@ -1660,6 +1660,11 @@ namespace ParkingMangement.GUI
             MessageBox.Show("Cập nhật thành công");
         }
 
+        private void loadLogList()
+        {
+            dgvLogList.DataSource = LogDAO.GetAllData();
+        }
+
         private void cbUserFunctionAccessSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
@@ -1675,6 +1680,9 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
             {
                 loadUserAcessData();
+            } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageNhatKyHeThong"])
+            {
+                loadLogList();
             }
         }
 
@@ -1805,6 +1813,30 @@ namespace ParkingMangement.GUI
                 {
                     checkTreeViewNode(item, isChecked);
                 }
+            }
+        }
+
+        private void loadLogInfoFromDataGridViewRow(int Index)
+        {
+            string logType = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogTypeName"].Value);
+            labelLogType.Text = logType;
+            string processDate = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogProcessDate"].Value);
+            labelLogProcessDate.Text = processDate;
+            string account = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogNameUser"].Value);
+            labelLogUserName.Text = account;
+            string computer = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogComputer"].Value);
+            labelLogComputer.Text = computer;
+            string note = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogNote"].Value);
+            tbLogNote.Text = note;
+        }
+
+        private void dgvLogList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Index = e.RowIndex;
+            int Count = dgvLogList.Rows.Count;
+            if (Index < Count - 1)
+            {
+                loadLogInfoFromDataGridViewRow(Index);
             }
         }
     }

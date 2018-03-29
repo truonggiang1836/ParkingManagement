@@ -44,6 +44,8 @@ namespace ParkingMangement.Utils
         public const int LOG_TYPE_CREATE_TICKET_MONTH = 1;
         public const int LOG_TYPE_UPDATE_TICKET_MONTH = 2;
         public const int LOG_TYPE_DELETE_TICKET_MONTH = 3;
+        public const int LOG_TYPE_LOGIN = 6;
+        public const int LOG_TYPE_LOGOUT = 7;
 
         // Node Phan quyen truy cap
         public const string NODE_NAME = "NodeName";

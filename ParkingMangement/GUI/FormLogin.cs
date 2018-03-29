@@ -1,4 +1,5 @@
 ﻿using ParkingMangement.DAO;
+using ParkingMangement.DTO;
 using ParkingMangement.GUI;
 using ParkingMangement.Utils;
 using System;
@@ -49,6 +50,16 @@ namespace ParkingMangement
             }
         }
 
+        private void addLoginLog()
+        {
+            LogDTO logDTO = new LogDTO();
+            logDTO.LogTypeID = Constant.LOG_TYPE_LOGIN;
+            logDTO.Account = Program.CurrentUserID;
+            logDTO.ProcessDate = DateTime.Now;
+            logDTO.Computer = Environment.MachineName;
+            LogUtil.addLog(logDTO);
+        }
+
         private void loginDone(DataTable data)
         {
             Program.StartWorkTime = DateTime.Now;
@@ -61,6 +72,8 @@ namespace ParkingMangement
             }
             f.Closed += (s, args) => this.Close();
             f.Show();
+
+            addLoginLog();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
