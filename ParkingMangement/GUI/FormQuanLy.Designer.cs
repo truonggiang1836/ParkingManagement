@@ -676,17 +676,17 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button20 = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
-            this.button22 = new System.Windows.Forms.Button();
+            this.tbLogShowAllData = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
-            this.dateTimePicker8 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker9 = new System.Windows.Forms.DateTimePicker();
+            this.dtLogSearchEndTime = new System.Windows.Forms.DateTimePicker();
+            this.dtLogSearchStartTime = new System.Windows.Forms.DateTimePicker();
             this.label145 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbLogType = new System.Windows.Forms.ComboBox();
             this.label146 = new System.Windows.Forms.Label();
             this.label144 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbLogSearchKeyWord = new System.Windows.Forms.TextBox();
             this.label147 = new System.Windows.Forms.Label();
-            this.button24 = new System.Windows.Forms.Button();
+            this.btnLogSearch = new System.Windows.Forms.Button();
             this.dgvLogList = new System.Windows.Forms.DataGridView();
             this.panel30 = new System.Windows.Forms.Panel();
             this.label148 = new System.Windows.Forms.Label();
@@ -6571,30 +6571,31 @@
             // 
             // panel29
             // 
-            this.panel29.Controls.Add(this.button24);
+            this.panel29.Controls.Add(this.btnLogSearch);
             this.panel29.Controls.Add(this.label147);
             this.panel29.Controls.Add(this.label144);
-            this.panel29.Controls.Add(this.textBox4);
-            this.panel29.Controls.Add(this.button22);
+            this.panel29.Controls.Add(this.tbLogSearchKeyWord);
+            this.panel29.Controls.Add(this.tbLogShowAllData);
             this.panel29.Controls.Add(this.button23);
-            this.panel29.Controls.Add(this.dateTimePicker8);
-            this.panel29.Controls.Add(this.dateTimePicker9);
+            this.panel29.Controls.Add(this.dtLogSearchEndTime);
+            this.panel29.Controls.Add(this.dtLogSearchStartTime);
             this.panel29.Controls.Add(this.label145);
-            this.panel29.Controls.Add(this.comboBox2);
+            this.panel29.Controls.Add(this.cbLogType);
             this.panel29.Controls.Add(this.label146);
             this.panel29.Location = new System.Drawing.Point(3, 6);
             this.panel29.Name = "panel29";
             this.panel29.Size = new System.Drawing.Size(269, 290);
             this.panel29.TabIndex = 0;
             // 
-            // button22
+            // tbLogShowAllData
             // 
-            this.button22.Location = new System.Drawing.Point(152, 170);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(101, 43);
-            this.button22.TabIndex = 27;
-            this.button22.Text = "XEM TẤT CẢ";
-            this.button22.UseVisualStyleBackColor = true;
+            this.tbLogShowAllData.Location = new System.Drawing.Point(152, 170);
+            this.tbLogShowAllData.Name = "tbLogShowAllData";
+            this.tbLogShowAllData.Size = new System.Drawing.Size(101, 43);
+            this.tbLogShowAllData.TabIndex = 27;
+            this.tbLogShowAllData.Text = "XEM TẤT CẢ";
+            this.tbLogShowAllData.UseVisualStyleBackColor = true;
+            this.tbLogShowAllData.Click += new System.EventHandler(this.tbLogShowAllData_Click);
             // 
             // button23
             // 
@@ -6605,21 +6606,21 @@
             this.button23.Text = "XUẤT EXCEL";
             this.button23.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker8
+            // dtLogSearchEndTime
             // 
-            this.dateTimePicker8.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker8.Location = new System.Drawing.Point(98, 124);
-            this.dateTimePicker8.Name = "dateTimePicker8";
-            this.dateTimePicker8.Size = new System.Drawing.Size(152, 22);
-            this.dateTimePicker8.TabIndex = 24;
+            this.dtLogSearchEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtLogSearchEndTime.Location = new System.Drawing.Point(98, 124);
+            this.dtLogSearchEndTime.Name = "dtLogSearchEndTime";
+            this.dtLogSearchEndTime.Size = new System.Drawing.Size(152, 22);
+            this.dtLogSearchEndTime.TabIndex = 24;
             // 
-            // dateTimePicker9
+            // dtLogSearchStartTime
             // 
-            this.dateTimePicker9.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker9.Location = new System.Drawing.Point(98, 90);
-            this.dateTimePicker9.Name = "dateTimePicker9";
-            this.dateTimePicker9.Size = new System.Drawing.Size(152, 22);
-            this.dateTimePicker9.TabIndex = 23;
+            this.dtLogSearchStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtLogSearchStartTime.Location = new System.Drawing.Point(98, 90);
+            this.dtLogSearchStartTime.Name = "dtLogSearchStartTime";
+            this.dtLogSearchStartTime.Size = new System.Drawing.Size(152, 22);
+            this.dtLogSearchStartTime.TabIndex = 23;
             // 
             // label145
             // 
@@ -6631,14 +6632,14 @@
             this.label145.TabIndex = 22;
             this.label145.Text = "Bắt đầu";
             // 
-            // comboBox2
+            // cbLogType
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(98, 51);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(152, 24);
-            this.comboBox2.TabIndex = 21;
+            this.cbLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLogType.FormattingEnabled = true;
+            this.cbLogType.Location = new System.Drawing.Point(98, 51);
+            this.cbLogType.Name = "cbLogType";
+            this.cbLogType.Size = new System.Drawing.Size(152, 24);
+            this.cbLogType.TabIndex = 21;
             // 
             // label146
             // 
@@ -6660,12 +6661,12 @@
             this.label144.TabIndex = 30;
             this.label144.Text = "Tìm kiếm";
             // 
-            // textBox4
+            // tbLogSearchKeyWord
             // 
-            this.textBox4.Location = new System.Drawing.Point(98, 16);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(152, 22);
-            this.textBox4.TabIndex = 29;
+            this.tbLogSearchKeyWord.Location = new System.Drawing.Point(98, 16);
+            this.tbLogSearchKeyWord.Name = "tbLogSearchKeyWord";
+            this.tbLogSearchKeyWord.Size = new System.Drawing.Size(152, 22);
+            this.tbLogSearchKeyWord.TabIndex = 29;
             // 
             // label147
             // 
@@ -6677,14 +6678,15 @@
             this.label147.TabIndex = 31;
             this.label147.Text = "Kết thúc";
             // 
-            // button24
+            // btnLogSearch
             // 
-            this.button24.Location = new System.Drawing.Point(19, 170);
-            this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(96, 43);
-            this.button24.TabIndex = 32;
-            this.button24.Text = "XEM";
-            this.button24.UseVisualStyleBackColor = true;
+            this.btnLogSearch.Location = new System.Drawing.Point(19, 170);
+            this.btnLogSearch.Name = "btnLogSearch";
+            this.btnLogSearch.Size = new System.Drawing.Size(96, 43);
+            this.btnLogSearch.TabIndex = 32;
+            this.btnLogSearch.Text = "XEM";
+            this.btnLogSearch.UseVisualStyleBackColor = true;
+            this.btnLogSearch.Click += new System.EventHandler(this.btnLogSearch_Click);
             // 
             // dgvLogList
             // 
@@ -7626,16 +7628,16 @@
         private System.Windows.Forms.Label label148;
         private System.Windows.Forms.DataGridView dgvLogList;
         private System.Windows.Forms.Panel panel29;
-        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button btnLogSearch;
         private System.Windows.Forms.Label label147;
         private System.Windows.Forms.Label label144;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.TextBox tbLogSearchKeyWord;
+        private System.Windows.Forms.Button tbLogShowAllData;
         private System.Windows.Forms.Button button23;
-        private System.Windows.Forms.DateTimePicker dateTimePicker8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker9;
+        private System.Windows.Forms.DateTimePicker dtLogSearchEndTime;
+        private System.Windows.Forms.DateTimePicker dtLogSearchStartTime;
         private System.Windows.Forms.Label label145;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbLogType;
         private System.Windows.Forms.Label label146;
         private System.Windows.Forms.TextBox tbLogNote;
         private System.Windows.Forms.Label labelLogComputer;

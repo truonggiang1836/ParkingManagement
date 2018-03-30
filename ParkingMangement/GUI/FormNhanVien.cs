@@ -45,8 +45,8 @@ namespace ParkingMangement.GUI
             loadCamera();
             //loadAforge();
             //loadData();
-            //readCard();
-            writeCard();
+            readCard();
+            //writeCard();
         }
 
         private void readCard()
@@ -141,8 +141,8 @@ namespace ParkingMangement.GUI
             CvInvoke.UseOpenCL = false;
             try
             {
-                //_capture = new Emgu.CV.Capture("rtsp://admin:bmv333999@192.168.1.190:888/Streaming/Channels/101");
-                //_capture = new Emgu.CV.Capture("http://admin:bmv333999@192.168.1.190:888");
+                //_capture = new Emgu.CV.Capture("rtsp://admin:bmv333999@192.168.1.190:888/cgi-bin/snapshot.cgi?1");
+                //_capture = new Emgu.CV.Capture("http://113.176.92.125:81");
                 _capture = new Emgu.CV.Capture("http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg");
                 //_capture = new Emgu.CV.Capture(0);
                 Application.Idle += ProcessFrame;
@@ -225,12 +225,12 @@ namespace ParkingMangement.GUI
 
         private void loadData()
         {
-            string sourceURL = "http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg";
-            byte[] buffer = new byte[1280 * 800];
+            string sourceURL = "http://192.168.1.190:888/jpg/image.jpg";
+            byte[] buffer = new byte[100000];
             int read, total = 0;
             // create HTTP request
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(sourceURL);
-            //req.Credentials = new NetworkCredential("admin", "bmv333999");
+            req.Credentials = new NetworkCredential("admin", "bmv333999");
             // get response
             WebResponse resp = req.GetResponse();
             // get response stream

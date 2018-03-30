@@ -1665,6 +1665,18 @@ namespace ParkingMangement.GUI
             dgvLogList.DataSource = LogDAO.GetAllData();
         }
 
+        private void searchLog()
+        {
+            string key = tbLogSearchKeyWord.Text;
+            DataRow dataRow = ((DataRowView) cbLogType.SelectedItem).Row;
+            string logTypeID = dataRow["LogTypeID"].ToString();
+            DateTime startTime = dtLogSearchStartTime.Value;
+            startTime = new DateTime(startTime.Year, startTime.Month, startTime.Day, 0, 0, 0);
+            DateTime endTime = dtLogSearchEndTime.Value;
+            endTime = new DateTime(endTime.Year, endTime.Month, endTime.Day, 23, 59, 59);
+            dgvLogList.DataSource = LogDAO.SearchData(key, logTypeID, startTime, endTime);
+        }
+
         private void cbUserFunctionAccessSetting_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
@@ -1683,6 +1695,7 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageNhatKyHeThong"])
             {
                 loadLogList();
+                loadLogTypeDataWithAllToComboBox(cbLogType);
             }
         }
 
@@ -1838,6 +1851,27 @@ namespace ParkingMangement.GUI
             {
                 loadLogInfoFromDataGridViewRow(Index);
             }
+        }
+
+        private void loadLogTypeDataWithAllToComboBox(ComboBox cb)
+        {
+            DataTable dt = LogTypeDAO.GetAllData();
+            DataRow dr = dt.NewRow();
+            dr["LogTypeName"] = "Tất cả";
+            dt.Rows.InsertAt(dr, 0);
+            cb.DataSource = dt;
+            cb.DisplayMember = "LogTypeName";
+            cb.ValueMember = "LogTypeID";
+        }
+
+        private void btnLogSearch_Click(object sender, EventArgs e)
+        {
+            searchLog();
+        }
+
+        private void tbLogShowAllData_Click(object sender, EventArgs e)
+        {
+            loadLogList();
         }
     }
 }
