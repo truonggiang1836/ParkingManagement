@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode57,
+            treeNode58});
+            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode60,
+            treeNode61});
+            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode63,
+            treeNode64,
+            treeNode65});
+            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode67,
+            treeNode68,
+            treeNode69,
+            treeNode70,
+            treeNode71});
+            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode73,
+            treeNode74,
+            treeNode75,
+            treeNode76});
+            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode78,
+            treeNode79,
+            treeNode80,
+            treeNode81});
+            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -145,7 +145,7 @@
             this.radioButtonWorkMultiDate = new System.Windows.Forms.RadioButton();
             this.radioButtonWorkDate = new System.Windows.Forms.RadioButton();
             this.tabPageQuanLyDoanhThu = new System.Windows.Forms.TabPage();
-            this.tabControl4 = new System.Windows.Forms.TabControl();
+            this.tabQuanLyDoanhThu = new System.Windows.Forms.TabControl();
             this.tabPageThongKeDoanhThu = new System.Windows.Forms.TabPage();
             this.rbMonthTicketSaleReport = new System.Windows.Forms.RadioButton();
             this.rbCommonTicketSaleReport = new System.Windows.Forms.RadioButton();
@@ -656,25 +656,20 @@
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
             this.panel28 = new System.Windows.Forms.Panel();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.label118 = new System.Windows.Forms.Label();
-            this.dateTimePicker4 = new System.Windows.Forms.DateTimePicker();
             this.label119 = new System.Windows.Forms.Label();
             this.label120 = new System.Windows.Forms.Label();
             this.label121 = new System.Windows.Forms.Label();
             this.label122 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.trackBarIntervalBetweenDayNight = new System.Windows.Forms.TrackBar();
             this.label123 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker5 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker6 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker7 = new System.Windows.Forms.DateTimePicker();
+            this.cbLoaiXeTinhTienCongVan = new System.Windows.Forms.ComboBox();
             this.label124 = new System.Windows.Forms.Label();
             this.label125 = new System.Windows.Forms.Label();
             this.label126 = new System.Windows.Forms.Label();
-            this.label143 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button20 = new System.Windows.Forms.Button();
+            this.labelIntervalBetweenDayNight = new System.Windows.Forms.Label();
+            this.btnHuyTinhTienCongVan = new System.Windows.Forms.Button();
+            this.btnCapNhatTinhTienCongVan = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
             this.tbLogShowAllData = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
@@ -704,6 +699,20 @@
             this.CommonLogNameUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommonLogNote = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CommonLogComputer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.trackBarCycleTicketMonth = new System.Windows.Forms.TrackBar();
+            this.label152 = new System.Windows.Forms.Label();
+            this.labelCycleTicketMonth = new System.Windows.Forms.Label();
+            this.label154 = new System.Windows.Forms.Label();
+            this.label155 = new System.Windows.Forms.Label();
+            this.btnChinhSuaTinhTienCongVan = new System.Windows.Forms.Button();
+            this.panel31 = new System.Windows.Forms.Panel();
+            this.numericUpDownCostTicketMonth = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownDayCost = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownNightCost = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownDayNightCost = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownStartHourNight = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownEndHourNight = new System.Windows.Forms.NumericUpDown();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -720,7 +729,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserList2)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabPageQuanLyDoanhThu.SuspendLayout();
-            this.tabControl4.SuspendLayout();
+            this.tabQuanLyDoanhThu.SuspendLayout();
             this.tabPageThongKeDoanhThu.SuspendLayout();
             this.panel16.SuspendLayout();
             this.panel17.SuspendLayout();
@@ -804,10 +813,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
             this.panel28.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).BeginInit();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogList)).BeginInit();
             this.panel30.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCycleTicketMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCostTicketMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNightCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayNightCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartHourNight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndHourNight)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1476,7 +1493,7 @@
             // 
             // tabPageQuanLyDoanhThu
             // 
-            this.tabPageQuanLyDoanhThu.Controls.Add(this.tabControl4);
+            this.tabPageQuanLyDoanhThu.Controls.Add(this.tabQuanLyDoanhThu);
             this.tabPageQuanLyDoanhThu.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyDoanhThu.Name = "tabPageQuanLyDoanhThu";
             this.tabPageQuanLyDoanhThu.Padding = new System.Windows.Forms.Padding(3);
@@ -1485,17 +1502,18 @@
             this.tabPageQuanLyDoanhThu.Text = "QUẢN LÝ DOANH THU";
             this.tabPageQuanLyDoanhThu.UseVisualStyleBackColor = true;
             // 
-            // tabControl4
+            // tabQuanLyDoanhThu
             // 
-            this.tabControl4.Controls.Add(this.tabPageThongKeDoanhThu);
-            this.tabControl4.Controls.Add(this.tabPageCongThucTinhTienTheoCongVan);
-            this.tabControl4.Controls.Add(this.tabPageCongThucTinhTienLuyTien);
-            this.tabControl4.Controls.Add(this.tabPageCongThucTongHop);
-            this.tabControl4.Location = new System.Drawing.Point(5, 4);
-            this.tabControl4.Name = "tabControl4";
-            this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(1160, 639);
-            this.tabControl4.TabIndex = 1;
+            this.tabQuanLyDoanhThu.Controls.Add(this.tabPageThongKeDoanhThu);
+            this.tabQuanLyDoanhThu.Controls.Add(this.tabPageCongThucTinhTienTheoCongVan);
+            this.tabQuanLyDoanhThu.Controls.Add(this.tabPageCongThucTinhTienLuyTien);
+            this.tabQuanLyDoanhThu.Controls.Add(this.tabPageCongThucTongHop);
+            this.tabQuanLyDoanhThu.Location = new System.Drawing.Point(5, 4);
+            this.tabQuanLyDoanhThu.Name = "tabQuanLyDoanhThu";
+            this.tabQuanLyDoanhThu.SelectedIndex = 0;
+            this.tabQuanLyDoanhThu.Size = new System.Drawing.Size(1160, 639);
+            this.tabQuanLyDoanhThu.TabIndex = 1;
+            this.tabQuanLyDoanhThu.SelectedIndexChanged += new System.EventHandler(this.tabQuanLyDoanhThu_SelectedIndexChanged);
             // 
             // tabPageThongKeDoanhThu
             // 
@@ -1783,8 +1801,8 @@
             // 
             // tabPageCongThucTinhTienTheoCongVan
             // 
-            this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.button3);
-            this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.button20);
+            this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panel31);
+            this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.btnChinhSuaTinhTienCongVan);
             this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panel28);
             this.tabPageCongThucTinhTienTheoCongVan.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTinhTienTheoCongVan.Name = "tabPageCongThucTinhTienTheoCongVan";
@@ -5448,71 +5466,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode1.Name = "NodeName1";
-            treeNode1.Text = "Thông tin nhân sự";
-            treeNode2.Name = "NodeName2";
-            treeNode2.Text = "Dò bảng chấm công";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Quản lý nhân sự";
-            treeNode4.Name = "NodeName3";
-            treeNode4.Text = "Xem thống kê";
-            treeNode5.Name = "NodeName4";
-            treeNode5.Text = "Điều chỉnh công thức tính tiền";
-            treeNode6.Name = "Node1";
-            treeNode6.Text = "Quản lý doanh thu";
-            treeNode7.Name = "NodeName5";
-            treeNode7.Text = "Quản lý loại xe";
-            treeNode8.Name = "NodeName6";
-            treeNode8.Text = "Quản lý thẻ xe";
-            treeNode9.Name = "NodeName7";
-            treeNode9.Text = "Kích hoạt thẻ";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Quản lý thẻ xe - loại xe";
-            treeNode11.Name = "NodeName8";
-            treeNode11.Text = "Nhật ký vé tháng";
-            treeNode12.Name = "NodeName9";
-            treeNode12.Text = "Cập nhật thông tin vé tháng";
-            treeNode13.Name = "NodeName10";
-            treeNode13.Text = "Gia hạn vé tháng";
-            treeNode14.Name = "NodeName11";
-            treeNode14.Text = "Mất thẻ tháng";
-            treeNode15.Name = "NodeName12";
-            treeNode15.Text = "Kích hoạt vé tháng";
-            treeNode16.Name = "Node12";
-            treeNode16.Text = "Quản lý vé tháng";
-            treeNode17.Name = "NodeName13";
-            treeNode17.Text = "Cấu hình cơ bản";
-            treeNode18.Name = "NodeName14";
-            treeNode18.Text = "Quản lý tiền thu";
-            treeNode19.Name = "NodeName15";
-            treeNode19.Text = "Phân quyền truy cập";
-            treeNode20.Name = "NodeName16";
-            treeNode20.Text = "Nhật ký hệ thống";
-            treeNode21.Name = "Node18";
-            treeNode21.Text = "Quản lý hệ thống";
-            treeNode22.Name = "NodeName17";
-            treeNode22.Text = "Thiết lập ra vào";
-            treeNode23.Name = "NodeName18";
-            treeNode23.Text = "Tra cứu vào ra";
-            treeNode24.Name = "NodeName19";
-            treeNode24.Text = "Tra cứu vào ra vé tháng";
-            treeNode25.Name = "NodeName20";
-            treeNode25.Text = "Xem hộp đen";
-            treeNode26.Name = "Node23";
-            treeNode26.Text = "Quản lý xe vào ra";
-            treeNode27.Name = "NodeName21";
-            treeNode27.Text = "Lưu mất thẻ";
-            treeNode28.Name = "NodeName22";
-            treeNode28.Text = "Xem báo cáo F7";
+            treeNode57.Name = "NodeName1";
+            treeNode57.Text = "Thông tin nhân sự";
+            treeNode58.Name = "NodeName2";
+            treeNode58.Text = "Dò bảng chấm công";
+            treeNode59.Name = "Node0";
+            treeNode59.Text = "Quản lý nhân sự";
+            treeNode60.Name = "NodeName3";
+            treeNode60.Text = "Xem thống kê";
+            treeNode61.Name = "NodeName4";
+            treeNode61.Text = "Điều chỉnh công thức tính tiền";
+            treeNode62.Name = "Node1";
+            treeNode62.Text = "Quản lý doanh thu";
+            treeNode63.Name = "NodeName5";
+            treeNode63.Text = "Quản lý loại xe";
+            treeNode64.Name = "NodeName6";
+            treeNode64.Text = "Quản lý thẻ xe";
+            treeNode65.Name = "NodeName7";
+            treeNode65.Text = "Kích hoạt thẻ";
+            treeNode66.Name = "Node8";
+            treeNode66.Text = "Quản lý thẻ xe - loại xe";
+            treeNode67.Name = "NodeName8";
+            treeNode67.Text = "Nhật ký vé tháng";
+            treeNode68.Name = "NodeName9";
+            treeNode68.Text = "Cập nhật thông tin vé tháng";
+            treeNode69.Name = "NodeName10";
+            treeNode69.Text = "Gia hạn vé tháng";
+            treeNode70.Name = "NodeName11";
+            treeNode70.Text = "Mất thẻ tháng";
+            treeNode71.Name = "NodeName12";
+            treeNode71.Text = "Kích hoạt vé tháng";
+            treeNode72.Name = "Node12";
+            treeNode72.Text = "Quản lý vé tháng";
+            treeNode73.Name = "NodeName13";
+            treeNode73.Text = "Cấu hình cơ bản";
+            treeNode74.Name = "NodeName14";
+            treeNode74.Text = "Quản lý tiền thu";
+            treeNode75.Name = "NodeName15";
+            treeNode75.Text = "Phân quyền truy cập";
+            treeNode76.Name = "NodeName16";
+            treeNode76.Text = "Nhật ký hệ thống";
+            treeNode77.Name = "Node18";
+            treeNode77.Text = "Quản lý hệ thống";
+            treeNode78.Name = "NodeName17";
+            treeNode78.Text = "Thiết lập ra vào";
+            treeNode79.Name = "NodeName18";
+            treeNode79.Text = "Tra cứu vào ra";
+            treeNode80.Name = "NodeName19";
+            treeNode80.Text = "Tra cứu vào ra vé tháng";
+            treeNode81.Name = "NodeName20";
+            treeNode81.Text = "Xem hộp đen";
+            treeNode82.Name = "Node23";
+            treeNode82.Text = "Quản lý xe vào ra";
+            treeNode83.Name = "NodeName21";
+            treeNode83.Text = "Lưu mất thẻ";
+            treeNode84.Name = "NodeName22";
+            treeNode84.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6,
-            treeNode10,
-            treeNode16,
-            treeNode21,
-            treeNode26,
-            treeNode27,
-            treeNode28});
+            treeNode59,
+            treeNode62,
+            treeNode66,
+            treeNode72,
+            treeNode77,
+            treeNode82,
+            treeNode83,
+            treeNode84});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -6372,35 +6390,31 @@
             // 
             // panel28
             // 
-            this.panel28.Controls.Add(this.label143);
+            this.panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel28.Controls.Add(this.numericUpDownEndHourNight);
+            this.panel28.Controls.Add(this.numericUpDownStartHourNight);
+            this.panel28.Controls.Add(this.numericUpDownDayNightCost);
+            this.panel28.Controls.Add(this.numericUpDownNightCost);
+            this.panel28.Controls.Add(this.numericUpDownDayCost);
+            this.panel28.Controls.Add(this.btnHuyTinhTienCongVan);
+            this.panel28.Controls.Add(this.groupBox1);
+            this.panel28.Controls.Add(this.btnCapNhatTinhTienCongVan);
+            this.panel28.Controls.Add(this.labelIntervalBetweenDayNight);
             this.panel28.Controls.Add(this.label126);
             this.panel28.Controls.Add(this.label125);
             this.panel28.Controls.Add(this.label124);
-            this.panel28.Controls.Add(this.dateTimePicker7);
-            this.panel28.Controls.Add(this.dateTimePicker6);
-            this.panel28.Controls.Add(this.dateTimePicker5);
-            this.panel28.Controls.Add(this.comboBox1);
+            this.panel28.Controls.Add(this.cbLoaiXeTinhTienCongVan);
             this.panel28.Controls.Add(this.label123);
-            this.panel28.Controls.Add(this.trackBar1);
+            this.panel28.Controls.Add(this.trackBarIntervalBetweenDayNight);
             this.panel28.Controls.Add(this.label122);
             this.panel28.Controls.Add(this.label121);
             this.panel28.Controls.Add(this.label120);
             this.panel28.Controls.Add(this.label119);
-            this.panel28.Controls.Add(this.dateTimePicker4);
-            this.panel28.Controls.Add(this.dateTimePicker3);
             this.panel28.Controls.Add(this.label118);
             this.panel28.Location = new System.Drawing.Point(333, 22);
             this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(494, 336);
+            this.panel28.Size = new System.Drawing.Size(494, 386);
             this.panel28.TabIndex = 0;
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker3.Location = new System.Drawing.Point(158, 17);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(77, 22);
-            this.dateTimePicker3.TabIndex = 32;
             // 
             // label118
             // 
@@ -6411,14 +6425,6 @@
             this.label118.Size = new System.Drawing.Size(128, 16);
             this.label118.TabIndex = 31;
             this.label118.Text = "Tính đêm bắt đầu từ:";
-            // 
-            // dateTimePicker4
-            // 
-            this.dateTimePicker4.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker4.Location = new System.Drawing.Point(369, 16);
-            this.dateTimePicker4.Name = "dateTimePicker4";
-            this.dateTimePicker4.Size = new System.Drawing.Size(77, 22);
-            this.dateTimePicker4.TabIndex = 33;
             // 
             // label119
             // 
@@ -6460,13 +6466,14 @@
             this.label122.TabIndex = 37;
             this.label122.Text = "Khoảng giao ngày + đêm:";
             // 
-            // trackBar1
+            // trackBarIntervalBetweenDayNight
             // 
-            this.trackBar1.Location = new System.Drawing.Point(189, 53);
-            this.trackBar1.Maximum = 23;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(235, 45);
-            this.trackBar1.TabIndex = 38;
+            this.trackBarIntervalBetweenDayNight.Location = new System.Drawing.Point(189, 53);
+            this.trackBarIntervalBetweenDayNight.Maximum = 24;
+            this.trackBarIntervalBetweenDayNight.Name = "trackBarIntervalBetweenDayNight";
+            this.trackBarIntervalBetweenDayNight.Size = new System.Drawing.Size(235, 45);
+            this.trackBarIntervalBetweenDayNight.TabIndex = 38;
+            this.trackBarIntervalBetweenDayNight.ValueChanged += new System.EventHandler(this.trackBarIntervalBetweenDayNight_ValueChanged);
             // 
             // label123
             // 
@@ -6478,38 +6485,15 @@
             this.label123.TabIndex = 39;
             this.label123.Text = "h";
             // 
-            // comboBox1
+            // cbLoaiXeTinhTienCongVan
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(26, 111);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(155, 24);
-            this.comboBox1.TabIndex = 40;
-            // 
-            // dateTimePicker5
-            // 
-            this.dateTimePicker5.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker5.Location = new System.Drawing.Point(369, 109);
-            this.dateTimePicker5.Name = "dateTimePicker5";
-            this.dateTimePicker5.Size = new System.Drawing.Size(77, 22);
-            this.dateTimePicker5.TabIndex = 41;
-            // 
-            // dateTimePicker6
-            // 
-            this.dateTimePicker6.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker6.Location = new System.Drawing.Point(369, 141);
-            this.dateTimePicker6.Name = "dateTimePicker6";
-            this.dateTimePicker6.Size = new System.Drawing.Size(77, 22);
-            this.dateTimePicker6.TabIndex = 42;
-            // 
-            // dateTimePicker7
-            // 
-            this.dateTimePicker7.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker7.Location = new System.Drawing.Point(369, 173);
-            this.dateTimePicker7.Name = "dateTimePicker7";
-            this.dateTimePicker7.Size = new System.Drawing.Size(77, 22);
-            this.dateTimePicker7.TabIndex = 43;
+            this.cbLoaiXeTinhTienCongVan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoaiXeTinhTienCongVan.FormattingEnabled = true;
+            this.cbLoaiXeTinhTienCongVan.Location = new System.Drawing.Point(26, 111);
+            this.cbLoaiXeTinhTienCongVan.Name = "cbLoaiXeTinhTienCongVan";
+            this.cbLoaiXeTinhTienCongVan.Size = new System.Drawing.Size(155, 24);
+            this.cbLoaiXeTinhTienCongVan.TabIndex = 40;
+            this.cbLoaiXeTinhTienCongVan.SelectedIndexChanged += new System.EventHandler(this.cbLoaiXeTinhTienCongVan_SelectedIndexChanged);
             // 
             // label124
             // 
@@ -6541,33 +6525,33 @@
             this.label126.TabIndex = 46;
             this.label126.Text = "Ngày + đêm:";
             // 
-            // label143
+            // labelIntervalBetweenDayNight
             // 
-            this.label143.AutoSize = true;
-            this.label143.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label143.Location = new System.Drawing.Point(430, 53);
-            this.label143.Name = "label143";
-            this.label143.Size = new System.Drawing.Size(22, 16);
-            this.label143.TabIndex = 37;
-            this.label143.Text = "23";
+            this.labelIntervalBetweenDayNight.AutoSize = true;
+            this.labelIntervalBetweenDayNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIntervalBetweenDayNight.Location = new System.Drawing.Point(430, 53);
+            this.labelIntervalBetweenDayNight.Name = "labelIntervalBetweenDayNight";
+            this.labelIntervalBetweenDayNight.Size = new System.Drawing.Size(22, 16);
+            this.labelIntervalBetweenDayNight.TabIndex = 37;
+            this.labelIntervalBetweenDayNight.Text = "23";
             // 
-            // button3
+            // btnHuyTinhTienCongVan
             // 
-            this.button3.Location = new System.Drawing.Point(586, 374);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 30);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "HỦY";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnHuyTinhTienCongVan.Location = new System.Drawing.Point(256, 337);
+            this.btnHuyTinhTienCongVan.Name = "btnHuyTinhTienCongVan";
+            this.btnHuyTinhTienCongVan.Size = new System.Drawing.Size(108, 30);
+            this.btnHuyTinhTienCongVan.TabIndex = 13;
+            this.btnHuyTinhTienCongVan.Text = "HỦY";
+            this.btnHuyTinhTienCongVan.UseVisualStyleBackColor = true;
             // 
-            // button20
+            // btnCapNhatTinhTienCongVan
             // 
-            this.button20.Location = new System.Drawing.Point(460, 374);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(108, 30);
-            this.button20.TabIndex = 12;
-            this.button20.Text = "CẬP NHẬT";
-            this.button20.UseVisualStyleBackColor = true;
+            this.btnCapNhatTinhTienCongVan.Location = new System.Drawing.Point(130, 337);
+            this.btnCapNhatTinhTienCongVan.Name = "btnCapNhatTinhTienCongVan";
+            this.btnCapNhatTinhTienCongVan.Size = new System.Drawing.Size(108, 30);
+            this.btnCapNhatTinhTienCongVan.TabIndex = 12;
+            this.btnCapNhatTinhTienCongVan.Text = "CẬP NHẬT";
+            this.btnCapNhatTinhTienCongVan.UseVisualStyleBackColor = true;
             // 
             // panel29
             // 
@@ -6866,6 +6850,159 @@
             this.CommonLogComputer.ReadOnly = true;
             this.CommonLogComputer.Width = 150;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.numericUpDownCostTicketMonth);
+            this.groupBox1.Controls.Add(this.label155);
+            this.groupBox1.Controls.Add(this.labelCycleTicketMonth);
+            this.groupBox1.Controls.Add(this.label154);
+            this.groupBox1.Controls.Add(this.label152);
+            this.groupBox1.Controls.Add(this.trackBarCycleTicketMonth);
+            this.groupBox1.Location = new System.Drawing.Point(26, 219);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(441, 100);
+            this.groupBox1.TabIndex = 47;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Vé tháng giới hạn giờ";
+            // 
+            // trackBarCycleTicketMonth
+            // 
+            this.trackBarCycleTicketMonth.Location = new System.Drawing.Point(82, 33);
+            this.trackBarCycleTicketMonth.Maximum = 24;
+            this.trackBarCycleTicketMonth.Name = "trackBarCycleTicketMonth";
+            this.trackBarCycleTicketMonth.Size = new System.Drawing.Size(127, 45);
+            this.trackBarCycleTicketMonth.TabIndex = 39;
+            this.trackBarCycleTicketMonth.ValueChanged += new System.EventHandler(this.trackBarCycleTicketMonth_ValueChanged);
+            // 
+            // label152
+            // 
+            this.label152.AutoSize = true;
+            this.label152.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label152.Location = new System.Drawing.Point(17, 33);
+            this.label152.Name = "label152";
+            this.label152.Size = new System.Drawing.Size(48, 16);
+            this.label152.TabIndex = 35;
+            this.label152.Text = "Chu kỳ";
+            // 
+            // labelCycleTicketMonth
+            // 
+            this.labelCycleTicketMonth.AutoSize = true;
+            this.labelCycleTicketMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCycleTicketMonth.Location = new System.Drawing.Point(220, 33);
+            this.labelCycleTicketMonth.Name = "labelCycleTicketMonth";
+            this.labelCycleTicketMonth.Size = new System.Drawing.Size(22, 16);
+            this.labelCycleTicketMonth.TabIndex = 40;
+            this.labelCycleTicketMonth.Text = "23";
+            // 
+            // label154
+            // 
+            this.label154.AutoSize = true;
+            this.label154.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label154.Location = new System.Drawing.Point(242, 33);
+            this.label154.Name = "label154";
+            this.label154.Size = new System.Drawing.Size(15, 16);
+            this.label154.TabIndex = 41;
+            this.label154.Text = "h";
+            // 
+            // label155
+            // 
+            this.label155.AutoSize = true;
+            this.label155.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label155.Location = new System.Drawing.Point(298, 36);
+            this.label155.Name = "label155";
+            this.label155.Size = new System.Drawing.Size(32, 16);
+            this.label155.TabIndex = 49;
+            this.label155.Text = "Giá:";
+            // 
+            // btnChinhSuaTinhTienCongVan
+            // 
+            this.btnChinhSuaTinhTienCongVan.Location = new System.Drawing.Point(192, 185);
+            this.btnChinhSuaTinhTienCongVan.Name = "btnChinhSuaTinhTienCongVan";
+            this.btnChinhSuaTinhTienCongVan.Size = new System.Drawing.Size(108, 30);
+            this.btnChinhSuaTinhTienCongVan.TabIndex = 13;
+            this.btnChinhSuaTinhTienCongVan.Text = "CHỈNH SỬA";
+            this.btnChinhSuaTinhTienCongVan.UseVisualStyleBackColor = true;
+            // 
+            // panel31
+            // 
+            this.panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel31.Location = new System.Drawing.Point(6, 414);
+            this.panel31.Name = "panel31";
+            this.panel31.Size = new System.Drawing.Size(1140, 189);
+            this.panel31.TabIndex = 14;
+            // 
+            // numericUpDownCostTicketMonth
+            // 
+            this.numericUpDownCostTicketMonth.Location = new System.Drawing.Point(343, 33);
+            this.numericUpDownCostTicketMonth.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownCostTicketMonth.Name = "numericUpDownCostTicketMonth";
+            this.numericUpDownCostTicketMonth.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDownCostTicketMonth.TabIndex = 50;
+            // 
+            // numericUpDownDayCost
+            // 
+            this.numericUpDownDayCost.Location = new System.Drawing.Point(369, 110);
+            this.numericUpDownDayCost.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownDayCost.Name = "numericUpDownDayCost";
+            this.numericUpDownDayCost.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDownDayCost.TabIndex = 51;
+            // 
+            // numericUpDownNightCost
+            // 
+            this.numericUpDownNightCost.Location = new System.Drawing.Point(369, 142);
+            this.numericUpDownNightCost.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownNightCost.Name = "numericUpDownNightCost";
+            this.numericUpDownNightCost.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDownNightCost.TabIndex = 52;
+            // 
+            // numericUpDownDayNightCost
+            // 
+            this.numericUpDownDayNightCost.Location = new System.Drawing.Point(369, 174);
+            this.numericUpDownDayNightCost.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownDayNightCost.Name = "numericUpDownDayNightCost";
+            this.numericUpDownDayNightCost.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDownDayNightCost.TabIndex = 53;
+            // 
+            // numericUpDownStartHourNight
+            // 
+            this.numericUpDownStartHourNight.Location = new System.Drawing.Point(157, 16);
+            this.numericUpDownStartHourNight.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.numericUpDownStartHourNight.Name = "numericUpDownStartHourNight";
+            this.numericUpDownStartHourNight.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDownStartHourNight.TabIndex = 54;
+            // 
+            // numericUpDownEndHourNight
+            // 
+            this.numericUpDownEndHourNight.Location = new System.Drawing.Point(369, 16);
+            this.numericUpDownEndHourNight.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.numericUpDownEndHourNight.Name = "numericUpDownEndHourNight";
+            this.numericUpDownEndHourNight.Size = new System.Drawing.Size(77, 22);
+            this.numericUpDownEndHourNight.TabIndex = 55;
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6900,7 +7037,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabPageQuanLyDoanhThu.ResumeLayout(false);
-            this.tabControl4.ResumeLayout(false);
+            this.tabQuanLyDoanhThu.ResumeLayout(false);
             this.tabPageThongKeDoanhThu.ResumeLayout(false);
             this.tabPageThongKeDoanhThu.PerformLayout();
             this.panel16.ResumeLayout(false);
@@ -7010,12 +7147,21 @@
             this.panel15.PerformLayout();
             this.panel28.ResumeLayout(false);
             this.panel28.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).EndInit();
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogList)).EndInit();
             this.panel30.ResumeLayout(false);
             this.panel30.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarCycleTicketMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCostTicketMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNightCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayNightCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartHourNight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndHourNight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -7032,7 +7178,7 @@
         private System.Windows.Forms.TabControl tabQuanLyNhanSu;
         private System.Windows.Forms.TabPage tabPageThongTinNhanSu;
         private System.Windows.Forms.TabPage tabPageDoBangChamCong;
-        private System.Windows.Forms.TabControl tabControl4;
+        private System.Windows.Forms.TabControl tabQuanLyDoanhThu;
         private System.Windows.Forms.TabPage tabPageThongKeDoanhThu;
         private System.Windows.Forms.TabPage tabPageCongThucTinhTienTheoCongVan;
         private System.Windows.Forms.TabPage tabPageCongThucTinhTienLuyTien;
@@ -7605,22 +7751,17 @@
         private System.Windows.Forms.Label label121;
         private System.Windows.Forms.Label label120;
         private System.Windows.Forms.Label label119;
-        private System.Windows.Forms.DateTimePicker dateTimePicker4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label118;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.TrackBar trackBarIntervalBetweenDayNight;
         private System.Windows.Forms.Label label122;
         private System.Windows.Forms.Label label123;
         private System.Windows.Forms.Label label126;
         private System.Windows.Forms.Label label125;
         private System.Windows.Forms.Label label124;
-        private System.Windows.Forms.DateTimePicker dateTimePicker7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button20;
-        private System.Windows.Forms.Label label143;
+        private System.Windows.Forms.ComboBox cbLoaiXeTinhTienCongVan;
+        private System.Windows.Forms.Button btnHuyTinhTienCongVan;
+        private System.Windows.Forms.Button btnCapNhatTinhTienCongVan;
+        private System.Windows.Forms.Label labelIntervalBetweenDayNight;
         private System.Windows.Forms.Panel panel30;
         private System.Windows.Forms.Label label151;
         private System.Windows.Forms.Label label150;
@@ -7650,5 +7791,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogNameUser;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogNote;
         private System.Windows.Forms.DataGridViewTextBoxColumn CommonLogComputer;
+        private System.Windows.Forms.Panel panel31;
+        private System.Windows.Forms.Button btnChinhSuaTinhTienCongVan;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label155;
+        private System.Windows.Forms.Label labelCycleTicketMonth;
+        private System.Windows.Forms.Label label154;
+        private System.Windows.Forms.Label label152;
+        private System.Windows.Forms.TrackBar trackBarCycleTicketMonth;
+        private System.Windows.Forms.NumericUpDown numericUpDownCostTicketMonth;
+        private System.Windows.Forms.NumericUpDown numericUpDownNightCost;
+        private System.Windows.Forms.NumericUpDown numericUpDownDayCost;
+        private System.Windows.Forms.NumericUpDown numericUpDownDayNightCost;
+        private System.Windows.Forms.NumericUpDown numericUpDownEndHourNight;
+        private System.Windows.Forms.NumericUpDown numericUpDownStartHourNight;
     }
 }

@@ -47,6 +47,11 @@ namespace ParkingMangement.Utils
         public const int LOG_TYPE_LOGIN = 6;
         public const int LOG_TYPE_LOGOUT = 7;
 
+        public const int LOAI_GIU_XE_MIEN_PHI = 0;
+        public const int LOAI_GIU_XE_THEO_CONG_VAN = 1;
+        public const int LOAI_GIU_XE_LUY_TIEN = 2;
+        public const int LOAI_GIU_XE_MTONG_HOP = 3;
+
         // Node Phan quyen truy cap
         public const string NODE_NAME = "NodeName";
         public const int NODE_VALUE_THONG_TIN_NHAN_SU = 1;

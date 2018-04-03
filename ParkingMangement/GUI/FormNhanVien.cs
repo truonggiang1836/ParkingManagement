@@ -45,7 +45,7 @@ namespace ParkingMangement.GUI
             loadCamera();
             //loadAforge();
             //loadData();
-            readCard();
+            //readCard();
             //writeCard();
         }
 

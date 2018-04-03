@@ -1873,5 +1873,49 @@ namespace ParkingMangement.GUI
         {
             loadLogList();
         }
+
+        private void tabQuanLyDoanhThu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
+            {
+                loadPartDataToComboBox(cbLoaiXeTinhTienCongVan);
+                loadDataTinhTienTheoCongVan();
+            }          
+        }
+
+        private void loadDataTinhTienTheoCongVan()
+        {
+            DataRow partDataRow = ((DataRowView) cbLoaiXeTinhTienCongVan.SelectedItem).Row;
+            string partID = Convert.ToString(partDataRow["PartID"]);
+            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
+            if (computerDTO != null)
+            {
+                numericUpDownStartHourNight.Value = computerDTO.StartHourNight;
+                numericUpDownEndHourNight.Value = computerDTO.EndHourNight;
+                trackBarIntervalBetweenDayNight.Value = computerDTO.IntervalBetweenDayNight;
+                labelIntervalBetweenDayNight.Text = computerDTO.IntervalBetweenDayNight + "";
+                numericUpDownDayCost.Value = computerDTO.DayCost;
+                numericUpDownNightCost.Value = computerDTO.NightCost;
+                numericUpDownDayNightCost.Value = computerDTO.DayNightCost;
+                trackBarCycleTicketMonth.Value = computerDTO.CycleTicketMonth;
+                labelCycleTicketMonth.Text = computerDTO.CycleTicketMonth + "";
+                numericUpDownCostTicketMonth.Value = computerDTO.CostTicketMonth;
+            }
+        }
+
+        private void cbLoaiXeTinhTienCongVan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataTinhTienTheoCongVan();
+        }
+
+        private void trackBarIntervalBetweenDayNight_ValueChanged(object sender, EventArgs e)
+        {
+            labelIntervalBetweenDayNight.Text = trackBarIntervalBetweenDayNight.Value + "";
+        }
+
+        private void trackBarCycleTicketMonth_ValueChanged(object sender, EventArgs e)
+        {
+            labelCycleTicketMonth.Text = trackBarCycleTicketMonth.Value + "";
+        }
     }
 }
