@@ -15,6 +15,7 @@ namespace ParkingMangement.GUI
 {
     public partial class FormQuanLy : Form
     {
+        private ComputerDTO mComputerDTO;
         public FormQuanLy()
         {
             InitializeComponent();
@@ -305,6 +306,240 @@ namespace ParkingMangement.GUI
         {
             DataTable data = CarDAO.GetTotalCost(null, null, null, CarDAO.ALL_TICKET);
             dgvThongKeDoanhThu.DataSource = data;
+        }
+
+        private void btnSearchSaleReport_Click(object sender, EventArgs e)
+        {
+            string userID = null;
+            int ticketType = CarDAO.ALL_TICKET;
+            if (cbNhanVienReport.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
+                userID = Convert.ToString(dataRow["UserID"]);
+            }
+
+            DateTime startDateReport = DateTime.Now;
+            DateTime endDateReport = DateTime.Now;
+            if (rbOneDateSaleReport.Checked)
+            {
+                DateTime timeReport = dtDateSaleReport.Value;
+                startDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
+                endDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
+
+            }
+            if (rbMultiDateSaleReport.Checked)
+            {
+                startDateReport = dtStartDateSaleReport.Value;
+                DateTime startTimeReport = dtStartTimeSaleReport.Value;
+                startDateReport = new DateTime(startDateReport.Year, startDateReport.Month, startDateReport.Day, startTimeReport.Hour, startTimeReport.Minute, 0);
+                endDateReport = dtEndDateSaleReport.Value;
+                DateTime endTimeReport = dtEndTimeSaleReport.Value;
+                endDateReport = new DateTime(endDateReport.Year, endDateReport.Month, endDateReport.Day, endTimeReport.Hour, endTimeReport.Minute, 0);
+            }
+
+            if (rbAllTicketSaleReport.Checked)
+            {
+                ticketType = CarDAO.ALL_TICKET;
+            }
+            else if (rbCommonTicketSaleReport.Checked)
+            {
+                ticketType = CarDAO.COMMON_TICKET;
+            }
+            else if (rbMonthTicketSaleReport.Checked)
+            {
+                ticketType = CarDAO.MONTH_TICKET;
+            }
+            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID, ticketType);
+        }
+
+        private void tabQuanLyDoanhThu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
+            {
+                loadPartDataToComboBox(cbLoaiXeTinhTienCongVan);
+                loadDataTinhTienTheoCongVan();
+            }
+            else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienLuyTien"])
+            {
+                loadPartDataToComboBox(cbLoaiXeTinhTienLuyTien);
+                loadDataTinhTienLuyTien();
+            }
+        }
+
+        private void loadDataTinhTienTheoCongVan()
+        {
+            DataRow partDataRow = ((DataRowView)cbLoaiXeTinhTienCongVan.SelectedItem).Row;
+            string partID = Convert.ToString(partDataRow["PartID"]);
+            mComputerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
+            if (mComputerDTO != null)
+            {
+                numericUpDownStartHourNight.Value = mComputerDTO.StartHourNight;
+                numericUpDownEndHourNight.Value = mComputerDTO.EndHourNight;
+                trackBarIntervalBetweenDayNight.Value = mComputerDTO.IntervalBetweenDayNight;
+                labelIntervalBetweenDayNight.Text = mComputerDTO.IntervalBetweenDayNight + "";
+                numericUpDownDayCost.Value = mComputerDTO.DayCost;
+                numericUpDownNightCost.Value = mComputerDTO.NightCost;
+                numericUpDownDayNightCost.Value = mComputerDTO.DayNightCost;
+                trackBarCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
+                labelCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
+                numericUpDownCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+            }
+        }
+
+        private void updateTinhTienTheoCongVan()
+        {
+            if (mComputerDTO != null)
+            {
+                mComputerDTO.StartHourNight = (int)numericUpDownStartHourNight.Value;
+                mComputerDTO.EndHourNight = (int)numericUpDownEndHourNight.Value;
+
+                mComputerDTO.IntervalBetweenDayNight = trackBarIntervalBetweenDayNight.Value;
+                mComputerDTO.DayCost = (int)numericUpDownDayCost.Value;
+                mComputerDTO.NightCost = (int)numericUpDownNightCost.Value;
+                mComputerDTO.DayNightCost = (int)numericUpDownDayNightCost.Value;
+
+                mComputerDTO.CycleTicketMonth = trackBarCycleTicketMonth.Value;
+                mComputerDTO.CostTicketMonth = (int)numericUpDownCostTicketMonth.Value;
+
+                if (ComputerDAO.Update(mComputerDTO))
+                {
+                    MessageBox.Show(Constant.sMessageUpdateSuccess);
+                    panelTinhTienCongVan.Enabled = false;
+                }
+            }
+        }
+
+        private void loadDataTinhTienLuyTien()
+        {
+            DataRow partDataRow = ((DataRowView)cbLoaiXeTinhTienLuyTien.SelectedItem).Row;
+            string partID = Convert.ToString(partDataRow["PartID"]);
+            mComputerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_LUY_TIEN);
+            if (mComputerDTO != null)
+            {
+                numericTinhTienLuyTienHourMilestone1.Value = mComputerDTO.HourMilestone1;
+                numericTinhTienLuyTienCostMilestone1.Value = mComputerDTO.CostMilestone1;
+                numericTinhTienLuyTienHourMilestone2.Value = mComputerDTO.HourMilestone2;
+                numericTinhTienLuyTienCostMilestone2.Value = mComputerDTO.CostMilestone2;
+
+                trackBarTinhTienLuyTienCycleMilestone3.Value = mComputerDTO.CycleMilestone3;
+                labelTinhTienLuyTienCycleMilestone3.Text = mComputerDTO.CycleMilestone3 + "";
+                numericTinhTienLuyTienCostMilestone3.Value = mComputerDTO.CostMilestone3;
+
+                trackBarTinhTienLuyTienCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
+                labelTinhTienLuyTienCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
+                numericTinhTienLuyTienCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+
+                if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                {
+                    radioTinhTienLuyTienNoAdd.Checked = true;
+                }
+                else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+                {
+                    radioTinhTienLuyTienAdd1Milestone.Checked = true;
+                }
+                else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+                {
+                    radioTinhTienLuyTienAdd2Milestone.Checked = true;
+                }
+            }
+        }
+
+        private void updateTinhTienLuyTien()
+        {
+            if (mComputerDTO != null)
+            {
+                mComputerDTO.HourMilestone1 = (int)numericTinhTienLuyTienHourMilestone1.Value;
+                mComputerDTO.CostMilestone1 = (int)numericTinhTienLuyTienCostMilestone1.Value;
+                mComputerDTO.HourMilestone2 = (int)numericTinhTienLuyTienHourMilestone2.Value;
+                mComputerDTO.CostMilestone2 = (int)numericTinhTienLuyTienCostMilestone2.Value;
+
+                mComputerDTO.CycleMilestone3 = trackBarTinhTienLuyTienCycleMilestone3.Value;
+                mComputerDTO.CostMilestone3 = (int)numericTinhTienLuyTienCostMilestone3.Value;
+
+                mComputerDTO.CycleTicketMonth = trackBarTinhTienLuyTienCycleTicketMonth.Value;
+                mComputerDTO.CostTicketMonth = (int)numericTinhTienLuyTienCostTicketMonth.Value;
+
+                if (radioTinhTienLuyTienNoAdd.Checked)
+                {
+                    mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG;
+                }
+                else if (radioTinhTienLuyTienAdd1Milestone.Checked)
+                {
+                    mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC;
+                }
+                else if (radioTinhTienLuyTienAdd2Milestone.Checked)
+                {
+                    mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC;
+                }
+
+                if (ComputerDAO.Update(mComputerDTO))
+                {
+                    MessageBox.Show(Constant.sMessageUpdateSuccess);
+                    panelTinhTienLuyTien.Enabled = false;
+                }
+            }
+        }
+
+        private void cbLoaiXeTinhTienCongVan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataTinhTienTheoCongVan();
+        }
+
+        private void trackBarIntervalBetweenDayNight_ValueChanged(object sender, EventArgs e)
+        {
+            labelIntervalBetweenDayNight.Text = trackBarIntervalBetweenDayNight.Value + "";
+        }
+
+        private void trackBarCycleTicketMonth_ValueChanged(object sender, EventArgs e)
+        {
+            labelCycleTicketMonth.Text = trackBarCycleTicketMonth.Value + "";
+        }
+
+        private void btnCapNhatTinhTienCongVan_Click(object sender, EventArgs e)
+        {
+            updateTinhTienTheoCongVan();
+        }
+
+        private void btnChinhSuaTinhTienCongVan_Click(object sender, EventArgs e)
+        {
+            panelTinhTienCongVan.Enabled = true;
+        }
+
+        private void btnHuyTinhTienCongVan_Click(object sender, EventArgs e)
+        {
+            loadDataTinhTienTheoCongVan();
+            panelTinhTienCongVan.Enabled = false;
+        }
+
+        private void cbLoaiXeTinhTienLuyTien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataTinhTienLuyTien();
+        }
+
+        private void trackBarTinhTienLuyTienCycleMilestone3_ValueChanged(object sender, EventArgs e)
+        {
+            labelTinhTienLuyTienCycleMilestone3.Text = trackBarTinhTienLuyTienCycleMilestone3.Value + "";
+        }
+
+        private void trackBarTinhTienLuyTienCycleTicketMonth_ValueChanged(object sender, EventArgs e)
+        {
+            labelTinhTienLuyTienCycleTicketMonth.Text = trackBarTinhTienLuyTienCycleTicketMonth.Value + "";
+        }
+
+        private void btnChinhSuaTinhTienLuyTien_Click(object sender, EventArgs e)
+        {
+            panelTinhTienLuyTien.Enabled = true;
+        }
+
+        private void btnCapNhatTinhTienLuyTien_Click(object sender, EventArgs e)
+        {
+            updateTinhTienLuyTien();
+        }
+
+        private void btnHuyTinhTienLuyTien_Click(object sender, EventArgs e)
+        {
+            loadDataTinhTienLuyTien();
+            panelTinhTienLuyTien.Enabled = false;
         }
 
         /*
@@ -1699,48 +1934,6 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void btnSearchSaleReport_Click(object sender, EventArgs e)
-        {
-            string userID = null;
-            int ticketType = CarDAO.ALL_TICKET;
-            if (cbNhanVienReport.SelectedIndex > 0)
-            {
-                DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
-                userID = Convert.ToString(dataRow["UserID"]);
-            }
-
-            DateTime startDateReport = DateTime.Now;
-            DateTime endDateReport = DateTime.Now;
-            if (rbOneDateSaleReport.Checked)
-            {
-                DateTime timeReport = dtDateSaleReport.Value;
-                startDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
-                endDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
-                
-            }
-            if (rbMultiDateSaleReport.Checked)
-            {
-                startDateReport = dtStartDateSaleReport.Value;
-                DateTime startTimeReport = dtStartTimeSaleReport.Value;
-                startDateReport = new DateTime(startDateReport.Year, startDateReport.Month, startDateReport.Day, startTimeReport.Hour, startTimeReport.Minute, 0);
-                endDateReport = dtEndDateSaleReport.Value;
-                DateTime endTimeReport = dtEndTimeSaleReport.Value;
-                endDateReport = new DateTime(endDateReport.Year, endDateReport.Month, endDateReport.Day, endTimeReport.Hour, endTimeReport.Minute, 0);
-            }
-
-            if (rbAllTicketSaleReport.Checked)
-            {
-                ticketType = CarDAO.ALL_TICKET;
-            } else if (rbCommonTicketSaleReport.Checked)
-            {
-                ticketType = CarDAO.COMMON_TICKET;
-            } else if (rbMonthTicketSaleReport.Checked)
-            {
-                ticketType = CarDAO.MONTH_TICKET;
-            }
-            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID, ticketType);
-        }
-
         private void btnSaveUserAccess_Click(object sender, EventArgs e)
         {
             saveUserAccessData();
@@ -1872,50 +2065,6 @@ namespace ParkingMangement.GUI
         private void tbLogShowAllData_Click(object sender, EventArgs e)
         {
             loadLogList();
-        }
-
-        private void tabQuanLyDoanhThu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
-            {
-                loadPartDataToComboBox(cbLoaiXeTinhTienCongVan);
-                loadDataTinhTienTheoCongVan();
-            }          
-        }
-
-        private void loadDataTinhTienTheoCongVan()
-        {
-            DataRow partDataRow = ((DataRowView) cbLoaiXeTinhTienCongVan.SelectedItem).Row;
-            string partID = Convert.ToString(partDataRow["PartID"]);
-            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
-            if (computerDTO != null)
-            {
-                numericUpDownStartHourNight.Value = computerDTO.StartHourNight;
-                numericUpDownEndHourNight.Value = computerDTO.EndHourNight;
-                trackBarIntervalBetweenDayNight.Value = computerDTO.IntervalBetweenDayNight;
-                labelIntervalBetweenDayNight.Text = computerDTO.IntervalBetweenDayNight + "";
-                numericUpDownDayCost.Value = computerDTO.DayCost;
-                numericUpDownNightCost.Value = computerDTO.NightCost;
-                numericUpDownDayNightCost.Value = computerDTO.DayNightCost;
-                trackBarCycleTicketMonth.Value = computerDTO.CycleTicketMonth;
-                labelCycleTicketMonth.Text = computerDTO.CycleTicketMonth + "";
-                numericUpDownCostTicketMonth.Value = computerDTO.CostTicketMonth;
-            }
-        }
-
-        private void cbLoaiXeTinhTienCongVan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            loadDataTinhTienTheoCongVan();
-        }
-
-        private void trackBarIntervalBetweenDayNight_ValueChanged(object sender, EventArgs e)
-        {
-            labelIntervalBetweenDayNight.Text = trackBarIntervalBetweenDayNight.Value + "";
-        }
-
-        private void trackBarCycleTicketMonth_ValueChanged(object sender, EventArgs e)
-        {
-            labelCycleTicketMonth.Text = trackBarCycleTicketMonth.Value + "";
         }
     }
 }

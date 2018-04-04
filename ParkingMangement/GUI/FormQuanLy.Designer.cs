@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode57,
-            treeNode58});
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode60,
-            treeNode61});
-            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode63,
-            treeNode64,
-            treeNode65});
-            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode67,
-            treeNode68,
-            treeNode69,
-            treeNode70,
-            treeNode71});
-            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode73,
-            treeNode74,
-            treeNode75,
-            treeNode76});
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode78,
-            treeNode79,
-            treeNode80,
-            treeNode81});
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode113 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode114 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode115 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode113,
+            treeNode114});
+            System.Windows.Forms.TreeNode treeNode116 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode117 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode118 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode116,
+            treeNode117});
+            System.Windows.Forms.TreeNode treeNode119 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode120 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode121 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode122 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode119,
+            treeNode120,
+            treeNode121});
+            System.Windows.Forms.TreeNode treeNode123 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode124 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode125 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode126 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode127 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode128 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode123,
+            treeNode124,
+            treeNode125,
+            treeNode126,
+            treeNode127});
+            System.Windows.Forms.TreeNode treeNode129 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode130 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode131 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode132 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode133 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode129,
+            treeNode130,
+            treeNode131,
+            treeNode132});
+            System.Windows.Forms.TreeNode treeNode134 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode135 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode136 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode137 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode138 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode134,
+            treeNode135,
+            treeNode136,
+            treeNode137});
+            System.Windows.Forms.TreeNode treeNode139 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode140 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -655,19 +655,11 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.panel28 = new System.Windows.Forms.Panel();
-            this.label118 = new System.Windows.Forms.Label();
-            this.label119 = new System.Windows.Forms.Label();
-            this.label120 = new System.Windows.Forms.Label();
-            this.label121 = new System.Windows.Forms.Label();
-            this.label122 = new System.Windows.Forms.Label();
-            this.trackBarIntervalBetweenDayNight = new System.Windows.Forms.TrackBar();
-            this.label123 = new System.Windows.Forms.Label();
+            this.panelTinhTienCongVan = new System.Windows.Forms.Panel();
             this.cbLoaiXeTinhTienCongVan = new System.Windows.Forms.ComboBox();
             this.label124 = new System.Windows.Forms.Label();
             this.label125 = new System.Windows.Forms.Label();
             this.label126 = new System.Windows.Forms.Label();
-            this.labelIntervalBetweenDayNight = new System.Windows.Forms.Label();
             this.btnHuyTinhTienCongVan = new System.Windows.Forms.Button();
             this.btnCapNhatTinhTienCongVan = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
@@ -711,8 +703,48 @@
             this.numericUpDownDayCost = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownNightCost = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownDayNightCost = new System.Windows.Forms.NumericUpDown();
+            this.label119 = new System.Windows.Forms.Label();
+            this.label121 = new System.Windows.Forms.Label();
+            this.label120 = new System.Windows.Forms.Label();
             this.numericUpDownStartHourNight = new System.Windows.Forms.NumericUpDown();
+            this.label118 = new System.Windows.Forms.Label();
             this.numericUpDownEndHourNight = new System.Windows.Forms.NumericUpDown();
+            this.label123 = new System.Windows.Forms.Label();
+            this.labelIntervalBetweenDayNight = new System.Windows.Forms.Label();
+            this.label122 = new System.Windows.Forms.Label();
+            this.trackBarIntervalBetweenDayNight = new System.Windows.Forms.TrackBar();
+            this.btnChinhSuaTinhTienLuyTien = new System.Windows.Forms.Button();
+            this.panelTinhTienLuyTien = new System.Windows.Forms.Panel();
+            this.numericTinhTienLuyTienHourMilestone2 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienLuyTienHourMilestone1 = new System.Windows.Forms.NumericUpDown();
+            this.btnHuyTinhTienLuyTien = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.numericTinhTienLuyTienCostTicketMonth = new System.Windows.Forms.NumericUpDown();
+            this.label143 = new System.Windows.Forms.Label();
+            this.labelTinhTienLuyTienCycleTicketMonth = new System.Windows.Forms.Label();
+            this.label156 = new System.Windows.Forms.Label();
+            this.label157 = new System.Windows.Forms.Label();
+            this.trackBarTinhTienLuyTienCycleTicketMonth = new System.Windows.Forms.TrackBar();
+            this.btnCapNhatTinhTienLuyTien = new System.Windows.Forms.Button();
+            this.label160 = new System.Windows.Forms.Label();
+            this.label161 = new System.Windows.Forms.Label();
+            this.cbLoaiXeTinhTienLuyTien = new System.Windows.Forms.ComboBox();
+            this.label158 = new System.Windows.Forms.Label();
+            this.label162 = new System.Windows.Forms.Label();
+            this.label163 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label159 = new System.Windows.Forms.Label();
+            this.labelTinhTienLuyTienCycleMilestone3 = new System.Windows.Forms.Label();
+            this.label165 = new System.Windows.Forms.Label();
+            this.label166 = new System.Windows.Forms.Label();
+            this.trackBarTinhTienLuyTienCycleMilestone3 = new System.Windows.Forms.TrackBar();
+            this.radioTinhTienLuyTienNoAdd = new System.Windows.Forms.RadioButton();
+            this.radioTinhTienLuyTienAdd1Milestone = new System.Windows.Forms.RadioButton();
+            this.radioTinhTienLuyTienAdd2Milestone = new System.Windows.Forms.RadioButton();
+            this.numericTinhTienLuyTienCostMilestone1 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienLuyTienCostMilestone2 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienLuyTienCostMilestone3 = new System.Windows.Forms.NumericUpDown();
+            this.panel28 = new System.Windows.Forms.Panel();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -735,6 +767,7 @@
             this.panel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeDoanhThu)).BeginInit();
             this.tabPageCongThucTinhTienTheoCongVan.SuspendLayout();
+            this.tabPageCongThucTinhTienLuyTien.SuspendLayout();
             this.tabPageQuanLyTheXeLoaiXe.SuspendLayout();
             this.tabQuanLyThe_LoaiXe.SuspendLayout();
             this.tabPageQuanLyTheXe.SuspendLayout();
@@ -812,8 +845,7 @@
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
-            this.panel28.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).BeginInit();
+            this.panelTinhTienCongVan.SuspendLayout();
             this.panel29.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogList)).BeginInit();
             this.panel30.SuspendLayout();
@@ -825,6 +857,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayNightCost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartHourNight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndHourNight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).BeginInit();
+            this.panelTinhTienLuyTien.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienHourMilestone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienHourMilestone1)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostTicketMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienLuyTienCycleTicketMonth)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienLuyTienCycleMilestone3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1803,7 +1847,7 @@
             // 
             this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panel31);
             this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.btnChinhSuaTinhTienCongVan);
-            this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panel28);
+            this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panelTinhTienCongVan);
             this.tabPageCongThucTinhTienTheoCongVan.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTinhTienTheoCongVan.Name = "tabPageCongThucTinhTienTheoCongVan";
             this.tabPageCongThucTinhTienTheoCongVan.Padding = new System.Windows.Forms.Padding(3);
@@ -1814,6 +1858,9 @@
             // 
             // tabPageCongThucTinhTienLuyTien
             // 
+            this.tabPageCongThucTinhTienLuyTien.Controls.Add(this.panel28);
+            this.tabPageCongThucTinhTienLuyTien.Controls.Add(this.btnChinhSuaTinhTienLuyTien);
+            this.tabPageCongThucTinhTienLuyTien.Controls.Add(this.panelTinhTienLuyTien);
             this.tabPageCongThucTinhTienLuyTien.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTinhTienLuyTien.Name = "tabPageCongThucTinhTienLuyTien";
             this.tabPageCongThucTinhTienLuyTien.Padding = new System.Windows.Forms.Padding(3);
@@ -5466,71 +5513,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode57.Name = "NodeName1";
-            treeNode57.Text = "Thông tin nhân sự";
-            treeNode58.Name = "NodeName2";
-            treeNode58.Text = "Dò bảng chấm công";
-            treeNode59.Name = "Node0";
-            treeNode59.Text = "Quản lý nhân sự";
-            treeNode60.Name = "NodeName3";
-            treeNode60.Text = "Xem thống kê";
-            treeNode61.Name = "NodeName4";
-            treeNode61.Text = "Điều chỉnh công thức tính tiền";
-            treeNode62.Name = "Node1";
-            treeNode62.Text = "Quản lý doanh thu";
-            treeNode63.Name = "NodeName5";
-            treeNode63.Text = "Quản lý loại xe";
-            treeNode64.Name = "NodeName6";
-            treeNode64.Text = "Quản lý thẻ xe";
-            treeNode65.Name = "NodeName7";
-            treeNode65.Text = "Kích hoạt thẻ";
-            treeNode66.Name = "Node8";
-            treeNode66.Text = "Quản lý thẻ xe - loại xe";
-            treeNode67.Name = "NodeName8";
-            treeNode67.Text = "Nhật ký vé tháng";
-            treeNode68.Name = "NodeName9";
-            treeNode68.Text = "Cập nhật thông tin vé tháng";
-            treeNode69.Name = "NodeName10";
-            treeNode69.Text = "Gia hạn vé tháng";
-            treeNode70.Name = "NodeName11";
-            treeNode70.Text = "Mất thẻ tháng";
-            treeNode71.Name = "NodeName12";
-            treeNode71.Text = "Kích hoạt vé tháng";
-            treeNode72.Name = "Node12";
-            treeNode72.Text = "Quản lý vé tháng";
-            treeNode73.Name = "NodeName13";
-            treeNode73.Text = "Cấu hình cơ bản";
-            treeNode74.Name = "NodeName14";
-            treeNode74.Text = "Quản lý tiền thu";
-            treeNode75.Name = "NodeName15";
-            treeNode75.Text = "Phân quyền truy cập";
-            treeNode76.Name = "NodeName16";
-            treeNode76.Text = "Nhật ký hệ thống";
-            treeNode77.Name = "Node18";
-            treeNode77.Text = "Quản lý hệ thống";
-            treeNode78.Name = "NodeName17";
-            treeNode78.Text = "Thiết lập ra vào";
-            treeNode79.Name = "NodeName18";
-            treeNode79.Text = "Tra cứu vào ra";
-            treeNode80.Name = "NodeName19";
-            treeNode80.Text = "Tra cứu vào ra vé tháng";
-            treeNode81.Name = "NodeName20";
-            treeNode81.Text = "Xem hộp đen";
-            treeNode82.Name = "Node23";
-            treeNode82.Text = "Quản lý xe vào ra";
-            treeNode83.Name = "NodeName21";
-            treeNode83.Text = "Lưu mất thẻ";
-            treeNode84.Name = "NodeName22";
-            treeNode84.Text = "Xem báo cáo F7";
+            treeNode113.Name = "NodeName1";
+            treeNode113.Text = "Thông tin nhân sự";
+            treeNode114.Name = "NodeName2";
+            treeNode114.Text = "Dò bảng chấm công";
+            treeNode115.Name = "Node0";
+            treeNode115.Text = "Quản lý nhân sự";
+            treeNode116.Name = "NodeName3";
+            treeNode116.Text = "Xem thống kê";
+            treeNode117.Name = "NodeName4";
+            treeNode117.Text = "Điều chỉnh công thức tính tiền";
+            treeNode118.Name = "Node1";
+            treeNode118.Text = "Quản lý doanh thu";
+            treeNode119.Name = "NodeName5";
+            treeNode119.Text = "Quản lý loại xe";
+            treeNode120.Name = "NodeName6";
+            treeNode120.Text = "Quản lý thẻ xe";
+            treeNode121.Name = "NodeName7";
+            treeNode121.Text = "Kích hoạt thẻ";
+            treeNode122.Name = "Node8";
+            treeNode122.Text = "Quản lý thẻ xe - loại xe";
+            treeNode123.Name = "NodeName8";
+            treeNode123.Text = "Nhật ký vé tháng";
+            treeNode124.Name = "NodeName9";
+            treeNode124.Text = "Cập nhật thông tin vé tháng";
+            treeNode125.Name = "NodeName10";
+            treeNode125.Text = "Gia hạn vé tháng";
+            treeNode126.Name = "NodeName11";
+            treeNode126.Text = "Mất thẻ tháng";
+            treeNode127.Name = "NodeName12";
+            treeNode127.Text = "Kích hoạt vé tháng";
+            treeNode128.Name = "Node12";
+            treeNode128.Text = "Quản lý vé tháng";
+            treeNode129.Name = "NodeName13";
+            treeNode129.Text = "Cấu hình cơ bản";
+            treeNode130.Name = "NodeName14";
+            treeNode130.Text = "Quản lý tiền thu";
+            treeNode131.Name = "NodeName15";
+            treeNode131.Text = "Phân quyền truy cập";
+            treeNode132.Name = "NodeName16";
+            treeNode132.Text = "Nhật ký hệ thống";
+            treeNode133.Name = "Node18";
+            treeNode133.Text = "Quản lý hệ thống";
+            treeNode134.Name = "NodeName17";
+            treeNode134.Text = "Thiết lập ra vào";
+            treeNode135.Name = "NodeName18";
+            treeNode135.Text = "Tra cứu vào ra";
+            treeNode136.Name = "NodeName19";
+            treeNode136.Text = "Tra cứu vào ra vé tháng";
+            treeNode137.Name = "NodeName20";
+            treeNode137.Text = "Xem hộp đen";
+            treeNode138.Name = "Node23";
+            treeNode138.Text = "Quản lý xe vào ra";
+            treeNode139.Name = "NodeName21";
+            treeNode139.Text = "Lưu mất thẻ";
+            treeNode140.Name = "NodeName22";
+            treeNode140.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode59,
-            treeNode62,
-            treeNode66,
-            treeNode72,
-            treeNode77,
-            treeNode82,
-            treeNode83,
-            treeNode84});
+            treeNode115,
+            treeNode118,
+            treeNode122,
+            treeNode128,
+            treeNode133,
+            treeNode138,
+            treeNode139,
+            treeNode140});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -6388,102 +6435,34 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // panel28
+            // panelTinhTienCongVan
             // 
-            this.panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel28.Controls.Add(this.numericUpDownEndHourNight);
-            this.panel28.Controls.Add(this.numericUpDownStartHourNight);
-            this.panel28.Controls.Add(this.numericUpDownDayNightCost);
-            this.panel28.Controls.Add(this.numericUpDownNightCost);
-            this.panel28.Controls.Add(this.numericUpDownDayCost);
-            this.panel28.Controls.Add(this.btnHuyTinhTienCongVan);
-            this.panel28.Controls.Add(this.groupBox1);
-            this.panel28.Controls.Add(this.btnCapNhatTinhTienCongVan);
-            this.panel28.Controls.Add(this.labelIntervalBetweenDayNight);
-            this.panel28.Controls.Add(this.label126);
-            this.panel28.Controls.Add(this.label125);
-            this.panel28.Controls.Add(this.label124);
-            this.panel28.Controls.Add(this.cbLoaiXeTinhTienCongVan);
-            this.panel28.Controls.Add(this.label123);
-            this.panel28.Controls.Add(this.trackBarIntervalBetweenDayNight);
-            this.panel28.Controls.Add(this.label122);
-            this.panel28.Controls.Add(this.label121);
-            this.panel28.Controls.Add(this.label120);
-            this.panel28.Controls.Add(this.label119);
-            this.panel28.Controls.Add(this.label118);
-            this.panel28.Location = new System.Drawing.Point(333, 22);
-            this.panel28.Name = "panel28";
-            this.panel28.Size = new System.Drawing.Size(494, 386);
-            this.panel28.TabIndex = 0;
-            // 
-            // label118
-            // 
-            this.label118.AutoSize = true;
-            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label118.Location = new System.Drawing.Point(23, 20);
-            this.label118.Name = "label118";
-            this.label118.Size = new System.Drawing.Size(128, 16);
-            this.label118.TabIndex = 31;
-            this.label118.Text = "Tính đêm bắt đầu từ:";
-            // 
-            // label119
-            // 
-            this.label119.AutoSize = true;
-            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label119.Location = new System.Drawing.Point(328, 20);
-            this.label119.Name = "label119";
-            this.label119.Size = new System.Drawing.Size(35, 16);
-            this.label119.TabIndex = 34;
-            this.label119.Text = "Đến:";
-            // 
-            // label120
-            // 
-            this.label120.AutoSize = true;
-            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label120.Location = new System.Drawing.Point(241, 20);
-            this.label120.Name = "label120";
-            this.label120.Size = new System.Drawing.Size(15, 16);
-            this.label120.TabIndex = 35;
-            this.label120.Text = "h";
-            // 
-            // label121
-            // 
-            this.label121.AutoSize = true;
-            this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label121.Location = new System.Drawing.Point(452, 19);
-            this.label121.Name = "label121";
-            this.label121.Size = new System.Drawing.Size(15, 16);
-            this.label121.TabIndex = 36;
-            this.label121.Text = "h";
-            // 
-            // label122
-            // 
-            this.label122.AutoSize = true;
-            this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label122.Location = new System.Drawing.Point(23, 53);
-            this.label122.Name = "label122";
-            this.label122.Size = new System.Drawing.Size(160, 16);
-            this.label122.TabIndex = 37;
-            this.label122.Text = "Khoảng giao ngày + đêm:";
-            // 
-            // trackBarIntervalBetweenDayNight
-            // 
-            this.trackBarIntervalBetweenDayNight.Location = new System.Drawing.Point(189, 53);
-            this.trackBarIntervalBetweenDayNight.Maximum = 24;
-            this.trackBarIntervalBetweenDayNight.Name = "trackBarIntervalBetweenDayNight";
-            this.trackBarIntervalBetweenDayNight.Size = new System.Drawing.Size(235, 45);
-            this.trackBarIntervalBetweenDayNight.TabIndex = 38;
-            this.trackBarIntervalBetweenDayNight.ValueChanged += new System.EventHandler(this.trackBarIntervalBetweenDayNight_ValueChanged);
-            // 
-            // label123
-            // 
-            this.label123.AutoSize = true;
-            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label123.Location = new System.Drawing.Point(452, 53);
-            this.label123.Name = "label123";
-            this.label123.Size = new System.Drawing.Size(15, 16);
-            this.label123.TabIndex = 39;
-            this.label123.Text = "h";
+            this.panelTinhTienCongVan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownEndHourNight);
+            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownStartHourNight);
+            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownDayNightCost);
+            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownNightCost);
+            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownDayCost);
+            this.panelTinhTienCongVan.Controls.Add(this.btnHuyTinhTienCongVan);
+            this.panelTinhTienCongVan.Controls.Add(this.groupBox1);
+            this.panelTinhTienCongVan.Controls.Add(this.btnCapNhatTinhTienCongVan);
+            this.panelTinhTienCongVan.Controls.Add(this.labelIntervalBetweenDayNight);
+            this.panelTinhTienCongVan.Controls.Add(this.label126);
+            this.panelTinhTienCongVan.Controls.Add(this.label125);
+            this.panelTinhTienCongVan.Controls.Add(this.label124);
+            this.panelTinhTienCongVan.Controls.Add(this.cbLoaiXeTinhTienCongVan);
+            this.panelTinhTienCongVan.Controls.Add(this.label123);
+            this.panelTinhTienCongVan.Controls.Add(this.trackBarIntervalBetweenDayNight);
+            this.panelTinhTienCongVan.Controls.Add(this.label122);
+            this.panelTinhTienCongVan.Controls.Add(this.label121);
+            this.panelTinhTienCongVan.Controls.Add(this.label120);
+            this.panelTinhTienCongVan.Controls.Add(this.label119);
+            this.panelTinhTienCongVan.Controls.Add(this.label118);
+            this.panelTinhTienCongVan.Enabled = false;
+            this.panelTinhTienCongVan.Location = new System.Drawing.Point(332, 22);
+            this.panelTinhTienCongVan.Name = "panelTinhTienCongVan";
+            this.panelTinhTienCongVan.Size = new System.Drawing.Size(494, 386);
+            this.panelTinhTienCongVan.TabIndex = 0;
             // 
             // cbLoaiXeTinhTienCongVan
             // 
@@ -6525,16 +6504,6 @@
             this.label126.TabIndex = 46;
             this.label126.Text = "Ngày + đêm:";
             // 
-            // labelIntervalBetweenDayNight
-            // 
-            this.labelIntervalBetweenDayNight.AutoSize = true;
-            this.labelIntervalBetweenDayNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIntervalBetweenDayNight.Location = new System.Drawing.Point(430, 53);
-            this.labelIntervalBetweenDayNight.Name = "labelIntervalBetweenDayNight";
-            this.labelIntervalBetweenDayNight.Size = new System.Drawing.Size(22, 16);
-            this.labelIntervalBetweenDayNight.TabIndex = 37;
-            this.labelIntervalBetweenDayNight.Text = "23";
-            // 
             // btnHuyTinhTienCongVan
             // 
             this.btnHuyTinhTienCongVan.Location = new System.Drawing.Point(256, 337);
@@ -6543,6 +6512,7 @@
             this.btnHuyTinhTienCongVan.TabIndex = 13;
             this.btnHuyTinhTienCongVan.Text = "HỦY";
             this.btnHuyTinhTienCongVan.UseVisualStyleBackColor = true;
+            this.btnHuyTinhTienCongVan.Click += new System.EventHandler(this.btnHuyTinhTienCongVan_Click);
             // 
             // btnCapNhatTinhTienCongVan
             // 
@@ -6552,6 +6522,7 @@
             this.btnCapNhatTinhTienCongVan.TabIndex = 12;
             this.btnCapNhatTinhTienCongVan.Text = "CẬP NHẬT";
             this.btnCapNhatTinhTienCongVan.UseVisualStyleBackColor = true;
+            this.btnCapNhatTinhTienCongVan.Click += new System.EventHandler(this.btnCapNhatTinhTienCongVan_Click);
             // 
             // panel29
             // 
@@ -6916,12 +6887,13 @@
             // 
             // btnChinhSuaTinhTienCongVan
             // 
-            this.btnChinhSuaTinhTienCongVan.Location = new System.Drawing.Point(192, 185);
+            this.btnChinhSuaTinhTienCongVan.Location = new System.Drawing.Point(191, 185);
             this.btnChinhSuaTinhTienCongVan.Name = "btnChinhSuaTinhTienCongVan";
             this.btnChinhSuaTinhTienCongVan.Size = new System.Drawing.Size(108, 30);
             this.btnChinhSuaTinhTienCongVan.TabIndex = 13;
             this.btnChinhSuaTinhTienCongVan.Text = "CHỈNH SỬA";
             this.btnChinhSuaTinhTienCongVan.UseVisualStyleBackColor = true;
+            this.btnChinhSuaTinhTienCongVan.Click += new System.EventHandler(this.btnChinhSuaTinhTienCongVan_Click);
             // 
             // panel31
             // 
@@ -6933,6 +6905,11 @@
             // 
             // numericUpDownCostTicketMonth
             // 
+            this.numericUpDownCostTicketMonth.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownCostTicketMonth.Location = new System.Drawing.Point(343, 33);
             this.numericUpDownCostTicketMonth.Maximum = new decimal(new int[] {
             1000000,
@@ -6945,6 +6922,11 @@
             // 
             // numericUpDownDayCost
             // 
+            this.numericUpDownDayCost.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownDayCost.Location = new System.Drawing.Point(369, 110);
             this.numericUpDownDayCost.Maximum = new decimal(new int[] {
             1000000,
@@ -6957,6 +6939,11 @@
             // 
             // numericUpDownNightCost
             // 
+            this.numericUpDownNightCost.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownNightCost.Location = new System.Drawing.Point(369, 142);
             this.numericUpDownNightCost.Maximum = new decimal(new int[] {
             1000000,
@@ -6969,6 +6956,11 @@
             // 
             // numericUpDownDayNightCost
             // 
+            this.numericUpDownDayNightCost.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.numericUpDownDayNightCost.Location = new System.Drawing.Point(369, 174);
             this.numericUpDownDayNightCost.Maximum = new decimal(new int[] {
             1000000,
@@ -6978,6 +6970,36 @@
             this.numericUpDownDayNightCost.Name = "numericUpDownDayNightCost";
             this.numericUpDownDayNightCost.Size = new System.Drawing.Size(77, 22);
             this.numericUpDownDayNightCost.TabIndex = 53;
+            // 
+            // label119
+            // 
+            this.label119.AutoSize = true;
+            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label119.Location = new System.Drawing.Point(328, 20);
+            this.label119.Name = "label119";
+            this.label119.Size = new System.Drawing.Size(35, 16);
+            this.label119.TabIndex = 34;
+            this.label119.Text = "Đến:";
+            // 
+            // label121
+            // 
+            this.label121.AutoSize = true;
+            this.label121.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label121.Location = new System.Drawing.Point(452, 19);
+            this.label121.Name = "label121";
+            this.label121.Size = new System.Drawing.Size(15, 16);
+            this.label121.TabIndex = 36;
+            this.label121.Text = "h";
+            // 
+            // label120
+            // 
+            this.label120.AutoSize = true;
+            this.label120.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label120.Location = new System.Drawing.Point(241, 20);
+            this.label120.Name = "label120";
+            this.label120.Size = new System.Drawing.Size(15, 16);
+            this.label120.TabIndex = 35;
+            this.label120.Text = "h";
             // 
             // numericUpDownStartHourNight
             // 
@@ -6991,6 +7013,16 @@
             this.numericUpDownStartHourNight.Size = new System.Drawing.Size(77, 22);
             this.numericUpDownStartHourNight.TabIndex = 54;
             // 
+            // label118
+            // 
+            this.label118.AutoSize = true;
+            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label118.Location = new System.Drawing.Point(23, 20);
+            this.label118.Name = "label118";
+            this.label118.Size = new System.Drawing.Size(128, 16);
+            this.label118.TabIndex = 31;
+            this.label118.Text = "Tính đêm bắt đầu từ:";
+            // 
             // numericUpDownEndHourNight
             // 
             this.numericUpDownEndHourNight.Location = new System.Drawing.Point(369, 16);
@@ -7002,6 +7034,425 @@
             this.numericUpDownEndHourNight.Name = "numericUpDownEndHourNight";
             this.numericUpDownEndHourNight.Size = new System.Drawing.Size(77, 22);
             this.numericUpDownEndHourNight.TabIndex = 55;
+            // 
+            // label123
+            // 
+            this.label123.AutoSize = true;
+            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label123.Location = new System.Drawing.Point(452, 53);
+            this.label123.Name = "label123";
+            this.label123.Size = new System.Drawing.Size(15, 16);
+            this.label123.TabIndex = 39;
+            this.label123.Text = "h";
+            // 
+            // labelIntervalBetweenDayNight
+            // 
+            this.labelIntervalBetweenDayNight.AutoSize = true;
+            this.labelIntervalBetweenDayNight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelIntervalBetweenDayNight.Location = new System.Drawing.Point(430, 53);
+            this.labelIntervalBetweenDayNight.Name = "labelIntervalBetweenDayNight";
+            this.labelIntervalBetweenDayNight.Size = new System.Drawing.Size(22, 16);
+            this.labelIntervalBetweenDayNight.TabIndex = 37;
+            this.labelIntervalBetweenDayNight.Text = "23";
+            // 
+            // label122
+            // 
+            this.label122.AutoSize = true;
+            this.label122.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label122.Location = new System.Drawing.Point(23, 53);
+            this.label122.Name = "label122";
+            this.label122.Size = new System.Drawing.Size(160, 16);
+            this.label122.TabIndex = 37;
+            this.label122.Text = "Khoảng giao ngày + đêm:";
+            // 
+            // trackBarIntervalBetweenDayNight
+            // 
+            this.trackBarIntervalBetweenDayNight.Location = new System.Drawing.Point(189, 53);
+            this.trackBarIntervalBetweenDayNight.Maximum = 24;
+            this.trackBarIntervalBetweenDayNight.Name = "trackBarIntervalBetweenDayNight";
+            this.trackBarIntervalBetweenDayNight.Size = new System.Drawing.Size(235, 45);
+            this.trackBarIntervalBetweenDayNight.TabIndex = 38;
+            this.trackBarIntervalBetweenDayNight.ValueChanged += new System.EventHandler(this.trackBarIntervalBetweenDayNight_ValueChanged);
+            // 
+            // btnChinhSuaTinhTienLuyTien
+            // 
+            this.btnChinhSuaTinhTienLuyTien.Location = new System.Drawing.Point(189, 187);
+            this.btnChinhSuaTinhTienLuyTien.Name = "btnChinhSuaTinhTienLuyTien";
+            this.btnChinhSuaTinhTienLuyTien.Size = new System.Drawing.Size(108, 30);
+            this.btnChinhSuaTinhTienLuyTien.TabIndex = 15;
+            this.btnChinhSuaTinhTienLuyTien.Text = "CHỈNH SỬA";
+            this.btnChinhSuaTinhTienLuyTien.UseVisualStyleBackColor = true;
+            this.btnChinhSuaTinhTienLuyTien.Click += new System.EventHandler(this.btnChinhSuaTinhTienLuyTien_Click);
+            // 
+            // panelTinhTienLuyTien
+            // 
+            this.panelTinhTienLuyTien.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTinhTienLuyTien.Controls.Add(this.numericTinhTienLuyTienCostMilestone2);
+            this.panelTinhTienLuyTien.Controls.Add(this.numericTinhTienLuyTienCostMilestone1);
+            this.panelTinhTienLuyTien.Controls.Add(this.groupBox4);
+            this.panelTinhTienLuyTien.Controls.Add(this.label163);
+            this.panelTinhTienLuyTien.Controls.Add(this.label162);
+            this.panelTinhTienLuyTien.Controls.Add(this.label158);
+            this.panelTinhTienLuyTien.Controls.Add(this.numericTinhTienLuyTienHourMilestone2);
+            this.panelTinhTienLuyTien.Controls.Add(this.numericTinhTienLuyTienHourMilestone1);
+            this.panelTinhTienLuyTien.Controls.Add(this.btnHuyTinhTienLuyTien);
+            this.panelTinhTienLuyTien.Controls.Add(this.groupBox3);
+            this.panelTinhTienLuyTien.Controls.Add(this.btnCapNhatTinhTienLuyTien);
+            this.panelTinhTienLuyTien.Controls.Add(this.label160);
+            this.panelTinhTienLuyTien.Controls.Add(this.label161);
+            this.panelTinhTienLuyTien.Controls.Add(this.cbLoaiXeTinhTienLuyTien);
+            this.panelTinhTienLuyTien.Enabled = false;
+            this.panelTinhTienLuyTien.Location = new System.Drawing.Point(330, 24);
+            this.panelTinhTienLuyTien.Name = "panelTinhTienLuyTien";
+            this.panelTinhTienLuyTien.Size = new System.Drawing.Size(494, 425);
+            this.panelTinhTienLuyTien.TabIndex = 14;
+            // 
+            // numericTinhTienLuyTienHourMilestone2
+            // 
+            this.numericTinhTienLuyTienHourMilestone2.Location = new System.Drawing.Point(141, 80);
+            this.numericTinhTienLuyTienHourMilestone2.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienHourMilestone2.Name = "numericTinhTienLuyTienHourMilestone2";
+            this.numericTinhTienLuyTienHourMilestone2.Size = new System.Drawing.Size(53, 22);
+            this.numericTinhTienLuyTienHourMilestone2.TabIndex = 52;
+            // 
+            // numericTinhTienLuyTienHourMilestone1
+            // 
+            this.numericTinhTienLuyTienHourMilestone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienLuyTienHourMilestone1.Location = new System.Drawing.Point(141, 47);
+            this.numericTinhTienLuyTienHourMilestone1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienHourMilestone1.Name = "numericTinhTienLuyTienHourMilestone1";
+            this.numericTinhTienLuyTienHourMilestone1.Size = new System.Drawing.Size(53, 22);
+            this.numericTinhTienLuyTienHourMilestone1.TabIndex = 51;
+            // 
+            // btnHuyTinhTienLuyTien
+            // 
+            this.btnHuyTinhTienLuyTien.Location = new System.Drawing.Point(256, 378);
+            this.btnHuyTinhTienLuyTien.Name = "btnHuyTinhTienLuyTien";
+            this.btnHuyTinhTienLuyTien.Size = new System.Drawing.Size(108, 30);
+            this.btnHuyTinhTienLuyTien.TabIndex = 13;
+            this.btnHuyTinhTienLuyTien.Text = "HỦY";
+            this.btnHuyTinhTienLuyTien.UseVisualStyleBackColor = true;
+            this.btnHuyTinhTienLuyTien.Click += new System.EventHandler(this.btnHuyTinhTienLuyTien_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.numericTinhTienLuyTienCostTicketMonth);
+            this.groupBox3.Controls.Add(this.label143);
+            this.groupBox3.Controls.Add(this.labelTinhTienLuyTienCycleTicketMonth);
+            this.groupBox3.Controls.Add(this.label156);
+            this.groupBox3.Controls.Add(this.label157);
+            this.groupBox3.Controls.Add(this.trackBarTinhTienLuyTienCycleTicketMonth);
+            this.groupBox3.Location = new System.Drawing.Point(26, 275);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(441, 90);
+            this.groupBox3.TabIndex = 47;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Vé tháng giới hạn giờ";
+            // 
+            // numericTinhTienLuyTienCostTicketMonth
+            // 
+            this.numericTinhTienLuyTienCostTicketMonth.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostTicketMonth.Location = new System.Drawing.Point(343, 29);
+            this.numericTinhTienLuyTienCostTicketMonth.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostTicketMonth.Name = "numericTinhTienLuyTienCostTicketMonth";
+            this.numericTinhTienLuyTienCostTicketMonth.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienLuyTienCostTicketMonth.TabIndex = 50;
+            // 
+            // label143
+            // 
+            this.label143.AutoSize = true;
+            this.label143.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label143.Location = new System.Drawing.Point(298, 32);
+            this.label143.Name = "label143";
+            this.label143.Size = new System.Drawing.Size(32, 16);
+            this.label143.TabIndex = 49;
+            this.label143.Text = "Giá:";
+            // 
+            // labelTinhTienLuyTienCycleTicketMonth
+            // 
+            this.labelTinhTienLuyTienCycleTicketMonth.AutoSize = true;
+            this.labelTinhTienLuyTienCycleTicketMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTinhTienLuyTienCycleTicketMonth.Location = new System.Drawing.Point(220, 29);
+            this.labelTinhTienLuyTienCycleTicketMonth.Name = "labelTinhTienLuyTienCycleTicketMonth";
+            this.labelTinhTienLuyTienCycleTicketMonth.Size = new System.Drawing.Size(22, 16);
+            this.labelTinhTienLuyTienCycleTicketMonth.TabIndex = 40;
+            this.labelTinhTienLuyTienCycleTicketMonth.Text = "23";
+            // 
+            // label156
+            // 
+            this.label156.AutoSize = true;
+            this.label156.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label156.Location = new System.Drawing.Point(242, 29);
+            this.label156.Name = "label156";
+            this.label156.Size = new System.Drawing.Size(15, 16);
+            this.label156.TabIndex = 41;
+            this.label156.Text = "h";
+            // 
+            // label157
+            // 
+            this.label157.AutoSize = true;
+            this.label157.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label157.Location = new System.Drawing.Point(17, 29);
+            this.label157.Name = "label157";
+            this.label157.Size = new System.Drawing.Size(48, 16);
+            this.label157.TabIndex = 35;
+            this.label157.Text = "Chu kỳ";
+            // 
+            // trackBarTinhTienLuyTienCycleTicketMonth
+            // 
+            this.trackBarTinhTienLuyTienCycleTicketMonth.Location = new System.Drawing.Point(82, 29);
+            this.trackBarTinhTienLuyTienCycleTicketMonth.Maximum = 24;
+            this.trackBarTinhTienLuyTienCycleTicketMonth.Name = "trackBarTinhTienLuyTienCycleTicketMonth";
+            this.trackBarTinhTienLuyTienCycleTicketMonth.Size = new System.Drawing.Size(127, 45);
+            this.trackBarTinhTienLuyTienCycleTicketMonth.TabIndex = 39;
+            this.trackBarTinhTienLuyTienCycleTicketMonth.ValueChanged += new System.EventHandler(this.trackBarTinhTienLuyTienCycleTicketMonth_ValueChanged);
+            // 
+            // btnCapNhatTinhTienLuyTien
+            // 
+            this.btnCapNhatTinhTienLuyTien.Location = new System.Drawing.Point(130, 378);
+            this.btnCapNhatTinhTienLuyTien.Name = "btnCapNhatTinhTienLuyTien";
+            this.btnCapNhatTinhTienLuyTien.Size = new System.Drawing.Size(108, 30);
+            this.btnCapNhatTinhTienLuyTien.TabIndex = 12;
+            this.btnCapNhatTinhTienLuyTien.Text = "CẬP NHẬT";
+            this.btnCapNhatTinhTienLuyTien.UseVisualStyleBackColor = true;
+            this.btnCapNhatTinhTienLuyTien.Click += new System.EventHandler(this.btnCapNhatTinhTienLuyTien_Click);
+            // 
+            // label160
+            // 
+            this.label160.AutoSize = true;
+            this.label160.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label160.Location = new System.Drawing.Point(75, 84);
+            this.label160.Name = "label160";
+            this.label160.Size = new System.Drawing.Size(44, 16);
+            this.label160.TabIndex = 45;
+            this.label160.Text = "Mốc 2";
+            // 
+            // label161
+            // 
+            this.label161.AutoSize = true;
+            this.label161.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label161.Location = new System.Drawing.Point(75, 49);
+            this.label161.Name = "label161";
+            this.label161.Size = new System.Drawing.Size(44, 16);
+            this.label161.TabIndex = 44;
+            this.label161.Text = "Mốc 1";
+            // 
+            // cbLoaiXeTinhTienLuyTien
+            // 
+            this.cbLoaiXeTinhTienLuyTien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoaiXeTinhTienLuyTien.FormattingEnabled = true;
+            this.cbLoaiXeTinhTienLuyTien.Location = new System.Drawing.Point(139, 13);
+            this.cbLoaiXeTinhTienLuyTien.Name = "cbLoaiXeTinhTienLuyTien";
+            this.cbLoaiXeTinhTienLuyTien.Size = new System.Drawing.Size(259, 24);
+            this.cbLoaiXeTinhTienLuyTien.TabIndex = 40;
+            this.cbLoaiXeTinhTienLuyTien.SelectedIndexChanged += new System.EventHandler(this.cbLoaiXeTinhTienLuyTien_SelectedIndexChanged);
+            // 
+            // label158
+            // 
+            this.label158.AutoSize = true;
+            this.label158.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label158.Location = new System.Drawing.Point(75, 18);
+            this.label158.Name = "label158";
+            this.label158.Size = new System.Drawing.Size(51, 16);
+            this.label158.TabIndex = 54;
+            this.label158.Text = "Loại xe";
+            // 
+            // label162
+            // 
+            this.label162.AutoSize = true;
+            this.label162.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label162.Location = new System.Drawing.Point(200, 51);
+            this.label162.Name = "label162";
+            this.label162.Size = new System.Drawing.Size(15, 16);
+            this.label162.TabIndex = 55;
+            this.label162.Text = "h";
+            // 
+            // label163
+            // 
+            this.label163.AutoSize = true;
+            this.label163.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label163.Location = new System.Drawing.Point(200, 83);
+            this.label163.Name = "label163";
+            this.label163.Size = new System.Drawing.Size(15, 16);
+            this.label163.TabIndex = 56;
+            this.label163.Text = "h";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.numericTinhTienLuyTienCostMilestone3);
+            this.groupBox4.Controls.Add(this.radioTinhTienLuyTienAdd2Milestone);
+            this.groupBox4.Controls.Add(this.radioTinhTienLuyTienAdd1Milestone);
+            this.groupBox4.Controls.Add(this.radioTinhTienLuyTienNoAdd);
+            this.groupBox4.Controls.Add(this.label159);
+            this.groupBox4.Controls.Add(this.labelTinhTienLuyTienCycleMilestone3);
+            this.groupBox4.Controls.Add(this.label165);
+            this.groupBox4.Controls.Add(this.label166);
+            this.groupBox4.Controls.Add(this.trackBarTinhTienLuyTienCycleMilestone3);
+            this.groupBox4.Location = new System.Drawing.Point(26, 118);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(441, 143);
+            this.groupBox4.TabIndex = 59;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Vé tháng giới hạn giờ";
+            // 
+            // label159
+            // 
+            this.label159.AutoSize = true;
+            this.label159.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label159.Location = new System.Drawing.Point(17, 23);
+            this.label159.Name = "label159";
+            this.label159.Size = new System.Drawing.Size(94, 16);
+            this.label159.TabIndex = 49;
+            this.label159.Text = "Lớn hơn 2 mốc";
+            // 
+            // labelTinhTienLuyTienCycleMilestone3
+            // 
+            this.labelTinhTienLuyTienCycleMilestone3.AutoSize = true;
+            this.labelTinhTienLuyTienCycleMilestone3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTinhTienLuyTienCycleMilestone3.Location = new System.Drawing.Point(323, 53);
+            this.labelTinhTienLuyTienCycleMilestone3.Name = "labelTinhTienLuyTienCycleMilestone3";
+            this.labelTinhTienLuyTienCycleMilestone3.Size = new System.Drawing.Size(22, 16);
+            this.labelTinhTienLuyTienCycleMilestone3.TabIndex = 40;
+            this.labelTinhTienLuyTienCycleMilestone3.Text = "23";
+            // 
+            // label165
+            // 
+            this.label165.AutoSize = true;
+            this.label165.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label165.Location = new System.Drawing.Point(345, 53);
+            this.label165.Name = "label165";
+            this.label165.Size = new System.Drawing.Size(15, 16);
+            this.label165.TabIndex = 41;
+            this.label165.Text = "h";
+            // 
+            // label166
+            // 
+            this.label166.AutoSize = true;
+            this.label166.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label166.Location = new System.Drawing.Point(17, 53);
+            this.label166.Name = "label166";
+            this.label166.Size = new System.Drawing.Size(48, 16);
+            this.label166.TabIndex = 35;
+            this.label166.Text = "Chu kỳ";
+            // 
+            // trackBarTinhTienLuyTienCycleMilestone3
+            // 
+            this.trackBarTinhTienLuyTienCycleMilestone3.Location = new System.Drawing.Point(82, 53);
+            this.trackBarTinhTienLuyTienCycleMilestone3.Maximum = 24;
+            this.trackBarTinhTienLuyTienCycleMilestone3.Name = "trackBarTinhTienLuyTienCycleMilestone3";
+            this.trackBarTinhTienLuyTienCycleMilestone3.Size = new System.Drawing.Size(231, 45);
+            this.trackBarTinhTienLuyTienCycleMilestone3.TabIndex = 39;
+            this.trackBarTinhTienLuyTienCycleMilestone3.ValueChanged += new System.EventHandler(this.trackBarTinhTienLuyTienCycleMilestone3_ValueChanged);
+            // 
+            // radioTinhTienLuyTienNoAdd
+            // 
+            this.radioTinhTienLuyTienNoAdd.AutoSize = true;
+            this.radioTinhTienLuyTienNoAdd.Checked = true;
+            this.radioTinhTienLuyTienNoAdd.Location = new System.Drawing.Point(20, 110);
+            this.radioTinhTienLuyTienNoAdd.Name = "radioTinhTienLuyTienNoAdd";
+            this.radioTinhTienLuyTienNoAdd.Size = new System.Drawing.Size(97, 20);
+            this.radioTinhTienLuyTienNoAdd.TabIndex = 60;
+            this.radioTinhTienLuyTienNoAdd.TabStop = true;
+            this.radioTinhTienLuyTienNoAdd.Text = "Không cộng";
+            this.radioTinhTienLuyTienNoAdd.UseVisualStyleBackColor = true;
+            // 
+            // radioTinhTienLuyTienAdd1Milestone
+            // 
+            this.radioTinhTienLuyTienAdd1Milestone.AutoSize = true;
+            this.radioTinhTienLuyTienAdd1Milestone.Location = new System.Drawing.Point(165, 110);
+            this.radioTinhTienLuyTienAdd1Milestone.Name = "radioTinhTienLuyTienAdd1Milestone";
+            this.radioTinhTienLuyTienAdd1Milestone.Size = new System.Drawing.Size(97, 20);
+            this.radioTinhTienLuyTienAdd1Milestone.TabIndex = 61;
+            this.radioTinhTienLuyTienAdd1Milestone.Text = "Cộng 1 mốc";
+            this.radioTinhTienLuyTienAdd1Milestone.UseVisualStyleBackColor = true;
+            // 
+            // radioTinhTienLuyTienAdd2Milestone
+            // 
+            this.radioTinhTienLuyTienAdd2Milestone.AutoSize = true;
+            this.radioTinhTienLuyTienAdd2Milestone.Location = new System.Drawing.Point(316, 110);
+            this.radioTinhTienLuyTienAdd2Milestone.Name = "radioTinhTienLuyTienAdd2Milestone";
+            this.radioTinhTienLuyTienAdd2Milestone.Size = new System.Drawing.Size(97, 20);
+            this.radioTinhTienLuyTienAdd2Milestone.TabIndex = 62;
+            this.radioTinhTienLuyTienAdd2Milestone.Text = "Cộng 2 mốc";
+            this.radioTinhTienLuyTienAdd2Milestone.UseVisualStyleBackColor = true;
+            // 
+            // numericTinhTienLuyTienCostMilestone1
+            // 
+            this.numericTinhTienLuyTienCostMilestone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienLuyTienCostMilestone1.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostMilestone1.Location = new System.Drawing.Point(288, 47);
+            this.numericTinhTienLuyTienCostMilestone1.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostMilestone1.Name = "numericTinhTienLuyTienCostMilestone1";
+            this.numericTinhTienLuyTienCostMilestone1.Size = new System.Drawing.Size(110, 22);
+            this.numericTinhTienLuyTienCostMilestone1.TabIndex = 60;
+            // 
+            // numericTinhTienLuyTienCostMilestone2
+            // 
+            this.numericTinhTienLuyTienCostMilestone2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienLuyTienCostMilestone2.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostMilestone2.Location = new System.Drawing.Point(288, 80);
+            this.numericTinhTienLuyTienCostMilestone2.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostMilestone2.Name = "numericTinhTienLuyTienCostMilestone2";
+            this.numericTinhTienLuyTienCostMilestone2.Size = new System.Drawing.Size(110, 22);
+            this.numericTinhTienLuyTienCostMilestone2.TabIndex = 61;
+            // 
+            // numericTinhTienLuyTienCostMilestone3
+            // 
+            this.numericTinhTienLuyTienCostMilestone3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienLuyTienCostMilestone3.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostMilestone3.Location = new System.Drawing.Point(203, 20);
+            this.numericTinhTienLuyTienCostMilestone3.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienLuyTienCostMilestone3.Name = "numericTinhTienLuyTienCostMilestone3";
+            this.numericTinhTienLuyTienCostMilestone3.Size = new System.Drawing.Size(110, 22);
+            this.numericTinhTienLuyTienCostMilestone3.TabIndex = 62;
+            // 
+            // panel28
+            // 
+            this.panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel28.Location = new System.Drawing.Point(6, 455);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(1140, 149);
+            this.panel28.TabIndex = 16;
             // 
             // FormQuanLy
             // 
@@ -7046,6 +7497,7 @@
             this.panel17.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeDoanhThu)).EndInit();
             this.tabPageCongThucTinhTienTheoCongVan.ResumeLayout(false);
+            this.tabPageCongThucTinhTienLuyTien.ResumeLayout(false);
             this.tabPageQuanLyTheXeLoaiXe.ResumeLayout(false);
             this.tabQuanLyThe_LoaiXe.ResumeLayout(false);
             this.tabPageQuanLyTheXe.ResumeLayout(false);
@@ -7145,9 +7597,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
-            this.panel28.ResumeLayout(false);
-            this.panel28.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).EndInit();
+            this.panelTinhTienCongVan.ResumeLayout(false);
+            this.panelTinhTienCongVan.PerformLayout();
             this.panel29.ResumeLayout(false);
             this.panel29.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogList)).EndInit();
@@ -7162,6 +7613,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayNightCost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartHourNight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndHourNight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).EndInit();
+            this.panelTinhTienLuyTien.ResumeLayout(false);
+            this.panelTinhTienLuyTien.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienHourMilestone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienHourMilestone1)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostTicketMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienLuyTienCycleTicketMonth)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienLuyTienCycleMilestone3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -7747,21 +8213,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DateTimePicker dtEndTimeSaleReport;
         private System.Windows.Forms.DateTimePicker dtStartTimeSaleReport;
-        private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.Label label121;
-        private System.Windows.Forms.Label label120;
-        private System.Windows.Forms.Label label119;
-        private System.Windows.Forms.Label label118;
-        private System.Windows.Forms.TrackBar trackBarIntervalBetweenDayNight;
-        private System.Windows.Forms.Label label122;
-        private System.Windows.Forms.Label label123;
+        private System.Windows.Forms.Panel panelTinhTienCongVan;
         private System.Windows.Forms.Label label126;
         private System.Windows.Forms.Label label125;
         private System.Windows.Forms.Label label124;
         private System.Windows.Forms.ComboBox cbLoaiXeTinhTienCongVan;
         private System.Windows.Forms.Button btnHuyTinhTienCongVan;
         private System.Windows.Forms.Button btnCapNhatTinhTienCongVan;
-        private System.Windows.Forms.Label labelIntervalBetweenDayNight;
         private System.Windows.Forms.Panel panel30;
         private System.Windows.Forms.Label label151;
         private System.Windows.Forms.Label label150;
@@ -7805,5 +8263,45 @@
         private System.Windows.Forms.NumericUpDown numericUpDownDayNightCost;
         private System.Windows.Forms.NumericUpDown numericUpDownEndHourNight;
         private System.Windows.Forms.NumericUpDown numericUpDownStartHourNight;
+        private System.Windows.Forms.Label labelIntervalBetweenDayNight;
+        private System.Windows.Forms.Label label123;
+        private System.Windows.Forms.TrackBar trackBarIntervalBetweenDayNight;
+        private System.Windows.Forms.Label label122;
+        private System.Windows.Forms.Label label121;
+        private System.Windows.Forms.Label label120;
+        private System.Windows.Forms.Label label119;
+        private System.Windows.Forms.Label label118;
+        private System.Windows.Forms.Button btnChinhSuaTinhTienLuyTien;
+        private System.Windows.Forms.Panel panelTinhTienLuyTien;
+        private System.Windows.Forms.Label label163;
+        private System.Windows.Forms.Label label162;
+        private System.Windows.Forms.Label label158;
+        private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienHourMilestone2;
+        private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienHourMilestone1;
+        private System.Windows.Forms.Button btnHuyTinhTienLuyTien;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienCostTicketMonth;
+        private System.Windows.Forms.Label label143;
+        private System.Windows.Forms.Label labelTinhTienLuyTienCycleTicketMonth;
+        private System.Windows.Forms.Label label156;
+        private System.Windows.Forms.Label label157;
+        private System.Windows.Forms.TrackBar trackBarTinhTienLuyTienCycleTicketMonth;
+        private System.Windows.Forms.Button btnCapNhatTinhTienLuyTien;
+        private System.Windows.Forms.Label label160;
+        private System.Windows.Forms.Label label161;
+        private System.Windows.Forms.ComboBox cbLoaiXeTinhTienLuyTien;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton radioTinhTienLuyTienAdd2Milestone;
+        private System.Windows.Forms.RadioButton radioTinhTienLuyTienAdd1Milestone;
+        private System.Windows.Forms.RadioButton radioTinhTienLuyTienNoAdd;
+        private System.Windows.Forms.Label label159;
+        private System.Windows.Forms.Label labelTinhTienLuyTienCycleMilestone3;
+        private System.Windows.Forms.Label label165;
+        private System.Windows.Forms.Label label166;
+        private System.Windows.Forms.TrackBar trackBarTinhTienLuyTienCycleMilestone3;
+        private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienCostMilestone2;
+        private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienCostMilestone1;
+        private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienCostMilestone3;
+        private System.Windows.Forms.Panel panel28;
     }
 }

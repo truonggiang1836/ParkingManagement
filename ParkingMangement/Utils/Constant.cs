@@ -10,6 +10,7 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
+        public static string sMessageUpdateSuccess = "Cập nhật thành công";
         public static string sMessageCommonError = "Có lỗi xảy ra";
         public static string sMessageDuplicateDataError = "Dữ liệu đã tồn tại";
         public static string sMessageInvalidError = "Dữ liệu không hợp lệ";
@@ -51,6 +52,10 @@ namespace ParkingMangement.Utils
         public const int LOAI_GIU_XE_THEO_CONG_VAN = 1;
         public const int LOAI_GIU_XE_LUY_TIEN = 2;
         public const int LOAI_GIU_XE_MTONG_HOP = 3;
+
+        public const string TINH_TIEN_LUY_TIEN_KHONG_CONG = "0";
+        public const string TINH_TIEN_LUY_TIEN_CONG_1_MOC = "1";
+        public const string TINH_TIEN_LUY_TIEN_CONG_2_MOC = "2";
 
         // Node Phan quyen truy cap
         public const string NODE_NAME = "NodeName";
