@@ -179,19 +179,19 @@
             this.panel31 = new System.Windows.Forms.Panel();
             this.btnChinhSuaTinhTienCongVan = new System.Windows.Forms.Button();
             this.panelTinhTienCongVan = new System.Windows.Forms.Panel();
-            this.numericUpDownEndHourNight = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownStartHourNight = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownDayNightCost = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownNightCost = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownDayCost = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanEndHourNight = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanStartHourNight = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanDayNightCost = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanNightCost = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanDayCost = new System.Windows.Forms.NumericUpDown();
             this.btnHuyTinhTienCongVan = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.numericUpDownCostTicketMonth = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanCostTicketMonth = new System.Windows.Forms.NumericUpDown();
             this.label155 = new System.Windows.Forms.Label();
-            this.labelCycleTicketMonth = new System.Windows.Forms.Label();
+            this.labelTinhTienCongVanCycleTicketMonth = new System.Windows.Forms.Label();
             this.label154 = new System.Windows.Forms.Label();
             this.label152 = new System.Windows.Forms.Label();
-            this.trackBarCycleTicketMonth = new System.Windows.Forms.TrackBar();
+            this.trackBarTinhTienCongVanCycleTicketMonth = new System.Windows.Forms.TrackBar();
             this.btnCapNhatTinhTienCongVan = new System.Windows.Forms.Button();
             this.labelIntervalBetweenDayNight = new System.Windows.Forms.Label();
             this.label126 = new System.Windows.Forms.Label();
@@ -199,7 +199,7 @@
             this.label124 = new System.Windows.Forms.Label();
             this.cbLoaiXeTinhTienCongVan = new System.Windows.Forms.ComboBox();
             this.label123 = new System.Windows.Forms.Label();
-            this.trackBarIntervalBetweenDayNight = new System.Windows.Forms.TrackBar();
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight = new System.Windows.Forms.TrackBar();
             this.label122 = new System.Windows.Forms.Label();
             this.label121 = new System.Windows.Forms.Label();
             this.label120 = new System.Windows.Forms.Label();
@@ -745,46 +745,46 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.panel32 = new System.Windows.Forms.Panel();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.button20 = new System.Windows.Forms.Button();
+            this.btnChinhSuaTinhTienTongHop = new System.Windows.Forms.Button();
+            this.panelTinhTienTongHop = new System.Windows.Forms.Panel();
+            this.numericTinhTienTongHopEndHourNight = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopStartHourNight = new System.Windows.Forms.NumericUpDown();
+            this.btnHuyTinhTienTongHop = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopCostTicketMonth = new System.Windows.Forms.NumericUpDown();
             this.label153 = new System.Windows.Forms.Label();
-            this.label164 = new System.Windows.Forms.Label();
+            this.labelTinhTienTongHopCycleTicketMonth = new System.Windows.Forms.Label();
             this.label167 = new System.Windows.Forms.Label();
             this.label168 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.button22 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.trackBarTinhTienTongHopCycleTicketMonth = new System.Windows.Forms.TrackBar();
+            this.btnCapNhatTinhTienTongHop = new System.Windows.Forms.Button();
+            this.cbLoaiXeTinhTienTongHop = new System.Windows.Forms.ComboBox();
             this.label175 = new System.Windows.Forms.Label();
             this.label176 = new System.Windows.Forms.Label();
             this.label177 = new System.Windows.Forms.Label();
             this.label178 = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopCostMilestone2 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopCostMilestone1 = new System.Windows.Forms.NumericUpDown();
             this.label169 = new System.Windows.Forms.Label();
             this.label170 = new System.Windows.Forms.Label();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopHourMilestone2 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopHourMilestone1 = new System.Windows.Forms.NumericUpDown();
             this.label171 = new System.Windows.Forms.Label();
             this.label172 = new System.Windows.Forms.Label();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.numericTinhTienTongHopCostMilestone3 = new System.Windows.Forms.NumericUpDown();
+            this.radioTinhTienTongHopAdd2Milestone = new System.Windows.Forms.RadioButton();
+            this.radioTinhTienTongHopAdd1Milestone = new System.Windows.Forms.RadioButton();
+            this.radioTinhTienTongHopNoAdd = new System.Windows.Forms.RadioButton();
             this.label173 = new System.Windows.Forms.Label();
-            this.label174 = new System.Windows.Forms.Label();
+            this.labelTinhTienTongHopCycleMilestone3 = new System.Windows.Forms.Label();
             this.label179 = new System.Windows.Forms.Label();
             this.label180 = new System.Windows.Forms.Label();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.trackBarTinhTienTongHopCycleMilestone3 = new System.Windows.Forms.TrackBar();
             this.label181 = new System.Windows.Forms.Label();
             this.label182 = new System.Windows.Forms.Label();
-            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienTongHopNightCost = new System.Windows.Forms.NumericUpDown();
             this.panel33 = new System.Windows.Forms.Panel();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
@@ -809,15 +809,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeDoanhThu)).BeginInit();
             this.tabPageCongThucTinhTienTheoCongVan.SuspendLayout();
             this.panelTinhTienCongVan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndHourNight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartHourNight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayNightCost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNightCost)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanEndHourNight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanStartHourNight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanDayNightCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanNightCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanDayCost)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCostTicketMonth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarCycleTicketMonth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanCostTicketMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienCongVanCycleTicketMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienCongVanIntervalBetweenDayNight)).BeginInit();
             this.tabPageCongThucTinhTienLuyTien.SuspendLayout();
             this.panelTinhTienLuyTien.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienLuyTienCostMilestone2)).BeginInit();
@@ -911,21 +911,21 @@
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
-            this.panel32.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.panelTinhTienTongHop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopEndHourNight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopStartHourNight)).BeginInit();
             this.groupBox5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostTicketMonth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienTongHopCycleTicketMonth)).BeginInit();
             this.groupBox6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostMilestone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostMilestone1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopHourMilestone2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopHourMilestone1)).BeginInit();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostMilestone3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienTongHopCycleMilestone3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopNightCost)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1934,11 +1934,11 @@
             // panelTinhTienCongVan
             // 
             this.panelTinhTienCongVan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownEndHourNight);
-            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownStartHourNight);
-            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownDayNightCost);
-            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownNightCost);
-            this.panelTinhTienCongVan.Controls.Add(this.numericUpDownDayCost);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanEndHourNight);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanStartHourNight);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanDayNightCost);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanNightCost);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanDayCost);
             this.panelTinhTienCongVan.Controls.Add(this.btnHuyTinhTienCongVan);
             this.panelTinhTienCongVan.Controls.Add(this.groupBox1);
             this.panelTinhTienCongVan.Controls.Add(this.btnCapNhatTinhTienCongVan);
@@ -1948,7 +1948,7 @@
             this.panelTinhTienCongVan.Controls.Add(this.label124);
             this.panelTinhTienCongVan.Controls.Add(this.cbLoaiXeTinhTienCongVan);
             this.panelTinhTienCongVan.Controls.Add(this.label123);
-            this.panelTinhTienCongVan.Controls.Add(this.trackBarIntervalBetweenDayNight);
+            this.panelTinhTienCongVan.Controls.Add(this.trackBarTinhTienCongVanIntervalBetweenDayNight);
             this.panelTinhTienCongVan.Controls.Add(this.label122);
             this.panelTinhTienCongVan.Controls.Add(this.label121);
             this.panelTinhTienCongVan.Controls.Add(this.label120);
@@ -1960,80 +1960,80 @@
             this.panelTinhTienCongVan.Size = new System.Drawing.Size(494, 386);
             this.panelTinhTienCongVan.TabIndex = 0;
             // 
-            // numericUpDownEndHourNight
+            // numericTinhTienCongVanEndHourNight
             // 
-            this.numericUpDownEndHourNight.Location = new System.Drawing.Point(369, 16);
-            this.numericUpDownEndHourNight.Maximum = new decimal(new int[] {
+            this.numericTinhTienCongVanEndHourNight.Location = new System.Drawing.Point(369, 16);
+            this.numericTinhTienCongVanEndHourNight.Maximum = new decimal(new int[] {
             23,
             0,
             0,
             0});
-            this.numericUpDownEndHourNight.Name = "numericUpDownEndHourNight";
-            this.numericUpDownEndHourNight.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDownEndHourNight.TabIndex = 55;
+            this.numericTinhTienCongVanEndHourNight.Name = "numericTinhTienCongVanEndHourNight";
+            this.numericTinhTienCongVanEndHourNight.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanEndHourNight.TabIndex = 55;
             // 
-            // numericUpDownStartHourNight
+            // numericTinhTienCongVanStartHourNight
             // 
-            this.numericUpDownStartHourNight.Location = new System.Drawing.Point(157, 16);
-            this.numericUpDownStartHourNight.Maximum = new decimal(new int[] {
+            this.numericTinhTienCongVanStartHourNight.Location = new System.Drawing.Point(157, 16);
+            this.numericTinhTienCongVanStartHourNight.Maximum = new decimal(new int[] {
             23,
             0,
             0,
             0});
-            this.numericUpDownStartHourNight.Name = "numericUpDownStartHourNight";
-            this.numericUpDownStartHourNight.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDownStartHourNight.TabIndex = 54;
+            this.numericTinhTienCongVanStartHourNight.Name = "numericTinhTienCongVanStartHourNight";
+            this.numericTinhTienCongVanStartHourNight.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanStartHourNight.TabIndex = 54;
             // 
-            // numericUpDownDayNightCost
+            // numericTinhTienCongVanDayNightCost
             // 
-            this.numericUpDownDayNightCost.Increment = new decimal(new int[] {
+            this.numericTinhTienCongVanDayNightCost.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDownDayNightCost.Location = new System.Drawing.Point(369, 174);
-            this.numericUpDownDayNightCost.Maximum = new decimal(new int[] {
+            this.numericTinhTienCongVanDayNightCost.Location = new System.Drawing.Point(369, 174);
+            this.numericTinhTienCongVanDayNightCost.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDownDayNightCost.Name = "numericUpDownDayNightCost";
-            this.numericUpDownDayNightCost.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDownDayNightCost.TabIndex = 53;
+            this.numericTinhTienCongVanDayNightCost.Name = "numericTinhTienCongVanDayNightCost";
+            this.numericTinhTienCongVanDayNightCost.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanDayNightCost.TabIndex = 53;
             // 
-            // numericUpDownNightCost
+            // numericTinhTienCongVanNightCost
             // 
-            this.numericUpDownNightCost.Increment = new decimal(new int[] {
+            this.numericTinhTienCongVanNightCost.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDownNightCost.Location = new System.Drawing.Point(369, 142);
-            this.numericUpDownNightCost.Maximum = new decimal(new int[] {
+            this.numericTinhTienCongVanNightCost.Location = new System.Drawing.Point(369, 142);
+            this.numericTinhTienCongVanNightCost.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDownNightCost.Name = "numericUpDownNightCost";
-            this.numericUpDownNightCost.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDownNightCost.TabIndex = 52;
+            this.numericTinhTienCongVanNightCost.Name = "numericTinhTienCongVanNightCost";
+            this.numericTinhTienCongVanNightCost.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanNightCost.TabIndex = 52;
             // 
-            // numericUpDownDayCost
+            // numericTinhTienCongVanDayCost
             // 
-            this.numericUpDownDayCost.Increment = new decimal(new int[] {
+            this.numericTinhTienCongVanDayCost.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDownDayCost.Location = new System.Drawing.Point(369, 110);
-            this.numericUpDownDayCost.Maximum = new decimal(new int[] {
+            this.numericTinhTienCongVanDayCost.Location = new System.Drawing.Point(369, 110);
+            this.numericTinhTienCongVanDayCost.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDownDayCost.Name = "numericUpDownDayCost";
-            this.numericUpDownDayCost.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDownDayCost.TabIndex = 51;
+            this.numericTinhTienCongVanDayCost.Name = "numericTinhTienCongVanDayCost";
+            this.numericTinhTienCongVanDayCost.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanDayCost.TabIndex = 51;
             // 
             // btnHuyTinhTienCongVan
             // 
@@ -2047,12 +2047,12 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.numericUpDownCostTicketMonth);
+            this.groupBox1.Controls.Add(this.numericTinhTienCongVanCostTicketMonth);
             this.groupBox1.Controls.Add(this.label155);
-            this.groupBox1.Controls.Add(this.labelCycleTicketMonth);
+            this.groupBox1.Controls.Add(this.labelTinhTienCongVanCycleTicketMonth);
             this.groupBox1.Controls.Add(this.label154);
             this.groupBox1.Controls.Add(this.label152);
-            this.groupBox1.Controls.Add(this.trackBarCycleTicketMonth);
+            this.groupBox1.Controls.Add(this.trackBarTinhTienCongVanCycleTicketMonth);
             this.groupBox1.Location = new System.Drawing.Point(26, 219);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(441, 100);
@@ -2060,22 +2060,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vé tháng giới hạn giờ";
             // 
-            // numericUpDownCostTicketMonth
+            // numericTinhTienCongVanCostTicketMonth
             // 
-            this.numericUpDownCostTicketMonth.Increment = new decimal(new int[] {
+            this.numericTinhTienCongVanCostTicketMonth.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDownCostTicketMonth.Location = new System.Drawing.Point(343, 33);
-            this.numericUpDownCostTicketMonth.Maximum = new decimal(new int[] {
+            this.numericTinhTienCongVanCostTicketMonth.Location = new System.Drawing.Point(343, 33);
+            this.numericTinhTienCongVanCostTicketMonth.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDownCostTicketMonth.Name = "numericUpDownCostTicketMonth";
-            this.numericUpDownCostTicketMonth.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDownCostTicketMonth.TabIndex = 50;
+            this.numericTinhTienCongVanCostTicketMonth.Name = "numericTinhTienCongVanCostTicketMonth";
+            this.numericTinhTienCongVanCostTicketMonth.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanCostTicketMonth.TabIndex = 50;
             // 
             // label155
             // 
@@ -2087,15 +2087,15 @@
             this.label155.TabIndex = 49;
             this.label155.Text = "Giá:";
             // 
-            // labelCycleTicketMonth
+            // labelTinhTienCongVanCycleTicketMonth
             // 
-            this.labelCycleTicketMonth.AutoSize = true;
-            this.labelCycleTicketMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCycleTicketMonth.Location = new System.Drawing.Point(220, 33);
-            this.labelCycleTicketMonth.Name = "labelCycleTicketMonth";
-            this.labelCycleTicketMonth.Size = new System.Drawing.Size(22, 16);
-            this.labelCycleTicketMonth.TabIndex = 40;
-            this.labelCycleTicketMonth.Text = "23";
+            this.labelTinhTienCongVanCycleTicketMonth.AutoSize = true;
+            this.labelTinhTienCongVanCycleTicketMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTinhTienCongVanCycleTicketMonth.Location = new System.Drawing.Point(220, 33);
+            this.labelTinhTienCongVanCycleTicketMonth.Name = "labelTinhTienCongVanCycleTicketMonth";
+            this.labelTinhTienCongVanCycleTicketMonth.Size = new System.Drawing.Size(22, 16);
+            this.labelTinhTienCongVanCycleTicketMonth.TabIndex = 40;
+            this.labelTinhTienCongVanCycleTicketMonth.Text = "23";
             // 
             // label154
             // 
@@ -2117,14 +2117,14 @@
             this.label152.TabIndex = 35;
             this.label152.Text = "Chu kỳ";
             // 
-            // trackBarCycleTicketMonth
+            // trackBarTinhTienCongVanCycleTicketMonth
             // 
-            this.trackBarCycleTicketMonth.Location = new System.Drawing.Point(82, 33);
-            this.trackBarCycleTicketMonth.Maximum = 24;
-            this.trackBarCycleTicketMonth.Name = "trackBarCycleTicketMonth";
-            this.trackBarCycleTicketMonth.Size = new System.Drawing.Size(127, 45);
-            this.trackBarCycleTicketMonth.TabIndex = 39;
-            this.trackBarCycleTicketMonth.ValueChanged += new System.EventHandler(this.trackBarCycleTicketMonth_ValueChanged);
+            this.trackBarTinhTienCongVanCycleTicketMonth.Location = new System.Drawing.Point(82, 33);
+            this.trackBarTinhTienCongVanCycleTicketMonth.Maximum = 24;
+            this.trackBarTinhTienCongVanCycleTicketMonth.Name = "trackBarTinhTienCongVanCycleTicketMonth";
+            this.trackBarTinhTienCongVanCycleTicketMonth.Size = new System.Drawing.Size(127, 45);
+            this.trackBarTinhTienCongVanCycleTicketMonth.TabIndex = 39;
+            this.trackBarTinhTienCongVanCycleTicketMonth.ValueChanged += new System.EventHandler(this.trackBarCycleTicketMonth_ValueChanged);
             // 
             // btnCapNhatTinhTienCongVan
             // 
@@ -2196,14 +2196,14 @@
             this.label123.TabIndex = 39;
             this.label123.Text = "h";
             // 
-            // trackBarIntervalBetweenDayNight
+            // trackBarTinhTienCongVanIntervalBetweenDayNight
             // 
-            this.trackBarIntervalBetweenDayNight.Location = new System.Drawing.Point(189, 53);
-            this.trackBarIntervalBetweenDayNight.Maximum = 24;
-            this.trackBarIntervalBetweenDayNight.Name = "trackBarIntervalBetweenDayNight";
-            this.trackBarIntervalBetweenDayNight.Size = new System.Drawing.Size(235, 45);
-            this.trackBarIntervalBetweenDayNight.TabIndex = 38;
-            this.trackBarIntervalBetweenDayNight.ValueChanged += new System.EventHandler(this.trackBarIntervalBetweenDayNight_ValueChanged);
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.Location = new System.Drawing.Point(189, 53);
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.Maximum = 24;
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.Name = "trackBarTinhTienCongVanIntervalBetweenDayNight";
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.Size = new System.Drawing.Size(235, 45);
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.TabIndex = 38;
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.ValueChanged += new System.EventHandler(this.trackBarIntervalBetweenDayNight_ValueChanged);
             // 
             // label122
             // 
@@ -2650,8 +2650,8 @@
             // tabPageCongThucTongHop
             // 
             this.tabPageCongThucTongHop.Controls.Add(this.panel33);
-            this.tabPageCongThucTongHop.Controls.Add(this.button3);
-            this.tabPageCongThucTongHop.Controls.Add(this.panel32);
+            this.tabPageCongThucTongHop.Controls.Add(this.btnChinhSuaTinhTienTongHop);
+            this.tabPageCongThucTongHop.Controls.Add(this.panelTinhTienTongHop);
             this.tabPageCongThucTongHop.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTongHop.Name = "tabPageCongThucTongHop";
             this.tabPageCongThucTongHop.Padding = new System.Windows.Forms.Padding(3);
@@ -7513,79 +7513,80 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnChinhSuaTinhTienTongHop
             // 
-            this.button3.Location = new System.Drawing.Point(191, 181);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 30);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "CHỈNH SỬA";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnChinhSuaTinhTienTongHop.Location = new System.Drawing.Point(191, 181);
+            this.btnChinhSuaTinhTienTongHop.Name = "btnChinhSuaTinhTienTongHop";
+            this.btnChinhSuaTinhTienTongHop.Size = new System.Drawing.Size(108, 30);
+            this.btnChinhSuaTinhTienTongHop.TabIndex = 15;
+            this.btnChinhSuaTinhTienTongHop.Text = "CHỈNH SỬA";
+            this.btnChinhSuaTinhTienTongHop.UseVisualStyleBackColor = true;
+            this.btnChinhSuaTinhTienTongHop.Click += new System.EventHandler(this.btnChinhSuaTinhTienTongHop_Click);
             // 
-            // panel32
+            // panelTinhTienTongHop
             // 
-            this.panel32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel32.Controls.Add(this.numericUpDown9);
-            this.panel32.Controls.Add(this.label182);
-            this.panel32.Controls.Add(this.label181);
-            this.panel32.Controls.Add(this.groupBox6);
-            this.panel32.Controls.Add(this.numericUpDown1);
-            this.panel32.Controls.Add(this.numericUpDown2);
-            this.panel32.Controls.Add(this.button20);
-            this.panel32.Controls.Add(this.groupBox5);
-            this.panel32.Controls.Add(this.button22);
-            this.panel32.Controls.Add(this.comboBox1);
-            this.panel32.Controls.Add(this.label175);
-            this.panel32.Controls.Add(this.label176);
-            this.panel32.Controls.Add(this.label177);
-            this.panel32.Controls.Add(this.label178);
-            this.panel32.Enabled = false;
-            this.panel32.Location = new System.Drawing.Point(332, 12);
-            this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(654, 436);
-            this.panel32.TabIndex = 14;
+            this.panelTinhTienTongHop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTinhTienTongHop.Controls.Add(this.numericTinhTienTongHopNightCost);
+            this.panelTinhTienTongHop.Controls.Add(this.label182);
+            this.panelTinhTienTongHop.Controls.Add(this.label181);
+            this.panelTinhTienTongHop.Controls.Add(this.groupBox6);
+            this.panelTinhTienTongHop.Controls.Add(this.numericTinhTienTongHopEndHourNight);
+            this.panelTinhTienTongHop.Controls.Add(this.numericTinhTienTongHopStartHourNight);
+            this.panelTinhTienTongHop.Controls.Add(this.btnHuyTinhTienTongHop);
+            this.panelTinhTienTongHop.Controls.Add(this.groupBox5);
+            this.panelTinhTienTongHop.Controls.Add(this.btnCapNhatTinhTienTongHop);
+            this.panelTinhTienTongHop.Controls.Add(this.cbLoaiXeTinhTienTongHop);
+            this.panelTinhTienTongHop.Controls.Add(this.label175);
+            this.panelTinhTienTongHop.Controls.Add(this.label176);
+            this.panelTinhTienTongHop.Controls.Add(this.label177);
+            this.panelTinhTienTongHop.Controls.Add(this.label178);
+            this.panelTinhTienTongHop.Enabled = false;
+            this.panelTinhTienTongHop.Location = new System.Drawing.Point(332, 12);
+            this.panelTinhTienTongHop.Name = "panelTinhTienTongHop";
+            this.panelTinhTienTongHop.Size = new System.Drawing.Size(654, 436);
+            this.panelTinhTienTongHop.TabIndex = 14;
             // 
-            // numericUpDown1
+            // numericTinhTienTongHopEndHourNight
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(328, 9);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopEndHourNight.Location = new System.Drawing.Point(328, 9);
+            this.numericTinhTienTongHopEndHourNight.Maximum = new decimal(new int[] {
             23,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDown1.TabIndex = 55;
+            this.numericTinhTienTongHopEndHourNight.Name = "numericTinhTienTongHopEndHourNight";
+            this.numericTinhTienTongHopEndHourNight.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienTongHopEndHourNight.TabIndex = 55;
             // 
-            // numericUpDown2
+            // numericTinhTienTongHopStartHourNight
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(151, 9);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopStartHourNight.Location = new System.Drawing.Point(151, 9);
+            this.numericTinhTienTongHopStartHourNight.Maximum = new decimal(new int[] {
             23,
             0,
             0,
             0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDown2.TabIndex = 54;
+            this.numericTinhTienTongHopStartHourNight.Name = "numericTinhTienTongHopStartHourNight";
+            this.numericTinhTienTongHopStartHourNight.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienTongHopStartHourNight.TabIndex = 54;
             // 
-            // button20
+            // btnHuyTinhTienTongHop
             // 
-            this.button20.Location = new System.Drawing.Point(337, 392);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(108, 30);
-            this.button20.TabIndex = 13;
-            this.button20.Text = "HỦY";
-            this.button20.UseVisualStyleBackColor = true;
+            this.btnHuyTinhTienTongHop.Location = new System.Drawing.Point(337, 392);
+            this.btnHuyTinhTienTongHop.Name = "btnHuyTinhTienTongHop";
+            this.btnHuyTinhTienTongHop.Size = new System.Drawing.Size(108, 30);
+            this.btnHuyTinhTienTongHop.TabIndex = 13;
+            this.btnHuyTinhTienTongHop.Text = "HỦY";
+            this.btnHuyTinhTienTongHop.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.numericUpDown6);
+            this.groupBox5.Controls.Add(this.numericTinhTienTongHopCostTicketMonth);
             this.groupBox5.Controls.Add(this.label153);
-            this.groupBox5.Controls.Add(this.label164);
+            this.groupBox5.Controls.Add(this.labelTinhTienTongHopCycleTicketMonth);
             this.groupBox5.Controls.Add(this.label167);
             this.groupBox5.Controls.Add(this.label168);
-            this.groupBox5.Controls.Add(this.trackBar1);
+            this.groupBox5.Controls.Add(this.trackBarTinhTienTongHopCycleTicketMonth);
             this.groupBox5.Location = new System.Drawing.Point(65, 284);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(567, 100);
@@ -7593,22 +7594,22 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Vé tháng giới hạn giờ";
             // 
-            // numericUpDown6
+            // numericTinhTienTongHopCostTicketMonth
             // 
-            this.numericUpDown6.Increment = new decimal(new int[] {
+            this.numericTinhTienTongHopCostTicketMonth.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown6.Location = new System.Drawing.Point(343, 33);
-            this.numericUpDown6.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopCostTicketMonth.Location = new System.Drawing.Point(343, 33);
+            this.numericTinhTienTongHopCostTicketMonth.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown6.Name = "numericUpDown6";
-            this.numericUpDown6.Size = new System.Drawing.Size(77, 22);
-            this.numericUpDown6.TabIndex = 50;
+            this.numericTinhTienTongHopCostTicketMonth.Name = "numericTinhTienTongHopCostTicketMonth";
+            this.numericTinhTienTongHopCostTicketMonth.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienTongHopCostTicketMonth.TabIndex = 50;
             // 
             // label153
             // 
@@ -7620,15 +7621,15 @@
             this.label153.TabIndex = 49;
             this.label153.Text = "Giá:";
             // 
-            // label164
+            // labelTinhTienTongHopCycleTicketMonth
             // 
-            this.label164.AutoSize = true;
-            this.label164.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label164.Location = new System.Drawing.Point(220, 33);
-            this.label164.Name = "label164";
-            this.label164.Size = new System.Drawing.Size(22, 16);
-            this.label164.TabIndex = 40;
-            this.label164.Text = "23";
+            this.labelTinhTienTongHopCycleTicketMonth.AutoSize = true;
+            this.labelTinhTienTongHopCycleTicketMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTinhTienTongHopCycleTicketMonth.Location = new System.Drawing.Point(220, 33);
+            this.labelTinhTienTongHopCycleTicketMonth.Name = "labelTinhTienTongHopCycleTicketMonth";
+            this.labelTinhTienTongHopCycleTicketMonth.Size = new System.Drawing.Size(22, 16);
+            this.labelTinhTienTongHopCycleTicketMonth.TabIndex = 40;
+            this.labelTinhTienTongHopCycleTicketMonth.Text = "23";
             // 
             // label167
             // 
@@ -7650,31 +7651,32 @@
             this.label168.TabIndex = 35;
             this.label168.Text = "Chu kỳ";
             // 
-            // trackBar1
+            // trackBarTinhTienTongHopCycleTicketMonth
             // 
-            this.trackBar1.Location = new System.Drawing.Point(82, 33);
-            this.trackBar1.Maximum = 24;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(127, 45);
-            this.trackBar1.TabIndex = 39;
+            this.trackBarTinhTienTongHopCycleTicketMonth.Location = new System.Drawing.Point(82, 33);
+            this.trackBarTinhTienTongHopCycleTicketMonth.Maximum = 24;
+            this.trackBarTinhTienTongHopCycleTicketMonth.Name = "trackBarTinhTienTongHopCycleTicketMonth";
+            this.trackBarTinhTienTongHopCycleTicketMonth.Size = new System.Drawing.Size(127, 45);
+            this.trackBarTinhTienTongHopCycleTicketMonth.TabIndex = 39;
             // 
-            // button22
+            // btnCapNhatTinhTienTongHop
             // 
-            this.button22.Location = new System.Drawing.Point(211, 392);
-            this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(108, 30);
-            this.button22.TabIndex = 12;
-            this.button22.Text = "CẬP NHẬT";
-            this.button22.UseVisualStyleBackColor = true;
+            this.btnCapNhatTinhTienTongHop.Location = new System.Drawing.Point(211, 392);
+            this.btnCapNhatTinhTienTongHop.Name = "btnCapNhatTinhTienTongHop";
+            this.btnCapNhatTinhTienTongHop.Size = new System.Drawing.Size(108, 30);
+            this.btnCapNhatTinhTienTongHop.TabIndex = 12;
+            this.btnCapNhatTinhTienTongHop.Text = "CẬP NHẬT";
+            this.btnCapNhatTinhTienTongHop.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cbLoaiXeTinhTienTongHop
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(482, 7);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(150, 24);
-            this.comboBox1.TabIndex = 40;
+            this.cbLoaiXeTinhTienTongHop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLoaiXeTinhTienTongHop.FormattingEnabled = true;
+            this.cbLoaiXeTinhTienTongHop.Location = new System.Drawing.Point(482, 7);
+            this.cbLoaiXeTinhTienTongHop.Name = "cbLoaiXeTinhTienTongHop";
+            this.cbLoaiXeTinhTienTongHop.Size = new System.Drawing.Size(150, 24);
+            this.cbLoaiXeTinhTienTongHop.TabIndex = 40;
+            this.cbLoaiXeTinhTienTongHop.SelectedIndexChanged += new System.EventHandler(this.cbLoaiXeTinhTienTongHop_SelectedIndexChanged);
             // 
             // label175
             // 
@@ -7719,12 +7721,12 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.groupBox7);
-            this.groupBox6.Controls.Add(this.numericUpDown3);
-            this.groupBox6.Controls.Add(this.numericUpDown4);
+            this.groupBox6.Controls.Add(this.numericTinhTienTongHopCostMilestone2);
+            this.groupBox6.Controls.Add(this.numericTinhTienTongHopCostMilestone1);
             this.groupBox6.Controls.Add(this.label169);
             this.groupBox6.Controls.Add(this.label170);
-            this.groupBox6.Controls.Add(this.numericUpDown5);
-            this.groupBox6.Controls.Add(this.numericUpDown7);
+            this.groupBox6.Controls.Add(this.numericTinhTienTongHopHourMilestone2);
+            this.groupBox6.Controls.Add(this.numericTinhTienTongHopHourMilestone1);
             this.groupBox6.Controls.Add(this.label171);
             this.groupBox6.Controls.Add(this.label172);
             this.groupBox6.Location = new System.Drawing.Point(65, 37);
@@ -7733,41 +7735,41 @@
             this.groupBox6.TabIndex = 60;
             this.groupBox6.TabStop = false;
             // 
-            // numericUpDown3
+            // numericTinhTienTongHopCostMilestone2
             // 
-            this.numericUpDown3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.numericUpDown3.Increment = new decimal(new int[] {
+            this.numericTinhTienTongHopCostMilestone2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienTongHopCostMilestone2.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown3.Location = new System.Drawing.Point(441, 20);
-            this.numericUpDown3.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopCostMilestone2.Location = new System.Drawing.Point(441, 20);
+            this.numericTinhTienTongHopCostMilestone2.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(102, 22);
-            this.numericUpDown3.TabIndex = 69;
+            this.numericTinhTienTongHopCostMilestone2.Name = "numericTinhTienTongHopCostMilestone2";
+            this.numericTinhTienTongHopCostMilestone2.Size = new System.Drawing.Size(102, 22);
+            this.numericTinhTienTongHopCostMilestone2.TabIndex = 69;
             // 
-            // numericUpDown4
+            // numericTinhTienTongHopCostMilestone1
             // 
-            this.numericUpDown4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.numericUpDown4.Increment = new decimal(new int[] {
+            this.numericTinhTienTongHopCostMilestone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienTongHopCostMilestone1.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown4.Location = new System.Drawing.Point(163, 20);
-            this.numericUpDown4.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopCostMilestone1.Location = new System.Drawing.Point(163, 20);
+            this.numericTinhTienTongHopCostMilestone1.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(102, 22);
-            this.numericUpDown4.TabIndex = 68;
+            this.numericTinhTienTongHopCostMilestone1.Name = "numericTinhTienTongHopCostMilestone1";
+            this.numericTinhTienTongHopCostMilestone1.Size = new System.Drawing.Size(102, 22);
+            this.numericTinhTienTongHopCostMilestone1.TabIndex = 68;
             // 
             // label169
             // 
@@ -7789,30 +7791,30 @@
             this.label170.TabIndex = 66;
             this.label170.Text = "h";
             // 
-            // numericUpDown5
+            // numericTinhTienTongHopHourMilestone2
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(344, 20);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopHourMilestone2.Location = new System.Drawing.Point(344, 20);
+            this.numericTinhTienTongHopHourMilestone2.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(53, 22);
-            this.numericUpDown5.TabIndex = 65;
+            this.numericTinhTienTongHopHourMilestone2.Name = "numericTinhTienTongHopHourMilestone2";
+            this.numericTinhTienTongHopHourMilestone2.Size = new System.Drawing.Size(53, 22);
+            this.numericTinhTienTongHopHourMilestone2.TabIndex = 65;
             // 
-            // numericUpDown7
+            // numericTinhTienTongHopHourMilestone1
             // 
-            this.numericUpDown7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.numericUpDown7.Location = new System.Drawing.Point(66, 20);
-            this.numericUpDown7.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopHourMilestone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienTongHopHourMilestone1.Location = new System.Drawing.Point(66, 20);
+            this.numericTinhTienTongHopHourMilestone1.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown7.Name = "numericUpDown7";
-            this.numericUpDown7.Size = new System.Drawing.Size(53, 22);
-            this.numericUpDown7.TabIndex = 64;
+            this.numericTinhTienTongHopHourMilestone1.Name = "numericTinhTienTongHopHourMilestone1";
+            this.numericTinhTienTongHopHourMilestone1.Size = new System.Drawing.Size(53, 22);
+            this.numericTinhTienTongHopHourMilestone1.TabIndex = 64;
             // 
             // label171
             // 
@@ -7836,70 +7838,70 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.numericUpDown8);
-            this.groupBox7.Controls.Add(this.radioButton1);
-            this.groupBox7.Controls.Add(this.radioButton2);
-            this.groupBox7.Controls.Add(this.radioButton3);
+            this.groupBox7.Controls.Add(this.numericTinhTienTongHopCostMilestone3);
+            this.groupBox7.Controls.Add(this.radioTinhTienTongHopAdd2Milestone);
+            this.groupBox7.Controls.Add(this.radioTinhTienTongHopAdd1Milestone);
+            this.groupBox7.Controls.Add(this.radioTinhTienTongHopNoAdd);
             this.groupBox7.Controls.Add(this.label173);
-            this.groupBox7.Controls.Add(this.label174);
+            this.groupBox7.Controls.Add(this.labelTinhTienTongHopCycleMilestone3);
             this.groupBox7.Controls.Add(this.label179);
             this.groupBox7.Controls.Add(this.label180);
-            this.groupBox7.Controls.Add(this.trackBar2);
+            this.groupBox7.Controls.Add(this.trackBarTinhTienTongHopCycleMilestone3);
             this.groupBox7.Location = new System.Drawing.Point(20, 54);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(523, 143);
             this.groupBox7.TabIndex = 70;
             this.groupBox7.TabStop = false;
             // 
-            // numericUpDown8
+            // numericTinhTienTongHopCostMilestone3
             // 
-            this.numericUpDown8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.numericUpDown8.Increment = new decimal(new int[] {
+            this.numericTinhTienTongHopCostMilestone3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienTongHopCostMilestone3.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown8.Location = new System.Drawing.Point(203, 20);
-            this.numericUpDown8.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopCostMilestone3.Location = new System.Drawing.Point(203, 20);
+            this.numericTinhTienTongHopCostMilestone3.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(110, 22);
-            this.numericUpDown8.TabIndex = 62;
+            this.numericTinhTienTongHopCostMilestone3.Name = "numericTinhTienTongHopCostMilestone3";
+            this.numericTinhTienTongHopCostMilestone3.Size = new System.Drawing.Size(110, 22);
+            this.numericTinhTienTongHopCostMilestone3.TabIndex = 62;
             // 
-            // radioButton1
+            // radioTinhTienTongHopAdd2Milestone
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(316, 110);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(97, 20);
-            this.radioButton1.TabIndex = 62;
-            this.radioButton1.Text = "Cộng 2 mốc";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioTinhTienTongHopAdd2Milestone.AutoSize = true;
+            this.radioTinhTienTongHopAdd2Milestone.Location = new System.Drawing.Point(316, 110);
+            this.radioTinhTienTongHopAdd2Milestone.Name = "radioTinhTienTongHopAdd2Milestone";
+            this.radioTinhTienTongHopAdd2Milestone.Size = new System.Drawing.Size(97, 20);
+            this.radioTinhTienTongHopAdd2Milestone.TabIndex = 62;
+            this.radioTinhTienTongHopAdd2Milestone.Text = "Cộng 2 mốc";
+            this.radioTinhTienTongHopAdd2Milestone.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioTinhTienTongHopAdd1Milestone
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(165, 110);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(97, 20);
-            this.radioButton2.TabIndex = 61;
-            this.radioButton2.Text = "Cộng 1 mốc";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioTinhTienTongHopAdd1Milestone.AutoSize = true;
+            this.radioTinhTienTongHopAdd1Milestone.Location = new System.Drawing.Point(165, 110);
+            this.radioTinhTienTongHopAdd1Milestone.Name = "radioTinhTienTongHopAdd1Milestone";
+            this.radioTinhTienTongHopAdd1Milestone.Size = new System.Drawing.Size(97, 20);
+            this.radioTinhTienTongHopAdd1Milestone.TabIndex = 61;
+            this.radioTinhTienTongHopAdd1Milestone.Text = "Cộng 1 mốc";
+            this.radioTinhTienTongHopAdd1Milestone.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioTinhTienTongHopNoAdd
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(20, 110);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(97, 20);
-            this.radioButton3.TabIndex = 60;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Không cộng";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioTinhTienTongHopNoAdd.AutoSize = true;
+            this.radioTinhTienTongHopNoAdd.Checked = true;
+            this.radioTinhTienTongHopNoAdd.Location = new System.Drawing.Point(20, 110);
+            this.radioTinhTienTongHopNoAdd.Name = "radioTinhTienTongHopNoAdd";
+            this.radioTinhTienTongHopNoAdd.Size = new System.Drawing.Size(97, 20);
+            this.radioTinhTienTongHopNoAdd.TabIndex = 60;
+            this.radioTinhTienTongHopNoAdd.TabStop = true;
+            this.radioTinhTienTongHopNoAdd.Text = "Không cộng";
+            this.radioTinhTienTongHopNoAdd.UseVisualStyleBackColor = true;
             // 
             // label173
             // 
@@ -7911,15 +7913,15 @@
             this.label173.TabIndex = 49;
             this.label173.Text = "Lớn hơn 2 mốc";
             // 
-            // label174
+            // labelTinhTienTongHopCycleMilestone3
             // 
-            this.label174.AutoSize = true;
-            this.label174.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label174.Location = new System.Drawing.Point(323, 53);
-            this.label174.Name = "label174";
-            this.label174.Size = new System.Drawing.Size(22, 16);
-            this.label174.TabIndex = 40;
-            this.label174.Text = "23";
+            this.labelTinhTienTongHopCycleMilestone3.AutoSize = true;
+            this.labelTinhTienTongHopCycleMilestone3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTinhTienTongHopCycleMilestone3.Location = new System.Drawing.Point(323, 53);
+            this.labelTinhTienTongHopCycleMilestone3.Name = "labelTinhTienTongHopCycleMilestone3";
+            this.labelTinhTienTongHopCycleMilestone3.Size = new System.Drawing.Size(22, 16);
+            this.labelTinhTienTongHopCycleMilestone3.TabIndex = 40;
+            this.labelTinhTienTongHopCycleMilestone3.Text = "23";
             // 
             // label179
             // 
@@ -7941,13 +7943,13 @@
             this.label180.TabIndex = 35;
             this.label180.Text = "Chu kỳ";
             // 
-            // trackBar2
+            // trackBarTinhTienTongHopCycleMilestone3
             // 
-            this.trackBar2.Location = new System.Drawing.Point(82, 53);
-            this.trackBar2.Maximum = 24;
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(231, 45);
-            this.trackBar2.TabIndex = 39;
+            this.trackBarTinhTienTongHopCycleMilestone3.Location = new System.Drawing.Point(82, 53);
+            this.trackBarTinhTienTongHopCycleMilestone3.Maximum = 24;
+            this.trackBarTinhTienTongHopCycleMilestone3.Name = "trackBarTinhTienTongHopCycleMilestone3";
+            this.trackBarTinhTienTongHopCycleMilestone3.Size = new System.Drawing.Size(231, 45);
+            this.trackBarTinhTienTongHopCycleMilestone3.TabIndex = 39;
             // 
             // label181
             // 
@@ -7969,23 +7971,23 @@
             this.label182.TabIndex = 64;
             this.label182.Text = "Đêm";
             // 
-            // numericUpDown9
+            // numericTinhTienTongHopNightCost
             // 
-            this.numericUpDown9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.numericUpDown9.Increment = new decimal(new int[] {
+            this.numericTinhTienTongHopNightCost.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.numericTinhTienTongHopNightCost.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDown9.Location = new System.Drawing.Point(65, 251);
-            this.numericUpDown9.Maximum = new decimal(new int[] {
+            this.numericTinhTienTongHopNightCost.Location = new System.Drawing.Point(65, 251);
+            this.numericTinhTienTongHopNightCost.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
-            this.numericUpDown9.Name = "numericUpDown9";
-            this.numericUpDown9.Size = new System.Drawing.Size(102, 22);
-            this.numericUpDown9.TabIndex = 69;
+            this.numericTinhTienTongHopNightCost.Name = "numericTinhTienTongHopNightCost";
+            this.numericTinhTienTongHopNightCost.Size = new System.Drawing.Size(102, 22);
+            this.numericTinhTienTongHopNightCost.TabIndex = 69;
             // 
             // panel33
             // 
@@ -8040,16 +8042,16 @@
             this.tabPageCongThucTinhTienTheoCongVan.ResumeLayout(false);
             this.panelTinhTienCongVan.ResumeLayout(false);
             this.panelTinhTienCongVan.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEndHourNight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownStartHourNight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayNightCost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNightCost)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDayCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanEndHourNight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanStartHourNight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanDayNightCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanNightCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanDayCost)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCostTicketMonth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarCycleTicketMonth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarIntervalBetweenDayNight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanCostTicketMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienCongVanCycleTicketMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienCongVanIntervalBetweenDayNight)).EndInit();
             this.tabPageCongThucTinhTienLuyTien.ResumeLayout(false);
             this.panelTinhTienLuyTien.ResumeLayout(false);
             this.panelTinhTienLuyTien.PerformLayout();
@@ -8170,25 +8172,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
-            this.panel32.ResumeLayout(false);
-            this.panel32.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.panelTinhTienTongHop.ResumeLayout(false);
+            this.panelTinhTienTongHop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopEndHourNight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopStartHourNight)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostTicketMonth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienTongHopCycleTicketMonth)).EndInit();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostMilestone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostMilestone1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopHourMilestone2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopHourMilestone1)).EndInit();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopCostMilestone3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarTinhTienTongHopCycleMilestone3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienTongHopNightCost)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -8814,19 +8816,19 @@
         private System.Windows.Forms.Button btnChinhSuaTinhTienCongVan;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label155;
-        private System.Windows.Forms.Label labelCycleTicketMonth;
+        private System.Windows.Forms.Label labelTinhTienCongVanCycleTicketMonth;
         private System.Windows.Forms.Label label154;
         private System.Windows.Forms.Label label152;
-        private System.Windows.Forms.TrackBar trackBarCycleTicketMonth;
-        private System.Windows.Forms.NumericUpDown numericUpDownCostTicketMonth;
-        private System.Windows.Forms.NumericUpDown numericUpDownNightCost;
-        private System.Windows.Forms.NumericUpDown numericUpDownDayCost;
-        private System.Windows.Forms.NumericUpDown numericUpDownDayNightCost;
-        private System.Windows.Forms.NumericUpDown numericUpDownEndHourNight;
-        private System.Windows.Forms.NumericUpDown numericUpDownStartHourNight;
+        private System.Windows.Forms.TrackBar trackBarTinhTienCongVanCycleTicketMonth;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanCostTicketMonth;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanNightCost;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanDayCost;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanDayNightCost;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanEndHourNight;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanStartHourNight;
         private System.Windows.Forms.Label labelIntervalBetweenDayNight;
         private System.Windows.Forms.Label label123;
-        private System.Windows.Forms.TrackBar trackBarIntervalBetweenDayNight;
+        private System.Windows.Forms.TrackBar trackBarTinhTienCongVanIntervalBetweenDayNight;
         private System.Windows.Forms.Label label122;
         private System.Windows.Forms.Label label121;
         private System.Windows.Forms.Label label120;
@@ -8864,45 +8866,45 @@
         private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienCostMilestone1;
         private System.Windows.Forms.NumericUpDown numericTinhTienLuyTienCostMilestone3;
         private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.Button btnChinhSuaTinhTienTongHop;
+        private System.Windows.Forms.Panel panelTinhTienTongHop;
         private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopCostMilestone2;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopCostMilestone1;
         private System.Windows.Forms.Label label169;
         private System.Windows.Forms.Label label170;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopHourMilestone2;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopHourMilestone1;
         private System.Windows.Forms.Label label171;
         private System.Windows.Forms.Label label172;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopEndHourNight;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopStartHourNight;
+        private System.Windows.Forms.Button btnHuyTinhTienTongHop;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopCostTicketMonth;
         private System.Windows.Forms.Label label153;
-        private System.Windows.Forms.Label label164;
+        private System.Windows.Forms.Label labelTinhTienTongHopCycleTicketMonth;
         private System.Windows.Forms.Label label167;
         private System.Windows.Forms.Label label168;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TrackBar trackBarTinhTienTongHopCycleTicketMonth;
+        private System.Windows.Forms.Button btnCapNhatTinhTienTongHop;
+        private System.Windows.Forms.ComboBox cbLoaiXeTinhTienTongHop;
         private System.Windows.Forms.Label label175;
         private System.Windows.Forms.Label label176;
         private System.Windows.Forms.Label label177;
         private System.Windows.Forms.Label label178;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopCostMilestone3;
+        private System.Windows.Forms.RadioButton radioTinhTienTongHopAdd2Milestone;
+        private System.Windows.Forms.RadioButton radioTinhTienTongHopAdd1Milestone;
+        private System.Windows.Forms.RadioButton radioTinhTienTongHopNoAdd;
         private System.Windows.Forms.Label label173;
-        private System.Windows.Forms.Label label174;
+        private System.Windows.Forms.Label labelTinhTienTongHopCycleMilestone3;
         private System.Windows.Forms.Label label179;
         private System.Windows.Forms.Label label180;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar trackBarTinhTienTongHopCycleMilestone3;
         private System.Windows.Forms.Panel panel33;
-        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown numericTinhTienTongHopNightCost;
         private System.Windows.Forms.Label label182;
         private System.Windows.Forms.Label label181;
     }

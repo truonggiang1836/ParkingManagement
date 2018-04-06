@@ -51,7 +51,7 @@ namespace ParkingMangement.Utils
         public const int LOAI_GIU_XE_MIEN_PHI = 0;
         public const int LOAI_GIU_XE_THEO_CONG_VAN = 1;
         public const int LOAI_GIU_XE_LUY_TIEN = 2;
-        public const int LOAI_GIU_XE_MTONG_HOP = 3;
+        public const int LOAI_GIU_XE_TONG_HOP = 3;
 
         public const string TINH_TIEN_LUY_TIEN_KHONG_CONG = "0";
         public const string TINH_TIEN_LUY_TIEN_CONG_1_MOC = "1";
