@@ -524,6 +524,46 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void updateTinhTienTongHop()
+        {
+            if (mComputerDTO != null)
+            {
+                mComputerDTO.StartHourNight = (int) numericTinhTienTongHopStartHourNight.Value;
+                mComputerDTO.EndHourNight = (int) numericTinhTienTongHopEndHourNight.Value;
+                mComputerDTO.NightCost = (int) numericTinhTienTongHopNightCost.Value;
+
+                mComputerDTO.HourMilestone1 = (int) numericTinhTienTongHopHourMilestone1.Value;
+                mComputerDTO.CostMilestone1 = (int) numericTinhTienTongHopCostMilestone1.Value;
+                mComputerDTO.HourMilestone2 = (int) numericTinhTienTongHopHourMilestone2.Value;
+                mComputerDTO.CostMilestone2 = (int) numericTinhTienTongHopCostMilestone2.Value;
+
+                mComputerDTO.CycleMilestone3 = trackBarTinhTienTongHopCycleMilestone3.Value;
+                mComputerDTO.CostMilestone3 = (int) numericTinhTienTongHopCostMilestone3.Value;
+
+                mComputerDTO.CycleTicketMonth = trackBarTinhTienTongHopCycleTicketMonth.Value;
+                mComputerDTO.CostTicketMonth = (int) numericTinhTienTongHopCostTicketMonth.Value;
+
+                if (radioTinhTienTongHopNoAdd.Checked)
+                {
+                    mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG;
+                }
+                else if (radioTinhTienTongHopAdd1Milestone.Checked)
+                {
+                    mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC;
+                }
+                else if (radioTinhTienTongHopAdd2Milestone.Checked)
+                {
+                    mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC;
+                }
+
+                if (ComputerDAO.Update(mComputerDTO))
+                {
+                    MessageBox.Show(Constant.sMessageUpdateSuccess);
+                    panelTinhTienTongHop.Enabled = false;
+                }
+            }
+        }
+
         private void cbLoaiXeTinhTienCongVan_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadDataTinhTienTheoCongVan();
@@ -560,6 +600,11 @@ namespace ParkingMangement.GUI
             loadDataTinhTienLuyTien();
         }
 
+        private void cbLoaiXeTinhTienTongHop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataTinhTienTongHop();
+        }
+
         private void trackBarTinhTienLuyTienCycleMilestone3_ValueChanged(object sender, EventArgs e)
         {
             labelTinhTienLuyTienCycleMilestone3.Text = trackBarTinhTienLuyTienCycleMilestone3.Value + "";
@@ -584,6 +629,27 @@ namespace ParkingMangement.GUI
         {
             loadDataTinhTienLuyTien();
             panelTinhTienLuyTien.Enabled = false;
+        }
+
+        private void btnChinhSuaTinhTienTongHop_Click(object sender, EventArgs e)
+        {
+            panelTinhTienTongHop.Enabled = true;
+        }
+
+        private void btnCapNhatTinhTienTongHop_Click(object sender, EventArgs e)
+        {
+            updateTinhTienTongHop();
+        }
+
+        private void btnHuyTinhTienTongHop_Click(object sender, EventArgs e)
+        {
+            loadDataTinhTienTongHop();
+            panelTinhTienTongHop.Enabled = false;
+        }
+
+        private void trackBarTinhTienTongHopCycleTicketMonth_ValueChanged(object sender, EventArgs e)
+        {
+            labelTinhTienTongHopCycleTicketMonth.Text = trackBarTinhTienTongHopCycleTicketMonth.Value + "";
         }
 
         /*
@@ -2109,17 +2175,6 @@ namespace ParkingMangement.GUI
         private void tbLogShowAllData_Click(object sender, EventArgs e)
         {
             loadLogList();
-        }
-
-        private void btnChinhSuaTinhTienTongHop_Click(object sender, EventArgs e)
-        {
-            panelTinhTienTongHop.Enabled = true;
-        }
-
-        private void cbLoaiXeTinhTienTongHop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
         }
     }
 }
