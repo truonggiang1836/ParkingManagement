@@ -2180,5 +2180,117 @@ namespace ParkingMangement.GUI
         {
             loadLogList();
         }
+
+
+        private void exportCarListToExcel()
+        {
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+
+                worksheet = workbook.ActiveSheet;
+                worksheet.Name = "Car list";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (int i = 0; i < dgvCarList.Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j < dgvCarList.Columns.Count; j++)
+                    {
+                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
+                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+                        if (cellRowIndex == 1)
+                        {
+                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarList.Columns[j].HeaderText;
+                            setColerForRange(range);
+                            setAllBorderForRange(range);
+                        }
+                        else
+                        {
+                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarList.Rows[i].Cells[j].Value.ToString();
+                            setLeftBorderForRange(range);
+                            setRightBorderForRange(range);
+                            if (i == dgvCarList.Rows.Count - 2)
+                            {
+                                setBottomBorderForRange(range);
+                            }
+                        }
+
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+                excel.Columns.AutoFit();
+
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                saveDialog.FilterIndex = 2;
+
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    workbook.SaveAs(saveDialog.FileName);
+                    MessageBox.Show("Export Successful");
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
+            }
+
+        }
+
+        private void setLeftBorderForRange(Microsoft.Office.Interop.Excel.Range range)
+        {
+            range.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft).LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        }
+
+        private void setRightBorderForRange(Microsoft.Office.Interop.Excel.Range range)
+        {
+            range.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeRight).LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        }
+
+        private void setTopBorderForRange(Microsoft.Office.Interop.Excel.Range range)
+        {
+            range.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeTop).LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        }
+
+        private void setBottomBorderForRange(Microsoft.Office.Interop.Excel.Range range)
+        {
+            range.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+        }
+
+        private void setAllBorderForRange(Microsoft.Office.Interop.Excel.Range range)
+        {
+            setLeftBorderForRange(range);
+            setRightBorderForRange(range);
+            setTopBorderForRange(range);
+            setBottomBorderForRange(range);
+        }
+
+        private void setColerForRange(Microsoft.Office.Interop.Excel.Range range)
+        {
+            range.Font.Color = ColorTranslator.ToOle(Color.Blue);
+            range.Font.Bold = true;
+        }
+
+        private void btnExportCarList_Click(object sender, EventArgs e)
+        {
+            exportCarListToExcel();
+        }
     }
 }
