@@ -1620,6 +1620,10 @@ namespace ParkingMangement.GUI
         {
             DataTable data = CarDAO.GetAllData();
             dgvCarList.DataSource = data;
+            if (data != null && data.Rows.Count > 0)
+            {
+                loadCarInfoFromDataGridViewRow(0);
+            }
         }
 
         private void loadCarTicketMonthList()

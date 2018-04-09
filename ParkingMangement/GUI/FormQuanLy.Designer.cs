@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode85,
-            treeNode86});
-            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode88,
-            treeNode89});
-            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode91,
-            treeNode92,
-            treeNode93});
-            System.Windows.Forms.TreeNode treeNode95 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode96 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode97 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode98 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode99 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode100 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode95,
-            treeNode96,
-            treeNode97,
-            treeNode98,
-            treeNode99});
-            System.Windows.Forms.TreeNode treeNode101 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode102 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode104 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode105 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode101,
-            treeNode102,
-            treeNode103,
-            treeNode104});
-            System.Windows.Forms.TreeNode treeNode106 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode107 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode108 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode109 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode110 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode106,
-            treeNode107,
-            treeNode108,
-            treeNode109});
-            System.Windows.Forms.TreeNode treeNode111 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode112 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode169 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode170 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode171 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode169,
+            treeNode170});
+            System.Windows.Forms.TreeNode treeNode172 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode173 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode174 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode172,
+            treeNode173});
+            System.Windows.Forms.TreeNode treeNode175 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode176 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode177 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode178 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode175,
+            treeNode176,
+            treeNode177});
+            System.Windows.Forms.TreeNode treeNode179 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode180 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode181 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode182 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode183 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode184 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode179,
+            treeNode180,
+            treeNode181,
+            treeNode182,
+            treeNode183});
+            System.Windows.Forms.TreeNode treeNode185 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode186 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode187 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode188 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode189 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode185,
+            treeNode186,
+            treeNode187,
+            treeNode188});
+            System.Windows.Forms.TreeNode treeNode190 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode191 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode192 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode193 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode194 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode190,
+            treeNode191,
+            treeNode192,
+            treeNode193});
+            System.Windows.Forms.TreeNode treeNode195 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode196 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -786,6 +786,41 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
+            this.label164 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label174 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.panel32 = new System.Windows.Forms.Panel();
+            this.label183 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label184 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.label185 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label186 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label187 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.radioButton7 = new System.Windows.Forms.RadioButton();
+            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.panel34 = new System.Windows.Forms.Panel();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label188 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label189 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -898,6 +933,7 @@
             this.tabControl3.SuspendLayout();
             this.tabPageCauHinhKetNoi.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabPageCauHinhHienThi.SuspendLayout();
             this.tabPageQuanLyThuTienXe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCashManagementList)).BeginInit();
             this.panel26.SuspendLayout();
@@ -926,6 +962,13 @@
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.panel32.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.panel34.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -6467,6 +6510,14 @@
             // 
             // tabPageCauHinhHienThi
             // 
+            this.tabPageCauHinhHienThi.Controls.Add(this.button3);
+            this.tabPageCauHinhHienThi.Controls.Add(this.groupBox10);
+            this.tabPageCauHinhHienThi.Controls.Add(this.groupBox9);
+            this.tabPageCauHinhHienThi.Controls.Add(this.groupBox8);
+            this.tabPageCauHinhHienThi.Controls.Add(this.label174);
+            this.tabPageCauHinhHienThi.Controls.Add(this.textBox5);
+            this.tabPageCauHinhHienThi.Controls.Add(this.label164);
+            this.tabPageCauHinhHienThi.Controls.Add(this.textBox4);
             this.tabPageCauHinhHienThi.Location = new System.Drawing.Point(4, 25);
             this.tabPageCauHinhHienThi.Name = "tabPageCauHinhHienThi";
             this.tabPageCauHinhHienThi.Padding = new System.Windows.Forms.Padding(3);
@@ -6781,71 +6832,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode85.Name = "NodeName1";
-            treeNode85.Text = "Thông tin nhân sự";
-            treeNode86.Name = "NodeName2";
-            treeNode86.Text = "Dò bảng chấm công";
-            treeNode87.Name = "Node0";
-            treeNode87.Text = "Quản lý nhân sự";
-            treeNode88.Name = "NodeName3";
-            treeNode88.Text = "Xem thống kê";
-            treeNode89.Name = "NodeName4";
-            treeNode89.Text = "Điều chỉnh công thức tính tiền";
-            treeNode90.Name = "Node1";
-            treeNode90.Text = "Quản lý doanh thu";
-            treeNode91.Name = "NodeName5";
-            treeNode91.Text = "Quản lý loại xe";
-            treeNode92.Name = "NodeName6";
-            treeNode92.Text = "Quản lý thẻ xe";
-            treeNode93.Name = "NodeName7";
-            treeNode93.Text = "Kích hoạt thẻ";
-            treeNode94.Name = "Node8";
-            treeNode94.Text = "Quản lý thẻ xe - loại xe";
-            treeNode95.Name = "NodeName8";
-            treeNode95.Text = "Nhật ký vé tháng";
-            treeNode96.Name = "NodeName9";
-            treeNode96.Text = "Cập nhật thông tin vé tháng";
-            treeNode97.Name = "NodeName10";
-            treeNode97.Text = "Gia hạn vé tháng";
-            treeNode98.Name = "NodeName11";
-            treeNode98.Text = "Mất thẻ tháng";
-            treeNode99.Name = "NodeName12";
-            treeNode99.Text = "Kích hoạt vé tháng";
-            treeNode100.Name = "Node12";
-            treeNode100.Text = "Quản lý vé tháng";
-            treeNode101.Name = "NodeName13";
-            treeNode101.Text = "Cấu hình cơ bản";
-            treeNode102.Name = "NodeName14";
-            treeNode102.Text = "Quản lý tiền thu";
-            treeNode103.Name = "NodeName15";
-            treeNode103.Text = "Phân quyền truy cập";
-            treeNode104.Name = "NodeName16";
-            treeNode104.Text = "Nhật ký hệ thống";
-            treeNode105.Name = "Node18";
-            treeNode105.Text = "Quản lý hệ thống";
-            treeNode106.Name = "NodeName17";
-            treeNode106.Text = "Thiết lập ra vào";
-            treeNode107.Name = "NodeName18";
-            treeNode107.Text = "Tra cứu vào ra";
-            treeNode108.Name = "NodeName19";
-            treeNode108.Text = "Tra cứu vào ra vé tháng";
-            treeNode109.Name = "NodeName20";
-            treeNode109.Text = "Xem hộp đen";
-            treeNode110.Name = "Node23";
-            treeNode110.Text = "Quản lý xe vào ra";
-            treeNode111.Name = "NodeName21";
-            treeNode111.Text = "Lưu mất thẻ";
-            treeNode112.Name = "NodeName22";
-            treeNode112.Text = "Xem báo cáo F7";
+            treeNode169.Name = "NodeName1";
+            treeNode169.Text = "Thông tin nhân sự";
+            treeNode170.Name = "NodeName2";
+            treeNode170.Text = "Dò bảng chấm công";
+            treeNode171.Name = "Node0";
+            treeNode171.Text = "Quản lý nhân sự";
+            treeNode172.Name = "NodeName3";
+            treeNode172.Text = "Xem thống kê";
+            treeNode173.Name = "NodeName4";
+            treeNode173.Text = "Điều chỉnh công thức tính tiền";
+            treeNode174.Name = "Node1";
+            treeNode174.Text = "Quản lý doanh thu";
+            treeNode175.Name = "NodeName5";
+            treeNode175.Text = "Quản lý loại xe";
+            treeNode176.Name = "NodeName6";
+            treeNode176.Text = "Quản lý thẻ xe";
+            treeNode177.Name = "NodeName7";
+            treeNode177.Text = "Kích hoạt thẻ";
+            treeNode178.Name = "Node8";
+            treeNode178.Text = "Quản lý thẻ xe - loại xe";
+            treeNode179.Name = "NodeName8";
+            treeNode179.Text = "Nhật ký vé tháng";
+            treeNode180.Name = "NodeName9";
+            treeNode180.Text = "Cập nhật thông tin vé tháng";
+            treeNode181.Name = "NodeName10";
+            treeNode181.Text = "Gia hạn vé tháng";
+            treeNode182.Name = "NodeName11";
+            treeNode182.Text = "Mất thẻ tháng";
+            treeNode183.Name = "NodeName12";
+            treeNode183.Text = "Kích hoạt vé tháng";
+            treeNode184.Name = "Node12";
+            treeNode184.Text = "Quản lý vé tháng";
+            treeNode185.Name = "NodeName13";
+            treeNode185.Text = "Cấu hình cơ bản";
+            treeNode186.Name = "NodeName14";
+            treeNode186.Text = "Quản lý tiền thu";
+            treeNode187.Name = "NodeName15";
+            treeNode187.Text = "Phân quyền truy cập";
+            treeNode188.Name = "NodeName16";
+            treeNode188.Text = "Nhật ký hệ thống";
+            treeNode189.Name = "Node18";
+            treeNode189.Text = "Quản lý hệ thống";
+            treeNode190.Name = "NodeName17";
+            treeNode190.Text = "Thiết lập ra vào";
+            treeNode191.Name = "NodeName18";
+            treeNode191.Text = "Tra cứu vào ra";
+            treeNode192.Name = "NodeName19";
+            treeNode192.Text = "Tra cứu vào ra vé tháng";
+            treeNode193.Name = "NodeName20";
+            treeNode193.Text = "Xem hộp đen";
+            treeNode194.Name = "Node23";
+            treeNode194.Text = "Quản lý xe vào ra";
+            treeNode195.Name = "NodeName21";
+            treeNode195.Text = "Lưu mất thẻ";
+            treeNode196.Name = "NodeName22";
+            treeNode196.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode87,
-            treeNode90,
-            treeNode94,
-            treeNode100,
-            treeNode105,
-            treeNode110,
-            treeNode111,
-            treeNode112});
+            treeNode171,
+            treeNode174,
+            treeNode178,
+            treeNode184,
+            treeNode189,
+            treeNode194,
+            treeNode195,
+            treeNode196});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -8000,6 +8051,356 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
+            // label164
+            // 
+            this.label164.AutoSize = true;
+            this.label164.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label164.Location = new System.Drawing.Point(10, 9);
+            this.label164.Name = "label164";
+            this.label164.Size = new System.Drawing.Size(119, 16);
+            this.label164.TabIndex = 11;
+            this.label164.Text = "- Điều chỉnh tiêu đề";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(13, 30);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(360, 22);
+            this.textBox4.TabIndex = 10;
+            // 
+            // label174
+            // 
+            this.label174.AutoSize = true;
+            this.label174.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label174.Location = new System.Drawing.Point(10, 61);
+            this.label174.Name = "label174";
+            this.label174.Size = new System.Drawing.Size(62, 16);
+            this.label174.TabIndex = 13;
+            this.label174.Text = "Hệ thống";
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(78, 58);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(295, 22);
+            this.textBox5.TabIndex = 12;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.panel32);
+            this.groupBox8.Controls.Add(this.radioButton3);
+            this.groupBox8.Controls.Add(this.radioButton4);
+            this.groupBox8.Controls.Add(this.radioButton2);
+            this.groupBox8.Controls.Add(this.radioButton1);
+            this.groupBox8.Location = new System.Drawing.Point(13, 88);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(360, 292);
+            this.groupBox8.TabIndex = 14;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Loại hình giữ xe";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(51, 24);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(116, 20);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Giữ xe miễn phí";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(51, 50);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(150, 20);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Giữ xe theo công văn";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(51, 102);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(118, 20);
+            this.radioButton3.TabIndex = 3;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Giữ xe tổng hợp";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(51, 76);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(136, 20);
+            this.radioButton4.TabIndex = 2;
+            this.radioButton4.TabStop = true;
+            this.radioButton4.Text = "Giữ xe tăng lũy tiến";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // panel32
+            // 
+            this.panel32.Controls.Add(this.label183);
+            this.panel32.Controls.Add(this.textBox6);
+            this.panel32.Controls.Add(this.label184);
+            this.panel32.Controls.Add(this.textBox7);
+            this.panel32.Controls.Add(this.label185);
+            this.panel32.Controls.Add(this.textBox8);
+            this.panel32.Controls.Add(this.label186);
+            this.panel32.Controls.Add(this.textBox9);
+            this.panel32.Controls.Add(this.label187);
+            this.panel32.Controls.Add(this.textBox10);
+            this.panel32.Location = new System.Drawing.Point(6, 128);
+            this.panel32.Name = "panel32";
+            this.panel32.Size = new System.Drawing.Size(348, 157);
+            this.panel32.TabIndex = 4;
+            // 
+            // label183
+            // 
+            this.label183.AutoSize = true;
+            this.label183.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label183.Location = new System.Drawing.Point(17, 128);
+            this.label183.Name = "label183";
+            this.label183.Size = new System.Drawing.Size(117, 16);
+            this.label183.TabIndex = 27;
+            this.label183.Text = "Hạn mức qua đêm";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(176, 125);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(115, 22);
+            this.textBox6.TabIndex = 26;
+            // 
+            // label184
+            // 
+            this.label184.AutoSize = true;
+            this.label184.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label184.Location = new System.Drawing.Point(17, 100);
+            this.label184.Name = "label184";
+            this.label184.Size = new System.Drawing.Size(118, 16);
+            this.label184.TabIndex = 25;
+            this.label184.Text = "Hạn mức thẻ tháng";
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(176, 97);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(115, 22);
+            this.textBox7.TabIndex = 24;
+            // 
+            // label185
+            // 
+            this.label185.AutoSize = true;
+            this.label185.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label185.Location = new System.Drawing.Point(17, 72);
+            this.label185.Name = "label185";
+            this.label185.Size = new System.Drawing.Size(117, 16);
+            this.label185.TabIndex = 23;
+            this.label185.Text = "Sức chứa vé tháng";
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(176, 69);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(115, 22);
+            this.textBox8.TabIndex = 22;
+            // 
+            // label186
+            // 
+            this.label186.AutoSize = true;
+            this.label186.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label186.Location = new System.Drawing.Point(17, 44);
+            this.label186.Name = "label186";
+            this.label186.Size = new System.Drawing.Size(96, 16);
+            this.label186.TabIndex = 21;
+            this.label186.Text = "Tổng sức chứa";
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(176, 41);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(115, 22);
+            this.textBox9.TabIndex = 20;
+            // 
+            // label187
+            // 
+            this.label187.AutoSize = true;
+            this.label187.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label187.Location = new System.Drawing.Point(17, 16);
+            this.label187.Name = "label187";
+            this.label187.Size = new System.Drawing.Size(130, 16);
+            this.label187.TabIndex = 19;
+            this.label187.Text = "Tiền phạt khi mất thẻ";
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(176, 13);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(115, 22);
+            this.textBox10.TabIndex = 18;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.radioButton7);
+            this.groupBox9.Controls.Add(this.radioButton8);
+            this.groupBox9.Location = new System.Drawing.Point(13, 386);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(360, 81);
+            this.groupBox9.TabIndex = 15;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Khi vé tháng hết hạn";
+            // 
+            // radioButton7
+            // 
+            this.radioButton7.AutoSize = true;
+            this.radioButton7.Location = new System.Drawing.Point(51, 50);
+            this.radioButton7.Name = "radioButton7";
+            this.radioButton7.Size = new System.Drawing.Size(150, 20);
+            this.radioButton7.TabIndex = 1;
+            this.radioButton7.TabStop = true;
+            this.radioButton7.Text = "Chỉ cảnh báo hết hạn";
+            this.radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            this.radioButton8.AutoSize = true;
+            this.radioButton8.Location = new System.Drawing.Point(51, 24);
+            this.radioButton8.Name = "radioButton8";
+            this.radioButton8.Size = new System.Drawing.Size(150, 20);
+            this.radioButton8.TabIndex = 0;
+            this.radioButton8.TabStop = true;
+            this.radioButton8.Text = "Tính tiền như vãng lai";
+            this.radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label189);
+            this.groupBox10.Controls.Add(this.pictureBox3);
+            this.groupBox10.Controls.Add(this.groupBox11);
+            this.groupBox10.Controls.Add(this.checkBox2);
+            this.groupBox10.Controls.Add(this.checkBox1);
+            this.groupBox10.Location = new System.Drawing.Point(385, 22);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(360, 445);
+            this.groupBox10.TabIndex = 16;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Quyền nhân viên giữ xe";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(36, 24);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(150, 20);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Có quyền lưu mất thẻ";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(36, 50);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(169, 20);
+            this.checkBox2.TabIndex = 17;
+            this.checkBox2.Text = "Xem thống kê doanh thu";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.panel34);
+            this.groupBox11.Controls.Add(this.radioButton5);
+            this.groupBox11.Controls.Add(this.radioButton6);
+            this.groupBox11.Location = new System.Drawing.Point(36, 99);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(288, 132);
+            this.groupBox11.TabIndex = 17;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Giới hạn xem báo cáo doanh thu";
+            // 
+            // radioButton5
+            // 
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(51, 50);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(93, 20);
+            this.radioButton5.TabIndex = 1;
+            this.radioButton5.TabStop = true;
+            this.radioButton5.Text = "Có giới hạn";
+            this.radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            this.radioButton6.AutoSize = true;
+            this.radioButton6.Location = new System.Drawing.Point(51, 24);
+            this.radioButton6.Name = "radioButton6";
+            this.radioButton6.Size = new System.Drawing.Size(114, 20);
+            this.radioButton6.TabIndex = 0;
+            this.radioButton6.TabStop = true;
+            this.radioButton6.Text = "Không giới hạn";
+            this.radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // panel34
+            // 
+            this.panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel34.Controls.Add(this.label188);
+            this.panel34.Controls.Add(this.textBox11);
+            this.panel34.Location = new System.Drawing.Point(67, 76);
+            this.panel34.Name = "panel34";
+            this.panel34.Size = new System.Drawing.Size(141, 43);
+            this.panel34.TabIndex = 18;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(11, 10);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(44, 22);
+            this.textBox11.TabIndex = 19;
+            // 
+            // label188
+            // 
+            this.label188.AutoSize = true;
+            this.label188.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label188.Location = new System.Drawing.Point(60, 13);
+            this.label188.Name = "label188";
+            this.label188.Size = new System.Drawing.Size(38, 16);
+            this.label188.TabIndex = 19;
+            this.label188.Text = "ngày";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox3.Location = new System.Drawing.Point(36, 278);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(150, 140);
+            this.pictureBox3.TabIndex = 18;
+            this.pictureBox3.TabStop = false;
+            // 
+            // label189
+            // 
+            this.label189.AutoSize = true;
+            this.label189.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label189.Location = new System.Drawing.Point(33, 253);
+            this.label189.Name = "label189";
+            this.label189.Size = new System.Drawing.Size(39, 16);
+            this.label189.TabIndex = 20;
+            this.label189.Text = "Logo";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(325, 484);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(108, 35);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "LƯU";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8159,6 +8560,8 @@
             this.tabPageCauHinhKetNoi.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabPageCauHinhHienThi.ResumeLayout(false);
+            this.tabPageCauHinhHienThi.PerformLayout();
             this.tabPageQuanLyThuTienXe.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCashManagementList)).EndInit();
             this.panel26.ResumeLayout(false);
@@ -8194,6 +8597,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.panel32.ResumeLayout(false);
+            this.panel32.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.panel34.ResumeLayout(false);
+            this.panel34.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -8910,5 +9326,40 @@
         private System.Windows.Forms.NumericUpDown numericTinhTienTongHopNightCost;
         private System.Windows.Forms.Label label182;
         private System.Windows.Forms.Label label181;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Label label174;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.Label label164;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton radioButton7;
+        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.Panel panel32;
+        private System.Windows.Forms.Label label183;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label label184;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label label185;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.Label label186;
+        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.Label label187;
+        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label189;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Panel panel34;
+        private System.Windows.Forms.Label label188;
+        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton radioButton6;
     }
 }
