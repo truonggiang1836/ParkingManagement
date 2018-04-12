@@ -85,5 +85,13 @@ namespace ParkingMangement
         {
             Application.Exit();
         }
+
+        private void FormLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                login();
+            }
+        }
     }
 }

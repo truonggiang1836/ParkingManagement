@@ -119,9 +119,9 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static void updateLostCard(string id, DateTime dateLostCard)
+        public static void updateLostCard(string identify, DateTime dateLostCard)
         {
-            string sql = "update [Car] set IsLostCard = 1 and DateLostCard = '" + dateLostCard + "' where ID = '" + id+ "'";
+            string sql = "update [Car] set IsLostCard = 1 and DateLostCard = '" + dateLostCard + "' where Identify = " + identify;
             Database.ExcuNonQuery(sql);
         }
 
@@ -193,8 +193,11 @@ namespace ParkingMangement.DAO
             if (data != null)
             {
                 data.Columns.Add("PartName", typeof(string));
+                data.Columns["PartName"].SetOrdinal(0);
                 data.Columns.Add("CountCarIn", typeof(int));
+                data.Columns["CountCarIn"].SetOrdinal(1);
                 data.Columns.Add("CountCarOut", typeof(int));
+                data.Columns["CountCarOut"].SetOrdinal(2);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string partID = data.Rows[row].Field<string>("IDPart");

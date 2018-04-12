@@ -65,5 +65,11 @@ namespace ParkingMangement.DAO
             string sql = "select * from [SmartCard] where SmartCard.IsUsing = '0'";
             return Database.ExcuQuery(sql).Rows.Count;
         }
+
+        public static void Delete(string userID)
+        {
+            string sql = "delete from [SmartCard] where ID = '" + userID + "'";
+            Database.ExcuNonQuery(sql);
+        }
     }
 }

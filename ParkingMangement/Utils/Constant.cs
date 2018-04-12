@@ -10,6 +10,11 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
+        
+        public static string sTitleDelete = "Xóa dữ liệu";
+        public static string sButtonDelete = "Xóa";
+        public static string sMessageConfirmDelete = "Bạn có muốn xóa không?";
+        public static string sMessageExportExcelSuccess = "Xuất file Excel thành công";
         public static string sMessageUpdateSuccess = "Cập nhật thành công";
         public static string sMessageCommonError = "Có lỗi xảy ra";
         public static string sMessageDuplicateDataError = "Dữ liệu đã tồn tại";

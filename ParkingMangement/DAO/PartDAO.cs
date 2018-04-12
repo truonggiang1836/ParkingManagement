@@ -40,5 +40,11 @@ namespace ParkingMangement.DAO
                 + partDTO.Limit + ") where PartID =" + partDTO.Id + "";
             Database.ExcuNonQuery(sql);
         }
+
+        public static void Delete(string partID)
+        {
+            string sql = "delete from [Part] where PartID = '" + partID + "'";
+            Database.ExcuNonQuery(sql);
+        }
     }
 }
