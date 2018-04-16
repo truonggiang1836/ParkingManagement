@@ -305,5 +305,41 @@ namespace ParkingMangement.DAO
             DataTable data = Database.ExcuQuery(sql);
             return data.Rows.Count;
         }
+
+        public static DataTable GetCarByID(string id)
+        {
+            string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify asc";
+            return Database.ExcuQuery(sql);
+        }
+
+        public static void Insert(CarDTO carDTO)
+        {
+            string sql = "insert into Car(ID, TimeStart, TimeEnd, Digit, IDIn, IDOut, Cost, IDTicketMonth, IDPart, Images, Images2, Images3," +
+                " Images4, IsLostCard, Computer, Account, CostBefore, DateUpdate, DateLostCard) values ('" + carDTO.Id + "', '" + carDTO.TimeStart
+                + "', '" + carDTO.TimeEnd + "', '" + carDTO.Digit + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', " + carDTO.Cost + ", '" + 
+                carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Images3 + "', '" + 
+                carDTO.Images4 + "', " + carDTO.IslostCard + ", '" + carDTO.Computer + "', '" + carDTO.Account + "', " + 
+                carDTO.CostBefore + ", '" + carDTO.DateUpdate + "', '" + carDTO.DateLostCard + "')";
+            Database.ExcuNonQuery(sql);
+        }
+
+        public static void UpdateCarOut(CarDTO carDTO)
+        {
+            string sql = "update [Car] set TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
+            Database.ExcuNonQuery(sql);
+        }
+
+        public static bool isCarOut(string id)
+        {
+            DataTable dt = GetCarByID(id);
+            if (dt != null)
+            {
+                string IDOut = dt.Rows[0].Field<string>("IDOut");
+                if (string.IsNullOrEmpty(IDOut)) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

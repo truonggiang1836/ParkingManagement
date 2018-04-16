@@ -30,6 +30,7 @@ namespace ParkingMangement.DTO
         private string account;
         private int costBefore;
         private DateTime dateUpdate;
+        private DateTime dateLostCard;
 
         public int Identify { get => identify; set => identify = value; }
         public string Id { get => id; set => id = value; }
@@ -53,5 +54,6 @@ namespace ParkingMangement.DTO
         public string Account { get => account; set => account = value; }
         public int CostBefore { get => costBefore; set => costBefore = value; }
         public DateTime DateUpdate { get => dateUpdate; set => dateUpdate = value; }
+        public DateTime DateLostCard { get => dateLostCard; set => dateLostCard = value; }
     }
 }

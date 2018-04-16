@@ -30,19 +30,20 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.imageBoxPicture1 = new Emgu.CV.UI.ImageBox();
             this.imageBoxCamera1 = new Emgu.CV.UI.ImageBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCamera4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCamera3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxImage2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCamera2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
+            this.labelTimeIn = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.label8 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -55,40 +56,54 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.labelCurrentTime = new System.Windows.Forms.Label();
             this.labelCardID = new System.Windows.Forms.Label();
-            this.imageBoxPicture1 = new Emgu.CV.UI.ImageBox();
+            this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
+            this.pictureBoxCamera1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera2)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pictureBoxImage1);
+            this.panel1.Controls.Add(this.pictureBoxCamera1);
             this.panel1.Controls.Add(this.imageBoxPicture1);
             this.panel1.Controls.Add(this.imageBoxCamera1);
-            this.panel1.Controls.Add(this.pictureBox5);
-            this.panel1.Controls.Add(this.pictureBox6);
-            this.panel1.Controls.Add(this.pictureBox7);
-            this.panel1.Controls.Add(this.pictureBox8);
-            this.panel1.Controls.Add(this.pictureBox3);
-            this.panel1.Controls.Add(this.pictureBox4);
+            this.panel1.Controls.Add(this.pictureBoxImage4);
+            this.panel1.Controls.Add(this.pictureBoxCamera4);
+            this.panel1.Controls.Add(this.pictureBoxImage3);
+            this.panel1.Controls.Add(this.pictureBoxCamera3);
+            this.panel1.Controls.Add(this.pictureBoxImage2);
+            this.panel1.Controls.Add(this.pictureBoxCamera2);
             this.panel1.Location = new System.Drawing.Point(2, 144);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(839, 510);
             this.panel1.TabIndex = 0;
+            // 
+            // imageBoxPicture1
+            // 
+            this.imageBoxPicture1.Location = new System.Drawing.Point(0, 255);
+            this.imageBoxPicture1.Name = "imageBoxPicture1";
+            this.imageBoxPicture1.Size = new System.Drawing.Size(210, 255);
+            this.imageBoxPicture1.TabIndex = 2;
+            this.imageBoxPicture1.TabStop = false;
             // 
             // imageBoxCamera1
             // 
@@ -98,59 +113,59 @@
             this.imageBoxCamera1.TabIndex = 2;
             this.imageBoxCamera1.TabStop = false;
             // 
-            // pictureBox5
+            // pictureBoxImage4
             // 
-            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox5.Location = new System.Drawing.Point(630, 255);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(210, 255);
-            this.pictureBox5.TabIndex = 7;
-            this.pictureBox5.TabStop = false;
+            this.pictureBoxImage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage4.Location = new System.Drawing.Point(630, 255);
+            this.pictureBoxImage4.Name = "pictureBoxImage4";
+            this.pictureBoxImage4.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxImage4.TabIndex = 7;
+            this.pictureBoxImage4.TabStop = false;
             // 
-            // pictureBox6
+            // pictureBoxCamera4
             // 
-            this.pictureBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox6.Location = new System.Drawing.Point(630, 0);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(210, 255);
-            this.pictureBox6.TabIndex = 6;
-            this.pictureBox6.TabStop = false;
+            this.pictureBoxCamera4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxCamera4.Location = new System.Drawing.Point(630, 0);
+            this.pictureBoxCamera4.Name = "pictureBoxCamera4";
+            this.pictureBoxCamera4.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxCamera4.TabIndex = 6;
+            this.pictureBoxCamera4.TabStop = false;
             // 
-            // pictureBox7
+            // pictureBoxImage3
             // 
-            this.pictureBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox7.Location = new System.Drawing.Point(420, 255);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(210, 255);
-            this.pictureBox7.TabIndex = 5;
-            this.pictureBox7.TabStop = false;
+            this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage3.Location = new System.Drawing.Point(420, 255);
+            this.pictureBoxImage3.Name = "pictureBoxImage3";
+            this.pictureBoxImage3.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxImage3.TabIndex = 5;
+            this.pictureBoxImage3.TabStop = false;
             // 
-            // pictureBox8
+            // pictureBoxCamera3
             // 
-            this.pictureBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox8.Location = new System.Drawing.Point(420, 0);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(210, 255);
-            this.pictureBox8.TabIndex = 4;
-            this.pictureBox8.TabStop = false;
+            this.pictureBoxCamera3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxCamera3.Location = new System.Drawing.Point(420, 0);
+            this.pictureBoxCamera3.Name = "pictureBoxCamera3";
+            this.pictureBoxCamera3.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxCamera3.TabIndex = 4;
+            this.pictureBoxCamera3.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBoxImage2
             // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Location = new System.Drawing.Point(210, 255);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(210, 255);
-            this.pictureBox3.TabIndex = 3;
-            this.pictureBox3.TabStop = false;
+            this.pictureBoxImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage2.Location = new System.Drawing.Point(210, 255);
+            this.pictureBoxImage2.Name = "pictureBoxImage2";
+            this.pictureBoxImage2.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxImage2.TabIndex = 3;
+            this.pictureBoxImage2.TabStop = false;
             // 
-            // pictureBox4
+            // pictureBoxCamera2
             // 
-            this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox4.Location = new System.Drawing.Point(210, 0);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(210, 255);
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
+            this.pictureBoxCamera2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxCamera2.Location = new System.Drawing.Point(210, 0);
+            this.pictureBoxCamera2.Name = "pictureBoxCamera2";
+            this.pictureBoxCamera2.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxCamera2.TabIndex = 2;
+            this.pictureBoxCamera2.TabStop = false;
             // 
             // panel2
             // 
@@ -193,7 +208,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Blue;
-            this.panel4.Controls.Add(this.label12);
+            this.panel4.Controls.Add(this.labelTimeIn);
             this.panel4.Controls.Add(this.panel9);
             this.panel4.Controls.Add(this.panel8);
             this.panel4.Controls.Add(this.label4);
@@ -202,17 +217,17 @@
             this.panel4.Size = new System.Drawing.Size(841, 36);
             this.panel4.TabIndex = 5;
             // 
-            // label12
+            // labelTimeIn
             // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(652, 9);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(137, 20);
-            this.label12.TabIndex = 15;
-            this.label12.Text = "30/01/18 21:23:09";
+            this.labelTimeIn.AutoSize = true;
+            this.labelTimeIn.BackColor = System.Drawing.Color.Transparent;
+            this.labelTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTimeIn.ForeColor = System.Drawing.Color.White;
+            this.labelTimeIn.Location = new System.Drawing.Point(652, 9);
+            this.labelTimeIn.Name = "labelTimeIn";
+            this.labelTimeIn.Size = new System.Drawing.Size(137, 20);
+            this.labelTimeIn.TabIndex = 15;
+            this.labelTimeIn.Text = "30/01/18 21:23:09";
             // 
             // panel9
             // 
@@ -340,29 +355,29 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "NHÂN VIÊN:";
             // 
-            // label10
+            // labelUserName
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(700, 7);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 20);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "KHAI";
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.BackColor = System.Drawing.Color.Transparent;
+            this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUserName.ForeColor = System.Drawing.Color.Black;
+            this.labelUserName.Location = new System.Drawing.Point(700, 7);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(47, 20);
+            this.labelUserName.TabIndex = 13;
+            this.labelUserName.Text = "KHAI";
             // 
-            // label11
+            // labelCurrentTime
             // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(111, 7);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(137, 20);
-            this.label11.TabIndex = 14;
-            this.label11.Text = "30/01/18 21:23:09";
+            this.labelCurrentTime.AutoSize = true;
+            this.labelCurrentTime.BackColor = System.Drawing.Color.Transparent;
+            this.labelCurrentTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCurrentTime.ForeColor = System.Drawing.Color.Black;
+            this.labelCurrentTime.Location = new System.Drawing.Point(74, 7);
+            this.labelCurrentTime.Name = "labelCurrentTime";
+            this.labelCurrentTime.Size = new System.Drawing.Size(137, 20);
+            this.labelCurrentTime.TabIndex = 14;
+            this.labelCurrentTime.Text = "30/01/18 21:23:09";
             // 
             // labelCardID
             // 
@@ -373,13 +388,27 @@
             this.labelCardID.TabIndex = 15;
             this.labelCardID.Text = "labelCardID";
             // 
-            // imageBoxPicture1
+            // timerCurrentTime
             // 
-            this.imageBoxPicture1.Location = new System.Drawing.Point(0, 255);
-            this.imageBoxPicture1.Name = "imageBoxPicture1";
-            this.imageBoxPicture1.Size = new System.Drawing.Size(210, 255);
-            this.imageBoxPicture1.TabIndex = 2;
-            this.imageBoxPicture1.TabStop = false;
+            this.timerCurrentTime.Tick += new System.EventHandler(this.timerCurrentTime_Tick);
+            // 
+            // pictureBoxCamera1
+            // 
+            this.pictureBoxCamera1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxCamera1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxCamera1.Name = "pictureBoxCamera1";
+            this.pictureBoxCamera1.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxCamera1.TabIndex = 8;
+            this.pictureBoxCamera1.TabStop = false;
+            // 
+            // pictureBoxImage1
+            // 
+            this.pictureBoxImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 255);
+            this.pictureBoxImage1.Name = "pictureBoxImage1";
+            this.pictureBoxImage1.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxImage1.TabIndex = 9;
+            this.pictureBoxImage1.TabStop = false;
             // 
             // FormNhanVien
             // 
@@ -388,8 +417,8 @@
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(843, 681);
             this.Controls.Add(this.labelCardID);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.labelCurrentTime);
+            this.Controls.Add(this.labelUserName);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel7);
@@ -409,13 +438,14 @@
             this.Load += new System.EventHandler(this.FormStaff_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -426,7 +456,8 @@
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -442,27 +473,30 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox8;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBoxImage4;
+        private System.Windows.Forms.PictureBox pictureBoxCamera4;
+        private System.Windows.Forms.PictureBox pictureBoxImage3;
+        private System.Windows.Forms.PictureBox pictureBoxCamera3;
+        private System.Windows.Forms.PictureBox pictureBoxImage2;
+        private System.Windows.Forms.PictureBox pictureBoxCamera2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelTimeIn;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelUserName;
+        private System.Windows.Forms.Label labelCurrentTime;
         private System.Windows.Forms.Label labelCardID;
         private Emgu.CV.UI.ImageBox imageBoxCamera1;
         private Emgu.CV.UI.ImageBox imageBoxPicture1;
+        private System.Windows.Forms.Timer timerCurrentTime;
+        private System.Windows.Forms.PictureBox pictureBoxImage1;
+        private System.Windows.Forms.PictureBox pictureBoxCamera1;
     }
 }

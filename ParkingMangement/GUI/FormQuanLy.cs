@@ -1991,7 +1991,7 @@ namespace ParkingMangement.GUI
 
         private void btnSaveLostCard_Click(object sender, EventArgs e)
         {
-            Da
+
         }
 
         private void btnLostTicketMonthUpdate_Click(object sender, EventArgs e)
