@@ -33,7 +33,7 @@ namespace ParkingMangement.GUI
         
         const string cameraUrl = "http://192.168.1.115:4747/video";
         private string cameraUrl1 = "http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg";
-        private string cameraUrl2 = cameraUrl;
+        private string cameraUrl2 = "http://camera1.mairie-brest.fr/mjpg/video.mjpg?resolution=400x300";
         private string cameraUrl3 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
         private string cameraUrl4 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
 
@@ -226,14 +226,18 @@ namespace ParkingMangement.GUI
             {
                 if (_isSaveCamera1ToFile)
                 {
-                    pictureBoxImage1.Image = bitmap;
-                    if (pictureBoxCamera1.Image != null)
+                    if (CarDAO.isCarIn(cardID))
                     {
-                        Image img = this.pictureBoxCamera1.Image;
-                        Image imgclone = (Image)img.Clone();
-                        imagePath1 = DateTime.Now.Ticks + ".jpg";
-                        saveImageToFile(imgclone, imagePath1);
+                        pictureBoxImage1.Image = bitmap;
+                        if (pictureBoxCamera1.Image != null)
+                        {
+                            Image img = this.pictureBoxCamera1.Image;
+                            Image imgclone = (Image)img.Clone();
+                            imagePath1 = DateTime.Now.Ticks + ".jpg";
+                            saveImageToFile(imgclone, imagePath1);
+                        }
                     }
+                    
                     _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
 
                     if (!_isSaveCamera2ToFile)
@@ -255,14 +259,18 @@ namespace ParkingMangement.GUI
             {
                 if (_isSaveCamera2ToFile)
                 {
-                    pictureBoxImage2.Image = bitmap;
-                    if (pictureBoxCamera2.Image != null)
+                    if (CarDAO.isCarIn(cardID))
                     {
-                        Image img = this.pictureBoxCamera2.Image;
-                        Image imgclone = (Image)img.Clone();
-                        imagePath2 = DateTime.Now.Ticks + ".jpg";
-                        saveImageToFile(imgclone, imagePath2);
+                        pictureBoxImage2.Image = bitmap;
+                        if (pictureBoxCamera2.Image != null)
+                        {
+                            Image img = this.pictureBoxCamera2.Image;
+                            Image imgclone = (Image)img.Clone();
+                            imagePath2 = DateTime.Now.Ticks + ".jpg";
+                            saveImageToFile(imgclone, imagePath2);
+                        }
                     }
+                    
                     _isSaveCamera2ToFile = !_isSaveCamera2ToFile;
 
                     if (!_isSaveCamera1ToFile)
@@ -306,9 +314,7 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB()
         {
-            Random rnd = new Random();
-            cardID = rnd.Next(111, 113) + "";
-            if (CarDAO.isCarOut(cardID))
+            if (CarDAO.isCarIn(cardID))
             {
                 insertCarIn();
             } else

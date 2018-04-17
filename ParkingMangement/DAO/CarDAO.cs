@@ -347,7 +347,13 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
-        public static bool isCarOut(string id)
+        public static bool UpdateLostCard(int identify)
+        {
+            string sql = "update [Car] set IsLostCard = 1 where Identify = " + identify;
+            return Database.ExcuNonQuery(sql);
+        }
+
+        public static bool isCarIn(string id)
         {
             DataTable dt = GetCarByID(id);
             if (dt != null && dt.Rows.Count > 0)

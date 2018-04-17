@@ -1593,6 +1593,12 @@ namespace ParkingMangement.GUI
 
         private void loadCarInfoFromDataGridViewRow(int Index)
         {
+            string identify = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogIdentify"].Value);
+            if (!string.IsNullOrEmpty(identify))
+            {
+                tbCarLogIdentify.Text = identify;
+            }
+
             pictureBoxCarLogImage1.Image = null;
             pictureBoxCarLogImage2.Image = null;
             pictureBoxCarLogImage3.Image = null;
@@ -1995,7 +2001,22 @@ namespace ParkingMangement.GUI
 
         private void btnSaveLostCard_Click(object sender, EventArgs e)
         {
+            saveLostCard();
+        }
 
+        private void saveLostCard()
+        {
+            if (!string.IsNullOrWhiteSpace(tbCarLogIdentify.Text))
+            {
+                int identify = Convert.ToInt32(tbCarLogIdentify.Text);
+                if (CarDAO.UpdateLostCard(identify))
+                {
+                    MessageBox.Show(Constant.sMessageUpdateSuccess);
+                } else
+                {
+                    MessageBox.Show(Constant.sMessageCommonError);
+                }
+            }
         }
 
         private void btnLostTicketMonthUpdate_Click(object sender, EventArgs e)
