@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode57,
-            treeNode58});
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode60,
-            treeNode61});
-            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode63,
-            treeNode64,
-            treeNode65});
-            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode67,
-            treeNode68,
-            treeNode69,
-            treeNode70,
-            treeNode71});
-            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode73,
-            treeNode74,
-            treeNode75,
-            treeNode76});
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode78,
-            treeNode79,
-            treeNode80,
-            treeNode81});
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode85,
+            treeNode86});
+            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode88,
+            treeNode89});
+            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode91,
+            treeNode92,
+            treeNode93});
+            System.Windows.Forms.TreeNode treeNode95 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode96 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode97 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode98 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode99 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode100 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode95,
+            treeNode96,
+            treeNode97,
+            treeNode98,
+            treeNode99});
+            System.Windows.Forms.TreeNode treeNode101 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode102 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode104 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode105 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode101,
+            treeNode102,
+            treeNode103,
+            treeNode104});
+            System.Windows.Forms.TreeNode treeNode106 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode107 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode108 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode109 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode110 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode106,
+            treeNode107,
+            treeNode108,
+            treeNode109});
+            System.Windows.Forms.TreeNode treeNode111 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode112 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -748,26 +748,6 @@
             this.tbNightLimit = new System.Windows.Forms.TextBox();
             this.tabPageTraCuuVaoRa = new System.Windows.Forms.TabPage();
             this.dgvCarList = new System.Windows.Forms.DataGridView();
-            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.dateTimePickerCarTimeOut = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerCarTimeIn = new System.Windows.Forms.DateTimePicker();
@@ -822,6 +802,26 @@
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
             this.btnAllSaleReport = new System.Windows.Forms.Button();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -7192,71 +7192,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode57.Name = "NodeName1";
-            treeNode57.Text = "Thông tin nhân sự";
-            treeNode58.Name = "NodeName2";
-            treeNode58.Text = "Dò bảng chấm công";
-            treeNode59.Name = "Node0";
-            treeNode59.Text = "Quản lý nhân sự";
-            treeNode60.Name = "NodeName3";
-            treeNode60.Text = "Xem thống kê";
-            treeNode61.Name = "NodeName4";
-            treeNode61.Text = "Điều chỉnh công thức tính tiền";
-            treeNode62.Name = "Node1";
-            treeNode62.Text = "Quản lý doanh thu";
-            treeNode63.Name = "NodeName5";
-            treeNode63.Text = "Quản lý loại xe";
-            treeNode64.Name = "NodeName6";
-            treeNode64.Text = "Quản lý thẻ xe";
-            treeNode65.Name = "NodeName7";
-            treeNode65.Text = "Kích hoạt thẻ";
-            treeNode66.Name = "Node8";
-            treeNode66.Text = "Quản lý thẻ xe - loại xe";
-            treeNode67.Name = "NodeName8";
-            treeNode67.Text = "Nhật ký vé tháng";
-            treeNode68.Name = "NodeName9";
-            treeNode68.Text = "Cập nhật thông tin vé tháng";
-            treeNode69.Name = "NodeName10";
-            treeNode69.Text = "Gia hạn vé tháng";
-            treeNode70.Name = "NodeName11";
-            treeNode70.Text = "Mất thẻ tháng";
-            treeNode71.Name = "NodeName12";
-            treeNode71.Text = "Kích hoạt vé tháng";
-            treeNode72.Name = "Node12";
-            treeNode72.Text = "Quản lý vé tháng";
-            treeNode73.Name = "NodeName13";
-            treeNode73.Text = "Cấu hình cơ bản";
-            treeNode74.Name = "NodeName14";
-            treeNode74.Text = "Quản lý tiền thu";
-            treeNode75.Name = "NodeName15";
-            treeNode75.Text = "Phân quyền truy cập";
-            treeNode76.Name = "NodeName16";
-            treeNode76.Text = "Nhật ký hệ thống";
-            treeNode77.Name = "Node18";
-            treeNode77.Text = "Quản lý hệ thống";
-            treeNode78.Name = "NodeName17";
-            treeNode78.Text = "Thiết lập ra vào";
-            treeNode79.Name = "NodeName18";
-            treeNode79.Text = "Tra cứu vào ra";
-            treeNode80.Name = "NodeName19";
-            treeNode80.Text = "Tra cứu vào ra vé tháng";
-            treeNode81.Name = "NodeName20";
-            treeNode81.Text = "Xem hộp đen";
-            treeNode82.Name = "Node23";
-            treeNode82.Text = "Quản lý xe vào ra";
-            treeNode83.Name = "NodeName21";
-            treeNode83.Text = "Lưu mất thẻ";
-            treeNode84.Name = "NodeName22";
-            treeNode84.Text = "Xem báo cáo F7";
+            treeNode85.Name = "NodeName1";
+            treeNode85.Text = "Thông tin nhân sự";
+            treeNode86.Name = "NodeName2";
+            treeNode86.Text = "Dò bảng chấm công";
+            treeNode87.Name = "Node0";
+            treeNode87.Text = "Quản lý nhân sự";
+            treeNode88.Name = "NodeName3";
+            treeNode88.Text = "Xem thống kê";
+            treeNode89.Name = "NodeName4";
+            treeNode89.Text = "Điều chỉnh công thức tính tiền";
+            treeNode90.Name = "Node1";
+            treeNode90.Text = "Quản lý doanh thu";
+            treeNode91.Name = "NodeName5";
+            treeNode91.Text = "Quản lý loại xe";
+            treeNode92.Name = "NodeName6";
+            treeNode92.Text = "Quản lý thẻ xe";
+            treeNode93.Name = "NodeName7";
+            treeNode93.Text = "Kích hoạt thẻ";
+            treeNode94.Name = "Node8";
+            treeNode94.Text = "Quản lý thẻ xe - loại xe";
+            treeNode95.Name = "NodeName8";
+            treeNode95.Text = "Nhật ký vé tháng";
+            treeNode96.Name = "NodeName9";
+            treeNode96.Text = "Cập nhật thông tin vé tháng";
+            treeNode97.Name = "NodeName10";
+            treeNode97.Text = "Gia hạn vé tháng";
+            treeNode98.Name = "NodeName11";
+            treeNode98.Text = "Mất thẻ tháng";
+            treeNode99.Name = "NodeName12";
+            treeNode99.Text = "Kích hoạt vé tháng";
+            treeNode100.Name = "Node12";
+            treeNode100.Text = "Quản lý vé tháng";
+            treeNode101.Name = "NodeName13";
+            treeNode101.Text = "Cấu hình cơ bản";
+            treeNode102.Name = "NodeName14";
+            treeNode102.Text = "Quản lý tiền thu";
+            treeNode103.Name = "NodeName15";
+            treeNode103.Text = "Phân quyền truy cập";
+            treeNode104.Name = "NodeName16";
+            treeNode104.Text = "Nhật ký hệ thống";
+            treeNode105.Name = "Node18";
+            treeNode105.Text = "Quản lý hệ thống";
+            treeNode106.Name = "NodeName17";
+            treeNode106.Text = "Thiết lập ra vào";
+            treeNode107.Name = "NodeName18";
+            treeNode107.Text = "Tra cứu vào ra";
+            treeNode108.Name = "NodeName19";
+            treeNode108.Text = "Tra cứu vào ra vé tháng";
+            treeNode109.Name = "NodeName20";
+            treeNode109.Text = "Xem hộp đen";
+            treeNode110.Name = "Node23";
+            treeNode110.Text = "Quản lý xe vào ra";
+            treeNode111.Name = "NodeName21";
+            treeNode111.Text = "Lưu mất thẻ";
+            treeNode112.Name = "NodeName22";
+            treeNode112.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode59,
-            treeNode62,
-            treeNode66,
-            treeNode72,
-            treeNode77,
-            treeNode82,
-            treeNode83,
-            treeNode84});
+            treeNode87,
+            treeNode90,
+            treeNode94,
+            treeNode100,
+            treeNode105,
+            treeNode110,
+            treeNode111,
+            treeNode112});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -7799,126 +7799,6 @@
             this.dgvCarList.TabIndex = 1;
             this.dgvCarList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarList_CellClick);
             // 
-            // Column19
-            // 
-            this.Column19.DataPropertyName = "Identify";
-            this.Column19.HeaderText = "STT";
-            this.Column19.Name = "Column19";
-            // 
-            // CarLogImages
-            // 
-            this.CarLogImages.DataPropertyName = "Images";
-            this.CarLogImages.HeaderText = "Images";
-            this.CarLogImages.Name = "CarLogImages";
-            // 
-            // CarLogImages2
-            // 
-            this.CarLogImages2.DataPropertyName = "Images2";
-            this.CarLogImages2.HeaderText = "Images2";
-            this.CarLogImages2.Name = "CarLogImages2";
-            // 
-            // CarLogImages3
-            // 
-            this.CarLogImages3.DataPropertyName = "Images3";
-            this.CarLogImages3.HeaderText = "Images3";
-            this.CarLogImages3.Name = "CarLogImages3";
-            // 
-            // CarLogImages4
-            // 
-            this.CarLogImages4.DataPropertyName = "Images4";
-            this.CarLogImages4.HeaderText = "Images4";
-            this.CarLogImages4.Name = "CarLogImages4";
-            // 
-            // Column20
-            // 
-            this.Column20.DataPropertyName = "SmartCardIdentify";
-            this.Column20.HeaderText = "STT thẻ";
-            this.Column20.Name = "Column20";
-            // 
-            // CarID
-            // 
-            this.CarID.DataPropertyName = "ID";
-            this.CarID.HeaderText = "Mã thẻ";
-            this.CarID.Name = "CarID";
-            // 
-            // Column22
-            // 
-            this.Column22.DataPropertyName = "Sign";
-            this.Column22.HeaderText = "Ký hiệu";
-            this.Column22.Name = "Column22";
-            // 
-            // Column23
-            // 
-            this.Column23.DataPropertyName = "Digit";
-            this.Column23.HeaderText = "Biển số";
-            this.Column23.Name = "Column23";
-            // 
-            // Column24
-            // 
-            this.Column24.DataPropertyName = "PartName";
-            this.Column24.HeaderText = "Loại xe";
-            this.Column24.Name = "Column24";
-            // 
-            // Column25
-            // 
-            this.Column25.DataPropertyName = "TimeStart";
-            this.Column25.HeaderText = "Thời gian vào";
-            this.Column25.Name = "Column25";
-            // 
-            // Column26
-            // 
-            this.Column26.DataPropertyName = "TimeEnd";
-            this.Column26.HeaderText = "Thời gian ra";
-            this.Column26.Name = "Column26";
-            // 
-            // Column27
-            // 
-            this.Column27.DataPropertyName = "Cost";
-            this.Column27.HeaderText = "Giá tiền";
-            this.Column27.Name = "Column27";
-            // 
-            // Column28
-            // 
-            this.Column28.DataPropertyName = "IDTicketMonth";
-            this.Column28.HeaderText = "Thẻ tháng";
-            this.Column28.Name = "Column28";
-            // 
-            // Column29
-            // 
-            this.Column29.DataPropertyName = "IDIn";
-            this.Column29.HeaderText = "Người vào";
-            this.Column29.Name = "Column29";
-            // 
-            // Column30
-            // 
-            this.Column30.DataPropertyName = "IDOut";
-            this.Column30.HeaderText = "Người ra";
-            this.Column30.Name = "Column30";
-            // 
-            // Column31
-            // 
-            this.Column31.DataPropertyName = "IsLostCard";
-            this.Column31.HeaderText = "Mất  thẻ";
-            this.Column31.Name = "Column31";
-            // 
-            // Column32
-            // 
-            this.Column32.DataPropertyName = "Computer";
-            this.Column32.HeaderText = "Máy";
-            this.Column32.Name = "Column32";
-            // 
-            // Column33
-            // 
-            this.Column33.DataPropertyName = "Account";
-            this.Column33.HeaderText = "Tài khoản";
-            this.Column33.Name = "Column33";
-            // 
-            // Column34
-            // 
-            this.Column34.DataPropertyName = "DateUpdate";
-            this.Column34.HeaderText = "Ngày xử lý";
-            this.Column34.Name = "Column34";
-            // 
             // panel10
             // 
             this.panel10.Controls.Add(this.dateTimePickerCarTimeOut);
@@ -8423,6 +8303,130 @@
             this.btnAllSaleReport.Text = "XEM TẤT CẢ";
             this.btnAllSaleReport.UseVisualStyleBackColor = true;
             this.btnAllSaleReport.Click += new System.EventHandler(this.btnAllSaleReport_Click);
+            // 
+            // Column19
+            // 
+            this.Column19.DataPropertyName = "Identify";
+            this.Column19.HeaderText = "STT";
+            this.Column19.Name = "Column19";
+            // 
+            // CarLogImages
+            // 
+            this.CarLogImages.DataPropertyName = "Images";
+            this.CarLogImages.HeaderText = "Images";
+            this.CarLogImages.Name = "CarLogImages";
+            this.CarLogImages.Visible = false;
+            // 
+            // CarLogImages2
+            // 
+            this.CarLogImages2.DataPropertyName = "Images2";
+            this.CarLogImages2.HeaderText = "Images2";
+            this.CarLogImages2.Name = "CarLogImages2";
+            this.CarLogImages2.Visible = false;
+            // 
+            // CarLogImages3
+            // 
+            this.CarLogImages3.DataPropertyName = "Images3";
+            this.CarLogImages3.HeaderText = "Images3";
+            this.CarLogImages3.Name = "CarLogImages3";
+            this.CarLogImages3.Visible = false;
+            // 
+            // CarLogImages4
+            // 
+            this.CarLogImages4.DataPropertyName = "Images4";
+            this.CarLogImages4.HeaderText = "Images4";
+            this.CarLogImages4.Name = "CarLogImages4";
+            this.CarLogImages4.Visible = false;
+            // 
+            // Column20
+            // 
+            this.Column20.DataPropertyName = "SmartCardIdentify";
+            this.Column20.HeaderText = "STT thẻ";
+            this.Column20.Name = "Column20";
+            // 
+            // CarID
+            // 
+            this.CarID.DataPropertyName = "ID";
+            this.CarID.HeaderText = "Mã thẻ";
+            this.CarID.Name = "CarID";
+            // 
+            // Column22
+            // 
+            this.Column22.DataPropertyName = "Sign";
+            this.Column22.HeaderText = "Ký hiệu";
+            this.Column22.Name = "Column22";
+            // 
+            // Column23
+            // 
+            this.Column23.DataPropertyName = "Digit";
+            this.Column23.HeaderText = "Biển số";
+            this.Column23.Name = "Column23";
+            // 
+            // Column24
+            // 
+            this.Column24.DataPropertyName = "PartName";
+            this.Column24.HeaderText = "Loại xe";
+            this.Column24.Name = "Column24";
+            // 
+            // Column25
+            // 
+            this.Column25.DataPropertyName = "TimeStart";
+            this.Column25.HeaderText = "Thời gian vào";
+            this.Column25.Name = "Column25";
+            // 
+            // Column26
+            // 
+            this.Column26.DataPropertyName = "TimeEnd";
+            this.Column26.HeaderText = "Thời gian ra";
+            this.Column26.Name = "Column26";
+            // 
+            // Column27
+            // 
+            this.Column27.DataPropertyName = "Cost";
+            this.Column27.HeaderText = "Giá tiền";
+            this.Column27.Name = "Column27";
+            // 
+            // Column28
+            // 
+            this.Column28.DataPropertyName = "IDTicketMonth";
+            this.Column28.HeaderText = "Thẻ tháng";
+            this.Column28.Name = "Column28";
+            // 
+            // Column29
+            // 
+            this.Column29.DataPropertyName = "IDIn";
+            this.Column29.HeaderText = "Người vào";
+            this.Column29.Name = "Column29";
+            // 
+            // Column30
+            // 
+            this.Column30.DataPropertyName = "IDOut";
+            this.Column30.HeaderText = "Người ra";
+            this.Column30.Name = "Column30";
+            // 
+            // Column31
+            // 
+            this.Column31.DataPropertyName = "IsLostCard";
+            this.Column31.HeaderText = "Mất  thẻ";
+            this.Column31.Name = "Column31";
+            // 
+            // Column32
+            // 
+            this.Column32.DataPropertyName = "Computer";
+            this.Column32.HeaderText = "Máy";
+            this.Column32.Name = "Column32";
+            // 
+            // Column33
+            // 
+            this.Column33.DataPropertyName = "Account";
+            this.Column33.HeaderText = "Tài khoản";
+            this.Column33.Name = "Column33";
+            // 
+            // Column34
+            // 
+            this.Column34.DataPropertyName = "DateUpdate";
+            this.Column34.HeaderText = "Ngày xử lý";
+            this.Column34.Name = "Column34";
             // 
             // FormQuanLy
             // 
@@ -9101,26 +9105,6 @@
         private System.Windows.Forms.Label label110;
         private System.Windows.Forms.TextBox tbAllTicketMonthKeyWordSearch;
         private System.Windows.Forms.DataGridView dgvAllTicketMonthList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column27;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column28;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column29;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column30;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column31;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column32;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage3;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage4;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
@@ -9385,5 +9369,25 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuSumCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.Button btnAllSaleReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column30;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column31;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column32;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
     }
 }

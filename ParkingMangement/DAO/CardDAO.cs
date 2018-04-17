@@ -71,5 +71,16 @@ namespace ParkingMangement.DAO
             string sql = "delete from [SmartCard] where ID = '" + userID + "'";
             Database.ExcuNonQuery(sql);
         }
+
+        public static string getPartIDByCardID(string cardID)
+        {
+            string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("Type");
+            }
+            return "";
+        }
     }
 }

@@ -28,12 +28,14 @@ namespace ParkingMangement.GUI
         private Byte[] buffer;
         private int total = 0;
         private int read;
-        const string cardID = "111";
+
+        private string cardID = "111";
+        
         const string cameraUrl = "http://192.168.1.115:4747/video";
         private string cameraUrl1 = "http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg";
         private string cameraUrl2 = cameraUrl;
-        private string cameraUrl3 = cameraUrl;
-        private string cameraUrl4 = cameraUrl;
+        private string cameraUrl3 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        private string cameraUrl4 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
 
         private string imagePath1;
         private string imagePath2;
@@ -53,11 +55,15 @@ namespace ParkingMangement.GUI
         public FormNhanVien()
         {
             InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
-            //loadInfo();
+            Random rnd = new Random();
+            cardID = rnd.Next(111, 113) + "";
+
+            loadInfo();
             //loadCamera();
             loadAforge();
             //loadData();
@@ -200,13 +206,13 @@ namespace ParkingMangement.GUI
             videoSource2.NewFrame += video_NewFrame2;
             videoSource2.Start();
 
-            //MJPEGStream videoSource3 = new MJPEGStream(cameraUrl3);
-            //videoSource3.NewFrame += video_NewFrame3;
-            //videoSource3.Start();
+            MJPEGStream videoSource3 = new MJPEGStream(cameraUrl3);
+            videoSource3.NewFrame += video_NewFrame3;
+            videoSource3.Start();
 
-            //MJPEGStream videoSource4 = new MJPEGStream(cameraUrl4);
-            //videoSource4.NewFrame += video_NewFrame4;
-            //videoSource4.Start();
+            MJPEGStream videoSource4 = new MJPEGStream(cameraUrl4);
+            videoSource4.NewFrame += video_NewFrame4;
+            videoSource4.Start();
         }
 
         public void video_NewFrame1(object sender, NewFrameEventArgs eventArgs)
@@ -226,8 +232,7 @@ namespace ParkingMangement.GUI
                         Image img = this.pictureBoxCamera1.Image;
                         Image imgclone = (Image)img.Clone();
                         imagePath1 = DateTime.Now.Ticks + ".jpg";
-                        string path = Constant.IMAGE_FOLDER + imagePath1;
-                        imgclone.Save(path, ImageFormat.Jpeg);
+                        saveImageToFile(imgclone, imagePath1);
                     }
                     _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
 
@@ -256,8 +261,7 @@ namespace ParkingMangement.GUI
                         Image img = this.pictureBoxCamera2.Image;
                         Image imgclone = (Image)img.Clone();
                         imagePath2 = DateTime.Now.Ticks + ".jpg";
-                        string path = Constant.IMAGE_FOLDER + imagePath2;
-                        imgclone.Save(path, ImageFormat.Jpeg);
+                        saveImageToFile(imgclone, imagePath2);
                     }
                     _isSaveCamera2ToFile = !_isSaveCamera2ToFile;
 
@@ -283,6 +287,12 @@ namespace ParkingMangement.GUI
             pictureBoxCamera4.Image = bitmap;
         }
 
+        private void saveImageToFile(Image image, string fileName)
+        {
+            string path = Constant.IMAGE_FOLDER + fileName;
+            image.Save(path, ImageFormat.Jpeg);
+        }
+
         private void saveImage()
         {
             _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
@@ -296,9 +306,15 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB()
         {
+            Random rnd = new Random();
+            cardID = rnd.Next(111, 113) + "";
             if (CarDAO.isCarOut(cardID))
             {
                 insertCarIn();
+            } else
+            {
+                updateCarOut();
+                loadCarInData();
             }
         }
 
@@ -308,6 +324,8 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeStart = DateTime.Now;
             carDTO.IdIn = Program.CurrentUserID;
+            string partID = CardDAO.getPartIDByCardID(cardID);
+            carDTO.IdPart = partID;
             carDTO.Images = imagePath1;
             carDTO.Images2 = imagePath2;
             carDTO.Computer = Environment.MachineName;
@@ -318,7 +336,42 @@ namespace ParkingMangement.GUI
 
         private void updateCarOut()
         {
+            int identify = CarDAO.GetIdentifyByID(cardID);
+            CarDTO carDTO = new CarDTO();
+            carDTO.Identify = identify;
+            carDTO.Id = cardID;
+            carDTO.TimeEnd = DateTime.Now;
+            carDTO.IdOut = Program.CurrentUserID;
+            carDTO.Cost = 5000;
 
+            Image imgCamera3 = (Image) pictureBoxCamera3.Image.Clone();
+            string imagePath3 = DateTime.Now.Ticks + ".jpg";
+            saveImageToFile(imgCamera3, imagePath3);
+            Image imgCamera4 = (Image)pictureBoxCamera4.Image.Clone();
+            string imagePath4 = DateTime.Now.Ticks + ".jpg";
+            saveImageToFile(imgCamera4, imagePath4);
+
+            carDTO.Images3 = imagePath3;
+            carDTO.Images4 = imagePath4;
+
+            carDTO.Computer = Environment.MachineName;
+            carDTO.Account = Program.CurrentUserID;
+            carDTO.DateUpdate = DateTime.Now;
+            CarDAO.UpdateCarOut(carDTO);
+        }
+
+        private void loadCarInData()
+        {
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null)
+            {
+                string image = dt.Rows[0].Field<string>("Images");
+                pictureBoxImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image);
+                string image2 = dt.Rows[0].Field<string>("Images2");
+                pictureBoxImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+                DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
+                labelTimeIn.Text = timeIn.ToString("dd/MM/yyyy HH:mm:ss");
+            }
         }
     }
 }

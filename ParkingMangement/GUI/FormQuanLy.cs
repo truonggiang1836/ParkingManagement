@@ -1593,6 +1593,10 @@ namespace ParkingMangement.GUI
 
         private void loadCarInfoFromDataGridViewRow(int Index)
         {
+            pictureBoxCarLogImage1.Image = null;
+            pictureBoxCarLogImage2.Image = null;
+            pictureBoxCarLogImage3.Image = null;
+            pictureBoxCarLogImage4.Image = null;
             string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
             if (!string.IsNullOrEmpty(image1))
             {

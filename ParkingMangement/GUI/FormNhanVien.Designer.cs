@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCamera1 = new System.Windows.Forms.PictureBox();
             this.imageBoxPicture1 = new Emgu.CV.UI.ImageBox();
             this.imageBoxCamera1 = new Emgu.CV.UI.ImageBox();
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
@@ -60,9 +62,9 @@
             this.labelCurrentTime = new System.Windows.Forms.Label();
             this.labelCardID = new System.Windows.Forms.Label();
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
-            this.pictureBoxCamera1 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
@@ -76,8 +78,6 @@
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,6 +96,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(839, 510);
             this.panel1.TabIndex = 0;
+            // 
+            // pictureBoxImage1
+            // 
+            this.pictureBoxImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 255);
+            this.pictureBoxImage1.Name = "pictureBoxImage1";
+            this.pictureBoxImage1.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxImage1.TabIndex = 9;
+            this.pictureBoxImage1.TabStop = false;
+            // 
+            // pictureBoxCamera1
+            // 
+            this.pictureBoxCamera1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxCamera1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxCamera1.Name = "pictureBoxCamera1";
+            this.pictureBoxCamera1.Size = new System.Drawing.Size(210, 255);
+            this.pictureBoxCamera1.TabIndex = 8;
+            this.pictureBoxCamera1.TabStop = false;
             // 
             // imageBoxPicture1
             // 
@@ -225,9 +243,9 @@
             this.labelTimeIn.ForeColor = System.Drawing.Color.White;
             this.labelTimeIn.Location = new System.Drawing.Point(652, 9);
             this.labelTimeIn.Name = "labelTimeIn";
-            this.labelTimeIn.Size = new System.Drawing.Size(137, 20);
+            this.labelTimeIn.Size = new System.Drawing.Size(36, 20);
             this.labelTimeIn.TabIndex = 15;
-            this.labelTimeIn.Text = "30/01/18 21:23:09";
+            this.labelTimeIn.Text = "111";
             // 
             // panel9
             // 
@@ -363,9 +381,8 @@
             this.labelUserName.ForeColor = System.Drawing.Color.Black;
             this.labelUserName.Location = new System.Drawing.Point(700, 7);
             this.labelUserName.Name = "labelUserName";
-            this.labelUserName.Size = new System.Drawing.Size(47, 20);
+            this.labelUserName.Size = new System.Drawing.Size(0, 20);
             this.labelUserName.TabIndex = 13;
-            this.labelUserName.Text = "KHAI";
             // 
             // labelCurrentTime
             // 
@@ -391,24 +408,6 @@
             // timerCurrentTime
             // 
             this.timerCurrentTime.Tick += new System.EventHandler(this.timerCurrentTime_Tick);
-            // 
-            // pictureBoxCamera1
-            // 
-            this.pictureBoxCamera1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCamera1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBoxCamera1.Name = "pictureBoxCamera1";
-            this.pictureBoxCamera1.Size = new System.Drawing.Size(210, 255);
-            this.pictureBoxCamera1.TabIndex = 8;
-            this.pictureBoxCamera1.TabStop = false;
-            // 
-            // pictureBoxImage1
-            // 
-            this.pictureBoxImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 255);
-            this.pictureBoxImage1.Name = "pictureBoxImage1";
-            this.pictureBoxImage1.Size = new System.Drawing.Size(210, 255);
-            this.pictureBoxImage1.TabIndex = 9;
-            this.pictureBoxImage1.TabStop = false;
             // 
             // FormNhanVien
             // 
@@ -438,6 +437,8 @@
             this.Load += new System.EventHandler(this.FormStaff_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
@@ -456,8 +457,6 @@
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

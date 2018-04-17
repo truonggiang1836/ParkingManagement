@@ -308,7 +308,25 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetCarByID(string id)
         {
-            string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify asc";
+            string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify desc";
+            return Database.ExcuQuery(sql);
+        }
+
+        public static int GetIdentifyByID(string id)
+        {
+            string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify desc";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                int identify = dt.Rows[0].Field<int>("Identify");
+                return identify;
+            }
+            return 0;
+        }
+
+        public static DataTable GetLastCarByID(string id)
+        {
+            string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify desc";
             return Database.ExcuQuery(sql);
         }
 
@@ -332,7 +350,7 @@ namespace ParkingMangement.DAO
         public static bool isCarOut(string id)
         {
             DataTable dt = GetCarByID(id);
-            if (dt != null)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 string IDOut = dt.Rows[0].Field<string>("IDOut");
                 if (string.IsNullOrEmpty(IDOut)) {

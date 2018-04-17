@@ -53,7 +53,7 @@ namespace ParkingMangement.DAO
         public static string GetUserNameByID(string id)
         {
             DataTable dt = GetUserByID(id);
-            if (dt != null)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("NameUser");
             } else
@@ -65,7 +65,7 @@ namespace ParkingMangement.DAO
         public static string GetFunctionIDByUserID(string id)
         {
             DataTable dt = GetUserByID(id);
-            if (dt != null)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("IDFunct");
             }
