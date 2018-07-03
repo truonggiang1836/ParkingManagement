@@ -2950,6 +2950,77 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void exportDanhSachTheThangToExcel(int cellRowIndex, int cellColumnIndex)
+        {
+            int firstRowIndex = cellRowIndex;
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+
+                worksheet = workbook.ActiveSheet;
+                worksheet.Name = "Sheet1";
+
+                //Loop through each row and read value from each column. 
+                for (int i = 0; i < dgvTicketMonthList.Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j < dgvTicketMonthList.Columns.Count; j++)
+                    {
+                        if (dgvTicketMonthList.Columns[j].Visible)
+                        {
+                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
+                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+                            if (cellRowIndex == firstRowIndex)
+                            {
+                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvTicketMonthList.Columns[j].HeaderText;
+                                setColerForRange(range);
+                                setAllBorderForRange(range);
+                            }
+                            else
+                            {
+                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvTicketMonthList.Rows[i].Cells[j].Value.ToString();
+                                setLeftBorderForRange(range);
+                                setRightBorderForRange(range);
+                                if (i == dgvTicketMonthList.Rows.Count - 2)
+                                {
+                                    setBottomBorderForRange(range);
+                                }
+                            }
+                            cellColumnIndex++;
+                        }
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+                excel.Columns.AutoFit();
+
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                saveDialog.FilterIndex = 2;
+
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    workbook.SaveAs(saveDialog.FileName);
+                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
+            }
+        }
+
         private void setLeftBorderForRange(Microsoft.Office.Interop.Excel.Range range)
         {
             range.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeLeft).LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
@@ -3107,6 +3178,11 @@ namespace ParkingMangement.GUI
             string partID = Convert.ToString(dgvPartList.Rows[currentRow].Cells["PartID"].Value);
             PartDAO.Delete(partID);
             loadPartList();
+        }
+
+        private void btnExportDanhSachVeThang_Click(object sender, EventArgs e)
+        {
+            exportDanhSachTheThangToExcel(1, 1);
         }
     }
 }
