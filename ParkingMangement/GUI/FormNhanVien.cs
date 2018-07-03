@@ -32,7 +32,9 @@ namespace ParkingMangement.GUI
         private string cardID = "111";
         
         const string cameraUrl = "http://192.168.1.115:4747/video";
-        private string cameraUrl1 = "http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg";
+        //private string cameraUrl1 = "http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg";
+        //private string cameraUrl1 = "http://admin:bmv333999@192.168.1.190:888/axis-cgi/mjpg/video.cgi";
+        private string cameraUrl1 = "rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
         private string cameraUrl2 = "http://camera1.mairie-brest.fr/mjpg/video.mjpg?resolution=400x300";
         private string cameraUrl3 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
         private string cameraUrl4 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
@@ -65,10 +67,11 @@ namespace ParkingMangement.GUI
 
             loadInfo();
             //loadCamera();
-            loadAforge();
+            //loadAforge();
             //loadData();
             //readCard();
             //writeCard();
+            loadVLC();
         }
 
         private void loadInfo()
@@ -199,53 +202,71 @@ namespace ParkingMangement.GUI
         {
             MJPEGStream videoSource1 = new MJPEGStream(cameraUrl1);
             //MJPEGStream videoSource = new MJPEGStream("http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg");
+            videoSource1.Login = "admin";
+            videoSource1.Password = "bmv333999";
             videoSource1.NewFrame += video_NewFrame1;
             videoSource1.Start();
 
-            MJPEGStream videoSource2 = new MJPEGStream(cameraUrl2);
-            videoSource2.NewFrame += video_NewFrame2;
-            videoSource2.Start();
+            //MJPEGStream videoSource2 = new MJPEGStream(cameraUrl2);
+            //videoSource2.NewFrame += video_NewFrame2;
+            //videoSource2.Start();
 
-            MJPEGStream videoSource3 = new MJPEGStream(cameraUrl3);
-            videoSource3.NewFrame += video_NewFrame3;
-            videoSource3.Start();
+            //MJPEGStream videoSource3 = new MJPEGStream(cameraUrl3);
+            //videoSource3.NewFrame += video_NewFrame3;
+            //videoSource3.Start();
 
-            MJPEGStream videoSource4 = new MJPEGStream(cameraUrl4);
-            videoSource4.NewFrame += video_NewFrame4;
-            videoSource4.Start();
+            //MJPEGStream videoSource4 = new MJPEGStream(cameraUrl4);
+            //videoSource4.NewFrame += video_NewFrame4;
+            //videoSource4.Start();
+        }
+
+        private void loadVLC()
+        {
+            String rtspString = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=4&subtype=1&unicast=true&proto=Onvif";
+            axVLCPlugin1.playlist.add(rtspString, "aa", null);
+            try
+            {
+                axVLCPlugin1.playlist.play();
+                axVLCPlugin1.BringToFront();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         public void video_NewFrame1(object sender, NewFrameEventArgs eventArgs)
         {
             //do processing here
-            Bitmap bitmap = (Bitmap) eventArgs.Frame.Clone();
-            pictureBoxCamera1.Image = bitmap;
+            //Bitmap bitmap = (Bitmap) eventArgs.Frame.Clone();
+            //pictureBoxCamera1.Image = bitmap;
 
-            object lockObject = new object();
-            lock (lockObject)
-            {
-                if (_isSaveCamera1ToFile)
-                {
-                    if (CarDAO.isCarIn(cardID))
-                    {
-                        pictureBoxImage1.Image = bitmap;
-                        if (pictureBoxCamera1.Image != null)
-                        {
-                            Image img = this.pictureBoxCamera1.Image;
-                            Image imgclone = (Image)img.Clone();
-                            imagePath1 = DateTime.Now.Ticks + ".jpg";
-                            saveImageToFile(imgclone, imagePath1);
-                        }
-                    }
+            //object lockObject = new object();
+            //lock (lockObject)
+            //{
+            //    if (_isSaveCamera1ToFile)
+            //    {
+            //        if (CarDAO.isCarIn(cardID))
+            //        {
+            //            pictureBoxImage1.Image = bitmap;
+            //            if (pictureBoxCamera1.Image != null)
+            //            {
+            //                Image img = this.pictureBoxCamera1.Image;
+            //                Image imgclone = (Image)img.Clone();
+            //                imagePath1 = DateTime.Now.Ticks + ".jpg";
+            //                saveImageToFile(imgclone, imagePath1);
+            //            }
+            //        }
                     
-                    _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
+            //        _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
 
-                    if (!_isSaveCamera2ToFile)
-                    {
-                        checkForSaveToDB();
-                    }
-                }
-            }
+            //        if (!_isSaveCamera2ToFile)
+            //        {
+            //            checkForSaveToDB();
+            //        }
+            //    }
+            //}
         }
 
         public void video_NewFrame2(object sender, NewFrameEventArgs eventArgs)
