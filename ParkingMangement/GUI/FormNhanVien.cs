@@ -32,12 +32,10 @@ namespace ParkingMangement.GUI
         private string cardID = "111";
         
         const string cameraUrl = "http://192.168.1.115:4747/video";
-        //private string cameraUrl1 = "http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg";
-        //private string cameraUrl1 = "http://admin:bmv333999@192.168.1.190:888/axis-cgi/mjpg/video.cgi";
-        private string cameraUrl1 = "rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
-        private string cameraUrl2 = "http://camera1.mairie-brest.fr/mjpg/video.mjpg?resolution=400x300";
-        private string cameraUrl3 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
-        private string cameraUrl4 = "http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        private string cameraUrl1 = @"rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
+        private string cameraUrl2 = @"http://camera1.mairie-brest.fr/mjpg/video.mjpg?resolution=400x300";
+        private string cameraUrl3 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        private string cameraUrl4 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
 
         private string imagePath1;
         private string imagePath2;
@@ -63,7 +61,7 @@ namespace ParkingMangement.GUI
         private void FormStaff_Load(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            cardID = rnd.Next(111, 113) + "";
+            cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
             //loadCamera();
@@ -71,7 +69,10 @@ namespace ParkingMangement.GUI
             //loadData();
             //readCard();
             //writeCard();
-            loadVLC();
+            loadCamera1VLC();
+            loadCamera2VLC();
+            loadCamera3VLC();
+            loadCamera4VLC();
         }
 
         private void loadInfo()
@@ -206,34 +207,6 @@ namespace ParkingMangement.GUI
             videoSource1.Password = "bmv333999";
             videoSource1.NewFrame += video_NewFrame1;
             videoSource1.Start();
-
-            //MJPEGStream videoSource2 = new MJPEGStream(cameraUrl2);
-            //videoSource2.NewFrame += video_NewFrame2;
-            //videoSource2.Start();
-
-            //MJPEGStream videoSource3 = new MJPEGStream(cameraUrl3);
-            //videoSource3.NewFrame += video_NewFrame3;
-            //videoSource3.Start();
-
-            //MJPEGStream videoSource4 = new MJPEGStream(cameraUrl4);
-            //videoSource4.NewFrame += video_NewFrame4;
-            //videoSource4.Start();
-        }
-
-        private void loadVLC()
-        {
-            String rtspString = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=4&subtype=1&unicast=true&proto=Onvif";
-            axVLCPlugin1.playlist.add(rtspString, "aa", null);
-            try
-            {
-                axVLCPlugin1.playlist.play();
-                axVLCPlugin1.BringToFront();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
         }
 
         public void video_NewFrame1(object sender, NewFrameEventArgs eventArgs)
@@ -269,63 +242,23 @@ namespace ParkingMangement.GUI
             //}
         }
 
-        public void video_NewFrame2(object sender, NewFrameEventArgs eventArgs)
-        {
-            //do processing here
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            pictureBoxCamera2.Image = bitmap;
-
-            object lockObject = new object();
-            lock (lockObject)
-            {
-                if (_isSaveCamera2ToFile)
-                {
-                    if (CarDAO.isCarIn(cardID))
-                    {
-                        pictureBoxImage2.Image = bitmap;
-                        if (pictureBoxCamera2.Image != null)
-                        {
-                            Image img = this.pictureBoxCamera2.Image;
-                            Image imgclone = (Image)img.Clone();
-                            imagePath2 = DateTime.Now.Ticks + ".jpg";
-                            saveImageToFile(imgclone, imagePath2);
-                        }
-                    }
-                    
-                    _isSaveCamera2ToFile = !_isSaveCamera2ToFile;
-
-                    if (!_isSaveCamera1ToFile)
-                    {
-                        checkForSaveToDB();
-                    }
-                }
-            }
-        }
-
-        public void video_NewFrame3(object sender, NewFrameEventArgs eventArgs)
-        {
-            //do processing here
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            pictureBoxCamera3.Image = bitmap;
-        }
-
-        public void video_NewFrame4(object sender, NewFrameEventArgs eventArgs)
-        {
-            //do processing here
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            pictureBoxCamera4.Image = bitmap;
-        }
-
         private void saveImageToFile(Image image, string fileName)
         {
             string path = Constant.IMAGE_FOLDER + fileName;
             image.Save(path, ImageFormat.Jpeg);
         }
 
+        private void saveBitmapToFile(Bitmap bitmap, string fileName)
+        {
+            string path = Constant.IMAGE_FOLDER + fileName;
+            bitmap.Save(path, ImageFormat.Jpeg);
+        }
+
         private void saveImage()
         {
-            _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
-            _isSaveCamera2ToFile = !_isSaveCamera2ToFile;
+            saveImage1ToFile();
+            saveImage2ToFile();
+            checkForSaveToDB();
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -371,12 +304,8 @@ namespace ParkingMangement.GUI
             carDTO.IdOut = Program.CurrentUserID;
             carDTO.Cost = 5000;
 
-            Image imgCamera3 = (Image) pictureBoxCamera3.Image.Clone();
-            string imagePath3 = DateTime.Now.Ticks + ".jpg";
-            saveImageToFile(imgCamera3, imagePath3);
-            Image imgCamera4 = (Image)pictureBoxCamera4.Image.Clone();
-            string imagePath4 = DateTime.Now.Ticks + ".jpg";
-            saveImageToFile(imgCamera4, imagePath4);
+            saveImage3ToFile();
+            saveImage4ToFile();
 
             carDTO.Images3 = imagePath3;
             carDTO.Images4 = imagePath4;
@@ -393,12 +322,165 @@ namespace ParkingMangement.GUI
             if (dt != null)
             {
                 string image = dt.Rows[0].Field<string>("Images");
-                pictureBoxImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image);
+                string imagePath1 = Constant.IMAGE_FOLDER + image;
+                if (File.Exists(imagePath1))
+                {
+                    pictureBoxImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image);
+                }
                 string image2 = dt.Rows[0].Field<string>("Images2");
-                pictureBoxImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+                string imagePath2 = Constant.IMAGE_FOLDER + image2;
+                if (File.Exists(imagePath2))
+                {
+                    pictureBoxImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+                }
+                    
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
                 labelTimeIn.Text = timeIn.ToString("dd/MM/yyyy HH:mm:ss");
             }
+        }
+
+        private void loadCamera1VLC()
+        {
+            //String rtspString = cameraUrl1;
+            String rtspString = cameraUrl3;
+            axVLCPlugin1.playlist.add(rtspString, " ", ":no-overlay");
+            try
+            {
+                axVLCPlugin1.playlist.play();
+                axVLCPlugin1.BringToFront();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void saveImage1ToFile()
+        {
+            axVLCPlugin1.playlist.togglePause();
+            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin1.ClientRectangle.Width,
+                axVLCPlugin1.ClientRectangle.Height);
+            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+            System.Drawing.Size imgSize = new System.Drawing.Size(
+                axVLCPlugin1.ClientRectangle.Width,
+                axVLCPlugin1.ClientRectangle.Height);
+            Point ps = PointToScreen(new Point(axVLCPlugin1.Bounds.X, axVLCPlugin1.Bounds.Y));
+            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
+            axVLCPlugin1.playlist.play();
+
+            if (CarDAO.isCarIn(cardID))
+            {
+                pictureBoxImage1.Image = bmpScreenshot;
+                imagePath1 = DateTime.Now.Ticks + ".jpg";
+                saveBitmapToFile(bmpScreenshot, imagePath1);
+            }
+        }
+
+        private void loadCamera2VLC()
+        {
+            //String rtspString = cameraUrl1;
+            String rtspString = cameraUrl3;
+            axVLCPlugin2.playlist.add(rtspString, " ", ":no-overlay");
+            try
+            {
+                axVLCPlugin2.playlist.play();
+                axVLCPlugin2.BringToFront();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void saveImage2ToFile()
+        {
+            axVLCPlugin2.playlist.togglePause();
+            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin2.ClientRectangle.Width,
+                axVLCPlugin2.ClientRectangle.Height);
+            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+            System.Drawing.Size imgSize = new System.Drawing.Size(
+                axVLCPlugin2.ClientRectangle.Width,
+                axVLCPlugin2.ClientRectangle.Height);
+            Point ps = PointToScreen(new Point(axVLCPlugin2.Bounds.X, axVLCPlugin2.Bounds.Y));
+            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
+            axVLCPlugin2.playlist.play();
+
+            if (CarDAO.isCarIn(cardID))
+            {
+                pictureBoxImage2.Image = bmpScreenshot;
+                imagePath2 = DateTime.Now.Ticks + ".jpg";
+                saveBitmapToFile(bmpScreenshot, imagePath2);
+            }
+        }
+
+        private void loadCamera3VLC()
+        {
+            //String rtspString = cameraUrl1;
+            String rtspString = cameraUrl3;
+            axVLCPlugin3.playlist.add(rtspString, " ", ":no-overlay");
+            try
+            {
+                axVLCPlugin3.playlist.play();
+                axVLCPlugin3.BringToFront();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void saveImage3ToFile()
+        {
+            axVLCPlugin3.playlist.togglePause();
+            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin3.ClientRectangle.Width,
+                axVLCPlugin3.ClientRectangle.Height);
+            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+            System.Drawing.Size imgSize = new System.Drawing.Size(
+                axVLCPlugin3.ClientRectangle.Width,
+                axVLCPlugin3.ClientRectangle.Height);
+            Point ps = PointToScreen(new Point(axVLCPlugin3.Bounds.X, axVLCPlugin3.Bounds.Y));
+            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
+            axVLCPlugin3.playlist.play();
+
+            imagePath3 = DateTime.Now.Ticks + ".jpg";
+            saveBitmapToFile(bmpScreenshot, imagePath3);
+        }
+
+        private void loadCamera4VLC()
+        {
+            //String rtspString = cameraUrl1;
+            String rtspString = cameraUrl3;
+            axVLCPlugin4.playlist.add(rtspString, " ", ":no-overlay");
+            try
+            {
+                axVLCPlugin4.playlist.play();
+                axVLCPlugin4.BringToFront();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void saveImage4ToFile()
+        {
+            axVLCPlugin4.playlist.togglePause();
+            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin4.ClientRectangle.Width,
+                axVLCPlugin4.ClientRectangle.Height);
+            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+            System.Drawing.Size imgSize = new System.Drawing.Size(
+                axVLCPlugin4.ClientRectangle.Width,
+                axVLCPlugin4.ClientRectangle.Height);
+            Point ps = PointToScreen(new Point(axVLCPlugin4.Bounds.X, axVLCPlugin4.Bounds.Y));
+            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
+            axVLCPlugin4.playlist.play();
+
+            imagePath4 = DateTime.Now.Ticks + ".jpg";
+            saveBitmapToFile(bmpScreenshot, imagePath4);
         }
     }
 }

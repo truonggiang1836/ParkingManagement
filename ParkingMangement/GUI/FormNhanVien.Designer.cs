@@ -36,11 +36,8 @@
             this.imageBoxPicture1 = new Emgu.CV.UI.ImageBox();
             this.imageBoxCamera1 = new Emgu.CV.UI.ImageBox();
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCamera4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCamera3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCamera2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,36 +60,39 @@
             this.labelCurrentTime = new System.Windows.Forms.Label();
             this.labelCardID = new System.Windows.Forms.Label();
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
+            this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera2)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.axVLCPlugin4);
+            this.panel1.Controls.Add(this.axVLCPlugin3);
+            this.panel1.Controls.Add(this.axVLCPlugin2);
             this.panel1.Controls.Add(this.axVLCPlugin1);
             this.panel1.Controls.Add(this.pictureBoxImage1);
             this.panel1.Controls.Add(this.imageBoxPicture1);
             this.panel1.Controls.Add(this.imageBoxCamera1);
             this.panel1.Controls.Add(this.pictureBoxImage4);
-            this.panel1.Controls.Add(this.pictureBoxCamera4);
             this.panel1.Controls.Add(this.pictureBoxImage3);
-            this.panel1.Controls.Add(this.pictureBoxCamera3);
             this.panel1.Controls.Add(this.pictureBoxImage2);
-            this.panel1.Controls.Add(this.pictureBoxCamera2);
             this.panel1.Location = new System.Drawing.Point(2, 144);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(839, 510);
@@ -104,7 +104,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(0, 1);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 254);
             this.axVLCPlugin1.TabIndex = 10;
             // 
             // pictureBoxImage1
@@ -141,15 +141,6 @@
             this.pictureBoxImage4.TabIndex = 7;
             this.pictureBoxImage4.TabStop = false;
             // 
-            // pictureBoxCamera4
-            // 
-            this.pictureBoxCamera4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCamera4.Location = new System.Drawing.Point(630, 0);
-            this.pictureBoxCamera4.Name = "pictureBoxCamera4";
-            this.pictureBoxCamera4.Size = new System.Drawing.Size(210, 255);
-            this.pictureBoxCamera4.TabIndex = 6;
-            this.pictureBoxCamera4.TabStop = false;
-            // 
             // pictureBoxImage3
             // 
             this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -159,15 +150,6 @@
             this.pictureBoxImage3.TabIndex = 5;
             this.pictureBoxImage3.TabStop = false;
             // 
-            // pictureBoxCamera3
-            // 
-            this.pictureBoxCamera3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCamera3.Location = new System.Drawing.Point(420, 0);
-            this.pictureBoxCamera3.Name = "pictureBoxCamera3";
-            this.pictureBoxCamera3.Size = new System.Drawing.Size(210, 255);
-            this.pictureBoxCamera3.TabIndex = 4;
-            this.pictureBoxCamera3.TabStop = false;
-            // 
             // pictureBoxImage2
             // 
             this.pictureBoxImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -176,15 +158,6 @@
             this.pictureBoxImage2.Size = new System.Drawing.Size(210, 255);
             this.pictureBoxImage2.TabIndex = 3;
             this.pictureBoxImage2.TabStop = false;
-            // 
-            // pictureBoxCamera2
-            // 
-            this.pictureBoxCamera2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCamera2.Location = new System.Drawing.Point(210, 0);
-            this.pictureBoxCamera2.Name = "pictureBoxCamera2";
-            this.pictureBoxCamera2.Size = new System.Drawing.Size(210, 255);
-            this.pictureBoxCamera2.TabIndex = 2;
-            this.pictureBoxCamera2.TabStop = false;
             // 
             // panel2
             // 
@@ -244,9 +217,9 @@
             this.labelTimeIn.ForeColor = System.Drawing.Color.White;
             this.labelTimeIn.Location = new System.Drawing.Point(652, 9);
             this.labelTimeIn.Name = "labelTimeIn";
-            this.labelTimeIn.Size = new System.Drawing.Size(36, 20);
+            this.labelTimeIn.Size = new System.Drawing.Size(14, 20);
             this.labelTimeIn.TabIndex = 15;
-            this.labelTimeIn.Text = "111";
+            this.labelTimeIn.Text = "-";
             // 
             // panel9
             // 
@@ -410,6 +383,33 @@
             // 
             this.timerCurrentTime.Tick += new System.EventHandler(this.timerCurrentTime_Tick);
             // 
+            // axVLCPlugin2
+            // 
+            this.axVLCPlugin2.Enabled = true;
+            this.axVLCPlugin2.Location = new System.Drawing.Point(210, 1);
+            this.axVLCPlugin2.Name = "axVLCPlugin2";
+            this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
+            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin2.TabIndex = 11;
+            // 
+            // axVLCPlugin3
+            // 
+            this.axVLCPlugin3.Enabled = true;
+            this.axVLCPlugin3.Location = new System.Drawing.Point(420, 1);
+            this.axVLCPlugin3.Name = "axVLCPlugin3";
+            this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
+            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin3.TabIndex = 12;
+            // 
+            // axVLCPlugin4
+            // 
+            this.axVLCPlugin4.Enabled = true;
+            this.axVLCPlugin4.Location = new System.Drawing.Point(630, 1);
+            this.axVLCPlugin4.Name = "axVLCPlugin4";
+            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
+            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin4.TabIndex = 13;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -443,11 +443,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera2)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel9.ResumeLayout(false);
@@ -458,6 +455,9 @@
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -474,11 +474,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBoxImage4;
-        private System.Windows.Forms.PictureBox pictureBoxCamera4;
         private System.Windows.Forms.PictureBox pictureBoxImage3;
-        private System.Windows.Forms.PictureBox pictureBoxCamera3;
         private System.Windows.Forms.PictureBox pictureBoxImage2;
-        private System.Windows.Forms.PictureBox pictureBoxCamera2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
@@ -498,5 +495,8 @@
         private System.Windows.Forms.Timer timerCurrentTime;
         private System.Windows.Forms.PictureBox pictureBoxImage1;
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin1;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin2;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin4;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin3;
     }
 }
