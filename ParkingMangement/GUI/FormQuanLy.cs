@@ -1043,6 +1043,7 @@ namespace ParkingMangement.GUI
             {
                 createCard();
                 loadCardStatistic();
+                tbCardIDCreate.Text = "";
             }
         }
 

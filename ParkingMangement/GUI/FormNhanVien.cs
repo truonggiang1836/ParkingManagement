@@ -29,7 +29,7 @@ namespace ParkingMangement.GUI
         private int total = 0;
         private int read;
 
-        private string cardID = "111";
+        private string cardID = "0";
         
         const string cameraUrl = "http://192.168.1.115:4747/video";
         private string cameraUrl1 = @"rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
@@ -60,8 +60,9 @@ namespace ParkingMangement.GUI
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
+            this.ActiveControl = tbRFIDCardID;
             Random rnd = new Random();
-            cardID = rnd.Next(119, 122) + "";
+            //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
             //loadCamera();
@@ -73,6 +74,8 @@ namespace ParkingMangement.GUI
             loadCamera2VLC();
             loadCamera3VLC();
             loadCamera4VLC();
+
+            //readRFIDcard();
         }
 
         private void loadInfo()
@@ -164,6 +167,9 @@ namespace ParkingMangement.GUI
                 Util.showConfirmLogoutPopup(this);
             } else if (e.KeyCode == Keys.Enter)
             {
+                cardID = tbRFIDCardID.Text;
+                labelCardID.Text = cardID;
+                tbRFIDCardID.Text = "";
                 saveImage();
             }
         }
@@ -481,6 +487,11 @@ namespace ParkingMangement.GUI
 
             imagePath4 = DateTime.Now.Ticks + ".jpg";
             saveBitmapToFile(bmpScreenshot, imagePath4);
+        }
+
+        private void tbRFIDCardID_Leave(object sender, EventArgs e)
+        {
+            tbRFIDCardID.Focus();
         }
     }
 }
