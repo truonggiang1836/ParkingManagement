@@ -20,6 +20,8 @@ using ParkingMangement.DAO;
 using AForge.Video;
 using System.Drawing.Imaging;
 using ParkingMangement.DTO;
+using ParkingMangement.Model;
+using System.Xml.Serialization;
 
 namespace ParkingMangement.GUI
 {
@@ -33,7 +35,7 @@ namespace ParkingMangement.GUI
         
         const string cameraUrl = "http://192.168.1.115:4747/video";
         private string cameraUrl1 = @"rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
-        private string cameraUrl2 = @"http://camera1.mairie-brest.fr/mjpg/video.mjpg?resolution=400x300";
+        private string cameraUrl2 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
         private string cameraUrl3 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
         private string cameraUrl4 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
 
@@ -61,7 +63,8 @@ namespace ParkingMangement.GUI
         private void FormStaff_Load(object sender, EventArgs e)
         {
             this.ActiveControl = tbRFIDCardID;
-            Random rnd = new Random();
+            readConfigFile();
+            //Random rnd = new Random();
             //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
@@ -347,8 +350,7 @@ namespace ParkingMangement.GUI
 
         private void loadCamera1VLC()
         {
-            //String rtspString = cameraUrl1;
-            String rtspString = cameraUrl3;
+            String rtspString = cameraUrl1;
             axVLCPlugin1.playlist.add(rtspString, " ", ":no-overlay");
             try
             {
@@ -385,8 +387,7 @@ namespace ParkingMangement.GUI
 
         private void loadCamera2VLC()
         {
-            //String rtspString = cameraUrl1;
-            String rtspString = cameraUrl3;
+            String rtspString = cameraUrl2;
             axVLCPlugin2.playlist.add(rtspString, " ", ":no-overlay");
             try
             {
@@ -423,7 +424,6 @@ namespace ParkingMangement.GUI
 
         private void loadCamera3VLC()
         {
-            //String rtspString = cameraUrl1;
             String rtspString = cameraUrl3;
             axVLCPlugin3.playlist.add(rtspString, " ", ":no-overlay");
             try
@@ -457,8 +457,7 @@ namespace ParkingMangement.GUI
 
         private void loadCamera4VLC()
         {
-            //String rtspString = cameraUrl1;
-            String rtspString = cameraUrl3;
+            String rtspString = cameraUrl4;
             axVLCPlugin4.playlist.add(rtspString, " ", ":no-overlay");
             try
             {
@@ -492,6 +491,37 @@ namespace ParkingMangement.GUI
         private void tbRFIDCardID_Leave(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
+        }
+
+        public void readConfigFile()
+        {
+            try
+            {
+                String filePath = Application.ExecutablePath + "\\" + Constant.sFileNameConfig;
+                if (File.Exists(filePath))
+                {
+                    string xmlString = File.ReadAllText(filePath);
+                    XmlRootAttribute xmlRoot = new XmlRootAttribute();
+                    xmlRoot.ElementName = "xml";
+                    xmlRoot.IsNullable = true;
+                    XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
+                    using (TextReader reader = new StringReader(xmlString))
+                    {
+                        Config config = (Config)serializer.Deserialize(reader);
+                        parseConfigFile(config);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void parseConfigFile(Config config)
+        {
+            cameraUrl1 = config.cameraUrl1;
+            cameraUrl3 = config.cameraUrl3;
         }
     }
 }

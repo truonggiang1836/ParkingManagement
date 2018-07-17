@@ -87,5 +87,7 @@ namespace ParkingMangement.Utils
         public const int NODE_VALUE_LUU_MAT_THE = 21;
         public const int NODE_VALUE_XEM_BAO_CAO_F7 = 22;
 
+        // path file
+        public static String sFileNameConfig = "Config.xml";
     }
 }
