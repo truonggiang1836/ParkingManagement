@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xml>
-  <camera_url_1>rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif</camera_url_1>
-  <camera_url_3>rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif</camera_url_3>
+  <camera_url_1>http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288</camera_url_1>
+  <camera_url_3>http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288</camera_url_3>
 </xml>

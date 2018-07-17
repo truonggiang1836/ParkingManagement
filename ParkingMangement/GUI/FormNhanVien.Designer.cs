@@ -36,8 +36,6 @@
             this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
             this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
-            this.imageBoxPicture1 = new Emgu.CV.UI.ImageBox();
-            this.imageBoxCamera1 = new Emgu.CV.UI.ImageBox();
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage2 = new System.Windows.Forms.PictureBox();
@@ -71,8 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).BeginInit();
@@ -90,8 +86,6 @@
             this.panel1.Controls.Add(this.axVLCPlugin2);
             this.panel1.Controls.Add(this.axVLCPlugin1);
             this.panel1.Controls.Add(this.pictureBoxImage1);
-            this.panel1.Controls.Add(this.imageBoxPicture1);
-            this.panel1.Controls.Add(this.imageBoxCamera1);
             this.panel1.Controls.Add(this.pictureBoxImage4);
             this.panel1.Controls.Add(this.pictureBoxImage3);
             this.panel1.Controls.Add(this.pictureBoxImage2);
@@ -143,23 +137,7 @@
             this.pictureBoxImage1.Name = "pictureBoxImage1";
             this.pictureBoxImage1.Size = new System.Drawing.Size(210, 255);
             this.pictureBoxImage1.TabIndex = 9;
-            this.pictureBoxImage1.TabStop = false;
-            // 
-            // imageBoxPicture1
-            // 
-            this.imageBoxPicture1.Location = new System.Drawing.Point(0, 255);
-            this.imageBoxPicture1.Name = "imageBoxPicture1";
-            this.imageBoxPicture1.Size = new System.Drawing.Size(210, 255);
-            this.imageBoxPicture1.TabIndex = 2;
-            this.imageBoxPicture1.TabStop = false;
-            // 
-            // imageBoxCamera1
-            // 
-            this.imageBoxCamera1.Location = new System.Drawing.Point(0, 0);
-            this.imageBoxCamera1.Name = "imageBoxCamera1";
-            this.imageBoxCamera1.Size = new System.Drawing.Size(210, 255);
-            this.imageBoxCamera1.TabIndex = 2;
-            this.imageBoxCamera1.TabStop = false;
+            this.pictureBoxImage1.TabStop = false;          
             // 
             // pictureBoxImage4
             // 
@@ -467,8 +445,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxPicture1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBoxCamera1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).EndInit();
@@ -514,8 +490,6 @@
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelCurrentTime;
         private System.Windows.Forms.Label labelCardID;
-        private Emgu.CV.UI.ImageBox imageBoxCamera1;
-        private Emgu.CV.UI.ImageBox imageBoxPicture1;
         private System.Windows.Forms.Timer timerCurrentTime;
         private System.Windows.Forms.PictureBox pictureBoxImage1;
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin1;

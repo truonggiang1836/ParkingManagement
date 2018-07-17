@@ -1,6 +1,4 @@
-﻿using LibUsbDotNet;
-using LibUsbDotNet.Main;
-using ParkingMangement.Utils;
+﻿using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,10 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.IO;
-using Emgu.CV;
-using Emgu.CV.Structure;
 using ParkingMangement.DAO;
-using AForge.Video;
 using System.Drawing.Imaging;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
@@ -27,32 +22,19 @@ namespace ParkingMangement.GUI
 {
     public partial class FormNhanVien : Form
     {
-        private Byte[] buffer;
-        private int total = 0;
-        private int read;
-
         private string cardID = "0";
         
-        const string cameraUrl = "http://192.168.1.115:4747/video";
-        private string cameraUrl1 = @"rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
-        private string cameraUrl2 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
-        private string cameraUrl3 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
-        private string cameraUrl4 = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        const string cameraUrl = @"rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
+        //const string cameraUrl = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        private string cameraUrl1 = "";
+        private string cameraUrl2 = cameraUrl;
+        private string cameraUrl3 = "";
+        private string cameraUrl4 = cameraUrl;
 
         private string imagePath1;
         private string imagePath2;
         private string imagePath3;
         private string imagePath4;
-
-        private Capture _capture;
-        private bool _isSaveCamera1ToFile;
-        private bool _isSaveCamera2ToFile;
-
-        private SerialPort serialPort;
-
-        public static UsbDevice MyUsbDevice;
-
-        public static UsbDeviceFinder MyUsbFinder = new UsbDeviceFinder(1234, 1);
 
         public FormNhanVien()
         {
@@ -68,99 +50,16 @@ namespace ParkingMangement.GUI
             //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
-            //loadCamera();
-            //loadAforge();
-            //loadData();
-            //readCard();
-            //writeCard();
             loadCamera1VLC();
             loadCamera2VLC();
             loadCamera3VLC();
             loadCamera4VLC();
-
-            //readRFIDcard();
         }
 
         private void loadInfo()
         {
             timerCurrentTime.Start();
             labelUserName.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
-        }
-
-        private void readCard()
-        {
-            serialPort = new SerialPort("COM1");// if u r not used Serial Port Tool
-            serialPort.BaudRate = 9600;
-            serialPort.DataBits = 8;
-            serialPort.Parity = Parity.None;
-            serialPort.StopBits = StopBits.One;
-            //serialPort.Handshake = Handshake.None;
-
-            //serialPort.ReadTimeout = 2000;
-            serialPort.DataReceived += new SerialDataReceivedEventHandler(Fun_DataReceived);
-
-            serialPort.Open();
-            Console.WriteLine("Press any key to continue...");
-            Console.WriteLine();
-            serialPort.Close();
-        }
-        //Delegate for the Reading the Tag while RFID Card come to the Range.
-        string data = string.Empty;
-        private delegate void SetTextDeleg(string text);
-        void Fun_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            //Thread.Sleep(500);
-            //data = serialPort.ReadLine();
-            //this.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { data });
-            SerialPort sp = (SerialPort)sender;
-            string indata = serialPort.ReadExisting();
-            MessageBox.Show("Data Received:");
-            MessageBox.Show(indata);
-        }
-        private void Fun_IsDataReceived(string data)
-        {
-            labelCardID.Text = data.Trim();
-        }
-
-        private string writeCard()
-        {
-            try
-            {
-                System.IO.Ports.SerialPort Serial1 = new System.IO.Ports.SerialPort("COM1", 9600, System.IO.Ports.Parity.None, 8, System.IO.Ports.StopBits.One);
-                //Serial1.DtrEnable = true;
-                //Serial1.RtsEnable = true;
-                //Serial1.ReadTimeout = 3000;
-
-                var MessageBufferRequest = new byte[8] { 1, 3, 0, 28, 0, 1, 69, 204 };
-                var MessageBufferReply = new byte[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
-                int BufferLength = 8;
-
-                if (!Serial1.IsOpen)
-                {
-                    Serial1.Open();
-                }
-
-                try
-                {
-                    Serial1.Write(MessageBufferRequest, 0, BufferLength);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    return "";
-                }
-
-                System.Threading.Thread.Sleep(100);
-
-                Serial1.Read(MessageBufferReply, 0, 7);
-
-                return MessageBufferReply[3].ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-                return "";
-            }
         }
 
         private void FormNhanVien_KeyDown(object sender, KeyEventArgs e)
@@ -175,80 +74,6 @@ namespace ParkingMangement.GUI
                 tbRFIDCardID.Text = "";
                 saveImage();
             }
-        }
-
-        //private void loadCamera()
-        //{
-        //    try
-        //    {
-        //        _capture = new Emgu.CV.Capture("rtsp://admin:bmv333999@192.168.1.190:888/cgi-bin/snapshot.cgi?1");
-        //        _capture = new Emgu.CV.Capture(cameraUrl);
-        //        _capture = new Emgu.CV.Capture("http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg");
-        //        _capture = new Emgu.CV.Capture(0);
-        //        Application.Idle += ProcessFrame;
-        //    }
-        //    catch (NullReferenceException excpt)
-        //    {
-        //        MessageBox.Show(excpt.Message);
-        //    }
-        //}
-
-        //private void ProcessFrame(object sender, EventArgs arg)
-        //{
-        //    imageBoxCamera1.Image = _capture.QueryFrame();
-        //    if (_isSaveToFile)
-        //    {
-        //        imageBoxPicture1.Image = _capture.QueryFrame();
-        //        if (imageBoxPicture1.Image != null)
-        //        {
-        //            string path = Constant.IMAGE_FOLDER + DateTime.Now.Ticks + ".jpg";
-        //            _capture.QueryFrame().Save(path);
-        //        }
-        //        _isSaveToFile = !_isSaveToFile;
-        //    }
-        //}
-
-        private void loadAforge()
-        {
-            MJPEGStream videoSource1 = new MJPEGStream(cameraUrl1);
-            //MJPEGStream videoSource = new MJPEGStream("http://asma-cam.ne.oregonstate.edu/mjpg/video.mjpg");
-            videoSource1.Login = "admin";
-            videoSource1.Password = "bmv333999";
-            videoSource1.NewFrame += video_NewFrame1;
-            videoSource1.Start();
-        }
-
-        public void video_NewFrame1(object sender, NewFrameEventArgs eventArgs)
-        {
-            //do processing here
-            //Bitmap bitmap = (Bitmap) eventArgs.Frame.Clone();
-            //pictureBoxCamera1.Image = bitmap;
-
-            //object lockObject = new object();
-            //lock (lockObject)
-            //{
-            //    if (_isSaveCamera1ToFile)
-            //    {
-            //        if (CarDAO.isCarIn(cardID))
-            //        {
-            //            pictureBoxImage1.Image = bitmap;
-            //            if (pictureBoxCamera1.Image != null)
-            //            {
-            //                Image img = this.pictureBoxCamera1.Image;
-            //                Image imgclone = (Image)img.Clone();
-            //                imagePath1 = DateTime.Now.Ticks + ".jpg";
-            //                saveImageToFile(imgclone, imagePath1);
-            //            }
-            //        }
-                    
-            //        _isSaveCamera1ToFile = !_isSaveCamera1ToFile;
-
-            //        if (!_isSaveCamera2ToFile)
-            //        {
-            //            checkForSaveToDB();
-            //        }
-            //    }
-            //}
         }
 
         private void saveImageToFile(Image image, string fileName)
@@ -497,7 +322,7 @@ namespace ParkingMangement.GUI
         {
             try
             {
-                String filePath = Application.ExecutablePath + "\\" + Constant.sFileNameConfig;
+                String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
                 if (File.Exists(filePath))
                 {
                     string xmlString = File.ReadAllText(filePath);
