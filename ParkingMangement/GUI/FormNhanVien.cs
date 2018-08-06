@@ -23,12 +23,12 @@ namespace ParkingMangement.GUI
     public partial class FormNhanVien : Form
     {
         private string cardID = "0";
-        
-        const string cameraUrl = @"rtsp://192.168.1.190:554/cam/realmonitor?channel=4&subtype=0&unicast=true&proto=Onvif";
+
+        const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
         //const string cameraUrl = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
-        private string cameraUrl1 = "";
+        private string cameraUrl1 = cameraUrl;
         private string cameraUrl2 = cameraUrl;
-        private string cameraUrl3 = "";
+        private string cameraUrl3 = cameraUrl;
         private string cameraUrl4 = cameraUrl;
 
         private string imagePath1;
@@ -50,10 +50,12 @@ namespace ParkingMangement.GUI
             //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
+            configVLC();
             loadCamera1VLC();
-            loadCamera2VLC();
+            //loadCamera2VLC();
             loadCamera3VLC();
-            loadCamera4VLC();
+            //loadCamera4VLC();
+            //loadCameraVLC();
         }
 
         private void loadInfo()
@@ -176,7 +178,7 @@ namespace ParkingMangement.GUI
         private void loadCamera1VLC()
         {
             String rtspString = cameraUrl1;
-            axVLCPlugin1.playlist.add(rtspString, " ", ":no-overlay");
+            axVLCPlugin1.playlist.add(rtspString, " ", null);
             try
             {
                 axVLCPlugin1.playlist.play();
@@ -213,7 +215,7 @@ namespace ParkingMangement.GUI
         private void loadCamera2VLC()
         {
             String rtspString = cameraUrl2;
-            axVLCPlugin2.playlist.add(rtspString, " ", ":no-overlay");
+            axVLCPlugin2.playlist.add(rtspString, " ", null);
             try
             {
                 axVLCPlugin2.playlist.play();
@@ -250,7 +252,7 @@ namespace ParkingMangement.GUI
         private void loadCamera3VLC()
         {
             String rtspString = cameraUrl3;
-            axVLCPlugin3.playlist.add(rtspString, " ", ":no-overlay");
+            axVLCPlugin3.playlist.add(rtspString, " ", null);
             try
             {
                 axVLCPlugin3.playlist.play();
@@ -283,7 +285,7 @@ namespace ParkingMangement.GUI
         private void loadCamera4VLC()
         {
             String rtspString = cameraUrl4;
-            axVLCPlugin4.playlist.add(rtspString, " ", ":no-overlay");
+            axVLCPlugin4.playlist.add(rtspString, " ", null);
             try
             {
                 axVLCPlugin4.playlist.play();
@@ -347,6 +349,18 @@ namespace ParkingMangement.GUI
         {
             cameraUrl1 = config.cameraUrl1;
             cameraUrl3 = config.cameraUrl3;
+        }
+
+        private void configVLC()
+        {
+            axVLCPlugin1.video.aspectRatio = "209:253";
+            axVLCPlugin2.video.aspectRatio = "209:253";
+            axVLCPlugin3.video.aspectRatio = "209:253";
+            axVLCPlugin4.video.aspectRatio = "209:253";
+            axVLCPlugin1.video.scale = 0.25f;
+            axVLCPlugin2.video.scale = 0.25f;
+            axVLCPlugin3.video.scale = 0.25f;
+            axVLCPlugin4.video.scale = 0.25f;
         }
     }
 }

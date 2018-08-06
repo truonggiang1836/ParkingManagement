@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
@@ -63,8 +62,8 @@
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
             this.tbRFIDCardID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
@@ -77,6 +76,7 @@
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -94,15 +94,6 @@
             this.panel1.Size = new System.Drawing.Size(839, 510);
             this.panel1.TabIndex = 0;
             // 
-            // axVLCPlugin4
-            // 
-            this.axVLCPlugin4.Enabled = true;
-            this.axVLCPlugin4.Location = new System.Drawing.Point(630, 1);
-            this.axVLCPlugin4.Name = "axVLCPlugin4";
-            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 254);
-            this.axVLCPlugin4.TabIndex = 13;
-            // 
             // axVLCPlugin3
             // 
             this.axVLCPlugin3.Enabled = true;
@@ -110,7 +101,7 @@
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
             this.axVLCPlugin3.Size = new System.Drawing.Size(209, 253);
-            this.axVLCPlugin3.TabIndex = 12;
+            this.axVLCPlugin3.TabIndex = 16;
             // 
             // axVLCPlugin2
             // 
@@ -119,7 +110,7 @@
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
             this.axVLCPlugin2.Size = new System.Drawing.Size(209, 254);
-            this.axVLCPlugin2.TabIndex = 11;
+            this.axVLCPlugin2.TabIndex = 15;
             // 
             // axVLCPlugin1
             // 
@@ -127,8 +118,8 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(0, 1);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 254);
-            this.axVLCPlugin1.TabIndex = 10;
+            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin1.TabIndex = 14;
             // 
             // pictureBoxImage1
             // 
@@ -137,7 +128,7 @@
             this.pictureBoxImage1.Name = "pictureBoxImage1";
             this.pictureBoxImage1.Size = new System.Drawing.Size(210, 255);
             this.pictureBoxImage1.TabIndex = 9;
-            this.pictureBoxImage1.TabStop = false;          
+            this.pictureBoxImage1.TabStop = false;
             // 
             // pictureBoxImage4
             // 
@@ -410,6 +401,15 @@
             this.label10.TabIndex = 17;
             this.label10.Text = "MÃ THẺ:";
             // 
+            // axVLCPlugin4
+            // 
+            this.axVLCPlugin4.Enabled = true;
+            this.axVLCPlugin4.Location = new System.Drawing.Point(630, 1);
+            this.axVLCPlugin4.Name = "axVLCPlugin4";
+            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
+            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin4.TabIndex = 17;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -440,7 +440,6 @@
             this.Load += new System.EventHandler(this.FormStaff_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
@@ -458,6 +457,7 @@
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,11 +492,11 @@
         private System.Windows.Forms.Label labelCardID;
         private System.Windows.Forms.Timer timerCurrentTime;
         private System.Windows.Forms.PictureBox pictureBoxImage1;
-        private AxAXVLC.AxVLCPlugin2 axVLCPlugin1;
-        private AxAXVLC.AxVLCPlugin2 axVLCPlugin2;
-        private AxAXVLC.AxVLCPlugin2 axVLCPlugin4;
-        private AxAXVLC.AxVLCPlugin2 axVLCPlugin3;
         private System.Windows.Forms.TextBox tbRFIDCardID;
         private System.Windows.Forms.Label label10;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin1;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin2;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin3;
+        private AxAXVLC.AxVLCPlugin2 axVLCPlugin4;
     }
 }
