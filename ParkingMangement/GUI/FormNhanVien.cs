@@ -31,8 +31,8 @@ namespace ParkingMangement.GUI
         private string cardID = "0";
         private string keyboardDeviceName = "";
 
-        const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
-        //const string cameraUrl = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
+        const string cameraUrl = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
         private string cameraUrl1 = cameraUrl;
         private string cameraUrl2 = cameraUrl;
         private string cameraUrl3 = cameraUrl;
@@ -71,9 +71,9 @@ namespace ParkingMangement.GUI
             loadInfo();
             configVLC();
             loadCamera1VLC();
-            //loadCamera2VLC();
+            loadCamera2VLC();
             loadCamera3VLC();
-            //loadCamera4VLC();
+            loadCamera4VLC();
             //loadCameraVLC();
         }
 
@@ -134,11 +134,28 @@ namespace ParkingMangement.GUI
             //if (CarDAO.isCarIn(cardID))
             if (isCarIn())
             {
-                insertCarIn();
+                pictureBoxImage3.Image = null;
+                pictureBoxImage4.Image = null;
+                if (KiemTraXeChuaRa())
+                {
+                    MessageBox.Show("Thẻ này chưa được quẹt đầu ra");
+                }
+                else
+                {
+                    insertCarIn();
+                }
             } else
             {
-                updateCarOut();
-                loadCarInData();
+                pictureBoxImage1.Image = null;
+                pictureBoxImage2.Image = null;
+                if (KiemTraXeChuaRa())
+                {
+                    updateCarOut();
+                    loadCarInData();
+                } else
+                {
+                    MessageBox.Show("Thẻ này chưa được quẹt đầu vào");
+                }
             }
         }
 
@@ -203,6 +220,21 @@ namespace ParkingMangement.GUI
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
                 labelTimeIn.Text = timeIn.ToString("dd/MM/yyyy HH:mm:ss");
             }
+        }
+
+        private bool KiemTraXeChuaRa()
+        {
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                String idIn = dt.Rows[0].Field<String>("IDIn");
+                String idOut = dt.Rows[0].Field<String>("IDOut");
+                if (!idIn.Equals("") && idOut.Equals(""))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void loadCamera1VLC()
@@ -380,7 +412,9 @@ namespace ParkingMangement.GUI
         private void parseConfigFile(Config config)
         {
             cameraUrl1 = config.cameraUrl1;
+            cameraUrl2 = config.cameraUrl2;
             cameraUrl3 = config.cameraUrl3;
+            cameraUrl4 = config.cameraUrl4;
             rfidIn = config.rfidIn;
             rfidOut = config.rfidOut;
         }
@@ -406,8 +440,10 @@ namespace ParkingMangement.GUI
         private void OnKeyPressed(object sender, RawInputEventArg e)
         {
             String source = e.KeyPressEvent.Source;
-            keyboardDeviceName = e.KeyPressEvent.DeviceName;
-            String cardId = labelCardID.Text;
+            if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
+            {
+                keyboardDeviceName = e.KeyPressEvent.DeviceName;
+            }
         }
 
         private void Keyboard_FormClosing(object sender, FormClosingEventArgs e)
