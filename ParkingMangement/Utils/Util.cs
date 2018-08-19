@@ -96,5 +96,12 @@ namespace ParkingMangement.Utils
         {
             return Convert.ToInt64(date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds);
         }
+
+        public static void CreateFolderIfMissing(string path)
+        {
+            bool folderExists = Directory.Exists(path);
+            if (!folderExists)
+                Directory.CreateDirectory(path);
+        }
     }
 }

@@ -1,11 +1,13 @@
 ﻿using ParkingMangement.DAO;
 using ParkingMangement.DTO;
 using ParkingMangement.Utils;
+using RawInput_dll;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -931,8 +933,11 @@ namespace ParkingMangement.GUI
             cardDTO.IsUsing = isUsing;
             cardDTO.DayUnlimit = DateTime.Now;
 
-            CardDAO.Insert(cardDTO);
-            loadCardList();
+            if (CardDAO.Insert(cardDTO))
+            {
+                loadCardList();
+                MessageBox.Show("Tạo thẻ thành công!");
+            }
         }
 
         private bool checkUpdateCardData()
@@ -1034,6 +1039,9 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
                 loadTabPageTicketLog();
+            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabQuanLyHeThong"])
+            {
+                addDataToRFIDComboBox();
             }
         }
 
@@ -1607,22 +1615,38 @@ namespace ParkingMangement.GUI
             string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
             if (!string.IsNullOrEmpty(image1))
             {
-                pictureBoxCarLogImage1.Image = Image.FromFile(Constant.IMAGE_FOLDER + image1);
+                string filePath = Constant.IMAGE_FOLDER + image1;
+                if (File.Exists(filePath))
+                {
+                    pictureBoxCarLogImage1.Image = Image.FromFile(filePath);
+                }
             }
             string image2 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages2"].Value);
             if (!string.IsNullOrEmpty(image2))
             {
-                pictureBoxCarLogImage2.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+                string filePath = Constant.IMAGE_FOLDER + image2;
+                if (File.Exists(filePath))
+                {
+                    pictureBoxCarLogImage2.Image = Image.FromFile(filePath);
+                }
             }
             string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
             if (!string.IsNullOrEmpty(image3))
             {
-                pictureBoxCarLogImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image3);
+                string filePath = Constant.IMAGE_FOLDER + image3;
+                if (File.Exists(filePath))
+                {
+                    pictureBoxCarLogImage3.Image = Image.FromFile(filePath);
+                }
             }
             string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
             if (!string.IsNullOrEmpty(image4))
             {
-                pictureBoxCarLogImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image4);
+                string filePath = Constant.IMAGE_FOLDER + image4;
+                if (File.Exists(filePath))
+                {
+                    pictureBoxCarLogImage4.Image = Image.FromFile(filePath);
+                }
             }
         }
 
@@ -3136,7 +3160,7 @@ namespace ParkingMangement.GUI
 
         private void deleteCard(int currentRow)
         {
-            string cardID = Convert.ToString(dgvCardList.Rows[currentRow].Cells["ID"].Value);
+            string cardID = Convert.ToString(dgvCardList.Rows[currentRow].Cells["CardID"].Value);
             CardDAO.Delete(cardID);
             loadCardList();
         }
@@ -3184,6 +3208,11 @@ namespace ParkingMangement.GUI
         private void btnExportDanhSachVeThang_Click(object sender, EventArgs e)
         {
             exportDanhSachTheThangToExcel(1, 1);
+        }
+
+        private void addDataToRFIDComboBox()
+        {
+
         }
     }
 }

@@ -2,4 +2,6 @@
 <xml>
   <camera_url_1>http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288</camera_url_1>
   <camera_url_3>http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288</camera_url_3>
+  <rfid_in><![CDATA[\\?\HID#VID_0E6A&PID_0305#6&570cfd7&0&0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}]]></rfid_in>
+  <rfid_out><![CDATA[]]></rfid_out>
 </xml>

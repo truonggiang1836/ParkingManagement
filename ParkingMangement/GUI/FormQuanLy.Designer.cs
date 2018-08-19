@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode35,
+            treeNode36,
+            treeNode37});
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode39,
+            treeNode40,
+            treeNode41,
+            treeNode42,
+            treeNode43});
+            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode45,
+            treeNode46,
+            treeNode47,
+            treeNode48});
+            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode50,
+            treeNode51,
+            treeNode52,
+            treeNode53});
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -514,6 +514,8 @@
             this.label64 = new System.Windows.Forms.Label();
             this.tbTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPage17 = new System.Windows.Forms.TabPage();
+            this.btnExportDanhSachVeThang = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabPageGiaHanVeThang = new System.Windows.Forms.TabPage();
             this.dgvRenewTicketMonthList = new System.Windows.Forms.DataGridView();
             this.RenewIsChosen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -619,9 +621,7 @@
             this.label137 = new System.Windows.Forms.Label();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.label138 = new System.Windows.Forms.Label();
-            this.textBox29 = new System.Windows.Forms.TextBox();
             this.label139 = new System.Windows.Forms.Label();
-            this.textBox30 = new System.Windows.Forms.TextBox();
             this.label140 = new System.Windows.Forms.Label();
             this.textBox31 = new System.Windows.Forms.TextBox();
             this.label141 = new System.Windows.Forms.Label();
@@ -823,8 +823,8 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.btnExportDanhSachVeThang = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.comboBoxRFID_In = new System.Windows.Forms.ComboBox();
+            this.comboBoxRFID_Out = new System.Windows.Forms.ComboBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -5462,6 +5462,25 @@
             this.tabPage17.Text = "Import-Export";
             this.tabPage17.UseVisualStyleBackColor = true;
             // 
+            // btnExportDanhSachVeThang
+            // 
+            this.btnExportDanhSachVeThang.Location = new System.Drawing.Point(56, 102);
+            this.btnExportDanhSachVeThang.Name = "btnExportDanhSachVeThang";
+            this.btnExportDanhSachVeThang.Size = new System.Drawing.Size(243, 40);
+            this.btnExportDanhSachVeThang.TabIndex = 26;
+            this.btnExportDanhSachVeThang.Text = "EXPORT DANH SÁCH THẺ THÁNG";
+            this.btnExportDanhSachVeThang.UseVisualStyleBackColor = true;
+            this.btnExportDanhSachVeThang.Click += new System.EventHandler(this.btnExportDanhSachVeThang_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(56, 38);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(243, 40);
+            this.button5.TabIndex = 25;
+            this.button5.Text = "IMPORT DANH SÁCH THẺ THÁNG";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // tabPageGiaHanVeThang
             // 
             this.tabPageGiaHanVeThang.Controls.Add(this.dgvRenewTicketMonthList);
@@ -6224,6 +6243,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBoxRFID_Out);
+            this.groupBox2.Controls.Add(this.comboBoxRFID_In);
             this.groupBox2.Controls.Add(this.label127);
             this.groupBox2.Controls.Add(this.textBox17);
             this.groupBox2.Controls.Add(this.label128);
@@ -6247,9 +6268,7 @@
             this.groupBox2.Controls.Add(this.label137);
             this.groupBox2.Controls.Add(this.textBox28);
             this.groupBox2.Controls.Add(this.label138);
-            this.groupBox2.Controls.Add(this.textBox29);
             this.groupBox2.Controls.Add(this.label139);
-            this.groupBox2.Controls.Add(this.textBox30);
             this.groupBox2.Controls.Add(this.label140);
             this.groupBox2.Controls.Add(this.textBox31);
             this.groupBox2.Controls.Add(this.label141);
@@ -6455,16 +6474,9 @@
             this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label138.Location = new System.Drawing.Point(103, 137);
             this.label138.Name = "label138";
-            this.label138.Size = new System.Drawing.Size(46, 16);
+            this.label138.Size = new System.Drawing.Size(60, 16);
             this.label138.TabIndex = 17;
-            this.label138.Text = "RFID2";
-            // 
-            // textBox29
-            // 
-            this.textBox29.Location = new System.Drawing.Point(236, 134);
-            this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new System.Drawing.Size(189, 22);
-            this.textBox29.TabIndex = 16;
+            this.label138.Text = "RFID out";
             // 
             // label139
             // 
@@ -6472,16 +6484,9 @@
             this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label139.Location = new System.Drawing.Point(103, 109);
             this.label139.Name = "label139";
-            this.label139.Size = new System.Drawing.Size(46, 16);
+            this.label139.Size = new System.Drawing.Size(52, 16);
             this.label139.TabIndex = 15;
-            this.label139.Text = "RFID1";
-            // 
-            // textBox30
-            // 
-            this.textBox30.Location = new System.Drawing.Point(236, 106);
-            this.textBox30.Name = "textBox30";
-            this.textBox30.Size = new System.Drawing.Size(189, 22);
-            this.textBox30.TabIndex = 14;
+            this.label139.Text = "RFID in";
             // 
             // label140
             // 
@@ -7208,71 +7213,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode1.Name = "NodeName1";
-            treeNode1.Text = "Thông tin nhân sự";
-            treeNode2.Name = "NodeName2";
-            treeNode2.Text = "Dò bảng chấm công";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Quản lý nhân sự";
-            treeNode4.Name = "NodeName3";
-            treeNode4.Text = "Xem thống kê";
-            treeNode5.Name = "NodeName4";
-            treeNode5.Text = "Điều chỉnh công thức tính tiền";
-            treeNode6.Name = "Node1";
-            treeNode6.Text = "Quản lý doanh thu";
-            treeNode7.Name = "NodeName5";
-            treeNode7.Text = "Quản lý loại xe";
-            treeNode8.Name = "NodeName6";
-            treeNode8.Text = "Quản lý thẻ xe";
-            treeNode9.Name = "NodeName7";
-            treeNode9.Text = "Kích hoạt thẻ";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Quản lý thẻ xe - loại xe";
-            treeNode11.Name = "NodeName8";
-            treeNode11.Text = "Nhật ký vé tháng";
-            treeNode12.Name = "NodeName9";
-            treeNode12.Text = "Cập nhật thông tin vé tháng";
-            treeNode13.Name = "NodeName10";
-            treeNode13.Text = "Gia hạn vé tháng";
-            treeNode14.Name = "NodeName11";
-            treeNode14.Text = "Mất thẻ tháng";
-            treeNode15.Name = "NodeName12";
-            treeNode15.Text = "Kích hoạt vé tháng";
-            treeNode16.Name = "Node12";
-            treeNode16.Text = "Quản lý vé tháng";
-            treeNode17.Name = "NodeName13";
-            treeNode17.Text = "Cấu hình cơ bản";
-            treeNode18.Name = "NodeName14";
-            treeNode18.Text = "Quản lý tiền thu";
-            treeNode19.Name = "NodeName15";
-            treeNode19.Text = "Phân quyền truy cập";
-            treeNode20.Name = "NodeName16";
-            treeNode20.Text = "Nhật ký hệ thống";
-            treeNode21.Name = "Node18";
-            treeNode21.Text = "Quản lý hệ thống";
-            treeNode22.Name = "NodeName17";
-            treeNode22.Text = "Thiết lập ra vào";
-            treeNode23.Name = "NodeName18";
-            treeNode23.Text = "Tra cứu vào ra";
-            treeNode24.Name = "NodeName19";
-            treeNode24.Text = "Tra cứu vào ra vé tháng";
-            treeNode25.Name = "NodeName20";
-            treeNode25.Text = "Xem hộp đen";
-            treeNode26.Name = "Node23";
-            treeNode26.Text = "Quản lý xe vào ra";
-            treeNode27.Name = "NodeName21";
-            treeNode27.Text = "Lưu mất thẻ";
-            treeNode28.Name = "NodeName22";
-            treeNode28.Text = "Xem báo cáo F7";
+            treeNode29.Name = "NodeName1";
+            treeNode29.Text = "Thông tin nhân sự";
+            treeNode30.Name = "NodeName2";
+            treeNode30.Text = "Dò bảng chấm công";
+            treeNode31.Name = "Node0";
+            treeNode31.Text = "Quản lý nhân sự";
+            treeNode32.Name = "NodeName3";
+            treeNode32.Text = "Xem thống kê";
+            treeNode33.Name = "NodeName4";
+            treeNode33.Text = "Điều chỉnh công thức tính tiền";
+            treeNode34.Name = "Node1";
+            treeNode34.Text = "Quản lý doanh thu";
+            treeNode35.Name = "NodeName5";
+            treeNode35.Text = "Quản lý loại xe";
+            treeNode36.Name = "NodeName6";
+            treeNode36.Text = "Quản lý thẻ xe";
+            treeNode37.Name = "NodeName7";
+            treeNode37.Text = "Kích hoạt thẻ";
+            treeNode38.Name = "Node8";
+            treeNode38.Text = "Quản lý thẻ xe - loại xe";
+            treeNode39.Name = "NodeName8";
+            treeNode39.Text = "Nhật ký vé tháng";
+            treeNode40.Name = "NodeName9";
+            treeNode40.Text = "Cập nhật thông tin vé tháng";
+            treeNode41.Name = "NodeName10";
+            treeNode41.Text = "Gia hạn vé tháng";
+            treeNode42.Name = "NodeName11";
+            treeNode42.Text = "Mất thẻ tháng";
+            treeNode43.Name = "NodeName12";
+            treeNode43.Text = "Kích hoạt vé tháng";
+            treeNode44.Name = "Node12";
+            treeNode44.Text = "Quản lý vé tháng";
+            treeNode45.Name = "NodeName13";
+            treeNode45.Text = "Cấu hình cơ bản";
+            treeNode46.Name = "NodeName14";
+            treeNode46.Text = "Quản lý tiền thu";
+            treeNode47.Name = "NodeName15";
+            treeNode47.Text = "Phân quyền truy cập";
+            treeNode48.Name = "NodeName16";
+            treeNode48.Text = "Nhật ký hệ thống";
+            treeNode49.Name = "Node18";
+            treeNode49.Text = "Quản lý hệ thống";
+            treeNode50.Name = "NodeName17";
+            treeNode50.Text = "Thiết lập ra vào";
+            treeNode51.Name = "NodeName18";
+            treeNode51.Text = "Tra cứu vào ra";
+            treeNode52.Name = "NodeName19";
+            treeNode52.Text = "Tra cứu vào ra vé tháng";
+            treeNode53.Name = "NodeName20";
+            treeNode53.Text = "Xem hộp đen";
+            treeNode54.Name = "Node23";
+            treeNode54.Text = "Quản lý xe vào ra";
+            treeNode55.Name = "NodeName21";
+            treeNode55.Text = "Lưu mất thẻ";
+            treeNode56.Name = "NodeName22";
+            treeNode56.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6,
-            treeNode10,
-            treeNode16,
-            treeNode21,
-            treeNode26,
-            treeNode27,
-            treeNode28});
+            treeNode31,
+            treeNode34,
+            treeNode38,
+            treeNode44,
+            treeNode49,
+            treeNode54,
+            treeNode55,
+            treeNode56});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -8443,24 +8448,23 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // btnExportDanhSachVeThang
+            // comboBoxRFID_In
             // 
-            this.btnExportDanhSachVeThang.Location = new System.Drawing.Point(56, 102);
-            this.btnExportDanhSachVeThang.Name = "btnExportDanhSachVeThang";
-            this.btnExportDanhSachVeThang.Size = new System.Drawing.Size(243, 40);
-            this.btnExportDanhSachVeThang.TabIndex = 26;
-            this.btnExportDanhSachVeThang.Text = "EXPORT DANH SÁCH THẺ THÁNG";
-            this.btnExportDanhSachVeThang.UseVisualStyleBackColor = true;
-            this.btnExportDanhSachVeThang.Click += new System.EventHandler(this.btnExportDanhSachVeThang_Click);
+            this.comboBoxRFID_In.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRFID_In.FormattingEnabled = true;
+            this.comboBoxRFID_In.Location = new System.Drawing.Point(236, 105);
+            this.comboBoxRFID_In.Name = "comboBoxRFID_In";
+            this.comboBoxRFID_In.Size = new System.Drawing.Size(189, 24);
+            this.comboBoxRFID_In.TabIndex = 40;
             // 
-            // button5
+            // comboBoxRFID_Out
             // 
-            this.button5.Location = new System.Drawing.Point(56, 38);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(243, 40);
-            this.button5.TabIndex = 25;
-            this.button5.Text = "IMPORT DANH SÁCH THẺ THÁNG";
-            this.button5.UseVisualStyleBackColor = true;
+            this.comboBoxRFID_Out.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRFID_Out.FormattingEnabled = true;
+            this.comboBoxRFID_Out.Location = new System.Drawing.Point(236, 134);
+            this.comboBoxRFID_Out.Name = "comboBoxRFID_Out";
+            this.comboBoxRFID_Out.Size = new System.Drawing.Size(189, 24);
+            this.comboBoxRFID_Out.TabIndex = 41;
             // 
             // FormQuanLy
             // 
@@ -9188,9 +9192,7 @@
         private System.Windows.Forms.Label label137;
         private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Label label138;
-        private System.Windows.Forms.TextBox textBox29;
         private System.Windows.Forms.Label label139;
-        private System.Windows.Forms.TextBox textBox30;
         private System.Windows.Forms.Label label140;
         private System.Windows.Forms.TextBox textBox31;
         private System.Windows.Forms.Label label141;
@@ -9427,5 +9429,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
         private System.Windows.Forms.Button btnExportDanhSachVeThang;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox comboBoxRFID_Out;
+        private System.Windows.Forms.ComboBox comboBoxRFID_In;
     }
 }

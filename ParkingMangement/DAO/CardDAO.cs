@@ -16,10 +16,10 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static void Insert(CardDTO cartDTO)
+        public static bool Insert(CardDTO cartDTO)
         {
             string sql = "insert into SmartCard(ID, IsUsing, Type, DayUnlimit) values ('" + cartDTO.Id + "', '" + cartDTO.IsUsing + "', " + cartDTO.Type + ", '" + cartDTO.DayUnlimit + "')";
-            Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static void Update(CardDTO cartDTO)
@@ -81,6 +81,12 @@ namespace ParkingMangement.DAO
                 return dt.Rows[0].Field<string>("Type");
             }
             return "";
+        }
+
+        public static DataTable GetCardByID(string id)
+        {
+            string sql = "select * from [SmartCard] where ID = '" + id + "'";
+            return Database.ExcuQuery(sql);
         }
     }
 }

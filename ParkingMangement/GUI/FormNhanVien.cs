@@ -17,12 +17,19 @@ using System.Drawing.Imaging;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
 using System.Xml.Serialization;
+using RawInput_dll;
+using System.Diagnostics;
+using System.Security;
 
 namespace ParkingMangement.GUI
 {
     public partial class FormNhanVien : Form
     {
+        private readonly RawInput _rawinput;
+
+        const bool CaptureOnlyInForeground = true;
         private string cardID = "0";
+        private string keyboardDeviceName = "";
 
         const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
         //const string cameraUrl = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
@@ -30,6 +37,9 @@ namespace ParkingMangement.GUI
         private string cameraUrl2 = cameraUrl;
         private string cameraUrl3 = cameraUrl;
         private string cameraUrl4 = cameraUrl;
+
+        private string rfidIn = "";
+        private string rfidOut = "";
 
         private string imagePath1;
         private string imagePath2;
@@ -40,6 +50,14 @@ namespace ParkingMangement.GUI
         {
             InitializeComponent();
             Control.CheckForIllegalCrossThreadCalls = false;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+
+            _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
+
+            //_rawinput.AddMessageFilter();   // Adding a message filter will cause keypresses to be handled
+            Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
+
+            _rawinput.KeyPressed += OnKeyPressed;
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
@@ -49,6 +67,7 @@ namespace ParkingMangement.GUI
             //Random rnd = new Random();
             //cardID = rnd.Next(119, 122) + "";
 
+            Util.CreateFolderIfMissing(Constant.IMAGE_FOLDER);
             loadInfo();
             configVLC();
             loadCamera1VLC();
@@ -73,6 +92,7 @@ namespace ParkingMangement.GUI
             {
                 cardID = tbRFIDCardID.Text;
                 labelCardID.Text = cardID;
+                string x = keyboardDeviceName;
                 tbRFIDCardID.Text = "";
                 saveImage();
             }
@@ -92,9 +112,16 @@ namespace ParkingMangement.GUI
 
         private void saveImage()
         {
-            saveImage1ToFile();
-            saveImage2ToFile();
-            checkForSaveToDB();
+            DataTable dt = CardDAO.GetCardByID(cardID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                saveImage1ToFile();
+                saveImage2ToFile();
+                checkForSaveToDB();
+            } else
+            {
+                MessageBox.Show("Thẻ chưa được thêm vào hệ thống");
+            }
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -104,7 +131,8 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB()
         {
-            if (CarDAO.isCarIn(cardID))
+            //if (CarDAO.isCarIn(cardID))
+            if (isCarIn())
             {
                 insertCarIn();
             } else
@@ -128,6 +156,7 @@ namespace ParkingMangement.GUI
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
             CarDAO.Insert(carDTO);
+            labelCost.Text = "-";
         }
 
         private void updateCarOut()
@@ -150,6 +179,7 @@ namespace ParkingMangement.GUI
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
             CarDAO.UpdateCarOut(carDTO);
+            labelCost.Text = carDTO.Cost + "";
         }
 
         private void loadCarInData()
@@ -204,7 +234,8 @@ namespace ParkingMangement.GUI
             gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
             axVLCPlugin1.playlist.play();
 
-            if (CarDAO.isCarIn(cardID))
+            //if (CarDAO.isCarIn(cardID))
+            if (isCarIn())
             {
                 pictureBoxImage1.Image = bmpScreenshot;
                 imagePath1 = DateTime.Now.Ticks + ".jpg";
@@ -241,7 +272,8 @@ namespace ParkingMangement.GUI
             gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
             axVLCPlugin2.playlist.play();
 
-            if (CarDAO.isCarIn(cardID))
+            //if (CarDAO.isCarIn(cardID))
+            if (isCarIn())
             {
                 pictureBoxImage2.Image = bmpScreenshot;
                 imagePath2 = DateTime.Now.Ticks + ".jpg";
@@ -349,6 +381,8 @@ namespace ParkingMangement.GUI
         {
             cameraUrl1 = config.cameraUrl1;
             cameraUrl3 = config.cameraUrl3;
+            rfidIn = config.rfidIn;
+            rfidOut = config.rfidOut;
         }
 
         private void configVLC()
@@ -357,10 +391,50 @@ namespace ParkingMangement.GUI
             axVLCPlugin2.video.aspectRatio = "209:253";
             axVLCPlugin3.video.aspectRatio = "209:253";
             axVLCPlugin4.video.aspectRatio = "209:253";
+
             axVLCPlugin1.video.scale = 0.25f;
             axVLCPlugin2.video.scale = 0.25f;
             axVLCPlugin3.video.scale = 0.25f;
             axVLCPlugin4.video.scale = 0.25f;
+
+            axVLCPlugin1.Toolbar = false;
+            axVLCPlugin2.Toolbar = false;
+            axVLCPlugin3.Toolbar = false;
+            axVLCPlugin4.Toolbar = false;
+        }
+
+        private void OnKeyPressed(object sender, RawInputEventArg e)
+        {
+            String source = e.KeyPressEvent.Source;
+            keyboardDeviceName = e.KeyPressEvent.DeviceName;
+            String cardId = labelCardID.Text;
+        }
+
+        private void Keyboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _rawinput.KeyPressed -= OnKeyPressed;
+        }
+
+        private static void CurrentDomain_UnhandledException(Object sender, UnhandledExceptionEventArgs e)
+        {
+            var ex = e.ExceptionObject as Exception;
+
+            if (null == ex) return;
+
+            // Log this error. Logging the exception doesn't correct the problem but at least now
+            // you may have more insight as to why the exception is being thrown.
+            Debug.WriteLine("Unhandled Exception: " + ex.Message);
+            Debug.WriteLine("Unhandled Exception: " + ex);
+            MessageBox.Show(ex.Message);
+        }
+
+        private bool isCarIn()
+        {
+            if (keyboardDeviceName.Equals(rfidOut))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

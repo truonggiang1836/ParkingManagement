@@ -16,5 +16,11 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "camera_url_3")]
         public string cameraUrl3 { get; set; }
+
+        [XmlElement(ElementName = "rfid_in")]
+        public string rfidIn { get; set; }
+
+        [XmlElement(ElementName = "rfid_out")]
+        public string rfidOut { get; set; }
     }
 }
