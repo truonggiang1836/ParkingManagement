@@ -936,8 +936,11 @@ namespace ParkingMangement.GUI
             if (CardDAO.Insert(cardDTO))
             {
                 loadCardList();
-                MessageBox.Show("Tạo thẻ thành công!");
-            }
+                labelKetQuaTaoThe.Text = "Tạo thẻ thành công!";
+            } else
+            {
+                labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
+            } 
         }
 
         private bool checkUpdateCardData()
@@ -3213,6 +3216,19 @@ namespace ParkingMangement.GUI
         private void addDataToRFIDComboBox()
         {
 
+        }
+
+        private void tbCardIDCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !tbCardIDCreate.Text.Equals(null))
+            {
+                if (checkCreateCardData())
+                {
+                    createCard();
+                    loadCardStatistic();
+                    tbCardIDCreate.Text = "";
+                }
+            }
         }
     }
 }

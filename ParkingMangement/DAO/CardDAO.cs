@@ -19,7 +19,7 @@ namespace ParkingMangement.DAO
         public static bool Insert(CardDTO cartDTO)
         {
             string sql = "insert into SmartCard(ID, IsUsing, Type, DayUnlimit) values ('" + cartDTO.Id + "', '" + cartDTO.IsUsing + "', " + cartDTO.Type + ", '" + cartDTO.DayUnlimit + "')";
-            return Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void Update(CardDTO cartDTO)

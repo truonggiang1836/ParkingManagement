@@ -298,7 +298,6 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabControl8 = new System.Windows.Forms.TabControl();
             this.tabPage27 = new System.Windows.Forms.TabPage();
-            this.btnCardCreate = new System.Windows.Forms.Button();
             this.cbIsUsingCreate = new System.Windows.Forms.CheckBox();
             this.cbPartNameCreate = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -598,6 +597,8 @@
             this.tabPageCauHinhKetNoi = new System.Windows.Forms.TabPage();
             this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBoxRFID_Out = new System.Windows.Forms.ComboBox();
+            this.comboBoxRFID_In = new System.Windows.Forms.ComboBox();
             this.label127 = new System.Windows.Forms.Label();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.label128 = new System.Windows.Forms.Label();
@@ -823,8 +824,7 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.comboBoxRFID_In = new System.Windows.Forms.ComboBox();
-            this.comboBoxRFID_Out = new System.Windows.Forms.ComboBox();
+            this.labelKetQuaTaoThe = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -3363,7 +3363,7 @@
             // 
             // tabPage27
             // 
-            this.tabPage27.Controls.Add(this.btnCardCreate);
+            this.tabPage27.Controls.Add(this.labelKetQuaTaoThe);
             this.tabPage27.Controls.Add(this.cbIsUsingCreate);
             this.tabPage27.Controls.Add(this.cbPartNameCreate);
             this.tabPage27.Controls.Add(this.label18);
@@ -3377,16 +3377,6 @@
             this.tabPage27.TabIndex = 0;
             this.tabPage27.Text = "Tạo thẻ chip";
             this.tabPage27.UseVisualStyleBackColor = true;
-            // 
-            // btnCardCreate
-            // 
-            this.btnCardCreate.Location = new System.Drawing.Point(159, 100);
-            this.btnCardCreate.Name = "btnCardCreate";
-            this.btnCardCreate.Size = new System.Drawing.Size(217, 40);
-            this.btnCardCreate.TabIndex = 20;
-            this.btnCardCreate.Text = "TẠO";
-            this.btnCardCreate.UseVisualStyleBackColor = true;
-            this.btnCardCreate.Click += new System.EventHandler(this.btnCardCreate_Click);
             // 
             // cbIsUsingCreate
             // 
@@ -3425,6 +3415,7 @@
             this.tbCardIDCreate.Name = "tbCardIDCreate";
             this.tbCardIDCreate.Size = new System.Drawing.Size(217, 22);
             this.tbCardIDCreate.TabIndex = 16;
+            this.tbCardIDCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbCardIDCreate_KeyDown);
             // 
             // label19
             // 
@@ -6281,6 +6272,24 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
+            // comboBoxRFID_Out
+            // 
+            this.comboBoxRFID_Out.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRFID_Out.FormattingEnabled = true;
+            this.comboBoxRFID_Out.Location = new System.Drawing.Point(236, 134);
+            this.comboBoxRFID_Out.Name = "comboBoxRFID_Out";
+            this.comboBoxRFID_Out.Size = new System.Drawing.Size(189, 24);
+            this.comboBoxRFID_Out.TabIndex = 41;
+            // 
+            // comboBoxRFID_In
+            // 
+            this.comboBoxRFID_In.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxRFID_In.FormattingEnabled = true;
+            this.comboBoxRFID_In.Location = new System.Drawing.Point(236, 105);
+            this.comboBoxRFID_In.Name = "comboBoxRFID_In";
+            this.comboBoxRFID_In.Size = new System.Drawing.Size(189, 24);
+            this.comboBoxRFID_In.TabIndex = 40;
+            // 
             // label127
             // 
             this.label127.AutoSize = true;
@@ -8448,23 +8457,16 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // comboBoxRFID_In
+            // labelKetQuaTaoThe
             // 
-            this.comboBoxRFID_In.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRFID_In.FormattingEnabled = true;
-            this.comboBoxRFID_In.Location = new System.Drawing.Point(236, 105);
-            this.comboBoxRFID_In.Name = "comboBoxRFID_In";
-            this.comboBoxRFID_In.Size = new System.Drawing.Size(189, 24);
-            this.comboBoxRFID_In.TabIndex = 40;
-            // 
-            // comboBoxRFID_Out
-            // 
-            this.comboBoxRFID_Out.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRFID_Out.FormattingEnabled = true;
-            this.comboBoxRFID_Out.Location = new System.Drawing.Point(236, 134);
-            this.comboBoxRFID_Out.Name = "comboBoxRFID_Out";
-            this.comboBoxRFID_Out.Size = new System.Drawing.Size(189, 24);
-            this.comboBoxRFID_Out.TabIndex = 41;
+            this.labelKetQuaTaoThe.AutoSize = true;
+            this.labelKetQuaTaoThe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKetQuaTaoThe.ForeColor = System.Drawing.Color.Green;
+            this.labelKetQuaTaoThe.Location = new System.Drawing.Point(157, 106);
+            this.labelKetQuaTaoThe.Name = "labelKetQuaTaoThe";
+            this.labelKetQuaTaoThe.Size = new System.Drawing.Size(12, 16);
+            this.labelKetQuaTaoThe.TabIndex = 20;
+            this.labelKetQuaTaoThe.Text = "-";
             // 
             // FormQuanLy
             // 
@@ -8767,7 +8769,6 @@
         private System.Windows.Forms.TabPage tabPage29;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.DataGridView dgvCardList;
-        private System.Windows.Forms.Button btnCardCreate;
         private System.Windows.Forms.CheckBox cbIsUsingCreate;
         private System.Windows.Forms.ComboBox cbPartNameCreate;
         private System.Windows.Forms.Label label18;
@@ -9431,5 +9432,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ComboBox comboBoxRFID_Out;
         private System.Windows.Forms.ComboBox comboBoxRFID_In;
+        private System.Windows.Forms.Label labelKetQuaTaoThe;
     }
 }

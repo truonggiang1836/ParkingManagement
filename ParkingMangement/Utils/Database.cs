@@ -104,5 +104,29 @@ namespace ParkingMangement
                 return false;
             }
         }
+
+        public static bool ExcuNonQueryNoErrorMessage(string sql)
+        {
+            try
+            {
+                OpenConnection();
+                OleDbCommand command = connection.CreateCommand();
+                command.CommandText = sql;
+                int result = command.ExecuteNonQuery();
+                CloseConnection();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (OleDbException Ex)
+            {
+                return false;
+            }
+        }
     }
 }
