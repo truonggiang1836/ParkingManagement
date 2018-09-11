@@ -256,7 +256,7 @@ namespace ParkingMangement.GUI
         {
             if (tabQuanLyNhanSu.SelectedTab == tabQuanLyNhanSu.TabPages["tabPageDoBangChamCong"])
             {
-                loadWorkList();
+                //loadWorkList();
             }
         }
 
@@ -1202,7 +1202,7 @@ namespace ParkingMangement.GUI
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageXemNhatKyVeThang"])
             {
-                loadTicketLogData();
+                //loadTicketLogData();
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
             {
@@ -1214,7 +1214,7 @@ namespace ParkingMangement.GUI
                 loadRenewTicketMonthData();
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
-                loadLostTicketMonthData();
+                //loadLostTicketMonthData();
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
             {
                 
@@ -1794,7 +1794,7 @@ namespace ParkingMangement.GUI
         {
             if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRa"])
             {
-                loadCarList();
+                //loadCarList();
                 loadUserDataToComboBox(comboBoxNhanVienVao);
                 loadUserDataToComboBox(comboBoxNhanVienRa);
                 loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
@@ -1804,7 +1804,7 @@ namespace ParkingMangement.GUI
                 
             } else if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRaVeThang"])
             {
-                loadCarTicketMonthList();
+                //loadCarTicketMonthList();
 
                 dateTimePickerCarTicketMonthTimeIn.Format = DateTimePickerFormat.Custom;
                 dateTimePickerCarTicketMonthTimeIn.CustomFormat = "HH:mm"; // Only use hours and minutes
@@ -2138,7 +2138,7 @@ namespace ParkingMangement.GUI
                 loadUserAcessData();
             } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageNhatKyHeThong"])
             {
-                loadLogList();
+                //loadLogList();
                 loadLogTypeDataWithAllToComboBox(cbLogType);
             }
         }

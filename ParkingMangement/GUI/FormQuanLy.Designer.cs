@@ -298,6 +298,7 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabControl8 = new System.Windows.Forms.TabControl();
             this.tabPage27 = new System.Windows.Forms.TabPage();
+            this.labelKetQuaTaoThe = new System.Windows.Forms.Label();
             this.cbIsUsingCreate = new System.Windows.Forms.CheckBox();
             this.cbPartNameCreate = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -824,7 +825,6 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.labelKetQuaTaoThe = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -3377,6 +3377,17 @@
             this.tabPage27.TabIndex = 0;
             this.tabPage27.Text = "Tạo thẻ chip";
             this.tabPage27.UseVisualStyleBackColor = true;
+            // 
+            // labelKetQuaTaoThe
+            // 
+            this.labelKetQuaTaoThe.AutoSize = true;
+            this.labelKetQuaTaoThe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKetQuaTaoThe.ForeColor = System.Drawing.Color.Green;
+            this.labelKetQuaTaoThe.Location = new System.Drawing.Point(157, 106);
+            this.labelKetQuaTaoThe.Name = "labelKetQuaTaoThe";
+            this.labelKetQuaTaoThe.Size = new System.Drawing.Size(12, 16);
+            this.labelKetQuaTaoThe.TabIndex = 20;
+            this.labelKetQuaTaoThe.Text = "-";
             // 
             // cbIsUsingCreate
             // 
@@ -8456,17 +8467,6 @@
             this.tabPageXemHopDen.TabIndex = 3;
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
-            // 
-            // labelKetQuaTaoThe
-            // 
-            this.labelKetQuaTaoThe.AutoSize = true;
-            this.labelKetQuaTaoThe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelKetQuaTaoThe.ForeColor = System.Drawing.Color.Green;
-            this.labelKetQuaTaoThe.Location = new System.Drawing.Point(157, 106);
-            this.labelKetQuaTaoThe.Name = "labelKetQuaTaoThe";
-            this.labelKetQuaTaoThe.Size = new System.Drawing.Size(12, 16);
-            this.labelKetQuaTaoThe.TabIndex = 20;
-            this.labelKetQuaTaoThe.Text = "-";
             // 
             // FormQuanLy
             // 
