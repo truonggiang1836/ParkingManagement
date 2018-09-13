@@ -32,7 +32,7 @@ namespace ParkingMangement.GUI
         private string keyboardDeviceName = "";
 
         //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
-        const string cameraUrl = @"http://webcam.st-malo.com/axis-cgi/mjpg/video.cgi?resolution=352x288";
+        const string cameraUrl = @"rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
         private string cameraUrl1 = cameraUrl;
         private string cameraUrl2 = cameraUrl;
         private string cameraUrl3 = cameraUrl;
@@ -413,6 +413,7 @@ namespace ParkingMangement.GUI
         {
             cameraUrl1 = config.cameraUrl1;
             cameraUrl2 = config.cameraUrl2;
+
             cameraUrl3 = config.cameraUrl3;
             cameraUrl4 = config.cameraUrl4;
             rfidIn = config.rfidIn;
