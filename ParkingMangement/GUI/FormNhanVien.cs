@@ -492,10 +492,10 @@ namespace ParkingMangement.GUI
                 if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
                     return computerDTO.MinCost;
-                } else if (timeIn.Date == timeOut.Date && timeOut.Date.Hour < computerDTO.StartHourNight)
+                } else if (timeIn.Hour > computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
                 {
                     return computerDTO.DayCost;
-                } else if (timeIn.Date.Hour >= computerDTO.StartHourNight && timeOut.Date.Hour <= computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day >= 1)
+                } else if (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour <= computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day >= 1)
                 {
                     return computerDTO.NightCost;
                 } else if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO) || isCarInNightOutDayOneDate(timeIn, timeOut, computerDTO))
@@ -532,32 +532,32 @@ namespace ParkingMangement.GUI
 
         private bool isCarInDayOutDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Date.Hour >= computerDTO.EndHourNight && timeIn.Date.Hour <= computerDTO.StartHourNight) && (timeOut.Date.Hour >= computerDTO.EndHourNight && timeOut.Date.Hour <= computerDTO.StartHourNight);
+            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour <= computerDTO.StartHourNight) && (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight);
         }
 
         private bool isCarInNightOutNight(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Date.Hour >= computerDTO.StartHourNight || timeIn.Date.Hour <= computerDTO.EndHourNight) && (timeOut.Date.Hour >= computerDTO.StartHourNight || timeOut.Date.Hour <= computerDTO.EndHourNight);
+            return (timeIn.Hour >= computerDTO.StartHourNight || timeIn.Hour <= computerDTO.EndHourNight) && (timeOut.Hour >= computerDTO.StartHourNight || timeOut.Hour <= computerDTO.EndHourNight);
         }
 
         private bool IsCarInDayOutNightOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Date.Hour >= computerDTO.EndHourNight && timeIn.Date.Hour <= computerDTO.StartHourNight) && (timeOut.Date.Hour >= computerDTO.StartHourNight || timeOut.Date.Hour <= computerDTO.EndHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour <= computerDTO.StartHourNight) && (timeOut.Hour >= computerDTO.StartHourNight || timeOut.Hour <= computerDTO.EndHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
         }
 
         private bool isCarInNightOutDayOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Date.Hour >= computerDTO.StartHourNight || timeIn.Date.Hour <= computerDTO.EndHourNight) && (timeOut.Date.Hour >= computerDTO.EndHourNight && timeOut.Date.Hour <= computerDTO.StartHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+            return (timeIn.Hour >= computerDTO.StartHourNight || timeIn.Hour <= computerDTO.EndHourNight) && (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
         }
 
         private double getTotalHourOfDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
             {
-                return computerDTO.StartHourNight - timeIn.Date.Hour - (double) timeIn.Date.Minute / 60; 
+                return computerDTO.StartHourNight - timeIn.Hour - (double) timeIn.Date.Minute / 60; 
             } else
             {
-                return timeOut.Date.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.EndHourNight;
+                return timeOut.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.EndHourNight;
             }
         }
 
@@ -565,23 +565,23 @@ namespace ParkingMangement.GUI
         {
             if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
             {
-                if (timeOut.Date.Hour >= computerDTO.StartHourNight && timeOut.Date.Hour < 24)
+                if (timeOut.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24)
                 {
-                    return timeOut.Date.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.StartHourNight;
+                    return timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.StartHourNight;
                 } else
                 {
-                    return timeOut.Date.Hour + (double) timeOut.Date.Minute / 60 + 24 - computerDTO.StartHourNight;
+                    return timeOut.Hour + (double) timeOut.Minute / 60 + 24 - computerDTO.StartHourNight;
                 }
             }
             else
             {
-                if (timeIn.Date.Hour >= computerDTO.StartHourNight && timeIn.Date.Hour < 24)
+                if (timeIn.Hour >= computerDTO.StartHourNight && timeIn.Hour < 24)
                 {
-                    return 24 - timeIn.Date.Hour - (double)timeIn.Date.Minute / 60 + computerDTO.EndHourNight;
+                    return 24 - timeIn.Hour - (double) timeIn.Minute / 60 + computerDTO.EndHourNight;
                 }
                 else
                 {
-                    return computerDTO.EndHourNight - timeIn.Date.Hour - (double) timeIn.Date.Minute / 60;
+                    return computerDTO.EndHourNight - timeIn.Hour - (double) timeIn.Minute / 60;
                 }
             }
         }
