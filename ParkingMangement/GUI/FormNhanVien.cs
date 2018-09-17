@@ -184,7 +184,7 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeEnd = DateTime.Now;
             carDTO.IdOut = Program.CurrentUserID;
-            carDTO.Cost = calculateCost();
+            carDTO.Cost = tinhTienGiuXe();
 
             saveImage3ToFile();
             saveImage4ToFile();
@@ -479,7 +479,25 @@ namespace ParkingMangement.GUI
             return true;
         }
 
-        private int calculateCost()
+        private int tinhTienGiuXe()
+        {
+            int parkingTypeID = ConfigDAO.GetParkingTypeID();
+            switch (parkingTypeID)
+            {
+                case Constant.LOAI_GIU_XE_MIEN_PHI:
+                    return 0;
+                case Constant.LOAI_GIU_XE_THEO_CONG_VAN:
+                    return tinhGiaTienTheoCongVan();
+                case Constant.LOAI_GIU_XE_LUY_TIEN:
+                    return tinhGiaTienLuyTien();
+                case Constant.LOAI_GIU_XE_TONG_HOP:
+                    return tinhGiaTienTongHop();
+                default:
+                    return tinhGiaTienTheoCongVan();
+            }
+        }
+
+        private int tinhGiaTienTheoCongVan()
         {
             string partID = CardDAO.getPartIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
@@ -525,6 +543,80 @@ namespace ParkingMangement.GUI
                     {
                         return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
                     }
+                }
+            }
+            return 0;
+        }
+
+        private int tinhGiaTienLuyTien()
+        {
+            string partID = CardDAO.getPartIDByCardID(cardID);
+            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_LUY_TIEN);
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null)
+            {
+                DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
+                DateTime timeOut = DateTime.Now;
+                if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1)
+                {
+                    return computerDTO.CostMilestone1;
+                } else if (Util.getTotalTimeByHour(timeIn, timeOut) > computerDTO.HourMilestone1 && Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
+                {
+                    return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
+                } else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                {
+                    return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
+                }
+                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+                {
+                    double cost = computerDTO.CostMilestone1 + 
+                        (((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3) + ((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3)) 
+                        * computerDTO.CostMilestone3;
+                    return (int) cost;
+                }
+                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+                {
+                    double cost = ((Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.CycleMilestone3) + (Util.getTotalTimeByHour(timeIn, timeOut) % computerDTO.CycleMilestone3))
+                        * computerDTO.CostMilestone3;
+                    return (int) cost;
+                }
+            }
+            return 0;
+        }
+
+        private int tinhGiaTienTongHop()
+        {
+            string partID = CardDAO.getPartIDByCardID(cardID);
+            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_TONG_HOP);
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null)
+            {
+                DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
+                DateTime timeOut = DateTime.Now;
+                if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1)
+                {
+                    return computerDTO.CostMilestone1;
+                }
+                else if (Util.getTotalTimeByHour(timeIn, timeOut) > computerDTO.HourMilestone1 && Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone2)
+                {
+                    return computerDTO.CostMilestone2;
+                }
+                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                {
+                    return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
+                }
+                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+                {
+                    double cost = computerDTO.CostMilestone1 +
+                        (((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3) + ((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3))
+                        * computerDTO.CostMilestone3;
+                    return (int)cost;
+                }
+                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+                {
+                    double cost = ((Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.CycleMilestone3) + (Util.getTotalTimeByHour(timeIn, timeOut) % computerDTO.CycleMilestone3))
+                        * computerDTO.CostMilestone3;
+                    return (int)cost;
                 }
             }
             return 0;

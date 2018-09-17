@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,13 @@ namespace ParkingMangement.GUI
 {
     public partial class FormQuanLy : Form
     {
+        private string[] listFunctionQuanLyNhanSu = { "1", "2" };
+        private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
+        private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "7" };
+        private string[] listFunctionQuanLyVeThang = { "8", "9", "10", "11", "12" };
+        private string[] listFunctionQuanLyHeThong = { "13", "14", "15", "16" };
+        private string[] listFunctionQuanLyXe = { "17", "18", "19", "20" };
+
         private ComputerDTO mComputerDTO;
         public FormQuanLy()
         {
@@ -1039,7 +1047,7 @@ namespace ParkingMangement.GUI
 
                 loadUserDataToComboBox(cbNhanVienReport);
 
-                loadSaleReportData();
+                //loadSaleReportData();
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
             {
                 loadCardList();
@@ -1060,9 +1068,10 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
                 loadTabPageTicketLog();
-            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabQuanLyHeThong"])
+            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
             {
                 addDataToRFIDComboBox();
+                loadCauHinhHienThiData();
             }
         }
 
@@ -2090,6 +2099,139 @@ namespace ParkingMangement.GUI
          *System management
          */
 
+        private void btnLuuCauHinhHienThi_Click(object sender, EventArgs e)
+        {
+            saveCauHinhHienThi();
+        }
+
+        private void loadCauHinhHienThiData()
+        {
+            int parkingTypeID = ConfigDAO.GetParkingTypeID();
+            switch (parkingTypeID)
+            {
+                case Constant.LOAI_GIU_XE_MIEN_PHI:
+                    rbGiuXeMienPhi.Checked = true;
+                    break;
+                case Constant.LOAI_GIU_XE_THEO_CONG_VAN:
+                    rbGiuXeTheoCongVan.Checked = true;
+                    break;
+                case Constant.LOAI_GIU_XE_LUY_TIEN:
+                    rbGiuXeLuyTien.Checked = true;
+                    break;
+                case Constant.LOAI_GIU_XE_TONG_HOP:
+                    rbGiuXeTongHop.Checked = true;
+                    break;
+                default:
+                    rbGiuXeTheoCongVan.Checked = true;
+                    break;
+            }
+
+            tbTotalSpace2.Text = ConfigDAO.GetTotalSpace().ToString();
+            tbTicketSpace2.Text = ConfigDAO.GetTicketMonthSpace().ToString();
+            tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
+            tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
+        }
+
+        private void saveCauHinhHienThi()
+        {
+            int parkingTypeID = Constant.LOAI_GIU_XE_THEO_CONG_VAN;
+            if (rbGiuXeMienPhi.Checked)
+            {
+                parkingTypeID = Constant.LOAI_GIU_XE_MIEN_PHI;
+            } else if (rbGiuXeTheoCongVan.Checked)
+            {
+                parkingTypeID = Constant.LOAI_GIU_XE_THEO_CONG_VAN;
+            } else if (rbGiuXeLuyTien.Checked)
+            {
+                parkingTypeID = Constant.LOAI_GIU_XE_LUY_TIEN;
+            } else if (rbGiuXeTongHop.Checked)
+            {
+                parkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP;
+            }
+            ConfigDTO configDTO = new ConfigDTO();
+            configDTO.ParkingTypeId = parkingTypeID;
+            int totalSpace = -1;
+            if (int.TryParse(tbTotalSpace2.Text, out totalSpace))
+            {
+                if (totalSpace >= 0)
+                {
+                    configDTO.TotalSpace = totalSpace;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+            int ticketSpace = -1;
+            if (int.TryParse(tbTicketSpace2.Text, out ticketSpace))
+            {
+                if (ticketSpace >= 0)
+                {
+                    configDTO.TicketSpace = ticketSpace;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+
+            int ticketLimitDay = -1;
+            if (int.TryParse(tbTicketLimitDay2.Text, out ticketLimitDay))
+            {
+                if (ticketLimitDay >= 0)
+                {
+                    configDTO.TicketLimitDay = ticketLimitDay;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+
+            int nightLimit = -1;
+            if (int.TryParse(tbNightLimit2.Text, out nightLimit))
+            {
+                if (nightLimit >= 0)
+                {
+                    configDTO.NightLimit = nightLimit;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
+            ConfigDAO.Update(configDTO);
+
+        }
+
         private void loadCarListForCashManagement()
         {
             DataTable dt = CarDAO.GetAllDataForCashManagement();
@@ -2168,6 +2310,10 @@ namespace ParkingMangement.GUI
             if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
                 loadCarListForCashManagement();
+            }
+            else if(tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
+            {
+                loadCarListForCashManagement();
             } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
             {
                 loadUserAcessData();
@@ -2203,6 +2349,108 @@ namespace ParkingMangement.GUI
                 {
                     treeNode.Checked = true;
                 }
+            }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyNhanSu))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyNhanSu", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyDoanhThu))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyDoanhThu", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyTheLoaiXe))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyTheLoaiXe", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyVeThang))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyVeThang", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyHeThong))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyHeThong", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyXe))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyXe", true)[0].Checked = true;
+            }
+        }
+
+        private bool checkTickParentNodeWhenLoadData(string[] listAllFunctionSelect, string[] listFunctionTarget)
+        {
+            foreach (string functionId in listFunctionTarget)
+            {
+                if (!listAllFunctionSelect.Contains(functionId))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool checkTickParentNodeWhenUserCheck(string[] listFunctionTarget)
+        {
+            foreach (string functionId in listFunctionTarget)
+            {
+                string nodeName = Constant.NODE_NAME + functionId;
+                TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true)[0];
+                if (treeNode != null)
+                {
+                    if (!treeNode.Checked)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private void tickParentNodeWhenUserCheck()
+        {
+            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyNhanSu))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyNhanSu", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyDoanhThu))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyDoanhThu", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyTheLoaiXe))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyTheLoaiXe", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyVeThang))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyVeThang", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyHeThong))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyHeThong", true)[0].Checked = true;
+            }
+            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyXe))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyXe", true)[0].Checked = true;
+            }
+        }
+
+        private void SelectParents(TreeNode node, Boolean isChecked)
+        {
+            var parent = node.Parent;
+
+            if (parent == null)
+                return;
+
+            if (isChecked)
+            {
+                parent.Checked = true; // we should always check parent
+                SelectParents(parent, true);
+            }
+            else
+            {
+                if (parent.Nodes.Cast<TreeNode>().Any(n => n.Checked))
+                    return; // do not uncheck parent if there other checked nodes
+
+                SelectParents(parent, false); // otherwise uncheck parent
             }
         }
 

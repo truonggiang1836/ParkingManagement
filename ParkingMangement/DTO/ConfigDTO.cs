@@ -12,10 +12,12 @@ namespace ParkingMangement.DTO
         private int ticketSpace;
         private int ticketLimitDay;
         private int nightLimit;
+        private int parkingTypeId;
 
         public int TotalSpace { get => totalSpace; set => totalSpace = value; }
         public int TicketSpace { get => ticketSpace; set => ticketSpace = value; }
         public int TicketLimitDay { get => ticketLimitDay; set => ticketLimitDay = value; }
         public int NightLimit { get => nightLimit; set => nightLimit = value; }
+        public int ParkingTypeId { get => parkingTypeId; set => parkingTypeId = value; }
     }
 }
