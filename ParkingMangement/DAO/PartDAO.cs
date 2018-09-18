@@ -36,8 +36,8 @@ namespace ParkingMangement.DAO
 
         public static void Update(PartDTO partDTO)
         {
-            string sql = "update Part set Name =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), Limit =("
-                + partDTO.Limit + ") where PartID =" + partDTO.Id + "";
+            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), Limit =("
+                + partDTO.Limit + ") where PartID = '" + partDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
 

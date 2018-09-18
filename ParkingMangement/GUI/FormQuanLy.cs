@@ -51,6 +51,8 @@ namespace ParkingMangement.GUI
 
         private void loadUserInfoTab()
         {
+            panelChinhSuaNhanVien.Enabled = false;
+            btnUpdateUser.Text = Constant.sButtonEdit;
             loadUserList();
             loadSexDataToComboBox(cbUserSexCreate);
             loadSexDataToComboBox(cbUserSexEdit);
@@ -252,9 +254,18 @@ namespace ParkingMangement.GUI
 
         private void btnUpdateUser_Click(object sender, EventArgs e)
         {
-            if (checkUpdateUserData())
+            if (panelChinhSuaNhanVien.Enabled)
             {
-                updateUser();
+                if (checkUpdateUserData())
+                {
+                    updateUser();
+                    panelChinhSuaNhanVien.Enabled = false;
+                    btnUpdateUser.Text = Constant.sButtonEdit;
+                }
+            } else
+            {
+                panelChinhSuaNhanVien.Enabled = true;
+                btnUpdateUser.Text = Constant.sButtonUpdate;
             }
         }
 
@@ -708,6 +719,8 @@ namespace ParkingMangement.GUI
         private void loadPartList()
         {
             dgvPartList.DataSource = PartDAO.GetAllData();
+            int Index = dgvPartList.CurrentRow.Index;
+            loadPartInfoFromDataGridViewRow(Index);
         }
 
         private bool checkCreatePartData()
@@ -813,6 +826,8 @@ namespace ParkingMangement.GUI
             if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageQuanLyLoaiXe"])
             {
                 loadPartList();
+                panelChinhSuaLoaiXe.Enabled = false;
+                btnUpdatePart.Text = Constant.sButtonEdit;
             }
         }
 
@@ -831,9 +846,19 @@ namespace ParkingMangement.GUI
 
         private void btnUpdatePart_Click(object sender, EventArgs e)
         {
-            if (checkUpdatePartData())
+            if (panelChinhSuaLoaiXe.Enabled)
             {
-                updatePart();
+                if (checkUpdatePartData())
+                {
+                    updatePart();
+                    panelChinhSuaLoaiXe.Enabled = false;
+                    btnUpdatePart.Text = Constant.sButtonEdit;
+                }
+            }
+            else
+            {
+                panelChinhSuaLoaiXe.Enabled = true;
+                btnUpdatePart.Text = Constant.sButtonUpdate;
             }
         }
 
@@ -1234,6 +1259,8 @@ namespace ParkingMangement.GUI
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
             {
+                panelChinhSuaVeThang.Enabled = false;
+                btnTicketMonthEdit.Text = Constant.sButtonEdit;
                 loadTicketMonthData();
                 loadPartDataToComboBox(cbTicketMonthPartCreate);
                 loadPartDataToComboBox(cbTicketMonthPartEdit);
@@ -1541,10 +1568,19 @@ namespace ParkingMangement.GUI
 
         private void btnTicketMonthEdit_Click(object sender, EventArgs e)
         {
-            if (checkUpdateTicketMonthData())
+            if (panelChinhSuaVeThang.Enabled)
             {
-                //TicketLogDAO.Insert(ticketLogDTO);
-                updateTicketMonth();
+                if (checkUpdateTicketMonthData())
+                {
+                    updateTicketMonth();
+                    panelChinhSuaVeThang.Enabled = false;
+                    btnTicketMonthEdit.Text = Constant.sButtonEdit;
+                }
+            }
+            else
+            {
+                panelChinhSuaVeThang.Enabled = true;
+                btnTicketMonthEdit.Text = Constant.sButtonUpdate;
             }
         }
 
@@ -2388,50 +2424,51 @@ namespace ParkingMangement.GUI
             return true;
         }
 
-        private bool checkTickParentNodeWhenUserCheck(string[] listFunctionTarget)
-        {
-            foreach (string functionId in listFunctionTarget)
-            {
-                string nodeName = Constant.NODE_NAME + functionId;
-                TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true)[0];
-                if (treeNode != null)
-                {
-                    if (!treeNode.Checked)
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
+        //private bool checkTickParentNodeWhenUserCheck(string[] listFunctionTarget)
+        //{
+        //    foreach (string functionId in listFunctionTarget)
+        //    {
+        //        string nodeName = Constant.NODE_NAME + functionId;
+        //        TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true)[0];
+        //        if (treeNode != null)
+        //        {
+        //            if (!treeNode.Checked)
+        //            {
+        //                return false;
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
 
-        private void tickParentNodeWhenUserCheck()
-        {
-            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyNhanSu))
-            {
-                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyNhanSu", true)[0].Checked = true;
-            }
-            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyDoanhThu))
-            {
-                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyDoanhThu", true)[0].Checked = true;
-            }
-            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyTheLoaiXe))
-            {
-                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyTheLoaiXe", true)[0].Checked = true;
-            }
-            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyVeThang))
-            {
-                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyVeThang", true)[0].Checked = true;
-            }
-            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyHeThong))
-            {
-                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyHeThong", true)[0].Checked = true;
-            }
-            if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyXe))
-            {
-                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyXe", true)[0].Checked = true;
-            }
-        }
+        //private void tickParentNodeWhenUserCheck()
+        //{
+        //    if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyNhanSu))
+        //    {
+        //        TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyNhanSu", true)[0];
+        //        treeNode.Checked = true;
+        //    }
+        //    if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyDoanhThu))
+        //    {
+        //        treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyDoanhThu", true)[0].Checked = true;
+        //    }
+        //    if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyTheLoaiXe))
+        //    {
+        //        treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyTheLoaiXe", true)[0].Checked = true;
+        //    }
+        //    if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyVeThang))
+        //    {
+        //        treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyVeThang", true)[0].Checked = true;
+        //    }
+        //    if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyHeThong))
+        //    {
+        //        treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyHeThong", true)[0].Checked = true;
+        //    }
+        //    if (checkTickParentNodeWhenUserCheck(listFunctionQuanLyXe))
+        //    {
+        //        treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyXe", true)[0].Checked = true;
+        //    }
+        //}
 
         private void SelectParents(TreeNode node, Boolean isChecked)
         {
@@ -3548,6 +3585,11 @@ namespace ParkingMangement.GUI
                     tbCardIDCreate.Text = "";
                 }
             }
+        }
+
+        private void treeViewPhanQuyenTruyCap_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            checkTreeViewNode(e.Node, e.Node.Checked);
         }
     }
 }

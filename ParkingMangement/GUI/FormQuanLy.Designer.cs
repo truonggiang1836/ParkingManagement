@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14,
-            treeNode15});
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode35,
+            treeNode36,
+            treeNode37});
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode39,
+            treeNode40,
+            treeNode41,
+            treeNode42,
+            treeNode43});
+            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode45,
+            treeNode46,
+            treeNode47,
+            treeNode48});
+            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode50,
+            treeNode51,
+            treeNode52,
+            treeNode53});
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -108,18 +108,6 @@
             this.tabPage26 = new System.Windows.Forms.TabPage();
             this.btnCancelUpdateUser = new System.Windows.Forms.Button();
             this.btnUpdateUser = new System.Windows.Forms.Button();
-            this.cbUserSexEdit = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbUserFunctionEdit = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tbUserPassEdit = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbUserAccountEdit = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbUserNameEdit = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tbUserIDEdit = new System.Windows.Forms.TextBox();
             this.tabPageDoBangChamCong = new System.Windows.Forms.TabPage();
             this.dgvWorkList = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -339,17 +327,6 @@
             this.label25 = new System.Windows.Forms.Label();
             this.tbPartIdCreate = new System.Windows.Forms.TextBox();
             this.tabPage31 = new System.Windows.Forms.TabPage();
-            this.label26 = new System.Windows.Forms.Label();
-            this.tbPartLimitEdit = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.tbPartAmountEdit = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.tbPartSignEdit = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.tbPartNameEdit = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.tbPartIdEdit = new System.Windows.Forms.TextBox();
             this.btnCancelUpdatePart = new System.Windows.Forms.Button();
             this.btnUpdatePart = new System.Windows.Forms.Button();
             this.dgvPartList = new System.Windows.Forms.DataGridView();
@@ -485,7 +462,7 @@
             this.btnTicketMonthCancelCreate = new System.Windows.Forms.Button();
             this.btnTicketMonthCreate = new System.Windows.Forms.Button();
             this.tabPage8 = new System.Windows.Forms.TabPage();
-            this.panel18 = new System.Windows.Forms.Panel();
+            this.panelChinhSuaVeThang = new System.Windows.Forms.Panel();
             this.tbTicketMonthIDEdit = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label66 = new System.Windows.Forms.Label();
@@ -829,6 +806,31 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
+            this.panelChinhSuaNhanVien = new System.Windows.Forms.Panel();
+            this.cbUserSexEdit = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbUserFunctionEdit = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbUserPassEdit = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbUserAccountEdit = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbUserNameEdit = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbUserIDEdit = new System.Windows.Forms.TextBox();
+            this.panelChinhSuaLoaiXe = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.tbPartLimitEdit = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.tbPartAmountEdit = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.tbPartSignEdit = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tbPartNameEdit = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tbPartIdEdit = new System.Windows.Forms.TextBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -924,7 +926,7 @@
             this.panel19.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage8.SuspendLayout();
-            this.panel18.SuspendLayout();
+            this.panelChinhSuaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage17.SuspendLayout();
             this.tabPageGiaHanVeThang.SuspendLayout();
@@ -980,6 +982,8 @@
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
+            this.panelChinhSuaNhanVien.SuspendLayout();
+            this.panelChinhSuaLoaiXe.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1172,7 +1176,7 @@
             // 
             this.cbUserSexCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserSexCreate.FormattingEnabled = true;
-            this.cbUserSexCreate.Location = new System.Drawing.Point(96, 183);
+            this.cbUserSexCreate.Location = new System.Drawing.Point(116, 183);
             this.cbUserSexCreate.Name = "cbUserSexCreate";
             this.cbUserSexCreate.Size = new System.Drawing.Size(148, 24);
             this.cbUserSexCreate.TabIndex = 9;
@@ -1181,7 +1185,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(29, 187);
+            this.label8.Location = new System.Drawing.Point(49, 187);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 16);
             this.label8.TabIndex = 9;
@@ -1191,7 +1195,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 154);
+            this.label7.Location = new System.Drawing.Point(49, 154);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(61, 16);
             this.label7.TabIndex = 8;
@@ -1201,7 +1205,7 @@
             // 
             this.cbUserFunctionCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserFunctionCreate.FormattingEnabled = true;
-            this.cbUserFunctionCreate.Location = new System.Drawing.Point(96, 148);
+            this.cbUserFunctionCreate.Location = new System.Drawing.Point(116, 148);
             this.cbUserFunctionCreate.Name = "cbUserFunctionCreate";
             this.cbUserFunctionCreate.Size = new System.Drawing.Size(148, 24);
             this.cbUserFunctionCreate.TabIndex = 8;
@@ -1210,7 +1214,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(22, 119);
+            this.label6.Location = new System.Drawing.Point(42, 119);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 16);
             this.label6.TabIndex = 7;
@@ -1218,7 +1222,7 @@
             // 
             // tbUserPassCreate
             // 
-            this.tbUserPassCreate.Location = new System.Drawing.Point(96, 115);
+            this.tbUserPassCreate.Location = new System.Drawing.Point(116, 115);
             this.tbUserPassCreate.Name = "tbUserPassCreate";
             this.tbUserPassCreate.Size = new System.Drawing.Size(148, 22);
             this.tbUserPassCreate.TabIndex = 6;
@@ -1227,7 +1231,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 84);
+            this.label5.Location = new System.Drawing.Point(36, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 16);
             this.label5.TabIndex = 5;
@@ -1235,7 +1239,7 @@
             // 
             // tbUserAccountCreate
             // 
-            this.tbUserAccountCreate.Location = new System.Drawing.Point(96, 82);
+            this.tbUserAccountCreate.Location = new System.Drawing.Point(116, 82);
             this.tbUserAccountCreate.Name = "tbUserAccountCreate";
             this.tbUserAccountCreate.Size = new System.Drawing.Size(148, 22);
             this.tbUserAccountCreate.TabIndex = 4;
@@ -1244,7 +1248,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(19, 49);
+            this.label4.Location = new System.Drawing.Point(39, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 16);
             this.label4.TabIndex = 3;
@@ -1252,7 +1256,7 @@
             // 
             // tbUserNameCreate
             // 
-            this.tbUserNameCreate.Location = new System.Drawing.Point(96, 49);
+            this.tbUserNameCreate.Location = new System.Drawing.Point(116, 49);
             this.tbUserNameCreate.Name = "tbUserNameCreate";
             this.tbUserNameCreate.Size = new System.Drawing.Size(148, 22);
             this.tbUserNameCreate.TabIndex = 2;
@@ -1261,7 +1265,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(36, 19);
+            this.label3.Location = new System.Drawing.Point(56, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 16);
             this.label3.TabIndex = 1;
@@ -1269,7 +1273,7 @@
             // 
             // tbUserIDCreate
             // 
-            this.tbUserIDCreate.Location = new System.Drawing.Point(96, 16);
+            this.tbUserIDCreate.Location = new System.Drawing.Point(116, 16);
             this.tbUserIDCreate.Name = "tbUserIDCreate";
             this.tbUserIDCreate.Size = new System.Drawing.Size(148, 22);
             this.tbUserIDCreate.TabIndex = 0;
@@ -1278,18 +1282,7 @@
             // 
             this.tabPage26.Controls.Add(this.btnCancelUpdateUser);
             this.tabPage26.Controls.Add(this.btnUpdateUser);
-            this.tabPage26.Controls.Add(this.cbUserSexEdit);
-            this.tabPage26.Controls.Add(this.label9);
-            this.tabPage26.Controls.Add(this.label10);
-            this.tabPage26.Controls.Add(this.cbUserFunctionEdit);
-            this.tabPage26.Controls.Add(this.label11);
-            this.tabPage26.Controls.Add(this.tbUserPassEdit);
-            this.tabPage26.Controls.Add(this.label12);
-            this.tabPage26.Controls.Add(this.tbUserAccountEdit);
-            this.tabPage26.Controls.Add(this.label13);
-            this.tabPage26.Controls.Add(this.tbUserNameEdit);
-            this.tabPage26.Controls.Add(this.label14);
-            this.tabPage26.Controls.Add(this.tbUserIDEdit);
+            this.tabPage26.Controls.Add(this.panelChinhSuaNhanVien);
             this.tabPage26.Location = new System.Drawing.Point(4, 25);
             this.tabPage26.Name = "tabPage26";
             this.tabPage26.Padding = new System.Windows.Forms.Padding(3);
@@ -1317,113 +1310,6 @@
             this.btnUpdateUser.Text = "CHỈNH SỬA";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
             this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
-            // 
-            // cbUserSexEdit
-            // 
-            this.cbUserSexEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUserSexEdit.FormattingEnabled = true;
-            this.cbUserSexEdit.Location = new System.Drawing.Point(96, 184);
-            this.cbUserSexEdit.Name = "cbUserSexEdit";
-            this.cbUserSexEdit.Size = new System.Drawing.Size(148, 24);
-            this.cbUserSexEdit.TabIndex = 22;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(29, 188);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 16);
-            this.label9.TabIndex = 23;
-            this.label9.Text = "Giới tính :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(29, 155);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 16);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Chức vụ :";
-            // 
-            // cbUserFunctionEdit
-            // 
-            this.cbUserFunctionEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUserFunctionEdit.FormattingEnabled = true;
-            this.cbUserFunctionEdit.Location = new System.Drawing.Point(96, 149);
-            this.cbUserFunctionEdit.Name = "cbUserFunctionEdit";
-            this.cbUserFunctionEdit.Size = new System.Drawing.Size(148, 24);
-            this.cbUserFunctionEdit.TabIndex = 21;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(22, 120);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 16);
-            this.label11.TabIndex = 19;
-            this.label11.Text = "Mật khẩu :";
-            // 
-            // tbUserPassEdit
-            // 
-            this.tbUserPassEdit.Location = new System.Drawing.Point(96, 116);
-            this.tbUserPassEdit.Name = "tbUserPassEdit";
-            this.tbUserPassEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserPassEdit.TabIndex = 18;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(16, 85);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 16);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Tài khoản :";
-            // 
-            // tbUserAccountEdit
-            // 
-            this.tbUserAccountEdit.Location = new System.Drawing.Point(96, 83);
-            this.tbUserAccountEdit.Name = "tbUserAccountEdit";
-            this.tbUserAccountEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserAccountEdit.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(19, 50);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 16);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "Họ và tên :";
-            // 
-            // tbUserNameEdit
-            // 
-            this.tbUserNameEdit.Location = new System.Drawing.Point(96, 50);
-            this.tbUserNameEdit.Name = "tbUserNameEdit";
-            this.tbUserNameEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserNameEdit.TabIndex = 14;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(36, 20);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 16);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "Mã thẻ :";
-            // 
-            // tbUserIDEdit
-            // 
-            this.tbUserIDEdit.Enabled = false;
-            this.tbUserIDEdit.Location = new System.Drawing.Point(96, 17);
-            this.tbUserIDEdit.Name = "tbUserIDEdit";
-            this.tbUserIDEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserIDEdit.TabIndex = 12;
             // 
             // tabPageDoBangChamCong
             // 
@@ -3820,19 +3706,9 @@
             // 
             // tabPage31
             // 
-            this.tabPage31.Controls.Add(this.label26);
-            this.tabPage31.Controls.Add(this.tbPartLimitEdit);
-            this.tabPage31.Controls.Add(this.label27);
-            this.tabPage31.Controls.Add(this.label28);
-            this.tabPage31.Controls.Add(this.tbPartAmountEdit);
-            this.tabPage31.Controls.Add(this.label29);
-            this.tabPage31.Controls.Add(this.tbPartSignEdit);
-            this.tabPage31.Controls.Add(this.label30);
-            this.tabPage31.Controls.Add(this.tbPartNameEdit);
-            this.tabPage31.Controls.Add(this.label31);
-            this.tabPage31.Controls.Add(this.tbPartIdEdit);
             this.tabPage31.Controls.Add(this.btnCancelUpdatePart);
             this.tabPage31.Controls.Add(this.btnUpdatePart);
+            this.tabPage31.Controls.Add(this.panelChinhSuaLoaiXe);
             this.tabPage31.Location = new System.Drawing.Point(4, 25);
             this.tabPage31.Name = "tabPage31";
             this.tabPage31.Padding = new System.Windows.Forms.Padding(3);
@@ -3840,102 +3716,6 @@
             this.tabPage31.TabIndex = 1;
             this.tabPage31.Text = "Chỉnh sửa loại xe";
             this.tabPage31.UseVisualStyleBackColor = true;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(239, 130);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(76, 16);
-            this.label26.TabIndex = 36;
-            this.label26.Text = "chỉ nhập số";
-            // 
-            // tbPartLimitEdit
-            // 
-            this.tbPartLimitEdit.Location = new System.Drawing.Point(132, 160);
-            this.tbPartLimitEdit.Name = "tbPartLimitEdit";
-            this.tbPartLimitEdit.Size = new System.Drawing.Size(101, 22);
-            this.tbPartLimitEdit.TabIndex = 35;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(55, 164);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(67, 16);
-            this.label27.TabIndex = 34;
-            this.label27.Text = "Hạn mức :";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(25, 130);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(97, 16);
-            this.label28.TabIndex = 33;
-            this.label28.Text = "Tiền thu tháng :";
-            // 
-            // tbPartAmountEdit
-            // 
-            this.tbPartAmountEdit.Location = new System.Drawing.Point(132, 127);
-            this.tbPartAmountEdit.Name = "tbPartAmountEdit";
-            this.tbPartAmountEdit.Size = new System.Drawing.Size(101, 22);
-            this.tbPartAmountEdit.TabIndex = 32;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(65, 96);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(57, 16);
-            this.label29.TabIndex = 31;
-            this.label29.Text = "Ký hiệu :";
-            // 
-            // tbPartSignEdit
-            // 
-            this.tbPartSignEdit.Location = new System.Drawing.Point(132, 94);
-            this.tbPartSignEdit.Name = "tbPartSignEdit";
-            this.tbPartSignEdit.Size = new System.Drawing.Size(183, 22);
-            this.tbPartSignEdit.TabIndex = 30;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(42, 64);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(80, 16);
-            this.label30.TabIndex = 29;
-            this.label30.Text = "Tên loại xe :";
-            // 
-            // tbPartNameEdit
-            // 
-            this.tbPartNameEdit.Location = new System.Drawing.Point(132, 61);
-            this.tbPartNameEdit.Name = "tbPartNameEdit";
-            this.tbPartNameEdit.Size = new System.Drawing.Size(183, 22);
-            this.tbPartNameEdit.TabIndex = 28;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(47, 31);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(75, 16);
-            this.label31.TabIndex = 27;
-            this.label31.Text = "Mã loại xe :";
-            // 
-            // tbPartIdEdit
-            // 
-            this.tbPartIdEdit.Location = new System.Drawing.Point(132, 28);
-            this.tbPartIdEdit.Name = "tbPartIdEdit";
-            this.tbPartIdEdit.ReadOnly = true;
-            this.tbPartIdEdit.Size = new System.Drawing.Size(183, 22);
-            this.tbPartIdEdit.TabIndex = 26;
             // 
             // btnCancelUpdatePart
             // 
@@ -5215,7 +4995,7 @@
             // 
             // tabPage8
             // 
-            this.tabPage8.Controls.Add(this.panel18);
+            this.tabPage8.Controls.Add(this.panelChinhSuaVeThang);
             this.tabPage8.Controls.Add(this.btnTicketMonthCancelEdit);
             this.tabPage8.Controls.Add(this.btnTicketMonthEdit);
             this.tabPage8.Controls.Add(this.label64);
@@ -5228,40 +5008,40 @@
             this.tabPage8.Text = "Chỉnh sửa";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // panel18
+            // panelChinhSuaVeThang
             // 
-            this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel18.Controls.Add(this.tbTicketMonthIDEdit);
-            this.panel18.Controls.Add(this.pictureBox1);
-            this.panel18.Controls.Add(this.label66);
-            this.panel18.Controls.Add(this.label65);
-            this.panel18.Controls.Add(this.dateTimePickerTicketMonthExpirationDateEdit);
-            this.panel18.Controls.Add(this.label63);
-            this.panel18.Controls.Add(this.dateTimePickerTicketMonthRegistrationDateEdit);
-            this.panel18.Controls.Add(this.label62);
-            this.panel18.Controls.Add(this.cbTicketMonthPartEdit);
-            this.panel18.Controls.Add(this.tbTicketMonthChargesAmountEdit);
-            this.panel18.Controls.Add(this.tbTicketMonthCarKindEdit);
-            this.panel18.Controls.Add(this.label60);
-            this.panel18.Controls.Add(this.label61);
-            this.panel18.Controls.Add(this.tbTicketMonthAddressEdit);
-            this.panel18.Controls.Add(this.tbTicketMonthCompanyEdit);
-            this.panel18.Controls.Add(this.label58);
-            this.panel18.Controls.Add(this.label57);
-            this.panel18.Controls.Add(this.tbTicketMonthEmailEdit);
-            this.panel18.Controls.Add(this.label55);
-            this.panel18.Controls.Add(this.tbTicketMonthCMNDEdit);
-            this.panel18.Controls.Add(this.label56);
-            this.panel18.Controls.Add(this.tbTicketMonthCustomerNameEdit);
-            this.panel18.Controls.Add(this.label54);
-            this.panel18.Controls.Add(this.tbTicketMonthDigitEdit);
-            this.panel18.Controls.Add(this.label53);
-            this.panel18.Controls.Add(this.tbTicketMonthIdentifyEdit);
-            this.panel18.Controls.Add(this.label59);
-            this.panel18.Location = new System.Drawing.Point(6, 42);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(346, 475);
-            this.panel18.TabIndex = 26;
+            this.panelChinhSuaVeThang.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthIDEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.pictureBox1);
+            this.panelChinhSuaVeThang.Controls.Add(this.label66);
+            this.panelChinhSuaVeThang.Controls.Add(this.label65);
+            this.panelChinhSuaVeThang.Controls.Add(this.dateTimePickerTicketMonthExpirationDateEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label63);
+            this.panelChinhSuaVeThang.Controls.Add(this.dateTimePickerTicketMonthRegistrationDateEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label62);
+            this.panelChinhSuaVeThang.Controls.Add(this.cbTicketMonthPartEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthChargesAmountEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthCarKindEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label60);
+            this.panelChinhSuaVeThang.Controls.Add(this.label61);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthAddressEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthCompanyEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label58);
+            this.panelChinhSuaVeThang.Controls.Add(this.label57);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthEmailEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label55);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthCMNDEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label56);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthCustomerNameEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label54);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthDigitEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label53);
+            this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthIdentifyEdit);
+            this.panelChinhSuaVeThang.Controls.Add(this.label59);
+            this.panelChinhSuaVeThang.Location = new System.Drawing.Point(6, 42);
+            this.panelChinhSuaVeThang.Name = "panelChinhSuaVeThang";
+            this.panelChinhSuaVeThang.Size = new System.Drawing.Size(346, 475);
+            this.panelChinhSuaVeThang.TabIndex = 26;
             // 
             // tbTicketMonthIDEdit
             // 
@@ -7331,71 +7111,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode1.Name = "NodeName1";
-            treeNode1.Text = "Thông tin nhân sự";
-            treeNode2.Name = "NodeName2";
-            treeNode2.Text = "Dò bảng chấm công";
-            treeNode3.Name = "NodeQuanLyNhanSu";
-            treeNode3.Text = "Quản lý nhân sự";
-            treeNode4.Name = "NodeName3";
-            treeNode4.Text = "Xem thống kê";
-            treeNode5.Name = "NodeName4";
-            treeNode5.Text = "Điều chỉnh công thức tính tiền";
-            treeNode6.Name = "NodeQuanLyDoanhThu";
-            treeNode6.Text = "Quản lý doanh thu";
-            treeNode7.Name = "NodeName5";
-            treeNode7.Text = "Quản lý loại xe";
-            treeNode8.Name = "NodeName6";
-            treeNode8.Text = "Quản lý thẻ xe";
-            treeNode9.Name = "NodeName7";
-            treeNode9.Text = "Kích hoạt thẻ";
-            treeNode10.Name = "NodeQuanLyTheLoaiXe";
-            treeNode10.Text = "Quản lý thẻ xe - loại xe";
-            treeNode11.Name = "NodeName8";
-            treeNode11.Text = "Nhật ký vé tháng";
-            treeNode12.Name = "NodeName9";
-            treeNode12.Text = "Cập nhật thông tin vé tháng";
-            treeNode13.Name = "NodeName10";
-            treeNode13.Text = "Gia hạn vé tháng";
-            treeNode14.Name = "NodeName11";
-            treeNode14.Text = "Mất thẻ tháng";
-            treeNode15.Name = "NodeName12";
-            treeNode15.Text = "Kích hoạt vé tháng";
-            treeNode16.Name = "NodeQuanLyVeThang";
-            treeNode16.Text = "Quản lý vé tháng";
-            treeNode17.Name = "NodeName13";
-            treeNode17.Text = "Cấu hình cơ bản";
-            treeNode18.Name = "NodeName14";
-            treeNode18.Text = "Quản lý tiền thu";
-            treeNode19.Name = "NodeName15";
-            treeNode19.Text = "Phân quyền truy cập";
-            treeNode20.Name = "NodeName16";
-            treeNode20.Text = "Nhật ký hệ thống";
-            treeNode21.Name = "NodeQuanLyHeThong";
-            treeNode21.Text = "Quản lý hệ thống";
-            treeNode22.Name = "NodeName17";
-            treeNode22.Text = "Thiết lập ra vào";
-            treeNode23.Name = "NodeName18";
-            treeNode23.Text = "Tra cứu vào ra";
-            treeNode24.Name = "NodeName19";
-            treeNode24.Text = "Tra cứu vào ra vé tháng";
-            treeNode25.Name = "NodeName20";
-            treeNode25.Text = "Xem hộp đen";
-            treeNode26.Name = "NodeQuanLyXe";
-            treeNode26.Text = "Quản lý xe vào ra";
-            treeNode27.Name = "";
-            treeNode27.Text = "Lưu mất thẻ";
-            treeNode28.Name = "NodeName22";
-            treeNode28.Text = "Xem báo cáo F7";
+            treeNode29.Name = "NodeName1";
+            treeNode29.Text = "Thông tin nhân sự";
+            treeNode30.Name = "NodeName2";
+            treeNode30.Text = "Dò bảng chấm công";
+            treeNode31.Name = "NodeQuanLyNhanSu";
+            treeNode31.Text = "Quản lý nhân sự";
+            treeNode32.Name = "NodeName3";
+            treeNode32.Text = "Xem thống kê";
+            treeNode33.Name = "NodeName4";
+            treeNode33.Text = "Điều chỉnh công thức tính tiền";
+            treeNode34.Name = "NodeQuanLyDoanhThu";
+            treeNode34.Text = "Quản lý doanh thu";
+            treeNode35.Name = "NodeName5";
+            treeNode35.Text = "Quản lý loại xe";
+            treeNode36.Name = "NodeName6";
+            treeNode36.Text = "Quản lý thẻ xe";
+            treeNode37.Name = "NodeName7";
+            treeNode37.Text = "Kích hoạt thẻ";
+            treeNode38.Name = "NodeQuanLyTheLoaiXe";
+            treeNode38.Text = "Quản lý thẻ xe - loại xe";
+            treeNode39.Name = "NodeName8";
+            treeNode39.Text = "Nhật ký vé tháng";
+            treeNode40.Name = "NodeName9";
+            treeNode40.Text = "Cập nhật thông tin vé tháng";
+            treeNode41.Name = "NodeName10";
+            treeNode41.Text = "Gia hạn vé tháng";
+            treeNode42.Name = "NodeName11";
+            treeNode42.Text = "Mất thẻ tháng";
+            treeNode43.Name = "NodeName12";
+            treeNode43.Text = "Kích hoạt vé tháng";
+            treeNode44.Name = "NodeQuanLyVeThang";
+            treeNode44.Text = "Quản lý vé tháng";
+            treeNode45.Name = "NodeName13";
+            treeNode45.Text = "Cấu hình cơ bản";
+            treeNode46.Name = "NodeName14";
+            treeNode46.Text = "Quản lý tiền thu";
+            treeNode47.Name = "NodeName15";
+            treeNode47.Text = "Phân quyền truy cập";
+            treeNode48.Name = "NodeName16";
+            treeNode48.Text = "Nhật ký hệ thống";
+            treeNode49.Name = "NodeQuanLyHeThong";
+            treeNode49.Text = "Quản lý hệ thống";
+            treeNode50.Name = "NodeName17";
+            treeNode50.Text = "Thiết lập ra vào";
+            treeNode51.Name = "NodeName18";
+            treeNode51.Text = "Tra cứu vào ra";
+            treeNode52.Name = "NodeName19";
+            treeNode52.Text = "Tra cứu vào ra vé tháng";
+            treeNode53.Name = "NodeName20";
+            treeNode53.Text = "Xem hộp đen";
+            treeNode54.Name = "NodeQuanLyXe";
+            treeNode54.Text = "Quản lý xe vào ra";
+            treeNode55.Name = "";
+            treeNode55.Text = "Lưu mất thẻ";
+            treeNode56.Name = "NodeName22";
+            treeNode56.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode6,
-            treeNode10,
-            treeNode16,
-            treeNode21,
-            treeNode26,
-            treeNode27,
-            treeNode28});
+            treeNode31,
+            treeNode34,
+            treeNode38,
+            treeNode44,
+            treeNode49,
+            treeNode54,
+            treeNode55,
+            treeNode56});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -8596,6 +8376,246 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
+            // panelChinhSuaNhanVien
+            // 
+            this.panelChinhSuaNhanVien.Controls.Add(this.cbUserSexEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label9);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label10);
+            this.panelChinhSuaNhanVien.Controls.Add(this.cbUserFunctionEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label11);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserPassEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label12);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserAccountEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label13);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserNameEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label14);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserIDEdit);
+            this.panelChinhSuaNhanVien.Location = new System.Drawing.Point(6, 6);
+            this.panelChinhSuaNhanVien.Name = "panelChinhSuaNhanVien";
+            this.panelChinhSuaNhanVien.Size = new System.Drawing.Size(306, 218);
+            this.panelChinhSuaNhanVien.TabIndex = 26;
+            // 
+            // cbUserSexEdit
+            // 
+            this.cbUserSexEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUserSexEdit.FormattingEnabled = true;
+            this.cbUserSexEdit.Location = new System.Drawing.Point(111, 176);
+            this.cbUserSexEdit.Name = "cbUserSexEdit";
+            this.cbUserSexEdit.Size = new System.Drawing.Size(148, 24);
+            this.cbUserSexEdit.TabIndex = 34;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(44, 180);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 16);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Giới tính :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(44, 147);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 16);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "Chức vụ :";
+            // 
+            // cbUserFunctionEdit
+            // 
+            this.cbUserFunctionEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUserFunctionEdit.FormattingEnabled = true;
+            this.cbUserFunctionEdit.Location = new System.Drawing.Point(111, 141);
+            this.cbUserFunctionEdit.Name = "cbUserFunctionEdit";
+            this.cbUserFunctionEdit.Size = new System.Drawing.Size(148, 24);
+            this.cbUserFunctionEdit.TabIndex = 33;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(37, 112);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 16);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Mật khẩu :";
+            // 
+            // tbUserPassEdit
+            // 
+            this.tbUserPassEdit.Location = new System.Drawing.Point(111, 108);
+            this.tbUserPassEdit.Name = "tbUserPassEdit";
+            this.tbUserPassEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserPassEdit.TabIndex = 30;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(31, 77);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(74, 16);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Tài khoản :";
+            // 
+            // tbUserAccountEdit
+            // 
+            this.tbUserAccountEdit.Location = new System.Drawing.Point(111, 75);
+            this.tbUserAccountEdit.Name = "tbUserAccountEdit";
+            this.tbUserAccountEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserAccountEdit.TabIndex = 28;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(34, 42);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 16);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Họ và tên :";
+            // 
+            // tbUserNameEdit
+            // 
+            this.tbUserNameEdit.Location = new System.Drawing.Point(111, 42);
+            this.tbUserNameEdit.Name = "tbUserNameEdit";
+            this.tbUserNameEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserNameEdit.TabIndex = 26;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(51, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 16);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "Mã thẻ :";
+            // 
+            // tbUserIDEdit
+            // 
+            this.tbUserIDEdit.Enabled = false;
+            this.tbUserIDEdit.Location = new System.Drawing.Point(111, 9);
+            this.tbUserIDEdit.Name = "tbUserIDEdit";
+            this.tbUserIDEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserIDEdit.TabIndex = 24;
+            // 
+            // panelChinhSuaLoaiXe
+            // 
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label26);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label31);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartLimitEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartIdEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label27);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartNameEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label28);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label30);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartAmountEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartSignEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label29);
+            this.panelChinhSuaLoaiXe.Location = new System.Drawing.Point(6, 6);
+            this.panelChinhSuaLoaiXe.Name = "panelChinhSuaLoaiXe";
+            this.panelChinhSuaLoaiXe.Size = new System.Drawing.Size(346, 217);
+            this.panelChinhSuaLoaiXe.TabIndex = 27;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(235, 121);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(76, 16);
+            this.label26.TabIndex = 47;
+            this.label26.Text = "chỉ nhập số";
+            // 
+            // tbPartLimitEdit
+            // 
+            this.tbPartLimitEdit.Location = new System.Drawing.Point(128, 151);
+            this.tbPartLimitEdit.Name = "tbPartLimitEdit";
+            this.tbPartLimitEdit.Size = new System.Drawing.Size(101, 22);
+            this.tbPartLimitEdit.TabIndex = 46;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(51, 155);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(67, 16);
+            this.label27.TabIndex = 45;
+            this.label27.Text = "Hạn mức :";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(21, 121);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(97, 16);
+            this.label28.TabIndex = 44;
+            this.label28.Text = "Tiền thu tháng :";
+            // 
+            // tbPartAmountEdit
+            // 
+            this.tbPartAmountEdit.Location = new System.Drawing.Point(128, 118);
+            this.tbPartAmountEdit.Name = "tbPartAmountEdit";
+            this.tbPartAmountEdit.Size = new System.Drawing.Size(101, 22);
+            this.tbPartAmountEdit.TabIndex = 43;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(61, 87);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(57, 16);
+            this.label29.TabIndex = 42;
+            this.label29.Text = "Ký hiệu :";
+            // 
+            // tbPartSignEdit
+            // 
+            this.tbPartSignEdit.Location = new System.Drawing.Point(128, 85);
+            this.tbPartSignEdit.Name = "tbPartSignEdit";
+            this.tbPartSignEdit.Size = new System.Drawing.Size(183, 22);
+            this.tbPartSignEdit.TabIndex = 41;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(38, 55);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(80, 16);
+            this.label30.TabIndex = 40;
+            this.label30.Text = "Tên loại xe :";
+            // 
+            // tbPartNameEdit
+            // 
+            this.tbPartNameEdit.Location = new System.Drawing.Point(128, 52);
+            this.tbPartNameEdit.Name = "tbPartNameEdit";
+            this.tbPartNameEdit.Size = new System.Drawing.Size(183, 22);
+            this.tbPartNameEdit.TabIndex = 39;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(43, 22);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(75, 16);
+            this.label31.TabIndex = 38;
+            this.label31.Text = "Mã loại xe :";
+            // 
+            // tbPartIdEdit
+            // 
+            this.tbPartIdEdit.Location = new System.Drawing.Point(128, 19);
+            this.tbPartIdEdit.Name = "tbPartIdEdit";
+            this.tbPartIdEdit.ReadOnly = true;
+            this.tbPartIdEdit.Size = new System.Drawing.Size(183, 22);
+            this.tbPartIdEdit.TabIndex = 37;
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8622,7 +8642,6 @@
             this.tabPage25.ResumeLayout(false);
             this.tabPage25.PerformLayout();
             this.tabPage26.ResumeLayout(false);
-            this.tabPage26.PerformLayout();
             this.tabPageDoBangChamCong.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -8705,7 +8724,6 @@
             this.tabPage30.ResumeLayout(false);
             this.tabPage30.PerformLayout();
             this.tabPage31.ResumeLayout(false);
-            this.tabPage31.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartList)).EndInit();
             this.tabPageKichHoatThe.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
@@ -8731,8 +8749,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
-            this.panel18.ResumeLayout(false);
-            this.panel18.PerformLayout();
+            this.panelChinhSuaVeThang.ResumeLayout(false);
+            this.panelChinhSuaVeThang.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage17.ResumeLayout(false);
             this.tabPageGiaHanVeThang.ResumeLayout(false);
@@ -8808,6 +8826,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
+            this.panelChinhSuaNhanVien.ResumeLayout(false);
+            this.panelChinhSuaNhanVien.PerformLayout();
+            this.panelChinhSuaLoaiXe.ResumeLayout(false);
+            this.panelChinhSuaLoaiXe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -8875,18 +8897,6 @@
         private System.Windows.Forms.TabPage tabPage26;
         private System.Windows.Forms.Button btnCancelUpdateUser;
         private System.Windows.Forms.Button btnUpdateUser;
-        private System.Windows.Forms.ComboBox cbUserSexEdit;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbUserFunctionEdit;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tbUserPassEdit;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox tbUserAccountEdit;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox tbUserNameEdit;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox tbUserIDEdit;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridView dgvUserList;
         private System.Windows.Forms.Button btnExportBangChamCong;
@@ -9000,17 +9010,6 @@
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.DataGridView dgvCarTicketMonthList;
         private System.Windows.Forms.Button btnCreatePart;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox tbPartLimitEdit;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.TextBox tbPartAmountEdit;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox tbPartSignEdit;
-        private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox tbPartNameEdit;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox tbPartIdEdit;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
@@ -9050,7 +9049,7 @@
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.TextBox tbTicketMonthKeyWordSearch;
         private System.Windows.Forms.TabPage tabPage17;
-        private System.Windows.Forms.Panel panel18;
+        private System.Windows.Forms.Panel panelChinhSuaVeThang;
         private System.Windows.Forms.Button btnTicketMonthCancelEdit;
         private System.Windows.Forms.Button btnTicketMonthEdit;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -9567,5 +9566,30 @@
         private System.Windows.Forms.NumericUpDown numericTinhTienCongVanMinTime;
         private System.Windows.Forms.Label label191;
         private System.Windows.Forms.NumericUpDown numericTinhTienCongVanMinCost;
+        private System.Windows.Forms.Panel panelChinhSuaNhanVien;
+        private System.Windows.Forms.ComboBox cbUserSexEdit;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbUserFunctionEdit;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbUserPassEdit;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbUserAccountEdit;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbUserNameEdit;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tbUserIDEdit;
+        private System.Windows.Forms.Panel panelChinhSuaLoaiXe;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.TextBox tbPartLimitEdit;
+        private System.Windows.Forms.TextBox tbPartIdEdit;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox tbPartNameEdit;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.TextBox tbPartAmountEdit;
+        private System.Windows.Forms.TextBox tbPartSignEdit;
+        private System.Windows.Forms.Label label29;
     }
 }

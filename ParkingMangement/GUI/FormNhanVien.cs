@@ -112,12 +112,21 @@ namespace ParkingMangement.GUI
 
         private void saveImage()
         {
-            DataTable dt = CardDAO.GetCardByID(cardID);
-            if (dt != null && dt.Rows.Count > 0)
+            DataTable dtCommonCard = CardDAO.GetCardByID(cardID);
+            DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
+            if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
             {
-                saveImage1ToFile();
-                saveImage2ToFile();
-                checkForSaveToDB();
+                if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                {
+                    saveImage1ToFile();
+                    saveImage2ToFile();
+                    checkForSaveToDB(true);
+                } else
+                {
+                    saveImage1ToFile();
+                    saveImage2ToFile();
+                    checkForSaveToDB(false);
+                }
             } else
             {
                 MessageBox.Show("Thẻ chưa được thêm vào hệ thống");
@@ -129,9 +138,8 @@ namespace ParkingMangement.GUI
             labelCurrentTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
-        private void checkForSaveToDB()
+        private void checkForSaveToDB(bool isTicketCard)
         {
-            //if (CarDAO.isCarIn(cardID))
             if (isCarIn())
             {
                 pictureBoxImage3.Image = null;
@@ -142,7 +150,7 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    insertCarIn();
+                    insertCarIn(isTicketCard);
                 }
             } else
             {
@@ -150,7 +158,7 @@ namespace ParkingMangement.GUI
                 pictureBoxImage2.Image = null;
                 if (KiemTraXeChuaRa())
                 {
-                    updateCarOut();
+                    updateCarOut(isTicketCard);
                     loadCarInData();
                 } else
                 {
@@ -159,7 +167,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void insertCarIn()
+        private void insertCarIn(bool isTicketCard)
         {
             CarDTO carDTO = new CarDTO();
             carDTO.Id = cardID;
@@ -172,11 +180,15 @@ namespace ParkingMangement.GUI
             carDTO.Computer = Environment.MachineName;
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
+            if (isTicketCard)
+            {
+                carDTO.IdTicketMonth = cardID;
+            }
             CarDAO.Insert(carDTO);
             labelCost.Text = "-";
         }
 
-        private void updateCarOut()
+        private void updateCarOut(bool isTicketCard)
         {
             int identify = CarDAO.GetIdentifyByID(cardID);
             CarDTO carDTO = new CarDTO();
@@ -184,7 +196,13 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeEnd = DateTime.Now;
             carDTO.IdOut = Program.CurrentUserID;
-            carDTO.Cost = tinhTienGiuXe();
+            if (isTicketCard)
+            {
+                carDTO.Cost = 0;
+            } else
+            {
+                carDTO.Cost = tinhTienGiuXe();
+            }
 
             saveImage3ToFile();
             saveImage4ToFile();

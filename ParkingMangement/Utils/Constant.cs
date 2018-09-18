@@ -10,7 +10,9 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
-        
+
+        public static string sButtonEdit = "CHỈNH SỬA";
+        public static string sButtonUpdate = "CẬP NHẬT";
         public static string sTitleDelete = "Xóa dữ liệu";
         public static string sButtonDelete = "Xóa";
         public static string sMessageConfirmDelete = "Bạn có muốn xóa không?";
