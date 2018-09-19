@@ -37,6 +37,7 @@ namespace ParkingMangement.Utils
 
         // card
         public static string sMessageCardIdNullError = "Mã thẻ chíp không được để trống";
+        public static string sMessageCardIdNotExist = "Thẻ chưa được thêm vào hệ thống";
         public static string sLabelCardUsing = "Dùng";
         public static string sLabelCardNotUsing = "Không dùng";
 

@@ -129,7 +129,7 @@ namespace ParkingMangement.GUI
                 }
             } else
             {
-                MessageBox.Show("Thẻ chưa được thêm vào hệ thống");
+                MessageBox.Show(Constant.sMessageCardIdNotExist);
             }
         }
 

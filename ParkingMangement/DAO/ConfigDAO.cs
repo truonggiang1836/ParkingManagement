@@ -82,11 +82,11 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static void Update(ConfigDTO configDTO)
+        public static bool Update(ConfigDTO configDTO)
         {
             string sql = "update [Config] set TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId;
-            Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
     }
 }

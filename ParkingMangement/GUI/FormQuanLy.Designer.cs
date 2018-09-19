@@ -577,32 +577,8 @@
             this.tabPageCauHinhCoBan = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPageCauHinhKetNoi = new System.Windows.Forms.TabPage();
-            this.button9 = new System.Windows.Forms.Button();
+            this.btnLuuCauHinhketNoi = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBoxRFID_Out = new System.Windows.Forms.ComboBox();
-            this.comboBoxRFID_In = new System.Windows.Forms.ComboBox();
-            this.label127 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.label128 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.label129 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.label130 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
-            this.label131 = new System.Windows.Forms.Label();
-            this.textBox21 = new System.Windows.Forms.TextBox();
-            this.label132 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
-            this.label133 = new System.Windows.Forms.Label();
-            this.textBox24 = new System.Windows.Forms.TextBox();
-            this.label134 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
-            this.label135 = new System.Windows.Forms.Label();
-            this.textBox26 = new System.Windows.Forms.TextBox();
-            this.label136 = new System.Windows.Forms.Label();
-            this.textBox27 = new System.Windows.Forms.TextBox();
-            this.label137 = new System.Windows.Forms.Label();
-            this.textBox28 = new System.Windows.Forms.TextBox();
             this.label138 = new System.Windows.Forms.Label();
             this.label139 = new System.Windows.Forms.Label();
             this.label140 = new System.Windows.Forms.Label();
@@ -831,6 +807,12 @@
             this.tbPartNameEdit = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.tbPartIdEdit = new System.Windows.Forms.TextBox();
+            this.tbRFID_Outss = new System.Windows.Forms.TextBox();
+            this.tbRFID_Inss = new System.Windows.Forms.TextBox();
+            this.tbRFID_In = new System.Windows.Forms.TextBox();
+            this.label137 = new System.Windows.Forms.Label();
+            this.tbRFID_Out = new System.Windows.Forms.TextBox();
+            this.label136 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -6092,7 +6074,7 @@
             // 
             // tabPageCauHinhKetNoi
             // 
-            this.tabPageCauHinhKetNoi.Controls.Add(this.button9);
+            this.tabPageCauHinhKetNoi.Controls.Add(this.btnLuuCauHinhketNoi);
             this.tabPageCauHinhKetNoi.Controls.Add(this.groupBox2);
             this.tabPageCauHinhKetNoi.Location = new System.Drawing.Point(4, 25);
             this.tabPageCauHinhKetNoi.Name = "tabPageCauHinhKetNoi";
@@ -6102,41 +6084,23 @@
             this.tabPageCauHinhKetNoi.Text = "Cấu hình kết nối";
             this.tabPageCauHinhKetNoi.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // btnLuuCauHinhketNoi
             // 
-            this.button9.Location = new System.Drawing.Point(525, 513);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(108, 35);
-            this.button9.TabIndex = 12;
-            this.button9.Text = "LƯU";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnLuuCauHinhketNoi.Location = new System.Drawing.Point(522, 513);
+            this.btnLuuCauHinhketNoi.Name = "btnLuuCauHinhketNoi";
+            this.btnLuuCauHinhketNoi.Size = new System.Drawing.Size(108, 35);
+            this.btnLuuCauHinhketNoi.TabIndex = 12;
+            this.btnLuuCauHinhketNoi.Text = "LƯU";
+            this.btnLuuCauHinhketNoi.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBoxRFID_Out);
-            this.groupBox2.Controls.Add(this.comboBoxRFID_In);
-            this.groupBox2.Controls.Add(this.label127);
-            this.groupBox2.Controls.Add(this.textBox17);
-            this.groupBox2.Controls.Add(this.label128);
-            this.groupBox2.Controls.Add(this.textBox18);
-            this.groupBox2.Controls.Add(this.label129);
-            this.groupBox2.Controls.Add(this.textBox19);
-            this.groupBox2.Controls.Add(this.label130);
-            this.groupBox2.Controls.Add(this.textBox20);
-            this.groupBox2.Controls.Add(this.label131);
-            this.groupBox2.Controls.Add(this.textBox21);
-            this.groupBox2.Controls.Add(this.label132);
-            this.groupBox2.Controls.Add(this.textBox22);
-            this.groupBox2.Controls.Add(this.label133);
-            this.groupBox2.Controls.Add(this.textBox24);
-            this.groupBox2.Controls.Add(this.label134);
-            this.groupBox2.Controls.Add(this.textBox25);
-            this.groupBox2.Controls.Add(this.label135);
-            this.groupBox2.Controls.Add(this.textBox26);
+            this.groupBox2.Controls.Add(this.tbRFID_Outss);
+            this.groupBox2.Controls.Add(this.tbRFID_Inss);
             this.groupBox2.Controls.Add(this.label136);
-            this.groupBox2.Controls.Add(this.textBox27);
+            this.groupBox2.Controls.Add(this.tbRFID_Out);
             this.groupBox2.Controls.Add(this.label137);
-            this.groupBox2.Controls.Add(this.textBox28);
+            this.groupBox2.Controls.Add(this.tbRFID_In);
             this.groupBox2.Controls.Add(this.label138);
             this.groupBox2.Controls.Add(this.label139);
             this.groupBox2.Controls.Add(this.label140);
@@ -6145,259 +6109,54 @@
             this.groupBox2.Controls.Add(this.textBox32);
             this.groupBox2.Controls.Add(this.label142);
             this.groupBox2.Controls.Add(this.textBox33);
-            this.groupBox2.Location = new System.Drawing.Point(308, 9);
+            this.groupBox2.Location = new System.Drawing.Point(217, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(516, 487);
+            this.groupBox2.Size = new System.Drawing.Size(686, 487);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            // 
-            // comboBoxRFID_Out
-            // 
-            this.comboBoxRFID_Out.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRFID_Out.FormattingEnabled = true;
-            this.comboBoxRFID_Out.Location = new System.Drawing.Point(236, 134);
-            this.comboBoxRFID_Out.Name = "comboBoxRFID_Out";
-            this.comboBoxRFID_Out.Size = new System.Drawing.Size(189, 24);
-            this.comboBoxRFID_Out.TabIndex = 41;
-            // 
-            // comboBoxRFID_In
-            // 
-            this.comboBoxRFID_In.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxRFID_In.FormattingEnabled = true;
-            this.comboBoxRFID_In.Location = new System.Drawing.Point(236, 105);
-            this.comboBoxRFID_In.Name = "comboBoxRFID_In";
-            this.comboBoxRFID_In.Size = new System.Drawing.Size(189, 24);
-            this.comboBoxRFID_In.TabIndex = 40;
-            // 
-            // label127
-            // 
-            this.label127.AutoSize = true;
-            this.label127.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label127.Location = new System.Drawing.Point(103, 445);
-            this.label127.Name = "label127";
-            this.label127.Size = new System.Drawing.Size(46, 16);
-            this.label127.TabIndex = 39;
-            this.label127.Text = "ANPR";
-            // 
-            // textBox17
-            // 
-            this.textBox17.Location = new System.Drawing.Point(236, 442);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(189, 22);
-            this.textBox17.TabIndex = 38;
-            // 
-            // label128
-            // 
-            this.label128.AutoSize = true;
-            this.label128.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label128.Location = new System.Drawing.Point(103, 417);
-            this.label128.Name = "label128";
-            this.label128.Size = new System.Drawing.Size(42, 16);
-            this.label128.TabIndex = 37;
-            this.label128.Text = "In/Out";
-            // 
-            // textBox18
-            // 
-            this.textBox18.Location = new System.Drawing.Point(236, 414);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(189, 22);
-            this.textBox18.TabIndex = 36;
-            // 
-            // label129
-            // 
-            this.label129.AutoSize = true;
-            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label129.Location = new System.Drawing.Point(103, 389);
-            this.label129.Name = "label129";
-            this.label129.Size = new System.Drawing.Size(78, 16);
-            this.label129.TabIndex = 35;
-            this.label129.Text = "Folder USB";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(236, 386);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(189, 22);
-            this.textBox19.TabIndex = 34;
-            // 
-            // label130
-            // 
-            this.label130.AutoSize = true;
-            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.Location = new System.Drawing.Point(103, 361);
-            this.label130.Name = "label130";
-            this.label130.Size = new System.Drawing.Size(79, 16);
-            this.label130.TabIndex = 33;
-            this.label130.Text = "Folder Root";
-            // 
-            // textBox20
-            // 
-            this.textBox20.Location = new System.Drawing.Point(236, 358);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(189, 22);
-            this.textBox20.TabIndex = 32;
-            // 
-            // label131
-            // 
-            this.label131.AutoSize = true;
-            this.label131.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label131.Location = new System.Drawing.Point(103, 333);
-            this.label131.Name = "label131";
-            this.label131.Size = new System.Drawing.Size(105, 16);
-            this.label131.TabIndex = 31;
-            this.label131.Text = "VALUE PARIE 2";
-            // 
-            // textBox21
-            // 
-            this.textBox21.Location = new System.Drawing.Point(236, 330);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.Size = new System.Drawing.Size(189, 22);
-            this.textBox21.TabIndex = 30;
-            // 
-            // label132
-            // 
-            this.label132.AutoSize = true;
-            this.label132.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.Location = new System.Drawing.Point(103, 305);
-            this.label132.Name = "label132";
-            this.label132.Size = new System.Drawing.Size(105, 16);
-            this.label132.TabIndex = 29;
-            this.label132.Text = "VALUE PARIE 1";
-            // 
-            // textBox22
-            // 
-            this.textBox22.Location = new System.Drawing.Point(236, 302);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new System.Drawing.Size(189, 22);
-            this.textBox22.TabIndex = 28;
-            // 
-            // label133
-            // 
-            this.label133.AutoSize = true;
-            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.Location = new System.Drawing.Point(103, 277);
-            this.label133.Name = "label133";
-            this.label133.Size = new System.Drawing.Size(89, 16);
-            this.label133.TabIndex = 27;
-            this.label133.Text = "PORT PARIE";
-            // 
-            // textBox24
-            // 
-            this.textBox24.Location = new System.Drawing.Point(236, 274);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.Size = new System.Drawing.Size(189, 22);
-            this.textBox24.TabIndex = 26;
-            // 
-            // label134
-            // 
-            this.label134.AutoSize = true;
-            this.label134.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label134.Location = new System.Drawing.Point(103, 249);
-            this.label134.Name = "label134";
-            this.label134.Size = new System.Drawing.Size(44, 16);
-            this.label134.TabIndex = 25;
-            this.label134.Text = "CAM2";
-            // 
-            // textBox25
-            // 
-            this.textBox25.Location = new System.Drawing.Point(236, 246);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(189, 22);
-            this.textBox25.TabIndex = 24;
-            // 
-            // label135
-            // 
-            this.label135.AutoSize = true;
-            this.label135.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label135.Location = new System.Drawing.Point(103, 221);
-            this.label135.Name = "label135";
-            this.label135.Size = new System.Drawing.Size(44, 16);
-            this.label135.TabIndex = 23;
-            this.label135.Text = "CAM1";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Location = new System.Drawing.Point(236, 218);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new System.Drawing.Size(189, 22);
-            this.textBox26.TabIndex = 22;
-            // 
-            // label136
-            // 
-            this.label136.AutoSize = true;
-            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label136.Location = new System.Drawing.Point(103, 193);
-            this.label136.Name = "label136";
-            this.label136.Size = new System.Drawing.Size(41, 16);
-            this.label136.TabIndex = 21;
-            this.label136.Text = "LED2";
-            // 
-            // textBox27
-            // 
-            this.textBox27.Location = new System.Drawing.Point(236, 190);
-            this.textBox27.Name = "textBox27";
-            this.textBox27.Size = new System.Drawing.Size(189, 22);
-            this.textBox27.TabIndex = 20;
-            // 
-            // label137
-            // 
-            this.label137.AutoSize = true;
-            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.Location = new System.Drawing.Point(103, 165);
-            this.label137.Name = "label137";
-            this.label137.Size = new System.Drawing.Size(41, 16);
-            this.label137.TabIndex = 19;
-            this.label137.Text = "LED1";
-            // 
-            // textBox28
-            // 
-            this.textBox28.Location = new System.Drawing.Point(236, 162);
-            this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new System.Drawing.Size(189, 22);
-            this.textBox28.TabIndex = 18;
             // 
             // label138
             // 
             this.label138.AutoSize = true;
             this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.Location = new System.Drawing.Point(103, 137);
+            this.label138.Location = new System.Drawing.Point(23, 136);
             this.label138.Name = "label138";
-            this.label138.Size = new System.Drawing.Size(60, 16);
+            this.label138.Size = new System.Drawing.Size(91, 16);
             this.label138.TabIndex = 17;
-            this.label138.Text = "RFID out";
+            this.label138.Text = "Thư mục chứa";
             // 
             // label139
             // 
             this.label139.AutoSize = true;
             this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(103, 109);
+            this.label139.Location = new System.Drawing.Point(23, 108);
             this.label139.Name = "label139";
-            this.label139.Size = new System.Drawing.Size(52, 16);
+            this.label139.Size = new System.Drawing.Size(76, 16);
             this.label139.TabIndex = 15;
-            this.label139.Text = "RFID in";
+            this.label139.Text = "Ip lưu hình 4";
             // 
             // label140
             // 
             this.label140.AutoSize = true;
             this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.Location = new System.Drawing.Point(103, 81);
+            this.label140.Location = new System.Drawing.Point(23, 80);
             this.label140.Name = "label140";
-            this.label140.Size = new System.Drawing.Size(91, 16);
+            this.label140.Size = new System.Drawing.Size(76, 16);
             this.label140.TabIndex = 13;
-            this.label140.Text = "Thư mục chứa";
+            this.label140.Text = "Ip lưu hình 3";
             // 
             // textBox31
             // 
-            this.textBox31.Location = new System.Drawing.Point(236, 78);
+            this.textBox31.Location = new System.Drawing.Point(130, 77);
             this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(189, 22);
+            this.textBox31.Size = new System.Drawing.Size(524, 22);
             this.textBox31.TabIndex = 12;
             // 
             // label141
             // 
             this.label141.AutoSize = true;
             this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label141.Location = new System.Drawing.Point(103, 53);
+            this.label141.Location = new System.Drawing.Point(23, 52);
             this.label141.Name = "label141";
             this.label141.Size = new System.Drawing.Size(76, 16);
             this.label141.TabIndex = 11;
@@ -6405,16 +6164,16 @@
             // 
             // textBox32
             // 
-            this.textBox32.Location = new System.Drawing.Point(236, 50);
+            this.textBox32.Location = new System.Drawing.Point(130, 49);
             this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(189, 22);
+            this.textBox32.Size = new System.Drawing.Size(524, 22);
             this.textBox32.TabIndex = 10;
             // 
             // label142
             // 
             this.label142.AutoSize = true;
             this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label142.Location = new System.Drawing.Point(103, 25);
+            this.label142.Location = new System.Drawing.Point(23, 24);
             this.label142.Name = "label142";
             this.label142.Size = new System.Drawing.Size(76, 16);
             this.label142.TabIndex = 9;
@@ -6422,9 +6181,9 @@
             // 
             // textBox33
             // 
-            this.textBox33.Location = new System.Drawing.Point(236, 22);
+            this.textBox33.Location = new System.Drawing.Point(130, 21);
             this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(189, 22);
+            this.textBox33.Size = new System.Drawing.Size(524, 22);
             this.textBox33.TabIndex = 8;
             // 
             // tabPageCauHinhHienThi
@@ -8616,6 +8375,54 @@
             this.tbPartIdEdit.Size = new System.Drawing.Size(183, 22);
             this.tbPartIdEdit.TabIndex = 37;
             // 
+            // tbRFID_Outss
+            // 
+            this.tbRFID_Outss.Location = new System.Drawing.Point(130, 133);
+            this.tbRFID_Outss.Name = "tbRFID_Outss";
+            this.tbRFID_Outss.Size = new System.Drawing.Size(524, 22);
+            this.tbRFID_Outss.TabIndex = 22;
+            // 
+            // tbRFID_Inss
+            // 
+            this.tbRFID_Inss.Location = new System.Drawing.Point(130, 105);
+            this.tbRFID_Inss.Name = "tbRFID_Inss";
+            this.tbRFID_Inss.Size = new System.Drawing.Size(524, 22);
+            this.tbRFID_Inss.TabIndex = 21;
+            // 
+            // tbRFID_In
+            // 
+            this.tbRFID_In.Location = new System.Drawing.Point(130, 161);
+            this.tbRFID_In.Name = "tbRFID_In";
+            this.tbRFID_In.Size = new System.Drawing.Size(524, 22);
+            this.tbRFID_In.TabIndex = 18;
+            // 
+            // label137
+            // 
+            this.label137.AutoSize = true;
+            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label137.Location = new System.Drawing.Point(23, 164);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(52, 16);
+            this.label137.TabIndex = 19;
+            this.label137.Text = "RFID in";
+            // 
+            // tbRFID_Out
+            // 
+            this.tbRFID_Out.Location = new System.Drawing.Point(130, 189);
+            this.tbRFID_Out.Name = "tbRFID_Out";
+            this.tbRFID_Out.Size = new System.Drawing.Size(524, 22);
+            this.tbRFID_Out.TabIndex = 20;
+            // 
+            // label136
+            // 
+            this.label136.AutoSize = true;
+            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label136.Location = new System.Drawing.Point(23, 192);
+            this.label136.Name = "label136";
+            this.label136.Size = new System.Drawing.Size(60, 16);
+            this.label136.TabIndex = 21;
+            this.label136.Text = "RFID out";
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9297,30 +9104,8 @@
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPageCauHinhKetNoi;
         private System.Windows.Forms.TabPage tabPageCauHinhHienThi;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btnLuuCauHinhketNoi;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label127;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.Label label128;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.Label label129;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label130;
-        private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.Label label131;
-        private System.Windows.Forms.TextBox textBox21;
-        private System.Windows.Forms.Label label132;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.Label label133;
-        private System.Windows.Forms.TextBox textBox24;
-        private System.Windows.Forms.Label label134;
-        private System.Windows.Forms.TextBox textBox25;
-        private System.Windows.Forms.Label label135;
-        private System.Windows.Forms.TextBox textBox26;
-        private System.Windows.Forms.Label label136;
-        private System.Windows.Forms.TextBox textBox27;
-        private System.Windows.Forms.Label label137;
-        private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.Label label139;
         private System.Windows.Forms.Label label140;
@@ -9559,8 +9344,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
         private System.Windows.Forms.Button btnExportDanhSachVeThang;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ComboBox comboBoxRFID_Out;
-        private System.Windows.Forms.ComboBox comboBoxRFID_In;
         private System.Windows.Forms.Label labelKetQuaTaoThe;
         private System.Windows.Forms.Label label192;
         private System.Windows.Forms.NumericUpDown numericTinhTienCongVanMinTime;
@@ -9591,5 +9374,11 @@
         private System.Windows.Forms.TextBox tbPartAmountEdit;
         private System.Windows.Forms.TextBox tbPartSignEdit;
         private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox tbRFID_Outss;
+        private System.Windows.Forms.TextBox tbRFID_Inss;
+        private System.Windows.Forms.Label label136;
+        private System.Windows.Forms.TextBox tbRFID_Out;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.TextBox tbRFID_In;
     }
 }

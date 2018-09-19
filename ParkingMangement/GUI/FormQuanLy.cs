@@ -18,6 +18,9 @@ namespace ParkingMangement.GUI
 {
     public partial class FormQuanLy : Form
     {
+        private readonly RawInput _rawinput;
+        const bool CaptureOnlyInForeground = true;
+
         private string[] listFunctionQuanLyNhanSu = { "1", "2" };
         private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
         private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "7" };
@@ -29,6 +32,9 @@ namespace ParkingMangement.GUI
         public FormQuanLy()
         {
             InitializeComponent();
+            _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
+            Win32.DeviceAudit();
+            _rawinput.KeyPressed += OnKeyPressed;
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -1374,6 +1380,12 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
                 return false;
             }
+            DataTable dtCommonCard = CardDAO.GetCardByID(tbTicketMonthIDCreate.Text);
+            if (dtCommonCard == null || dtCommonCard.Rows.Count == 0)
+            {
+                MessageBox.Show(Constant.sMessageCardIdNotExist);
+                return false;
+            }
             return true;
         }
 
@@ -2119,9 +2131,6 @@ namespace ParkingMangement.GUI
                 if (CarDAO.UpdateLostCard(identify))
                 {
                     MessageBox.Show(Constant.sMessageUpdateSuccess);
-                } else
-                {
-                    MessageBox.Show(Constant.sMessageCommonError);
                 }
             }
         }
@@ -2264,8 +2273,10 @@ namespace ParkingMangement.GUI
                 return;
             }
 
-            ConfigDAO.Update(configDTO);
-
+            if (ConfigDAO.Update(configDTO))
+            {
+                MessageBox.Show(Constant.sMessageUpdateSuccess);
+            }
         }
 
         private void loadCarListForCashManagement()
@@ -2313,8 +2324,10 @@ namespace ParkingMangement.GUI
 
             DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
             string functionId = functionDataRow["FunctionID"].ToString();
-            FunctionalDAO.UpdateFunctionSec(listNodeID, functionId);
-            MessageBox.Show("Cập nhật thành công");
+            if (FunctionalDAO.UpdateFunctionSec(listNodeID, functionId))
+            {
+                MessageBox.Show(Constant.sMessageUpdateSuccess);
+            }
         }
 
         private void loadLogList()
@@ -3590,6 +3603,22 @@ namespace ParkingMangement.GUI
         private void treeViewPhanQuyenTruyCap_AfterSelect(object sender, TreeViewEventArgs e)
         {
             checkTreeViewNode(e.Node, e.Node.Checked);
+        }
+
+        private void OnKeyPressed(object sender, RawInputEventArg e)
+        {
+            if (tbRFID_Inss.Focused)
+            {
+                tbRFID_Inss.Text = e.KeyPressEvent.DeviceName;
+            } else if (tbRFID_Outss.Focused)
+            {
+                tbRFID_Outss.Text = e.KeyPressEvent.DeviceName;
+            }
+        }
+
+        private void Keyboard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _rawinput.KeyPressed -= OnKeyPressed;
         }
     }
 }

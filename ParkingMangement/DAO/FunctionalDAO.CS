@@ -21,10 +21,10 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static void UpdateFunctionSec(string functionSec, string functionID)
+        public static bool UpdateFunctionSec(string functionSec, string functionID)
         {
             string sql = "update [Functional] set FunctionSec ='" + functionSec + "' where FunctionID ='" + functionID + "'";
-            Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static DataTable GetFunctionByID(string functionID)
