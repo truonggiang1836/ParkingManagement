@@ -472,6 +472,12 @@ namespace ParkingMangement.GUI
                 mComputerDTO.MinMinute = (int)numericTinhTienCongVanMinTime.Value;
                 mComputerDTO.MinCost = (int)numericTinhTienCongVanMinCost.Value;
 
+                if (mComputerDTO.StartHourNight <= mComputerDTO.EndHourNight)
+                {
+                    MessageBox.Show("Thời gian bắt đầu phải lớn hơn thời gian kết thúc tính đêm");
+                    return;
+                }
+
                 if (ComputerDAO.Update(mComputerDTO))
                 {
                     MessageBox.Show(Constant.sMessageUpdateSuccess);
@@ -541,6 +547,12 @@ namespace ParkingMangement.GUI
                 else if (radioTinhTienLuyTienAdd2Milestone.Checked)
                 {
                     mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC;
+                }
+
+                if (mComputerDTO.HourMilestone1 >= mComputerDTO.HourMilestone2)
+                {
+                    MessageBox.Show("Thời gian mốc 2 phải lớn hơn thời gian mốc 1");
+                    return;
                 }
 
                 if (ComputerDAO.Update(mComputerDTO))
@@ -620,6 +632,17 @@ namespace ParkingMangement.GUI
                 else if (radioTinhTienTongHopAdd2Milestone.Checked)
                 {
                     mComputerDTO.IsAdd = Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC;
+                }
+
+                if (mComputerDTO.StartHourNight <= mComputerDTO.EndHourNight)
+                {
+                    MessageBox.Show("Thời gian bắt đầu phải lớn hơn thời gian kết thúc tính đêm");
+                    return;
+                }
+                if (mComputerDTO.HourMilestone1 >= mComputerDTO.HourMilestone2)
+                {
+                    MessageBox.Show("Thời gian mốc 2 phải lớn hơn thời gian mốc 1");
+                    return;
                 }
 
                 if (ComputerDAO.Update(mComputerDTO))
