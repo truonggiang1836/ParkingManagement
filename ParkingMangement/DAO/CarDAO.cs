@@ -25,7 +25,8 @@ namespace ParkingMangement.DAO
         private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
             "Car.IsLostCard, Car.Computer, UserCar.NameUser from [Car], [UserCar] where Car.Account = UserCar.UserID";
 
-        private static string sqlQueryTicketMonth = " and Car.IDTicketMonth is not null ";
+        private static string sqlQueryTicketMonth = " and Car.IDTicketMonth <> '' ";
+        private static string sqlQueryTicketCommon= " and Car.IDTicketMonth = '' ";
         private static string sqlOrderByIdentify = " order by Car.Identify asc";
 
         public static DataTable GetAllData()
@@ -173,11 +174,11 @@ namespace ParkingMangement.DAO
             string sql = "select Car.IDPart, sum(Car.Cost) as SumCost from [Car], [Part] where Car.IDPart = Part.PartID";
             if (!isTicketMonth)
             {
-                sql += " and IDTicketMonth is null";
+                sql += sqlQueryTicketCommon;
                 
             } else
             {
-                sql += " and IDTicketMonth is not null";
+                sql += sqlQueryTicketMonth;
             }
             if (startTime != null && endTime != null)
             {
@@ -237,10 +238,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCost(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
-            string sql = "select sum(Car.Cost) as SumCost from [Car] where IDTicketMonth is null";
+            string sql = "select sum(Car.Cost) as SumCost from [Car] where Car.IDTicketMonth = ''";
             if (isTicketMonth)
             {
-                sql = "select sum(Car.Cost) as SumCost from [Car] where IDTicketMonth is not null";
+                sql = "select sum(Car.Cost) as SumCost from [Car] where Car.IDTicketMonth <> ''";
             }
             if (startTime != null && endTime != null)
             {
@@ -256,10 +257,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarInByPartAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from [Car] where Car.TimeStart is not null and IDTicketMonth is null";
+            string sql = "select * from [Car] where Car.TimeStart is not null " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.TimeStart is not null and IDTicketMonth is not null";
+                sql = "select * from [Car] where Car.TimeStart is not null " + sqlQueryTicketMonth;
             }
             if (partID != null)
             {
@@ -284,10 +285,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarOutByPartAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from [Car] where Car.TimeEnd is not null and IDTicketMonth is null";
+            string sql = "select * from [Car] where Car.TimeEnd is not null " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.TimeEnd is not null and IDTicketMonth is not null";
+                sql = "select * from [Car] where Car.TimeEnd is not null " + sqlQueryTicketMonth;
             }
             if (partID != null)
             {
