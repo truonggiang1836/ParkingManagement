@@ -1,5 +1,6 @@
 ﻿using ParkingMangement.DAO;
 using ParkingMangement.DTO;
+using ParkingMangement.Model;
 using ParkingMangement.Utils;
 using RawInput_dll;
 using System;
@@ -13,14 +14,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ParkingMangement.GUI
 {
     public partial class FormQuanLy : Form
     {
-        private readonly RawInput _rawinput;
-        const bool CaptureOnlyInForeground = true;
-
         private string[] listFunctionQuanLyNhanSu = { "1", "2" };
         private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
         private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "7" };
@@ -28,12 +27,17 @@ namespace ParkingMangement.GUI
         private string[] listFunctionQuanLyHeThong = { "13", "14", "15", "16" };
         private string[] listFunctionQuanLyXe = { "17", "18", "19", "20" };
 
+        private readonly RawInput _rawinput;
+        const bool CaptureOnlyInForeground = true;
         private ComputerDTO mComputerDTO;
         public FormQuanLy()
         {
             InitializeComponent();
             _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
-            Win32.DeviceAudit();
+
+            //_rawinput.AddMessageFilter();   // Adding a message filter will cause keypresses to be handled
+            Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
+
             _rawinput.KeyPressed += OnKeyPressed;
         }
 
@@ -1126,6 +1130,7 @@ namespace ParkingMangement.GUI
             {
                 addDataToRFIDComboBox();
                 loadCauHinhHienThiData();
+                hienCauHinhKetNoiTuConfig();
             }
         }
 
@@ -1401,12 +1406,6 @@ namespace ParkingMangement.GUI
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitCreate.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
-                return false;
-            }
-            DataTable dtCommonCard = CardDAO.GetCardByID(tbTicketMonthIDCreate.Text);
-            if (dtCommonCard == null || dtCommonCard.Rows.Count == 0)
-            {
-                MessageBox.Show(Constant.sMessageCardIdNotExist);
                 return false;
             }
             return true;
@@ -2154,6 +2153,9 @@ namespace ParkingMangement.GUI
                 if (CarDAO.UpdateLostCard(identify))
                 {
                     MessageBox.Show(Constant.sMessageUpdateSuccess);
+                } else
+                {
+                    MessageBox.Show(Constant.sMessageCommonError);
                 }
             }
         }
@@ -2296,10 +2298,8 @@ namespace ParkingMangement.GUI
                 return;
             }
 
-            if (ConfigDAO.Update(configDTO))
-            {
-                MessageBox.Show(Constant.sMessageUpdateSuccess);
-            }
+            ConfigDAO.Update(configDTO);
+
         }
 
         private void loadCarListForCashManagement()
@@ -2347,10 +2347,8 @@ namespace ParkingMangement.GUI
 
             DataRow functionDataRow = ((DataRowView)cbUserFunctionAccessSetting.SelectedItem).Row;
             string functionId = functionDataRow["FunctionID"].ToString();
-            if (FunctionalDAO.UpdateFunctionSec(listNodeID, functionId))
-            {
-                MessageBox.Show(Constant.sMessageUpdateSuccess);
-            }
+            FunctionalDAO.UpdateFunctionSec(listNodeID, functionId);
+            MessageBox.Show("Cập nhật thành công");
         }
 
         private void loadLogList()
@@ -3628,18 +3626,99 @@ namespace ParkingMangement.GUI
             checkTreeViewNode(e.Node, e.Node.Checked);
         }
 
-        private void OnKeyPressed(object sender, RawInputEventArg e)
+        private void btnLuuCauHinhKetNoi_Click(object sender, EventArgs e)
         {
-            if (tbRFID_Inss.Focused)
-            {
-                tbRFID_Inss.Text = e.KeyPressEvent.DeviceName;
-            } else if (tbRFID_Outss.Focused)
-            {
-                tbRFID_Outss.Text = e.KeyPressEvent.DeviceName;
-            }
+            luuCauHinhKetNoiVaoConfig();
         }
 
-        private void Keyboard_FormClosing(object sender, FormClosingEventArgs e)
+        private void luuCauHinhKetNoiVaoConfig()
+        {
+            //try
+            //{
+            //    String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+            //    if (File.Exists(filePath))
+            //    {
+            //        Config config = new Config();
+            //        config.cameraUrl1 = Constant.sEncodeStart + tb_camera_url_1.Text + Constant.sEncodeEnd;
+            //        config.cameraUrl2 = Constant.sEncodeStart + tb_camera_url_2.Text + Constant.sEncodeEnd;
+            //        config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
+            //        config.cameraUrl4 = Constant.sEncodeStart + tb_camera_url_4.Text + Constant.sEncodeEnd;
+            //        config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
+            //        config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
+            //        XmlSerializer xs = new XmlSerializer(typeof(Config));
+            //        TextWriter txtWriter = new StreamWriter(filePath);
+            //        xs.Serialize(txtWriter, config);
+            //        txtWriter.Close();
+            //        this.ActiveControl = null;
+            //        MessageBox.Show(Constant.sMessageUpdateSuccess);
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+
+            //}
+            ConfigDTO configDTO = new ConfigDTO();
+            configDTO.Camera1 = tb_camera_url_1.Text;
+            configDTO.Camera2 = tb_camera_url_2.Text;
+            configDTO.Camera3 = tb_camera_url_3.Text;
+            configDTO.Camera4 = tb_camera_url_4.Text;
+            configDTO.Rfid1 = tb_rfid_1.Text;
+            configDTO.Rfid2 = tb_rfid_2.Text;
+            ConfigDAO.UpdateCauHinhKetNoi(configDTO);
+            this.ActiveControl = null;
+            MessageBox.Show(Constant.sMessageUpdateSuccess);
+        }
+
+        private void hienCauHinhKetNoiTuConfig()
+        {
+            //try
+            //{
+            //    String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+            //    if (File.Exists(filePath))
+            //    {
+            //        string xmlString = File.ReadAllText(filePath);
+            //        XmlRootAttribute xmlRoot = new XmlRootAttribute();
+            //        xmlRoot.ElementName = "xml";
+            //        xmlRoot.IsNullable = true;
+            //        XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
+            //        using (TextReader reader = new StringReader(xmlString))
+            //        {
+            //            Config config = (Config)serializer.Deserialize(reader);
+            //            tb_camera_url_1.Text = config.cameraUrl1.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+            //            tb_camera_url_2.Text = config.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+            //            tb_camera_url_3.Text = config.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+            //            tb_camera_url_4.Text = config.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+            //            tb_rfid_1.Text = config.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+            //            tb_rfid_2.Text = config.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+            //        }
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+
+            //}
+            tb_camera_url_1.Text = ConfigDAO.GetCamera1();
+            tb_camera_url_2.Text = ConfigDAO.GetCamera2();
+            tb_camera_url_3.Text = ConfigDAO.GetCamera3();
+            tb_camera_url_4.Text = ConfigDAO.GetCamera4();
+            tb_rfid_1.Text = ConfigDAO.GetRFID1();
+            tb_rfid_2.Text = ConfigDAO.GetRFID2();
+        }
+
+        private void OnKeyPressed(object sender, RawInputEventArg e)
+        {
+            if (tb_rfid_1.Focused)
+            {
+                tb_rfid_1.Text = e.KeyPressEvent.DeviceName;
+            }
+            if (tb_rfid_2.Focused)
+            {
+                tb_rfid_2.Text = e.KeyPressEvent.DeviceName;
+            }
+            this.ActiveControl = null;
+        }
+
+        private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
             _rawinput.KeyPressed -= OnKeyPressed;
         }

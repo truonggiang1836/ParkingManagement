@@ -404,39 +404,45 @@ namespace ParkingMangement.GUI
 
         public void readConfigFile()
         {
-            try
-            {
-                String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
-                if (File.Exists(filePath))
-                {
-                    string xmlString = File.ReadAllText(filePath);
-                    XmlRootAttribute xmlRoot = new XmlRootAttribute();
-                    xmlRoot.ElementName = "xml";
-                    xmlRoot.IsNullable = true;
-                    XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
-                    using (TextReader reader = new StringReader(xmlString))
-                    {
-                        Config config = (Config)serializer.Deserialize(reader);
-                        parseConfigFile(config);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
+            //try
+            //{
+            //    String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+            //    if (File.Exists(filePath))
+            //    {
+            //        string xmlString = File.ReadAllText(filePath);
+            //        XmlRootAttribute xmlRoot = new XmlRootAttribute();
+            //        xmlRoot.ElementName = "xml";
+            //        xmlRoot.IsNullable = true;
+            //        XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
+            //        using (TextReader reader = new StringReader(xmlString))
+            //        {
+            //            Config config = (Config)serializer.Deserialize(reader);
+            //            parseConfigFile(config);
+            //        }
+            //    }
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
+            cameraUrl1 = ConfigDAO.GetCamera1();
+            cameraUrl2 = ConfigDAO.GetCamera2();
+            cameraUrl3 = ConfigDAO.GetCamera3();
+            cameraUrl4 = ConfigDAO.GetCamera4();
+            rfidIn = ConfigDAO.GetRFID1();
+            rfidOut = ConfigDAO.GetRFID2();
         }
 
-        private void parseConfigFile(Config config)
-        {
-            cameraUrl1 = config.cameraUrl1;
-            cameraUrl2 = config.cameraUrl2;
+        //private void parseConfigFile(Config config)
+        //{
+        //    cameraUrl1 = config.cameraUrl1;
+        //    cameraUrl2 = config.cameraUrl2;
 
-            cameraUrl3 = config.cameraUrl3;
-            cameraUrl4 = config.cameraUrl4;
-            rfidIn = config.rfidIn;
-            rfidOut = config.rfidOut;
-        }
+        //    cameraUrl3 = config.cameraUrl3;
+        //    cameraUrl4 = config.cameraUrl4;
+        //    rfidIn = config.rfidIn;
+        //    rfidOut = config.rfidOut;
+        //}
 
         private void configVLC()
         {
@@ -464,7 +470,7 @@ namespace ParkingMangement.GUI
         private void OnKeyPressed(object sender, RawInputEventArg e)
         {
             String source = e.KeyPressEvent.Source;
-            if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
+                if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
             {
                 keyboardDeviceName = e.KeyPressEvent.DeviceName;
             }

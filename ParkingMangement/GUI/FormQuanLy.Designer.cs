@@ -108,6 +108,19 @@
             this.tabPage26 = new System.Windows.Forms.TabPage();
             this.btnCancelUpdateUser = new System.Windows.Forms.Button();
             this.btnUpdateUser = new System.Windows.Forms.Button();
+            this.panelChinhSuaNhanVien = new System.Windows.Forms.Panel();
+            this.cbUserSexEdit = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cbUserFunctionEdit = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbUserPassEdit = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbUserAccountEdit = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbUserNameEdit = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbUserIDEdit = new System.Windows.Forms.TextBox();
             this.tabPageDoBangChamCong = new System.Windows.Forms.TabPage();
             this.dgvWorkList = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -329,6 +342,18 @@
             this.tabPage31 = new System.Windows.Forms.TabPage();
             this.btnCancelUpdatePart = new System.Windows.Forms.Button();
             this.btnUpdatePart = new System.Windows.Forms.Button();
+            this.panelChinhSuaLoaiXe = new System.Windows.Forms.Panel();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.tbPartLimitEdit = new System.Windows.Forms.TextBox();
+            this.tbPartIdEdit = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.tbPartNameEdit = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.tbPartAmountEdit = new System.Windows.Forms.TextBox();
+            this.tbPartSignEdit = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.dgvPartList = new System.Windows.Forms.DataGridView();
             this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -577,16 +602,20 @@
             this.tabPageCauHinhCoBan = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPageCauHinhKetNoi = new System.Windows.Forms.TabPage();
-            this.btnLuuCauHinhketNoi = new System.Windows.Forms.Button();
+            this.btnLuuCauHinhKetNoi = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tb_rfid_1 = new System.Windows.Forms.TextBox();
+            this.tb_camera_url_4 = new System.Windows.Forms.TextBox();
+            this.label137 = new System.Windows.Forms.Label();
+            this.tb_rfid_2 = new System.Windows.Forms.TextBox();
             this.label138 = new System.Windows.Forms.Label();
             this.label139 = new System.Windows.Forms.Label();
             this.label140 = new System.Windows.Forms.Label();
-            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.tb_camera_url_3 = new System.Windows.Forms.TextBox();
             this.label141 = new System.Windows.Forms.Label();
-            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.tb_camera_url_2 = new System.Windows.Forms.TextBox();
             this.label142 = new System.Windows.Forms.Label();
-            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.tb_camera_url_1 = new System.Windows.Forms.TextBox();
             this.tabPageCauHinhHienThi = new System.Windows.Forms.TabPage();
             this.btnLuuCauHinhHienThi = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -782,37 +811,6 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.panelChinhSuaNhanVien = new System.Windows.Forms.Panel();
-            this.cbUserSexEdit = new System.Windows.Forms.ComboBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbUserFunctionEdit = new System.Windows.Forms.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tbUserPassEdit = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbUserAccountEdit = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbUserNameEdit = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tbUserIDEdit = new System.Windows.Forms.TextBox();
-            this.panelChinhSuaLoaiXe = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
-            this.tbPartLimitEdit = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
-            this.tbPartAmountEdit = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.tbPartSignEdit = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.tbPartNameEdit = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.tbPartIdEdit = new System.Windows.Forms.TextBox();
-            this.tbRFID_Outss = new System.Windows.Forms.TextBox();
-            this.tbRFID_Inss = new System.Windows.Forms.TextBox();
-            this.tbRFID_In = new System.Windows.Forms.TextBox();
-            this.label137 = new System.Windows.Forms.Label();
-            this.tbRFID_Out = new System.Windows.Forms.TextBox();
-            this.label136 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -823,6 +821,7 @@
             this.tabControl7.SuspendLayout();
             this.tabPage25.SuspendLayout();
             this.tabPage26.SuspendLayout();
+            this.panelChinhSuaNhanVien.SuspendLayout();
             this.tabPageDoBangChamCong.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).BeginInit();
             this.panel2.SuspendLayout();
@@ -889,6 +888,7 @@
             this.tabControl9.SuspendLayout();
             this.tabPage30.SuspendLayout();
             this.tabPage31.SuspendLayout();
+            this.panelChinhSuaLoaiXe.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartList)).BeginInit();
             this.tabPageKichHoatThe.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -964,8 +964,6 @@
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
-            this.panelChinhSuaNhanVien.SuspendLayout();
-            this.panelChinhSuaLoaiXe.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1292,6 +1290,132 @@
             this.btnUpdateUser.Text = "CHỈNH SỬA";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
             this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
+            // 
+            // panelChinhSuaNhanVien
+            // 
+            this.panelChinhSuaNhanVien.Controls.Add(this.cbUserSexEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label9);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label10);
+            this.panelChinhSuaNhanVien.Controls.Add(this.cbUserFunctionEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label11);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserPassEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label12);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserAccountEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label13);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserNameEdit);
+            this.panelChinhSuaNhanVien.Controls.Add(this.label14);
+            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserIDEdit);
+            this.panelChinhSuaNhanVien.Location = new System.Drawing.Point(6, 6);
+            this.panelChinhSuaNhanVien.Name = "panelChinhSuaNhanVien";
+            this.panelChinhSuaNhanVien.Size = new System.Drawing.Size(306, 218);
+            this.panelChinhSuaNhanVien.TabIndex = 26;
+            // 
+            // cbUserSexEdit
+            // 
+            this.cbUserSexEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUserSexEdit.FormattingEnabled = true;
+            this.cbUserSexEdit.Location = new System.Drawing.Point(111, 176);
+            this.cbUserSexEdit.Name = "cbUserSexEdit";
+            this.cbUserSexEdit.Size = new System.Drawing.Size(148, 24);
+            this.cbUserSexEdit.TabIndex = 34;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(44, 180);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 16);
+            this.label9.TabIndex = 35;
+            this.label9.Text = "Giới tính :";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(44, 147);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(61, 16);
+            this.label10.TabIndex = 32;
+            this.label10.Text = "Chức vụ :";
+            // 
+            // cbUserFunctionEdit
+            // 
+            this.cbUserFunctionEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbUserFunctionEdit.FormattingEnabled = true;
+            this.cbUserFunctionEdit.Location = new System.Drawing.Point(111, 141);
+            this.cbUserFunctionEdit.Name = "cbUserFunctionEdit";
+            this.cbUserFunctionEdit.Size = new System.Drawing.Size(148, 24);
+            this.cbUserFunctionEdit.TabIndex = 33;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(37, 112);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(68, 16);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Mật khẩu :";
+            // 
+            // tbUserPassEdit
+            // 
+            this.tbUserPassEdit.Location = new System.Drawing.Point(111, 108);
+            this.tbUserPassEdit.Name = "tbUserPassEdit";
+            this.tbUserPassEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserPassEdit.TabIndex = 30;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(31, 77);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(74, 16);
+            this.label12.TabIndex = 29;
+            this.label12.Text = "Tài khoản :";
+            // 
+            // tbUserAccountEdit
+            // 
+            this.tbUserAccountEdit.Location = new System.Drawing.Point(111, 75);
+            this.tbUserAccountEdit.Name = "tbUserAccountEdit";
+            this.tbUserAccountEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserAccountEdit.TabIndex = 28;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(34, 42);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(71, 16);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Họ và tên :";
+            // 
+            // tbUserNameEdit
+            // 
+            this.tbUserNameEdit.Location = new System.Drawing.Point(111, 42);
+            this.tbUserNameEdit.Name = "tbUserNameEdit";
+            this.tbUserNameEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserNameEdit.TabIndex = 26;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(51, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(54, 16);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "Mã thẻ :";
+            // 
+            // tbUserIDEdit
+            // 
+            this.tbUserIDEdit.Enabled = false;
+            this.tbUserIDEdit.Location = new System.Drawing.Point(111, 9);
+            this.tbUserIDEdit.Name = "tbUserIDEdit";
+            this.tbUserIDEdit.Size = new System.Drawing.Size(148, 22);
+            this.tbUserIDEdit.TabIndex = 24;
             // 
             // tabPageDoBangChamCong
             // 
@@ -3719,6 +3843,120 @@
             this.btnUpdatePart.UseVisualStyleBackColor = true;
             this.btnUpdatePart.Click += new System.EventHandler(this.btnUpdatePart_Click);
             // 
+            // panelChinhSuaLoaiXe
+            // 
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label26);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label31);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartLimitEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartIdEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label27);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartNameEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label28);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label30);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartAmountEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartSignEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label29);
+            this.panelChinhSuaLoaiXe.Location = new System.Drawing.Point(6, 6);
+            this.panelChinhSuaLoaiXe.Name = "panelChinhSuaLoaiXe";
+            this.panelChinhSuaLoaiXe.Size = new System.Drawing.Size(346, 217);
+            this.panelChinhSuaLoaiXe.TabIndex = 27;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(235, 121);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(76, 16);
+            this.label26.TabIndex = 47;
+            this.label26.Text = "chỉ nhập số";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(43, 22);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(75, 16);
+            this.label31.TabIndex = 38;
+            this.label31.Text = "Mã loại xe :";
+            // 
+            // tbPartLimitEdit
+            // 
+            this.tbPartLimitEdit.Location = new System.Drawing.Point(128, 151);
+            this.tbPartLimitEdit.Name = "tbPartLimitEdit";
+            this.tbPartLimitEdit.Size = new System.Drawing.Size(101, 22);
+            this.tbPartLimitEdit.TabIndex = 46;
+            // 
+            // tbPartIdEdit
+            // 
+            this.tbPartIdEdit.Location = new System.Drawing.Point(128, 19);
+            this.tbPartIdEdit.Name = "tbPartIdEdit";
+            this.tbPartIdEdit.ReadOnly = true;
+            this.tbPartIdEdit.Size = new System.Drawing.Size(183, 22);
+            this.tbPartIdEdit.TabIndex = 37;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(51, 155);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(67, 16);
+            this.label27.TabIndex = 45;
+            this.label27.Text = "Hạn mức :";
+            // 
+            // tbPartNameEdit
+            // 
+            this.tbPartNameEdit.Location = new System.Drawing.Point(128, 52);
+            this.tbPartNameEdit.Name = "tbPartNameEdit";
+            this.tbPartNameEdit.Size = new System.Drawing.Size(183, 22);
+            this.tbPartNameEdit.TabIndex = 39;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(21, 121);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(97, 16);
+            this.label28.TabIndex = 44;
+            this.label28.Text = "Tiền thu tháng :";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(38, 55);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(80, 16);
+            this.label30.TabIndex = 40;
+            this.label30.Text = "Tên loại xe :";
+            // 
+            // tbPartAmountEdit
+            // 
+            this.tbPartAmountEdit.Location = new System.Drawing.Point(128, 118);
+            this.tbPartAmountEdit.Name = "tbPartAmountEdit";
+            this.tbPartAmountEdit.Size = new System.Drawing.Size(101, 22);
+            this.tbPartAmountEdit.TabIndex = 43;
+            // 
+            // tbPartSignEdit
+            // 
+            this.tbPartSignEdit.Location = new System.Drawing.Point(128, 85);
+            this.tbPartSignEdit.Name = "tbPartSignEdit";
+            this.tbPartSignEdit.Size = new System.Drawing.Size(183, 22);
+            this.tbPartSignEdit.TabIndex = 41;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(61, 87);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(57, 16);
+            this.label29.TabIndex = 42;
+            this.label29.Text = "Ký hiệu :";
+            // 
             // dgvPartList
             // 
             this.dgvPartList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -6074,7 +6312,7 @@
             // 
             // tabPageCauHinhKetNoi
             // 
-            this.tabPageCauHinhKetNoi.Controls.Add(this.btnLuuCauHinhketNoi);
+            this.tabPageCauHinhKetNoi.Controls.Add(this.btnLuuCauHinhKetNoi);
             this.tabPageCauHinhKetNoi.Controls.Add(this.groupBox2);
             this.tabPageCauHinhKetNoi.Location = new System.Drawing.Point(4, 25);
             this.tabPageCauHinhKetNoi.Name = "tabPageCauHinhKetNoi";
@@ -6084,107 +6322,137 @@
             this.tabPageCauHinhKetNoi.Text = "Cấu hình kết nối";
             this.tabPageCauHinhKetNoi.UseVisualStyleBackColor = true;
             // 
-            // btnLuuCauHinhketNoi
+            // btnLuuCauHinhKetNoi
             // 
-            this.btnLuuCauHinhketNoi.Location = new System.Drawing.Point(522, 513);
-            this.btnLuuCauHinhketNoi.Name = "btnLuuCauHinhketNoi";
-            this.btnLuuCauHinhketNoi.Size = new System.Drawing.Size(108, 35);
-            this.btnLuuCauHinhketNoi.TabIndex = 12;
-            this.btnLuuCauHinhketNoi.Text = "LƯU";
-            this.btnLuuCauHinhketNoi.UseVisualStyleBackColor = true;
+            this.btnLuuCauHinhKetNoi.Location = new System.Drawing.Point(525, 513);
+            this.btnLuuCauHinhKetNoi.Name = "btnLuuCauHinhKetNoi";
+            this.btnLuuCauHinhKetNoi.Size = new System.Drawing.Size(108, 35);
+            this.btnLuuCauHinhKetNoi.TabIndex = 12;
+            this.btnLuuCauHinhKetNoi.Text = "LƯU";
+            this.btnLuuCauHinhKetNoi.UseVisualStyleBackColor = true;
+            this.btnLuuCauHinhKetNoi.Click += new System.EventHandler(this.btnLuuCauHinhKetNoi_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.tbRFID_Outss);
-            this.groupBox2.Controls.Add(this.tbRFID_Inss);
-            this.groupBox2.Controls.Add(this.label136);
-            this.groupBox2.Controls.Add(this.tbRFID_Out);
+            this.groupBox2.Controls.Add(this.tb_rfid_1);
+            this.groupBox2.Controls.Add(this.tb_camera_url_4);
             this.groupBox2.Controls.Add(this.label137);
-            this.groupBox2.Controls.Add(this.tbRFID_In);
+            this.groupBox2.Controls.Add(this.tb_rfid_2);
             this.groupBox2.Controls.Add(this.label138);
             this.groupBox2.Controls.Add(this.label139);
             this.groupBox2.Controls.Add(this.label140);
-            this.groupBox2.Controls.Add(this.textBox31);
+            this.groupBox2.Controls.Add(this.tb_camera_url_3);
             this.groupBox2.Controls.Add(this.label141);
-            this.groupBox2.Controls.Add(this.textBox32);
+            this.groupBox2.Controls.Add(this.tb_camera_url_2);
             this.groupBox2.Controls.Add(this.label142);
-            this.groupBox2.Controls.Add(this.textBox33);
-            this.groupBox2.Location = new System.Drawing.Point(217, 6);
+            this.groupBox2.Controls.Add(this.tb_camera_url_1);
+            this.groupBox2.Location = new System.Drawing.Point(205, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(686, 487);
+            this.groupBox2.Size = new System.Drawing.Size(726, 487);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            // 
+            // tb_rfid_1
+            // 
+            this.tb_rfid_1.Location = new System.Drawing.Point(104, 135);
+            this.tb_rfid_1.Name = "tb_rfid_1";
+            this.tb_rfid_1.Size = new System.Drawing.Size(603, 22);
+            this.tb_rfid_1.TabIndex = 43;
+            // 
+            // tb_camera_url_4
+            // 
+            this.tb_camera_url_4.Location = new System.Drawing.Point(104, 107);
+            this.tb_camera_url_4.Name = "tb_camera_url_4";
+            this.tb_camera_url_4.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_4.TabIndex = 42;
+            // 
+            // label137
+            // 
+            this.label137.AutoSize = true;
+            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label137.Location = new System.Drawing.Point(17, 166);
+            this.label137.Name = "label137";
+            this.label137.Size = new System.Drawing.Size(60, 16);
+            this.label137.TabIndex = 19;
+            this.label137.Text = "RFID out";
+            // 
+            // tb_rfid_2
+            // 
+            this.tb_rfid_2.Location = new System.Drawing.Point(104, 163);
+            this.tb_rfid_2.Name = "tb_rfid_2";
+            this.tb_rfid_2.Size = new System.Drawing.Size(603, 22);
+            this.tb_rfid_2.TabIndex = 18;
             // 
             // label138
             // 
             this.label138.AutoSize = true;
             this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.Location = new System.Drawing.Point(23, 136);
+            this.label138.Location = new System.Drawing.Point(17, 138);
             this.label138.Name = "label138";
-            this.label138.Size = new System.Drawing.Size(91, 16);
+            this.label138.Size = new System.Drawing.Size(52, 16);
             this.label138.TabIndex = 17;
-            this.label138.Text = "Thư mục chứa";
+            this.label138.Text = "RFID in";
             // 
             // label139
             // 
             this.label139.AutoSize = true;
             this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(23, 108);
+            this.label139.Location = new System.Drawing.Point(17, 110);
             this.label139.Name = "label139";
-            this.label139.Size = new System.Drawing.Size(76, 16);
+            this.label139.Size = new System.Drawing.Size(66, 16);
             this.label139.TabIndex = 15;
-            this.label139.Text = "Ip lưu hình 4";
+            this.label139.Text = "Camera 4";
             // 
             // label140
             // 
             this.label140.AutoSize = true;
             this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.Location = new System.Drawing.Point(23, 80);
+            this.label140.Location = new System.Drawing.Point(17, 82);
             this.label140.Name = "label140";
-            this.label140.Size = new System.Drawing.Size(76, 16);
+            this.label140.Size = new System.Drawing.Size(66, 16);
             this.label140.TabIndex = 13;
-            this.label140.Text = "Ip lưu hình 3";
+            this.label140.Text = "Camera 3";
             // 
-            // textBox31
+            // tb_camera_url_3
             // 
-            this.textBox31.Location = new System.Drawing.Point(130, 77);
-            this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new System.Drawing.Size(524, 22);
-            this.textBox31.TabIndex = 12;
+            this.tb_camera_url_3.Location = new System.Drawing.Point(104, 79);
+            this.tb_camera_url_3.Name = "tb_camera_url_3";
+            this.tb_camera_url_3.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_3.TabIndex = 12;
             // 
             // label141
             // 
             this.label141.AutoSize = true;
             this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label141.Location = new System.Drawing.Point(23, 52);
+            this.label141.Location = new System.Drawing.Point(17, 54);
             this.label141.Name = "label141";
-            this.label141.Size = new System.Drawing.Size(76, 16);
+            this.label141.Size = new System.Drawing.Size(66, 16);
             this.label141.TabIndex = 11;
-            this.label141.Text = "Ip lưu hình 2";
+            this.label141.Text = "Camera 2";
             // 
-            // textBox32
+            // tb_camera_url_2
             // 
-            this.textBox32.Location = new System.Drawing.Point(130, 49);
-            this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new System.Drawing.Size(524, 22);
-            this.textBox32.TabIndex = 10;
+            this.tb_camera_url_2.Location = new System.Drawing.Point(104, 51);
+            this.tb_camera_url_2.Name = "tb_camera_url_2";
+            this.tb_camera_url_2.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_2.TabIndex = 10;
             // 
             // label142
             // 
             this.label142.AutoSize = true;
             this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label142.Location = new System.Drawing.Point(23, 24);
+            this.label142.Location = new System.Drawing.Point(17, 26);
             this.label142.Name = "label142";
-            this.label142.Size = new System.Drawing.Size(76, 16);
+            this.label142.Size = new System.Drawing.Size(66, 16);
             this.label142.TabIndex = 9;
-            this.label142.Text = "Ip lưu hình 1";
+            this.label142.Text = "Camera 1";
             // 
-            // textBox33
+            // tb_camera_url_1
             // 
-            this.textBox33.Location = new System.Drawing.Point(130, 21);
-            this.textBox33.Name = "textBox33";
-            this.textBox33.Size = new System.Drawing.Size(524, 22);
-            this.textBox33.TabIndex = 8;
+            this.tb_camera_url_1.Location = new System.Drawing.Point(104, 23);
+            this.tb_camera_url_1.Name = "tb_camera_url_1";
+            this.tb_camera_url_1.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_1.TabIndex = 8;
             // 
             // tabPageCauHinhHienThi
             // 
@@ -8135,294 +8403,6 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // panelChinhSuaNhanVien
-            // 
-            this.panelChinhSuaNhanVien.Controls.Add(this.cbUserSexEdit);
-            this.panelChinhSuaNhanVien.Controls.Add(this.label9);
-            this.panelChinhSuaNhanVien.Controls.Add(this.label10);
-            this.panelChinhSuaNhanVien.Controls.Add(this.cbUserFunctionEdit);
-            this.panelChinhSuaNhanVien.Controls.Add(this.label11);
-            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserPassEdit);
-            this.panelChinhSuaNhanVien.Controls.Add(this.label12);
-            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserAccountEdit);
-            this.panelChinhSuaNhanVien.Controls.Add(this.label13);
-            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserNameEdit);
-            this.panelChinhSuaNhanVien.Controls.Add(this.label14);
-            this.panelChinhSuaNhanVien.Controls.Add(this.tbUserIDEdit);
-            this.panelChinhSuaNhanVien.Location = new System.Drawing.Point(6, 6);
-            this.panelChinhSuaNhanVien.Name = "panelChinhSuaNhanVien";
-            this.panelChinhSuaNhanVien.Size = new System.Drawing.Size(306, 218);
-            this.panelChinhSuaNhanVien.TabIndex = 26;
-            // 
-            // cbUserSexEdit
-            // 
-            this.cbUserSexEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUserSexEdit.FormattingEnabled = true;
-            this.cbUserSexEdit.Location = new System.Drawing.Point(111, 176);
-            this.cbUserSexEdit.Name = "cbUserSexEdit";
-            this.cbUserSexEdit.Size = new System.Drawing.Size(148, 24);
-            this.cbUserSexEdit.TabIndex = 34;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(44, 180);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 16);
-            this.label9.TabIndex = 35;
-            this.label9.Text = "Giới tính :";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(44, 147);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 16);
-            this.label10.TabIndex = 32;
-            this.label10.Text = "Chức vụ :";
-            // 
-            // cbUserFunctionEdit
-            // 
-            this.cbUserFunctionEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbUserFunctionEdit.FormattingEnabled = true;
-            this.cbUserFunctionEdit.Location = new System.Drawing.Point(111, 141);
-            this.cbUserFunctionEdit.Name = "cbUserFunctionEdit";
-            this.cbUserFunctionEdit.Size = new System.Drawing.Size(148, 24);
-            this.cbUserFunctionEdit.TabIndex = 33;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(37, 112);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(68, 16);
-            this.label11.TabIndex = 31;
-            this.label11.Text = "Mật khẩu :";
-            // 
-            // tbUserPassEdit
-            // 
-            this.tbUserPassEdit.Location = new System.Drawing.Point(111, 108);
-            this.tbUserPassEdit.Name = "tbUserPassEdit";
-            this.tbUserPassEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserPassEdit.TabIndex = 30;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(31, 77);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(74, 16);
-            this.label12.TabIndex = 29;
-            this.label12.Text = "Tài khoản :";
-            // 
-            // tbUserAccountEdit
-            // 
-            this.tbUserAccountEdit.Location = new System.Drawing.Point(111, 75);
-            this.tbUserAccountEdit.Name = "tbUserAccountEdit";
-            this.tbUserAccountEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserAccountEdit.TabIndex = 28;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(34, 42);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 16);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "Họ và tên :";
-            // 
-            // tbUserNameEdit
-            // 
-            this.tbUserNameEdit.Location = new System.Drawing.Point(111, 42);
-            this.tbUserNameEdit.Name = "tbUserNameEdit";
-            this.tbUserNameEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserNameEdit.TabIndex = 26;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(51, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(54, 16);
-            this.label14.TabIndex = 25;
-            this.label14.Text = "Mã thẻ :";
-            // 
-            // tbUserIDEdit
-            // 
-            this.tbUserIDEdit.Enabled = false;
-            this.tbUserIDEdit.Location = new System.Drawing.Point(111, 9);
-            this.tbUserIDEdit.Name = "tbUserIDEdit";
-            this.tbUserIDEdit.Size = new System.Drawing.Size(148, 22);
-            this.tbUserIDEdit.TabIndex = 24;
-            // 
-            // panelChinhSuaLoaiXe
-            // 
-            this.panelChinhSuaLoaiXe.Controls.Add(this.label26);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.label31);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartLimitEdit);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartIdEdit);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.label27);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartNameEdit);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.label28);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.label30);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartAmountEdit);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartSignEdit);
-            this.panelChinhSuaLoaiXe.Controls.Add(this.label29);
-            this.panelChinhSuaLoaiXe.Location = new System.Drawing.Point(6, 6);
-            this.panelChinhSuaLoaiXe.Name = "panelChinhSuaLoaiXe";
-            this.panelChinhSuaLoaiXe.Size = new System.Drawing.Size(346, 217);
-            this.panelChinhSuaLoaiXe.TabIndex = 27;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(235, 121);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(76, 16);
-            this.label26.TabIndex = 47;
-            this.label26.Text = "chỉ nhập số";
-            // 
-            // tbPartLimitEdit
-            // 
-            this.tbPartLimitEdit.Location = new System.Drawing.Point(128, 151);
-            this.tbPartLimitEdit.Name = "tbPartLimitEdit";
-            this.tbPartLimitEdit.Size = new System.Drawing.Size(101, 22);
-            this.tbPartLimitEdit.TabIndex = 46;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(51, 155);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(67, 16);
-            this.label27.TabIndex = 45;
-            this.label27.Text = "Hạn mức :";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(21, 121);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(97, 16);
-            this.label28.TabIndex = 44;
-            this.label28.Text = "Tiền thu tháng :";
-            // 
-            // tbPartAmountEdit
-            // 
-            this.tbPartAmountEdit.Location = new System.Drawing.Point(128, 118);
-            this.tbPartAmountEdit.Name = "tbPartAmountEdit";
-            this.tbPartAmountEdit.Size = new System.Drawing.Size(101, 22);
-            this.tbPartAmountEdit.TabIndex = 43;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(61, 87);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(57, 16);
-            this.label29.TabIndex = 42;
-            this.label29.Text = "Ký hiệu :";
-            // 
-            // tbPartSignEdit
-            // 
-            this.tbPartSignEdit.Location = new System.Drawing.Point(128, 85);
-            this.tbPartSignEdit.Name = "tbPartSignEdit";
-            this.tbPartSignEdit.Size = new System.Drawing.Size(183, 22);
-            this.tbPartSignEdit.TabIndex = 41;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(38, 55);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(80, 16);
-            this.label30.TabIndex = 40;
-            this.label30.Text = "Tên loại xe :";
-            // 
-            // tbPartNameEdit
-            // 
-            this.tbPartNameEdit.Location = new System.Drawing.Point(128, 52);
-            this.tbPartNameEdit.Name = "tbPartNameEdit";
-            this.tbPartNameEdit.Size = new System.Drawing.Size(183, 22);
-            this.tbPartNameEdit.TabIndex = 39;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(43, 22);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(75, 16);
-            this.label31.TabIndex = 38;
-            this.label31.Text = "Mã loại xe :";
-            // 
-            // tbPartIdEdit
-            // 
-            this.tbPartIdEdit.Location = new System.Drawing.Point(128, 19);
-            this.tbPartIdEdit.Name = "tbPartIdEdit";
-            this.tbPartIdEdit.ReadOnly = true;
-            this.tbPartIdEdit.Size = new System.Drawing.Size(183, 22);
-            this.tbPartIdEdit.TabIndex = 37;
-            // 
-            // tbRFID_Outss
-            // 
-            this.tbRFID_Outss.Location = new System.Drawing.Point(130, 133);
-            this.tbRFID_Outss.Name = "tbRFID_Outss";
-            this.tbRFID_Outss.Size = new System.Drawing.Size(524, 22);
-            this.tbRFID_Outss.TabIndex = 22;
-            // 
-            // tbRFID_Inss
-            // 
-            this.tbRFID_Inss.Location = new System.Drawing.Point(130, 105);
-            this.tbRFID_Inss.Name = "tbRFID_Inss";
-            this.tbRFID_Inss.Size = new System.Drawing.Size(524, 22);
-            this.tbRFID_Inss.TabIndex = 21;
-            // 
-            // tbRFID_In
-            // 
-            this.tbRFID_In.Location = new System.Drawing.Point(130, 161);
-            this.tbRFID_In.Name = "tbRFID_In";
-            this.tbRFID_In.Size = new System.Drawing.Size(524, 22);
-            this.tbRFID_In.TabIndex = 18;
-            // 
-            // label137
-            // 
-            this.label137.AutoSize = true;
-            this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.Location = new System.Drawing.Point(23, 164);
-            this.label137.Name = "label137";
-            this.label137.Size = new System.Drawing.Size(52, 16);
-            this.label137.TabIndex = 19;
-            this.label137.Text = "RFID in";
-            // 
-            // tbRFID_Out
-            // 
-            this.tbRFID_Out.Location = new System.Drawing.Point(130, 189);
-            this.tbRFID_Out.Name = "tbRFID_Out";
-            this.tbRFID_Out.Size = new System.Drawing.Size(524, 22);
-            this.tbRFID_Out.TabIndex = 20;
-            // 
-            // label136
-            // 
-            this.label136.AutoSize = true;
-            this.label136.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label136.Location = new System.Drawing.Point(23, 192);
-            this.label136.Name = "label136";
-            this.label136.Size = new System.Drawing.Size(60, 16);
-            this.label136.TabIndex = 21;
-            this.label136.Text = "RFID out";
-            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8436,6 +8416,7 @@
             this.Name = "FormQuanLy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormQuanLy";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormQuanLy_FormClosing);
             this.Load += new System.EventHandler(this.FormQuanLy_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormQuanLy_KeyDown);
             this.tabQuanLy.ResumeLayout(false);
@@ -8449,6 +8430,8 @@
             this.tabPage25.ResumeLayout(false);
             this.tabPage25.PerformLayout();
             this.tabPage26.ResumeLayout(false);
+            this.panelChinhSuaNhanVien.ResumeLayout(false);
+            this.panelChinhSuaNhanVien.PerformLayout();
             this.tabPageDoBangChamCong.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvWorkList)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -8531,6 +8514,8 @@
             this.tabPage30.ResumeLayout(false);
             this.tabPage30.PerformLayout();
             this.tabPage31.ResumeLayout(false);
+            this.panelChinhSuaLoaiXe.ResumeLayout(false);
+            this.panelChinhSuaLoaiXe.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartList)).EndInit();
             this.tabPageKichHoatThe.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
@@ -8633,10 +8618,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
-            this.panelChinhSuaNhanVien.ResumeLayout(false);
-            this.panelChinhSuaNhanVien.PerformLayout();
-            this.panelChinhSuaLoaiXe.ResumeLayout(false);
-            this.panelChinhSuaLoaiXe.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -9104,16 +9085,18 @@
         private System.Windows.Forms.TabControl tabControl3;
         private System.Windows.Forms.TabPage tabPageCauHinhKetNoi;
         private System.Windows.Forms.TabPage tabPageCauHinhHienThi;
-        private System.Windows.Forms.Button btnLuuCauHinhketNoi;
+        private System.Windows.Forms.Button btnLuuCauHinhKetNoi;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label137;
+        private System.Windows.Forms.TextBox tb_rfid_2;
         private System.Windows.Forms.Label label138;
         private System.Windows.Forms.Label label139;
         private System.Windows.Forms.Label label140;
-        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.TextBox tb_camera_url_3;
         private System.Windows.Forms.Label label141;
-        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.TextBox tb_camera_url_2;
         private System.Windows.Forms.Label label142;
-        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.TextBox tb_camera_url_1;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button16;
@@ -9374,11 +9357,7 @@
         private System.Windows.Forms.TextBox tbPartAmountEdit;
         private System.Windows.Forms.TextBox tbPartSignEdit;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox tbRFID_Outss;
-        private System.Windows.Forms.TextBox tbRFID_Inss;
-        private System.Windows.Forms.Label label136;
-        private System.Windows.Forms.TextBox tbRFID_Out;
-        private System.Windows.Forms.Label label137;
-        private System.Windows.Forms.TextBox tbRFID_In;
+        private System.Windows.Forms.TextBox tb_rfid_1;
+        private System.Windows.Forms.TextBox tb_camera_url_4;
     }
 }

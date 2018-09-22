@@ -82,10 +82,96 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static string GetCamera1()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("Camera1");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GetCamera2()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("Camera2");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GetCamera3()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("Camera3");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GetCamera4()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("Camera4");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GetRFID1()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("RFID1");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static string GetRFID2()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("RFID2");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public static bool Update(ConfigDTO configDTO)
         {
             string sql = "update [Config] set TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
-                + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId;
+                + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" 
+                + configDTO.ParkingTypeId;
+            return Database.ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateCauHinhKetNoi(ConfigDTO configDTO)
+        {
+            string sql = "update [Config] set Camera1 = '" + configDTO.Camera1 + "', Camera2 = '" + configDTO.Camera2 +
+                "', Camera3 = '" + configDTO.Camera3 + "', Camera4 = '" + configDTO.Camera4 + "', RFID1 = '" + configDTO.Rfid1 + "', RFID2 = '" + configDTO.Rfid2 + "'";
             return Database.ExcuNonQuery(sql);
         }
     }

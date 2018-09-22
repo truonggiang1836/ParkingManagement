@@ -10,7 +10,8 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
-
+        public static string sEncodeStart = "<![CDATA[";
+        public static string sEncodeEnd = "]]>";
         public static string sButtonEdit = "CHỈNH SỬA";
         public static string sButtonUpdate = "CẬP NHẬT";
         public static string sTitleDelete = "Xóa dữ liệu";
