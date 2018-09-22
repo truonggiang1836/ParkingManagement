@@ -3710,12 +3710,13 @@ namespace ParkingMangement.GUI
             if (tb_rfid_1.Focused)
             {
                 tb_rfid_1.Text = e.KeyPressEvent.DeviceName;
+                this.ActiveControl = null;
             }
             if (tb_rfid_2.Focused)
             {
                 tb_rfid_2.Text = e.KeyPressEvent.DeviceName;
+                this.ActiveControl = null;
             }
-            this.ActiveControl = null;
         }
 
         private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
