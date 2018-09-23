@@ -101,7 +101,7 @@
             this.axVLCPlugin4.Location = new System.Drawing.Point(630, 1);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 254);
             this.axVLCPlugin4.TabIndex = 17;
             // 
             // axVLCPlugin3
@@ -110,7 +110,7 @@
             this.axVLCPlugin3.Location = new System.Drawing.Point(420, 1);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 253);
             this.axVLCPlugin3.TabIndex = 16;
             // 
             // axVLCPlugin2
@@ -119,7 +119,7 @@
             this.axVLCPlugin2.Location = new System.Drawing.Point(210, 1);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 254);
             this.axVLCPlugin2.TabIndex = 15;
             // 
             // axVLCPlugin1
@@ -128,7 +128,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(0, 1);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 253);
             this.axVLCPlugin1.TabIndex = 14;
             // 
             // pictureBoxImage1

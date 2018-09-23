@@ -8,6 +8,11 @@ namespace ParkingMangement.DTO
 {
     class ConfigDTO
     {
+        public const int TYPE_IN_IN = 1;
+        public const int TYPE_OUT_OUT = 2;
+        public const int TYPE_IN_OUT = 3;
+        public const int TYPE_OUT_IN = 4;
+
         private int totalSpace;
         private int ticketSpace;
         private int ticketLimitDay;
@@ -19,6 +24,7 @@ namespace ParkingMangement.DTO
         private string camera4;
         private string rfid1;
         private string rfid2;
+        private int intOutType = TYPE_IN_OUT;
 
         public int TotalSpace { get => totalSpace; set => totalSpace = value; }
         public int TicketSpace { get => ticketSpace; set => ticketSpace = value; }
@@ -31,5 +37,6 @@ namespace ParkingMangement.DTO
         public string Camera4 { get => camera4; set => camera4 = value; }
         public string Rfid1 { get => rfid1; set => rfid1 = value; }
         public string Rfid2 { get => rfid2; set => rfid2 = value; }
+        public int IntOutType { get => intOutType; set => intOutType = value; }
     }
 }

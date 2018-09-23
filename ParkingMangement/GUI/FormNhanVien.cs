@@ -85,16 +85,22 @@ namespace ParkingMangement.GUI
 
         private void FormNhanVien_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            switch (e.KeyCode)
             {
-                Util.showConfirmLogoutPopup(this);
-            } else if (e.KeyCode == Keys.Enter)
-            {
-                cardID = tbRFIDCardID.Text;
-                labelCardID.Text = cardID;
-                string x = keyboardDeviceName;
-                tbRFIDCardID.Text = "";
-                saveImage();
+                case Keys.Escape:
+                    Util.showConfirmLogoutPopup(this);
+                    break;
+                case Keys.Enter:
+                    cardID = tbRFIDCardID.Text;
+                    labelCardID.Text = cardID;
+                    string x = keyboardDeviceName;
+                    tbRFIDCardID.Text = "";
+                    saveImage();
+                    break;
+                case Keys.F5:
+                    Form f = new FormInOutSetting();
+                    f.Show();
+                    break;
             }
         }
 
@@ -496,11 +502,32 @@ namespace ParkingMangement.GUI
 
         private bool isCarIn()
         {
-            if (keyboardDeviceName.Equals(rfidOut))
+            int inOutType = ConfigDAO.GetInOutType();
+            switch (inOutType)
             {
-                return false;
+                case ConfigDTO.TYPE_IN_IN:
+                    return true;
+                case ConfigDTO.TYPE_OUT_OUT:
+                    return false;
+                case ConfigDTO.TYPE_IN_OUT:
+                    if (keyboardDeviceName.Equals(rfidOut))
+                    {
+                        return false;
+                    }
+                    return true;
+                case ConfigDTO.TYPE_OUT_IN:
+                    if (keyboardDeviceName.Equals(rfidOut))
+                    {
+                        return true;
+                    }
+                    return false;
+                default:
+                    if (keyboardDeviceName.Equals(rfidOut))
+                    {
+                        return false;
+                    }
+                    return true;
             }
-            return true;
         }
 
         private int tinhTienGiuXe()
