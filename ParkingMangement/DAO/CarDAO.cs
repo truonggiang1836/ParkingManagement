@@ -27,6 +27,7 @@ namespace ParkingMangement.DAO
 
         private static string sqlQueryTicketMonth = " and Car.IDTicketMonth <> '' ";
         private static string sqlQueryTicketCommon= " and Car.IDTicketMonth = '' ";
+        private static string sqlQueryXeTon = " and Car.IDOut = '' ";
         private static string sqlOrderByIdentify = " order by Car.Identify asc";
 
         public static DataTable GetAllData()
@@ -51,7 +52,7 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable searchTicketDayData(CarDTO carDTO)
+        public static DataTable searchAllData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
             sql += " and Car.TimeStart >= #" + carDTO.TimeStart + "# and Car.TimeEnd <= #" + carDTO.TimeEnd + "#";
@@ -80,6 +81,44 @@ namespace ParkingMangement.DAO
                 sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
             }
             sql += sqlOrderByIdentify;
+
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                setUserNameForDataTable(data);
+            }
+            return data;
+        }
+
+        public static DataTable searchXeTon(CarDTO carDTO)
+        {
+            string sql = sqlGetAllData;
+            sql += " and Car.TimeStart >= #" + carDTO.TimeStart + "# and Car.TimeEnd <= #" + carDTO.TimeEnd + "#";
+            if (!string.IsNullOrEmpty(carDTO.IdPart))
+            {
+                sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
+            }
+            if (carDTO.Identify != -1)
+            {
+                sql += " and Car.Identify like '%" + carDTO.Identify + "%'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.Digit))
+            {
+                sql += " and Car.Digit like '%" + carDTO.Digit + "%'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.Id))
+            {
+                sql += " and SmartCard.ID like '%" + carDTO.Id + "%'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.IdIn))
+            {
+                sql += " and Car.IDIn like '" + carDTO.IdIn + "'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.IdOut))
+            {
+                sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
+            }
+            sql += sqlQueryXeTon + sqlOrderByIdentify;
 
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)

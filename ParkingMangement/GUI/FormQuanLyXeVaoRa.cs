@@ -35,7 +35,7 @@ namespace ParkingMangement.GUI
             searchCar();
         }
 
-        private void searchCar()
+        private CarDTO getCarModel()
         {
             CarDTO carDTO = new CarDTO();
             DateTime startDate = dateTimePickerCarDateIn.Value;
@@ -66,8 +66,22 @@ namespace ParkingMangement.GUI
                 DataRow dataRow = ((DataRowView)comboBoxNhanVienRa.SelectedItem).Row;
                 carDTO.IdOut = Convert.ToString(dataRow["UserID"]);
             }
+            return carDTO;
+        }
 
-            DataTable data = CarDAO.searchTicketDayData(carDTO);
+        private void searchCar()
+        {
+            CarDTO carDTO = getCarModel();
+
+            DataTable data = CarDAO.searchAllData(carDTO);
+            dgvCarList.DataSource = data;
+        }
+
+        private void searchXeTon()
+        {
+            CarDTO carDTO = getCarModel();
+
+            DataTable data = CarDAO.searchXeTon(carDTO);
             dgvCarList.DataSource = data;
         }
 
@@ -133,6 +147,11 @@ namespace ParkingMangement.GUI
                     pictureBoxCarLogImage4.Image = Image.FromFile(filePath);
                 }
             }
+        }
+
+        private void btnXemDanhSachXeTon_Click(object sender, EventArgs e)
+        {
+            searchXeTon();
         }
     }
 }

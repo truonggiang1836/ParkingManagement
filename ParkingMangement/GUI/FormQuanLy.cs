@@ -1852,7 +1852,7 @@ namespace ParkingMangement.GUI
                 carDTO.IdOut = Convert.ToString(dataRow["UserID"]);
             }
 
-            DataTable data = CarDAO.searchTicketDayData(carDTO);
+            DataTable data = CarDAO.searchAllData(carDTO);
             dgvCarList.DataSource = data;
         }
 
@@ -1862,7 +1862,7 @@ namespace ParkingMangement.GUI
             carDTO.TimeStart = startDate;
             carDTO.TimeEnd = endDate;
 
-            DataTable data = CarDAO.searchTicketDayData(carDTO);
+            DataTable data = CarDAO.searchAllData(carDTO);
             dgvCarList.DataSource = data;
         }
 

@@ -50,6 +50,7 @@
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.btnXemDanhSachXeTon = new System.Windows.Forms.Button();
             this.tbCarLogIdentify = new System.Windows.Forms.TextBox();
             this.dateTimePickerCarTimeOut = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerCarTimeIn = new System.Windows.Forms.DateTimePicker();
@@ -77,7 +78,6 @@
             this.label40 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -267,7 +267,7 @@
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.button1);
+            this.panel10.Controls.Add(this.btnXemDanhSachXeTon);
             this.panel10.Controls.Add(this.tbCarLogIdentify);
             this.panel10.Controls.Add(this.dateTimePickerCarTimeOut);
             this.panel10.Controls.Add(this.dateTimePickerCarTimeIn);
@@ -295,6 +295,16 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1138, 352);
             this.panel10.TabIndex = 2;
+            // 
+            // btnXemDanhSachXeTon
+            // 
+            this.btnXemDanhSachXeTon.Location = new System.Drawing.Point(16, 267);
+            this.btnXemDanhSachXeTon.Name = "btnXemDanhSachXeTon";
+            this.btnXemDanhSachXeTon.Size = new System.Drawing.Size(395, 34);
+            this.btnXemDanhSachXeTon.TabIndex = 30;
+            this.btnXemDanhSachXeTon.Text = "DANH SÁCH XE TỒN";
+            this.btnXemDanhSachXeTon.UseVisualStyleBackColor = true;
+            this.btnXemDanhSachXeTon.Click += new System.EventHandler(this.btnXemDanhSachXeTon_Click);
             // 
             // tbCarLogIdentify
             // 
@@ -535,15 +545,6 @@
             this.pictureBoxCarLogImage2.TabIndex = 1;
             this.pictureBoxCarLogImage2.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(16, 267);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(395, 34);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "DANH SÁCH XE TỒN";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // FormQuanLyXeVaoRa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,7 +553,7 @@
             this.Controls.Add(this.dgvCarList);
             this.Controls.Add(this.panel10);
             this.Name = "FormQuanLyXeVaoRa";
-            this.Text = "FormQuanLyXeVaoRa";
+            this.Text = "Quản lý xe vào ra";
             this.Load += new System.EventHandler(this.FormQuanLyXeVaoRa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).EndInit();
             this.panel10.ResumeLayout(false);
@@ -620,6 +621,6 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnXemDanhSachXeTon;
     }
 }
