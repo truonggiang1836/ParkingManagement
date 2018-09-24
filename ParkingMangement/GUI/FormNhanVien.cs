@@ -82,9 +82,6 @@ namespace ParkingMangement.GUI
             timerCurrentTime.Start();
             labelUserName.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
             updateCauHinhHienThiXeRaVao();
-
-            labelMoiVao.Text = "";
-            labelMoiRa.Text = "";
         }
 
         private void FormNhanVien_KeyDown(object sender, KeyEventArgs e)
@@ -153,8 +150,6 @@ namespace ParkingMangement.GUI
         {
             if (isCarIn())
             {
-                pictureBoxImage3.Image = null;
-                pictureBoxImage4.Image = null;
                 if (KiemTraXeChuaRa())
                 {
                     MessageBox.Show("Thẻ này chưa được quẹt đầu ra");
@@ -165,8 +160,6 @@ namespace ParkingMangement.GUI
                 }
             } else
             {
-                pictureBoxImage1.Image = null;
-                pictureBoxImage2.Image = null;
                 if (KiemTraXeChuaRa())
                 {
                     updateCarOut(isTicketCard);
@@ -206,10 +199,16 @@ namespace ParkingMangement.GUI
             {
                 labelMoiVao.Text = "";
                 labelMoiRa.Text = Constant.sLabelMoiVao;
+
+                pictureBoxImage1.Image = null;
+                pictureBoxImage2.Image = null;
             } else
             {
                 labelMoiVao.Text = Constant.sLabelMoiVao;
                 labelMoiRa.Text = "";
+
+                pictureBoxImage3.Image = null;
+                pictureBoxImage4.Image = null;
             }
         }
 
@@ -246,11 +245,17 @@ namespace ParkingMangement.GUI
             {
                 labelMoiVao.Text = Constant.sLabelMoiRa;
                 labelMoiRa.Text = "";
+
+                pictureBoxImage3.Image = null;
+                pictureBoxImage4.Image = null;
             }
             else
             {
                 labelMoiVao.Text = "";
                 labelMoiRa.Text = Constant.sLabelMoiRa;
+
+                pictureBoxImage1.Image = null;
+                pictureBoxImage2.Image = null;
             }
         }
 
@@ -259,17 +264,32 @@ namespace ParkingMangement.GUI
             DataTable dt = CarDAO.GetLastCarByID(cardID);
             if (dt != null)
             {
+                int inOutType = ConfigDAO.GetInOutType();
                 string image = dt.Rows[0].Field<string>("Images");
                 string imagePath1 = Constant.IMAGE_FOLDER + image;
                 if (File.Exists(imagePath1))
                 {
-                    pictureBoxImage3.Image = Image.FromFile(imagePath1);
+                    if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                    {
+                        pictureBoxImage1.Image = Image.FromFile(imagePath1);
+                    }
+                    else
+                    {
+                        pictureBoxImage3.Image = Image.FromFile(imagePath1);
+                    }
                 }
                 string image2 = dt.Rows[0].Field<string>("Images2");
                 string imagePath2 = Constant.IMAGE_FOLDER + image2;
                 if (File.Exists(imagePath2))
                 {
-                    pictureBoxImage4.Image = Image.FromFile(imagePath2);
+                    if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                    {
+                        pictureBoxImage2.Image = Image.FromFile(imagePath2);
+                    }
+                    else
+                    {
+                        pictureBoxImage4.Image = Image.FromFile(imagePath2);
+                    }
                 }
                     
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
@@ -784,6 +804,15 @@ namespace ParkingMangement.GUI
                     labelXeRa.Text = Constant.sLabelXeRa;
                     break;
             }
+
+            labelMoiVao.Text = "";
+            labelMoiRa.Text = "";
+            labelCost.Text = "-";
+            labelTimeIn.Text = "-";
+            pictureBoxImage1.Image = null;
+            pictureBoxImage2.Image = null;
+            pictureBoxImage3.Image = null;
+            pictureBoxImage4.Image = null;
         }
 
         private void FormInOutSettingClosed(object sender, FormClosedEventArgs e)
