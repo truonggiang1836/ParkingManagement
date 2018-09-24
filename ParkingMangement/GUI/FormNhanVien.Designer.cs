@@ -46,9 +46,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.labelTimeIn = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
+            this.labelXeRa = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelXeVao = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,6 +64,8 @@
             this.tbRFIDCardID = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.labelCost = new System.Windows.Forms.Label();
+            this.labelMoiVao = new System.Windows.Forms.Label();
+            this.labelMoiRa = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -101,7 +103,7 @@
             this.axVLCPlugin4.Location = new System.Drawing.Point(630, 1);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 253);
             this.axVLCPlugin4.TabIndex = 17;
             // 
             // axVLCPlugin3
@@ -110,7 +112,7 @@
             this.axVLCPlugin3.Location = new System.Drawing.Point(420, 1);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 254);
             this.axVLCPlugin3.TabIndex = 16;
             // 
             // axVLCPlugin2
@@ -119,7 +121,7 @@
             this.axVLCPlugin2.Location = new System.Drawing.Point(210, 1);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 254);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 253);
             this.axVLCPlugin2.TabIndex = 15;
             // 
             // axVLCPlugin1
@@ -128,7 +130,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(0, 1);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 253);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 254);
             this.axVLCPlugin1.TabIndex = 14;
             // 
             // pictureBoxImage1
@@ -232,44 +234,44 @@
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.Orange;
-            this.panel9.Controls.Add(this.label8);
+            this.panel9.Controls.Add(this.labelXeRa);
             this.panel9.Location = new System.Drawing.Point(424, 1);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(94, 31);
             this.panel9.TabIndex = 14;
             // 
-            // label8
+            // labelXeRa
             // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Orange;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(18, 6);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 20);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "XE RA";
+            this.labelXeRa.AutoSize = true;
+            this.labelXeRa.BackColor = System.Drawing.Color.Orange;
+            this.labelXeRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXeRa.ForeColor = System.Drawing.Color.White;
+            this.labelXeRa.Location = new System.Drawing.Point(18, 6);
+            this.labelXeRa.Name = "labelXeRa";
+            this.labelXeRa.Size = new System.Drawing.Size(58, 20);
+            this.labelXeRa.TabIndex = 11;
+            this.labelXeRa.Text = "XE RA";
             // 
             // panel8
             // 
             this.panel8.BackColor = System.Drawing.Color.Orange;
-            this.panel8.Controls.Add(this.label7);
+            this.panel8.Controls.Add(this.labelXeVao);
             this.panel8.Location = new System.Drawing.Point(5, 0);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(94, 31);
             this.panel8.TabIndex = 13;
             // 
-            // label7
+            // labelXeVao
             // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Orange;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(13, 6);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(69, 20);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "XE VÀO";
+            this.labelXeVao.AutoSize = true;
+            this.labelXeVao.BackColor = System.Drawing.Color.Orange;
+            this.labelXeVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXeVao.ForeColor = System.Drawing.Color.White;
+            this.labelXeVao.Location = new System.Drawing.Point(13, 6);
+            this.labelXeVao.Name = "labelXeVao";
+            this.labelXeVao.Size = new System.Drawing.Size(69, 20);
+            this.labelXeVao.TabIndex = 11;
+            this.labelXeVao.Text = "XE VÀO";
             // 
             // label4
             // 
@@ -421,12 +423,34 @@
             this.labelCost.TabIndex = 18;
             this.labelCost.Text = "-";
             // 
+            // labelMoiVao
+            // 
+            this.labelMoiVao.AutoSize = true;
+            this.labelMoiVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMoiVao.Location = new System.Drawing.Point(264, 81);
+            this.labelMoiVao.Name = "labelMoiVao";
+            this.labelMoiVao.Size = new System.Drawing.Size(63, 20);
+            this.labelMoiVao.TabIndex = 20;
+            this.labelMoiVao.Text = "Mời vào";
+            // 
+            // labelMoiRa
+            // 
+            this.labelMoiRa.AutoSize = true;
+            this.labelMoiRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMoiRa.Location = new System.Drawing.Point(526, 81);
+            this.labelMoiRa.Name = "labelMoiRa";
+            this.labelMoiRa.Size = new System.Drawing.Size(52, 20);
+            this.labelMoiRa.TabIndex = 21;
+            this.labelMoiRa.Text = "Mời ra";
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(843, 681);
+            this.Controls.Add(this.labelMoiRa);
+            this.Controls.Add(this.labelMoiVao);
             this.Controls.Add(this.labelCost);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tbRFIDCardID);
@@ -495,9 +519,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelTimeIn;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label labelXeRa;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelXeVao;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label labelCurrentTime;
@@ -511,5 +535,7 @@
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin3;
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin4;
         private System.Windows.Forms.Label labelCost;
+        private System.Windows.Forms.Label labelMoiVao;
+        private System.Windows.Forms.Label labelMoiRa;
     }
 }

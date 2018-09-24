@@ -20,6 +20,7 @@ using System.Xml.Serialization;
 using RawInput_dll;
 using System.Diagnostics;
 using System.Security;
+using AxAXVLC;
 
 namespace ParkingMangement.GUI
 {
@@ -74,13 +75,13 @@ namespace ParkingMangement.GUI
             loadCamera2VLC();
             loadCamera3VLC();
             loadCamera4VLC();
-            //loadCameraVLC();
         }
 
         private void loadInfo()
         {
             timerCurrentTime.Start();
             labelUserName.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
+            updateCauHinhHienThiXeRaVao();
         }
 
         private void FormNhanVien_KeyDown(object sender, KeyEventArgs e)
@@ -99,6 +100,7 @@ namespace ParkingMangement.GUI
                     break;
                 case Keys.F5:
                     Form f = new FormInOutSetting();
+                    f.FormClosed += FormInOutSettingClosed;
                     f.Show();
                     break;
             }
@@ -124,13 +126,9 @@ namespace ParkingMangement.GUI
             {
                 if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
                 {
-                    saveImage1ToFile();
-                    saveImage2ToFile();
                     checkForSaveToDB(true);
                 } else
                 {
-                    saveImage1ToFile();
-                    saveImage2ToFile();
                     checkForSaveToDB(false);
                 }
             } else
@@ -175,6 +173,9 @@ namespace ParkingMangement.GUI
 
         private void insertCarIn(bool isTicketCard)
         {
+            saveImage1ToFile();
+            saveImage2ToFile();
+
             CarDTO carDTO = new CarDTO();
             carDTO.Id = cardID;
             carDTO.TimeStart = DateTime.Now;
@@ -232,13 +233,13 @@ namespace ParkingMangement.GUI
                 string imagePath1 = Constant.IMAGE_FOLDER + image;
                 if (File.Exists(imagePath1))
                 {
-                    pictureBoxImage3.Image = Image.FromFile(Constant.IMAGE_FOLDER + image);
+                    pictureBoxImage3.Image = Image.FromFile(imagePath1);
                 }
                 string image2 = dt.Rows[0].Field<string>("Images2");
                 string imagePath2 = Constant.IMAGE_FOLDER + image2;
                 if (File.Exists(imagePath2))
                 {
-                    pictureBoxImage4.Image = Image.FromFile(Constant.IMAGE_FOLDER + image2);
+                    pictureBoxImage4.Image = Image.FromFile(imagePath2);
                 }
                     
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
@@ -279,21 +280,19 @@ namespace ParkingMangement.GUI
 
         private void saveImage1ToFile()
         {
-            axVLCPlugin1.playlist.togglePause();
-            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin1.ClientRectangle.Width,
-                axVLCPlugin1.ClientRectangle.Height);
-            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
-            System.Drawing.Size imgSize = new System.Drawing.Size(
-                axVLCPlugin1.ClientRectangle.Width,
-                axVLCPlugin1.ClientRectangle.Height);
-            Point ps = PointToScreen(new Point(axVLCPlugin1.Bounds.X, axVLCPlugin1.Bounds.Y));
-            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
-            axVLCPlugin1.playlist.play();
+            AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
+            PictureBox pictureBox = pictureBoxImage1;
+            int inOutType = ConfigDAO.GetInOutType();
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                axVLCPlugin = axVLCPlugin3;
+                pictureBox = pictureBoxImage3;
+            }
+            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
-            //if (CarDAO.isCarIn(cardID))
             if (isCarIn())
             {
-                pictureBoxImage1.Image = bmpScreenshot;
+                pictureBox.Image = bmpScreenshot;
                 imagePath1 = DateTime.Now.Ticks + ".jpg";
                 saveBitmapToFile(bmpScreenshot, imagePath1);
             }
@@ -317,21 +316,19 @@ namespace ParkingMangement.GUI
 
         private void saveImage2ToFile()
         {
-            axVLCPlugin2.playlist.togglePause();
-            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin2.ClientRectangle.Width,
-                axVLCPlugin2.ClientRectangle.Height);
-            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
-            System.Drawing.Size imgSize = new System.Drawing.Size(
-                axVLCPlugin2.ClientRectangle.Width,
-                axVLCPlugin2.ClientRectangle.Height);
-            Point ps = PointToScreen(new Point(axVLCPlugin2.Bounds.X, axVLCPlugin2.Bounds.Y));
-            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
-            axVLCPlugin2.playlist.play();
+            AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
+            PictureBox pictureBox = pictureBoxImage2;
+            int inOutType = ConfigDAO.GetInOutType();
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                axVLCPlugin = axVLCPlugin4;
+                pictureBox = pictureBoxImage4;
+            }
+            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
-            //if (CarDAO.isCarIn(cardID))
             if (isCarIn())
             {
-                pictureBoxImage2.Image = bmpScreenshot;
+                pictureBox.Image = bmpScreenshot;
                 imagePath2 = DateTime.Now.Ticks + ".jpg";
                 saveBitmapToFile(bmpScreenshot, imagePath2);
             }
@@ -355,16 +352,13 @@ namespace ParkingMangement.GUI
 
         private void saveImage3ToFile()
         {
-            axVLCPlugin3.playlist.togglePause();
-            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin3.ClientRectangle.Width,
-                axVLCPlugin3.ClientRectangle.Height);
-            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
-            System.Drawing.Size imgSize = new System.Drawing.Size(
-                axVLCPlugin3.ClientRectangle.Width,
-                axVLCPlugin3.ClientRectangle.Height);
-            Point ps = PointToScreen(new Point(axVLCPlugin3.Bounds.X, axVLCPlugin3.Bounds.Y));
-            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
-            axVLCPlugin3.playlist.play();
+            AxVLCPlugin2 axVLCPlugin = axVLCPlugin3;
+            int inOutType = ConfigDAO.GetInOutType();
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                axVLCPlugin = axVLCPlugin1;
+            }
+            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
             imagePath3 = DateTime.Now.Ticks + ".jpg";
             saveBitmapToFile(bmpScreenshot, imagePath3);
@@ -388,19 +382,31 @@ namespace ParkingMangement.GUI
 
         private void saveImage4ToFile()
         {
-            axVLCPlugin4.playlist.togglePause();
-            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin4.ClientRectangle.Width,
-                axVLCPlugin4.ClientRectangle.Height);
-            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
-            System.Drawing.Size imgSize = new System.Drawing.Size(
-                axVLCPlugin4.ClientRectangle.Width,
-                axVLCPlugin4.ClientRectangle.Height);
-            Point ps = PointToScreen(new Point(axVLCPlugin4.Bounds.X, axVLCPlugin4.Bounds.Y));
-            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
-            axVLCPlugin4.playlist.play();
+            AxVLCPlugin2 axVLCPlugin = axVLCPlugin4;
+            int inOutType = ConfigDAO.GetInOutType();
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                axVLCPlugin = axVLCPlugin2;
+            }
+            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
             imagePath4 = DateTime.Now.Ticks + ".jpg";
             saveBitmapToFile(bmpScreenshot, imagePath4);
+        }
+
+        private Bitmap getBitMapFromCamera(AxVLCPlugin2 axVLCPlugin)
+        {
+            axVLCPlugin.playlist.togglePause();
+            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin.ClientRectangle.Width,
+                axVLCPlugin.ClientRectangle.Height);
+            Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
+            System.Drawing.Size imgSize = new System.Drawing.Size(
+                axVLCPlugin.ClientRectangle.Width,
+                axVLCPlugin.ClientRectangle.Height);
+            Point ps = PointToScreen(new Point(axVLCPlugin.Bounds.X, axVLCPlugin.Bounds.Y));
+            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
+            axVLCPlugin.playlist.play();
+            return bmpScreenshot;
         }
 
         private void tbRFIDCardID_Leave(object sender, EventArgs e)
@@ -732,6 +738,27 @@ namespace ParkingMangement.GUI
         private int soLuotQuaNgay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             return Util.getTotalTimeByDay(timeIn, timeOut);
+        }
+
+        private void updateCauHinhHienThiXeRaVao()
+        {
+            int inOutType = ConfigDAO.GetInOutType();
+            switch (inOutType)
+            {
+                case ConfigDTO.TYPE_OUT_IN:
+                    labelXeVao.Text = Constant.sLabelXeRa;
+                    labelXeRa.Text = Constant.sLabelXeVao;
+                    break;
+                default:
+                    labelXeVao.Text = Constant.sLabelXeVao;
+                    labelXeRa.Text = Constant.sLabelXeRa;
+                    break;
+            }
+        }
+
+        private void FormInOutSettingClosed(object sender, FormClosedEventArgs e)
+        {
+            updateCauHinhHienThiXeRaVao();
         }
     }
 }
