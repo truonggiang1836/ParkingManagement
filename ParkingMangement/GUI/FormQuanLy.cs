@@ -1886,7 +1886,7 @@ namespace ParkingMangement.GUI
             dgvCarTicketMonthList.DataSource = data;
         }
 
-        private void loadUserDataToComboBox(ComboBox cb)
+        public static void loadUserDataToComboBox(ComboBox cb)
         {
             DataTable dt = UserDAO.GetAllData();
             DataRow dr = dt.NewRow();
@@ -1897,7 +1897,7 @@ namespace ParkingMangement.GUI
             cb.ValueMember = "UserID";
         }
 
-        private void setFormatTimeForDateTimePicker(DateTimePicker dateTimePicker)
+        public static void setFormatTimeForDateTimePicker(DateTimePicker dateTimePicker)
         {
             dateTimePicker.Format = DateTimePickerFormat.Custom;
             dateTimePicker.CustomFormat = "HH:mm"; // Only use hours and minutes

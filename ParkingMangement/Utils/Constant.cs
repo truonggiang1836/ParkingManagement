@@ -10,6 +10,10 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
+        public static string sLabelXeVao = "XE VÀO";
+        public static string sLabelXeRa = "XE RA";
+        public static string sLabelMoiVao = "Mời vào";
+        public static string sLabelMoiRa = "Mời ra";
         public static string sEncodeStart = "<![CDATA[";
         public static string sEncodeEnd = "]]>";
         public static string sButtonEdit = "CHỈNH SỬA";

@@ -82,6 +82,9 @@ namespace ParkingMangement.GUI
             timerCurrentTime.Start();
             labelUserName.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
             updateCauHinhHienThiXeRaVao();
+
+            labelMoiVao.Text = "";
+            labelMoiRa.Text = "";
         }
 
         private void FormNhanVien_KeyDown(object sender, KeyEventArgs e)
@@ -99,9 +102,13 @@ namespace ParkingMangement.GUI
                     saveImage();
                     break;
                 case Keys.F5:
-                    Form f = new FormInOutSetting();
-                    f.FormClosed += FormInOutSettingClosed;
-                    f.Show();
+                    Form formInOutSetting = new FormInOutSetting();
+                    formInOutSetting.FormClosed += FormInOutSettingClosed;
+                    formInOutSetting.Show();
+                    break;
+                case Keys.F7:
+                    Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
+                    formQuanLyXeVaoRa.Show();
                     break;
             }
         }
@@ -193,6 +200,17 @@ namespace ParkingMangement.GUI
             }
             CarDAO.Insert(carDTO);
             labelCost.Text = "-";
+
+            int inOutType = ConfigDAO.GetInOutType();
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                labelMoiVao.Text = "";
+                labelMoiRa.Text = Constant.sLabelMoiVao;
+            } else
+            {
+                labelMoiVao.Text = Constant.sLabelMoiVao;
+                labelMoiRa.Text = "";
+            }
         }
 
         private void updateCarOut(bool isTicketCard)
@@ -222,6 +240,18 @@ namespace ParkingMangement.GUI
             carDTO.DateUpdate = DateTime.Now;
             CarDAO.UpdateCarOut(carDTO);
             labelCost.Text = carDTO.Cost + "";
+
+            int inOutType = ConfigDAO.GetInOutType();
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                labelMoiVao.Text = Constant.sLabelMoiRa;
+                labelMoiRa.Text = "";
+            }
+            else
+            {
+                labelMoiVao.Text = "";
+                labelMoiRa.Text = Constant.sLabelMoiRa;
+            }
         }
 
         private void loadCarInData()
