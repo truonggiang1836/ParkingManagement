@@ -17,6 +17,19 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static int GetLostCard()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<int>("LostCard");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public static int GetTotalSpace()
         {
             DataTable dt = GetConfig();
@@ -173,9 +186,9 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static bool Update(ConfigDTO configDTO)
+        public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
-            string sql = "update [Config] set TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
+            string sql = "update [Config] set LostCard =" + configDTO.LostCard + ", TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" 
                 + configDTO.ParkingTypeId;
             return Database.ExcuNonQuery(sql);

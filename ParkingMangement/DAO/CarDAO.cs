@@ -376,7 +376,7 @@ namespace ParkingMangement.DAO
                 " Images4, IsLostCard, Computer, Account, CostBefore, DateUpdate, DateLostCard) values ('" + carDTO.Id + "', '" + carDTO.TimeStart
                 + "', '" + carDTO.TimeEnd + "', '" + carDTO.Digit + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', " + carDTO.Cost + ", '" + 
                 carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Images3 + "', '" + 
-                carDTO.Images4 + "', " + carDTO.IslostCard + ", '" + carDTO.Computer + "', '" + carDTO.Account + "', " + 
+                carDTO.Images4 + "', " + carDTO.IsLostCard + ", '" + carDTO.Computer + "', '" + carDTO.Account + "', " + 
                 carDTO.CostBefore + ", '" + carDTO.DateUpdate + "', '" + carDTO.DateLostCard + "')";
             Database.ExcuNonQuery(sql);
         }
@@ -387,9 +387,9 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
-        public static bool UpdateLostCard(int identify)
+        public static bool UpdateLostCard(CarDTO carDTO)
         {
-            string sql = "update [Car] set IsLostCard = 1 where Identify = " + identify;
+            string sql = "update [Car] set TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", IsLostCard =" + carDTO.IsLostCard + ", DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
             return Database.ExcuNonQuery(sql);
         }
 

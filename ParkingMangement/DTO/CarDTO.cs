@@ -24,7 +24,7 @@ namespace ParkingMangement.DTO
         private string images2;
         private string images3;
         private string images4;
-        private int islostCard;
+        private int isLostCard;
         private string computer;
         private string note;
         private string account;
@@ -48,7 +48,7 @@ namespace ParkingMangement.DTO
         public string Images2 { get => images2; set => images2 = value; }
         public string Images3 { get => images3; set => images3 = value; }
         public string Images4 { get => images4; set => images4 = value; }
-        public int IslostCard { get => islostCard; set => islostCard = value; }
+        public int IsLostCard { get => isLostCard; set => isLostCard = value; }
         public string Computer { get => computer; set => computer = value; }
         public string Note { get => note; set => note = value; }
         public string Account { get => account; set => account = value; }

@@ -2069,7 +2069,7 @@ namespace ParkingMangement.GUI
                 return;
             }
 
-            ConfigDAO.Update(configDTO);
+            ConfigDAO.UpdateCauHinhHienThi(configDTO);
         }
 
         private bool isChosenRenewTicketMonthData()
@@ -2150,9 +2150,19 @@ namespace ParkingMangement.GUI
             if (!string.IsNullOrWhiteSpace(tbCarLogIdentify.Text))
             {
                 int identify = Convert.ToInt32(tbCarLogIdentify.Text);
-                if (CarDAO.UpdateLostCard(identify))
+                CarDTO carDTO = new CarDTO();
+                carDTO.Identify = identify;
+                carDTO.TimeEnd = DateTime.Now;
+                carDTO.IdOut = Program.CurrentUserID;
+                carDTO.Cost = 0;
+                carDTO.IsLostCard = ConfigDAO.GetLostCard();
+                carDTO.Computer = Environment.MachineName;
+                carDTO.Account = Program.CurrentUserID;
+                carDTO.DateUpdate = DateTime.Now;
+                if (CarDAO.UpdateLostCard(carDTO))
                 {
                     MessageBox.Show(Constant.sMessageUpdateSuccess);
+                    searchCar();
                 } else
                 {
                     MessageBox.Show(Constant.sMessageCommonError);
@@ -2196,6 +2206,7 @@ namespace ParkingMangement.GUI
                     break;
             }
 
+            tbLostCard.Text = ConfigDAO.GetLostCard().ToString();
             tbTotalSpace2.Text = ConfigDAO.GetTotalSpace().ToString();
             tbTicketSpace2.Text = ConfigDAO.GetTicketMonthSpace().ToString();
             tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
@@ -2220,6 +2231,26 @@ namespace ParkingMangement.GUI
             }
             ConfigDTO configDTO = new ConfigDTO();
             configDTO.ParkingTypeId = parkingTypeID;
+
+            int lostCard = -1;
+            if (int.TryParse(tbLostCard.Text, out lostCard))
+            {
+                if (lostCard >= 0)
+                {
+                    configDTO.LostCard = lostCard;
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageInvalidError);
+                return;
+            }
+
             int totalSpace = -1;
             if (int.TryParse(tbTotalSpace2.Text, out totalSpace))
             {
@@ -2298,8 +2329,10 @@ namespace ParkingMangement.GUI
                 return;
             }
 
-            ConfigDAO.Update(configDTO);
-
+            if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
+            {
+                MessageBox.Show(Constant.sMessageUpdateSuccess);
+            }
         }
 
         private void loadCarListForCashManagement()
