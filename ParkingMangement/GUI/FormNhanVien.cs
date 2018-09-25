@@ -202,7 +202,27 @@ namespace ParkingMangement.GUI
 
                 pictureBoxImage1.Image = null;
                 pictureBoxImage2.Image = null;
-            } else
+            }
+            else if (inOutType == ConfigDTO.TYPE_IN_IN)
+            {
+                if (keyboardDeviceName.Equals(rfidOut))
+                {
+                    labelMoiVao.Text = "";
+                    labelMoiRa.Text = Constant.sLabelMoiVao;
+
+                    pictureBoxImage1.Image = null;
+                    pictureBoxImage2.Image = null;
+                }
+                else
+                {
+                    labelMoiVao.Text = Constant.sLabelMoiVao;
+                    labelMoiRa.Text = "";
+
+                    pictureBoxImage3.Image = null;
+                    pictureBoxImage4.Image = null;
+                }
+            }
+            else
             {
                 labelMoiVao.Text = Constant.sLabelMoiVao;
                 labelMoiRa.Text = "";
@@ -249,6 +269,24 @@ namespace ParkingMangement.GUI
                 pictureBoxImage3.Image = null;
                 pictureBoxImage4.Image = null;
             }
+            else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+            {
+                if (keyboardDeviceName.Equals(rfidIn))
+                {
+                    labelMoiVao.Text = Constant.sLabelMoiRa;
+                    labelMoiRa.Text = "";
+
+                    pictureBoxImage3.Image = null;
+                    pictureBoxImage4.Image = null;
+                } else
+                {
+                    labelMoiVao.Text = "";
+                    labelMoiRa.Text = Constant.sLabelMoiRa;
+
+                    pictureBoxImage1.Image = null;
+                    pictureBoxImage2.Image = null;
+                }
+            }
             else
             {
                 labelMoiVao.Text = "";
@@ -273,6 +311,17 @@ namespace ParkingMangement.GUI
                     {
                         pictureBoxImage1.Image = Image.FromFile(imagePath1);
                     }
+                    else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+                    {
+                        if (keyboardDeviceName.Equals(rfidIn))
+                        {
+                            pictureBoxImage1.Image = Image.FromFile(imagePath1);
+                        }
+                        else
+                        {
+                            pictureBoxImage3.Image = Image.FromFile(imagePath1);
+                        }
+                    }
                     else
                     {
                         pictureBoxImage3.Image = Image.FromFile(imagePath1);
@@ -285,6 +334,17 @@ namespace ParkingMangement.GUI
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)
                     {
                         pictureBoxImage2.Image = Image.FromFile(imagePath2);
+                    }
+                    else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+                    {
+                        if (keyboardDeviceName.Equals(rfidIn))
+                        {
+                            pictureBoxImage2.Image = Image.FromFile(imagePath2);
+                        }
+                        else
+                        {
+                            pictureBoxImage4.Image = Image.FromFile(imagePath2);
+                        }
                     }
                     else
                     {
@@ -337,6 +397,13 @@ namespace ParkingMangement.GUI
             {
                 axVLCPlugin = axVLCPlugin3;
                 pictureBox = pictureBoxImage3;
+            } else if (inOutType == ConfigDTO.TYPE_IN_IN)
+            {
+                if (keyboardDeviceName.Equals(rfidOut))
+                {
+                    axVLCPlugin = axVLCPlugin3;
+                    pictureBox = pictureBoxImage3;
+                }
             }
             Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
@@ -373,6 +440,13 @@ namespace ParkingMangement.GUI
             {
                 axVLCPlugin = axVLCPlugin4;
                 pictureBox = pictureBoxImage4;
+            } else if (inOutType == ConfigDTO.TYPE_IN_IN)
+            {
+                if (keyboardDeviceName.Equals(rfidOut))
+                {
+                    axVLCPlugin = axVLCPlugin4;
+                    pictureBox = pictureBoxImage4;
+                }
             }
             Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
@@ -407,6 +481,12 @@ namespace ParkingMangement.GUI
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin1;
+            } else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+            {
+                if (keyboardDeviceName.Equals(rfidIn))
+                {
+                    axVLCPlugin = axVLCPlugin1;
+                }
             }
             Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
@@ -437,6 +517,13 @@ namespace ParkingMangement.GUI
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin2;
+            }
+            else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+            {
+                if (keyboardDeviceName.Equals(rfidIn))
+                {
+                    axVLCPlugin = axVLCPlugin2;
+                }
             }
             Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
@@ -795,10 +882,19 @@ namespace ParkingMangement.GUI
             int inOutType = ConfigDAO.GetInOutType();
             switch (inOutType)
             {
+                case ConfigDTO.TYPE_IN_IN:
+                    labelXeVao.Text = Constant.sLabelXeVao;
+                    labelXeRa.Text = Constant.sLabelXeVao;
+                    break;
+                case ConfigDTO.TYPE_OUT_OUT:
+                    labelXeVao.Text = Constant.sLabelXeRa;
+                    labelXeRa.Text = Constant.sLabelXeRa;
+                    break;
                 case ConfigDTO.TYPE_OUT_IN:
                     labelXeVao.Text = Constant.sLabelXeRa;
                     labelXeRa.Text = Constant.sLabelXeVao;
                     break;
+                case ConfigDTO.TYPE_IN_OUT:
                 default:
                     labelXeVao.Text = Constant.sLabelXeVao;
                     labelXeRa.Text = Constant.sLabelXeRa;
