@@ -156,6 +156,10 @@ namespace ParkingMangement.GUI
 
         private void loadUserInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string id = Convert.ToString(dgvUserList.Rows[Index].Cells["ID"].Value);
             tbUserIDEdit.Text = id;
             string account = Convert.ToString(dgvUserList.Rows[Index].Cells["Account"].Value);
@@ -421,6 +425,8 @@ namespace ParkingMangement.GUI
                 trackBarTinhTienCongVanCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
                 labelTinhTienCongVanCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
                 numericTinhTienCongVanCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+                numericTinhTienCongVanMinTime.Value = mComputerDTO.MinMinute;
+                numericTinhTienCongVanMinCost.Value = mComputerDTO.MinCost;
             }
         }
 
@@ -438,6 +444,8 @@ namespace ParkingMangement.GUI
 
                 mComputerDTO.CycleTicketMonth = trackBarTinhTienCongVanCycleTicketMonth.Value;
                 mComputerDTO.CostTicketMonth = (int)numericTinhTienCongVanCostTicketMonth.Value;
+                mComputerDTO.MinMinute = (int)numericTinhTienCongVanMinTime.Value;
+                mComputerDTO.MinCost = (int)numericTinhTienCongVanMinCost.Value;
 
                 if (ComputerDAO.Update(mComputerDTO))
                 {
@@ -767,6 +775,10 @@ namespace ParkingMangement.GUI
 
         private void loadPartInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string id = Convert.ToString(dgvPartList.Rows[Index].Cells["PartID"].Value);
             tbPartIdEdit.Text = id;
             string partName = Convert.ToString(dgvPartList.Rows[Index].Cells["PartName"].Value);
@@ -854,8 +866,11 @@ namespace ParkingMangement.GUI
                     }
 
                 }
-
-                int lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
+                int lastIdentify = 0;
+                if (data.Rows.Count > 0)
+                {
+                    lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
+                }                
                 tbCardIdentifyCreate.Text = lastIdentify + 1 + "";
 
                 dgvCardList.DataSource = data;
@@ -995,6 +1010,10 @@ namespace ParkingMangement.GUI
 
         private void loadCardInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string identify = Convert.ToString(dgvCardList.Rows[Index].Cells["Identify"].Value);
             tbCardIdentifyEdit.Text = identify;
             string id = Convert.ToString(dgvCardList.Rows[Index].Cells["CardID"].Value);
@@ -1029,7 +1048,7 @@ namespace ParkingMangement.GUI
 
                 loadCardStatistic();
 
-                if (dgvCardList.DataSource != null)
+                if (dgvCardList.DataSource != null && dgvCardList.CurrentRow != null)
                 {
                     int Index = dgvCardList.CurrentRow.Index;
                     loadCardInfoFromDataGridViewRow(Index);
@@ -1334,6 +1353,10 @@ namespace ParkingMangement.GUI
 
         private void loadTicketMonthInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string identify = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthIdentify"].Value);
             tbTicketMonthIdentifyEdit.Text = identify;
             string id = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthID"].Value);
@@ -1381,6 +1404,10 @@ namespace ParkingMangement.GUI
 
         private void loadTicketLogInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string processType = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["LogTypeName"].Value);
             tbTicketLogProcessType.Text = processType;
             string processDate = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["ProcessDate"].Value);
@@ -1485,6 +1512,10 @@ namespace ParkingMangement.GUI
 
         private void loadLostTicketMonthInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string identify = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostCardIdentify"].Value);
             tbLostTicketMonthIdentify.Text = identify;
             string id = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostCardID"].Value);
@@ -1604,6 +1635,10 @@ namespace ParkingMangement.GUI
 
         private void loadCarInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string identify = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogIdentify"].Value);
             if (!string.IsNullOrEmpty(identify))
             {
@@ -2175,36 +2210,66 @@ namespace ParkingMangement.GUI
         {
             string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
             string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionID).Split(',');
-            
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THONG_TIN_NHAN_SU, tabPageThongTinNhanSu, tabQuanLyNhanSu);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DO_BANG_CHAM_CONG, tabPageDoBangChamCong, tabQuanLyNhanSu);
 
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_THONG_KE, tabPageThongKeDoanhThu, tabQuanLyDoanhThu);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienTheoCongVan, tabQuanLyDoanhThu);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienLuyTien, tabQuanLyDoanhThu);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTongHop, tabQuanLyDoanhThu);
+            int countTabQuanLyNhanSu = 0;
+            countTabQuanLyNhanSu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THONG_TIN_NHAN_SU, tabPageThongTinNhanSu, tabQuanLyNhanSu);
+            countTabQuanLyNhanSu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DO_BANG_CHAM_CONG, tabPageDoBangChamCong, tabQuanLyNhanSu);
+            if (countTabQuanLyNhanSu == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyNhanSu);
+            }
 
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_THE_XE, tabPageQuanLyTheXe, tabQuanLyThe_LoaiXe);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_LOAI_XE, tabPageQuanLyLoaiXe, tabQuanLyThe_LoaiXe);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_THE, tabPageKichHoatThe, tabQuanLyThe_LoaiXe);
+            int countTabQuanLyDoanhThu = 0;
+            countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_THONG_KE, tabPageThongKeDoanhThu, tabQuanLyDoanhThu);
+            countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienTheoCongVan, tabQuanLyDoanhThu);
+            countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienLuyTien, tabQuanLyDoanhThu);
+            countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTongHop, tabQuanLyDoanhThu);
+            if (countTabQuanLyDoanhThu == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyDoanhThu);
+            }
 
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_VE_THANG, tabPageXemNhatKyVeThang, tabQuanLyVeThang);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG, tabPageTaoMoiVeThang, tabQuanLyVeThang);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_GIA_HAN_VE_THANG, tabPageGiaHanVeThang, tabQuanLyVeThang);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_MAT_THE_THANG, tabPageMatVeThang, tabQuanLyVeThang);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_VE_THANG, tabPageKichHoatVeThang, tabQuanLyVeThang);
+            int countTabQuanLyTheXeLoaiXe = 0;
+            countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_THE_XE, tabPageQuanLyTheXe, tabQuanLyThe_LoaiXe);
+            countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_LOAI_XE, tabPageQuanLyLoaiXe, tabQuanLyThe_LoaiXe);
+            countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_THE, tabPageKichHoatThe, tabQuanLyThe_LoaiXe);
+            if (countTabQuanLyTheXeLoaiXe == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyTheXeLoaiXe);
+            }
 
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAU_HINH_CO_BAN, tabPageCauHinhCoBan, tabQuanLyHeThong);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_TIEN_THU, tabPageQuanLyThuTienXe, tabQuanLyHeThong);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_PHAN_QUYEN_TRUY_CAP, tabPagePhanQuyenTruyCap, tabQuanLyHeThong);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_HE_THONG, tabPageNhatKyHeThong, tabQuanLyHeThong);
+            int countTabQuanLyVeThang = 0;
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_VE_THANG, tabPageXemNhatKyVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG, tabPageTaoMoiVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_GIA_HAN_VE_THANG, tabPageGiaHanVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_MAT_THE_THANG, tabPageMatVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_VE_THANG, tabPageKichHoatVeThang, tabQuanLyVeThang);
+            if (countTabQuanLyVeThang == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyVeThang);
+            }
 
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THIET_LAP_RA_VAO, tabPageThietLapRaVao, tabQuanLyXe);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA, tabPageTraCuuVaoRa, tabQuanLyXe);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA_VE_THANG, tabPageTraCuuVaoRaVeThang, tabQuanLyXe);
-            checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_HOP_DEN, tabPageXemHopDen, tabQuanLyXe);       
+            int countTabQuanLyHeThong = 0;
+            countTabQuanLyHeThong += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAU_HINH_CO_BAN, tabPageCauHinhCoBan, tabQuanLyHeThong);
+            countTabQuanLyHeThong += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_TIEN_THU, tabPageQuanLyThuTienXe, tabQuanLyHeThong);
+            countTabQuanLyHeThong += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_PHAN_QUYEN_TRUY_CAP, tabPagePhanQuyenTruyCap, tabQuanLyHeThong);
+            countTabQuanLyHeThong += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_HE_THONG, tabPageNhatKyHeThong, tabQuanLyHeThong);
+            if (countTabQuanLyHeThong == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyHeThong);
+            }
+
+            int countTabQuanLyXe = 0;
+            countTabQuanLyXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_THIET_LAP_RA_VAO, tabPageThietLapRaVao, tabQuanLyXe);
+            countTabQuanLyXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA, tabPageTraCuuVaoRa, tabQuanLyXe);
+            countTabQuanLyXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_TRA_CUU_VAO_RA_VE_THANG, tabPageTraCuuVaoRaVeThang, tabQuanLyXe);
+            countTabQuanLyXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_XEM_HOP_DEN, tabPageXemHopDen, tabQuanLyXe);
+            if (countTabQuanLyXe == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyXeRaVao);
+            }
         }
-        private void checkShowTabPage(string[] listFunctionSec, int nodeValue, TabPage tabPage, TabControl tabControl)
+        private int checkShowTabPage(string[] listFunctionSec, int nodeValue, TabPage tabPage, TabControl tabControl)
         {
             (tabPage as TabPage).Enabled = true;
             if (Array.IndexOf(listFunctionSec, nodeValue + "") == -1)
@@ -2212,7 +2277,9 @@ namespace ParkingMangement.GUI
                 (tabPage as TabPage).Enabled = false;
                 (tabPage as TabPage).Hide();
                 tabControl.TabPages.Remove(tabPage);
+                return 0;
             }
+            return 1;
         }
 
         private void treeViewPhanQuyenTruyCap_AfterCheck(object sender, TreeViewEventArgs e)
@@ -2234,6 +2301,10 @@ namespace ParkingMangement.GUI
 
         private void loadLogInfoFromDataGridViewRow(int Index)
         {
+            if (Index < 0)
+            {
+                return;
+            }
             string logType = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogTypeName"].Value);
             labelLogType.Text = logType;
             string processDate = Convert.ToString(dgvLogList.Rows[Index].Cells["CommonLogProcessDate"].Value);

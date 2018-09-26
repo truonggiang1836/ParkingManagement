@@ -36,6 +36,8 @@ namespace ParkingMangement.DAO
                 computerDTO.IsAdd = dt.Rows[0].Field<string>("IsAdd");
                 computerDTO.CycleTicketMonth = dt.Rows[0].Field<int>("CycleTicketMonth");
                 computerDTO.CostTicketMonth = dt.Rows[0].Field<int>("CostTicketMonth");
+                computerDTO.MinMinute = dt.Rows[0].Field<int>("MinMinute");
+                computerDTO.MinCost = dt.Rows[0].Field<int>("MinCost");
                 return computerDTO;
             }
             return null;
@@ -47,7 +49,7 @@ namespace ParkingMangement.DAO
                 + computerDTO.IntervalBetweenDayNight + ", StartHourNight =" + computerDTO.StartHourNight + ", EndHourNight =" + computerDTO.EndHourNight + ", HourMilestone1 =" + computerDTO.HourMilestone1 +
                 ", HourMilestone2 =" + computerDTO.HourMilestone2 + ", HourMilestone3 =" + computerDTO.HourMilestone3 + ", CostMilestone1 =" + computerDTO.CostMilestone1 + ", CostMilestone2 =" +
                 computerDTO.CostMilestone2 + ", CostMilestone3 =" + computerDTO.CostMilestone3 + ", CycleMilestone3 =" + computerDTO.CycleMilestone3 + ", IsAdd ='" + computerDTO.IsAdd +
-                "', CycleTicketMonth =" + computerDTO.CycleTicketMonth + ", CostTicketMonth =" + computerDTO.CostTicketMonth +
+                "', CycleTicketMonth =" + computerDTO.CycleTicketMonth + ", CostTicketMonth =" + computerDTO.CostTicketMonth + ", MinMinute =" + computerDTO.MinMinute + ", MinCost =" + computerDTO.MinCost +
                 " where Identify =" + computerDTO.Identify;
             return Database.ExcuNonQuery(sql);
         }

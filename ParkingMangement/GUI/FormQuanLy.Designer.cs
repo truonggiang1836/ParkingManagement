@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode29,
-            treeNode30});
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode32,
-            treeNode33});
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode35,
-            treeNode36,
-            treeNode37});
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode39,
-            treeNode40,
-            treeNode41,
-            treeNode42,
-            treeNode43});
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode45,
-            treeNode46,
-            treeNode47,
-            treeNode48});
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode50,
-            treeNode51,
-            treeNode52,
-            treeNode53});
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode169 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode170 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode171 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode169,
+            treeNode170});
+            System.Windows.Forms.TreeNode treeNode172 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode173 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode174 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode172,
+            treeNode173});
+            System.Windows.Forms.TreeNode treeNode175 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode176 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode177 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode178 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode175,
+            treeNode176,
+            treeNode177});
+            System.Windows.Forms.TreeNode treeNode179 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode180 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode181 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode182 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode183 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode184 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode179,
+            treeNode180,
+            treeNode181,
+            treeNode182,
+            treeNode183});
+            System.Windows.Forms.TreeNode treeNode185 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode186 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode187 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode188 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode189 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode185,
+            treeNode186,
+            treeNode187,
+            treeNode188});
+            System.Windows.Forms.TreeNode treeNode190 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode191 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode192 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode193 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode194 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode190,
+            treeNode191,
+            treeNode192,
+            treeNode193});
+            System.Windows.Forms.TreeNode treeNode195 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode196 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -825,6 +825,10 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
+            this.numericTinhTienCongVanMinCost = new System.Windows.Forms.NumericUpDown();
+            this.numericTinhTienCongVanMinTime = new System.Windows.Forms.NumericUpDown();
+            this.label191 = new System.Windows.Forms.Label();
+            this.label192 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -974,6 +978,8 @@
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanMinCost)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanMinTime)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1445,6 +1451,7 @@
             this.TotalTime});
             this.dgvWorkList.Location = new System.Drawing.Point(438, 22);
             this.dgvWorkList.Name = "dgvWorkList";
+            this.dgvWorkList.ReadOnly = true;
             this.dgvWorkList.Size = new System.Drawing.Size(696, 564);
             this.dgvWorkList.TabIndex = 8;
             // 
@@ -1996,6 +2003,10 @@
             // panelTinhTienCongVan
             // 
             this.panelTinhTienCongVan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTinhTienCongVan.Controls.Add(this.label192);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanMinTime);
+            this.panelTinhTienCongVan.Controls.Add(this.label191);
+            this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanMinCost);
             this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanEndHourNight);
             this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanStartHourNight);
             this.panelTinhTienCongVan.Controls.Add(this.numericTinhTienCongVanDayNightCost);
@@ -2099,7 +2110,7 @@
             // 
             // btnHuyTinhTienCongVan
             // 
-            this.btnHuyTinhTienCongVan.Location = new System.Drawing.Point(256, 337);
+            this.btnHuyTinhTienCongVan.Location = new System.Drawing.Point(256, 344);
             this.btnHuyTinhTienCongVan.Name = "btnHuyTinhTienCongVan";
             this.btnHuyTinhTienCongVan.Size = new System.Drawing.Size(108, 30);
             this.btnHuyTinhTienCongVan.TabIndex = 13;
@@ -2115,9 +2126,9 @@
             this.groupBox1.Controls.Add(this.label154);
             this.groupBox1.Controls.Add(this.label152);
             this.groupBox1.Controls.Add(this.trackBarTinhTienCongVanCycleTicketMonth);
-            this.groupBox1.Location = new System.Drawing.Point(26, 219);
+            this.groupBox1.Location = new System.Drawing.Point(26, 243);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(441, 100);
+            this.groupBox1.Size = new System.Drawing.Size(441, 88);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vé tháng giới hạn giờ";
@@ -2190,7 +2201,7 @@
             // 
             // btnCapNhatTinhTienCongVan
             // 
-            this.btnCapNhatTinhTienCongVan.Location = new System.Drawing.Point(130, 337);
+            this.btnCapNhatTinhTienCongVan.Location = new System.Drawing.Point(130, 344);
             this.btnCapNhatTinhTienCongVan.Name = "btnCapNhatTinhTienCongVan";
             this.btnCapNhatTinhTienCongVan.Size = new System.Drawing.Size(108, 30);
             this.btnCapNhatTinhTienCongVan.TabIndex = 12;
@@ -3266,6 +3277,7 @@
             this.IsUsing});
             this.dgvCardList.Location = new System.Drawing.Point(591, 80);
             this.dgvCardList.Name = "dgvCardList";
+            this.dgvCardList.ReadOnly = true;
             this.dgvCardList.Size = new System.Drawing.Size(541, 513);
             this.dgvCardList.TabIndex = 15;
             this.dgvCardList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCardList_CellClick);
@@ -3317,6 +3329,7 @@
             this.Column15});
             this.dgvCardStatistic.Location = new System.Drawing.Point(22, 253);
             this.dgvCardStatistic.Name = "dgvCardStatistic";
+            this.dgvCardStatistic.ReadOnly = true;
             this.dgvCardStatistic.Size = new System.Drawing.Size(544, 287);
             this.dgvCardStatistic.TabIndex = 4;
             // 
@@ -3966,6 +3979,7 @@
             this.Column17});
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(1133, 427);
             this.dataGridView2.TabIndex = 3;
             // 
@@ -6955,6 +6969,7 @@
             this.dataGridViewTextBoxColumn48});
             this.dgvCashManagementList.Location = new System.Drawing.Point(6, 219);
             this.dgvCashManagementList.Name = "dgvCashManagementList";
+            this.dgvCashManagementList.ReadOnly = true;
             this.dgvCashManagementList.Size = new System.Drawing.Size(1138, 390);
             this.dgvCashManagementList.TabIndex = 2;
             // 
@@ -7233,71 +7248,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode29.Name = "NodeName1";
-            treeNode29.Text = "Thông tin nhân sự";
-            treeNode30.Name = "NodeName2";
-            treeNode30.Text = "Dò bảng chấm công";
-            treeNode31.Name = "Node0";
-            treeNode31.Text = "Quản lý nhân sự";
-            treeNode32.Name = "NodeName3";
-            treeNode32.Text = "Xem thống kê";
-            treeNode33.Name = "NodeName4";
-            treeNode33.Text = "Điều chỉnh công thức tính tiền";
-            treeNode34.Name = "Node1";
-            treeNode34.Text = "Quản lý doanh thu";
-            treeNode35.Name = "NodeName5";
-            treeNode35.Text = "Quản lý loại xe";
-            treeNode36.Name = "NodeName6";
-            treeNode36.Text = "Quản lý thẻ xe";
-            treeNode37.Name = "NodeName7";
-            treeNode37.Text = "Kích hoạt thẻ";
-            treeNode38.Name = "Node8";
-            treeNode38.Text = "Quản lý thẻ xe - loại xe";
-            treeNode39.Name = "NodeName8";
-            treeNode39.Text = "Nhật ký vé tháng";
-            treeNode40.Name = "NodeName9";
-            treeNode40.Text = "Cập nhật thông tin vé tháng";
-            treeNode41.Name = "NodeName10";
-            treeNode41.Text = "Gia hạn vé tháng";
-            treeNode42.Name = "NodeName11";
-            treeNode42.Text = "Mất thẻ tháng";
-            treeNode43.Name = "NodeName12";
-            treeNode43.Text = "Kích hoạt vé tháng";
-            treeNode44.Name = "Node12";
-            treeNode44.Text = "Quản lý vé tháng";
-            treeNode45.Name = "NodeName13";
-            treeNode45.Text = "Cấu hình cơ bản";
-            treeNode46.Name = "NodeName14";
-            treeNode46.Text = "Quản lý tiền thu";
-            treeNode47.Name = "NodeName15";
-            treeNode47.Text = "Phân quyền truy cập";
-            treeNode48.Name = "NodeName16";
-            treeNode48.Text = "Nhật ký hệ thống";
-            treeNode49.Name = "Node18";
-            treeNode49.Text = "Quản lý hệ thống";
-            treeNode50.Name = "NodeName17";
-            treeNode50.Text = "Thiết lập ra vào";
-            treeNode51.Name = "NodeName18";
-            treeNode51.Text = "Tra cứu vào ra";
-            treeNode52.Name = "NodeName19";
-            treeNode52.Text = "Tra cứu vào ra vé tháng";
-            treeNode53.Name = "NodeName20";
-            treeNode53.Text = "Xem hộp đen";
-            treeNode54.Name = "Node23";
-            treeNode54.Text = "Quản lý xe vào ra";
-            treeNode55.Name = "NodeName21";
-            treeNode55.Text = "Lưu mất thẻ";
-            treeNode56.Name = "NodeName22";
-            treeNode56.Text = "Xem báo cáo F7";
+            treeNode169.Name = "NodeName1";
+            treeNode169.Text = "Thông tin nhân sự";
+            treeNode170.Name = "NodeName2";
+            treeNode170.Text = "Dò bảng chấm công";
+            treeNode171.Name = "Node0";
+            treeNode171.Text = "Quản lý nhân sự";
+            treeNode172.Name = "NodeName3";
+            treeNode172.Text = "Xem thống kê";
+            treeNode173.Name = "NodeName4";
+            treeNode173.Text = "Điều chỉnh công thức tính tiền";
+            treeNode174.Name = "Node1";
+            treeNode174.Text = "Quản lý doanh thu";
+            treeNode175.Name = "NodeName5";
+            treeNode175.Text = "Quản lý loại xe";
+            treeNode176.Name = "NodeName6";
+            treeNode176.Text = "Quản lý thẻ xe";
+            treeNode177.Name = "NodeName7";
+            treeNode177.Text = "Kích hoạt thẻ";
+            treeNode178.Name = "Node8";
+            treeNode178.Text = "Quản lý thẻ xe - loại xe";
+            treeNode179.Name = "NodeName8";
+            treeNode179.Text = "Nhật ký vé tháng";
+            treeNode180.Name = "NodeName9";
+            treeNode180.Text = "Cập nhật thông tin vé tháng";
+            treeNode181.Name = "NodeName10";
+            treeNode181.Text = "Gia hạn vé tháng";
+            treeNode182.Name = "NodeName11";
+            treeNode182.Text = "Mất thẻ tháng";
+            treeNode183.Name = "NodeName12";
+            treeNode183.Text = "Kích hoạt vé tháng";
+            treeNode184.Name = "Node12";
+            treeNode184.Text = "Quản lý vé tháng";
+            treeNode185.Name = "NodeName13";
+            treeNode185.Text = "Cấu hình cơ bản";
+            treeNode186.Name = "NodeName14";
+            treeNode186.Text = "Quản lý tiền thu";
+            treeNode187.Name = "NodeName15";
+            treeNode187.Text = "Phân quyền truy cập";
+            treeNode188.Name = "NodeName16";
+            treeNode188.Text = "Nhật ký hệ thống";
+            treeNode189.Name = "Node18";
+            treeNode189.Text = "Quản lý hệ thống";
+            treeNode190.Name = "NodeName17";
+            treeNode190.Text = "Thiết lập ra vào";
+            treeNode191.Name = "NodeName18";
+            treeNode191.Text = "Tra cứu vào ra";
+            treeNode192.Name = "NodeName19";
+            treeNode192.Text = "Tra cứu vào ra vé tháng";
+            treeNode193.Name = "NodeName20";
+            treeNode193.Text = "Xem hộp đen";
+            treeNode194.Name = "Node23";
+            treeNode194.Text = "Quản lý xe vào ra";
+            treeNode195.Name = "NodeName21";
+            treeNode195.Text = "Lưu mất thẻ";
+            treeNode196.Name = "NodeName22";
+            treeNode196.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode31,
-            treeNode34,
-            treeNode38,
-            treeNode44,
-            treeNode49,
-            treeNode54,
-            treeNode55,
-            treeNode56});
+            treeNode171,
+            treeNode174,
+            treeNode178,
+            treeNode184,
+            treeNode189,
+            treeNode194,
+            treeNode195,
+            treeNode196});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -7836,6 +7851,7 @@
             this.Column34});
             this.dgvCarList.Location = new System.Drawing.Point(6, 306);
             this.dgvCarList.Name = "dgvCarList";
+            this.dgvCarList.ReadOnly = true;
             this.dgvCarList.Size = new System.Drawing.Size(1138, 302);
             this.dgvCarList.TabIndex = 1;
             this.dgvCarList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarList_CellClick);
@@ -8282,6 +8298,7 @@
             this.Column42});
             this.dgvCarTicketMonthList.Location = new System.Drawing.Point(6, 126);
             this.dgvCarTicketMonthList.Name = "dgvCarTicketMonthList";
+            this.dgvCarTicketMonthList.ReadOnly = true;
             this.dgvCarTicketMonthList.Size = new System.Drawing.Size(1138, 482);
             this.dgvCarTicketMonthList.TabIndex = 2;
             // 
@@ -8467,6 +8484,60 @@
             this.tabPageXemHopDen.TabIndex = 3;
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
+            // 
+            // numericTinhTienCongVanMinCost
+            // 
+            this.numericTinhTienCongVanMinCost.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericTinhTienCongVanMinCost.Location = new System.Drawing.Point(369, 206);
+            this.numericTinhTienCongVanMinCost.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienCongVanMinCost.Name = "numericTinhTienCongVanMinCost";
+            this.numericTinhTienCongVanMinCost.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanMinCost.TabIndex = 57;
+            // 
+            // numericTinhTienCongVanMinTime
+            // 
+            this.numericTinhTienCongVanMinTime.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericTinhTienCongVanMinTime.Location = new System.Drawing.Point(196, 205);
+            this.numericTinhTienCongVanMinTime.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericTinhTienCongVanMinTime.Name = "numericTinhTienCongVanMinTime";
+            this.numericTinhTienCongVanMinTime.Size = new System.Drawing.Size(77, 22);
+            this.numericTinhTienCongVanMinTime.TabIndex = 59;
+            // 
+            // label191
+            // 
+            this.label191.AutoSize = true;
+            this.label191.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label191.Location = new System.Drawing.Point(135, 208);
+            this.label191.Name = "label191";
+            this.label191.Size = new System.Drawing.Size(50, 16);
+            this.label191.TabIndex = 58;
+            this.label191.Text = "Bé hơn";
+            // 
+            // label192
+            // 
+            this.label192.AutoSize = true;
+            this.label192.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label192.Location = new System.Drawing.Point(280, 208);
+            this.label192.Name = "label192";
+            this.label192.Size = new System.Drawing.Size(34, 16);
+            this.label192.TabIndex = 60;
+            this.label192.Text = "Phút";
             // 
             // FormQuanLy
             // 
@@ -8678,6 +8749,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanMinCost)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTinhTienCongVanMinTime)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -9433,5 +9506,9 @@
         private System.Windows.Forms.ComboBox comboBoxRFID_Out;
         private System.Windows.Forms.ComboBox comboBoxRFID_In;
         private System.Windows.Forms.Label labelKetQuaTaoThe;
+        private System.Windows.Forms.Label label192;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanMinTime;
+        private System.Windows.Forms.Label label191;
+        private System.Windows.Forms.NumericUpDown numericTinhTienCongVanMinCost;
     }
 }

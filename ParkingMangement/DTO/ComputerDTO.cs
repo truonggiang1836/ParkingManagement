@@ -27,6 +27,8 @@ namespace ParkingMangement.DTO
         private string isAdd;
         private int cycleTicketMonth;
         private int costTicketMonth;
+        private int minMinute;
+        private int minCost;
 
         public int Identify { get => identify; set => identify = value; }
         public string PartID { get => partID; set => partID = value; }
@@ -47,5 +49,7 @@ namespace ParkingMangement.DTO
         public string IsAdd { get => isAdd; set => isAdd = value; }
         public int CycleTicketMonth { get => cycleTicketMonth; set => cycleTicketMonth = value; }
         public int CostTicketMonth { get => costTicketMonth; set => costTicketMonth = value; }
+        public int MinMinute { get => minMinute; set => minMinute = value; }
+        public int MinCost { get => minCost; set => minCost = value; }
     }
 }

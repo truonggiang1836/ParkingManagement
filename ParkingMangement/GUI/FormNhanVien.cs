@@ -184,7 +184,7 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeEnd = DateTime.Now;
             carDTO.IdOut = Program.CurrentUserID;
-            carDTO.Cost = 5000;
+            carDTO.Cost = calculateCost();
 
             saveImage3ToFile();
             saveImage4ToFile();
@@ -427,15 +427,20 @@ namespace ParkingMangement.GUI
             axVLCPlugin3.video.aspectRatio = "209:253";
             axVLCPlugin4.video.aspectRatio = "209:253";
 
-            axVLCPlugin1.video.scale = 0.25f;
-            axVLCPlugin2.video.scale = 0.25f;
-            axVLCPlugin3.video.scale = 0.25f;
-            axVLCPlugin4.video.scale = 0.25f;
+            //axVLCPlugin1.video.scale = 0.25f;
+            //axVLCPlugin2.video.scale = 0.25f;
+            //axVLCPlugin3.video.scale = 0.25f;
+            //axVLCPlugin4.video.scale = 0.25f;
 
             axVLCPlugin1.Toolbar = false;
             axVLCPlugin2.Toolbar = false;
             axVLCPlugin3.Toolbar = false;
             axVLCPlugin4.Toolbar = false;
+
+            axVLCPlugin1.volume = 0;
+            axVLCPlugin2.volume = 0;
+            axVLCPlugin3.volume = 0;
+            axVLCPlugin4.volume = 0;
         }
 
         private void OnKeyPressed(object sender, RawInputEventArg e)
@@ -472,6 +477,118 @@ namespace ParkingMangement.GUI
                 return false;
             }
             return true;
+        }
+
+        private int calculateCost()
+        {
+            string partID = CardDAO.getPartIDByCardID(cardID);
+            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null)
+            {
+                DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
+                DateTime timeOut = DateTime.Now;
+                double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
+                if (spentTimeByMinute <= computerDTO.MinMinute)
+                {
+                    return computerDTO.MinCost;
+                } else if (timeIn.Date == timeOut.Date && timeOut.Date.Hour < computerDTO.StartHourNight)
+                {
+                    return computerDTO.DayCost;
+                } else if (timeIn.Date.Hour >= computerDTO.StartHourNight && timeOut.Date.Hour <= computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day >= 1)
+                {
+                    return computerDTO.NightCost;
+                } else if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO) || isCarInNightOutDayOneDate(timeIn, timeOut, computerDTO))
+                {
+                    if (Util.getTotalTimeByHour(timeIn, timeOut) < computerDTO.IntervalBetweenDayNight)
+                    {
+                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                        {
+                            return computerDTO.DayCost;
+                        } else
+                        {
+                            return computerDTO.NightCost;
+                        }
+                    } else
+                    {
+                        return computerDTO.DayNightCost;
+                    }
+                } else
+                {
+                    if (isCarInDayOutDay(timeIn, timeOut, computerDTO))
+                    {
+                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
+                    } else if (isCarInNightOutNight(timeIn, timeOut, computerDTO))
+                    {
+                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.NightCost;
+                    } else
+                    {
+                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        private bool isCarInDayOutDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            return (timeIn.Date.Hour >= computerDTO.EndHourNight && timeIn.Date.Hour <= computerDTO.StartHourNight) && (timeOut.Date.Hour >= computerDTO.EndHourNight && timeOut.Date.Hour <= computerDTO.StartHourNight);
+        }
+
+        private bool isCarInNightOutNight(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            return (timeIn.Date.Hour >= computerDTO.StartHourNight || timeIn.Date.Hour <= computerDTO.EndHourNight) && (timeOut.Date.Hour >= computerDTO.StartHourNight || timeOut.Date.Hour <= computerDTO.EndHourNight);
+        }
+
+        private bool IsCarInDayOutNightOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            return (timeIn.Date.Hour >= computerDTO.EndHourNight && timeIn.Date.Hour <= computerDTO.StartHourNight) && (timeOut.Date.Hour >= computerDTO.StartHourNight || timeOut.Date.Hour <= computerDTO.EndHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+        }
+
+        private bool isCarInNightOutDayOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            return (timeIn.Date.Hour >= computerDTO.StartHourNight || timeIn.Date.Hour <= computerDTO.EndHourNight) && (timeOut.Date.Hour >= computerDTO.EndHourNight && timeOut.Date.Hour <= computerDTO.StartHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+        }
+
+        private double getTotalHourOfDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
+            {
+                return computerDTO.StartHourNight - timeIn.Date.Hour - (double) timeIn.Date.Minute / 60; 
+            } else
+            {
+                return timeOut.Date.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.EndHourNight;
+            }
+        }
+
+        private double getTotalHourOfNight(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
+            {
+                if (timeOut.Date.Hour >= computerDTO.StartHourNight && timeOut.Date.Hour < 24)
+                {
+                    return timeOut.Date.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.StartHourNight;
+                } else
+                {
+                    return timeOut.Date.Hour + (double) timeOut.Date.Minute / 60 + 24 - computerDTO.StartHourNight;
+                }
+            }
+            else
+            {
+                if (timeIn.Date.Hour >= computerDTO.StartHourNight && timeIn.Date.Hour < 24)
+                {
+                    return 24 - timeIn.Date.Hour - (double)timeIn.Date.Minute / 60 + computerDTO.EndHourNight;
+                }
+                else
+                {
+                    return computerDTO.EndHourNight - timeIn.Date.Hour - (double) timeIn.Date.Minute / 60;
+                }
+            }
+        }
+
+        private int soLuotQuaNgay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            return Util.getTotalTimeByDay(timeIn, timeOut);
         }
     }
 }

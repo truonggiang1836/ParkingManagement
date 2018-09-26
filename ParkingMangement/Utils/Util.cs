@@ -103,5 +103,23 @@ namespace ParkingMangement.Utils
             if (!folderExists)
                 Directory.CreateDirectory(path);
         }
+
+        public static double getTotalTimeByMinute(DateTime timeStart, DateTime timeEnd)
+        {
+            TimeSpan duration = timeEnd - timeStart;
+            return duration.TotalMinutes;
+        }
+
+        public static double getTotalTimeByHour(DateTime timeStart, DateTime timeEnd)
+        {
+            TimeSpan duration = timeEnd - timeStart;
+            return Math.Round(duration.TotalHours, 2);
+        }
+
+        public static int getTotalTimeByDay(DateTime timeStart, DateTime timeEnd)
+        {
+            TimeSpan duration = timeEnd - timeStart;
+            return (int) duration.TotalDays;
+        }
     }
 }
