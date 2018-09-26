@@ -16,6 +16,7 @@ namespace ParkingMangement
 {
     public partial class FormLogin : Form
     {
+        public FormNhanVien formNhanVien;
         public FormLogin()
         {
             InitializeComponent();
@@ -71,6 +72,14 @@ namespace ParkingMangement
                 f = new FormNhanVien();
             }
             f.Closed += (s, args) => this.Close();
+
+            if (formNhanVien != null)
+            {
+                formNhanVien.Hide();
+                Util.doLogOut();
+                f.Closed += (s, args) => formNhanVien.Close();
+            }
+
             f.Show();
 
             addLoginLog();
@@ -83,7 +92,7 @@ namespace ParkingMangement
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
     }
 }

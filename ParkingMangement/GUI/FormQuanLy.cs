@@ -2150,6 +2150,11 @@ namespace ParkingMangement.GUI
             if (!string.IsNullOrWhiteSpace(tbCarLogIdentify.Text))
             {
                 int identify = Convert.ToInt32(tbCarLogIdentify.Text);
+                if (CarDAO.isCarOutByIdentify(identify))
+                {
+                    MessageBox.Show(Constant.sMessageXeDaRaKhoiBai);
+                    return;
+                }
                 CarDTO carDTO = new CarDTO();
                 carDTO.Identify = identify;
                 carDTO.TimeEnd = DateTime.Now;
@@ -2159,13 +2164,18 @@ namespace ParkingMangement.GUI
                 carDTO.Computer = Environment.MachineName;
                 carDTO.Account = Program.CurrentUserID;
                 carDTO.DateUpdate = DateTime.Now;
-                if (CarDAO.UpdateLostCard(carDTO))
+                DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                 {
-                    MessageBox.Show(Constant.sMessageUpdateSuccess);
-                    searchCar();
-                } else
-                {
-                    MessageBox.Show(Constant.sMessageCommonError);
+                    if (CarDAO.UpdateLostCard(carDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        searchCar();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Constant.sMessageCommonError);
+                    }
                 }
             }
         }

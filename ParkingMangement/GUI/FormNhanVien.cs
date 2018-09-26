@@ -88,6 +88,11 @@ namespace ParkingMangement.GUI
         {
             switch (e.KeyCode)
             {
+                case Keys.F3:
+                    var formLogin = new FormLogin();
+                    formLogin.formNhanVien = this;
+                    formLogin.Show();
+                    break;
                 case Keys.Escape:
                     Util.showConfirmLogoutPopup(this);
                     break;

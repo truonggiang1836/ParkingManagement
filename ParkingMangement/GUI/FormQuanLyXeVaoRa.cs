@@ -75,6 +75,8 @@ namespace ParkingMangement.GUI
 
             DataTable data = CarDAO.searchAllData(carDTO);
             dgvCarList.DataSource = data;
+
+            dgvCarList.DefaultCellStyle.ForeColor = Color.Black;
         }
 
         private void searchXeTon()
@@ -83,6 +85,18 @@ namespace ParkingMangement.GUI
 
             DataTable data = CarDAO.searchXeTon(carDTO);
             dgvCarList.DataSource = data;
+
+            dgvCarList.DefaultCellStyle.ForeColor = Color.Black;
+        }
+
+        private void searchMatThe()
+        {
+            CarDTO carDTO = getCarModel();
+
+            DataTable data = CarDAO.searchMatThe(carDTO);
+            dgvCarList.DataSource = data;
+
+            dgvCarList.DefaultCellStyle.ForeColor = Color.Red;
         }
 
         private void dgvCarList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -152,6 +166,51 @@ namespace ParkingMangement.GUI
         private void btnXemDanhSachXeTon_Click(object sender, EventArgs e)
         {
             searchXeTon();
+        }
+
+        private void btnSaveLostCard_Click(object sender, EventArgs e)
+        {
+            saveLostCard();
+        }
+
+        private void saveLostCard()
+        {
+            if (!string.IsNullOrWhiteSpace(tbCarLogIdentify.Text))
+            {
+                int identify = Convert.ToInt32(tbCarLogIdentify.Text);
+                if (CarDAO.isCarOutByIdentify(identify))
+                {
+                    MessageBox.Show(Constant.sMessageXeDaRaKhoiBai);
+                    return;
+                }
+                CarDTO carDTO = new CarDTO();
+                carDTO.Identify = identify;
+                carDTO.TimeEnd = DateTime.Now;
+                carDTO.IdOut = Program.CurrentUserID;
+                carDTO.Cost = 0;
+                carDTO.IsLostCard = ConfigDAO.GetLostCard();
+                carDTO.Computer = Environment.MachineName;
+                carDTO.Account = Program.CurrentUserID;
+                carDTO.DateUpdate = DateTime.Now;
+                DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    if (CarDAO.UpdateLostCard(carDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        searchCar();
+                    }
+                    else
+                    {
+                        MessageBox.Show(Constant.sMessageCommonError);
+                    }
+                }
+            }
+        }
+
+        private void btnExportDanhSachXe_Click(object sender, EventArgs e)
+        {
+            searchMatThe();
         }
     }
 }

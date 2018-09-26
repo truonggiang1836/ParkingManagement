@@ -10,6 +10,7 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
+        public static string sLabelAlert = "Cảnh báo";
         public static string sLabelXeVao = "XE VÀO";
         public static string sLabelXeRa = "XE RA";
         public static string sLabelMoiVao = "Mời vào";
@@ -41,10 +42,14 @@ namespace ParkingMangement.Utils
         public static string sMessagePartLimitNullError = "Hạn mức không được rỗng";
 
         // card
+        public static string sMessageConfirmSaveLostCard = "Bạn có muốn lưu mất thẻ?";
         public static string sMessageCardIdNullError = "Mã thẻ chíp không được để trống";
         public static string sMessageCardIdNotExist = "Thẻ chưa được thêm vào hệ thống";
         public static string sLabelCardUsing = "Dùng";
         public static string sLabelCardNotUsing = "Không dùng";
+
+        // car
+        public static string sMessageXeDaRaKhoiBai = "Xe này đã ra khỏi bãi";
 
         // Ticktet month
         public static string sMessageTicketMonthIdNullError = "Mã thẻ không được rỗng";

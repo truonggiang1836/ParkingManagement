@@ -28,6 +28,7 @@ namespace ParkingMangement.DAO
         private static string sqlQueryTicketMonth = " and Car.IDTicketMonth <> '' ";
         private static string sqlQueryTicketCommon= " and Car.IDTicketMonth = '' ";
         private static string sqlQueryXeTon = " and Car.IDOut = '' ";
+        private static string sqlQueryMatThe = " and Car.IsLostCard > " + 0 + "";
         private static string sqlOrderByIdentify = " order by Car.Identify asc";
 
         public static DataTable GetAllData()
@@ -52,7 +53,7 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable searchAllData(CarDTO carDTO)
+        public static string sqlSearchData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
             sql += " and Car.TimeStart >= #" + carDTO.TimeStart + "# and Car.TimeEnd <= #" + carDTO.TimeEnd + "#";
@@ -80,6 +81,12 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
             }
+            return sql;
+        }
+
+        public static DataTable searchAllData(CarDTO carDTO)
+        {
+            string sql = sqlSearchData(carDTO);
             sql += sqlOrderByIdentify;
 
             DataTable data = Database.ExcuQuery(sql);
@@ -92,33 +99,21 @@ namespace ParkingMangement.DAO
 
         public static DataTable searchXeTon(CarDTO carDTO)
         {
-            string sql = sqlGetAllData;
-            sql += " and Car.TimeStart >= #" + carDTO.TimeStart + "# and Car.TimeEnd <= #" + carDTO.TimeEnd + "#";
-            if (!string.IsNullOrEmpty(carDTO.IdPart))
-            {
-                sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
-            }
-            if (carDTO.Identify != -1)
-            {
-                sql += " and Car.Identify like '%" + carDTO.Identify + "%'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.Digit))
-            {
-                sql += " and Car.Digit like '%" + carDTO.Digit + "%'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.Id))
-            {
-                sql += " and SmartCard.ID like '%" + carDTO.Id + "%'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.IdIn))
-            {
-                sql += " and Car.IDIn like '" + carDTO.IdIn + "'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.IdOut))
-            {
-                sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
-            }
+            string sql = sqlSearchData(carDTO);
             sql += sqlQueryXeTon + sqlOrderByIdentify;
+
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                setUserNameForDataTable(data);
+            }
+            return data;
+        }
+
+        public static DataTable searchMatThe(CarDTO carDTO)
+        {
+            string sql = sqlSearchData(carDTO);
+            sql += sqlQueryMatThe + sqlOrderByIdentify;
 
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
@@ -352,6 +347,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static DataTable GetCarByIdentify(int identify)
+        {
+            string sql = "select * from [Car] where Identify = " + identify + " order by Identify desc";
+            return Database.ExcuQuery(sql);
+        }
+
         public static int GetIdentifyByID(string id)
         {
             string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify desc";
@@ -404,6 +405,20 @@ namespace ParkingMangement.DAO
                 }
             }
             return true;
+        }
+
+        public static bool isCarOutByIdentify(int identify)
+        {
+            DataTable dt = GetCarByIdentify(identify);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string IDOut = dt.Rows[0].Field<string>("IDOut");
+                if (!string.IsNullOrEmpty(IDOut))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
