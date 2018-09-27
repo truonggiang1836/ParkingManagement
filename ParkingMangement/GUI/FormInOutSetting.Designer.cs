@@ -33,9 +33,9 @@
             this.rbIn_In = new System.Windows.Forms.RadioButton();
             this.btnYes = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.rbOut_Out = new System.Windows.Forms.RadioButton();
-            this.rbIn_Out = new System.Windows.Forms.RadioButton();
             this.rbOut_In = new System.Windows.Forms.RadioButton();
+            this.rbIn_Out = new System.Windows.Forms.RadioButton();
+            this.rbOut_Out = new System.Windows.Forms.RadioButton();
             this.btnNo = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,18 +97,18 @@
             this.panel1.Size = new System.Drawing.Size(513, 75);
             this.panel1.TabIndex = 24;
             // 
-            // rbOut_Out
+            // rbOut_In
             // 
-            this.rbOut_Out.AutoSize = true;
-            this.rbOut_Out.Checked = true;
-            this.rbOut_Out.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbOut_Out.Location = new System.Drawing.Point(150, 30);
-            this.rbOut_Out.Name = "rbOut_Out";
-            this.rbOut_Out.Size = new System.Drawing.Size(86, 24);
-            this.rbOut_Out.TabIndex = 24;
-            this.rbOut_Out.TabStop = true;
-            this.rbOut_Out.Text = "RA - RA";
-            this.rbOut_Out.UseVisualStyleBackColor = true;
+            this.rbOut_In.AutoSize = true;
+            this.rbOut_In.Checked = true;
+            this.rbOut_In.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbOut_In.Location = new System.Drawing.Point(373, 30);
+            this.rbOut_In.Name = "rbOut_In";
+            this.rbOut_In.Size = new System.Drawing.Size(97, 24);
+            this.rbOut_In.TabIndex = 26;
+            this.rbOut_In.TabStop = true;
+            this.rbOut_In.Text = "RA - VÀO";
+            this.rbOut_In.UseVisualStyleBackColor = true;
             // 
             // rbIn_Out
             // 
@@ -123,18 +123,18 @@
             this.rbIn_Out.Text = "VÀO - RA";
             this.rbIn_Out.UseVisualStyleBackColor = true;
             // 
-            // rbOut_In
+            // rbOut_Out
             // 
-            this.rbOut_In.AutoSize = true;
-            this.rbOut_In.Checked = true;
-            this.rbOut_In.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbOut_In.Location = new System.Drawing.Point(373, 30);
-            this.rbOut_In.Name = "rbOut_In";
-            this.rbOut_In.Size = new System.Drawing.Size(97, 24);
-            this.rbOut_In.TabIndex = 26;
-            this.rbOut_In.TabStop = true;
-            this.rbOut_In.Text = "RA - VÀO";
-            this.rbOut_In.UseVisualStyleBackColor = true;
+            this.rbOut_Out.AutoSize = true;
+            this.rbOut_Out.Checked = true;
+            this.rbOut_Out.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbOut_Out.Location = new System.Drawing.Point(150, 30);
+            this.rbOut_Out.Name = "rbOut_Out";
+            this.rbOut_Out.Size = new System.Drawing.Size(86, 24);
+            this.rbOut_Out.TabIndex = 24;
+            this.rbOut_Out.TabStop = true;
+            this.rbOut_Out.Text = "RA - RA";
+            this.rbOut_Out.UseVisualStyleBackColor = true;
             // 
             // btnNo
             // 
@@ -152,6 +152,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 183);
+            this.ControlBox = false;
             this.Controls.Add(this.btnNo);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnYes);

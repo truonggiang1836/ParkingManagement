@@ -16,6 +16,7 @@ namespace ParkingMangement.GUI
 {
     public partial class FormLogout : Form
     {
+        public FormNhanVien formNhanVien;
         public FormLogout()
         {
             InitializeComponent();
@@ -38,12 +39,13 @@ namespace ParkingMangement.GUI
 
         private void logout()
         {
+            string userInAccount = UserDAO.GetAccountByID(Program.CurrentUserID);
             string account = tbAccount.Text;
             string pass = tbPassword.Text;
             DataTable data = UserDAO.GetUserByAccount(account);
-            if (data.Rows.Count > 0 && data.Rows[0].Field<string>("Pass") == pass)
+            if (data.Rows.Count > 0 && data.Rows[0].Field<string>("Pass") == pass && userInAccount.Equals(account))
             {
-                logoutDone(data);
+                logoutDone();
             }
             else
             {
@@ -51,29 +53,29 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void addLoginLog()
+        private void logoutDone()
         {
-            LogDTO logDTO = new LogDTO();
-            logDTO.LogTypeID = Constant.LOG_TYPE_LOGIN;
-            logDTO.Account = Program.CurrentUserID;
-            logDTO.ProcessDate = DateTime.Now;
-            logDTO.Computer = Environment.MachineName;
-            LogUtil.addLog(logDTO);
-        }
+            this.Hide();
+            Form f = new FormLogin();
+            f.Closed += (s, args) => this.Close();
 
-        private void logoutDone(DataTable data)
-        {
- 
+            if (formNhanVien != null)
+            {
+                formNhanVien.Hide();
+                Util.doLogOut();
+                f.Closed += (s, args) => formNhanVien.Close();
+            }
+            f.Show();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-
+            logout();
         }
     }
 }

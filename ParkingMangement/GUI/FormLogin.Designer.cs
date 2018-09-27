@@ -154,6 +154,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(533, 319);
+            this.ControlBox = false;
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;

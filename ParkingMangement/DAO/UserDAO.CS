@@ -38,6 +38,12 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
+        public static bool UpdatePassword(string password, string account)
+        {
+            string sql = "update [UserCar] set Pass ='" + password + "' where Account ='" + account + "'";
+            return Database.ExcuNonQuery(sql);
+        }
+
         public static DataTable GetUserByAccount(string account)
         {
             string sql = "select * from [UserCar] where UserCar.Account = '" + account + "'";
@@ -57,6 +63,19 @@ namespace ParkingMangement.DAO
             {
                 return dt.Rows[0].Field<string>("NameUser");
             } else
+            {
+                return "";
+            }
+        }
+
+        public static string GetAccountByID(string id)
+        {
+            DataTable dt = GetUserByID(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("Account");
+            }
+            else
             {
                 return "";
             }

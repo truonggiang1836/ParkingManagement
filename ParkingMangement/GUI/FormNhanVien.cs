@@ -88,20 +88,24 @@ namespace ParkingMangement.GUI
         {
             switch (e.KeyCode)
             {
-                case Keys.F3:
-                    var formLogin = new FormLogin();
-                    formLogin.formNhanVien = this;
-                    formLogin.Show();
-                    break;
-                case Keys.Escape:
-                    Util.showConfirmLogoutPopup(this);
-                    break;
+                //case Keys.Escape:
+                //    Util.showConfirmLogoutPopup(this);
+                //    break;
                 case Keys.Enter:
                     cardID = tbRFIDCardID.Text;
                     labelCardID.Text = cardID;
                     string x = keyboardDeviceName;
                     tbRFIDCardID.Text = "";
                     saveImage();
+                    break;
+                case Keys.F1:
+                    var formChangePassword = new FormChangePassword();
+                    formChangePassword.Show();
+                    break;
+                case Keys.F3:
+                    var formLogin = new FormLogin();
+                    formLogin.formNhanVien = this;
+                    formLogin.Show();
                     break;
                 case Keys.F5:
                     Form formInOutSetting = new FormInOutSetting();
@@ -111,6 +115,11 @@ namespace ParkingMangement.GUI
                 case Keys.F7:
                     Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
                     formQuanLyXeVaoRa.Show();
+                    break;
+                case Keys.F11:
+                    var formLogout = new FormLogout();
+                    formLogout.formNhanVien = this;
+                    formLogout.Show();
                     break;
             }
         }

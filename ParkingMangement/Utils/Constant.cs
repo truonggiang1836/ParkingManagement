@@ -30,6 +30,7 @@ namespace ParkingMangement.Utils
         public static string FUNCTION_ID_NHAN_VIEN = "Nh";
 
         // user
+        public static string sMessageUpdatePasswordSuccess = "Cập nhật mật khẩu thành công";
         public static string sMessageUserIdNullError = "Mã thẻ không được rỗng";
         public static string sMessageUserNameNullError = "Họ và tên không được rỗng";
         public static string sMessageAccountNullError = "Tài khoản không được rỗng";
