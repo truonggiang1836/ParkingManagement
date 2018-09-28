@@ -121,5 +121,18 @@ namespace ParkingMangement.Utils
             TimeSpan duration = timeEnd - timeStart;
             return (int) duration.TotalDays;
         }
+        public static string getCurrentDateTimeString()
+        {
+            String sDate = DateTime.Now.ToString();
+            DateTime datevalue = (Convert.ToDateTime(sDate.ToString()));
+
+            String year = datevalue.Year.ToString();
+            String month = datevalue.Month.ToString();
+            String day = datevalue.Day.ToString();
+            String hour = datevalue.Hour.ToString();
+            String minute = datevalue.Minute.ToString();
+            String second = datevalue.Second.ToString();
+            return year + month + day + hour + minute + second;
+        }
     }
 }

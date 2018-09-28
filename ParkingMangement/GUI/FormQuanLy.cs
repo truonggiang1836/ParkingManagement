@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -2898,13 +2899,16 @@ namespace ParkingMangement.GUI
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_cham_cong_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -2969,13 +2973,16 @@ namespace ParkingMangement.GUI
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;  
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_thongke_doanhthu_tongquat_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3390,13 +3397,16 @@ namespace ParkingMangement.GUI
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_thongke_doanhthu_chitiet_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
