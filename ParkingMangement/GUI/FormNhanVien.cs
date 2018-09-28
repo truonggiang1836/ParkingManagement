@@ -541,7 +541,7 @@ namespace ParkingMangement.GUI
                         return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.NightCost;
                     } else
                     {
-                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
+                        return (soLuotQuaNgay(timeIn, timeOut, computerDTO) + 1) * computerDTO.DayNightCost;
                     }
                 }
             }
