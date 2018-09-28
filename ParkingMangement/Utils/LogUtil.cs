@@ -22,5 +22,15 @@ namespace ParkingMangement.Utils
             }
             LogDAO.Insert(logDTO);
         }
+
+        public static void addLoginLog()
+        {
+            LogDTO logDTO = new LogDTO();
+            logDTO.LogTypeID = Constant.LOG_TYPE_LOGIN;
+            logDTO.Account = Program.CurrentUserID;
+            logDTO.ProcessDate = DateTime.Now;
+            logDTO.Computer = Environment.MachineName;
+            LogUtil.addLog(logDTO);
+        }
     }
 }

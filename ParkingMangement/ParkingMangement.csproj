@@ -112,11 +112,23 @@
     <Compile Include="GUI\FormInOutSetting.Designer.cs">
       <DependentUpon>FormInOutSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FormLoginByCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormLoginByCard.Designer.cs">
+      <DependentUpon>FormLoginByCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormLogout.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormLogout.Designer.cs">
       <DependentUpon>FormLogout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormLogOutByCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormLogOutByCard.Designer.cs">
+      <DependentUpon>FormLogOutByCard.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormQuanLy.cs">
       <SubType>Form</SubType>
@@ -158,8 +170,14 @@
     <EmbeddedResource Include="GUI\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormLoginByCard.resx">
+      <DependentUpon>FormLoginByCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormLogout.resx">
       <DependentUpon>FormLogout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormLogOutByCard.resx">
+      <DependentUpon>FormLogOutByCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLy.resx">
       <DependentUpon>FormQuanLy.cs</DependentUpon>

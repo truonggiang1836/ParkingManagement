@@ -1,6 +1,4 @@
 ﻿using ParkingMangement.DAO;
-using ParkingMangement.DTO;
-using ParkingMangement.GUI;
 using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,42 +10,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParkingMangement
+namespace ParkingMangement.GUI
 {
-    public partial class FormLogin : Form
+    public partial class FormLoginByCard : Form
     {
         public FormNhanVien formNhanVien;
-        public FormLogin()
+        public FormLoginByCard()
         {
             InitializeComponent();
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
+        private void btnExit_Click(object sender, EventArgs e)
         {
-            initView();
+            this.Close();
         }
 
-        private void initView()
+        private void tbUserID_KeyDown(object sender, KeyEventArgs e)
         {
-            //this.WindowState = FormWindowState.Maximized;
-            // no smaller than design time size
-            this.MinimumSize = new Size(this.Width, this.Height);
-
-            this.AutoSize = true;
-            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-        }
-
-        private void login()
-        {
-            string account = tbAccount.Text;
-            string pass = tbPassword.Text;
-            DataTable data = UserDAO.GetUserByAccount(account);
-            if (data.Rows.Count > 0 && data.Rows[0].Field<string>("Pass") == pass)
+            if (e.KeyCode == Keys.Enter && !tbUserID.Text.Equals(null))
             {
-                loginDone(data);
-            } else
-            {
-                labelError.Text = "Thông tin không chính xác";
+                DataTable dt = UserDAO.GetUserByID(tbUserID.Text);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    loginDone(dt);
+                }
+                else
+                {
+                    labelError.Text = "Thông tin không chính xác";
+                }
             }
         }
 
@@ -73,16 +63,6 @@ namespace ParkingMangement
             f.Show();
 
             LogUtil.addLoginLog();
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            login();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

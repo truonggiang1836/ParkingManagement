@@ -107,6 +107,11 @@ namespace ParkingMangement.GUI
                     formLogin.formNhanVien = this;
                     formLogin.Show();
                     break;
+                case Keys.F4:
+                    var formLoginByCard = new FormLoginByCard();
+                    formLoginByCard.formNhanVien = this;
+                    formLoginByCard.Show();
+                    break;
                 case Keys.F5:
                     Form formInOutSetting = new FormInOutSetting();
                     formInOutSetting.FormClosed += FormInOutSettingClosed;
@@ -120,6 +125,11 @@ namespace ParkingMangement.GUI
                     var formLogout = new FormLogout();
                     formLogout.formNhanVien = this;
                     formLogout.Show();
+                    break;
+                case Keys.F12:
+                    var formLogoutByCard = new FormLogOutByCard();
+                    formLogoutByCard.formNhanVien = this;
+                    formLogoutByCard.Show();
                     break;
             }
         }
