@@ -195,7 +195,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void insertCarIn(bool isTicketCard)
+        private void insertCarIn(bool isTicketMonthCard)
         {
             saveImage1ToFile();
             saveImage2ToFile();
@@ -211,9 +211,10 @@ namespace ParkingMangement.GUI
             carDTO.Computer = Environment.MachineName;
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
-            if (isTicketCard)
+            if (isTicketMonthCard)
             {
                 carDTO.IdTicketMonth = cardID;
+                carDTO.Digit = TicketMonthDAO.GetDigitByID(cardID);
             }
             CarDAO.Insert(carDTO);
             labelCost.Text = "-";
@@ -226,6 +227,12 @@ namespace ParkingMangement.GUI
 
                 pictureBoxImage1.Image = null;
                 pictureBoxImage2.Image = null;
+
+                if (isTicketMonthCard)
+                {
+                    labelDigitIn.Text = "-";
+                    labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                }
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
@@ -236,6 +243,12 @@ namespace ParkingMangement.GUI
 
                     pictureBoxImage1.Image = null;
                     pictureBoxImage2.Image = null;
+
+                    if (isTicketMonthCard)
+                    {
+                        labelDigitIn.Text = "-";
+                        labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    }
                 }
                 else
                 {
@@ -244,6 +257,12 @@ namespace ParkingMangement.GUI
 
                     pictureBoxImage3.Image = null;
                     pictureBoxImage4.Image = null;
+
+                    if (isTicketMonthCard)
+                    {
+                        labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelDigitOut.Text = "-";
+                    }
                 }
             }
             else
@@ -253,10 +272,16 @@ namespace ParkingMangement.GUI
 
                 pictureBoxImage3.Image = null;
                 pictureBoxImage4.Image = null;
+
+                if (isTicketMonthCard)
+                {
+                    labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelDigitOut.Text = "-";
+                }
             }
         }
 
-        private void updateCarOut(bool isTicketCard)
+        private void updateCarOut(bool isTicketMonthCard)
         {
             int identify = CarDAO.GetIdentifyByID(cardID);
             CarDTO carDTO = new CarDTO();
@@ -264,12 +289,14 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeEnd = DateTime.Now;
             carDTO.IdOut = Program.CurrentUserID;
-            if (isTicketCard)
+            if (isTicketMonthCard)
             {
                 carDTO.Cost = 0;
+                labelCost.Text = "VE THANG";
             } else
             {
                 carDTO.Cost = tinhTienGiuXe();
+                labelCost.Text = carDTO.Cost + "";
             }
 
             saveImage3ToFile();
@@ -282,7 +309,6 @@ namespace ParkingMangement.GUI
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
             CarDAO.UpdateCarOut(carDTO);
-            labelCost.Text = carDTO.Cost + "";
 
             int inOutType = ConfigDAO.GetInOutType();
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
@@ -292,6 +318,12 @@ namespace ParkingMangement.GUI
 
                 pictureBoxImage3.Image = null;
                 pictureBoxImage4.Image = null;
+
+                if (isTicketMonthCard)
+                {
+                    labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelDigitOut.Text = "-";
+                }
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
@@ -302,6 +334,12 @@ namespace ParkingMangement.GUI
 
                     pictureBoxImage3.Image = null;
                     pictureBoxImage4.Image = null;
+
+                    if (isTicketMonthCard)
+                    {
+                        labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelDigitOut.Text = "-";
+                    }
                 } else
                 {
                     labelMoiVao.Text = "";
@@ -309,6 +347,12 @@ namespace ParkingMangement.GUI
 
                     pictureBoxImage1.Image = null;
                     pictureBoxImage2.Image = null;
+
+                    if (isTicketMonthCard)
+                    {
+                        labelDigitIn.Text = "-";
+                        labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    }
                 }
             }
             else
@@ -318,6 +362,12 @@ namespace ParkingMangement.GUI
 
                 pictureBoxImage1.Image = null;
                 pictureBoxImage2.Image = null;
+
+                if (isTicketMonthCard)
+                {
+                    labelDigitIn.Text = "-";
+                    labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                }
             }
         }
 
@@ -933,6 +983,8 @@ namespace ParkingMangement.GUI
             pictureBoxImage2.Image = null;
             pictureBoxImage3.Image = null;
             pictureBoxImage4.Image = null;
+            labelDigitIn.Text = "-";
+            labelDigitOut.Text = "-";
         }
 
         private void FormInOutSettingClosed(object sender, FormClosedEventArgs e)

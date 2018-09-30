@@ -66,6 +66,8 @@
             this.labelCost = new System.Windows.Forms.Label();
             this.labelMoiVao = new System.Windows.Forms.Label();
             this.labelMoiRa = new System.Windows.Forms.Label();
+            this.labelDigitIn = new System.Windows.Forms.Label();
+            this.labelDigitOut = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -443,6 +445,26 @@
             this.labelMoiRa.TabIndex = 21;
             this.labelMoiRa.Text = "Mời ra";
             // 
+            // labelDigitIn
+            // 
+            this.labelDigitIn.AutoSize = true;
+            this.labelDigitIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDigitIn.Location = new System.Drawing.Point(109, 43);
+            this.labelDigitIn.Name = "labelDigitIn";
+            this.labelDigitIn.Size = new System.Drawing.Size(14, 20);
+            this.labelDigitIn.TabIndex = 22;
+            this.labelDigitIn.Text = "-";
+            // 
+            // labelDigitOut
+            // 
+            this.labelDigitOut.AutoSize = true;
+            this.labelDigitOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDigitOut.Location = new System.Drawing.Point(698, 43);
+            this.labelDigitOut.Name = "labelDigitOut";
+            this.labelDigitOut.Size = new System.Drawing.Size(14, 20);
+            this.labelDigitOut.TabIndex = 23;
+            this.labelDigitOut.Text = "-";
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,6 +472,8 @@
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(843, 681);
             this.ControlBox = false;
+            this.Controls.Add(this.labelDigitOut);
+            this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.labelMoiRa);
             this.Controls.Add(this.labelMoiVao);
             this.Controls.Add(this.labelCost);
@@ -538,5 +562,7 @@
         private System.Windows.Forms.Label labelCost;
         private System.Windows.Forms.Label labelMoiVao;
         private System.Windows.Forms.Label labelMoiRa;
+        private System.Windows.Forms.Label labelDigitIn;
+        private System.Windows.Forms.Label labelDigitOut;
     }
 }

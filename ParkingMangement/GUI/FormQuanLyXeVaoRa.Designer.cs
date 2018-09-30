@@ -326,6 +326,7 @@
             this.dateTimePickerCarTimeOut.Name = "dateTimePickerCarTimeOut";
             this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(111, 20);
             this.dateTimePickerCarTimeOut.TabIndex = 28;
+            this.dateTimePickerCarTimeOut.Value = new System.DateTime(2018, 9, 27, 23, 59, 0, 0);
             // 
             // dateTimePickerCarTimeIn
             // 
@@ -334,6 +335,7 @@
             this.dateTimePickerCarTimeIn.Name = "dateTimePickerCarTimeIn";
             this.dateTimePickerCarTimeIn.Size = new System.Drawing.Size(111, 20);
             this.dateTimePickerCarTimeIn.TabIndex = 27;
+            this.dateTimePickerCarTimeIn.Value = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
             // 
             // label45
             // 

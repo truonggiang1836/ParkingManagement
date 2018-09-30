@@ -29,6 +29,12 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
+        public static void UpdateIsUsing(string isUsing, string cardId)
+        {
+            string sql = "update [SmartCard] set IsUsing =('" + isUsing + "') where ID =" + cardId + "";
+            Database.ExcuNonQuery(sql);
+        }
+
         public static DataTable SearchData(string key)
         {
             string sql = "select SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.PartID and "
@@ -81,6 +87,18 @@ namespace ParkingMangement.DAO
                 return dt.Rows[0].Field<string>("Type");
             }
             return "";
+        }
+
+        public static bool isUsingByCardID(string cardID)
+        {
+            string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string isUsing = dt.Rows[0].Field<string>("IsUsing");
+                return isUsing.Equals("1");
+            }
+            return false;
         }
 
         public static DataTable GetCardByID(string id)

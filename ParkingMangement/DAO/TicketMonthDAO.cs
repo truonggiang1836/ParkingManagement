@@ -164,5 +164,18 @@ namespace ParkingMangement.DAO
             string sql = "select * from [TicketMonth] where ID = '" + id + "'";
             return Database.ExcuQuery(sql);
         }
+
+        public static string GetDigitByID(string id)
+        {
+            DataTable dt = GetDataByID(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("Digit");
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }
