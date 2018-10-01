@@ -48,6 +48,13 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static DataTable SearchLostCardData(string key)
+        {
+            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.PartID and "
+                + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') order by SmartCard.Identify asc";
+            return Database.ExcuQuery(sql);
+        }
+
         public static DataTable GetDataGroupByType()
         {
             string sql = "select Part.PartName, count(Identify) as SumCard from [SmartCard], [Part] where (SmartCard.Type = Part.PartID) and (SmartCard.IsUsing = '1') group by Part.PartName";

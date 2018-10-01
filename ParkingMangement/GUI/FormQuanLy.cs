@@ -869,7 +869,7 @@ namespace ParkingMangement.GUI
                 btnUpdatePart.Text = Constant.sButtonEdit;
             } else if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageKichHoatThe"])
             {
-                loadLostCardList();
+                searchLostCard();
             }
         }
 
@@ -1091,6 +1091,19 @@ namespace ParkingMangement.GUI
 
             }
             dgvCardList.DataSource = data;
+        }
+
+        private void searchLostCard()
+        {
+            string key = tbLostCardSearch.Text;
+            if (key.Equals(""))
+            {
+                loadLostCardList();
+            } else
+            {
+                DataTable data = CardDAO.SearchLostCardData(key);
+                dgvLostCardList.DataSource = data;
+            }
         }
 
         private void loadCardInfoFromDataGridViewRow(int Index)
@@ -3846,11 +3859,16 @@ namespace ParkingMangement.GUI
                 DataGridViewCheckBoxCell checkCell = row.Cells["SelectLostCard"] as DataGridViewCheckBoxCell;
                 if (Convert.ToBoolean(checkCell.Value))
                 {
-                    string cardId = Convert.ToString(row.Cells["ID"].Value);
+                    string cardId = Convert.ToString(row.Cells["ColumnLostCardID"].Value);
                     CardDAO.UpdateIsUsing("1", cardId);
                 }
             }
-            loadLostCardList();
+            searchLostCard();
+        }
+
+        private void btnTimTheBiMat_Click(object sender, EventArgs e)
+        {
+            searchLostCard();
         }
     }
 }
