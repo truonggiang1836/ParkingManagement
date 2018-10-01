@@ -152,12 +152,19 @@ namespace ParkingMangement.GUI
             DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
             if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
             {
-                if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                if (CardDAO.isUsingByCardID(cardID))
                 {
-                    checkForSaveToDB(true);
+                    if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                    {
+                        checkForSaveToDB(true);
+                    }
+                    else
+                    {
+                        checkForSaveToDB(false);
+                    }
                 } else
                 {
-                    checkForSaveToDB(false);
+                    MessageBox.Show(Constant.sMessageCardIsLost);
                 }
             } else
             {

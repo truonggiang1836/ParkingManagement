@@ -154,12 +154,6 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static void updateLostCard(string identify, DateTime dateLostCard)
-        {
-            string sql = "update [Car] set IsLostCard = 1 and DateLostCard = '" + dateLostCard + "' where Identify = " + identify;
-            Database.ExcuNonQuery(sql);
-        }
-
         public static void updateImage()
         {
             string base64 = "";
@@ -390,7 +384,12 @@ namespace ParkingMangement.DAO
 
         public static bool UpdateLostCard(CarDTO carDTO)
         {
-            string sql = "update [Car] set TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", IsLostCard =" + carDTO.IsLostCard + ", DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
+            string sql = "update [Car] set TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", IsLostCard =" + carDTO.IsLostCard + ", DateUpdate ='" + carDTO.DateUpdate + "', DateLostCard ='" + carDTO.DateLostCard + "' where Identify =" + carDTO.Identify;
+            string cardId = getIdByIdentify(carDTO.Identify);
+            if (cardId != null)
+            {
+                CardDAO.UpdateIsUsing("0", cardId);
+            }
             return Database.ExcuNonQuery(sql);
         }
 
@@ -419,6 +418,17 @@ namespace ParkingMangement.DAO
                 }
             }
             return false;
+        }
+
+        public static string getIdByIdentify(int identify)
+        {
+            DataTable dt = GetCarByIdentify(identify);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string id = dt.Rows[0].Field<string>("ID");
+                return id;
+            }
+            return null;
         }
     }
 }

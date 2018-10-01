@@ -2165,6 +2165,7 @@ namespace ParkingMangement.GUI
                 carDTO.Computer = Environment.MachineName;
                 carDTO.Account = Program.CurrentUserID;
                 carDTO.DateUpdate = DateTime.Now;
+                carDTO.DateLostCard = DateTime.Now;
                 DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {

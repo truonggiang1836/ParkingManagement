@@ -77,6 +77,17 @@ namespace ParkingMangement.GUI
             dgvCarList.DataSource = data;
 
             dgvCarList.DefaultCellStyle.ForeColor = Color.Black;
+            foreach (DataGridViewRow row in dgvCarList.Rows)
+            {
+                int isLostCard = Convert.ToInt32(dgvCarList.Rows[row.Index].Cells["CarLogIsLostCard"].Value);
+                if (isLostCard > 0)
+                {
+                    foreach (DataGridViewColumn col in dgvCarList.Columns)
+                    {
+                        dgvCarList[col.Index, row.Index].Style.ForeColor = Color.Red;
+                    }
+                }
+            }
         }
 
         private void searchXeTon()
@@ -96,7 +107,7 @@ namespace ParkingMangement.GUI
             DataTable data = CarDAO.searchMatThe(carDTO);
             dgvCarList.DataSource = data;
 
-            dgvCarList.DefaultCellStyle.ForeColor = Color.Red;
+            dgvCarList.DefaultCellStyle.ForeColor = Color.Black;
         }
 
         private void dgvCarList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -192,6 +203,7 @@ namespace ParkingMangement.GUI
                 carDTO.Computer = Environment.MachineName;
                 carDTO.Account = Program.CurrentUserID;
                 carDTO.DateUpdate = DateTime.Now;
+                carDTO.DateLostCard = DateTime.Now;
                 DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {

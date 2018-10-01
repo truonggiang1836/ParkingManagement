@@ -31,7 +31,7 @@ namespace ParkingMangement.DAO
 
         public static void UpdateIsUsing(string isUsing, string cardId)
         {
-            string sql = "update [SmartCard] set IsUsing =('" + isUsing + "') where ID =" + cardId + "";
+            string sql = "update [SmartCard] set IsUsing = '" + isUsing + "' where ID = '" + cardId + "'";
             Database.ExcuNonQuery(sql);
         }
 
