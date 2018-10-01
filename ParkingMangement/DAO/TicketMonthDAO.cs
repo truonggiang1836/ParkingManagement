@@ -14,10 +14,10 @@ namespace ParkingMangement.DAO
                 " TicketMonth.Company, TicketMonth.Email, TicketMonth.Address, TicketMonth.CarKind, TicketMonth.ChargesAmount, Part.PartName," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID";
 
-        private static string sqlGetAllNearExpiredTictketData = "select Part.PartName, TicketMonth.Identify, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
+        private static string sqlGetAllNearExpiredTicketData = "select Part.PartName, TicketMonth.Identify, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID";
 
-        private static string sqlGetAllLostTictketData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, Car.DateLostCard, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from [TicketMonth], [Part], [Car], [UserCar] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = Car.ID and TicketMonth.Account = UserCar.UserID and Car.IsLostCard = 1";
+        private static string sqlGetAllLostTicketData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, Car.DateLostCard, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from [TicketMonth], [Part], [Car], [UserCar] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = Car.ID and TicketMonth.Account = UserCar.UserID and Car.IsLostCard = 1";
 
         private static string sqlOrderByIdentify = " order by TicketMonth.Identify asc";
         public static DataTable GetAllData()
@@ -64,9 +64,9 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static DataTable GetAllNearExpiredTictketData(DateTime currentDate)
+        public static DataTable GetAllNearExpiredTicketData(DateTime currentDate)
         {
-            string sql = sqlGetAllNearExpiredTictketData;
+            string sql = sqlGetAllNearExpiredTicketData;
             sql += sqlOrderByIdentify;
             DataTable data = Database.ExcuQuery(sql);
 
@@ -87,9 +87,9 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable searchNearExpiredTictketData(string key, int? daysRemaining)
+        public static DataTable searchNearExpiredTicketData(string key, int? daysRemaining)
         {
-            string sql = sqlGetAllNearExpiredTictketData;
+            string sql = sqlGetAllNearExpiredTicketData;
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (TicketMonth.Identify like '%" + key + "%' or TicketMonth.Digit like '%" + key
@@ -121,15 +121,15 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static void updateTictketByExpirationDate(DateTime expirationDate, int identify)
+        public static void updateTicketByExpirationDate(DateTime expirationDate, int identify)
         {
             string sql = "update [TicketMonth] set ExpirationDate = '" + expirationDate + "' where Identify = " + identify;
             Database.ExcuNonQuery(sql);
         }
 
-        public static DataTable GetAllLostTictketData()
+        public static DataTable GetAllLostTicketData()
         {
-            string sql = sqlGetAllLostTictketData;
+            string sql = sqlGetAllLostTicketData;
             sql += sqlOrderByIdentify;
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -137,7 +137,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable searchLostTicketData(string key)
         {
-            string sql = sqlGetAllLostTictketData;
+            string sql = sqlGetAllLostTicketData;
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
@@ -147,7 +147,7 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static void updateTictketByID(string id, int identify)
+        public static void updateTicketByID(string id, int identify)
         {
             string sql = "update [TicketMonth] set ID = '" + id + "' where Identify = " + identify;
             Database.ExcuNonQuery(sql);

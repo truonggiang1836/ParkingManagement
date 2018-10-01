@@ -954,11 +954,11 @@ namespace ParkingMangement.GUI
 
         private void loadLostCardList()
         {
-            dgvLostCardList.ReadOnly = false;
+            dgvActiveCardList.ReadOnly = false;
             DataTable data = CardDAO.GetLostCardData();
             if (data != null)
             {
-                dgvLostCardList.DataSource = data;
+                dgvActiveCardList.DataSource = data;
             }
         }
 
@@ -1102,7 +1102,7 @@ namespace ParkingMangement.GUI
             } else
             {
                 DataTable data = CardDAO.SearchLostCardData(key);
-                dgvLostCardList.DataSource = data;
+                dgvActiveCardList.DataSource = data;
             }
         }
 
@@ -1251,10 +1251,10 @@ namespace ParkingMangement.GUI
                     MessageBox.Show(Constant.sMessageInvalidError);
                     return;
                 }
-                dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTictketData(key, daysRemaining);
+                dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTicketData(key, daysRemaining);
             } else
             {
-                dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTictketData(key, null);
+                dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTicketData(key, null);
             }
             
         }
@@ -1302,13 +1302,13 @@ namespace ParkingMangement.GUI
 
         private void loadRenewTicketMonthData()
         {
-            DataTable data = TicketMonthDAO.GetAllNearExpiredTictketData(DateTime.Now);
+            DataTable data = TicketMonthDAO.GetAllNearExpiredTicketData(DateTime.Now);
             dgvRenewTicketMonthList.DataSource = data;
         }
 
         private void loadLostTicketMonthData()
         {
-            DataTable data = TicketMonthDAO.GetAllLostTictketData();
+            DataTable data = TicketMonthDAO.GetAllLostTicketData();
             dgvLostTicketMonthList.DataSource = data;
             if (data != null)
             {
@@ -1318,8 +1318,8 @@ namespace ParkingMangement.GUI
 
         private void loadAllTicketMonthData()
         {
-            DataTable data = TicketMonthDAO.GetAllLostTictketData();
-            dgvAllTicketMonthList.DataSource = data;
+            DataTable data = TicketMonthDAO.GetAllLostTicketData();
+            dgvActiveTicketMonthList.DataSource = data;
         }
 
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -1752,7 +1752,7 @@ namespace ParkingMangement.GUI
             }
             int identify = Convert.ToInt32(tbLostTicketMonthIdentify.Text);
             string id = tbLostTicketMonthID.Text;
-            TicketMonthDAO.updateTictketByID(id, identify);
+            TicketMonthDAO.updateTicketByID(id, identify);
             loadLostTicketMonthData();
         }
 
@@ -2169,7 +2169,7 @@ namespace ParkingMangement.GUI
                 int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
                 if (isChoose)
                 {
-                    TicketMonthDAO.updateTictketByExpirationDate(expirationDate, identify);
+                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, identify);
                 }
             }
             loadRenewTicketMonthData();
@@ -2203,7 +2203,7 @@ namespace ParkingMangement.GUI
                 expirationDate = expirationDate.AddDays(plusDate);
                 if (isChoose)
                 {
-                    TicketMonthDAO.updateTictketByExpirationDate(expirationDate, identify);
+                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, identify);
                 }
             }
             loadRenewTicketMonthData();
@@ -3854,7 +3854,7 @@ namespace ParkingMangement.GUI
 
         private void btnKichHoatThe_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvLostCardList.Rows)
+            foreach (DataGridViewRow row in dgvActiveCardList.Rows)
             {
                 DataGridViewCheckBoxCell checkCell = row.Cells["SelectLostCard"] as DataGridViewCheckBoxCell;
                 if (Convert.ToBoolean(checkCell.Value))

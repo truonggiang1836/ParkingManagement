@@ -362,7 +362,7 @@
             this.Limit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageKichHoatThe = new System.Windows.Forms.TabPage();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.dgvLostCardList = new System.Windows.Forms.DataGridView();
+            this.dgvActiveCardList = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label33 = new System.Windows.Forms.Label();
             this.tbLostCardSearch = new System.Windows.Forms.TextBox();
@@ -572,24 +572,13 @@
             this.tbLostTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPageKichHoatVeThang = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnActiveTicketMonth = new System.Windows.Forms.Button();
             this.label92 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnAllTicketMonthSearch = new System.Windows.Forms.Button();
+            this.btnActiveTicketMonthSearch = new System.Windows.Forms.Button();
             this.label110 = new System.Windows.Forms.Label();
-            this.tbAllTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
-            this.dgvAllTicketMonthList = new System.Windows.Forms.DataGridView();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbActiveTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
+            this.dgvActiveTicketMonthList = new System.Windows.Forms.DataGridView();
             this.tabPageQuanLyHeThong = new System.Windows.Forms.TabPage();
             this.tabQuanLyHeThong = new System.Windows.Forms.TabControl();
             this.tabPageCauHinhCoBan = new System.Windows.Forms.TabPage();
@@ -810,6 +799,17 @@
             this.ColumnLostCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -891,7 +891,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartList)).BeginInit();
             this.tabPageKichHoatThe.SuspendLayout();
             this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLostCardList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveCardList)).BeginInit();
             this.panel6.SuspendLayout();
             this.tabPageQuanLyVeThang.SuspendLayout();
             this.tabQuanLyVeThang.SuspendLayout();
@@ -920,7 +920,7 @@
             this.panel24.SuspendLayout();
             this.tabPageKichHoatVeThang.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAllTicketMonthList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveTicketMonthList)).BeginInit();
             this.tabPageQuanLyHeThong.SuspendLayout();
             this.tabQuanLyHeThong.SuspendLayout();
             this.tabPageCauHinhCoBan.SuspendLayout();
@@ -4028,26 +4028,26 @@
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.dgvLostCardList);
+            this.panel8.Controls.Add(this.dgvActiveCardList);
             this.panel8.Location = new System.Drawing.Point(6, 173);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1141, 435);
             this.panel8.TabIndex = 1;
             // 
-            // dgvLostCardList
+            // dgvActiveCardList
             // 
-            this.dgvLostCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLostCardList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvActiveCardList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvActiveCardList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SelectLostCard,
             this.Column11,
             this.Column21,
             this.ColumnLostCardID,
             this.Column18,
             this.Column19});
-            this.dgvLostCardList.Location = new System.Drawing.Point(3, 3);
-            this.dgvLostCardList.Name = "dgvLostCardList";
-            this.dgvLostCardList.Size = new System.Drawing.Size(1133, 427);
-            this.dgvLostCardList.TabIndex = 4;
+            this.dgvActiveCardList.Location = new System.Drawing.Point(3, 3);
+            this.dgvActiveCardList.Name = "dgvActiveCardList";
+            this.dgvActiveCardList.Size = new System.Drawing.Size(1133, 427);
+            this.dgvActiveCardList.TabIndex = 4;
             // 
             // panel6
             // 
@@ -6044,7 +6044,7 @@
             // tabPageKichHoatVeThang
             // 
             this.tabPageKichHoatVeThang.Controls.Add(this.panel5);
-            this.tabPageKichHoatVeThang.Controls.Add(this.dgvAllTicketMonthList);
+            this.tabPageKichHoatVeThang.Controls.Add(this.dgvActiveTicketMonthList);
             this.tabPageKichHoatVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageKichHoatVeThang.Name = "tabPageKichHoatVeThang";
             this.tabPageKichHoatVeThang.Padding = new System.Windows.Forms.Padding(3);
@@ -6056,26 +6056,26 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.button13);
+            this.panel5.Controls.Add(this.btnActiveTicketMonth);
             this.panel5.Controls.Add(this.label92);
             this.panel5.Controls.Add(this.button1);
-            this.panel5.Controls.Add(this.btnAllTicketMonthSearch);
+            this.panel5.Controls.Add(this.btnActiveTicketMonthSearch);
             this.panel5.Controls.Add(this.label110);
-            this.panel5.Controls.Add(this.tbAllTicketMonthKeyWordSearch);
+            this.panel5.Controls.Add(this.tbActiveTicketMonthKeyWordSearch);
             this.panel5.Location = new System.Drawing.Point(340, 16);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(479, 162);
             this.panel5.TabIndex = 7;
             // 
-            // button13
+            // btnActiveTicketMonth
             // 
-            this.button13.ForeColor = System.Drawing.Color.Blue;
-            this.button13.Location = new System.Drawing.Point(308, 96);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(150, 36);
-            this.button13.TabIndex = 28;
-            this.button13.Text = "KÍCH HOẠT THẺ";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnActiveTicketMonth.ForeColor = System.Drawing.Color.Blue;
+            this.btnActiveTicketMonth.Location = new System.Drawing.Point(308, 96);
+            this.btnActiveTicketMonth.Name = "btnActiveTicketMonth";
+            this.btnActiveTicketMonth.Size = new System.Drawing.Size(150, 36);
+            this.btnActiveTicketMonth.TabIndex = 28;
+            this.btnActiveTicketMonth.Text = "KÍCH HOẠT THẺ";
+            this.btnActiveTicketMonth.UseVisualStyleBackColor = true;
             // 
             // label92
             // 
@@ -6097,15 +6097,15 @@
             this.button1.Text = "XUẤT EXCEL";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // btnAllTicketMonthSearch
+            // btnActiveTicketMonthSearch
             // 
-            this.btnAllTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
-            this.btnAllTicketMonthSearch.Location = new System.Drawing.Point(17, 96);
-            this.btnAllTicketMonthSearch.Name = "btnAllTicketMonthSearch";
-            this.btnAllTicketMonthSearch.Size = new System.Drawing.Size(114, 36);
-            this.btnAllTicketMonthSearch.TabIndex = 26;
-            this.btnAllTicketMonthSearch.Text = "TÌM THẺ";
-            this.btnAllTicketMonthSearch.UseVisualStyleBackColor = true;
+            this.btnActiveTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
+            this.btnActiveTicketMonthSearch.Location = new System.Drawing.Point(17, 96);
+            this.btnActiveTicketMonthSearch.Name = "btnActiveTicketMonthSearch";
+            this.btnActiveTicketMonthSearch.Size = new System.Drawing.Size(114, 36);
+            this.btnActiveTicketMonthSearch.TabIndex = 26;
+            this.btnActiveTicketMonthSearch.Text = "TÌM THẺ";
+            this.btnActiveTicketMonthSearch.UseVisualStyleBackColor = true;
             // 
             // label110
             // 
@@ -6117,17 +6117,17 @@
             this.label110.TabIndex = 3;
             this.label110.Text = "Thông tin";
             // 
-            // tbAllTicketMonthKeyWordSearch
+            // tbActiveTicketMonthKeyWordSearch
             // 
-            this.tbAllTicketMonthKeyWordSearch.Location = new System.Drawing.Point(153, 24);
-            this.tbAllTicketMonthKeyWordSearch.Name = "tbAllTicketMonthKeyWordSearch";
-            this.tbAllTicketMonthKeyWordSearch.Size = new System.Drawing.Size(200, 22);
-            this.tbAllTicketMonthKeyWordSearch.TabIndex = 2;
+            this.tbActiveTicketMonthKeyWordSearch.Location = new System.Drawing.Point(153, 24);
+            this.tbActiveTicketMonthKeyWordSearch.Name = "tbActiveTicketMonthKeyWordSearch";
+            this.tbActiveTicketMonthKeyWordSearch.Size = new System.Drawing.Size(200, 22);
+            this.tbActiveTicketMonthKeyWordSearch.TabIndex = 2;
             // 
-            // dgvAllTicketMonthList
+            // dgvActiveTicketMonthList
             // 
-            this.dgvAllTicketMonthList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllTicketMonthList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvActiveTicketMonthList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvActiveTicketMonthList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxColumn1,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn11,
@@ -6139,88 +6139,11 @@
             this.dataGridViewTextBoxColumn28,
             this.dataGridViewTextBoxColumn29,
             this.dataGridViewTextBoxColumn30});
-            this.dgvAllTicketMonthList.Location = new System.Drawing.Point(6, 191);
-            this.dgvAllTicketMonthList.Name = "dgvAllTicketMonthList";
-            this.dgvAllTicketMonthList.ReadOnly = true;
-            this.dgvAllTicketMonthList.Size = new System.Drawing.Size(1144, 412);
-            this.dgvAllTicketMonthList.TabIndex = 6;
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.HeaderText = "Chọn";
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
-            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Trạng thái";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.HeaderText = "Số ngày";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            this.dataGridViewTextBoxColumn20.DataPropertyName = "Identify";
-            this.dataGridViewTextBoxColumn20.HeaderText = "STT";
-            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            this.dataGridViewTextBoxColumn20.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            this.dataGridViewTextBoxColumn24.DataPropertyName = "Digit";
-            this.dataGridViewTextBoxColumn24.HeaderText = "Biển số";
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            this.dataGridViewTextBoxColumn25.DataPropertyName = "CustomerName";
-            this.dataGridViewTextBoxColumn25.HeaderText = "Tên";
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn27
-            // 
-            this.dataGridViewTextBoxColumn27.DataPropertyName = "Company";
-            this.dataGridViewTextBoxColumn27.HeaderText = "Công ty";
-            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
-            this.dataGridViewTextBoxColumn27.ReadOnly = true;
-            this.dataGridViewTextBoxColumn27.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            this.dataGridViewTextBoxColumn26.DataPropertyName = "Address";
-            this.dataGridViewTextBoxColumn26.HeaderText = "Địa chỉ";
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            this.dataGridViewTextBoxColumn26.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn28
-            // 
-            this.dataGridViewTextBoxColumn28.DataPropertyName = "RegistrationDate";
-            this.dataGridViewTextBoxColumn28.HeaderText = "Ngày vào";
-            this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
-            this.dataGridViewTextBoxColumn28.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn29
-            // 
-            this.dataGridViewTextBoxColumn29.DataPropertyName = "ExpirationDate";
-            this.dataGridViewTextBoxColumn29.HeaderText = "Ngày ra";
-            this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
-            this.dataGridViewTextBoxColumn29.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn30
-            // 
-            this.dataGridViewTextBoxColumn30.HeaderText = "Ngày truy cập";
-            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
-            this.dataGridViewTextBoxColumn30.ReadOnly = true;
-            this.dataGridViewTextBoxColumn30.Width = 150;
+            this.dgvActiveTicketMonthList.Location = new System.Drawing.Point(6, 191);
+            this.dgvActiveTicketMonthList.Name = "dgvActiveTicketMonthList";
+            this.dgvActiveTicketMonthList.ReadOnly = true;
+            this.dgvActiveTicketMonthList.Size = new System.Drawing.Size(1144, 412);
+            this.dgvActiveTicketMonthList.TabIndex = 6;
             // 
             // tabPageQuanLyHeThong
             // 
@@ -8409,6 +8332,91 @@
             this.Column19.ReadOnly = true;
             this.Column19.Width = 150;
             // 
+            // dataGridViewCheckBoxColumn1
+            // 
+            this.dataGridViewCheckBoxColumn1.HeaderText = "Chọn";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.ReadOnly = true;
+            this.dataGridViewCheckBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewCheckBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxColumn1.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Trạng thái";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.HeaderText = "Số ngày";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn20
+            // 
+            this.dataGridViewTextBoxColumn20.DataPropertyName = "Identify";
+            this.dataGridViewTextBoxColumn20.HeaderText = "STT";
+            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
+            this.dataGridViewTextBoxColumn20.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn24
+            // 
+            this.dataGridViewTextBoxColumn24.DataPropertyName = "Digit";
+            this.dataGridViewTextBoxColumn24.HeaderText = "Biển số";
+            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
+            this.dataGridViewTextBoxColumn24.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn25
+            // 
+            this.dataGridViewTextBoxColumn25.DataPropertyName = "CustomerName";
+            this.dataGridViewTextBoxColumn25.HeaderText = "Tên";
+            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
+            this.dataGridViewTextBoxColumn25.ReadOnly = true;
+            this.dataGridViewTextBoxColumn25.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn27
+            // 
+            this.dataGridViewTextBoxColumn27.DataPropertyName = "Company";
+            this.dataGridViewTextBoxColumn27.HeaderText = "Công ty";
+            this.dataGridViewTextBoxColumn27.Name = "dataGridViewTextBoxColumn27";
+            this.dataGridViewTextBoxColumn27.ReadOnly = true;
+            this.dataGridViewTextBoxColumn27.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn26
+            // 
+            this.dataGridViewTextBoxColumn26.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn26.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
+            this.dataGridViewTextBoxColumn26.ReadOnly = true;
+            this.dataGridViewTextBoxColumn26.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn28
+            // 
+            this.dataGridViewTextBoxColumn28.DataPropertyName = "RegistrationDate";
+            this.dataGridViewTextBoxColumn28.HeaderText = "Ngày đăng ký";
+            this.dataGridViewTextBoxColumn28.Name = "dataGridViewTextBoxColumn28";
+            this.dataGridViewTextBoxColumn28.ReadOnly = true;
+            this.dataGridViewTextBoxColumn28.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn29
+            // 
+            this.dataGridViewTextBoxColumn29.DataPropertyName = "ExpirationDate";
+            this.dataGridViewTextBoxColumn29.HeaderText = "Ngày hết hạn";
+            this.dataGridViewTextBoxColumn29.Name = "dataGridViewTextBoxColumn29";
+            this.dataGridViewTextBoxColumn29.ReadOnly = true;
+            this.dataGridViewTextBoxColumn29.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn30
+            // 
+            this.dataGridViewTextBoxColumn30.HeaderText = "Ngày truy cập";
+            this.dataGridViewTextBoxColumn30.Name = "dataGridViewTextBoxColumn30";
+            this.dataGridViewTextBoxColumn30.ReadOnly = true;
+            this.dataGridViewTextBoxColumn30.Visible = false;
+            this.dataGridViewTextBoxColumn30.Width = 150;
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -8525,7 +8533,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartList)).EndInit();
             this.tabPageKichHoatThe.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLostCardList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveCardList)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tabPageQuanLyVeThang.ResumeLayout(false);
@@ -8566,7 +8574,7 @@
             this.tabPageKichHoatVeThang.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAllTicketMonthList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvActiveTicketMonthList)).EndInit();
             this.tabPageQuanLyHeThong.ResumeLayout(false);
             this.tabQuanLyHeThong.ResumeLayout(false);
             this.tabPageCauHinhCoBan.ResumeLayout(false);
@@ -9053,13 +9061,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnActiveTicketMonth;
         private System.Windows.Forms.Label label92;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnAllTicketMonthSearch;
+        private System.Windows.Forms.Button btnActiveTicketMonthSearch;
         private System.Windows.Forms.Label label110;
-        private System.Windows.Forms.TextBox tbAllTicketMonthKeyWordSearch;
-        private System.Windows.Forms.DataGridView dgvAllTicketMonthList;
+        private System.Windows.Forms.TextBox tbActiveTicketMonthKeyWordSearch;
+        private System.Windows.Forms.DataGridView dgvActiveTicketMonthList;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage3;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage4;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
@@ -9326,17 +9334,6 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox tb_rfid_1;
         private System.Windows.Forms.TextBox tb_camera_url_4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogIdentify;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages2;
@@ -9357,12 +9354,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column32;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
-        private System.Windows.Forms.DataGridView dgvLostCardList;
+        private System.Windows.Forms.DataGridView dgvActiveCardList;
         private System.Windows.Forms.DataGridViewCheckBoxColumn SelectLostCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnLostCardID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn27;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn28;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
     }
 }
