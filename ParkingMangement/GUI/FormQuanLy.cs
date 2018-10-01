@@ -1855,6 +1855,20 @@ namespace ParkingMangement.GUI
 
             DataTable data = CarDAO.searchAllData(carDTO);
             dgvCarList.DataSource = data;
+
+            dgvCarList.DefaultCellStyle.ForeColor = Color.Black;
+            foreach (DataGridViewRow row in dgvCarList.Rows)
+            {
+                int isLostCard = Convert.ToInt32(dgvCarList.Rows[row.Index].Cells["CarLogIsLostCard"].Value);
+                if (isLostCard > 0)
+                {
+                    foreach (DataGridViewColumn col in dgvCarList.Columns)
+                    {
+                        dgvCarList[col.Index, row.Index].Style.ForeColor = Color.Red;
+                    }
+                }
+            }
+
         }
 
         private void searchCarByDateTime(DateTime startDate, DateTime endDate)
