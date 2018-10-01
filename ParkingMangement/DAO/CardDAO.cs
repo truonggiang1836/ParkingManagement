@@ -16,6 +16,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static DataTable GetLostCardData()
+        {
+            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.PartID order by SmartCard.Identify asc";
+            return Database.ExcuQuery(sql);
+        }
+
         public static bool Insert(CardDTO cartDTO)
         {
             string sql = "insert into SmartCard(ID, IsUsing, Type, DayUnlimit) values ('" + cartDTO.Id + "', '" + cartDTO.IsUsing + "', " + cartDTO.Type + ", '" + cartDTO.DayUnlimit + "')";

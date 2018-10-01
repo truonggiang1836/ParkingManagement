@@ -421,7 +421,12 @@ namespace ParkingMangement.GUI
 
         private void tabQuanLyDoanhThu_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
+            if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageThongKeDoanhThu"])
+            {
+                setFormatDateForDateTimePicker(dtDateSaleReport);
+                setFormatDateForDateTimePicker(dtStartDateSaleReport);
+                setFormatDateForDateTimePicker(dtEndDateSaleReport);
+            } else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
             {
                 loadPartDataToComboBox(cbLoaiXeTinhTienCongVan);
                 loadDataTinhTienTheoCongVan();
@@ -862,6 +867,9 @@ namespace ParkingMangement.GUI
                 loadPartList();
                 panelChinhSuaLoaiXe.Enabled = false;
                 btnUpdatePart.Text = Constant.sButtonEdit;
+            } else if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageKichHoatThe"])
+            {
+                loadLostCardList();
             }
         }
 
@@ -941,6 +949,16 @@ namespace ParkingMangement.GUI
                 tbCardIdentifyCreate.Text = lastIdentify + 1 + "";
 
                 dgvCardList.DataSource = data;
+            }
+        }
+
+        private void loadLostCardList()
+        {
+            dgvLostCardList.ReadOnly = false;
+            DataTable data = CardDAO.GetLostCardData();
+            if (data != null)
+            {
+                dgvLostCardList.DataSource = data;
             }
         }
 
@@ -1103,6 +1121,9 @@ namespace ParkingMangement.GUI
             {
                 setFormatTimeForDateTimePicker(dtStartTimeSaleReport);
                 setFormatTimeForDateTimePicker(dtEndTimeSaleReport);
+                setFormatDateForDateTimePicker(dtDateSaleReport);
+                setFormatDateForDateTimePicker(dtStartDateSaleReport);
+                setFormatDateForDateTimePicker(dtEndDateSaleReport);
 
                 loadUserDataToComboBox(cbNhanVienReport);
 
@@ -1127,6 +1148,8 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
                 loadTabPageTicketLog();
+                setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
+                setFormatDateForDateTimePicker(dtTicketLogExpirationDateSearch);
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
             {
                 addDataToRFIDComboBox();
@@ -1299,9 +1322,16 @@ namespace ParkingMangement.GUI
                 loadTicketMonthData();
                 loadPartDataToComboBox(cbTicketMonthPartCreate);
                 loadPartDataToComboBox(cbTicketMonthPartEdit);
+                clearInputTicketMonthInfo();
+                setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateCreate);
+                setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateCreate);
+                setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateEdit);
+                setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateEdit);
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
             {
                 loadRenewTicketMonthData();
+                setFormatDateForDateTimePicker(dtRenewDate);
+                setFormatDateForDateTimePicker(dtRenewExpirationDate);
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
                 //loadLostTicketMonthData();
@@ -1393,7 +1423,7 @@ namespace ParkingMangement.GUI
             cbTicketMonthPartCreate.SelectedIndex = 0;
 
             dateTimePickerTicketMonthRegistrationDateCreate.Value = DateTime.Now;
-            dateTimePickerTicketMonthExpirationDateCreate.Value = DateTime.Now;
+            dateTimePickerTicketMonthExpirationDateCreate.Value = DateTime.Now.AddDays(30);
             tbTicketMonthChargesAmountCreate.Text = "";
         }
 
@@ -1919,6 +1949,13 @@ namespace ParkingMangement.GUI
             dateTimePicker.ShowUpDown = true;
         }
 
+        public static void setFormatDateForDateTimePicker(DateTimePicker dateTimePicker)
+        {
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.CustomFormat = "dd-MM-yyyy";
+            dateTimePicker.ShowUpDown = true;
+        }
+
         private void tabQuanLyXe_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRa"])
@@ -1930,7 +1967,9 @@ namespace ParkingMangement.GUI
 
                 setFormatTimeForDateTimePicker(dateTimePickerCarTimeIn);
                 setFormatTimeForDateTimePicker(dateTimePickerCarTimeOut);
-                
+                setFormatDateForDateTimePicker(dateTimePickerCarDateIn);
+                setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
+
             } else if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRaVeThang"])
             {
                 //loadCarTicketMonthList();
@@ -1941,6 +1980,8 @@ namespace ParkingMangement.GUI
                 dateTimePickerCarTicketMonthTimeOut.Format = DateTimePickerFormat.Custom;
                 dateTimePickerCarTicketMonthTimeOut.CustomFormat = "HH:mm"; // Only use hours and minutes
                 dateTimePickerCarTicketMonthTimeOut.ShowUpDown = true;
+                setFormatDateForDateTimePicker(dateTimePickerCarTicketMonthDateIn);
+                setFormatDateForDateTimePicker(dateTimePickerCarTicketMonthDateOut);
             }
         }
 
@@ -2439,10 +2480,14 @@ namespace ParkingMangement.GUI
             if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
                 loadCarListForCashManagement();
+                setFormatDateForDateTimePicker(dtCashManagementStartDate);
+                setFormatDateForDateTimePicker(dtCashManagementEndDate);
             }
             else if(tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
                 loadCarListForCashManagement();
+                setFormatDateForDateTimePicker(dtCashManagementStartDate);
+                setFormatDateForDateTimePicker(dtCashManagementEndDate);
             } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
             {
                 loadUserAcessData();
@@ -2450,6 +2495,8 @@ namespace ParkingMangement.GUI
             {
                 //loadLogList();
                 loadLogTypeDataWithAllToComboBox(cbLogType);
+                setFormatDateForDateTimePicker(dtLogSearchStartTime);
+                setFormatDateForDateTimePicker(dtLogSearchEndTime);
             }
         }
 
@@ -3790,6 +3837,20 @@ namespace ParkingMangement.GUI
         private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
             _rawinput.KeyPressed -= OnKeyPressed;
+        }
+
+        private void btnKichHoatThe_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvLostCardList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectLostCard"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(checkCell.Value))
+                {
+                    string cardId = Convert.ToString(row.Cells["ID"].Value);
+                    CardDAO.UpdateIsUsing("1", cardId);
+                }
+            }
+            loadLostCardList();
         }
     }
 }
