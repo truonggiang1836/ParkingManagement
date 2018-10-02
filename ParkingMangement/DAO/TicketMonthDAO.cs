@@ -77,14 +77,15 @@ namespace ParkingMangement.DAO
             {
                 DateTime expirationDate = data.Rows[row].Field<DateTime>("ExpirationDate");
                 int daysRemaining = Convert.ToInt32((expirationDate - currentDate).TotalDays);
-                if (daysRemaining >= 0)
-                {
-                    data.Rows[row].SetField("DaysRemaining", daysRemaining);
-                }
-                else
-                {
-                    data.Rows[row].Delete();
-                }
+                //if (daysRemaining >= 0)
+                //{
+                //    data.Rows[row].SetField("DaysRemaining", daysRemaining);
+                //}
+                //else
+                //{
+                //    data.Rows[row].Delete();
+                //}
+                data.Rows[row].SetField("DaysRemaining", daysRemaining);
             }
             return data;
         }
@@ -106,14 +107,15 @@ namespace ParkingMangement.DAO
             {
                 DateTime expirationDate = data.Rows[row].Field<DateTime>("ExpirationDate");
                 int daysRemainingInDB = Convert.ToInt32((expirationDate - currentDate).TotalDays);
-                if (daysRemainingInDB >= 0)
-                {
-                    data.Rows[row].SetField("DaysRemaining", daysRemainingInDB);
-                }
-                else
-                {
-                    data.Rows[row].Delete();
-                }
+                //if (daysRemainingInDB >= 0)
+                //{
+                //    data.Rows[row].SetField("DaysRemaining", daysRemainingInDB);
+                //}
+                //else
+                //{
+                //    data.Rows[row].Delete();
+                //}
+                data.Rows[row].SetField("DaysRemaining", daysRemainingInDB);
                 if (daysRemaining != null && daysRemaining.GetValueOrDefault() < daysRemainingInDB)
                 {
                     data.Rows[row].Delete();

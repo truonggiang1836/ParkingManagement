@@ -1240,11 +1240,11 @@ namespace ParkingMangement.GUI
                 int daysRemaining = 0;
                 if (int.TryParse(tbRenewTicketMonthDaysRemainingSearch.Text, out daysRemaining))
                 {
-                    if (daysRemaining < 0)
-                    {
-                        MessageBox.Show(Constant.sMessageInvalidError);
-                        return;
-                    }
+                    //if (daysRemaining < 0)
+                    //{
+                    //    MessageBox.Show(Constant.sMessageInvalidError);
+                    //    return;
+                    //}
                 }
                 else
                 {
@@ -1339,6 +1339,7 @@ namespace ParkingMangement.GUI
                 loadRenewTicketMonthData();
                 setFormatDateForDateTimePicker(dtRenewDate);
                 setFormatDateForDateTimePicker(dtRenewExpirationDate);
+                dtRenewExpirationDate.Value = DateTime.Now.AddMonths(1);
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
                 loadLostTicketMonthData();
@@ -1430,7 +1431,7 @@ namespace ParkingMangement.GUI
             cbTicketMonthPartCreate.SelectedIndex = 0;
 
             dateTimePickerTicketMonthRegistrationDateCreate.Value = DateTime.Now;
-            dateTimePickerTicketMonthExpirationDateCreate.Value = DateTime.Now.AddDays(30);
+            dateTimePickerTicketMonthExpirationDateCreate.Value = DateTime.Now.AddMonths(1);
             tbTicketMonthChargesAmountCreate.Text = "";
         }
 

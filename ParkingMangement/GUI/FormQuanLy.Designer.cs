@@ -28,54 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode113 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode114 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode115 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode113,
-            treeNode114});
-            System.Windows.Forms.TreeNode treeNode116 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode117 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode118 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode116,
-            treeNode117});
-            System.Windows.Forms.TreeNode treeNode119 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode120 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode121 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode122 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode119,
-            treeNode120,
-            treeNode121});
-            System.Windows.Forms.TreeNode treeNode123 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode124 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode125 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode126 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode127 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode128 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode123,
-            treeNode124,
-            treeNode125,
-            treeNode126,
-            treeNode127});
-            System.Windows.Forms.TreeNode treeNode129 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode130 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode131 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode132 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode133 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode129,
-            treeNode130,
-            treeNode131,
-            treeNode132});
-            System.Windows.Forms.TreeNode treeNode134 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode135 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode136 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode137 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode138 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode134,
-            treeNode135,
-            treeNode136,
-            treeNode137});
-            System.Windows.Forms.TreeNode treeNode139 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode140 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.TreeNode treeNode141 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode142 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode143 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode141,
+            treeNode142});
+            System.Windows.Forms.TreeNode treeNode144 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode145 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode146 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode144,
+            treeNode145});
+            System.Windows.Forms.TreeNode treeNode147 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode148 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode149 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode150 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode147,
+            treeNode148,
+            treeNode149});
+            System.Windows.Forms.TreeNode treeNode151 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode152 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode153 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode154 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode155 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode156 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode151,
+            treeNode152,
+            treeNode153,
+            treeNode154,
+            treeNode155});
+            System.Windows.Forms.TreeNode treeNode157 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode158 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode159 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode160 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode161 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode157,
+            treeNode158,
+            treeNode159,
+            treeNode160});
+            System.Windows.Forms.TreeNode treeNode162 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode163 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode164 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode165 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode166 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode162,
+            treeNode163,
+            treeNode164,
+            treeNode165});
+            System.Windows.Forms.TreeNode treeNode167 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode168 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -5619,6 +5619,7 @@
             this.tbRenewPlusDate.Name = "tbRenewPlusDate";
             this.tbRenewPlusDate.Size = new System.Drawing.Size(133, 22);
             this.tbRenewPlusDate.TabIndex = 2;
+            this.tbRenewPlusDate.Text = "30";
             // 
             // panel25
             // 
@@ -6940,71 +6941,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode113.Name = "NodeName1";
-            treeNode113.Text = "Thông tin nhân sự";
-            treeNode114.Name = "NodeName2";
-            treeNode114.Text = "Dò bảng chấm công";
-            treeNode115.Name = "NodeQuanLyNhanSu";
-            treeNode115.Text = "Quản lý nhân sự";
-            treeNode116.Name = "NodeName3";
-            treeNode116.Text = "Xem thống kê";
-            treeNode117.Name = "NodeName4";
-            treeNode117.Text = "Điều chỉnh công thức tính tiền";
-            treeNode118.Name = "NodeQuanLyDoanhThu";
-            treeNode118.Text = "Quản lý doanh thu";
-            treeNode119.Name = "NodeName5";
-            treeNode119.Text = "Quản lý loại xe";
-            treeNode120.Name = "NodeName6";
-            treeNode120.Text = "Quản lý thẻ xe";
-            treeNode121.Name = "NodeName7";
-            treeNode121.Text = "Kích hoạt thẻ";
-            treeNode122.Name = "NodeQuanLyTheLoaiXe";
-            treeNode122.Text = "Quản lý thẻ xe - loại xe";
-            treeNode123.Name = "NodeName8";
-            treeNode123.Text = "Nhật ký vé tháng";
-            treeNode124.Name = "NodeName9";
-            treeNode124.Text = "Cập nhật thông tin vé tháng";
-            treeNode125.Name = "NodeName10";
-            treeNode125.Text = "Gia hạn vé tháng";
-            treeNode126.Name = "NodeName11";
-            treeNode126.Text = "Mất thẻ tháng";
-            treeNode127.Name = "NodeName12";
-            treeNode127.Text = "Kích hoạt vé tháng";
-            treeNode128.Name = "NodeQuanLyVeThang";
-            treeNode128.Text = "Quản lý vé tháng";
-            treeNode129.Name = "NodeName13";
-            treeNode129.Text = "Cấu hình cơ bản";
-            treeNode130.Name = "NodeName14";
-            treeNode130.Text = "Quản lý tiền thu";
-            treeNode131.Name = "NodeName15";
-            treeNode131.Text = "Phân quyền truy cập";
-            treeNode132.Name = "NodeName16";
-            treeNode132.Text = "Nhật ký hệ thống";
-            treeNode133.Name = "NodeQuanLyHeThong";
-            treeNode133.Text = "Quản lý hệ thống";
-            treeNode134.Name = "NodeName17";
-            treeNode134.Text = "Thiết lập ra vào";
-            treeNode135.Name = "NodeName18";
-            treeNode135.Text = "Tra cứu vào ra";
-            treeNode136.Name = "NodeName19";
-            treeNode136.Text = "Tra cứu vào ra vé tháng";
-            treeNode137.Name = "NodeName20";
-            treeNode137.Text = "Xem hộp đen";
-            treeNode138.Name = "NodeQuanLyXe";
-            treeNode138.Text = "Quản lý xe vào ra";
-            treeNode139.Name = "";
-            treeNode139.Text = "Lưu mất thẻ";
-            treeNode140.Name = "NodeName22";
-            treeNode140.Text = "Xem báo cáo F7";
+            treeNode141.Name = "NodeName1";
+            treeNode141.Text = "Thông tin nhân sự";
+            treeNode142.Name = "NodeName2";
+            treeNode142.Text = "Dò bảng chấm công";
+            treeNode143.Name = "NodeQuanLyNhanSu";
+            treeNode143.Text = "Quản lý nhân sự";
+            treeNode144.Name = "NodeName3";
+            treeNode144.Text = "Xem thống kê";
+            treeNode145.Name = "NodeName4";
+            treeNode145.Text = "Điều chỉnh công thức tính tiền";
+            treeNode146.Name = "NodeQuanLyDoanhThu";
+            treeNode146.Text = "Quản lý doanh thu";
+            treeNode147.Name = "NodeName5";
+            treeNode147.Text = "Quản lý loại xe";
+            treeNode148.Name = "NodeName6";
+            treeNode148.Text = "Quản lý thẻ xe";
+            treeNode149.Name = "NodeName7";
+            treeNode149.Text = "Kích hoạt thẻ";
+            treeNode150.Name = "NodeQuanLyTheLoaiXe";
+            treeNode150.Text = "Quản lý thẻ xe - loại xe";
+            treeNode151.Name = "NodeName8";
+            treeNode151.Text = "Nhật ký vé tháng";
+            treeNode152.Name = "NodeName9";
+            treeNode152.Text = "Cập nhật thông tin vé tháng";
+            treeNode153.Name = "NodeName10";
+            treeNode153.Text = "Gia hạn vé tháng";
+            treeNode154.Name = "NodeName11";
+            treeNode154.Text = "Mất thẻ tháng";
+            treeNode155.Name = "NodeName12";
+            treeNode155.Text = "Kích hoạt vé tháng";
+            treeNode156.Name = "NodeQuanLyVeThang";
+            treeNode156.Text = "Quản lý vé tháng";
+            treeNode157.Name = "NodeName13";
+            treeNode157.Text = "Cấu hình cơ bản";
+            treeNode158.Name = "NodeName14";
+            treeNode158.Text = "Quản lý tiền thu";
+            treeNode159.Name = "NodeName15";
+            treeNode159.Text = "Phân quyền truy cập";
+            treeNode160.Name = "NodeName16";
+            treeNode160.Text = "Nhật ký hệ thống";
+            treeNode161.Name = "NodeQuanLyHeThong";
+            treeNode161.Text = "Quản lý hệ thống";
+            treeNode162.Name = "NodeName17";
+            treeNode162.Text = "Thiết lập ra vào";
+            treeNode163.Name = "NodeName18";
+            treeNode163.Text = "Tra cứu vào ra";
+            treeNode164.Name = "NodeName19";
+            treeNode164.Text = "Tra cứu vào ra vé tháng";
+            treeNode165.Name = "NodeName20";
+            treeNode165.Text = "Xem hộp đen";
+            treeNode166.Name = "NodeQuanLyXe";
+            treeNode166.Text = "Quản lý xe vào ra";
+            treeNode167.Name = "";
+            treeNode167.Text = "Lưu mất thẻ";
+            treeNode168.Name = "NodeName22";
+            treeNode168.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode115,
-            treeNode118,
-            treeNode122,
-            treeNode128,
-            treeNode133,
-            treeNode138,
-            treeNode139,
-            treeNode140});
+            treeNode143,
+            treeNode146,
+            treeNode150,
+            treeNode156,
+            treeNode161,
+            treeNode166,
+            treeNode167,
+            treeNode168});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
