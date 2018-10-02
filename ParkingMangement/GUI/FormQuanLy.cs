@@ -1163,6 +1163,7 @@ namespace ParkingMangement.GUI
                 loadTabPageTicketLog();
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
                 setFormatDateForDateTimePicker(dtTicketLogExpirationDateSearch);
+                dtTicketLogExpirationDateSearch.Value = DateTime.Now.AddMonths(1);
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
             {
                 addDataToRFIDComboBox();
