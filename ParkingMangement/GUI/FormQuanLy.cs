@@ -1307,16 +1307,6 @@ namespace ParkingMangement.GUI
             dgvRenewTicketMonthList.DataSource = data;
         }
 
-        private void loadLostTicketMonthData()
-        {
-            DataTable data = TicketMonthDAO.GetAllLostTicketData();
-            dgvLostTicketMonthList.DataSource = data;
-            if (data != null)
-            {
-                loadLostTicketMonthInfoFromDataGridViewRow(0);
-            }
-        }
-
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageXemNhatKyVeThang"])
@@ -1343,7 +1333,7 @@ namespace ParkingMangement.GUI
                 dtRenewExpirationDate.Value = DateTime.Now.AddMonths(1);
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
-                loadLostTicketMonthData();
+                searchLostTicketMonth();
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
             {
                 searchActiveTicketMonth();
@@ -1441,6 +1431,12 @@ namespace ParkingMangement.GUI
             if (string.IsNullOrWhiteSpace(tbTicketMonthIDCreate.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
+                return false;
+            }
+            DataTable dtCard = CardDAO.GetCardByID(tbTicketMonthIDCreate.Text);
+            if (dtCard == null || dtCard.Rows.Count == 0)
+            {
+                MessageBox.Show(Constant.sMessageCardIdNotExist);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitCreate.Text))
@@ -1549,7 +1545,12 @@ namespace ParkingMangement.GUI
         private void searchLostTicketMonth()
         {
             string key = tbLostTicketMonthKeyWordSearch.Text;
-            dgvLostTicketMonthList.DataSource = TicketMonthDAO.searchLostTicketData(key);
+            DataTable data = TicketMonthDAO.searchLostTicketData(key);
+            dgvLostTicketMonthList.DataSource = data;
+            if (data != null)
+            {
+                loadLostTicketMonthInfoFromDataGridViewRow(0);
+            }
         }
 
         private void searchActiveTicketMonth()
@@ -1755,7 +1756,7 @@ namespace ParkingMangement.GUI
             int identify = Convert.ToInt32(tbLostTicketMonthIdentify.Text);
             string id = tbLostTicketMonthID.Text;
             TicketMonthDAO.updateTicketByID(id, identify);
-            loadLostTicketMonthData();
+            searchLostTicketMonth();
         }
 
         private void loadCarInfoFromDataGridViewRow(int Index)
