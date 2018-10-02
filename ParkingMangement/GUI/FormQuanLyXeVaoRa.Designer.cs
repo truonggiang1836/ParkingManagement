@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCarList = new System.Windows.Forms.DataGridView();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnXemDanhSachXeTon = new System.Windows.Forms.Button();
@@ -92,6 +96,14 @@
             // 
             // dgvCarList
             // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCarList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCarList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CarLogIdentify,
@@ -154,7 +166,7 @@
             // 
             // btnXemDanhSachXeTon
             // 
-            this.btnXemDanhSachXeTon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXemDanhSachXeTon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXemDanhSachXeTon.Location = new System.Drawing.Point(16, 267);
             this.btnXemDanhSachXeTon.Name = "btnXemDanhSachXeTon";
             this.btnXemDanhSachXeTon.Size = new System.Drawing.Size(395, 34);
@@ -173,19 +185,21 @@
             // 
             // dateTimePickerCarTimeOut
             // 
+            this.dateTimePickerCarTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerCarTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerCarTimeOut.Location = new System.Drawing.Point(300, 48);
             this.dateTimePickerCarTimeOut.Name = "dateTimePickerCarTimeOut";
-            this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(111, 20);
+            this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(111, 22);
             this.dateTimePickerCarTimeOut.TabIndex = 28;
             this.dateTimePickerCarTimeOut.Value = new System.DateTime(2018, 9, 27, 23, 59, 0, 0);
             // 
             // dateTimePickerCarTimeIn
             // 
+            this.dateTimePickerCarTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerCarTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerCarTimeIn.Location = new System.Drawing.Point(300, 14);
             this.dateTimePickerCarTimeIn.Name = "dateTimePickerCarTimeIn";
-            this.dateTimePickerCarTimeIn.Size = new System.Drawing.Size(111, 20);
+            this.dateTimePickerCarTimeIn.Size = new System.Drawing.Size(111, 22);
             this.dateTimePickerCarTimeIn.TabIndex = 27;
             this.dateTimePickerCarTimeIn.Value = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
             // 
@@ -202,19 +216,21 @@
             // comboBoxNhanVienVao
             // 
             this.comboBoxNhanVienVao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNhanVienVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxNhanVienVao.FormattingEnabled = true;
             this.comboBoxNhanVienVao.Location = new System.Drawing.Point(96, 150);
             this.comboBoxNhanVienVao.Name = "comboBoxNhanVienVao";
-            this.comboBoxNhanVienVao.Size = new System.Drawing.Size(111, 21);
+            this.comboBoxNhanVienVao.Size = new System.Drawing.Size(111, 24);
             this.comboBoxNhanVienVao.TabIndex = 25;
             // 
             // comboBoxNhanVienRa
             // 
             this.comboBoxNhanVienRa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNhanVienRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxNhanVienRa.FormattingEnabled = true;
             this.comboBoxNhanVienRa.Location = new System.Drawing.Point(300, 150);
             this.comboBoxNhanVienRa.Name = "comboBoxNhanVienRa";
-            this.comboBoxNhanVienRa.Size = new System.Drawing.Size(111, 21);
+            this.comboBoxNhanVienRa.Size = new System.Drawing.Size(111, 24);
             this.comboBoxNhanVienRa.TabIndex = 24;
             // 
             // label44
@@ -249,9 +265,10 @@
             // 
             // tbCarDigitSearch
             // 
+            this.tbCarDigitSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarDigitSearch.Location = new System.Drawing.Point(300, 82);
             this.tbCarDigitSearch.Name = "tbCarDigitSearch";
-            this.tbCarDigitSearch.Size = new System.Drawing.Size(111, 20);
+            this.tbCarDigitSearch.Size = new System.Drawing.Size(111, 22);
             this.tbCarDigitSearch.TabIndex = 20;
             // 
             // label41
@@ -320,7 +337,7 @@
             // 
             // btnSearchCar
             // 
-            this.btnSearchCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchCar.Location = new System.Drawing.Point(16, 187);
             this.btnSearchCar.Name = "btnSearchCar";
             this.btnSearchCar.Size = new System.Drawing.Size(395, 34);
@@ -331,7 +348,7 @@
             // 
             // btnSaveLostCard
             // 
-            this.btnSaveLostCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveLostCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveLostCard.ForeColor = System.Drawing.Color.Red;
             this.btnSaveLostCard.Location = new System.Drawing.Point(16, 307);
             this.btnSaveLostCard.Name = "btnSaveLostCard";
@@ -343,7 +360,7 @@
             // 
             // btnExportDanhSachXe
             // 
-            this.btnExportDanhSachXe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportDanhSachXe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportDanhSachXe.Location = new System.Drawing.Point(16, 227);
             this.btnExportDanhSachXe.Name = "btnExportDanhSachXe";
             this.btnExportDanhSachXe.Size = new System.Drawing.Size(395, 34);
@@ -354,32 +371,36 @@
             // 
             // tbCarIDSearch
             // 
+            this.tbCarIDSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarIDSearch.Location = new System.Drawing.Point(96, 116);
             this.tbCarIDSearch.Name = "tbCarIDSearch";
-            this.tbCarIDSearch.Size = new System.Drawing.Size(315, 20);
+            this.tbCarIDSearch.Size = new System.Drawing.Size(315, 22);
             this.tbCarIDSearch.TabIndex = 11;
             // 
             // tbCarIdentifySearch
             // 
+            this.tbCarIdentifySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarIdentifySearch.Location = new System.Drawing.Point(96, 82);
             this.tbCarIdentifySearch.Name = "tbCarIdentifySearch";
-            this.tbCarIdentifySearch.Size = new System.Drawing.Size(111, 20);
+            this.tbCarIdentifySearch.Size = new System.Drawing.Size(111, 22);
             this.tbCarIdentifySearch.TabIndex = 10;
             // 
             // dateTimePickerCarDateOut
             // 
+            this.dateTimePickerCarDateOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerCarDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerCarDateOut.Location = new System.Drawing.Point(96, 48);
             this.dateTimePickerCarDateOut.Name = "dateTimePickerCarDateOut";
-            this.dateTimePickerCarDateOut.Size = new System.Drawing.Size(189, 20);
+            this.dateTimePickerCarDateOut.Size = new System.Drawing.Size(189, 22);
             this.dateTimePickerCarDateOut.TabIndex = 8;
             // 
             // dateTimePickerCarDateIn
             // 
+            this.dateTimePickerCarDateIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePickerCarDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerCarDateIn.Location = new System.Drawing.Point(96, 14);
             this.dateTimePickerCarDateIn.Name = "dateTimePickerCarDateIn";
-            this.dateTimePickerCarDateIn.Size = new System.Drawing.Size(189, 20);
+            this.dateTimePickerCarDateIn.Size = new System.Drawing.Size(189, 22);
             this.dateTimePickerCarDateIn.TabIndex = 6;
             // 
             // label40
@@ -487,6 +508,8 @@
             // Column25
             // 
             this.Column25.DataPropertyName = "TimeStart";
+            dataGridViewCellStyle6.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column25.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column25.HeaderText = "Thời gian vào";
             this.Column25.Name = "Column25";
             this.Column25.ReadOnly = true;
@@ -495,6 +518,8 @@
             // Column26
             // 
             this.Column26.DataPropertyName = "TimeEnd";
+            dataGridViewCellStyle7.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column26.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column26.HeaderText = "Thời gian ra";
             this.Column26.Name = "Column26";
             this.Column26.ReadOnly = true;
@@ -553,6 +578,8 @@
             // Column34
             // 
             this.Column34.DataPropertyName = "DateUpdate";
+            dataGridViewCellStyle8.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column34.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column34.HeaderText = "Ngày xử lý";
             this.Column34.Name = "Column34";
             this.Column34.ReadOnly = true;
@@ -566,6 +593,7 @@
             this.Controls.Add(this.dgvCarList);
             this.Controls.Add(this.panel10);
             this.Name = "FormQuanLyXeVaoRa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý xe vào ra";
             this.Load += new System.EventHandler(this.FormQuanLyXeVaoRa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).EndInit();

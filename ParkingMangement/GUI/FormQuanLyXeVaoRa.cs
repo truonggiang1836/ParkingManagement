@@ -28,6 +28,8 @@ namespace ParkingMangement.GUI
 
             FormQuanLy.setFormatTimeForDateTimePicker(dateTimePickerCarTimeIn);
             FormQuanLy.setFormatTimeForDateTimePicker(dateTimePickerCarTimeOut);
+            FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateIn);
+            FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
         }
 
         private void btnSearchCar_Click(object sender, EventArgs e)
