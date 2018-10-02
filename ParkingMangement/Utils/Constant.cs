@@ -57,7 +57,7 @@ namespace ParkingMangement.Utils
         public static string sMessageTicketMonthIdNullError = "Mã thẻ không được rỗng";
         public static string sMessageTicketMonthIdDuplicateError = "Mã thẻ không được trùng";
         public static string sMessageTicketMonthDigitNullError = "Biển số không được rỗng";
-        public static string sMessageNoChooseTicketMonthError = "Vui lòng chọn vé tháng cần gia hạn";
+        public static string sMessageNoChooseDataError = "Vui lòng chọn dữ liệu cần xử lý";
         public static string sMessageRenewPlusDateInvalidError = "Số ngày gia hạn không hợp lệ";
 
         // Config

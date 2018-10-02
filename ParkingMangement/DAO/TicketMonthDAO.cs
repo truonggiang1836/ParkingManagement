@@ -17,7 +17,9 @@ namespace ParkingMangement.DAO
         private static string sqlGetAllNearExpiredTicketData = "select Part.PartName, TicketMonth.Identify, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from [TicketMonth], [Part] where TicketMonth.IDPart = Part.PartID";
 
-        private static string sqlGetAllLostTicketData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, Car.DateLostCard, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from [TicketMonth], [Part], [Car], [UserCar] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = Car.ID and TicketMonth.Account = UserCar.UserID and Car.IsLostCard = 1";
+        private static string sqlGetAllLostTicketData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, Car.DateLostCard, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from [TicketMonth], [Part], [Car], [UserCar], [SmartCard] where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IDPart = Part.PartID and TicketMonth.ID = Car.ID and TicketMonth.Account = UserCar.UserID and Car.IsLostCard > 0";
+
+        private static string sqlGetAllActiveTicketData = "select TicketMonth.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Company, TicketMonth.Address, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, Car.DateLostCard from [TicketMonth], [SmartCard], [Car] where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.ID = Car.ID and Car.IsLostCard > 0";
 
         private static string sqlOrderByIdentify = " order by TicketMonth.Identify asc";
         public static DataTable GetAllData()
@@ -138,6 +140,26 @@ namespace ParkingMangement.DAO
         public static DataTable searchLostTicketData(string key)
         {
             string sql = sqlGetAllLostTicketData;
+            if (!string.IsNullOrEmpty(key))
+            {
+                sql += " and (TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
+                    + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.Address like '%" + key + "%')";
+            }
+            sql += sqlOrderByIdentify;
+            return Database.ExcuQuery(sql);
+        }
+
+        public static DataTable GetAllActiveTicketData()
+        {
+            string sql = sqlGetAllActiveTicketData;
+            sql += sqlOrderByIdentify;
+            DataTable data = Database.ExcuQuery(sql);
+            return data;
+        }
+
+        public static DataTable searchActiveTicketData(string key)
+        {
+            string sql = sqlGetAllActiveTicketData;
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key

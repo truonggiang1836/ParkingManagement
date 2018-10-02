@@ -1316,17 +1316,11 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void loadAllTicketMonthData()
-        {
-            DataTable data = TicketMonthDAO.GetAllLostTicketData();
-            dgvActiveTicketMonthList.DataSource = data;
-        }
-
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageXemNhatKyVeThang"])
             {
-                //loadTicketLogData();
+                loadTicketLogData();
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageTaoMoiVeThang"])
             {
@@ -1347,10 +1341,10 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dtRenewExpirationDate);
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
-                //loadLostTicketMonthData();
+                loadLostTicketMonthData();
             } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
             {
-                
+                searchActiveTicketMonth();
             }
         }
 
@@ -1554,6 +1548,12 @@ namespace ParkingMangement.GUI
         {
             string key = tbLostTicketMonthKeyWordSearch.Text;
             dgvLostTicketMonthList.DataSource = TicketMonthDAO.searchLostTicketData(key);
+        }
+
+        private void searchActiveTicketMonth()
+        {
+            string key = tbActiveTicketMonthKeyWordSearch.Text;
+            dgvActiveTicketMonthList.DataSource = TicketMonthDAO.searchActiveTicketData(key);
         }
 
         private void deleteTicketMonth(int currentRow)
@@ -2146,7 +2146,6 @@ namespace ParkingMangement.GUI
             foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
             {
                 bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
-                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
                 if (isChoose)
                 {
                     return true;
@@ -2159,7 +2158,7 @@ namespace ParkingMangement.GUI
         {
             if (!isChosenRenewTicketMonthData())
             {
-                MessageBox.Show(Constant.sMessageNoChooseTicketMonthError);
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
                 return;
             }
             DateTime expirationDate = dtRenewExpirationDate.Value.Date;
@@ -2179,7 +2178,7 @@ namespace ParkingMangement.GUI
         {
             if (!isChosenRenewTicketMonthData())
             {
-                MessageBox.Show(Constant.sMessageNoChooseTicketMonthError);
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
                 return;
             }
             int plusDate = 0;
@@ -3869,6 +3868,43 @@ namespace ParkingMangement.GUI
         private void btnTimTheBiMat_Click(object sender, EventArgs e)
         {
             searchLostCard();
+        }
+
+        private void btnActiveTicketMonthSearch_Click(object sender, EventArgs e)
+        {
+            searchActiveTicketMonth();
+        }
+
+        private void btnActiveTicketMonth_Click(object sender, EventArgs e)
+        {
+            if (!isChosenActiveTicketMonthData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            foreach (DataGridViewRow row in dgvActiveTicketMonthList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectActiveTicketMonth"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(checkCell.Value))
+                {
+                    string cardId = Convert.ToString(row.Cells["ColumnActiveTicketCardID"].Value);
+                    CardDAO.UpdateIsUsing("1", cardId);
+                }
+            }
+            searchActiveTicketMonth();
+        }
+
+        private bool isChosenActiveTicketMonthData()
+        {
+            foreach (DataGridViewRow row in dgvActiveTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["SelectActiveTicketMonth"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
