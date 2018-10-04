@@ -3892,6 +3892,7 @@ namespace ParkingMangement.GUI
                 {
                     string cardId = Convert.ToString(row.Cells["ColumnActiveTicketCardID"].Value);
                     CardDAO.UpdateIsUsing("1", cardId);
+                    CarDAO.DeleteLostCard(cardId);
                 }
             }
             searchActiveTicketMonth();

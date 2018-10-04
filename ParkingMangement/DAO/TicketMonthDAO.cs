@@ -116,7 +116,7 @@ namespace ParkingMangement.DAO
                 //    data.Rows[row].Delete();
                 //}
                 data.Rows[row].SetField("DaysRemaining", daysRemainingInDB);
-                if (daysRemaining != null && daysRemaining.GetValueOrDefault() < daysRemainingInDB)
+                if (daysRemaining != null && daysRemaining.GetValueOrDefault() != daysRemainingInDB)
                 {
                     data.Rows[row].Delete();
                 }

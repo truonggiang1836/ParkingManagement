@@ -393,6 +393,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuNonQuery(sql);
         }
 
+        public static bool DeleteLostCard(string cardId)
+        {
+            string sql = "delete from [Car] where ID = '" + cardId + "' and IsLostCard > 0";
+            return Database.ExcuNonQuery(sql);
+        }
+
         public static bool isCarIn(string id)
         {
             DataTable dt = GetCarByID(id);
