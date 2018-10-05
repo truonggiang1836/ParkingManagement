@@ -3648,32 +3648,23 @@ namespace ParkingMangement.GUI
             exportDanhSachXeThangToExcel(1, 1);
         }
 
-        private void dgvCardList_MouseClick(object sender, MouseEventArgs ev)
-        {
-            if (ev.Button == MouseButtons.Right)
-            {
-                ContextMenu m = new ContextMenu();
-                MenuItem menuItem = new MenuItem(Constant.sButtonDelete);
-                int currentRow = dgvCardList.HitTest(ev.X, ev.Y).RowIndex;
-                menuItem.Click += new EventHandler((s, e) => Delete_Card_Click(s, e, currentRow));
-                m.MenuItems.Add(menuItem);
-
-                m.Show(dgvCardList, new Point(ev.X, ev.Y));
-            }
-        }
-
         void Delete_Card_Click(Object sender, System.EventArgs e, int currentRow)
         {
-            showConfirmDeleteCard(currentRow);
+            if (!isChosenCard())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            showConfirmDeleteCard();
         }
 
-        private void showConfirmDeleteCard(int currentRow)
+        private void showConfirmDeleteCard()
         {
             DialogResult dialogResult = MessageBox.Show(Constant.sMessageConfirmDelete, Constant.sTitleDelete, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 //do something
-                deleteCard(currentRow);
+                deleteCard();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -3681,10 +3672,17 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void deleteCard(int currentRow)
+        private void deleteCard()
         {
-            string cardID = Convert.ToString(dgvCardList.Rows[currentRow].Cells["CardID"].Value);
-            CardDAO.Delete(cardID);
+            foreach (DataGridViewRow row in dgvCardList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectCard"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(checkCell.Value))
+                {
+                    string cardId = Convert.ToString(row.Cells["CardID"].Value);
+                    CardDAO.Delete(cardId);
+                }
+            }
             loadCardList();
         }
 
@@ -3909,6 +3907,33 @@ namespace ParkingMangement.GUI
                 }
             }
             return false;
+        }
+
+        private bool isChosenCard()
+        {
+            foreach (DataGridViewRow row in dgvCardList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["SelectCard"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void dgvCardList_MouseClick(object sender, MouseEventArgs ev)
+        {
+            if (ev.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                MenuItem menuItem = new MenuItem(Constant.sButtonDelete);
+                int currentRow = dgvCardList.HitTest(ev.X, ev.Y).RowIndex;
+                menuItem.Click += new EventHandler((s, e) => Delete_Card_Click(s, e, currentRow));
+                m.MenuItems.Add(menuItem);
+
+                m.Show(dgvCardList, new Point(ev.X, ev.Y));
+            }
         }
     }
 }
