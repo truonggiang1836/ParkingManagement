@@ -179,6 +179,8 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB(bool isTicketCard)
         {
+            labelDigitIn.Text = "-";
+            labelDigitOut.Text = "-";
             if (isCarIn())
             {
                 if (KiemTraXeChuaRa())

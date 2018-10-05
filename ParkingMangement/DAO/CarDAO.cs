@@ -389,6 +389,7 @@ namespace ParkingMangement.DAO
             if (cardId != null)
             {
                 CardDAO.UpdateIsUsing("0", cardId);
+                CardDAO.UpdateDayUnlimit(carDTO.DateLostCard, cardId);
             }
             return Database.ExcuNonQuery(sql);
         }

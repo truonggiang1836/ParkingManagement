@@ -41,6 +41,12 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
+        public static void UpdateDayUnlimit(DateTime dayUnlimit, string cardId)
+        {
+            string sql = "update [SmartCard] set DayUnlimit = '" + dayUnlimit + "' where ID = '" + cardId + "'";
+            Database.ExcuNonQuery(sql);
+        }
+
         public static DataTable SearchData(string key)
         {
             string sql = "select SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.PartID and "
