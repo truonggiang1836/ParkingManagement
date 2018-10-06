@@ -118,8 +118,16 @@ namespace ParkingMangement.GUI
                     formInOutSetting.Show();
                     break;
                 case Keys.F7:
-                    Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
-                    formQuanLyXeVaoRa.Show();
+                    string functionId = Constant.FUNCTION_ID_NHAN_VIEN;
+                    string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+                    if (listFunctionSec.Contains(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString()))
+                    {
+                        Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
+                        formQuanLyXeVaoRa.Show();
+                    } else
+                    {
+                        MessageBox.Show(Constant.sMessageCanNotSeeReport);
+                    }
                     break;
                 case Keys.F11:
                     var formLogout = new FormLogout();

@@ -1439,6 +1439,11 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageCardIdNotExist);
                 return false;
             }
+            if (!CardDAO.isUsingByCardID(tbTicketMonthIDCreate.Text))
+            {
+                MessageBox.Show(Constant.sMessageCardIsLost);
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitCreate.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
@@ -2218,6 +2223,14 @@ namespace ParkingMangement.GUI
 
         private void saveLostCard()
         {
+            string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+            if (!listFunctionSec.Contains(Constant.NODE_VALUE_LUU_MAT_THE.ToString()))
+            {
+                MessageBox.Show(Constant.sMessageCanNotSaveLostCard);
+                return;
+            }
+
             if (!string.IsNullOrWhiteSpace(tbCarLogIdentify.Text))
             {
                 int identify = Convert.ToInt32(tbCarLogIdentify.Text);
@@ -2293,6 +2306,30 @@ namespace ParkingMangement.GUI
             tbTicketSpace2.Text = ConfigDAO.GetTicketMonthSpace().ToString();
             tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
+
+            loadQuyenNhanVien();
+        }
+
+        private void loadQuyenNhanVien()
+        {
+            string functionId = Constant.FUNCTION_ID_NHAN_VIEN;
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+            if (listFunctionSec.Contains(Constant.NODE_VALUE_LUU_MAT_THE.ToString()))
+            {
+                cbSaveLostCardAccess.Checked = true;
+            }
+            else
+            {
+                cbSaveLostCardAccess.Checked = false;
+            }
+            if (listFunctionSec.Contains(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString()))
+            {
+                cbSeeReportAccess.Checked = true;
+            }
+            else
+            {
+                cbSeeReportAccess.Checked = false;
+            }
         }
 
         private void saveCauHinhHienThi()
@@ -2415,6 +2452,35 @@ namespace ParkingMangement.GUI
             {
                 MessageBox.Show(Constant.sMessageUpdateSuccess);
             }
+
+            saveQuyenNhanVien();
+        }
+
+        private void saveQuyenNhanVien()
+        {
+            string functionId = Constant.FUNCTION_ID_NHAN_VIEN;
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+            var list = new List<string>(listFunctionSec);
+            if (listFunctionSec.Contains(Constant.NODE_VALUE_LUU_MAT_THE.ToString()))
+            {
+                list.Remove(Constant.NODE_VALUE_LUU_MAT_THE.ToString());
+            }
+            if (cbSaveLostCardAccess.Checked)
+            {
+                list.Add(Constant.NODE_VALUE_LUU_MAT_THE.ToString());
+            }
+
+            if (listFunctionSec.Contains(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString()))
+            {
+                list.Remove(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString());
+            }
+            if (cbSeeReportAccess.Checked)
+            {
+                list.Add(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString());
+            }
+            listFunctionSec = list.ToArray();
+            String functionSec = string.Join(",", listFunctionSec);
+            FunctionalDAO.UpdateFunctionSec(functionSec, functionId);
         }
 
         private void loadCarListForCashManagement()
@@ -2492,7 +2558,11 @@ namespace ParkingMangement.GUI
 
         private void tabQuanLyHeThong_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
+            if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageCauHinhCoBan"])
+            {
+                loadCauHinhHienThiData();
+            }
+            else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
                 loadCarListForCashManagement();
                 setFormatDateForDateTimePicker(dtCashManagementStartDate);
@@ -2535,10 +2605,13 @@ namespace ParkingMangement.GUI
             foreach (string nodeID in listFunctionSec)
             {
                 string nodeName = Constant.NODE_NAME + nodeID;
-                TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true)[0];
-                if (treeNode != null)
+                if (treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true) != null && treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true).Length > 0)
                 {
-                    treeNode.Checked = true;
+                    TreeNode treeNode = treeViewPhanQuyenTruyCap.Nodes.Find(nodeName, true)[0];
+                    if (treeNode != null)
+                    {
+                        treeNode.Checked = true;
+                    }
                 }
             }
             if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyNhanSu))

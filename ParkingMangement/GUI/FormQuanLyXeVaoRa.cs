@@ -16,6 +16,7 @@ namespace ParkingMangement.GUI
 {
     public partial class FormQuanLyXeVaoRa : Form
     {
+        private bool isXemDanhSachXeTon = false;
         public FormQuanLyXeVaoRa()
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace ParkingMangement.GUI
 
         private void btnSearchCar_Click(object sender, EventArgs e)
         {
+            isXemDanhSachXeTon = false;
             searchCar();
         }
 
@@ -178,6 +180,7 @@ namespace ParkingMangement.GUI
 
         private void btnXemDanhSachXeTon_Click(object sender, EventArgs e)
         {
+            isXemDanhSachXeTon = true;
             searchXeTon();
         }
 
@@ -188,6 +191,14 @@ namespace ParkingMangement.GUI
 
         private void saveLostCard()
         {
+            string functionId = Constant.FUNCTION_ID_NHAN_VIEN;
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+            if (!listFunctionSec.Contains(Constant.NODE_VALUE_LUU_MAT_THE.ToString()))
+            {
+                MessageBox.Show(Constant.sMessageCanNotSaveLostCard);
+                return;
+            }
+
             if (!string.IsNullOrWhiteSpace(tbCarLogIdentify.Text))
             {
                 int identify = Convert.ToInt32(tbCarLogIdentify.Text);
@@ -212,7 +223,14 @@ namespace ParkingMangement.GUI
                     if (CarDAO.UpdateLostCard(carDTO))
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
-                        searchCar();
+                        if (isXemDanhSachXeTon)
+                        {
+                            searchXeTon();
+                        }
+                        else
+                        {
+                            searchCar();
+                        }
                     }
                     else
                     {
@@ -224,6 +242,7 @@ namespace ParkingMangement.GUI
 
         private void btnExportDanhSachXe_Click(object sender, EventArgs e)
         {
+            isXemDanhSachXeTon = false;
             searchMatThe();
         }
     }
