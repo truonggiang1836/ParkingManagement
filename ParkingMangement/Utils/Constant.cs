@@ -28,6 +28,8 @@ namespace ParkingMangement.Utils
         public static string sMessageDuplicateDataError = "Dữ liệu đã tồn tại";
         public static string sMessageInvalidError = "Dữ liệu không hợp lệ";
         public static string FUNCTION_ID_NHAN_VIEN = "Nh";
+        public static string sMessageCanNotSeeReport = "Bạn không có quyền xem báo cáo";
+        public static string sMessageCanNotSaveLostCard = "Bạn không có quyền lưu mất thẻ";
 
         // user
         public static string sMessageUpdatePasswordSuccess = "Cập nhật mật khẩu thành công";
@@ -104,5 +106,7 @@ namespace ParkingMangement.Utils
 
         // path file
         public static String sFileNameConfig = "Config.xml";
+
+        public static String sDateTimeFormatForQuery = "yyyy/MM/dd HH:mm:ss";
     }
 }

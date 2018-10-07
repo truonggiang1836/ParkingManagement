@@ -1,4 +1,5 @@
 ﻿using ParkingMangement.DTO;
+using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -36,7 +37,7 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Log.LogTypeID like '" + logTypeID + "'";
             }
-            sql += " and Log.ProcessDate >= #" + startTime + "# and Log.ProcessDate <= #" + endTime + "#";
+            sql += " and Log.ProcessDate >= #" + startTime.ToString(Constant.sDateTimeFormatForQuery) + "# and Log.ProcessDate <= #" + endTime.ToString(Constant.sDateTimeFormatForQuery) + "#";
             sql += sqlOrderByIdentify;
             return Database.ExcuQuery(sql);
         }

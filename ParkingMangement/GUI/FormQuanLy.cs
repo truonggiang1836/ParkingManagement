@@ -1199,6 +1199,15 @@ namespace ParkingMangement.GUI
             {
                 loadCardInfoFromDataGridViewRow(Index);
             }
+
+            if (e.RowIndex < 0) return;
+            var dataGridView = (DataGridView)sender;
+            var cell = dataGridView["SelectCard", e.RowIndex];
+            if (cell.Value == null)
+            {
+                cell.Value = false;
+            }
+            cell.Value = !(bool)cell.Value;
         }
 
         private void tbCardSearch_TextChanged(object sender, EventArgs e)
@@ -1222,7 +1231,7 @@ namespace ParkingMangement.GUI
             DataTable data = TicketLogDAO.GetAllData();
             dgvTicketLogList.DataSource = data;
 
-            if (dgvTicketLogList.Rows.Count > 0)
+            if (data != null && data.Rows.Count > 0)
             {
                 loadTicketLogInfoFromDataGridViewRow(0);
             }
@@ -1289,13 +1298,13 @@ namespace ParkingMangement.GUI
             DataTable data = TicketMonthDAO.GetAllData();
             dgvTicketMonthList.DataSource = data;
             int lastIdentify = 0;
-            if (data != null)
+            if (data != null && data.Rows.Count > 0)
             {
                 lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
             }
             tbTicketMonthIdentifyCreate.Text = lastIdentify + 1 + "";
 
-            if (dgvTicketMonthList.Rows.Count > 0)
+            if (data != null && data.Rows.Count > 0)
             {
                 loadTicketMonthInfoFromDataGridViewRow(0);
             }
@@ -1552,7 +1561,7 @@ namespace ParkingMangement.GUI
             string key = tbLostTicketMonthKeyWordSearch.Text;
             DataTable data = TicketMonthDAO.searchLostTicketData(key);
             dgvLostTicketMonthList.DataSource = data;
-            if (data != null)
+            if (data != null && data.Rows.Count > 0)
             {
                 loadLostTicketMonthInfoFromDataGridViewRow(0);
             }
@@ -3750,11 +3759,17 @@ namespace ParkingMangement.GUI
             foreach (DataGridViewRow row in dgvCardList.Rows)
             {
                 DataGridViewCheckBoxCell checkCell = row.Cells["SelectCard"] as DataGridViewCheckBoxCell;
-                if (Convert.ToBoolean(checkCell.Value))
+                object value = checkCell.Value;
+                if (value != null && (Boolean)value)
                 {
                     string cardId = Convert.ToString(row.Cells["CardID"].Value);
                     CardDAO.Delete(cardId);
                 }
+                //if (Convert.ToBoolean(checkCell.Value) == true)
+                //{
+                //    string cardId = Convert.ToString(row.Cells["CardID"].Value);
+                //    CardDAO.Delete(cardId);
+                //}
             }
             loadCardList();
         }
@@ -4007,6 +4022,42 @@ namespace ParkingMangement.GUI
 
                 m.Show(dgvCardList, new Point(ev.X, ev.Y));
             }
+        }
+
+        private void dgvRenewTicketMonthList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var dataGridView = (DataGridView)sender;
+            var cell = dataGridView["RenewIsChosen", e.RowIndex];
+            if (cell.Value == null)
+            {
+                cell.Value = false;
+            }
+            cell.Value = !(bool)cell.Value;
+        }
+
+        private void dgvActiveTicketMonthList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var dataGridView = (DataGridView)sender;
+            var cell = dataGridView["SelectActiveTicketMonth", e.RowIndex];
+            if (cell.Value == null)
+            {
+                cell.Value = false;
+            }
+            cell.Value = !(bool)cell.Value;
+        }
+
+        private void dgvActiveCardList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+            var dataGridView = (DataGridView)sender;
+            var cell = dataGridView["SelectLostCard", e.RowIndex];
+            if (cell.Value == null)
+            {
+                cell.Value = false;
+            }
+            cell.Value = !(bool)cell.Value;
         }
     }
 }

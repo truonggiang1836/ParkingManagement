@@ -1,4 +1,5 @@
 ﻿using ParkingMangement.DTO;
+using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -56,7 +57,7 @@ namespace ParkingMangement.DAO
         public static string sqlSearchData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
-            sql += " and Car.TimeStart >= #" + carDTO.TimeStart + "# and Car.TimeEnd <= #" + carDTO.TimeEnd + "#";
+            sql += " and Car.TimeStart >= #" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeEnd <= #" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "#";
             if (!string.IsNullOrEmpty(carDTO.IdPart))
             {
                 sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
@@ -126,7 +127,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchTicketMonthData(CarDTO carDTO, TicketMonthDTO ticketMonthDTO)
         {
             string sql = sqlGetAllTicketMonthData + sqlQueryTicketMonth;
-            sql += " and Car.TimeStart >= #" + carDTO.TimeStart + "# and Car.TimeEnd <= #" + carDTO.TimeEnd + "#";
+            sql += " and Car.TimeStart >= #" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeEnd <= #" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "#";
             if (!string.IsNullOrEmpty(ticketMonthDTO.CustomerName))
             {
                 sql += " and TicketMonth.CustomerName like '%" + ticketMonthDTO.CustomerName + "%'";
@@ -210,7 +211,9 @@ namespace ParkingMangement.DAO
             }
             if (startTime != null && endTime != null)
             {
-                sql += " and Car.TimeStart >= #" + startTime + "# and Car.TimeEnd <= #" + endTime + "#";
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " and Car.TimeStart >= #" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeEnd <= #" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "#";
             }
             if (userID != null)
             {
@@ -273,7 +276,9 @@ namespace ParkingMangement.DAO
             }
             if (startTime != null && endTime != null)
             {
-                sql += " and Car.TimeStart >= #" + startTime + "# and Car.TimeEnd <= #" + endTime + "#";
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " and Car.TimeStart >= #" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeEnd <= #" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "#";
             }
             if (userID != null)
             {
@@ -296,7 +301,9 @@ namespace ParkingMangement.DAO
             }
             if (startTime != null && endTime != null)
             {
-                sql += " and Car.TimeStart >= #" + startTime + "# and Car.TimeStart <= #" + endTime + "#";
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " and Car.TimeStart >= #" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeStart <= #" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "#";
             }
             if (userID != null)
             {
@@ -324,7 +331,9 @@ namespace ParkingMangement.DAO
             }
             if (startTime != null && endTime != null)
             {
-                sql += " and Car.TimeEnd >= #" + startTime + "# and Car.TimeEnd <= #" + endTime + "#";
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " and Car.TimeEnd >= #" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeEnd <= #" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "#";
             }
             if (userID != null)
             {

@@ -25,7 +25,7 @@ namespace ParkingMangement.DAO
             //string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from [UserCar], [WorkAssign] " +
             //    "where UserCar.UserID = WorkAssign.UserID and TimeStart >= #" + startDate + "# and TimeEnd <= #" + endDate + "#";
             string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from [UserCar], [WorkAssign] " +
-                "where UserCar.UserID = WorkAssign.UserID and TimeStart Between #" + startDate + "# and TimeEnd and TimeEnd Between TimeStart and #" + endDate + "#";
+                "where UserCar.UserID = WorkAssign.UserID and TimeStart Between #" + startDate.ToString(Constant.sDateTimeFormatForQuery) + "# and TimeEnd and TimeEnd Between TimeStart and #" + endDate.ToString(Constant.sDateTimeFormatForQuery) + "#";
             DataTable data = Database.ExcuQuery(sql);
             setTotalTime(data);
             return data;

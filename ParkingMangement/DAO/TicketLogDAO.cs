@@ -1,4 +1,5 @@
 ﻿using ParkingMangement.DTO;
+using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchData(string key, string ticketLogID, string partID, DateTime registrationDate, DateTime expirationDate)
         {
             string sql = sqlGetAllData;
-            sql += " and TicketLog.RegistrationDate >= #" + registrationDate + "# and TicketLog.ExpirationDate <= #" + expirationDate + "#";
+            sql += " and TicketLog.RegistrationDate >= #" + registrationDate.ToString(Constant.sDateTimeFormatForQuery) + "# and TicketLog.ExpirationDate <= #" + expirationDate.ToString(Constant.sDateTimeFormatForQuery) + "#";
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (UserCar.NameUser like '%" + key + "%' or TicketLog.TicketMonthIdentify like '%" + key + "%' or TicketLog.TicketMonthID like '%" + key + "%' or TicketLog.Digit like '%" + key
