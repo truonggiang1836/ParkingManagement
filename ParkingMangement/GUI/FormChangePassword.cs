@@ -54,5 +54,15 @@ namespace ParkingMangement.GUI
             MessageBox.Show(Constant.sMessageUpdatePasswordSuccess);
             this.Close();
         }
+
+        private void tbConfirmNewPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    changePassword();
+                    break;
+            }
+        }
     }
 }

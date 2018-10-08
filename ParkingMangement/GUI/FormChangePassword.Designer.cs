@@ -30,6 +30,10 @@
         {
             this.tbAccount = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbConfirmNewPassword = new System.Windows.Forms.TextBox();
+            this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.labelError = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
@@ -38,10 +42,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbConfirmNewPassword = new System.Windows.Forms.TextBox();
-            this.tbNewPassword = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +72,45 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(506, 317);
             this.panel1.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(26, 146);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(136, 20);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Nhập lại mật khẩu";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(26, 106);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 20);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Mật khẩu mới";
+            // 
+            // tbConfirmNewPassword
+            // 
+            this.tbConfirmNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbConfirmNewPassword.Location = new System.Drawing.Point(272, 143);
+            this.tbConfirmNewPassword.Name = "tbConfirmNewPassword";
+            this.tbConfirmNewPassword.PasswordChar = '*';
+            this.tbConfirmNewPassword.Size = new System.Drawing.Size(208, 26);
+            this.tbConfirmNewPassword.TabIndex = 9;
+            this.tbConfirmNewPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbConfirmNewPassword_KeyDown);
+            // 
+            // tbNewPassword
+            // 
+            this.tbNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNewPassword.Location = new System.Drawing.Point(272, 103);
+            this.tbNewPassword.Name = "tbNewPassword";
+            this.tbNewPassword.PasswordChar = '*';
+            this.tbNewPassword.Size = new System.Drawing.Size(208, 26);
+            this.tbNewPassword.TabIndex = 8;
             // 
             // panel2
             // 
@@ -155,44 +194,6 @@
             this.label3.Size = new System.Drawing.Size(138, 25);
             this.label3.TabIndex = 12;
             this.label3.Text = "Đổi mật khẩu";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(26, 146);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(136, 20);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Nhập lại mật khẩu";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 106);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Mật khẩu mới";
-            // 
-            // tbConfirmNewPassword
-            // 
-            this.tbConfirmNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbConfirmNewPassword.Location = new System.Drawing.Point(272, 143);
-            this.tbConfirmNewPassword.Name = "tbConfirmNewPassword";
-            this.tbConfirmNewPassword.PasswordChar = '*';
-            this.tbConfirmNewPassword.Size = new System.Drawing.Size(208, 26);
-            this.tbConfirmNewPassword.TabIndex = 9;
-            // 
-            // tbNewPassword
-            // 
-            this.tbNewPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNewPassword.Location = new System.Drawing.Point(272, 103);
-            this.tbNewPassword.Name = "tbNewPassword";
-            this.tbNewPassword.PasswordChar = '*';
-            this.tbNewPassword.Size = new System.Drawing.Size(208, 26);
-            this.tbNewPassword.TabIndex = 8;
             // 
             // FormChangePassword
             // 

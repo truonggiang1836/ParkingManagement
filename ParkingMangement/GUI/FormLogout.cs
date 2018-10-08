@@ -77,5 +77,15 @@ namespace ParkingMangement.GUI
         {
             logout();
         }
+
+        private void tbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    logout();
+                    break;
+            }
+        }
     }
 }

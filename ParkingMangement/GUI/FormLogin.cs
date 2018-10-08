@@ -84,5 +84,15 @@ namespace ParkingMangement
         {
             this.Close();
         }
+
+        private void tbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    login();
+                    break;
+            }
+        }
     }
 }

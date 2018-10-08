@@ -37,7 +37,7 @@ namespace ParkingMangement.GUI
             _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
 
             //_rawinput.AddMessageFilter();   // Adding a message filter will cause keypresses to be handled
-            Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
+            //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
 
             _rawinput.KeyPressed += OnKeyPressed;
         }
