@@ -28,6 +28,7 @@ namespace ParkingMangement.GUI
     {
         private readonly RawInput _rawinput;
 
+        public string CurrentUserID;
         const bool CaptureOnlyInForeground = true;
         private string cardID = "0";
         private string keyboardDeviceName = "";
@@ -56,13 +57,14 @@ namespace ParkingMangement.GUI
             _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
 
             //_rawinput.AddMessageFilter();   // Adding a message filter will cause keypresses to be handled
-            Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
+            //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
 
             _rawinput.KeyPressed += OnKeyPressed;
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
+            CurrentUserID = Program.CurrentUserID;
             this.ActiveControl = tbRFIDCardID;
             readConfigFile();
             //Random rnd = new Random();

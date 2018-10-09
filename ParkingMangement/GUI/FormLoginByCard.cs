@@ -51,13 +51,19 @@ namespace ParkingMangement.GUI
             {
                 f = new FormNhanVien();
             }
-            f.Closed += (s, args) => this.Close();
 
             if (formNhanVien != null)
             {
-                formNhanVien.Hide();
-                Util.doLogOut();
-                f.Closed += (s, args) => formNhanVien.Close();
+                if (f.GetType() == typeof(FormQuanLy))
+                {
+                    f.Closed += (s, args) => Program.CurrentUserID = formNhanVien.CurrentUserID;
+                }
+                else
+                {
+                    formNhanVien.Hide();
+                    Util.doLogOut();
+                    f.Closed += (s, args) => formNhanVien.Close();
+                }
             }
 
             f.Show();
