@@ -91,10 +91,10 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql).Rows.Count;
         }
 
-        public static void Delete(string userID)
+        public static bool Delete(string userID)
         {
             string sql = "delete from [SmartCard] where ID = '" + userID + "'";
-            Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static string getPartIDByCardID(string cardID)
@@ -106,6 +106,17 @@ namespace ParkingMangement.DAO
                 return dt.Rows[0].Field<string>("Type");
             }
             return "";
+        }
+
+        public static int getIdentifyByCardID(string cardID)
+        {
+            string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("Identify");
+            }
+            return 0;
         }
 
         public static bool isUsingByCardID(string cardID)

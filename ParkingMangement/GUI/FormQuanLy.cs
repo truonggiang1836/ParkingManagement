@@ -1020,7 +1020,6 @@ namespace ParkingMangement.GUI
         {
             CardDTO cardDTO = new CardDTO();
             cardDTO.Id = tbCardIDCreate.Text.Trim();
-            cardDTO.Id = tbCardIDCreate.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameCreate.SelectedItem).Row;
             cardDTO.Type = Convert.ToInt32(partDataRow["PartID"]);
@@ -1037,6 +1036,8 @@ namespace ParkingMangement.GUI
             {
                 loadCardList();
                 labelKetQuaTaoThe.Text = "Tạo thẻ thành công!";
+                cardDTO.Identify = CardDAO.getIdentifyByCardID(cardDTO.Id);
+                LogUtil.addLogTaoMoiThe(cardDTO);
             } else
             {
                 labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
@@ -2321,12 +2322,10 @@ namespace ParkingMangement.GUI
             int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
             switch (expiredTicketMonthTypeID)
             {
-                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
-                    rbTinhTienNhuVangLai.Checked = true;
-                    break;
                 case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
                     rbChiCanhBaoHetHan.Checked = true;
                     break;
+                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
                 default:
                     rbTinhTienNhuVangLai.Checked = true;
                     break;
@@ -3789,7 +3788,11 @@ namespace ParkingMangement.GUI
                 if (value != null && (Boolean)value)
                 {
                     string cardId = Convert.ToString(row.Cells["CardID"].Value);
-                    CardDAO.Delete(cardId);
+                    int identify = CardDAO.getIdentifyByCardID(cardId);
+                    if (CardDAO.Delete(cardId))
+                    {
+                        LogUtil.addLogXoaThe(identify, cardId);
+                    }
                 }
                 //if (Convert.ToBoolean(checkCell.Value) == true)
                 //{
