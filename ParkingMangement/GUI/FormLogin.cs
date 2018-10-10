@@ -53,9 +53,9 @@ namespace ParkingMangement
 
         private void loginDone(DataTable data)
         {
+            this.Hide();
             Program.StartWorkTime = DateTime.Now;
             Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
-            this.Hide();
             Form f = new FormQuanLy();
             if (data.Rows[0].Field<string>("IDFunct") == Constant.FUNCTION_ID_NHAN_VIEN)
             {
@@ -66,18 +66,36 @@ namespace ParkingMangement
             {
                 if (f.GetType() == typeof(FormQuanLy))
                 {
-                    f.Closed += (s, args) => Program.CurrentUserID = formNhanVien.CurrentUserID;
+                    f.FormClosing += new FormClosingEventHandler(FormQuanLy_FormClosing);
                 } else
                 {
                     formNhanVien.Hide();
                     Util.doLogOut();
-                    f.Closed += (s, args) => formNhanVien.Close();
+                    f.FormClosing += new FormClosingEventHandler(FormNhanVien_FormClosing);
                 }
             }
 
             f.Show();
-
+            
             LogUtil.addLoginLog();
+        }
+
+        void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Close();
+            if (formNhanVien != null)
+            {
+                Program.CurrentUserID = formNhanVien.CurrentUserID;
+            }
+        }
+
+        void FormNhanVien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Close();
+            if (formNhanVien != null)
+            {
+                formNhanVien.Close();
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
