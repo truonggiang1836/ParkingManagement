@@ -26,6 +26,7 @@ namespace ParkingMangement.DTO
         private string rfid1;
         private string rfid2;
         private int intOutType = TYPE_IN_OUT;
+        private int expiredTicketMonthTypeID;
 
         public int TotalSpace { get => totalSpace; set => totalSpace = value; }
         public int TicketSpace { get => ticketSpace; set => ticketSpace = value; }
@@ -40,5 +41,6 @@ namespace ParkingMangement.DTO
         public string Rfid2 { get => rfid2; set => rfid2 = value; }
         public int IntOutType { get => intOutType; set => intOutType = value; }
         public int LostCard { get => lostCard; set => lostCard = value; }
+        public int ExpiredTicketMonthTypeID { get => expiredTicketMonthTypeID; set => expiredTicketMonthTypeID = value; }
     }
 }

@@ -186,11 +186,24 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static int GetExpiredTicketMonthTypeID()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<int>("ExpiredTicketMonthTypeID");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
             string sql = "update [Config] set LostCard =" + configDTO.LostCard + ", TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
-                + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" 
-                + configDTO.ParkingTypeId;
+                + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
+                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID;
             return Database.ExcuNonQuery(sql);
         }
 

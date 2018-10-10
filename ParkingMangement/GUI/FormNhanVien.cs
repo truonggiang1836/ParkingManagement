@@ -312,6 +312,23 @@ namespace ParkingMangement.GUI
             {
                 carDTO.Cost = 0;
                 labelCost.Text = "VE THANG";
+                DateTime expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
+                if (DateTime.Now.CompareTo(expirationDate) > 0)
+                {
+                    // vé tháng hết hạn
+                    int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+                    switch (expiredTicketMonthTypeID)
+                    {
+                        case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                            break;
+                        case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                        default:
+                            carDTO.Cost = tinhTienGiuXe();
+                            labelCost.Text = carDTO.Cost + "";
+                            break;
+                    }
+                    MessageBox.Show("Thẻ tháng đã hết hạn");
+                }
             } else
             {
                 carDTO.Cost = tinhTienGiuXe();

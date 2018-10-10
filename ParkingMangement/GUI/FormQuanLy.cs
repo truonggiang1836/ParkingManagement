@@ -2317,6 +2317,20 @@ namespace ParkingMangement.GUI
             tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
 
             loadQuyenNhanVien();
+
+            int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+            switch (expiredTicketMonthTypeID)
+            {
+                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                    rbTinhTienNhuVangLai.Checked = true;
+                    break;
+                case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                    rbChiCanhBaoHetHan.Checked = true;
+                    break;
+                default:
+                    rbTinhTienNhuVangLai.Checked = true;
+                    break;
+            }
         }
 
         private void loadQuyenNhanVien()
@@ -2357,8 +2371,20 @@ namespace ParkingMangement.GUI
             {
                 parkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP;
             }
+
+            int expiredTicketMonthTypeID = Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI;
+            if (rbTinhTienNhuVangLai.Checked)
+            {
+                expiredTicketMonthTypeID = Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI;
+            }
+            else if (rbChiCanhBaoHetHan.Checked)
+            {
+                expiredTicketMonthTypeID = Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN;
+            }
+
             ConfigDTO configDTO = new ConfigDTO();
             configDTO.ParkingTypeId = parkingTypeID;
+            configDTO.ExpiredTicketMonthTypeID = expiredTicketMonthTypeID;
 
             int lostCard = -1;
             if (int.TryParse(tbLostCard.Text, out lostCard))
