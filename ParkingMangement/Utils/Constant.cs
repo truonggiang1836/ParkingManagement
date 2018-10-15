@@ -67,13 +67,39 @@ namespace ParkingMangement.Utils
         public const int LOG_TYPE_CREATE_TICKET_MONTH = 1;
         public const int LOG_TYPE_UPDATE_TICKET_MONTH = 2;
         public const int LOG_TYPE_DELETE_TICKET_MONTH = 3;
-        public const int LOG_TYPE_LOGIN = 6;
-        public const int LOG_TYPE_LOGOUT = 7;
+
+
+        public const int LOG_TYPE_DANG_NHAP = 6;
+        public const int LOG_TYPE_DANG_XUAT = 7;
+
+        public const int LOG_TYPE_TAO_MOI_NHAN_VIEN = 9;
+        public const int LOG_TYPE_CHINH_SUA_NHAN_VIEN = 10;
+        public const int LOG_TYPE_XOA_NHAN_VIEN = 11;
+
+        public const int LOG_TYPE_TAO_MOI_THE = 20;
+        public const int LOG_TYPE_CHINH_SUA_THE = 21;
+        public const int LOG_TYPE_XOA_THE = 22;
+
+
+        public const string LOG_NOTE_DANG_NHAP = "Đăng nhập hệ thống";
+        public const string LOG_NOTE_DANG_XUAT = "Đăng xuất hệ thống";
+
+        public const string LOG_NOTE_TAO_MOI_NHAN_VIEN = "Tạo mới nhân viên";
+        public const string LOG_NOTE_CHINH_SUA_NHAN_VIEN = "Chỉnh sửa nhân viên";
+        public const string LOG_NOTE_XOA_NHAN_VIEN = "Xóa nhân viên";
+
+        public const string LOG_NOTE_TAO_MOI_THE = "Tạo mới thẻ chip";
+        public const string LOG_NOTE_CHINH_SUA_THE = "Chỉnh sửa thẻ chip";
+        public const string LOG_NOTE_XOA_THE = "Xóa thẻ chip";
+
 
         public const int LOAI_GIU_XE_MIEN_PHI = 0;
         public const int LOAI_GIU_XE_THEO_CONG_VAN = 1;
         public const int LOAI_GIU_XE_LUY_TIEN = 2;
         public const int LOAI_GIU_XE_TONG_HOP = 3;
+
+        public const int LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI = 0;
+        public const int LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN = 1;
 
         public const string TINH_TIEN_LUY_TIEN_KHONG_CONG = "0";
         public const string TINH_TIEN_LUY_TIEN_CONG_1_MOC = "1";

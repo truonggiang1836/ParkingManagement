@@ -56,6 +56,22 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static UserDTO GetUserModelByID(string id)
+        {
+            UserDTO userDTO = new UserDTO();
+            DataTable dt = GetUserByID(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                userDTO.Id = dt.Rows[0].Field<string>("UserID");
+                userDTO.Account = dt.Rows[0].Field<string>("Account");
+                userDTO.Password = dt.Rows[0].Field<string>("Pass");
+                userDTO.Name = dt.Rows[0].Field<string>("NameUser");
+                userDTO.SexId = dt.Rows[0].Field<int>("SexID");
+                userDTO.FunctionId = dt.Rows[0].Field<string>("IDFunct");
+            }
+            return userDTO;
+        }
+
         public static string GetUserNameByID(string id)
         {
             DataTable dt = GetUserByID(id);

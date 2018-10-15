@@ -12,25 +12,126 @@ namespace ParkingMangement.Utils
     {
         public static void addLog(LogDTO logDTO)
         {
-            if (logDTO.LogTypeID == Constant.LOG_TYPE_LOGIN)
-            {
-                logDTO.Note = "Đăng nhập hệ thống";
-            }
-            if (logDTO.LogTypeID == Constant.LOG_TYPE_LOGOUT)
-            {
-                logDTO.Note = "Đăng xuất hệ thống";
-            }
             LogDAO.Insert(logDTO);
+        }
+
+        public static LogDTO createCommonLog()
+        {
+            LogDTO logDTO = new LogDTO();
+            logDTO.Account = Program.CurrentUserID;
+            logDTO.ProcessDate = DateTime.Now;
+            logDTO.Computer = Environment.MachineName;
+            return logDTO;
         }
 
         public static void addLoginLog()
         {
-            LogDTO logDTO = new LogDTO();
-            logDTO.LogTypeID = Constant.LOG_TYPE_LOGIN;
-            logDTO.Account = Program.CurrentUserID;
-            logDTO.ProcessDate = DateTime.Now;
-            logDTO.Computer = Environment.MachineName;
-            LogUtil.addLog(logDTO);
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_DANG_NHAP;
+            logDTO.Note = Constant.LOG_NOTE_DANG_NHAP;
+            addLog(logDTO);
+        }
+
+        public static void addLogoutLog()
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_DANG_XUAT;
+            logDTO.Note = Constant.LOG_NOTE_DANG_XUAT;
+            addLog(logDTO);
+        }
+
+        public static void addLogTaoMoiThe(CardDTO cardDTO)
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_TAO_MOI_THE;
+            string isUsing = CardDTO.IsUsingString(cardDTO.IsUsing);
+            logDTO.Note = Constant.LOG_NOTE_TAO_MOI_THE + " -STT: " + cardDTO.Identify + " -Mã thẻ: " + cardDTO.Id + " -Loại xe: " + PartDAO.GetPartNameByPartID(cardDTO.Type.ToString())
+                + " -Sử dụng: " + isUsing;
+            addLog(logDTO);
+        }
+
+        public static void addLogChinhSuaThe(CardDTO oldCardDTO, CardDTO newCardDTO)
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_CHINH_SUA_THE;
+            logDTO.Note = Constant.LOG_NOTE_CHINH_SUA_THE + " -STT: " + oldCardDTO.Identify;
+            if (oldCardDTO.Id.Equals(newCardDTO.Id))
+            {
+                logDTO.Note += " -Mã thẻ: " + oldCardDTO.Id;
+            } else
+            {
+                logDTO.Note += " -Mã thẻ: " + oldCardDTO.Id + " -> " + newCardDTO.Id;
+            }
+            if (!oldCardDTO.Type.Equals(newCardDTO.Type))
+            {
+                logDTO.Note += " -Loại thẻ: " + PartDAO.GetPartNameByPartID(oldCardDTO.Type.ToString()) + " -> " + PartDAO.GetPartNameByPartID(newCardDTO.Type.ToString());
+            }
+            if (!oldCardDTO.IsUsing.Equals(newCardDTO.IsUsing))
+            {
+                logDTO.Note += " -Sử dụng: " + CardDTO.IsUsingString(oldCardDTO.IsUsing) + " -> " + CardDTO.IsUsingString(newCardDTO.IsUsing);
+            }
+            addLog(logDTO);
+        }
+
+        public static void addLogXoaThe(int identidy, string cardId)
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_XOA_THE;
+            logDTO.Note = Constant.LOG_NOTE_XOA_THE + " -STT: " + identidy + " -Mã thẻ: " + cardId;
+            addLog(logDTO);
+        }
+
+        public static void addLogTaoMoiNhanVien(UserDTO userDTO)
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_TAO_MOI_NHAN_VIEN;
+            string functionName = FunctionalDAO.GetFunctionNameByID(userDTO.FunctionId);
+            string sexName = SexDAO.GetSexNameByID(userDTO.SexId);
+            logDTO.Note = Constant.LOG_NOTE_TAO_MOI_NHAN_VIEN + " -Mã thẻ: " + userDTO.Id + " -Họ tên: " + userDTO.Name + " -Tài khoản: " + userDTO.Account + " -Mật khẩu: " + userDTO.Password
+                + " -Chức vụ: " + functionName + " -Giới tính: " + sexName;
+            addLog(logDTO);
+        }
+
+        public static void addLogChinhSuaNhanVien(UserDTO oldUserDTO, UserDTO newUserDTO)
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_CHINH_SUA_NHAN_VIEN;
+
+            string defaultNoteValue = Constant.LOG_NOTE_CHINH_SUA_NHAN_VIEN + " -Mã thẻ: " + oldUserDTO.Id;
+            logDTO.Note = Constant.LOG_NOTE_CHINH_SUA_NHAN_VIEN + " -Mã thẻ: " + oldUserDTO.Id;
+            if (!oldUserDTO.Name.Equals(newUserDTO.Name))
+            {
+                logDTO.Note += " -Họ tên: " + oldUserDTO.Name + " -> " + newUserDTO.Name;
+            }
+            if (!oldUserDTO.Account.Equals(newUserDTO.Account))
+            {
+                logDTO.Note += " -Tài khoản: " + oldUserDTO.Account + " -> " + newUserDTO.Account;
+            }
+            if (!oldUserDTO.Password.Equals(newUserDTO.Password))
+            {
+                logDTO.Note += " -Mật khẩu: " + oldUserDTO.Password + " -> " + newUserDTO.Password;
+            }
+            if (!oldUserDTO.FunctionId.Equals(newUserDTO.FunctionId))
+            {
+                logDTO.Note += " -Chức vụ: " + FunctionalDAO.GetFunctionNameByID(oldUserDTO.FunctionId) + " -> " + FunctionalDAO.GetFunctionNameByID(newUserDTO.FunctionId);
+            }
+            if (!oldUserDTO.SexId.Equals(newUserDTO.SexId))
+            {
+                logDTO.Note += " -Giới tính: " + SexDAO.GetSexNameByID(oldUserDTO.SexId) + " -> " + SexDAO.GetSexNameByID(newUserDTO.SexId);
+            }
+            if (logDTO.Note.Equals(defaultNoteValue))
+            {
+                return;
+            }
+            addLog(logDTO);
+        }
+
+        public static void addLogXoaNhanVien(string userID)
+        {
+            LogDTO logDTO = createCommonLog();
+            logDTO.LogTypeID = Constant.LOG_TYPE_XOA_NHAN_VIEN;
+            logDTO.Note = Constant.LOG_NOTE_XOA_NHAN_VIEN + " -Mã thẻ: " + userID;
+            addLog(logDTO);
         }
     }
 }

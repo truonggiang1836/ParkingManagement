@@ -45,5 +45,18 @@ namespace ParkingMangement.DAO
                 return "";
             }
         }
+
+        public static string GetFunctionNameByID(string functionID)
+        {
+            DataTable dt = GetFunctionByID(functionID);
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("FunctionName");
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

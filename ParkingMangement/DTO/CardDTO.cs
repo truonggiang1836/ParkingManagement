@@ -19,5 +19,15 @@ namespace ParkingMangement.DTO
         public string IsUsing { get => isUsing; set => isUsing = value; }
         public int Type { get => type; set => type = value; }
         public DateTime DayUnlimit { get => dayUnlimit; set => dayUnlimit = value; }
+
+        public static string IsUsingString(string IsUsing)
+        {
+            string isUsing = "không";
+            if (IsUsing.Equals("1"))
+            {
+                isUsing = "có";
+            }
+            return isUsing;
+        }
     }
 }

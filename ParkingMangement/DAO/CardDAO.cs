@@ -136,5 +136,20 @@ namespace ParkingMangement.DAO
             string sql = "select * from [SmartCard] where ID = '" + id + "'";
             return Database.ExcuQuery(sql);
         }
+
+        public static CardDTO GetCardModelByID(string id)
+        {
+            CardDTO cardDTO = new CardDTO();
+            DataTable dt = GetCardByID(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                cardDTO.Identify = dt.Rows[0].Field<int>("Identify");
+                cardDTO.Id = dt.Rows[0].Field<string>("Id");
+                cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
+                cardDTO.Type = dt.Rows[0].Field<int>("Type");
+                cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+            }
+            return cardDTO;
+        }
     }
 }

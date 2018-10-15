@@ -154,11 +154,13 @@ namespace ParkingMangement.GUI
             userDTO.SexId = Convert.ToInt32(sexDataRow["SexID"]);
 
             UserDAO.Insert(userDTO);
+            LogUtil.addLogTaoMoiNhanVien(userDTO);
             loadUserList();
         }
 
         private void updateUser()
         {
+            UserDTO oldUserDTO = UserDAO.GetUserModelByID(tbUserIDEdit.Text.Trim());
             UserDTO userDTO = new UserDTO();
             userDTO.Id = tbUserIDEdit.Text.Trim();
             userDTO.Name = tbUserNameEdit.Text.Trim();
@@ -172,6 +174,7 @@ namespace ParkingMangement.GUI
             userDTO.SexId = Convert.ToInt32(sexDataRow["SexID"]);
 
             UserDAO.Update(userDTO);
+            LogUtil.addLogChinhSuaNhanVien(oldUserDTO, userDTO);
             loadUserList();
         }
 
@@ -331,6 +334,7 @@ namespace ParkingMangement.GUI
         {
             string userID = Convert.ToString(dgvUserList.Rows[currentRow].Cells["ID"].Value);
             UserDAO.Delete(userID);
+            LogUtil.addLogXoaNhanVien(userID);
             loadUserList();
         }
 
