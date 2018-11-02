@@ -155,36 +155,36 @@ namespace ParkingMangement.Utils
 
         public static void addLogChinhSuaLoaiXe(PartDTO oldPartDTO, PartDTO newPartDTO)
         {
-            LogDTO logDTO = createCommonLog();
-            logDTO.LogTypeID = Constant.LOG_TYPE_CHINH_SUA_LOAI_XE;
+            //LogDTO logDTO = createCommonLog();
+            //logDTO.LogTypeID = Constant.LOG_TYPE_CHINH_SUA_LOAI_XE;
 
-            string defaultNoteValue = Constant.LOG_NOTE_CHINH_SUA_LOAI_XE + " -Mã loại xe: " + oldPartDTO.Id;
-            logDTO.Note = Constant.LOG_NOTE_CHINH_SUA_LOAI_XE + " -Mã loại xe: " + oldPartDTO.Id;
-            if (!oldPartDTO.Name.Equals(newPartDTO.Name))
-            {
-                logDTO.Note += " -Tên loại xe: " + oldPartDTO.Name + " -> " + newPartDTO.Name;
-            }
-            if (!oldPartDTO.Sign.Equals(newPartDTO.Sign))
-            {
-                logDTO.Note += " -Ký hiệu: " + oldPartDTO.Sign + " -> " + newPartDTO.Sign;
-            }
-            if (!oldUserDTO.Password.Equals(newUserDTO.Password))
-            {
-                logDTO.Note += " -Mật khẩu: " + oldUserDTO.Password + " -> " + newUserDTO.Password;
-            }
-            if (!oldUserDTO.FunctionId.Equals(newUserDTO.FunctionId))
-            {
-                logDTO.Note += " -Chức vụ: " + FunctionalDAO.GetFunctionNameByID(oldUserDTO.FunctionId) + " -> " + FunctionalDAO.GetFunctionNameByID(newUserDTO.FunctionId);
-            }
-            if (!oldUserDTO.SexId.Equals(newUserDTO.SexId))
-            {
-                logDTO.Note += " -Giới tính: " + SexDAO.GetSexNameByID(oldUserDTO.SexId) + " -> " + SexDAO.GetSexNameByID(newUserDTO.SexId);
-            }
-            if (logDTO.Note.Equals(defaultNoteValue))
-            {
-                return;
-            }
-            addLog(logDTO);
+            //string defaultNoteValue = Constant.LOG_NOTE_CHINH_SUA_LOAI_XE + " -Mã loại xe: " + oldPartDTO.Id;
+            //logDTO.Note = Constant.LOG_NOTE_CHINH_SUA_LOAI_XE + " -Mã loại xe: " + oldPartDTO.Id;
+            //if (!oldPartDTO.Name.Equals(newPartDTO.Name))
+            //{
+            //    logDTO.Note += " -Tên loại xe: " + oldPartDTO.Name + " -> " + newPartDTO.Name;
+            //}
+            //if (!oldPartDTO.Sign.Equals(newPartDTO.Sign))
+            //{
+            //    logDTO.Note += " -Ký hiệu: " + oldPartDTO.Sign + " -> " + newPartDTO.Sign;
+            //}
+            //if (!oldUserDTO.Password.Equals(newUserDTO.Password))
+            //{
+            //    logDTO.Note += " -Mật khẩu: " + oldUserDTO.Password + " -> " + newUserDTO.Password;
+            //}
+            //if (!oldUserDTO.FunctionId.Equals(newUserDTO.FunctionId))
+            //{
+            //    logDTO.Note += " -Chức vụ: " + FunctionalDAO.GetFunctionNameByID(oldUserDTO.FunctionId) + " -> " + FunctionalDAO.GetFunctionNameByID(newUserDTO.FunctionId);
+            //}
+            //if (!oldUserDTO.SexId.Equals(newUserDTO.SexId))
+            //{
+            //    logDTO.Note += " -Giới tính: " + SexDAO.GetSexNameByID(oldUserDTO.SexId) + " -> " + SexDAO.GetSexNameByID(newUserDTO.SexId);
+            //}
+            //if (logDTO.Note.Equals(defaultNoteValue))
+            //{
+            //    return;
+            //}
+            //addLog(logDTO);
         }
     }
 }

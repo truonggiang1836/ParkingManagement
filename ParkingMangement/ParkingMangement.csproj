@@ -196,6 +196,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -211,7 +212,57 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="resources\ic_barie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_bottom_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_change_lane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_cost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_lane_in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_lane_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_print_bill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_top_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_write_ticket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Untitled-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_date_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_time_background.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
