@@ -822,6 +822,7 @@ namespace ParkingMangement.GUI
 
             PartDAO.Insert(partDTO);
             loadPartList();
+            LogUtil.addLogTaoMoiLoaiXe(partDTO);
         }
 
         private void updatePart()
@@ -3843,8 +3844,10 @@ namespace ParkingMangement.GUI
         private void deletePart(int currentRow)
         {
             string partID = Convert.ToString(dgvPartList.Rows[currentRow].Cells["PartID"].Value);
+            string partName = PartDAO.GetPartNameByPartID(partID);
             PartDAO.Delete(partID);
             loadPartList();
+            LogUtil.addLogXoaLoaiXe(partID, partName);
         }
 
         private void btnExportDanhSachVeThang_Click(object sender, EventArgs e)

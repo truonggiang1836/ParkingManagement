@@ -4517,7 +4517,7 @@
             this.dgvTicketLogList.ReadOnly = true;
             this.dgvTicketLogList.Size = new System.Drawing.Size(1144, 312);
             this.dgvTicketLogList.TabIndex = 1;
-            this.dgvTicketLogList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTicketLogList_CellClick);
+            this.dgvTicketLogList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLogList_CellClick);
             // 
             // TicketLogIdentify
             // 

@@ -80,6 +80,10 @@ namespace ParkingMangement.Utils
         public const int LOG_TYPE_CHINH_SUA_THE = 21;
         public const int LOG_TYPE_XOA_THE = 22;
 
+        public const int LOG_TYPE_TAO_MOI_LOAI_XE = 25;
+        public const int LOG_TYPE_CHINH_SUA_LOAI_XE = 26;
+        public const int LOG_TYPE_XOA_LOAI_XE = 27;
+
 
         public const string LOG_NOTE_DANG_NHAP = "Đăng nhập hệ thống";
         public const string LOG_NOTE_DANG_XUAT = "Đăng xuất hệ thống";
@@ -91,6 +95,10 @@ namespace ParkingMangement.Utils
         public const string LOG_NOTE_TAO_MOI_THE = "Tạo mới thẻ chip";
         public const string LOG_NOTE_CHINH_SUA_THE = "Chỉnh sửa thẻ chip";
         public const string LOG_NOTE_XOA_THE = "Xóa thẻ chip";
+
+        public const string LOG_NOTE_TAO_MOI_LOAI_XE = "Tạo mới loại xe";
+        public const string LOG_NOTE_CHINH_SUA_LOAI_XE = "Chỉnh sửa loại xe";
+        public const string LOG_NOTE_XOA_LOAI_XE = "Xóa loại xe";
 
 
         public const int LOAI_GIU_XE_MIEN_PHI = 0;
