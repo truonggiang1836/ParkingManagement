@@ -45,8 +45,6 @@
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
             this.tbRFIDCardID = new System.Windows.Forms.TextBox();
             this.labelCost = new System.Windows.Forms.Label();
-            this.labelMoiVao = new System.Windows.Forms.Label();
-            this.labelMoiRa = new System.Windows.Forms.Label();
             this.labelCardID = new System.Windows.Forms.TextBox();
             this.labelDigitOut = new System.Windows.Forms.TextBox();
             this.labelDigitIn = new System.Windows.Forms.TextBox();
@@ -71,6 +69,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.labelMoiRa = new System.Windows.Forms.Label();
+            this.labelMoiVao = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -86,6 +88,8 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -241,26 +245,6 @@
             this.labelCost.TabIndex = 18;
             this.labelCost.Text = "-";
             // 
-            // labelMoiVao
-            // 
-            this.labelMoiVao.AutoSize = true;
-            this.labelMoiVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMoiVao.Location = new System.Drawing.Point(10, 7);
-            this.labelMoiVao.Name = "labelMoiVao";
-            this.labelMoiVao.Size = new System.Drawing.Size(63, 20);
-            this.labelMoiVao.TabIndex = 20;
-            this.labelMoiVao.Text = "Mời vào";
-            // 
-            // labelMoiRa
-            // 
-            this.labelMoiRa.AutoSize = true;
-            this.labelMoiRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMoiRa.Location = new System.Drawing.Point(528, 8);
-            this.labelMoiRa.Name = "labelMoiRa";
-            this.labelMoiRa.Size = new System.Drawing.Size(52, 20);
-            this.labelMoiRa.TabIndex = 21;
-            this.labelMoiRa.Text = "Mời ra";
-            // 
             // labelCardID
             // 
             this.labelCardID.Location = new System.Drawing.Point(890, 68);
@@ -388,6 +372,10 @@
             this.panel4.BackColor = System.Drawing.Color.Transparent;
             this.panel4.BackgroundImage = global::ParkingMangement.Properties.Resources.ic_top_background;
             this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Controls.Add(this.pictureBox6);
+            this.panel4.Controls.Add(this.pictureBox5);
+            this.panel4.Controls.Add(this.labelMoiVao);
+            this.panel4.Controls.Add(this.labelMoiRa);
             this.panel4.Controls.Add(this.labelXeVao);
             this.panel4.Controls.Add(this.labelXeRa);
             this.panel4.Location = new System.Drawing.Point(1, 1);
@@ -398,26 +386,26 @@
             // labelXeVao
             // 
             this.labelXeVao.AutoSize = true;
-            this.labelXeVao.BackColor = System.Drawing.Color.Orange;
+            this.labelXeVao.BackColor = System.Drawing.Color.Transparent;
             this.labelXeVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelXeVao.ForeColor = System.Drawing.Color.White;
-            this.labelXeVao.Location = new System.Drawing.Point(88, 8);
+            this.labelXeVao.ForeColor = System.Drawing.Color.Black;
+            this.labelXeVao.Location = new System.Drawing.Point(185, 8);
             this.labelXeVao.Name = "labelXeVao";
-            this.labelXeVao.Size = new System.Drawing.Size(69, 20);
+            this.labelXeVao.Size = new System.Drawing.Size(78, 20);
             this.labelXeVao.TabIndex = 15;
-            this.labelXeVao.Text = "XE VÀO";
+            this.labelXeVao.Text = "LÀN VÀO";
             // 
             // labelXeRa
             // 
             this.labelXeRa.AutoSize = true;
-            this.labelXeRa.BackColor = System.Drawing.Color.Orange;
+            this.labelXeRa.BackColor = System.Drawing.Color.Transparent;
             this.labelXeRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelXeRa.ForeColor = System.Drawing.Color.White;
-            this.labelXeRa.Location = new System.Drawing.Point(453, 7);
+            this.labelXeRa.ForeColor = System.Drawing.Color.Black;
+            this.labelXeRa.Location = new System.Drawing.Point(619, 7);
             this.labelXeRa.Name = "labelXeRa";
-            this.labelXeRa.Size = new System.Drawing.Size(58, 20);
+            this.labelXeRa.Size = new System.Drawing.Size(67, 20);
             this.labelXeRa.TabIndex = 14;
-            this.labelXeRa.Text = "XE RA";
+            this.labelXeRa.Text = "LÀN RA";
             // 
             // label2
             // 
@@ -507,6 +495,46 @@
             this.pictureBox4.TabIndex = 42;
             this.pictureBox4.TabStop = false;
             // 
+            // labelMoiRa
+            // 
+            this.labelMoiRa.AutoSize = true;
+            this.labelMoiRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMoiRa.Location = new System.Drawing.Point(737, 7);
+            this.labelMoiRa.Name = "labelMoiRa";
+            this.labelMoiRa.Size = new System.Drawing.Size(52, 20);
+            this.labelMoiRa.TabIndex = 29;
+            this.labelMoiRa.Text = "Mời ra";
+            // 
+            // labelMoiVao
+            // 
+            this.labelMoiVao.AutoSize = true;
+            this.labelMoiVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMoiVao.Location = new System.Drawing.Point(70, 7);
+            this.labelMoiVao.Name = "labelMoiVao";
+            this.labelMoiVao.Size = new System.Drawing.Size(63, 20);
+            this.labelMoiVao.TabIndex = 30;
+            this.labelMoiVao.Text = "Mời vào";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::ParkingMangement.Properties.Resources.ic_lane_out;
+            this.pictureBox5.Location = new System.Drawing.Point(689, 6);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(44, 22);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 38;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::ParkingMangement.Properties.Resources.ic_lane_in;
+            this.pictureBox6.Location = new System.Drawing.Point(137, 6);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(44, 22);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 39;
+            this.pictureBox6.TabStop = false;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,8 +564,6 @@
             this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.labelDigitOut);
             this.Controls.Add(this.labelCardID);
-            this.Controls.Add(this.labelMoiRa);
-            this.Controls.Add(this.labelMoiVao);
             this.Controls.Add(this.labelCost);
             this.Controls.Add(this.tbRFIDCardID);
             this.Controls.Add(this.labelCurrentTime);
@@ -567,6 +593,8 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -591,8 +619,6 @@
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin3;
         private AxAXVLC.AxVLCPlugin2 axVLCPlugin4;
         private System.Windows.Forms.Label labelCost;
-        private System.Windows.Forms.Label labelMoiVao;
-        private System.Windows.Forms.Label labelMoiRa;
         private System.Windows.Forms.TextBox labelCardID;
         private System.Windows.Forms.TextBox labelDigitOut;
         private System.Windows.Forms.TextBox labelDigitIn;
@@ -615,5 +641,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label labelMoiVao;
+        private System.Windows.Forms.Label labelMoiRa;
     }
 }

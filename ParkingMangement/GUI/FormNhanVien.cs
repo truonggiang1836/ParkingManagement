@@ -65,6 +65,7 @@ namespace ParkingMangement.GUI
         private void FormStaff_Load(object sender, EventArgs e)
         {
             CurrentUserID = Program.CurrentUserID;
+            this.BackColor = ColorTranslator.FromHtml("#2e2925");
             this.ActiveControl = tbRFIDCardID;
             readConfigFile();
             //Random rnd = new Random();
@@ -244,8 +245,8 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = "";
                 labelMoiRa.Text = Constant.sLabelMoiVao;
 
-                pictureBoxImage1.Image = null;
-                pictureBoxImage2.Image = null;
+                pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
@@ -260,8 +261,8 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = "";
                     labelMoiRa.Text = Constant.sLabelMoiVao;
 
-                    pictureBoxImage1.Image = null;
-                    pictureBoxImage2.Image = null;
+                    pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                    pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -274,8 +275,8 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = Constant.sLabelMoiVao;
                     labelMoiRa.Text = "";
 
-                    pictureBoxImage3.Image = null;
-                    pictureBoxImage4.Image = null;
+                    pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                    pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -289,8 +290,8 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = Constant.sLabelMoiVao;
                 labelMoiRa.Text = "";
 
-                pictureBoxImage3.Image = null;
-                pictureBoxImage4.Image = null;
+                pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
@@ -352,8 +353,8 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = Constant.sLabelMoiRa;
                 labelMoiRa.Text = "";
 
-                pictureBoxImage3.Image = null;
-                pictureBoxImage4.Image = null;
+                pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
@@ -368,8 +369,8 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = Constant.sLabelMoiRa;
                     labelMoiRa.Text = "";
 
-                    pictureBoxImage3.Image = null;
-                    pictureBoxImage4.Image = null;
+                    pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                    pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -381,8 +382,8 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = "";
                     labelMoiRa.Text = Constant.sLabelMoiRa;
 
-                    pictureBoxImage1.Image = null;
-                    pictureBoxImage2.Image = null;
+                    pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                    pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -396,8 +397,8 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = "";
                 labelMoiRa.Text = Constant.sLabelMoiRa;
 
-                pictureBoxImage1.Image = null;
-                pictureBoxImage2.Image = null;
+                pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
@@ -1015,10 +1016,10 @@ namespace ParkingMangement.GUI
             labelMoiRa.Text = "";
             labelCost.Text = "-";
             labelTimeIn.Text = "-";
-            pictureBoxImage1.Image = null;
-            pictureBoxImage2.Image = null;
-            pictureBoxImage3.Image = null;
-            pictureBoxImage4.Image = null;
+            pictureBoxImage1.Image = Properties.Resources.ic_logo;
+            pictureBoxImage2.Image = Properties.Resources.ic_logo;
+            pictureBoxImage3.Image = Properties.Resources.ic_logo;
+            pictureBoxImage4.Image = Properties.Resources.ic_logo;
             labelDigitIn.Text = "-";
             labelDigitOut.Text = "-";
         }
