@@ -73,6 +73,26 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_background_textbox {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_textbox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_background_user {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_user", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_barie {
             get {
                 object obj = ResourceManager.GetObject("ic_barie", resourceCulture);
@@ -103,29 +123,9 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic_check {
-            get {
-                object obj = ResourceManager.GetObject("ic_check", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ic_cost {
             get {
                 object obj = ResourceManager.GetObject("ic_cost", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_date {
-            get {
-                object obj = ResourceManager.GetObject("ic_date", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,16 +183,6 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ic_time {
-            get {
-                object obj = ResourceManager.GetObject("ic_time", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap ic_time_background {
             get {
                 object obj = ResourceManager.GetObject("ic_time_background", resourceCulture);
@@ -206,16 +196,6 @@ namespace ParkingMangement.Properties {
         internal static System.Drawing.Bitmap ic_top_background {
             get {
                 object obj = ResourceManager.GetObject("ic_top_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ic_user {
-            get {
-                object obj = ResourceManager.GetObject("ic_user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -67,6 +67,38 @@ namespace ParkingMangement.GUI
             CurrentUserID = Program.CurrentUserID;
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
             this.ActiveControl = tbRFIDCardID;
+            labelGetCard.BackColor = ColorTranslator.FromHtml("#51b749");
+            labelDateIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelDateOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelTimeIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelTimeOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            pictureBoxDigitIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            pictureBoxDigitOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            pictureBoxDigitRegister.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            pictureBoxCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            pictureBoxCost.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelDigitIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelDigitOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelDigitRegister.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelCost.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelCost.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+
+            labelDigitInHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelDigitOutHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelDigitRegisterHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelCardIDHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelVND.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelDigitInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelDigitOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelDigitRegisterHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelCardIDHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelVND.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelDateInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelDateOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelTongXeTrongBai.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+
+
             readConfigFile();
             //Random rnd = new Random();
             //cardID = rnd.Next(119, 122) + "";
@@ -83,7 +115,7 @@ namespace ParkingMangement.GUI
         private void loadInfo()
         {
             timerCurrentTime.Start();
-            labelUserName.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
+            //labelUserName.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
             updateCauHinhHienThiXeRaVao();
         }
 
@@ -116,21 +148,10 @@ namespace ParkingMangement.GUI
                     formLoginByCard.Show();
                     break;
                 case Keys.F5:
-                    Form formInOutSetting = new FormInOutSetting();
-                    formInOutSetting.FormClosed += FormInOutSettingClosed;
-                    formInOutSetting.Show();
+                    openInOutSetting();
                     break;
                 case Keys.F7:
-                    string functionId = Constant.FUNCTION_ID_NHAN_VIEN;
-                    string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
-                    if (listFunctionSec.Contains(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString()))
-                    {
-                        Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
-                        formQuanLyXeVaoRa.Show();
-                    } else
-                    {
-                        MessageBox.Show(Constant.sMessageCanNotSeeReport);
-                    }
+                    openFormQuanLyXeRaVao();
                     break;
                 case Keys.F11:
                     var formLogout = new FormLogout();
@@ -142,6 +163,28 @@ namespace ParkingMangement.GUI
                     formLogoutByCard.formNhanVien = this;
                     formLogoutByCard.Show();
                     break;
+            }
+        }
+
+        private void openInOutSetting()
+        {
+            Form formInOutSetting = new FormInOutSetting();
+            formInOutSetting.FormClosed += FormInOutSettingClosed;
+            formInOutSetting.Show();
+        }
+
+        private void openFormQuanLyXeRaVao()
+        {
+            string functionId = Constant.FUNCTION_ID_NHAN_VIEN;
+            string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+            if (listFunctionSec.Contains(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString()))
+            {
+                Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
+                formQuanLyXeVaoRa.Show();
+            }
+            else
+            {
+                MessageBox.Show(Constant.sMessageCanNotSeeReport);
             }
         }
 
@@ -185,7 +228,7 @@ namespace ParkingMangement.GUI
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
         {
-            labelCurrentTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            //labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
         private void checkForSaveToDB(bool isTicketCard)
@@ -252,6 +295,7 @@ namespace ParkingMangement.GUI
                 {
                     labelDigitIn.Text = "-";
                     labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
@@ -268,6 +312,7 @@ namespace ParkingMangement.GUI
                     {
                         labelDigitIn.Text = "-";
                         labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 }
                 else
@@ -282,6 +327,7 @@ namespace ParkingMangement.GUI
                     {
                         labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
                         labelDigitOut.Text = "-";
+                        labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 }
             }
@@ -297,8 +343,14 @@ namespace ParkingMangement.GUI
                 {
                     labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
                     labelDigitOut.Text = "-";
+                    labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
+
+            labelDateIn.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            labelTimeIn.Text = DateTime.Now.ToString("HH:mm");
+            labelDateOut.Text = "-";
+            labelTimeOut.Text = "-";
         }
 
         private void updateCarOut(bool isTicketMonthCard)
@@ -360,6 +412,7 @@ namespace ParkingMangement.GUI
                 {
                     labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
                     labelDigitOut.Text = "-";
+                    labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
@@ -376,6 +429,7 @@ namespace ParkingMangement.GUI
                     {
                         labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
                         labelDigitOut.Text = "-";
+                        labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 } else
                 {
@@ -389,6 +443,7 @@ namespace ParkingMangement.GUI
                     {
                         labelDigitIn.Text = "-";
                         labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 }
             }
@@ -404,6 +459,7 @@ namespace ParkingMangement.GUI
                 {
                     labelDigitIn.Text = "-";
                     labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
         }
@@ -464,7 +520,10 @@ namespace ParkingMangement.GUI
                 }
                     
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
-                labelTimeIn.Text = timeIn.ToString("dd/MM/yyyy HH:mm:ss");
+                labelDateIn.Text = timeIn.ToString("dd/MM/yyyy");
+                labelTimeIn.Text = timeIn.ToString("HH:mm");
+                labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                labelTimeOut.Text = DateTime.Now.ToString("HH:mm");
             }
         }
 
@@ -474,6 +533,7 @@ namespace ParkingMangement.GUI
             if (dt != null && dt.Rows.Count > 0)
             {
                 String idIn = dt.Rows[0].Field<String>("IDIn");
+
                 String idOut = dt.Rows[0].Field<String>("IDOut");
                 if (!idIn.Equals("") && idOut.Equals(""))
                 {
@@ -1015,7 +1075,10 @@ namespace ParkingMangement.GUI
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
             labelCost.Text = "-";
+            labelDateIn.Text = "-";
             labelTimeIn.Text = "-";
+            labelDateOut.Text = "-";
+            labelTimeOut.Text = "-";
             pictureBoxImage1.Image = Properties.Resources.ic_logo;
             pictureBoxImage2.Image = Properties.Resources.ic_logo;
             pictureBoxImage3.Image = Properties.Resources.ic_logo;
@@ -1027,6 +1090,16 @@ namespace ParkingMangement.GUI
         private void FormInOutSettingClosed(object sender, FormClosedEventArgs e)
         {
             updateCauHinhHienThiXeRaVao();
+        }
+
+        private void pictureBoxChangeLane_Click(object sender, EventArgs e)
+        {
+            openInOutSetting();
+        }
+
+        private void pictureBoxGetCard_Click(object sender, EventArgs e)
+        {
+            openFormQuanLyXeRaVao();
         }
     }
 }

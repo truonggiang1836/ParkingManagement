@@ -263,6 +263,15 @@
   <ItemGroup>
     <None Include="resources\ic_time_background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_get_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_textbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_user.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

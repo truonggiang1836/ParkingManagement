@@ -118,55 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ic_print_bill" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_print_bill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_background_get_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_background_get_card.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_background_textbox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_background_textbox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_bottom_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_bottom_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_check" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_check.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_time_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_time_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_change_lane" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_change_lane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_date_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_date_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_lane_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_lane_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_write_ticket" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_write_ticket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_background_user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_background_user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_barie" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\ic_barie.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_lane_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_lane_in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_bottom_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_bottom_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_date" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_date.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_time" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_time.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ic_top_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_top_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_change_lane" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_change_lane.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ic_cost" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\ic_cost.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ic_background_get_card" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\ic_background_get_card.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ic_date_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_date_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_lane_in" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_lane_in.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_lane_out" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_lane_out.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_print_bill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_print_bill.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_time_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_time_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_top_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_top_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ic_write_ticket" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\ic_write_ticket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
