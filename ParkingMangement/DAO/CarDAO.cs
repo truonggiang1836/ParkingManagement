@@ -356,7 +356,7 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static int GetIdentifyByID(string id)
+        public static int GetLastIdentifyByID(string id)
         {
             string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify desc";
             DataTable dt = Database.ExcuQuery(sql);
@@ -403,6 +403,16 @@ namespace ParkingMangement.DAO
             return Database.ExcuNonQuery(sql);
         }
 
+        public static void UpdateDigit(string id, String digit)
+        {
+            int identify = GetLastIdentifyByID(id);
+            if (identify != 0)
+            {
+                string sql = "update [Car] set Digit ='" + digit + "' where Identify =" + identify;
+                Database.ExcuNonQuery(sql);
+            }
+        }
+
         public static bool DeleteLostCard(string cardId)
         {
             string sql = "delete from [Car] where ID = '" + cardId + "' and IsLostCard > 0";
@@ -445,6 +455,19 @@ namespace ParkingMangement.DAO
                 return id;
             }
             return null;
+        }
+
+        public static string GetDigitByID(string id)
+        {
+            DataTable dt = GetLastCarByID(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("Digit");
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

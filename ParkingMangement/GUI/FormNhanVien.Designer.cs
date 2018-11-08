@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
@@ -51,7 +51,6 @@
             this.labelVND = new System.Windows.Forms.Label();
             this.labelGetCard = new System.Windows.Forms.Label();
             this.labelDigitOut = new System.Windows.Forms.Label();
-            this.labelDigitIn = new System.Windows.Forms.Label();
             this.labelDigitRegister = new System.Windows.Forms.Label();
             this.labelCardID = new System.Windows.Forms.Label();
             this.labelCost = new System.Windows.Forms.Label();
@@ -92,6 +91,7 @@
             this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelComputer = new System.Windows.Forms.Label();
+            this.labelDigitIn = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -185,6 +185,7 @@
             this.tbRFIDCardID.Name = "tbRFIDCardID";
             this.tbRFIDCardID.Size = new System.Drawing.Size(0, 20);
             this.tbRFIDCardID.TabIndex = 16;
+            this.tbRFIDCardID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbRFIDCardID_KeyDown);
             this.tbRFIDCardID.Leave += new System.EventHandler(this.tbRFIDCardID_Leave);
             // 
             // labelCardIDHeader
@@ -327,16 +328,6 @@
             this.labelDigitOut.TabIndex = 60;
             this.labelDigitOut.Text = "-";
             // 
-            // labelDigitIn
-            // 
-            this.labelDigitIn.AutoSize = true;
-            this.labelDigitIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitIn.Location = new System.Drawing.Point(1032, 126);
-            this.labelDigitIn.Name = "labelDigitIn";
-            this.labelDigitIn.Size = new System.Drawing.Size(14, 18);
-            this.labelDigitIn.TabIndex = 61;
-            this.labelDigitIn.Text = "-";
-            // 
             // labelDigitRegister
             // 
             this.labelDigitRegister.AutoSize = true;
@@ -359,13 +350,13 @@
             // 
             // labelCost
             // 
-            this.labelCost.AutoSize = true;
             this.labelCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCost.Location = new System.Drawing.Point(1010, 310);
+            this.labelCost.Location = new System.Drawing.Point(948, 311);
             this.labelCost.Name = "labelCost";
-            this.labelCost.Size = new System.Drawing.Size(14, 18);
+            this.labelCost.Size = new System.Drawing.Size(140, 18);
             this.labelCost.TabIndex = 69;
             this.labelCost.Text = "-";
+            this.labelCost.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
@@ -727,8 +718,8 @@
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "PartName";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle7;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.Name = "DoanhThuPartName";
             this.DoanhThuPartName.ReadOnly = true;
@@ -760,6 +751,17 @@
             this.labelComputer.TabIndex = 59;
             this.labelComputer.Text = "Máy chủ:";
             // 
+            // labelDigitIn
+            // 
+            this.labelDigitIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.labelDigitIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.labelDigitIn.Location = new System.Drawing.Point(1036, 126);
+            this.labelDigitIn.Name = "labelDigitIn";
+            this.labelDigitIn.Size = new System.Drawing.Size(92, 17);
+            this.labelDigitIn.TabIndex = 71;
+            this.labelDigitIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelDigitIn_KeyDown);
+            this.labelDigitIn.Leave += new System.EventHandler(this.labelDigitIn_Leave);
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -767,6 +769,7 @@
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(1144, 658);
             this.ControlBox = false;
+            this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.labelCost);
             this.Controls.Add(this.pictureBox18);
@@ -775,7 +778,6 @@
             this.Controls.Add(this.pictureBoxCost);
             this.Controls.Add(this.labelDigitRegister);
             this.Controls.Add(this.pictureBoxDigitRegister);
-            this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.labelDigitOut);
             this.Controls.Add(this.pictureBoxDigitIn);
             this.Controls.Add(this.pictureBoxDigitOut);
@@ -898,7 +900,6 @@
         private System.Windows.Forms.PictureBox pictureBoxDigitOut;
         private System.Windows.Forms.PictureBox pictureBoxDigitIn;
         private System.Windows.Forms.Label labelDigitOut;
-        private System.Windows.Forms.Label labelDigitIn;
         private System.Windows.Forms.PictureBox pictureBoxDigitRegister;
         private System.Windows.Forms.Label labelDigitRegister;
         private System.Windows.Forms.PictureBox pictureBoxCost;
@@ -913,5 +914,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarIn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarOut;
         private System.Windows.Forms.Label labelComputer;
+        private System.Windows.Forms.TextBox labelDigitIn;
     }
 }

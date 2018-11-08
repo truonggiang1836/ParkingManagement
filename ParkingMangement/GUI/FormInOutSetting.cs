@@ -15,6 +15,7 @@ namespace ParkingMangement.GUI
 {
     public partial class FormInOutSetting : Form
     {
+        public FormNhanVien formNhanVien;
         public FormInOutSetting()
         {
             InitializeComponent();
@@ -74,6 +75,10 @@ namespace ParkingMangement.GUI
         private void btnYes_Click(object sender, EventArgs e)
         {
             saveConfig();
+            if (formNhanVien != null)
+            {
+                formNhanVien.updateCauHinhHienThiXeRaVao();
+            }
         }
 
         private void btnNo_Click(object sender, EventArgs e)

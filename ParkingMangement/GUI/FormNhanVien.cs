@@ -128,15 +128,12 @@ namespace ParkingMangement.GUI
         {
             switch (e.KeyCode)
             {
-                //case Keys.Escape:
-                //    Util.showConfirmLogoutPopup(this);
-                //    break;
                 case Keys.Enter:
-                    cardID = tbRFIDCardID.Text;
-                    labelCardID.Text = cardID;
-                    string x = keyboardDeviceName;
-                    tbRFIDCardID.Text = "";
-                    saveImage();
+                    if (tbRFIDCardID.Text.Equals(""))
+                    {
+                        updateDigitCarIn();
+                        tbRFIDCardID.Focus();
+                    }
                     break;
                 case Keys.F1:
                     var formChangePassword = new FormChangePassword();
@@ -173,8 +170,8 @@ namespace ParkingMangement.GUI
 
         private void openInOutSetting()
         {
-            Form formInOutSetting = new FormInOutSetting();
-            formInOutSetting.FormClosed += FormInOutSettingClosed;
+            FormInOutSetting formInOutSetting = new FormInOutSetting();
+            formInOutSetting.formNhanVien = this;
             formInOutSetting.Show();
         }
 
@@ -238,8 +235,9 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB(bool isTicketCard)
         {
-            labelDigitIn.Text = "-";
+            labelDigitIn.Text = "";
             labelDigitOut.Text = "-";
+            labelDigitRegister.Text = "-";
             if (isCarIn())
             {
                 if (KiemTraXeChuaRa())
@@ -260,6 +258,21 @@ namespace ParkingMangement.GUI
                 {
                     MessageBox.Show("Thẻ này chưa được quẹt đầu vào");
                 }
+            }
+        }
+
+        private void updateDigitCarIn()
+        {
+            cardID = labelCardID.Text;
+            string digit = labelDigitIn.Text;
+            if (!digit.Equals(""))
+            {
+                CarDAO.UpdateDigit(cardID, digit);
+                labelDigitIn.Text = "";
+                pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                pictureBoxImage4.Image = Properties.Resources.ic_logo;
             }
         }
 
@@ -298,8 +311,6 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    labelDigitIn.Text = "-";
-                    labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
@@ -315,8 +326,6 @@ namespace ParkingMangement.GUI
 
                     if (isTicketMonthCard)
                     {
-                        labelDigitIn.Text = "-";
-                        labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 }
@@ -330,8 +339,6 @@ namespace ParkingMangement.GUI
 
                     if (isTicketMonthCard)
                     {
-                        labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
-                        labelDigitOut.Text = "-";
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 }
@@ -346,8 +353,6 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
-                    labelDigitOut.Text = "-";
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
@@ -360,7 +365,7 @@ namespace ParkingMangement.GUI
 
         private void updateCarOut(bool isTicketMonthCard)
         {
-            int identify = CarDAO.GetIdentifyByID(cardID);
+            int identify = CarDAO.GetLastIdentifyByID(cardID);
             CarDTO carDTO = new CarDTO();
             carDTO.Identify = identify;
             carDTO.Id = cardID;
@@ -415,8 +420,6 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
-                    labelDigitOut.Text = "-";
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
@@ -432,8 +435,6 @@ namespace ParkingMangement.GUI
 
                     if (isTicketMonthCard)
                     {
-                        labelDigitIn.Text = TicketMonthDAO.GetDigitByID(cardID);
-                        labelDigitOut.Text = "-";
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 } else
@@ -446,8 +447,6 @@ namespace ParkingMangement.GUI
 
                     if (isTicketMonthCard)
                     {
-                        labelDigitIn.Text = "-";
-                        labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     }
                 }
@@ -462,8 +461,6 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    labelDigitIn.Text = "-";
-                    labelDigitOut.Text = TicketMonthDAO.GetDigitByID(cardID);
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
@@ -529,6 +526,9 @@ namespace ParkingMangement.GUI
                 labelTimeIn.Text = timeIn.ToString("HH:mm");
                 labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 labelTimeOut.Text = DateTime.Now.ToString("HH:mm");
+
+                string digit = dt.Rows[0].Field<string>("Digit");
+                labelDigitIn.Text = digit;
             }
         }
 
@@ -716,15 +716,15 @@ namespace ParkingMangement.GUI
             System.Drawing.Size imgSize = new System.Drawing.Size(
                 axVLCPlugin.ClientRectangle.Width,
                 axVLCPlugin.ClientRectangle.Height);
-            Point ps = PointToScreen(new Point(axVLCPlugin.Bounds.X, axVLCPlugin.Bounds.Y));
-            gfxScreenshot.CopyFromScreen(ps.X + 2, ps.Y + 144, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
+            Point ps = axVLCPlugin.PointToScreen(Point.Empty);
+            gfxScreenshot.CopyFromScreen(ps.X, ps.Y, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
             axVLCPlugin.playlist.play();
             return bmpScreenshot;
         }
 
         private void tbRFIDCardID_Leave(object sender, EventArgs e)
         {
-            tbRFIDCardID.Focus();
+            //tbRFIDCardID.Focus();
         }
 
         public void readConfigFile()
@@ -1053,7 +1053,7 @@ namespace ParkingMangement.GUI
             return Util.getTotalTimeByDay(timeIn, timeOut);
         }
 
-        private void updateCauHinhHienThiXeRaVao()
+        public void updateCauHinhHienThiXeRaVao()
         {
             int inOutType = ConfigDAO.GetInOutType();
             switch (inOutType)
@@ -1088,13 +1088,8 @@ namespace ParkingMangement.GUI
             pictureBoxImage2.Image = Properties.Resources.ic_logo;
             pictureBoxImage3.Image = Properties.Resources.ic_logo;
             pictureBoxImage4.Image = Properties.Resources.ic_logo;
-            labelDigitIn.Text = "-";
+            labelDigitIn.Text = "";
             labelDigitOut.Text = "-";
-        }
-
-        private void FormInOutSettingClosed(object sender, FormClosedEventArgs e)
-        {
-            updateCauHinhHienThiXeRaVao();
         }
 
         private void pictureBoxChangeLane_Click(object sender, EventArgs e)
@@ -1105,6 +1100,39 @@ namespace ParkingMangement.GUI
         private void pictureBoxGetCard_Click(object sender, EventArgs e)
         {
             openFormQuanLyXeRaVao();
+        }
+
+        private void labelDigitIn_KeyDown(object sender, KeyEventArgs e)
+        {
+            //switch (e.KeyCode)
+            //{
+            //    case Keys.Enter:
+            //        updateDigitCarIn();
+            //        tbRFIDCardID.Focus();
+            //        break;
+            //}
+        }
+
+        private void tbRFIDCardID_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    cardID = tbRFIDCardID.Text;
+                    labelCardID.Text = cardID;
+                    string x = keyboardDeviceName;
+                    tbRFIDCardID.Text = "";
+                    if (!cardID.Equals(""))
+                    {
+                        saveImage();
+                    }
+                    break;
+            }
+        }
+
+        private void labelDigitIn_Leave(object sender, EventArgs e)
+        {
+            tbRFIDCardID.Focus();
         }
     }
 }
