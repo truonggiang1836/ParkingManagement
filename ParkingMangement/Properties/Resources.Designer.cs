@@ -83,6 +83,16 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_background_thong_ke_xe_trong_bai {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_thong_ke_xe_trong_bai", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_background_user {
             get {
                 object obj = ResourceManager.GetObject("ic_background_user", resourceCulture);

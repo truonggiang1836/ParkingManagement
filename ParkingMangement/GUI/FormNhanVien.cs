@@ -96,7 +96,12 @@ namespace ParkingMangement.GUI
             labelVND.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDateInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDateOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
-            labelTongXeTrongBai.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+
+            dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#d09f52");
+            dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#ffffff");
+            dgvThongKeXeTrongBai.EnableHeadersVisualStyles = false;
+            dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Bold);
+            labelComputer.Text = Environment.MachineName;
 
 
             readConfigFile();
