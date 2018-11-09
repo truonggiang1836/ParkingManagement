@@ -129,11 +129,11 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if (tbRFIDCardID.Text.Equals(""))
+                    if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
                     {
                         updateDigitCarIn();
-                        tbRFIDCardID.Focus();
                     }
+                    tbRFIDCardID.Focus();
                     break;
                 case Keys.F1:
                     var formChangePassword = new FormChangePassword();
