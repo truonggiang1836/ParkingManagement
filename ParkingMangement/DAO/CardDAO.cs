@@ -22,16 +22,16 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static bool Insert(CardDTO cartDTO)
+        public static bool Insert(CardDTO cardDTO)
         {
-            string sql = "insert into SmartCard(ID, IsUsing, Type, DayUnlimit) values ('" + cartDTO.Id + "', '" + cartDTO.IsUsing + "', " + cartDTO.Type + ", '" + cartDTO.DayUnlimit + "')";
+            string sql = "insert into SmartCard(Identify, ID, IsUsing, Type, DayUnlimit) values (" + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', " + cardDTO.Type + ", '" + cardDTO.DayUnlimit + "')";
             return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void Update(CardDTO cartDTO)
         {
-            string sql = "update [SmartCard] set ID =('" + cartDTO.Id + "'), IsUsing =('" + cartDTO.IsUsing + "'), Type =(" + cartDTO.Type + "), DayUnlimit =('"
-                + cartDTO.DayUnlimit + "') where Identify =" + cartDTO.Identify + "";
+            string sql = "update [SmartCard] set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =(" + cartDTO.Type + "), DayUnlimit =('"
+                + cartDTO.DayUnlimit + "') where ID ='" + cartDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
 

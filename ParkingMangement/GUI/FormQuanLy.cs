@@ -1015,7 +1015,16 @@ namespace ParkingMangement.GUI
         {
             if (string.IsNullOrWhiteSpace(tbCardIDCreate.Text))
             {
-                MessageBox.Show(Constant.sMessageCardIdNullError);
+                labelKetQuaTaoThe.Text = Constant.sMessageCardIdNullError;
+                return false;
+            }
+            try
+            {
+                Convert.ToInt32(tbCardIdentifyCreate.Text.Trim());
+            }
+            catch (Exception e)
+            {
+                labelKetQuaTaoThe.Text = "Số thứ tự không hợp lệ";
                 return false;
             }
             return true;
@@ -1024,6 +1033,14 @@ namespace ParkingMangement.GUI
         private void createCard()
         {
             CardDTO cardDTO = new CardDTO();
+            try
+            {
+                cardDTO.Identify = Convert.ToInt32(tbCardIdentifyCreate.Text.Trim());
+            }
+            catch (Exception e)
+            {
+
+            }
             cardDTO.Id = tbCardIDCreate.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameCreate.SelectedItem).Row;
@@ -1056,13 +1073,29 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageCardIdNullError);
                 return false;
             }
+            try
+            {
+                int.Parse(tbCardIdentifyEdit.Text.Trim());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Số thứ tự không hợp lệ");
+                return false;
+            }
             return true;
         }
 
         private void updateCard()
         {
             CardDTO cardDTO = new CardDTO();
-            cardDTO.Identify = int.Parse(tbCardIdentifyEdit.Text.Trim());
+            try
+            {
+                cardDTO.Identify = int.Parse(tbCardIdentifyEdit.Text.Trim());
+            }
+            catch (Exception e)
+            {
+
+            }
             cardDTO.Id = tbCardIDEdit.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameEdit.SelectedItem).Row;

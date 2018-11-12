@@ -189,6 +189,9 @@ namespace ParkingMangement.DAO
                 int countAllCarOut = GetCountCarOutByPartAndDate(startTime, endTime, null, false, userID) + GetCountCarOutByPartAndDate(startTime, endTime, null, true, userID);
                 dataRow.SetField("CountCarOut", countAllCarOut);
 
+                int countAllCarSurvive = GetCountCarSurvive(null);
+                dataRow.SetField("CountCarSurvive", countAllCarSurvive);
+
                 int sumCost = GetCountCost(startTime, endTime, false, userID) + GetCountCost(startTime, endTime, true, userID);
                 dataRow.SetField("SumCost", sumCost);
                 data.Rows.Add(dataRow);
@@ -230,6 +233,8 @@ namespace ParkingMangement.DAO
                 data.Columns["CountCarIn"].SetOrdinal(1);
                 data.Columns.Add("CountCarOut", typeof(int));
                 data.Columns["CountCarOut"].SetOrdinal(2);
+                data.Columns.Add("CountCarSurvive", typeof(int));
+                data.Columns["CountCarSurvive"].SetOrdinal(3);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string partID = data.Rows[row].Field<string>("IDPart");
@@ -239,6 +244,8 @@ namespace ParkingMangement.DAO
                     data.Rows[row].SetField("CountCarIn", countCarIn);
                     int countCarOut = GetCountCarOutByPartAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarOut", countCarOut);
+                    int countCarSurvive = GetCountCarSurvive(partID, isTicketMonth);
+                    data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                 }
             }
 
@@ -259,6 +266,9 @@ namespace ParkingMangement.DAO
 
             int countAllCarOut = GetCountCarOutByPartAndDate(startTime, endTime, null, isTicketMonth, userID);
             dataRow.SetField("CountCarOut", countAllCarOut);
+
+            int countAllCarSurvive = GetCountCarSurvive(null, isTicketMonth);
+            dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
             int sumCost = GetCountCost(startTime, endTime, isTicketMonth, userID);
             dataRow.SetField("SumCost", sumCost);
@@ -375,6 +385,22 @@ namespace ParkingMangement.DAO
         public static int GetCountCarSurvive(string partID)
         {
             string sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null ";
+            if (partID != null)
+            {
+                sql += " and IDPart = '" + partID + "'";
+            }
+
+            DataTable data = Database.ExcuQuery(sql);
+            return data.Rows.Count;
+        }
+
+        public static int GetCountCarSurvive(string partID, bool isTicketMonth)
+        {
+            string sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null " + sqlQueryTicketCommon;
+            if (isTicketMonth)
+            {
+                sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null " + sqlQueryTicketMonth;
+            }
             if (partID != null)
             {
                 sql += " and IDPart = '" + partID + "'";
