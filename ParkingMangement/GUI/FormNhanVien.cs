@@ -103,6 +103,8 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Bold);
             labelComputer.Text = Environment.MachineName;
 
+            dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
+
 
             readConfigFile();
             //Random rnd = new Random();

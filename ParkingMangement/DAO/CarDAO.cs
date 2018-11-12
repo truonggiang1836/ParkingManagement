@@ -267,6 +267,34 @@ namespace ParkingMangement.DAO
             return data;
         }
 
+        public static DataTable GetListCarSurvive()
+        {
+            string groupBySql = " group by Car.IDPart";
+            string sql = "select Car.IDPart from [Car]";
+            sql += groupBySql;
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                data.Columns.Add("PartName", typeof(string));
+                data.Columns["PartName"].SetOrdinal(0);
+                data.Columns.Add("CountCarSurvive", typeof(int));
+                data.Columns["CountCarSurvive"].SetOrdinal(1);
+                data.Columns.Add("Status", typeof(string));
+                data.Columns["Status"].SetOrdinal(2);
+                for (int row = 0; row < data.Rows.Count; row++)
+                {
+                    string partID = data.Rows[row].Field<string>("IDPart");
+                    string partName = PartDAO.GetPartNameByPartID(partID);
+                    data.Rows[row].SetField("PartName", partName);
+                    int countCarSurvive = GetCountCarSurvive(partID);
+                    data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
+                    string status = "Còn trống";
+                    data.Rows[row].SetField("Status", status);
+                }
+            }
+            return data;
+        }
+
         public static int GetCountCost(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
             string sql = "select sum(Car.Cost) as SumCost from [Car] where Car.IDTicketMonth = ''";
@@ -338,6 +366,18 @@ namespace ParkingMangement.DAO
             if (userID != null)
             {
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
+            }
+
+            DataTable data = Database.ExcuQuery(sql);
+            return data.Rows.Count;
+        }
+
+        public static int GetCountCarSurvive(string partID)
+        {
+            string sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null ";
+            if (partID != null)
+            {
+                sql += " and IDPart = '" + partID + "'";
             }
 
             DataTable data = Database.ExcuQuery(sql);
