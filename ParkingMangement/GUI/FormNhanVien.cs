@@ -294,13 +294,13 @@ namespace ParkingMangement.GUI
             carDTO.Computer = Environment.MachineName;
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
+            labelCost.Text = "-";
             if (isTicketMonthCard)
             {
                 carDTO.IdTicketMonth = cardID;
                 carDTO.Digit = TicketMonthDAO.GetDigitByID(cardID);
+                labelCost.Text = "VE THANG";
             }
-            CarDAO.Insert(carDTO);
-            labelCost.Text = "-";
 
             int inOutType = ConfigDAO.GetInOutType();
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
