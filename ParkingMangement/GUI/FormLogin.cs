@@ -63,7 +63,10 @@ namespace ParkingMangement
             try
             {
                 String responseString = webClient.DownloadString(ApiUtil.API_LOGIN);
-                MessageBox.Show(responseString);
+                Console.WriteLine(responseString);
+                UserDTO userDTO = new UserDTO(responseString);
+                Program.CurrentUserID = userDTO.Id;
+                Program.CurrentToken = userDTO.Token;
             } catch (Exception e)
             {
                 

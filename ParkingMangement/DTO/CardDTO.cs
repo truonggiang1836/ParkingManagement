@@ -8,6 +8,7 @@ namespace ParkingMangement.DTO
 {
     class CardDTO
     {
+        private string systemId;
         private int identify;
         private string id;
         private string isUsing;
@@ -19,6 +20,7 @@ namespace ParkingMangement.DTO
         public string IsUsing { get => isUsing; set => isUsing = value; }
         public int Type { get => type; set => type = value; }
         public DateTime DayUnlimit { get => dayUnlimit; set => dayUnlimit = value; }
+        public string SystemId { get => systemId; set => systemId = value; }
 
         public static string IsUsingString(string IsUsing)
         {

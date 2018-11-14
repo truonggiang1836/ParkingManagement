@@ -24,7 +24,7 @@ namespace ParkingMangement.DAO
 
         public static bool Insert(CardDTO cardDTO)
         {
-            string sql = "insert into SmartCard(Identify, ID, IsUsing, Type, DayUnlimit) values (" + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', " + cardDTO.Type + ", '" + cardDTO.DayUnlimit + "')";
+            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', " + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', " + cardDTO.Type + ", '" + cardDTO.DayUnlimit + "')";
             return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 

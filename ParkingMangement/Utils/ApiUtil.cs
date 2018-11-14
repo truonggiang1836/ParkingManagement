@@ -10,14 +10,21 @@ namespace ParkingMangement.Utils
     class ApiUtil
     {
         public static string SECRET_KEY = "parkingmanagement";
+        public static string HEADER_USER_ID = "User-Id";
+        public static string HEADER_AUTHORIZATION = "Authorization";
         public static string PARAM_API_AUTH_DATE = "api_auth_date";
         public static string PARAM_API_AUTH_KEY = "api_auth_key";
         public static string PARAM_ACCOUNT = "account";
         public static string PARAM_PASSWORD = "password";
+        public static string PARAM_ID = "id";
+        public static string PARAM_STT = "stt";
+        public static string PARAM_CODE = "code";
+        public static string PARAM_VEHICLE_ID = "vehicle_id";
 
 
         public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         public static string API_LOGIN = BASE_URL + "admins/login";
+        public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -32,6 +39,15 @@ namespace ParkingMangement.Utils
             {
                 WebClient webClient = new WebClient();
                 webClient.Encoding = Encoding.UTF8;
+                if (!Program.CurrentUserID.Equals(""))
+                {
+                    webClient.Headers.Set(HEADER_USER_ID, Program.CurrentUserID);
+                }
+                if (!Program.CurrentToken.Equals(""))
+                {
+                    webClient.Headers.Set(HEADER_AUTHORIZATION, Program.CurrentToken);
+                }
+
                 long currentSecond = CurrentTimeMillis() / 1000;
                 string apiAuthDate = currentSecond.ToString();
                 webClient.QueryString.Add(PARAM_API_AUTH_DATE, apiAuthDate);
@@ -39,7 +55,7 @@ namespace ParkingMangement.Utils
                 webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
                 return webClient;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return null;
             }

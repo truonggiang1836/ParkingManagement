@@ -12,7 +12,8 @@ namespace ParkingMangement
     {
         public static DateTime StartWorkTime;
         public static DateTime EndWorkTime;
-        public static string CurrentUserID;
+        public static string CurrentUserID = "";
+        public static string CurrentToken = "";
 
         /// <summary>
         /// The main entry point for the application.

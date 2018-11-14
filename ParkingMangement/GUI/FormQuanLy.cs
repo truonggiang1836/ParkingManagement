@@ -1,4 +1,5 @@
-﻿using ParkingMangement.DAO;
+﻿using Newtonsoft.Json.Linq;
+using ParkingMangement.DAO;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
 using ParkingMangement.Utils;
@@ -11,6 +12,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -1053,7 +1055,14 @@ namespace ParkingMangement.GUI
             }
             cardDTO.IsUsing = isUsing;
             cardDTO.DayUnlimit = DateTime.Now;
+            cardDTO.SystemId = createCardAPI(cardDTO);
 
+            DataTable dt = CardDAO.GetCardByID(cardDTO.Id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
+                return;
+            }
             if (CardDAO.Insert(cardDTO))
             {
                 loadCardList();
@@ -1064,6 +1073,25 @@ namespace ParkingMangement.GUI
             {
                 labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
             } 
+        }
+
+        private string createCardAPI(CardDTO cardDTO)
+        {
+            WebClient webClient = ApiUtil.getWebClient();
+            webClient.QueryString.Add(ApiUtil.PARAM_STT, cardDTO.Identify + "");
+            webClient.QueryString.Add(ApiUtil.PARAM_CODE, cardDTO.Id);
+            webClient.QueryString.Add(ApiUtil.PARAM_VEHICLE_ID, cardDTO.Type + "");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_ADD_UPDATE_CARD);
+                JObject jObject = JObject.Parse(responseString);
+                string cardId = (string)jObject["body"];
+                return cardId;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         private bool checkUpdateCardData()
