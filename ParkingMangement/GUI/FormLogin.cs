@@ -4,10 +4,12 @@ using ParkingMangement.GUI;
 using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -48,6 +50,23 @@ namespace ParkingMangement
             } else
             {
                 labelError.Text = "Thông tin không chính xác";
+            }
+
+            loginAPIAsync(account, pass);
+        }
+
+        private void loginAPIAsync(string account, string pass)
+        {
+            WebClient webClient = ApiUtil.getWebClient();
+            webClient.QueryString.Add(ApiUtil.PARAM_ACCOUNT, account);
+            webClient.QueryString.Add(ApiUtil.PARAM_PASSWORD, pass);
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_LOGIN);
+                MessageBox.Show(responseString);
+            } catch (Exception e)
+            {
+                
             }
         }
 

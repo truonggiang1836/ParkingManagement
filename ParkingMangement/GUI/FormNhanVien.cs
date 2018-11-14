@@ -81,8 +81,10 @@ namespace ParkingMangement.GUI
             labelDigitOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelDigitRegister.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
-            labelCost.BackColor = ColorTranslator.FromHtml("#fcfdfc");
-            labelCost.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelCostIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelCostIn.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelCostOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelCostOut.ForeColor = ColorTranslator.FromHtml("#cf9f51");
 
             labelDigitInHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelDigitOutHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
@@ -228,6 +230,8 @@ namespace ParkingMangement.GUI
             {
                 MessageBox.Show(Constant.sMessageCardIdNotExist);
             }
+
+            dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -294,13 +298,17 @@ namespace ParkingMangement.GUI
             carDTO.Computer = Environment.MachineName;
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
-            labelCost.Text = "-";
+
+            labelCostIn.Text = "-";
+            labelCostOut.Text = "-";
+
             if (isTicketMonthCard)
             {
                 carDTO.IdTicketMonth = cardID;
                 carDTO.Digit = TicketMonthDAO.GetDigitByID(cardID);
-                labelCost.Text = "VE THANG";
             }
+
+            CarDAO.Insert(carDTO);
 
             int inOutType = ConfigDAO.GetInOutType();
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
@@ -314,6 +322,8 @@ namespace ParkingMangement.GUI
                 if (isTicketMonthCard)
                 {
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelCostIn.Text = "-";
+                    labelCostOut.Text = "VE THANG";
                 }
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
@@ -329,6 +339,8 @@ namespace ParkingMangement.GUI
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelCostIn.Text = "-";
+                        labelCostOut.Text = "VE THANG";
                     }
                 }
                 else
@@ -342,6 +354,8 @@ namespace ParkingMangement.GUI
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelCostIn.Text = "VE THANG";
+                        labelCostOut.Text = "-";
                     }
                 }
             }
@@ -356,6 +370,8 @@ namespace ParkingMangement.GUI
                 if (isTicketMonthCard)
                 {
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelCostIn.Text = "VE THANG";
+                    labelCostOut.Text = "-";
                 }
             }
 
@@ -376,7 +392,6 @@ namespace ParkingMangement.GUI
             if (isTicketMonthCard)
             {
                 carDTO.Cost = 0;
-                labelCost.Text = "VE THANG";
                 DateTime expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
                 if (DateTime.Now.CompareTo(expirationDate) > 0)
                 {
@@ -389,7 +404,7 @@ namespace ParkingMangement.GUI
                         case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
                         default:
                             carDTO.Cost = tinhTienGiuXe();
-                            labelCost.Text = carDTO.Cost + "";
+                            labelCostOut.Text = carDTO.Cost + "";
                             break;
                     }
                     MessageBox.Show("Thẻ tháng đã hết hạn");
@@ -397,7 +412,7 @@ namespace ParkingMangement.GUI
             } else
             {
                 carDTO.Cost = tinhTienGiuXe();
-                labelCost.Text = carDTO.Cost + "";
+                labelCostOut.Text = carDTO.Cost + "";
             }
 
             saveImage3ToFile();
@@ -411,11 +426,17 @@ namespace ParkingMangement.GUI
             carDTO.DateUpdate = DateTime.Now;
             CarDAO.UpdateCarOut(carDTO);
 
+            labelCostIn.Text = "-";
+            labelCostOut.Text = "-";
+
             int inOutType = ConfigDAO.GetInOutType();
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 labelMoiVao.Text = Constant.sLabelMoiRa;
                 labelMoiRa.Text = "";
+
+                labelCostIn.Text = carDTO.Cost + "";
+                labelCostOut.Text = "-";
 
                 pictureBoxImage3.Image = Properties.Resources.ic_logo;
                 pictureBoxImage4.Image = Properties.Resources.ic_logo;
@@ -423,6 +444,7 @@ namespace ParkingMangement.GUI
                 if (isTicketMonthCard)
                 {
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelCostIn.Text = "VE THANG";
                 }
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
@@ -432,17 +454,24 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = Constant.sLabelMoiRa;
                     labelMoiRa.Text = "";
 
+                    labelCostIn.Text = carDTO.Cost + "";
+                    labelCostOut.Text = "-";
+
                     pictureBoxImage3.Image = Properties.Resources.ic_logo;
                     pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelCostIn.Text = "VE THANG";
                     }
                 } else
                 {
                     labelMoiVao.Text = "";
                     labelMoiRa.Text = Constant.sLabelMoiRa;
+
+                    labelCostIn.Text = "-";
+                    labelCostOut.Text = carDTO.Cost + "";
 
                     pictureBoxImage1.Image = Properties.Resources.ic_logo;
                     pictureBoxImage2.Image = Properties.Resources.ic_logo;
@@ -450,6 +479,7 @@ namespace ParkingMangement.GUI
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                        labelCostOut.Text = "VE THANG";
                     }
                 }
             }
@@ -458,12 +488,16 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = "";
                 labelMoiRa.Text = Constant.sLabelMoiRa;
 
+                labelCostIn.Text = "-";
+                labelCostOut.Text = carDTO.Cost + "";
+
                 pictureBoxImage1.Image = Properties.Resources.ic_logo;
                 pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
+                    labelCostOut.Text = "VE THANG";
                 }
             }
         }
@@ -540,7 +574,6 @@ namespace ParkingMangement.GUI
             if (dt != null && dt.Rows.Count > 0)
             {
                 String idIn = dt.Rows[0].Field<String>("IDIn");
-
                 String idOut = dt.Rows[0].Field<String>("IDOut");
                 if (!idIn.Equals("") && idOut.Equals(""))
                 {
@@ -1081,7 +1114,8 @@ namespace ParkingMangement.GUI
 
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
-            labelCost.Text = "-";
+            labelCostIn.Text = "-";
+            labelCostOut.Text = "-";
             labelDateIn.Text = "-";
             labelTimeIn.Text = "-";
             labelDateOut.Text = "-";

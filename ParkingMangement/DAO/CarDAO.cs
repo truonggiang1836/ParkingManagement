@@ -328,10 +328,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarInByPartAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from [Car] where Car.TimeStart is not null " + sqlQueryTicketCommon;
+            string sql = "select * from [Car] where Car.IDIn is not null " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.TimeStart is not null " + sqlQueryTicketMonth;
+                sql = "select * from [Car] where Car.IDIn is not null " + sqlQueryTicketMonth;
             }
             if (partID != null)
             {
@@ -358,10 +358,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarOutByPartAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from [Car] where Car.TimeEnd is not null " + sqlQueryTicketCommon;
+            string sql = "select * from [Car] where Car.IDOut is not null " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.TimeEnd is not null " + sqlQueryTicketMonth;
+                sql = "select * from [Car] where Car.IDOut is not null " + sqlQueryTicketMonth;
             }
             if (partID != null)
             {
@@ -384,7 +384,7 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarSurvive(string partID)
         {
-            string sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null ";
+            string sql = "select * from [Car] where Car.IDIn is not null and Car.IDOut = '' ";
             if (partID != null)
             {
                 sql += " and IDPart = '" + partID + "'";
@@ -396,10 +396,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarSurvive(string partID, bool isTicketMonth)
         {
-            string sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null " + sqlQueryTicketCommon;
+            string sql = "select * from [Car] where Car.IDIn is not null and Car.IDOut = '' " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.TimeStart is not null and Car.TimeEnd is null " + sqlQueryTicketMonth;
+                sql = "select * from [Car] where Car.IDIn is not null and Car.IDOut = '' " + sqlQueryTicketMonth;
             }
             if (partID != null)
             {
