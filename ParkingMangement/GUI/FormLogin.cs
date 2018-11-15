@@ -8,6 +8,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -67,9 +68,18 @@ namespace ParkingMangement
                 UserDTO userDTO = new UserDTO(responseString);
                 Program.CurrentUserID = userDTO.Id;
                 Program.CurrentToken = userDTO.Token;
-            } catch (Exception e)
+            } catch (WebException exception)
             {
-                
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
             }
         }
 

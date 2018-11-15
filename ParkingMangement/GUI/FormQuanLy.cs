@@ -1056,6 +1056,7 @@ namespace ParkingMangement.GUI
             cardDTO.IsUsing = isUsing;
             cardDTO.DayUnlimit = DateTime.Now;
             cardDTO.SystemId = createCardAPI(cardDTO);
+            //cardDTO.SystemId = cardDTO.Id;
 
             DataTable dt = CardDAO.GetCardByID(cardDTO.Id);
             if (dt != null && dt.Rows.Count > 0)

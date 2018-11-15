@@ -21,6 +21,7 @@ using RawInput_dll;
 using System.Diagnostics;
 using System.Security;
 using AxAXVLC;
+using Newtonsoft.Json.Linq;
 
 namespace ParkingMangement.GUI
 {
@@ -308,6 +309,7 @@ namespace ParkingMangement.GUI
                 carDTO.Digit = TicketMonthDAO.GetDigitByID(cardID);
             }
 
+            insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
 
             int inOutType = ConfigDAO.GetInOutType();
@@ -381,6 +383,60 @@ namespace ParkingMangement.GUI
             labelTimeOut.Text = "-";
         }
 
+        private void insertCarInAPI(string cardID)
+        {
+            WebClient webClient = ApiUtil.getWebClient();
+            webClient.QueryString.Add(ApiUtil.PARAM_CODE, cardID);
+            webClient.QueryString.Add(ApiUtil.PARAM_PC_NAME, Environment.MachineName);
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_CHECKIN);
+                Console.WriteLine(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        private int updateCarOutAPI(string cardID)
+        {
+            WebClient webClient = ApiUtil.getWebClient();
+            webClient.QueryString.Add(ApiUtil.PARAM_CODE, cardID);
+            webClient.QueryString.Add(ApiUtil.PARAM_PC_NAME, Environment.MachineName);
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_CHECKOUT);
+                Console.WriteLine(responseString);
+                JObject jObject = JObject.Parse(responseString);
+                JToken jUser = jObject["body"];
+                return (int)jUser["total_price"];
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+            return -1;
+        }
+
         private void updateCarOut(bool isTicketMonthCard)
         {
             int identify = CarDAO.GetLastIdentifyByID(cardID);
@@ -389,30 +445,48 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeEnd = DateTime.Now;
             carDTO.IdOut = Program.CurrentUserID;
-            if (isTicketMonthCard)
+            int cost = updateCarOutAPI(cardID);
+            if (cost >= 0)
             {
-                carDTO.Cost = 0;
-                DateTime expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
-                if (DateTime.Now.CompareTo(expirationDate) > 0)
+                // case use API data
+                if (cost == 0)
                 {
-                    // vé tháng hết hạn
-                    int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
-                    switch (expiredTicketMonthTypeID)
-                    {
-                        case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
-                            break;
-                        case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
-                        default:
-                            carDTO.Cost = tinhTienGiuXe();
-                            labelCostOut.Text = carDTO.Cost + "";
-                            break;
-                    }
-                    MessageBox.Show("Thẻ tháng đã hết hạn");
+                    isTicketMonthCard = true;
+                } else
+                {
+                    isTicketMonthCard = false;
                 }
+                carDTO.Cost = cost;
+                labelCostOut.Text = carDTO.Cost + "";
             } else
             {
-                carDTO.Cost = tinhTienGiuXe();
-                labelCostOut.Text = carDTO.Cost + "";
+                // case use local data
+                if (isTicketMonthCard)
+                {
+                    carDTO.Cost = 0;
+                    DateTime expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
+                    if (DateTime.Now.CompareTo(expirationDate) > 0)
+                    {
+                        // vé tháng hết hạn
+                        int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+                        switch (expiredTicketMonthTypeID)
+                        {
+                            case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                                break;
+                            case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                            default:
+                                carDTO.Cost = tinhTienGiuXe();
+                                labelCostOut.Text = carDTO.Cost + "";
+                                break;
+                        }
+                        MessageBox.Show("Thẻ tháng đã hết hạn");
+                    }
+                }
+                else
+                {
+                    carDTO.Cost = tinhTienGiuXe();
+                    labelCostOut.Text = carDTO.Cost + "";
+                }
             }
 
             saveImage3ToFile();
@@ -424,6 +498,7 @@ namespace ParkingMangement.GUI
             carDTO.Computer = Environment.MachineName;
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
+
             CarDAO.UpdateCarOut(carDTO);
 
             labelCostIn.Text = "-";

@@ -20,11 +20,13 @@ namespace ParkingMangement.Utils
         public static string PARAM_STT = "stt";
         public static string PARAM_CODE = "code";
         public static string PARAM_VEHICLE_ID = "vehicle_id";
-
+        public static string PARAM_PC_NAME = "pc_name";
 
         public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
+        public static string API_CHECKIN = BASE_URL + "cards/checkin";
+        public static string API_CHECKOUT = BASE_URL + "cards/checkout";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
