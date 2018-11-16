@@ -124,5 +124,12 @@ namespace ParkingMangement.Utils
             String second = datevalue.Second.ToString();
             return year + month + day + hour + minute + second;
         }
+
+        public static DateTime getDateTimeFromMilliSecond(double milliSec)
+        {
+            DateTime startTime = new DateTime(1970, 1, 1);
+            TimeSpan time = TimeSpan.FromMilliseconds(milliSec);
+            return startTime.Add(time);
+        }
     }
 }

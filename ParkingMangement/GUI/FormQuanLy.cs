@@ -1078,7 +1078,7 @@ namespace ParkingMangement.GUI
 
         private string createCardAPI(CardDTO cardDTO)
         {
-            WebClient webClient = ApiUtil.getWebClient();
+            WebClient webClient = (new ApiUtil()).getWebClient();
             webClient.QueryString.Add(ApiUtil.PARAM_STT, cardDTO.Identify + "");
             webClient.QueryString.Add(ApiUtil.PARAM_CODE, cardDTO.Id);
             webClient.QueryString.Add(ApiUtil.PARAM_VEHICLE_ID, cardDTO.Type + "");

@@ -58,7 +58,7 @@ namespace ParkingMangement
 
         private void loginAPIAsync(string account, string pass)
         {
-            WebClient webClient = ApiUtil.getWebClient();
+            WebClient webClient = (new ApiUtil()).getWebClient();
             webClient.QueryString.Add(ApiUtil.PARAM_ACCOUNT, account);
             webClient.QueryString.Add(ApiUtil.PARAM_PASSWORD, pass);
             try

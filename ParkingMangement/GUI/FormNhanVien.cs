@@ -385,7 +385,7 @@ namespace ParkingMangement.GUI
 
         private void insertCarInAPI(string cardID)
         {
-            WebClient webClient = ApiUtil.getWebClient();
+            WebClient webClient = (new ApiUtil()).getWebClient();
             webClient.QueryString.Add(ApiUtil.PARAM_CODE, cardID);
             webClient.QueryString.Add(ApiUtil.PARAM_PC_NAME, Environment.MachineName);
             try
@@ -410,7 +410,7 @@ namespace ParkingMangement.GUI
 
         private int updateCarOutAPI(string cardID)
         {
-            WebClient webClient = ApiUtil.getWebClient();
+            WebClient webClient = (new ApiUtil()).getWebClient();
             webClient.QueryString.Add(ApiUtil.PARAM_CODE, cardID);
             webClient.QueryString.Add(ApiUtil.PARAM_PC_NAME, Environment.MachineName);
             try

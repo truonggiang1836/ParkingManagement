@@ -21,12 +21,21 @@ namespace ParkingMangement.Utils
         public static string PARAM_CODE = "code";
         public static string PARAM_VEHICLE_ID = "vehicle_id";
         public static string PARAM_PC_NAME = "pc_name";
+        public static string PARAM_CARD_CODE = "card_code";
+        public static string PARAM_CAR_NUMBER = "car_number";
+        public static string PARAM_CAR_STT = "car_stt";
+        public static string PARAM_CREATED_FROM = "created_from";
+        public static string PARAM_CREATED_TO = "created_to";
+        public static string PARAM_PAGE = "page";
+        public static string PARAM_LIMIT = "limit";
+        public static string PARAM_DISABLE = "disable";
 
         public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
         public static string API_CHECKIN = BASE_URL + "cards/checkin";
         public static string API_CHECKOUT = BASE_URL + "cards/checkout";
+        public static string API_ORDERS_LIST = BASE_URL + "orders/list";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -35,7 +44,7 @@ namespace ParkingMangement.Utils
             return (long)(DateTime.UtcNow - Jan1st1970).TotalMilliseconds;
         }
 
-        public static WebClient getWebClient()
+        public WebClient getWebClient()
         {
             try
             {
