@@ -1055,8 +1055,8 @@ namespace ParkingMangement.GUI
             }
             cardDTO.IsUsing = isUsing;
             cardDTO.DayUnlimit = DateTime.Now;
-            cardDTO.SystemId = createCardAPI(cardDTO);
-            //cardDTO.SystemId = cardDTO.Id;
+            //cardDTO.SystemId = createCardAPI(cardDTO);
+            cardDTO.SystemId = cardDTO.Id;
 
             DataTable dt = CardDAO.GetCardByID(cardDTO.Id);
             if (dt != null && dt.Rows.Count > 0)
@@ -4156,6 +4156,11 @@ namespace ParkingMangement.GUI
                 cell.Value = false;
             }
             cell.Value = !(bool)cell.Value;
+        }
+
+        private void dgvCardList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvCardList);
         }
     }
 }

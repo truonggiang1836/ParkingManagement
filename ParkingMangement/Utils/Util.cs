@@ -131,5 +131,16 @@ namespace ParkingMangement.Utils
             TimeSpan time = TimeSpan.FromMilliseconds(milliSec);
             return startTime.Add(time);
         }
+
+        public static void setRowNumber(DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    row.Cells["STT"].Value = (row.Index + 1).ToString();
+                }
+            }
+        }
     }
 }

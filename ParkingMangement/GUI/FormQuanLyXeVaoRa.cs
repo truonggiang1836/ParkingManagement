@@ -39,8 +39,8 @@ namespace ParkingMangement.GUI
         private void btnSearchCar_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = false;
-            //searchCar();
-            searchCarAPI();
+            searchCar();
+            //searchCarAPI();
         }
 
         private CarDTO getCarModel()

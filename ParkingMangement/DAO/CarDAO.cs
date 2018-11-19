@@ -452,6 +452,13 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
+        public static void UpdateCarIn(CarDTO carDTO)
+        {
+            string sql = "update [Car] set TimeStart ='" + carDTO.TimeStart + "', IDIn ='" + carDTO.IdIn + "', Digit ='" + carDTO.Digit + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account + 
+                "', DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
+            Database.ExcuNonQuery(sql);
+        }
+
         public static void UpdateCarOut(CarDTO carDTO)
         {
             string sql = "update [Car] set TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
@@ -470,12 +477,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuNonQuery(sql);
         }
 
-        public static void UpdateDigit(string id, String digit)
+        public static void UpdateDigit(string id, String digit, String image1, String image2)
         {
             int identify = GetLastIdentifyByID(id);
             if (identify != 0)
             {
-                string sql = "update [Car] set Digit ='" + digit + "' where Identify =" + identify;
+                string sql = "update [Car] set Digit ='" + digit + "', Images ='" + image1 + "', Images2 ='" + image2 + "' where Identify =" + identify;
                 Database.ExcuNonQuery(sql);
             }
         }

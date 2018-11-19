@@ -81,6 +81,7 @@ namespace ParkingMangement.GUI
             labelDigitIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelDigitOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelDigitRegister.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelCustomerName.BackColor = ColorTranslator.FromHtml("#cf9f51");
             labelCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.ForeColor = ColorTranslator.FromHtml("#cf9f51");
@@ -245,11 +246,17 @@ namespace ParkingMangement.GUI
             labelDigitIn.Text = "";
             labelDigitOut.Text = "-";
             labelDigitRegister.Text = "-";
+            labelCustomerName.Text = "-";
+            if (isTicketCard)
+            {
+                labelCustomerName.Text = TicketMonthDAO.GetCustomerNameByID(cardID);
+            }
             if (isCarIn())
             {
                 if (KiemTraXeChuaRa())
                 {
-                    MessageBox.Show("Thẻ này chưa được quẹt đầu ra");
+                    //MessageBox.Show("Thẻ này chưa được quẹt đầu ra");
+                    updateCarIn(isTicketCard);
                 }
                 else
                 {
@@ -274,12 +281,22 @@ namespace ParkingMangement.GUI
             string digit = labelDigitIn.Text;
             if (!digit.Equals(""))
             {
-                CarDAO.UpdateDigit(cardID, digit);
+                saveImage1ToFile();
+                saveImage2ToFile();
+                CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
                 labelDigitIn.Text = "";
                 pictureBoxImage1.Image = Properties.Resources.ic_logo;
                 pictureBoxImage2.Image = Properties.Resources.ic_logo;
                 pictureBoxImage3.Image = Properties.Resources.ic_logo;
                 pictureBoxImage4.Image = Properties.Resources.ic_logo;
+            }
+            DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
+            if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+            {
+                updateScreenForCarIn(true);
+            } else
+            {
+                updateScreenForCarIn(false);
             }
         }
 
@@ -300,8 +317,38 @@ namespace ParkingMangement.GUI
             carDTO.Account = Program.CurrentUserID;
             carDTO.DateUpdate = DateTime.Now;
 
-            labelCostIn.Text = "-";
-            labelCostOut.Text = "-";
+            if (isTicketMonthCard)
+            {
+                carDTO.IdTicketMonth = cardID;
+                carDTO.Digit = TicketMonthDAO.GetDigitByID(cardID);
+            }
+
+            //insertCarInAPI(cardID);
+            CarDAO.Insert(carDTO);
+
+            updateScreenForCarIn(isTicketMonthCard);
+        }
+
+        private void updateCarIn(bool isTicketMonthCard)
+        {
+            saveImage1ToFile();
+            saveImage2ToFile();
+
+            CarDTO carDTO = new CarDTO();
+            int identify = CarDAO.GetLastIdentifyByID(cardID);
+            carDTO.Identify = identify;
+            carDTO.TimeStart = DateTime.Now;
+            carDTO.IdIn = Program.CurrentUserID;
+            carDTO.Images = imagePath1;
+            carDTO.Images2 = imagePath2;
+            carDTO.Computer = Environment.MachineName;
+            carDTO.Account = Program.CurrentUserID;
+            carDTO.DateUpdate = DateTime.Now;
+            string digit = labelDigitIn.Text;
+            if (!digit.Equals(""))
+            {
+                carDTO.Digit = digit;
+            }
 
             if (isTicketMonthCard)
             {
@@ -309,9 +356,16 @@ namespace ParkingMangement.GUI
                 carDTO.Digit = TicketMonthDAO.GetDigitByID(cardID);
             }
 
-            insertCarInAPI(cardID);
-            CarDAO.Insert(carDTO);
+            //insertCarInAPI(cardID);
+            CarDAO.UpdateCarIn(carDTO);
 
+            updateScreenForCarIn(isTicketMonthCard);
+        }
+
+        private void updateScreenForCarIn(bool isTicketMonthCard)
+        {
+            labelCostIn.Text = "-";
+            labelCostOut.Text = "-";
             int inOutType = ConfigDAO.GetInOutType();
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
@@ -445,6 +499,35 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeEnd = DateTime.Now;
             carDTO.IdOut = Program.CurrentUserID;
+
+            if (isTicketMonthCard)
+            {
+                carDTO.Cost = 0;
+                DateTime expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
+                if (DateTime.Now.CompareTo(expirationDate) > 0)
+                {
+                    // vé tháng hết hạn
+                    int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+                    switch (expiredTicketMonthTypeID)
+                    {
+                        case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                            break;
+                        case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                        default:
+                            carDTO.Cost = tinhTienGiuXe();
+                            labelCostOut.Text = carDTO.Cost + "";
+                            break;
+                    }
+                    MessageBox.Show("Thẻ tháng đã hết hạn");
+                }
+            }
+            else
+            {
+                carDTO.Cost = tinhTienGiuXe();
+                labelCostOut.Text = carDTO.Cost + "";
+            }
+
+            /*
             int cost = updateCarOutAPI(cardID);
             if (cost >= 0)
             {
@@ -488,6 +571,7 @@ namespace ParkingMangement.GUI
                     labelCostOut.Text = carDTO.Cost + "";
                 }
             }
+            */
 
             saveImage3ToFile();
             saveImage4ToFile();
@@ -661,7 +745,10 @@ namespace ParkingMangement.GUI
         private void loadCamera1VLC()
         {
             String rtspString = cameraUrl1;
-            axVLCPlugin1.playlist.add(rtspString, " ", null);
+            var uri = new Uri(rtspString);
+            var convertedURI = uri.AbsoluteUri;
+            //axVLCPlugin1.playlist.add(convertedURI);
+            axVLCPlugin1.playlist.add(rtspString, "1", "--network-caching=100");
             try
             {
                 axVLCPlugin1.playlist.play();
@@ -704,7 +791,7 @@ namespace ParkingMangement.GUI
         private void loadCamera2VLC()
         {
             String rtspString = cameraUrl2;
-            axVLCPlugin2.playlist.add(rtspString, " ", null);
+            axVLCPlugin2.playlist.add(rtspString, "2", "--network-caching=100");
             try
             {
                 axVLCPlugin2.playlist.play();
@@ -747,7 +834,7 @@ namespace ParkingMangement.GUI
         private void loadCamera3VLC()
         {
             String rtspString = cameraUrl3;
-            axVLCPlugin3.playlist.add(rtspString, " ", null);
+            axVLCPlugin3.playlist.add(rtspString, "3", "--network-caching=100");
             try
             {
                 axVLCPlugin3.playlist.play();
@@ -783,7 +870,7 @@ namespace ParkingMangement.GUI
         private void loadCamera4VLC()
         {
             String rtspString = cameraUrl4;
-            axVLCPlugin4.playlist.add(rtspString, " ", null);
+            axVLCPlugin4.playlist.add(rtspString, "4", "--network-caching=100");
             try
             {
                 axVLCPlugin4.playlist.play();
@@ -1230,7 +1317,7 @@ namespace ParkingMangement.GUI
             {
                 case Keys.Enter:
                     cardID = tbRFIDCardID.Text;
-                    labelCardID.Text = cardID;
+                    labelCardID.Text = CardDAO.getIdentifyByCardID(cardID) + "";
                     string x = keyboardDeviceName;
                     tbRFIDCardID.Text = "";
                     if (!cardID.Equals(""))
