@@ -132,13 +132,13 @@ namespace ParkingMangement.Utils
             return startTime.Add(time);
         }
 
-        public static void setRowNumber(DataGridView dgv)
+        public static void setRowNumber(DataGridView dgv, string columnName)
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
                 if (!row.IsNewRow)
                 {
-                    row.Cells["STT"].Value = (row.Index + 1).ToString();
+                    row.Cells[columnName].Value = (row.Index + 1).ToString();
                 }
             }
         }

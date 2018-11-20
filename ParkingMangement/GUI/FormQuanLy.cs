@@ -4160,7 +4160,12 @@ namespace ParkingMangement.GUI
 
         private void dgvCardList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            Util.setRowNumber(dgvCardList);
+            Util.setRowNumber(dgvCardList, "STT");
+        }
+
+        private void dgvTicketMonthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvTicketMonthList, "STT_TicketMonth");
         }
     }
 }
