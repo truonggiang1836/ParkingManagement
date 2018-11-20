@@ -81,7 +81,7 @@ namespace ParkingMangement.GUI
             labelDigitIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelDigitOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelDigitRegister.BackColor = ColorTranslator.FromHtml("#fcfdfc");
-            labelCustomerName.BackColor = ColorTranslator.FromHtml("#cf9f51");
+            labelCustomerName.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.ForeColor = ColorTranslator.FromHtml("#cf9f51");
@@ -92,11 +92,13 @@ namespace ParkingMangement.GUI
             labelDigitOutHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelDigitRegisterHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelCardIDHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelCustomerNameHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelVND.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelDigitInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDigitOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDigitRegisterHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCardIDHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelCustomerNameHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelVND.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDateInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDateOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
@@ -734,7 +736,7 @@ namespace ParkingMangement.GUI
             {
                 String idIn = dt.Rows[0].Field<String>("IDIn");
                 String idOut = dt.Rows[0].Field<String>("IDOut");
-                if (!idIn.Equals("") && idOut.Equals(""))
+                if (!idIn.Equals("") && (idOut == null || idOut.Equals("")))
                 {
                     return true;
                 }

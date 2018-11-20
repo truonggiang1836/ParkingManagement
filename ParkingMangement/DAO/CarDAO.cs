@@ -441,14 +441,21 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        //public static void Insert(CarDTO carDTO)
+        //{
+        //    string sql = "insert into Car(ID, TimeStart, TimeEnd, Digit, IDIn, IDOut, Cost, IDTicketMonth, IDPart, Images, Images2, Images3," +
+        //        " Images4, IsLostCard, Computer, Account, CostBefore, DateUpdate, DateLostCard) values ('" + carDTO.Id + "', '" + carDTO.TimeStart
+        //        + "', '" + carDTO.TimeEnd + "', '" + carDTO.Digit + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', " + carDTO.Cost + ", '" +
+        //        carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Images3 + "', '" +
+        //        carDTO.Images4 + "', " + carDTO.IsLostCard + ", '" + carDTO.Computer + "', '" + carDTO.Account + "', " +
+        //        carDTO.CostBefore + ", '" + carDTO.DateUpdate + "', '" + carDTO.DateLostCard + "')";
+        //    Database.ExcuNonQuery(sql);
+        //}
+
         public static void Insert(CarDTO carDTO)
         {
-            string sql = "insert into Car(ID, TimeStart, TimeEnd, Digit, IDIn, IDOut, Cost, IDTicketMonth, IDPart, Images, Images2, Images3," +
-                " Images4, IsLostCard, Computer, Account, CostBefore, DateUpdate, DateLostCard) values ('" + carDTO.Id + "', '" + carDTO.TimeStart
-                + "', '" + carDTO.TimeEnd + "', '" + carDTO.Digit + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', " + carDTO.Cost + ", '" + 
-                carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Images3 + "', '" + 
-                carDTO.Images4 + "', " + carDTO.IsLostCard + ", '" + carDTO.Computer + "', '" + carDTO.Account + "', " + 
-                carDTO.CostBefore + ", '" + carDTO.DateUpdate + "', '" + carDTO.DateLostCard + "')";
+            string sql = "insert into Car(ID, TimeStart, Digit, IDIn, IDOut, IDTicketMonth, IDPart, Images, Images2, Computer, Account, DateUpdate) values ('" + carDTO.Id + "', '" + carDTO.TimeStart + "', '" + carDTO.Digit
+                + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', '" + carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Computer + "', '" + carDTO.Account + "', '" + carDTO.DateUpdate + "')";
             Database.ExcuNonQuery(sql);
         }
 

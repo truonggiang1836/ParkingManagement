@@ -100,7 +100,7 @@
             this.labelXeRa = new System.Windows.Forms.Label();
             this.labelCustomerName = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.labelCustomerNameHeader = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -846,15 +846,15 @@
             this.pictureBox13.TabIndex = 77;
             this.pictureBox13.TabStop = false;
             // 
-            // label4
+            // labelCustomerNameHeader
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(900, 105);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 15);
-            this.label4.TabIndex = 76;
-            this.label4.Text = "TÊN K.H";
+            this.labelCustomerNameHeader.AutoSize = true;
+            this.labelCustomerNameHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCustomerNameHeader.Location = new System.Drawing.Point(900, 105);
+            this.labelCustomerNameHeader.Name = "labelCustomerNameHeader";
+            this.labelCustomerNameHeader.Size = new System.Drawing.Size(61, 15);
+            this.labelCustomerNameHeader.TabIndex = 76;
+            this.labelCustomerNameHeader.Text = "TÊN K.H";
             // 
             // FormNhanVien
             // 
@@ -865,7 +865,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.labelCustomerName);
             this.Controls.Add(this.pictureBox13);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.labelCustomerNameHeader);
             this.Controls.Add(this.labelCostIn);
             this.Controls.Add(this.pictureBox11);
             this.Controls.Add(this.pictureBox12);
@@ -1026,6 +1026,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelCustomerName;
         private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelCustomerNameHeader;
     }
 }
