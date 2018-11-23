@@ -140,6 +140,9 @@ namespace ParkingMangement.GUI
                     if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
                     {
                         updateDigitCarIn();
+                    } else
+                    {
+                        resetData();
                     }
                     tbRFIDCardID.Focus();
                     break;
@@ -1276,6 +1279,11 @@ namespace ParkingMangement.GUI
                     break;
             }
 
+            resetData();
+        }
+
+        private void resetData()
+        {
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
             labelCostIn.Text = "-";
