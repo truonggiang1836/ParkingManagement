@@ -243,10 +243,6 @@ namespace ParkingMangement.GUI
         private void btnWorkAll_Click(object sender, EventArgs e)
         {
             loadWorkList();
-            foreach (DataGridViewColumn col in dgvWorkList.Columns)
-            {
-                col.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -1969,7 +1965,7 @@ namespace ParkingMangement.GUI
             }
             try
             {
-                carDTO.Identify = Convert.ToInt32(tbCarIdentifySearch.Text);
+                carDTO.CardIdentify = Convert.ToInt32(tbCardIdentifySearchCar.Text);
             } catch (Exception e)
             {
 

@@ -599,7 +599,10 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = Constant.sLabelMoiRa;
                 labelMoiRa.Text = "";
 
-                labelCostIn.Text = carDTO.Cost + "";
+                if (carDTO.Cost != null)
+                {
+                    labelCostIn.Text = Util.formatNumberAsMoney((int) carDTO.Cost);
+                }
                 labelCostOut.Text = "-";
 
                 pictureBoxImage3.Image = Properties.Resources.ic_logo;
@@ -618,7 +621,10 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = Constant.sLabelMoiRa;
                     labelMoiRa.Text = "";
 
-                    labelCostIn.Text = carDTO.Cost + "";
+                    if (carDTO.Cost != null)
+                    {
+                        labelCostIn.Text = Util.formatNumberAsMoney((int)carDTO.Cost);
+                    }
                     labelCostOut.Text = "-";
 
                     pictureBoxImage3.Image = Properties.Resources.ic_logo;
@@ -635,7 +641,10 @@ namespace ParkingMangement.GUI
                     labelMoiRa.Text = Constant.sLabelMoiRa;
 
                     labelCostIn.Text = "-";
-                    labelCostOut.Text = carDTO.Cost + "";
+                    if (carDTO.Cost != null)
+                    {
+                        labelCostOut.Text = Util.formatNumberAsMoney((int)carDTO.Cost);
+                    }
 
                     pictureBoxImage1.Image = Properties.Resources.ic_logo;
                     pictureBoxImage2.Image = Properties.Resources.ic_logo;
@@ -653,7 +662,10 @@ namespace ParkingMangement.GUI
                 labelMoiRa.Text = Constant.sLabelMoiRa;
 
                 labelCostIn.Text = "-";
-                labelCostOut.Text = carDTO.Cost + "";
+                if (carDTO.Cost != null)
+                {
+                    labelCostOut.Text = Util.formatNumberAsMoney((int)carDTO.Cost);
+                }
 
                 pictureBoxImage1.Image = Properties.Resources.ic_logo;
                 pictureBoxImage2.Image = Properties.Resources.ic_logo;

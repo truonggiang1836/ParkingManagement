@@ -3,6 +3,7 @@ using ParkingMangement.DTO;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -141,6 +142,13 @@ namespace ParkingMangement.Utils
                     row.Cells[columnName].Value = (row.Index + 1).ToString();
                 }
             }
+        }
+
+        public static string formatNumberAsMoney(int number)
+        {
+            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
+            nfi.NumberGroupSeparator = ",";
+            return number.ToString("N", nfi);
         }
     }
 }

@@ -63,9 +63,9 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
             }
-            if (carDTO.Identify != -1)
+            if (carDTO.CardIdentify != -1)
             {
-                sql += " and Car.Identify like '%" + carDTO.Identify + "%'";
+                sql += " and SmartCard.Identify like '%" + carDTO.CardIdentify + "%'";
             }
             if (!string.IsNullOrEmpty(carDTO.Digit))
             {
@@ -272,7 +272,8 @@ namespace ParkingMangement.DAO
             dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
             int sumCost = GetCountCost(startTime, endTime, isTicketMonth, userID);
-            dataRow.SetField("SumCost", sumCost);
+            string sumCostString = Util.formatNumberAsMoney(sumCost);
+            dataRow.SetField("SumCost", sumCostString);
             data.Rows.Add(dataRow);
 
             return data;
