@@ -17,7 +17,7 @@ namespace ParkingMangement.DAO
         private static string sqlGetAllNearExpiredTicketData = "select Part.PartName, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from [TicketMonth], [Part], [SmartCard] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = SmartCard.ID";
 
-        private static string sqlGetAllLostTicketData = "select SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address," +
+        private static string sqlGetAllLostTicketData = "select TicketMonth.Identify as TicketMonthIdentify, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address," +
             " Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from " +
             "[TicketMonth], [Part], [UserCar], [SmartCard] where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IDPart = Part.PartID and TicketMonth.Account = UserCar.UserID and TicketMonth.ID = SmartCard.ID";
 
@@ -176,7 +176,7 @@ namespace ParkingMangement.DAO
             string sql = sqlGetAllActiveTicketData;
             if (!string.IsNullOrEmpty(key))
             {
-                sql += " and (TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
+                sql += " and (SmartCard.Identify like '%" + key + "%' or TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
                     + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.Address like '%" + key + "%')";
             }
             sql += sqlOrderByIdentify;

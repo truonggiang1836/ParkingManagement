@@ -243,6 +243,10 @@ namespace ParkingMangement.GUI
         private void btnWorkAll_Click(object sender, EventArgs e)
         {
             loadWorkList();
+            foreach (DataGridViewColumn col in dgvWorkList.Columns)
+            {
+                col.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
@@ -1715,8 +1719,10 @@ namespace ParkingMangement.GUI
             {
                 return;
             }
+            string ticketMonthIdentify = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostTicketMonthIdentify"].Value);
+            tbTicketMonthIdentify.Text = ticketMonthIdentify;
             string identify = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostCardIdentify"].Value);
-            tbLostTicketMonthIdentify.Text = identify;
+            tbLostTicketMonthCardIdentify.Text = identify;
             string id = Convert.ToString(dgvLostTicketMonthList.Rows[Index].Cells["LostCardID"].Value);
             tbLostTicketMonthID.Text = id;
         }
@@ -1835,7 +1841,7 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
                 return;
             }
-            int identify = Convert.ToInt32(tbLostTicketMonthIdentify.Text);
+            int identify = Convert.ToInt32(tbTicketMonthIdentify.Text);
             string id = tbLostTicketMonthID.Text;
             TicketMonthDAO.updateTicketByID(id, identify);
             searchLostTicketMonth();
@@ -4171,6 +4177,31 @@ namespace ParkingMangement.GUI
         private void dgvTicketLogList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Util.setRowNumber(dgvTicketLogList, "TicketLogIdentify");
+        }
+
+        private void dgvRenewTicketMonthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvRenewTicketMonthList, "STT_RenewTicketMonthList");
+        }
+
+        private void dgvLostTicketMonthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvLostTicketMonthList, "STT_LostTicketMonthList");
+        }
+
+        private void dgvActiveTicketMonthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvActiveTicketMonthList, "STT_ActiveTicketMonthList");
+        }
+
+        private void dgvCarTicketMonthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvCarTicketMonthList, "STT_CarTicketMonthList");
+        }
+
+        private void dgvWorkList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvWorkList, "STT_WorkList");
         }
     }
 }

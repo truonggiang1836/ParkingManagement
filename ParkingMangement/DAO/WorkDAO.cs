@@ -33,7 +33,7 @@ namespace ParkingMangement.DAO
 
         private static void setTotalTime(DataTable data)
         {
-            data.Columns.Add("TotalTime", typeof(System.Double));
+            data.Columns.Add("TotalTime", typeof(System.Double)).SetOrdinal(5);
             for (int row = 0; row < data.Rows.Count; row++)
             {
                 DateTime timeStart = data.Rows[row].Field<DateTime>("TimeStart");
