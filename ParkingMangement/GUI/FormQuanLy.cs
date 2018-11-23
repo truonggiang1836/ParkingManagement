@@ -4167,5 +4167,10 @@ namespace ParkingMangement.GUI
         {
             Util.setRowNumber(dgvTicketMonthList, "STT_TicketMonth");
         }
+
+        private void dgvTicketLogList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvTicketLogList, "TicketLogIdentify");
+        }
     }
 }

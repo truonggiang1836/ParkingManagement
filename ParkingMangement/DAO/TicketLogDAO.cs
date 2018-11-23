@@ -11,10 +11,10 @@ namespace ParkingMangement.DAO
 {
     class TicketLogDAO
     {
-        private static string sqlGetAllData = "select TicketLog.Identify, TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, TicketLog.TicketMonthIdentify" +
+        private static string sqlGetAllData = "select TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
                 ", TicketLog.TicketMonthID, TicketLog.Digit, TicketLog.CustomerName, TicketLog.CMND, TicketLog.Email, " +
                 "TicketLog.Address, TicketLog.CarKind, Part.PartName, TicketLog.RegistrationDate, TicketLog.ExpirationDate from" +
-                " [TicketLog], [LogType], [Part], [UserCar] where TicketLog.IDPart = Part.PartID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account";
+                " [TicketLog], [LogType], [Part], [UserCar], [SmartCard] where TicketLog.IDPart = Part.PartID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account and TicketLog.TicketMonthID = SmartCard.ID";
         private static string sqlOrderByIdentify = " order by TicketLog.Identify asc";
 
         public static DataTable GetAllData()
@@ -29,7 +29,7 @@ namespace ParkingMangement.DAO
             sql += " and TicketLog.RegistrationDate >= #" + registrationDate.ToString(Constant.sDateTimeFormatForQuery) + "# and TicketLog.ExpirationDate <= #" + expirationDate.ToString(Constant.sDateTimeFormatForQuery) + "#";
             if (!string.IsNullOrEmpty(key))
             {
-                sql += " and (UserCar.NameUser like '%" + key + "%' or TicketLog.TicketMonthIdentify like '%" + key + "%' or TicketLog.TicketMonthID like '%" + key + "%' or TicketLog.Digit like '%" + key
+                sql += " and (UserCar.NameUser like '%" + key + "%' or SmartCard.Identify like '%" + key + "%' or TicketLog.TicketMonthID like '%" + key + "%' or TicketLog.Digit like '%" + key
                     + "%' or TicketLog.CustomerName like '%" + key + "%' or TicketLog.CMND like '%" + key + "%' or TicketLog.Email like '%"
                     + key + "%' or TicketLog.Address like '%" + key + "%' or TicketLog.CarKind like '%" + key + "%')";
             }
