@@ -1641,13 +1641,21 @@ namespace ParkingMangement.GUI
             dgvActiveTicketMonthList.DataSource = TicketMonthDAO.searchActiveTicketData(key);
         }
 
-        private void deleteTicketMonth(int currentRow)
+        private void deleteTicketMonth()
         {
-            int identify = Convert.ToInt32(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthIdentify"].Value);
-            string ticketMonthID = Convert.ToString(dgvTicketMonthList.Rows[currentRow].Cells["TicketMonthID"].Value);
-            addDeleteTicketMonthToLog(currentRow);
-
-            TicketMonthDAO.Delete(identify);
+            foreach (DataGridViewRow row in dgvTicketMonthList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectTicketMonth"] as DataGridViewCheckBoxCell;
+                object value = checkCell.Value;
+                if (value != null && (Boolean)value)
+                {
+                    string id = Convert.ToString(row.Cells["TicketMonthID"].Value);
+                    if (TicketMonthDAO.Delete(id))
+                    {
+                        addDeleteTicketMonthToLog(row.Index);
+                    }
+                }
+            }
             loadTicketMonthData();
         }
 
@@ -1695,13 +1703,13 @@ namespace ParkingMangement.GUI
             addTicketLog(Constant.LOG_TYPE_DELETE_TICKET_MONTH, ticketMonthDTO);
         }
 
-        private void showConfirmDeleteTicketMonth(int currentRow)
+        private void showConfirmDeleteTicketMonth()
         {
             DialogResult dialogResult = MessageBox.Show(Constant.sMessageConfirmDelete, Constant.sTitleDelete, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 //do something
-                deleteTicketMonth(currentRow);
+                deleteTicketMonth();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -1768,6 +1776,15 @@ namespace ParkingMangement.GUI
             {
                 loadTicketMonthInfoFromDataGridViewRow(Index);
             }
+
+            if (e.RowIndex < 0) return;
+            var dataGridView = (DataGridView)sender;
+            var cell = dataGridView["SelectTicketMonth", e.RowIndex];
+            if (cell.Value == null)
+            {
+                cell.Value = false;
+            }
+            cell.Value = !(bool)cell.Value;
         }
 
         private void dgvTicketMonthList_MouseClick(object sender, MouseEventArgs ev)
@@ -1786,7 +1803,12 @@ namespace ParkingMangement.GUI
 
         void Delete_TicketMonth_Click(Object sender, System.EventArgs e, int currentRow)
         {
-            showConfirmDeleteTicketMonth(currentRow);
+            if (!isChosenTicketMonth())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            showConfirmDeleteTicketMonth();
         }
 
         private void dgvTicketLogList_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -4110,6 +4132,19 @@ namespace ParkingMangement.GUI
             return false;
         }
 
+        private bool isChosenTicketMonth()
+        {
+            foreach (DataGridViewRow row in dgvTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["SelectTicketMonth"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void dgvCardList_MouseClick(object sender, MouseEventArgs ev)
         {
             if (ev.Button == MouseButtons.Right)
@@ -4198,6 +4233,16 @@ namespace ParkingMangement.GUI
         private void dgvWorkList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Util.setRowNumber(dgvWorkList, "STT_WorkList");
+        }
+
+        private void dgvCarList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvCarList, "STT_CarList");
+        }
+
+        private void dgvLogList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvLogList, "STT_Log");
         }
     }
 }

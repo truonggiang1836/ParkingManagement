@@ -56,7 +56,7 @@ namespace ParkingMangement.GUI
             carDTO.TimeEnd = endDate;
             try
             {
-                carDTO.Identify = Convert.ToInt32(tbCarIdentifySearch.Text);
+                carDTO.CardIdentify = Convert.ToInt32(tbCarIdentifySearch.Text);
             }
             catch (Exception e)
             {
@@ -299,6 +299,11 @@ namespace ParkingMangement.GUI
         {
             isXemDanhSachXeTon = false;
             searchMatThe();
+        }
+
+        private void dgvCarList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvCarList, "STT_CarList");
         }
     }
 }

@@ -62,6 +62,7 @@
             this.label40 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
+            this.STT_CarList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarLogImages2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +107,7 @@
             this.dgvCarList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCarList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCarList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT_CarList,
             this.CarLogIdentify,
             this.CarLogImages,
             this.CarLogImages2,
@@ -132,6 +134,7 @@
             this.dgvCarList.Size = new System.Drawing.Size(1138, 302);
             this.dgvCarList.TabIndex = 3;
             this.dgvCarList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarList_CellClick);
+            this.dgvCarList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCarList_DataBindingComplete);
             // 
             // panel10
             // 
@@ -277,9 +280,9 @@
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.Location = new System.Drawing.Point(11, 85);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(35, 16);
+            this.label41.Size = new System.Drawing.Size(46, 16);
             this.label41.TabIndex = 19;
-            this.label41.Text = "STT";
+            this.label41.Text = "Số thẻ";
             // 
             // panel13
             // 
@@ -431,12 +434,20 @@
             this.pictureBoxCarLogImage2.TabIndex = 1;
             this.pictureBoxCarLogImage2.TabStop = false;
             // 
+            // STT_CarList
+            // 
+            this.STT_CarList.HeaderText = "STT";
+            this.STT_CarList.Name = "STT_CarList";
+            this.STT_CarList.ReadOnly = true;
+            this.STT_CarList.Width = 70;
+            // 
             // CarLogIdentify
             // 
             this.CarLogIdentify.DataPropertyName = "Identify";
-            this.CarLogIdentify.HeaderText = "STT";
+            this.CarLogIdentify.HeaderText = "Identify";
             this.CarLogIdentify.Name = "CarLogIdentify";
             this.CarLogIdentify.ReadOnly = true;
+            this.CarLogIdentify.Visible = false;
             // 
             // CarLogImages
             // 
@@ -473,14 +484,14 @@
             // Column20
             // 
             this.Column20.DataPropertyName = "SmartCardIdentify";
-            this.Column20.HeaderText = "STT thẻ";
+            this.Column20.HeaderText = "Số thẻ";
             this.Column20.Name = "Column20";
             this.Column20.ReadOnly = true;
             // 
             // CarID
             // 
             this.CarID.DataPropertyName = "ID";
-            this.CarID.HeaderText = "Mã thẻ";
+            this.CarID.HeaderText = "Mã chíp";
             this.CarID.Name = "CarID";
             this.CarID.ReadOnly = true;
             // 
@@ -643,6 +654,7 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
         private System.Windows.Forms.Button btnXemDanhSachXeTon;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_CarList;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogIdentify;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogImages2;

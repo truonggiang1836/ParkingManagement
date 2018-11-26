@@ -49,10 +49,10 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
-        public static void Delete(int identify)
+        public static bool Delete(string id)
         {
-            string sql = "delete from [TicketMonth] where Identify =" + identify;
-            Database.ExcuNonQuery(sql);
+            string sql = "delete from [TicketMonth] where ID ='" + id + "'";
+            return Database.ExcuNonQuery(sql);
         }
 
         public static DataTable searchData(string key)
