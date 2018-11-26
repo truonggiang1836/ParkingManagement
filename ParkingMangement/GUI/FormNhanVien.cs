@@ -248,7 +248,7 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB(bool isTicketCard)
         {
-            labelDigitIn.Text = "";
+            labelDigitIn.Text = "-";
             labelDigitOut.Text = "-";
             labelDigitRegister.Text = "-";
             labelCustomerName.Text = "-";
@@ -289,7 +289,7 @@ namespace ParkingMangement.GUI
                 saveImage1ToFile();
                 saveImage2ToFile();
                 CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
-                labelDigitIn.Text = "";
+                labelDigitIn.Text = "-";
                 pictureBoxImage1.Image = Properties.Resources.ic_logo;
                 pictureBoxImage2.Image = Properties.Resources.ic_logo;
                 pictureBoxImage3.Image = Properties.Resources.ic_logo;
@@ -1308,7 +1308,7 @@ namespace ParkingMangement.GUI
             pictureBoxImage2.Image = Properties.Resources.ic_logo;
             pictureBoxImage3.Image = Properties.Resources.ic_logo;
             pictureBoxImage4.Image = Properties.Resources.ic_logo;
-            labelDigitIn.Text = "";
+            labelDigitIn.Text = "-";
             labelDigitOut.Text = "-";
         }
 

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
@@ -69,7 +69,6 @@
             this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelDigitIn = new System.Windows.Forms.TextBox();
             this.labelCostIn = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
@@ -101,6 +100,7 @@
             this.labelCustomerName = new System.Windows.Forms.Label();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.labelCustomerNameHeader = new System.Windows.Forms.Label();
+            this.labelDigitIn = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -498,8 +498,8 @@
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "PartName";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle7;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.Name = "DoanhThuPartName";
             this.DoanhThuPartName.ReadOnly = true;
@@ -508,8 +508,8 @@
             // DoanhThuCountCarIn
             // 
             this.DoanhThuCountCarIn.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoanhThuCountCarIn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoanhThuCountCarIn.DefaultCellStyle = dataGridViewCellStyle8;
             this.DoanhThuCountCarIn.HeaderText = "SL trong bãi";
             this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
             this.DoanhThuCountCarIn.ReadOnly = true;
@@ -522,17 +522,6 @@
             this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
             this.DoanhThuCountCarOut.ReadOnly = true;
             this.DoanhThuCountCarOut.Width = 66;
-            // 
-            // labelDigitIn
-            // 
-            this.labelDigitIn.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.labelDigitIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.labelDigitIn.Location = new System.Drawing.Point(1036, 160);
-            this.labelDigitIn.Name = "labelDigitIn";
-            this.labelDigitIn.Size = new System.Drawing.Size(92, 17);
-            this.labelDigitIn.TabIndex = 71;
-            this.labelDigitIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.labelDigitIn_KeyDown);
-            this.labelDigitIn.Leave += new System.EventHandler(this.labelDigitIn_Leave);
             // 
             // labelCostIn
             // 
@@ -856,13 +845,23 @@
             this.labelCustomerNameHeader.TabIndex = 76;
             this.labelCustomerNameHeader.Text = "TÊN K.H";
             // 
+            // labelDigitIn
+            // 
+            this.labelDigitIn.AutoSize = true;
+            this.labelDigitIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDigitIn.Location = new System.Drawing.Point(1032, 161);
+            this.labelDigitIn.Name = "labelDigitIn";
+            this.labelDigitIn.Size = new System.Drawing.Size(14, 18);
+            this.labelDigitIn.TabIndex = 79;
+            this.labelDigitIn.Text = "-";
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(1144, 658);
-            this.ControlBox = false;
+            this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.labelCustomerName);
             this.Controls.Add(this.pictureBox13);
             this.Controls.Add(this.labelCustomerNameHeader);
@@ -870,7 +869,6 @@
             this.Controls.Add(this.pictureBox11);
             this.Controls.Add(this.pictureBox12);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.labelCostOut);
             this.Controls.Add(this.pictureBox18);
@@ -908,10 +906,7 @@
             this.Controls.Add(this.labelCardIDHeader);
             this.Controls.Add(this.tbRFIDCardID);
             this.Controls.Add(this.panel4);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "FormNhanVien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormStaff_Load);
@@ -1015,7 +1010,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label labelComputer;
-        private System.Windows.Forms.TextBox labelDigitIn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuPartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarIn;
@@ -1027,5 +1021,6 @@
         private System.Windows.Forms.Label labelCustomerName;
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label labelCustomerNameHeader;
+        private System.Windows.Forms.Label labelDigitIn;
     }
 }
