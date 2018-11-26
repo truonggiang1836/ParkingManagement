@@ -146,9 +146,7 @@ namespace ParkingMangement.Utils
 
         public static string formatNumberAsMoney(int number)
         {
-            NumberFormatInfo nfi = new CultureInfo("en-US", false).NumberFormat;
-            nfi.NumberGroupSeparator = ",";
-            return number.ToString("N", nfi);
+            return string.Format("{0:#,000}", number);
         }
     }
 }
