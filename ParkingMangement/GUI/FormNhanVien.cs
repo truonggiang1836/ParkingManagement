@@ -148,10 +148,10 @@ namespace ParkingMangement.GUI
                     resetData();
                     tbRFIDCardID.Focus();
                     break;
-                case Keys.F1:
-                    var formChangePassword = new FormChangePassword();
-                    formChangePassword.Show();
-                    break;
+                //case Keys.F1:
+                //    var formChangePassword = new FormChangePassword();
+                //    formChangePassword.Show();
+                //    break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
                     formLogin.formNhanVien = this;
@@ -162,22 +162,22 @@ namespace ParkingMangement.GUI
                     formLoginByCard.formNhanVien = this;
                     formLoginByCard.Show();
                     break;
-                case Keys.F5:
-                    openInOutSetting();
-                    break;
+                //case Keys.F5:
+                //    openInOutSetting();
+                //    break;
                 case Keys.F7:
                     openFormQuanLyXeRaVao();
                     break;
-                case Keys.F11:
-                    var formLogout = new FormLogout();
-                    formLogout.formNhanVien = this;
-                    formLogout.Show();
-                    break;
-                case Keys.F12:
-                    var formLogoutByCard = new FormLogOutByCard();
-                    formLogoutByCard.formNhanVien = this;
-                    formLogoutByCard.Show();
-                    break;
+                //case Keys.F11:
+                //    var formLogout = new FormLogout();
+                //    formLogout.formNhanVien = this;
+                //    formLogout.Show();
+                //    break;
+                //case Keys.F12:
+                //    var formLogoutByCard = new FormLogOutByCard();
+                //    formLogoutByCard.formNhanVien = this;
+                //    formLogoutByCard.Show();
+                //    break;
             }
         }
 
