@@ -49,6 +49,12 @@ namespace ParkingMangement.GUI
         private string imagePath3;
         private string imagePath4;
 
+        private Size oldSize;
+        private const float LARGER_FONT_FACTOR = 1.5f;
+        private const float SMALLER_FONT_FACTOR = 0.8f;
+
+        private int _lastFormSize;
+
         public FormNhanVien()
         {
             InitializeComponent();
@@ -61,6 +67,9 @@ namespace ParkingMangement.GUI
             //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
 
             _rawinput.KeyPressed += OnKeyPressed;
+
+            //this.Resize += new EventHandler(Form_Resize);
+            _lastFormSize = GetFormArea(this.Size);
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
@@ -123,6 +132,8 @@ namespace ParkingMangement.GUI
             loadCamera2VLC();
             loadCamera3VLC();
             loadCamera4VLC();
+
+            oldSize = base.Size;
         }
 
         private void loadInfo()
@@ -1356,6 +1367,66 @@ namespace ParkingMangement.GUI
         private void labelDigitIn_Leave(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
+        }
+
+        protected override void OnResize(System.EventArgs e)
+        {
+            base.OnResize(e);
+            foreach (Control cnt in this.Controls)
+            {
+                ResizeAll(cnt, base.Size);
+            }
+            //Form_Resize();
+            oldSize = base.Size;
+        }
+        private void ResizeAll(Control cnt, Size newSize)
+        {
+            int iWidth = newSize.Width - oldSize.Width;
+            cnt.Left += (cnt.Left * iWidth) / oldSize.Width;
+            cnt.Width += (cnt.Width * iWidth) / oldSize.Width;
+
+            int iHeight = newSize.Height - oldSize.Height;
+            cnt.Top += (cnt.Top * iHeight) / oldSize.Height;
+            cnt.Height += (cnt.Height * iHeight) / oldSize.Height;
+            foreach (Control childControl in cnt.Controls)
+            {
+                ResizeAll(childControl, base.Size);
+            }
+        }
+
+        private int GetFormArea(Size size)
+        {
+            return size.Height * size.Width;
+        }
+
+        private void Form_Resize()
+        {
+
+            var bigger = GetFormArea(this.Size) > _lastFormSize;
+            float scaleFactor = bigger ? LARGER_FONT_FACTOR : SMALLER_FONT_FACTOR;
+
+            ResizeFont(this.Controls, scaleFactor);
+            _lastFormSize = GetFormArea(this.Size);
+        }
+
+        private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
+        {
+            foreach (Control c in coll)
+            {
+                if (c.HasChildren)
+                {
+                    ResizeFont(c.Controls, scaleFactor);
+                }
+                else
+                {
+                    //if (c.GetType().ToString() == "System.Windows.Form.Label")
+                    if (true)
+                    {
+                        // scale font
+                        c.Font = new Font(c.Font.FontFamily.Name, c.Font.Size * scaleFactor);
+                    }
+                }
+            }
         }
     }
 }

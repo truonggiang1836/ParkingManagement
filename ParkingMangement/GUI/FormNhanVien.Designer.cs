@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
@@ -65,10 +65,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelTongXeTrongBai = new System.Windows.Forms.Label();
             this.dgvThongKeXeTrongBai = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelCostIn = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
@@ -101,6 +97,10 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.labelCustomerNameHeader = new System.Windows.Forms.Label();
             this.labelDigitIn = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -249,7 +249,7 @@
             // 
             this.labelCardIDHeader.AutoSize = true;
             this.labelCardIDHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCardIDHeader.Location = new System.Drawing.Point(899, 46);
+            this.labelCardIDHeader.Location = new System.Drawing.Point(898, 46);
             this.labelCardIDHeader.Name = "labelCardIDHeader";
             this.labelCardIDHeader.Size = new System.Drawing.Size(57, 15);
             this.labelCardIDHeader.TabIndex = 28;
@@ -269,7 +269,7 @@
             // 
             this.labelDigitInHeader.AutoSize = true;
             this.labelDigitInHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitInHeader.Location = new System.Drawing.Point(1034, 134);
+            this.labelDigitInHeader.Location = new System.Drawing.Point(1024, 134);
             this.labelDigitInHeader.Name = "labelDigitInHeader";
             this.labelDigitInHeader.Size = new System.Drawing.Size(92, 15);
             this.labelDigitInHeader.TabIndex = 30;
@@ -417,6 +417,8 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.labelComputer);
             this.panel3.Controls.Add(this.panel5);
@@ -472,6 +474,8 @@
             // 
             // dgvThongKeXeTrongBai
             // 
+            this.dgvThongKeXeTrongBai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvThongKeXeTrongBai.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKeXeTrongBai.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvThongKeXeTrongBai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -486,42 +490,6 @@
             this.dgvThongKeXeTrongBai.RowHeadersVisible = false;
             this.dgvThongKeXeTrongBai.Size = new System.Drawing.Size(230, 119);
             this.dgvThongKeXeTrongBai.TabIndex = 55;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "IDPart";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // DoanhThuPartName
-            // 
-            this.DoanhThuPartName.DataPropertyName = "PartName";
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle9;
-            this.DoanhThuPartName.HeaderText = "Loại xe";
-            this.DoanhThuPartName.Name = "DoanhThuPartName";
-            this.DoanhThuPartName.ReadOnly = true;
-            this.DoanhThuPartName.Width = 73;
-            // 
-            // DoanhThuCountCarIn
-            // 
-            this.DoanhThuCountCarIn.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DoanhThuCountCarIn.DefaultCellStyle = dataGridViewCellStyle10;
-            this.DoanhThuCountCarIn.HeaderText = "SL trong bãi";
-            this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
-            this.DoanhThuCountCarIn.ReadOnly = true;
-            this.DoanhThuCountCarIn.Width = 90;
-            // 
-            // DoanhThuCountCarOut
-            // 
-            this.DoanhThuCountCarOut.DataPropertyName = "Status";
-            this.DoanhThuCountCarOut.HeaderText = " T.Thái";
-            this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
-            this.DoanhThuCountCarOut.ReadOnly = true;
-            this.DoanhThuCountCarOut.Width = 66;
             // 
             // labelCostIn
             // 
@@ -855,13 +823,51 @@
             this.labelDigitIn.TabIndex = 79;
             this.labelDigitIn.Text = "-";
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "IDPart";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // DoanhThuPartName
+            // 
+            this.DoanhThuPartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DoanhThuPartName.DataPropertyName = "PartName";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DoanhThuPartName.HeaderText = "Loại xe";
+            this.DoanhThuPartName.Name = "DoanhThuPartName";
+            this.DoanhThuPartName.ReadOnly = true;
+            this.DoanhThuPartName.Width = 66;
+            // 
+            // DoanhThuCountCarIn
+            // 
+            this.DoanhThuCountCarIn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DoanhThuCountCarIn.DataPropertyName = "CountCarSurvive";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DoanhThuCountCarIn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.DoanhThuCountCarIn.HeaderText = "SL trong bãi";
+            this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
+            this.DoanhThuCountCarIn.ReadOnly = true;
+            this.DoanhThuCountCarIn.Width = 89;
+            // 
+            // DoanhThuCountCarOut
+            // 
+            this.DoanhThuCountCarOut.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DoanhThuCountCarOut.DataPropertyName = "Status";
+            this.DoanhThuCountCarOut.HeaderText = " T.Thái";
+            this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
+            this.DoanhThuCountCarOut.ReadOnly = true;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(1144, 658);
-            this.ControlBox = false;
             this.Controls.Add(this.labelDigitIn);
             this.Controls.Add(this.labelCustomerName);
             this.Controls.Add(this.pictureBox13);
@@ -1012,10 +1018,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label labelComputer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuPartName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarIn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarOut;
         private System.Windows.Forms.Label labelCostIn;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox12;
@@ -1024,5 +1026,9 @@
         private System.Windows.Forms.PictureBox pictureBox13;
         private System.Windows.Forms.Label labelCustomerNameHeader;
         private System.Windows.Forms.Label labelDigitIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuPartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarOut;
     }
 }
