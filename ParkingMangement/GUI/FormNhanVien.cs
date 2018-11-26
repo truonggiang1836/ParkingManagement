@@ -137,13 +137,15 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
-                    {
-                        updateDigitCarIn();
-                    } else
-                    {
-                        resetData();
-                    }
+                case Keys.Space:
+                    //if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
+                    //{
+                    //    updateDigitCarIn();
+                    //} else
+                    //{
+                    //    resetData();
+                    //}
+                    resetData();
                     tbRFIDCardID.Focus();
                     break;
                 case Keys.F1:
@@ -1338,6 +1340,7 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
+                case Keys.Space:
                     cardID = tbRFIDCardID.Text;
                     labelCardID.Text = CardDAO.getIdentifyByCardID(cardID) + "";
                     string x = keyboardDeviceName;
