@@ -10,6 +10,8 @@ namespace ParkingMangement.Utils
     class Constant
     {
         // common
+        public static string sHintTextUsername = "User";
+        public static string sHintTextPassword = "Password";
         public static string sLabelAlert = "Cảnh báo";
         public static string sLabelXeVao = "XE VÀO";
         public static string sLabelXeRa = "XE RA";

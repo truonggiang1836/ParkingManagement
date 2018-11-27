@@ -26,8 +26,8 @@ namespace ParkingMangement.DAO
 
         public static void Insert(UserDTO userDTO)
         {
-            string sql = "insert into UserCar(UserID, Account, Pass, NameUser, SexID, IDFunct) values ('" + userDTO.Id + "', '" + userDTO.Account + "', '" + 
-                userDTO.Password + "', '" + userDTO.Name + "', " + userDTO.SexId + ", '" + userDTO.FunctionId +"')";
+            string sql = "insert into UserCar(UserID, Account, Pass, NameUser, SexID, IDFunct, RememberMe) values ('" + userDTO.Id + "', '" + userDTO.Account + "', '" + 
+                userDTO.Password + "', '" + userDTO.Name + "', " + userDTO.SexId + ", '" + userDTO.FunctionId + "', " + 0 + ")";
             Database.ExcuNonQuery(sql);
         }
 
@@ -41,6 +41,12 @@ namespace ParkingMangement.DAO
         public static bool UpdatePassword(string password, string account)
         {
             string sql = "update [UserCar] set Pass ='" + password + "' where Account ='" + account + "'";
+            return Database.ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateRememberMe(int isRemember, string account)
+        {
+            string sql = "update [UserCar] set RememberMe =" + isRemember + " where Account ='" + account + "'";
             return Database.ExcuNonQuery(sql);
         }
 
@@ -94,6 +100,32 @@ namespace ParkingMangement.DAO
             else
             {
                 return "";
+            }
+        }
+
+        public static string GetPasswordByAccount(string account)
+        {
+            DataTable dt = GetUserByAccount(account);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("Pass");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+        public static int GetRememberByAccount(string account)
+        {
+            DataTable dt = GetUserByAccount(account);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<Int32>("RememberMe");
+            }
+            else
+            {
+                return 0;
             }
         }
 

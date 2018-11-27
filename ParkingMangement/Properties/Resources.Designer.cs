@@ -73,6 +73,46 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_background_login {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_background_login_button {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_login_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_background_login_button1 {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_login_button1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_background_password {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_background_textbox {
             get {
                 object obj = ResourceManager.GetObject("ic_background_textbox", resourceCulture);
@@ -103,6 +143,16 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_background_username {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_username", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_barie {
             get {
                 object obj = ResourceManager.GetObject("ic_barie", resourceCulture);
@@ -116,6 +166,16 @@ namespace ParkingMangement.Properties {
         internal static System.Drawing.Bitmap ic_bottom_background {
             get {
                 object obj = ResourceManager.GetObject("ic_bottom_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_bottom_background_login {
+            get {
+                object obj = ResourceManager.GetObject("ic_bottom_background_login", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,6 +253,16 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_property_management {
+            get {
+                object obj = ResourceManager.GetObject("ic_property_management", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_time_background {
             get {
                 object obj = ResourceManager.GetObject("ic_time_background", resourceCulture);
@@ -206,6 +276,26 @@ namespace ParkingMangement.Properties {
         internal static System.Drawing.Bitmap ic_top_background {
             get {
                 object obj = ResourceManager.GetObject("ic_top_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_user_login {
+            get {
+                object obj = ResourceManager.GetObject("ic_user_login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_welcome {
+            get {
+                object obj = ResourceManager.GetObject("ic_welcome", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

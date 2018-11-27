@@ -38,16 +38,28 @@ namespace ParkingMangement
 
             this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.ActiveControl = labelError;
+            labelError.Text = "";
+
+            tbAccount.Text = Constant.sHintTextUsername;
+            tbAccount.GotFocus +=  new EventHandler(RemoveHintTextUsername);
+            tbAccount.LostFocus += new EventHandler(AddHintTextUsername);
+
+            tbPassword.Text = Constant.sHintTextPassword;
+            tbPassword.GotFocus += new EventHandler(RemoveHintTextPassword);
+            tbPassword.LostFocus += new EventHandler(AddHintTextPassword);
         }
 
         private void login()
         {
             string account = tbAccount.Text;
             string pass = tbPassword.Text;
+            int rememberMe = cbRememberMe.Checked ? 1 : 0;
             DataTable data = UserDAO.GetUserByAccount(account);
             if (data.Rows.Count > 0 && data.Rows[0].Field<string>("Pass") == pass)
             {
                 loginDone(data);
+                UserDAO.UpdateRememberMe(rememberMe, account);
             } else
             {
                 labelError.Text = "Thông tin không chính xác";
@@ -147,6 +159,51 @@ namespace ParkingMangement
                 case Keys.Enter:
                     login();
                     break;
+            }
+        }
+
+        public void RemoveHintTextUsername(object sender, EventArgs e)
+        {
+            tbAccount.Text = "";
+        }
+
+        public void AddHintTextUsername(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbAccount.Text))
+            {
+                tbAccount.Text = Constant.sHintTextUsername;
+            } else
+            {
+                string password = UserDAO.GetPasswordByAccount(tbAccount.Text);
+                int rememberMe = UserDAO.GetRememberByAccount(tbAccount.Text);
+                if (rememberMe == 1)
+                {
+                    tbPassword.Text = password;
+                }
+                cbRememberMe.Checked = rememberMe == 1;
+            }
+        }
+
+        public void RemoveHintTextPassword(object sender, EventArgs e)
+        {
+            string password = UserDAO.GetPasswordByAccount(tbAccount.Text);
+            if (password.Equals("") || tbPassword.Text.Equals(Constant.sHintTextPassword))
+            {
+                tbPassword.Text = "";
+            }
+        }
+
+        public void AddHintTextPassword(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tbPassword.Text))
+                tbPassword.Text = Constant.sHintTextPassword;
+        }
+
+        private void tbAccount_Leave(object sender, EventArgs e)
+        {
+            if (!tbAccount.Text.Equals(""))
+            {
+                
             }
         }
     }

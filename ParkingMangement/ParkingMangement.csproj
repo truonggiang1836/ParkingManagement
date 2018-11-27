@@ -281,6 +281,30 @@
   <ItemGroup>
     <None Include="resources\ic_background_thong_ke_xe_trong_bai.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_login_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_user_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_bottom_background_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_property_management.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
