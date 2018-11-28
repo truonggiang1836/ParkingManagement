@@ -442,6 +442,18 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static string GetLastCardID()
+        {
+            string sql = "select * from [Car] order by Identify desc";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string cardId = dt.Rows[0].Field<string>("ID");
+                return cardId;
+            }
+            return "";
+        }
+
         //public static void Insert(CarDTO carDTO)
         //{
         //    string sql = "insert into Car(ID, TimeStart, TimeEnd, Digit, IDIn, IDOut, Cost, IDTicketMonth, IDPart, Images, Images2, Images3," +

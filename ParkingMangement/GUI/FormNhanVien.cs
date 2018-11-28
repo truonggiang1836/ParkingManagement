@@ -273,8 +273,13 @@ namespace ParkingMangement.GUI
             {
                 if (KiemTraXeChuaRa())
                 {
-                    //MessageBox.Show("Thẻ này chưa được quẹt đầu ra");
-                    updateCarIn(isTicketCard);
+                    if (KiemTraCapNhatXeVao())
+                    {
+                        updateCarIn(isTicketCard);
+                    } else
+                    {
+                        MessageBox.Show("Thẻ này chưa được quẹt đầu ra");
+                    }
                 }
                 else
                 {
@@ -767,6 +772,28 @@ namespace ParkingMangement.GUI
                 if (!idIn.Equals("") && (idOut == null || idOut.Equals("")))
                 {
                     return true;
+                }
+            }
+            return false;
+        }
+        private bool KiemTraCapNhatXeVao()
+        {
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                String idIn = dt.Rows[0].Field<String>("IDIn");
+                String idOut = dt.Rows[0].Field<String>("IDOut");
+                if (!idIn.Equals("") && (idOut == null || idOut.Equals("")))
+                {
+                    string lastCardId = CarDAO.GetLastCardID();
+                    if (cardID.Equals(lastCardId))
+                    {
+                        DateTime timeStart = dt.Rows[0].Field<DateTime>("TimeStart");
+                        if (Util.getMillisecondBetweenTwoDate(timeStart, DateTime.Now) < 60000)
+                        {
+                            return true;
+                        }
+                    }
                 }
             }
             return false;

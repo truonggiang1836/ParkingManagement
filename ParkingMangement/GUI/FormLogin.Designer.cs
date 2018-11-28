@@ -57,7 +57,6 @@
             this.tbAccount.Size = new System.Drawing.Size(177, 17);
             this.tbAccount.TabIndex = 0;
             this.tbAccount.Text = "-";
-            this.tbAccount.Leave += new System.EventHandler(this.tbAccount_Leave);
             // 
             // tbPassword
             // 

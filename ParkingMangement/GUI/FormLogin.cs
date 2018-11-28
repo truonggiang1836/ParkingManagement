@@ -198,13 +198,5 @@ namespace ParkingMangement
             if (string.IsNullOrWhiteSpace(tbPassword.Text))
                 tbPassword.Text = Constant.sHintTextPassword;
         }
-
-        private void tbAccount_Leave(object sender, EventArgs e)
-        {
-            if (!tbAccount.Text.Equals(""))
-            {
-                
-            }
-        }
     }
 }
