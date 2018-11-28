@@ -148,5 +148,12 @@ namespace ParkingMangement.Utils
         {
             return string.Format("{0:#,000}", number);
         }
+
+        public static int getMillisecondBetweenTwoDate(DateTime oldDate, DateTime newDate)
+        {
+            TimeSpan span = newDate - oldDate;
+            int ms = (int)span.TotalMilliseconds;
+            return ms;
+        }
     }
 }

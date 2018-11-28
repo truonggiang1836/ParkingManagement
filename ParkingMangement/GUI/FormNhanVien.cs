@@ -261,9 +261,9 @@ namespace ParkingMangement.GUI
 
         private void checkForSaveToDB(bool isTicketCard)
         {
-            labelDigitIn.Text = "-";
-            labelDigitOut.Text = "-";
-            labelDigitRegister.Text = "-";
+            labelDigitIn.Text = "";
+            labelDigitOut.Text = "";
+            labelDigitRegister.Text = "";
             labelCustomerName.Text = "-";
             if (isTicketCard)
             {
@@ -307,7 +307,7 @@ namespace ParkingMangement.GUI
                 saveImage1ToFile();
                 saveImage2ToFile();
                 CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
-                labelDigitIn.Text = "-";
+                labelDigitIn.Text = "";
                 pictureBoxImage1.Image = Properties.Resources.ic_logo;
                 pictureBoxImage2.Image = Properties.Resources.ic_logo;
                 pictureBoxImage3.Image = Properties.Resources.ic_logo;
@@ -758,7 +758,7 @@ namespace ParkingMangement.GUI
                 labelTimeOut.Text = DateTime.Now.ToString("HH:mm");
 
                 string digit = dt.Rows[0].Field<string>("Digit");
-                labelDigitIn.Text = digit;
+                //labelDigitIn.Text = digit;
             }
         }
 
@@ -1338,6 +1338,8 @@ namespace ParkingMangement.GUI
         {
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
+            labelCardID.Text = "-";
+            labelCustomerName.Text = "-";
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";
             labelDateIn.Text = "-";
@@ -1348,8 +1350,8 @@ namespace ParkingMangement.GUI
             pictureBoxImage2.Image = Properties.Resources.ic_logo;
             pictureBoxImage3.Image = Properties.Resources.ic_logo;
             pictureBoxImage4.Image = Properties.Resources.ic_logo;
-            labelDigitIn.Text = "-";
-            labelDigitOut.Text = "-";
+            labelDigitIn.Text = "";
+            labelDigitOut.Text = "";
         }
 
         private void pictureBoxChangeLane_Click(object sender, EventArgs e)
@@ -1454,6 +1456,16 @@ namespace ParkingMangement.GUI
                     }
                 }
             }
+        }
+
+        private void dgvThongKeXeTrongBai_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            int sum = 0;
+            for (int i = 0; i < dgvThongKeXeTrongBai.Rows.Count; ++i)
+            {
+                sum += Convert.ToInt32(dgvThongKeXeTrongBai.Rows[i].Cells["DoanhThuCountCarIn"].Value);
+            }
+            labelTongXeTrongBaiValue.Text = sum.ToString();
         }
     }
 }
