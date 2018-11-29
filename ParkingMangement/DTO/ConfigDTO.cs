@@ -14,8 +14,8 @@ namespace ParkingMangement.DTO
         public const int TYPE_OUT_IN = 4;
 
         private int lostCard;
-        private int totalSpace;
-        private int ticketSpace;
+        private int bikeSpace;
+        private int carSpace;
         private int ticketLimitDay;
         private int nightLimit;
         private int parkingTypeId;
@@ -28,8 +28,8 @@ namespace ParkingMangement.DTO
         private int intOutType = TYPE_IN_OUT;
         private int expiredTicketMonthTypeID;
 
-        public int TotalSpace { get => totalSpace; set => totalSpace = value; }
-        public int TicketSpace { get => ticketSpace; set => ticketSpace = value; }
+        public int BikeSpace { get => bikeSpace; set => bikeSpace = value; }
+        public int CarSpace { get => carSpace; set => carSpace = value; }
         public int TicketLimitDay { get => ticketLimitDay; set => ticketLimitDay = value; }
         public int NightLimit { get => nightLimit; set => nightLimit = value; }
         public int ParkingTypeId { get => parkingTypeId; set => parkingTypeId = value; }

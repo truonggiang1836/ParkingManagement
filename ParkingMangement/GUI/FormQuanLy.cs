@@ -1941,8 +1941,8 @@ namespace ParkingMangement.GUI
 
         private void loadConfig()
         {
-            tbTotalSpace.Text = ConfigDAO.GetTotalSpace().ToString();
-            tbTicketSpace.Text = ConfigDAO.GetTicketMonthSpace().ToString();
+            tbBikeSpace.Text = ConfigDAO.GetBikeSpace().ToString();
+            tbCarSpace.Text = ConfigDAO.GetCarSpace().ToString();
             tbTicketLimitDay.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit.Text = ConfigDAO.GetNightLimit().ToString();
         }
@@ -2173,11 +2173,11 @@ namespace ParkingMangement.GUI
         {
             ConfigDTO configDTO = new ConfigDTO();
             int totalSpace = -1;
-            if (int.TryParse(tbTotalSpace.Text, out totalSpace))
+            if (int.TryParse(tbBikeSpace.Text, out totalSpace))
             {
                 if (totalSpace >= 0)
                 {
-                    configDTO.TotalSpace = totalSpace;
+                    configDTO.BikeSpace = totalSpace;
                 }
                 else
                 {
@@ -2191,11 +2191,11 @@ namespace ParkingMangement.GUI
             }
 
             int ticketSpace = -1;
-            if (int.TryParse(tbTicketSpace.Text, out ticketSpace))
+            if (int.TryParse(tbCarSpace.Text, out ticketSpace))
             {
                 if (ticketSpace >= 0)
                 {
-                    configDTO.TicketSpace = ticketSpace;
+                    configDTO.CarSpace = ticketSpace;
                 }
                 else
                 {
@@ -2403,8 +2403,8 @@ namespace ParkingMangement.GUI
             }
 
             tbLostCard.Text = ConfigDAO.GetLostCard().ToString();
-            tbTotalSpace2.Text = ConfigDAO.GetTotalSpace().ToString();
-            tbTicketSpace2.Text = ConfigDAO.GetTicketMonthSpace().ToString();
+            tbBikeSpace2.Text = ConfigDAO.GetBikeSpace().ToString();
+            tbCarSpace2.Text = ConfigDAO.GetCarSpace().ToString();
             tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
 
@@ -2496,11 +2496,11 @@ namespace ParkingMangement.GUI
             }
 
             int totalSpace = -1;
-            if (int.TryParse(tbTotalSpace2.Text, out totalSpace))
+            if (int.TryParse(tbBikeSpace2.Text, out totalSpace))
             {
                 if (totalSpace >= 0)
                 {
-                    configDTO.TotalSpace = totalSpace;
+                    configDTO.BikeSpace = totalSpace;
                 }
                 else
                 {
@@ -2515,11 +2515,11 @@ namespace ParkingMangement.GUI
             }
 
             int ticketSpace = -1;
-            if (int.TryParse(tbTicketSpace2.Text, out ticketSpace))
+            if (int.TryParse(tbCarSpace2.Text, out ticketSpace))
             {
                 if (ticketSpace >= 0)
                 {
-                    configDTO.TicketSpace = ticketSpace;
+                    configDTO.CarSpace = ticketSpace;
                 }
                 else
                 {

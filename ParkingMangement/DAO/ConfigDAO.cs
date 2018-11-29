@@ -30,12 +30,12 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetTotalSpace()
+        public static int GetBikeSpace()
         {
             DataTable dt = GetConfig();
             if (dt != null)
             {
-                return dt.Rows[0].Field<int>("TotalSpace");
+                return dt.Rows[0].Field<int>("BikeSpace");
             }
             else
             {
@@ -43,12 +43,12 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetTicketMonthSpace()
+        public static int GetCarSpace()
         {
             DataTable dt = GetConfig();
             if (dt != null)
             {
-                return dt.Rows[0].Field<int>("TicketSpace");
+                return dt.Rows[0].Field<int>("CarSpace");
             }
             else
             {
@@ -201,7 +201,7 @@ namespace ParkingMangement.DAO
 
         public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
-            string sql = "update [Config] set LostCard =" + configDTO.LostCard + ", TotalSpace =" + configDTO.TotalSpace + ", TicketSpace =" + configDTO.TicketSpace
+            string sql = "update [Config] set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID;
             return Database.ExcuNonQuery(sql);
