@@ -763,7 +763,7 @@ namespace ParkingMangement.GUI
 
         private void loadPartList()
         {
-            dgvPartList.DataSource = PartDAO.GetAllData();
+            dgvPartList.DataSource = PartDAO.GetAllCommonData();
             int Index = dgvPartList.CurrentRow.Index;
             loadPartInfoFromDataGridViewRow(Index);
         }
@@ -785,11 +785,6 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessagePartAmountNullError);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(tbPartLimitCreate.Text))
-            {
-                MessageBox.Show(Constant.sMessagePartLimitNullError);
-                return false;
-            }
             return true;
         }
 
@@ -805,11 +800,6 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessagePartAmountNullError);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(tbPartLimitEdit.Text))
-            {
-                MessageBox.Show(Constant.sMessagePartLimitNullError);
-                return false;
-            }
             return true;
         }
 
@@ -820,7 +810,6 @@ namespace ParkingMangement.GUI
             partDTO.Name = tbPartNameCreate.Text;
             partDTO.Sign = tbPartSignCreate.Text;
             partDTO.Amount = int.Parse(tbPartAmountCreate.Text);
-            partDTO.Limit = int.Parse(tbPartIdCreate.Text);
 
             PartDAO.Insert(partDTO);
             loadPartList();
@@ -834,7 +823,6 @@ namespace ParkingMangement.GUI
             partDTO.Name = tbPartNameEdit.Text;
             partDTO.Sign = tbPartSignEdit.Text;
             partDTO.Amount = int.Parse(tbPartAmountEdit.Text);
-            partDTO.Limit = int.Parse(tbPartIdEdit.Text);
 
             PartDAO.Update(partDTO);
             loadPartList();
@@ -854,8 +842,6 @@ namespace ParkingMangement.GUI
             tbPartSignEdit.Text = sign;
             string amount = Convert.ToString(dgvPartList.Rows[Index].Cells["Amount"].Value);
             tbPartAmountEdit.Text = amount;
-            string limit = Convert.ToString(dgvPartList.Rows[Index].Cells["Limit"].Value);
-            tbPartLimitEdit.Text = limit;
         }
 
         private void clearInputPartInfo()
@@ -864,7 +850,6 @@ namespace ParkingMangement.GUI
             tbPartNameCreate.Text = "";
             tbPartSignCreate.Text = "";
             tbPartAmountCreate.Text = "";
-            tbPartLimitCreate.Text = "";
         }
 
         private void tabCardManagement_SelectedIndexChanged(object sender, EventArgs e)
@@ -996,15 +981,23 @@ namespace ParkingMangement.GUI
 
         private void loadPartDataToComboBox(ComboBox cb)
         {
-            DataTable dt = PartDAO.GetAllData();
+            DataTable dt = PartDAO.GetAllCommonData();
             cb.DataSource = dt;
             cb.DisplayMember = "PartName";
             cb.ValueMember = "PartID";
         }
 
+        private void loadTypeDataToComboBox(ComboBox cb)
+        {
+            DataTable dt = TypeDAO.GetAllData();
+            cb.DataSource = dt;
+            cb.DisplayMember = "TypeName";
+            cb.ValueMember = "TypeID";
+        }
+
         private void loadPartDataWithFieldAllToComboBox(ComboBox cb)
         {
-            DataTable dt = PartDAO.GetAllData();
+            DataTable dt = PartDAO.GetAllCommonData();
             DataRow dr = dt.NewRow();
             dr["PartName"] = "Tất cả";
             dt.Rows.InsertAt(dr, 0);
@@ -1214,6 +1207,7 @@ namespace ParkingMangement.GUI
                 loadCardList();
                 loadPartDataToComboBox(cbPartNameCreate);
                 loadPartDataToComboBox(cbPartNameEdit);
+                loadTypeDataToComboBox(cbTypeNameCreate);
 
                 loadCardStatistic();
 

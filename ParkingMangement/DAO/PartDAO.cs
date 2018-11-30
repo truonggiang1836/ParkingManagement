@@ -10,9 +10,9 @@ namespace ParkingMangement.DAO
 {
     class PartDAO
     {
-        public static DataTable GetAllData()
+        public static DataTable GetAllCommonData()
         {
-            string sql = "select * from [Part]";
+            string sql = "select Part.PartID, Part.PartName, Part.PartType, Part.Sign, Part.Amount, Type.TypeName from [Part], [Type] where Part.TypeID = Type.TypeID and Part.CardTypeID = '1'";
             return Database.ExcuQuery(sql);
         }
 
@@ -29,15 +29,14 @@ namespace ParkingMangement.DAO
 
         public static void Insert(PartDTO partDTO)
         {
-            string sql = "insert into Part(PartID, PartName, Sign, Amount, Limit) values ('" + partDTO.Id + "', '" + partDTO.Name + "', '" +
-                partDTO.Sign + "', " + partDTO.Amount + ", " + partDTO.Limit + ")";
+            string sql = "insert into Part(PartID, PartName, Sign, Amount) values ('" + partDTO.Id + "', '" + partDTO.Name + "', '" +
+                partDTO.Sign + "', " + partDTO.Amount + ")";
             Database.ExcuNonQuery(sql);
         }
 
         public static void Update(PartDTO partDTO)
         {
-            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), Limit =("
-                + partDTO.Limit + ") where PartID = '" + partDTO.Id + "'";
+            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + ") where PartID = '" + partDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
 

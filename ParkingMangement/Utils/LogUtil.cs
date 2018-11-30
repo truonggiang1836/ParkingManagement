@@ -140,7 +140,7 @@ namespace ParkingMangement.Utils
             logDTO.LogTypeID = Constant.LOG_TYPE_TAO_MOI_LOAI_XE;
 
             logDTO.Note = Constant.LOG_NOTE_TAO_MOI_THE + " -Mã loại xe: " + partDTO.Id + " -Tên loại xe: " + partDTO.Name + " -Ký hiệu: " + partDTO.Sign
-                 + " -Tiền thu tháng: " + partDTO.Amount + " -Hạn mức: " + partDTO.Limit;
+                 + " -Tiền thu tháng: " + partDTO.Amount;
             addLog(logDTO);
         }
 
