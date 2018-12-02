@@ -8,12 +8,17 @@ namespace ParkingMangement.DTO
 {
     class PartDTO
     {
-        public int ID { get; set; }
+        public string ID { get; set; }
         public string PartType { get; set; }
         public string Name { get; set; }
         public string Sign { get; set; }
         public int Amount { get; set; }
         public string TypeID { get; set; }
         public string CardTypeID { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

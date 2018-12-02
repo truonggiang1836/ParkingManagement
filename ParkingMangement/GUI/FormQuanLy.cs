@@ -807,15 +807,23 @@ namespace ParkingMangement.GUI
         {
             PartDTO partDTO = new PartDTO();
             partDTO.PartType = tbPartIdCreate.Text;
-            DataRow partDataRow = ((DataRowView)cbPartNameCreate.SelectedItem).Row;
-            partDTO.PartType = Convert.ToString(partDataRow["PartID"]);
+            partDTO.ID = partDTO.PartType + "_1";
+            DataRow typeNameDataRow = ((DataRowView)cbTypeNameCreate.SelectedItem).Row;
+            partDTO.TypeID = Convert.ToString(typeNameDataRow["TypeID"]);
+            partDTO.CardTypeID = "1";
             partDTO.Name = tbPartNameCreate.Text;
             partDTO.Sign = tbPartSignCreate.Text;
             partDTO.Amount = int.Parse(tbPartAmountCreate.Text);
-
             PartDAO.Insert(partDTO);
+
+            PartDTO partDTO2 = (PartDTO) partDTO.Clone();
+            partDTO2.ID = partDTO.PartType + "_2";
+            partDTO2.CardTypeID = "2";
+            PartDAO.Insert(partDTO2);
+
             loadPartList();
             LogUtil.addLogTaoMoiLoaiXe(partDTO);
+            LogUtil.addLogTaoMoiLoaiXe(partDTO2);
         }
 
         private void updatePart()
@@ -825,6 +833,8 @@ namespace ParkingMangement.GUI
             partDTO.Name = tbPartNameEdit.Text;
             partDTO.Sign = tbPartSignEdit.Text;
             partDTO.Amount = int.Parse(tbPartAmountEdit.Text);
+            DataRow typeNameDataRow = ((DataRowView)cbTypeNameEdit.SelectedItem).Row;
+            partDTO.TypeID = Convert.ToString(typeNameDataRow["TypeID"]);
 
             PartDAO.Update(partDTO);
             loadPartList();
@@ -844,6 +854,8 @@ namespace ParkingMangement.GUI
             tbPartSignEdit.Text = sign;
             string amount = Convert.ToString(dgvPartList.Rows[Index].Cells["Amount"].Value);
             tbPartAmountEdit.Text = amount;
+            string typeName = Convert.ToString(dgvPartList.Rows[Index].Cells["TypeName"].Value);
+            cbTypeNameEdit.Text = typeName;
         }
 
         private void clearInputPartInfo()
@@ -1218,6 +1230,7 @@ namespace ParkingMangement.GUI
                 loadPartDataToComboBox(cbPartNameCreate);
                 loadPartDataToComboBox(cbPartNameEdit);
                 loadTypeDataToComboBox(cbTypeNameCreate);
+                loadTypeDataToComboBox(cbTypeNameEdit);
                 loadCardTypeDataToComboBox(cbCardTypeNameCreate);
                 loadCardTypeDataToComboBox(cbCardTypeNameEdit);
 

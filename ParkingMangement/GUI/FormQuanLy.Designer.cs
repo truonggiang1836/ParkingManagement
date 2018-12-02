@@ -330,6 +330,8 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabControl8 = new System.Windows.Forms.TabControl();
             this.tabPage27 = new System.Windows.Forms.TabPage();
+            this.cbCardTypeNameCreate = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.labelKetQuaTaoThe = new System.Windows.Forms.Label();
             this.cbIsUsingCreate = new System.Windows.Forms.CheckBox();
             this.cbPartNameCreate = new System.Windows.Forms.ComboBox();
@@ -338,6 +340,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.tbCardIdentifyCreate = new System.Windows.Forms.TextBox();
             this.tabPage28 = new System.Windows.Forms.TabPage();
+            this.cbCardTypeNameEdit = new System.Windows.Forms.ComboBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.btnCardEdit = new System.Windows.Forms.Button();
             this.cbIsUsingEdit = new System.Windows.Forms.CheckBox();
             this.cbPartNameEdit = new System.Windows.Forms.ComboBox();
@@ -849,10 +853,8 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.cbCardTypeNameCreate = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.cbCardTypeNameEdit = new System.Windows.Forms.ComboBox();
-            this.label38 = new System.Windows.Forms.Label();
+            this.cbTypeNameEdit = new System.Windows.Forms.ComboBox();
+            this.label128 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -3529,6 +3531,25 @@
             this.tabPage27.Text = "Tạo thẻ chip";
             this.tabPage27.UseVisualStyleBackColor = true;
             // 
+            // cbCardTypeNameCreate
+            // 
+            this.cbCardTypeNameCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCardTypeNameCreate.FormattingEnabled = true;
+            this.cbCardTypeNameCreate.Location = new System.Drawing.Point(159, 98);
+            this.cbCardTypeNameCreate.Name = "cbCardTypeNameCreate";
+            this.cbCardTypeNameCreate.Size = new System.Drawing.Size(217, 24);
+            this.cbCardTypeNameCreate.TabIndex = 22;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(72, 102);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(52, 16);
+            this.label27.TabIndex = 21;
+            this.label27.Text = "Loại vé";
+            // 
             // labelKetQuaTaoThe
             // 
             this.labelKetQuaTaoThe.AutoSize = true;
@@ -3617,6 +3638,25 @@
             this.tabPage28.TabIndex = 1;
             this.tabPage28.Text = "Tìm kiếm thẻ chip";
             this.tabPage28.UseVisualStyleBackColor = true;
+            // 
+            // cbCardTypeNameEdit
+            // 
+            this.cbCardTypeNameEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCardTypeNameEdit.FormattingEnabled = true;
+            this.cbCardTypeNameEdit.Location = new System.Drawing.Point(159, 103);
+            this.cbCardTypeNameEdit.Name = "cbCardTypeNameEdit";
+            this.cbCardTypeNameEdit.Size = new System.Drawing.Size(217, 24);
+            this.cbCardTypeNameEdit.TabIndex = 24;
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.Location = new System.Drawing.Point(72, 107);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(52, 16);
+            this.label38.TabIndex = 23;
+            this.label38.Text = "Loại vé";
             // 
             // btnCardEdit
             // 
@@ -3708,7 +3748,7 @@
             this.tabPage29.Location = new System.Drawing.Point(4, 25);
             this.tabPage29.Name = "tabPage29";
             this.tabPage29.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage29.Size = new System.Drawing.Size(537, 185);
+            this.tabPage29.Size = new System.Drawing.Size(537, 174);
             this.tabPage29.TabIndex = 2;
             this.tabPage29.Text = "Import/Export DS thẻ";
             this.tabPage29.UseVisualStyleBackColor = true;
@@ -3928,6 +3968,8 @@
             // 
             // panelChinhSuaLoaiXe
             // 
+            this.panelChinhSuaLoaiXe.Controls.Add(this.cbTypeNameEdit);
+            this.panelChinhSuaLoaiXe.Controls.Add(this.label128);
             this.panelChinhSuaLoaiXe.Controls.Add(this.label26);
             this.panelChinhSuaLoaiXe.Controls.Add(this.label31);
             this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartIdEdit);
@@ -3946,7 +3988,7 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(235, 121);
+            this.label26.Location = new System.Drawing.Point(235, 155);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(76, 16);
             this.label26.TabIndex = 47;
@@ -3981,7 +4023,7 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(21, 121);
+            this.label28.Location = new System.Drawing.Point(21, 155);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(97, 16);
             this.label28.TabIndex = 44;
@@ -3999,14 +4041,14 @@
             // 
             // tbPartAmountEdit
             // 
-            this.tbPartAmountEdit.Location = new System.Drawing.Point(128, 118);
+            this.tbPartAmountEdit.Location = new System.Drawing.Point(128, 152);
             this.tbPartAmountEdit.Name = "tbPartAmountEdit";
             this.tbPartAmountEdit.Size = new System.Drawing.Size(101, 22);
             this.tbPartAmountEdit.TabIndex = 43;
             // 
             // tbPartSignEdit
             // 
-            this.tbPartSignEdit.Location = new System.Drawing.Point(128, 85);
+            this.tbPartSignEdit.Location = new System.Drawing.Point(128, 119);
             this.tbPartSignEdit.Name = "tbPartSignEdit";
             this.tbPartSignEdit.Size = new System.Drawing.Size(183, 22);
             this.tbPartSignEdit.TabIndex = 41;
@@ -4015,7 +4057,7 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(61, 87);
+            this.label29.Location = new System.Drawing.Point(61, 121);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(57, 16);
             this.label29.TabIndex = 42;
@@ -8679,43 +8721,24 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // cbCardTypeNameCreate
+            // cbTypeNameEdit
             // 
-            this.cbCardTypeNameCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCardTypeNameCreate.FormattingEnabled = true;
-            this.cbCardTypeNameCreate.Location = new System.Drawing.Point(159, 98);
-            this.cbCardTypeNameCreate.Name = "cbCardTypeNameCreate";
-            this.cbCardTypeNameCreate.Size = new System.Drawing.Size(217, 24);
-            this.cbCardTypeNameCreate.TabIndex = 22;
+            this.cbTypeNameEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTypeNameEdit.FormattingEnabled = true;
+            this.cbTypeNameEdit.Location = new System.Drawing.Point(128, 84);
+            this.cbTypeNameEdit.Name = "cbTypeNameEdit";
+            this.cbTypeNameEdit.Size = new System.Drawing.Size(183, 24);
+            this.cbTypeNameEdit.TabIndex = 49;
             // 
-            // label27
+            // label128
             // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(72, 102);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(52, 16);
-            this.label27.TabIndex = 21;
-            this.label27.Text = "Loại vé";
-            // 
-            // cbCardTypeNameEdit
-            // 
-            this.cbCardTypeNameEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCardTypeNameEdit.FormattingEnabled = true;
-            this.cbCardTypeNameEdit.Location = new System.Drawing.Point(159, 103);
-            this.cbCardTypeNameEdit.Name = "cbCardTypeNameEdit";
-            this.cbCardTypeNameEdit.Size = new System.Drawing.Size(217, 24);
-            this.cbCardTypeNameEdit.TabIndex = 24;
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(72, 107);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(52, 16);
-            this.label38.TabIndex = 23;
-            this.label38.Text = "Loại vé";
+            this.label128.AutoSize = true;
+            this.label128.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label128.Location = new System.Drawing.Point(51, 89);
+            this.label128.Name = "label128";
+            this.label128.Size = new System.Drawing.Size(67, 16);
+            this.label128.TabIndex = 48;
+            this.label128.Text = "Nhóm xe :";
             // 
             // FormQuanLy
             // 
@@ -9693,5 +9716,7 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbCardTypeNameEdit;
         private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.ComboBox cbTypeNameEdit;
+        private System.Windows.Forms.Label label128;
     }
 }
