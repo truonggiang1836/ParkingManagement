@@ -29,14 +29,14 @@ namespace ParkingMangement.DAO
 
         public static void Insert(PartDTO partDTO)
         {
-            string sql = "insert into Part(PartID, PartName, Sign, Amount) values ('" + partDTO.Id + "', '" + partDTO.Name + "', '" +
+            string sql = "insert into Part(PartType, PartName, Sign, Amount) values ('" + partDTO.PartType + "', '" + partDTO.Name + "', '" +
                 partDTO.Sign + "', " + partDTO.Amount + ")";
             Database.ExcuNonQuery(sql);
         }
 
         public static void Update(PartDTO partDTO)
         {
-            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + ") where PartID = '" + partDTO.Id + "'";
+            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + ") where PartID = '" + partDTO.PartType + "'";
             Database.ExcuNonQuery(sql);
         }
 

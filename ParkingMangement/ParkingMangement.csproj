@@ -91,12 +91,13 @@
     <Compile Include="DAO\SexDAO.CS" />
     <Compile Include="DAO\TicketMonthDAO.cs" />
     <Compile Include="DAO\TicketLogDAO.cs" />
+    <Compile Include="DAO\CardTypeDAO.cs" />
     <Compile Include="DAO\TypeDAO.cs" />
     <Compile Include="DAO\UserDAO.CS" />
     <Compile Include="DAO\WorkDAO.cs" />
     <Compile Include="DTO\CardDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
-    <Compile Include="DTO\CardType.cs" />
+    <Compile Include="DTO\CardTypeDTO.cs" />
     <Compile Include="DTO\ComputerDTO.cs" />
     <Compile Include="DTO\ConfigDTO.cs" />
     <Compile Include="DTO\LogDTO.cs" />

@@ -806,7 +806,9 @@ namespace ParkingMangement.GUI
         private void createPart()
         {
             PartDTO partDTO = new PartDTO();
-            partDTO.Id = tbPartIdCreate.Text;
+            partDTO.PartType = tbPartIdCreate.Text;
+            DataRow partDataRow = ((DataRowView)cbPartNameCreate.SelectedItem).Row;
+            partDTO.PartType = Convert.ToString(partDataRow["PartID"]);
             partDTO.Name = tbPartNameCreate.Text;
             partDTO.Sign = tbPartSignCreate.Text;
             partDTO.Amount = int.Parse(tbPartAmountCreate.Text);
@@ -819,7 +821,7 @@ namespace ParkingMangement.GUI
         private void updatePart()
         {
             PartDTO partDTO = new PartDTO();
-            partDTO.Id = tbPartIdEdit.Text;
+            partDTO.PartType = tbPartIdEdit.Text;
             partDTO.Name = tbPartNameEdit.Text;
             partDTO.Sign = tbPartSignEdit.Text;
             partDTO.Amount = int.Parse(tbPartAmountEdit.Text);
@@ -993,6 +995,14 @@ namespace ParkingMangement.GUI
             cb.DataSource = dt;
             cb.DisplayMember = "TypeName";
             cb.ValueMember = "TypeID";
+        }
+
+        private void loadCardTypeDataToComboBox(ComboBox cb)
+        {
+            DataTable dt = CardTypeDAO.GetAllData();
+            cb.DataSource = dt;
+            cb.DisplayMember = "CardTypeName";
+            cb.ValueMember = "CardTypeID";
         }
 
         private void loadPartDataWithFieldAllToComboBox(ComboBox cb)
@@ -1208,6 +1218,8 @@ namespace ParkingMangement.GUI
                 loadPartDataToComboBox(cbPartNameCreate);
                 loadPartDataToComboBox(cbPartNameEdit);
                 loadTypeDataToComboBox(cbTypeNameCreate);
+                loadCardTypeDataToComboBox(cbCardTypeNameCreate);
+                loadCardTypeDataToComboBox(cbCardTypeNameEdit);
 
                 loadCardStatistic();
 
