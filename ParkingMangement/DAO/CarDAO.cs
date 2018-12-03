@@ -15,12 +15,12 @@ namespace ParkingMangement.DAO
         public static int COMMON_TICKET = 1;
         public static int MONTH_TICKET = 2;
 
-        private static string sqlGetAllData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
+        private static string sqlGetAllData = "select DISTINCT Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Car.IDIn, Car.IDOut, Car.IDTicketMonth, Car.IsLostCard, Car.Cost, Part.PartName, Part.Sign, Car.Computer, Car.Account, " +
             "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from [Car], [Part], [SmartCard] where Car.IDPart = Part.PartID and SmartCard.ID = Car.ID";
 
 
-        private static string sqlGetAllTicketMonthData = "select Car.Identify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
+        private static string sqlGetAllTicketMonthData = "select DISTINCT Car.Identify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from [Car], [Part], [TicketMonth] " +
             "where Car.IDPart = Part.PartID and TicketMonth.ID = Car.IDTicketMonth";
 
@@ -204,7 +204,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetTotalCostByType(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
             string groupBySql = " group by Car.IDPart";
-            string sql = "select Car.IDPart, sum(Car.Cost) as SumCost from [Car], [Part] where Car.IDPart = Part.PartID";
+            string sql = "select DISTINCT Car.IDPart, sum(Car.Cost) as SumCost from [Car], [Part] where Car.IDPart = Part.PartID";
             if (!isTicketMonth)
             {
                 sql += sqlQueryTicketCommon;

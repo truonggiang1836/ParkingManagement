@@ -12,25 +12,25 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.PartID order by SmartCard.Identify asc";
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from [SmartCard], [Part], [CardType] where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetLostCardData()
         {
-            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.PartID order by SmartCard.Identify asc";
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static bool Insert(CardDTO cardDTO)
         {
-            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', " + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', " + cardDTO.Type + ", '" + cardDTO.DayUnlimit + "')";
+            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', " + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
             return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void Update(CardDTO cartDTO)
         {
-            string sql = "update [SmartCard] set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =(" + cartDTO.Type + "), DayUnlimit =('"
+            string sql = "update [SmartCard] set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
                 + cartDTO.DayUnlimit + "') where ID ='" + cartDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
@@ -49,21 +49,21 @@ namespace ParkingMangement.DAO
 
         public static DataTable SearchData(string key)
         {
-            string sql = "select SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.PartID and "
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.ID and "
                 + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable SearchLostCardData(string key)
         {
-            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.PartID and "
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID and "
                 + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetDataGroupByType()
         {
-            string sql = "select Part.PartName, count(Identify) as SumCard from [SmartCard], [Part] where (SmartCard.Type = Part.PartID) and (SmartCard.IsUsing = '1') group by Part.PartName";
+            string sql = "select DISTINCT Part.PartName, count(Identify) as SumCard from [SmartCard], [Part] where (SmartCard.Type = Part.ID) and (SmartCard.IsUsing = '1') group by Part.PartName";
             DataTable data = Database.ExcuQuery(sql);
 
             data.Columns.Add("IsUsing", typeof(System.String));
@@ -137,6 +137,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static DataTable GetCardByIdentify(int identify)
+        {
+            string sql = "select * from [SmartCard] where Identify = " + identify;
+            return Database.ExcuQuery(sql);
+        }
+
         public static CardDTO GetCardModelByID(string id)
         {
             CardDTO cardDTO = new CardDTO();
@@ -146,10 +152,27 @@ namespace ParkingMangement.DAO
                 cardDTO.Identify = dt.Rows[0].Field<int>("Identify");
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
-                cardDTO.Type = dt.Rows[0].Field<int>("Type");
+                cardDTO.Type = dt.Rows[0].Field<string>("Type");
                 cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                return cardDTO;
             }
-            return cardDTO;
+            return null;
+        }
+
+        public static CardDTO GetCardModelByIdentify(int identify)
+        {
+            CardDTO cardDTO = new CardDTO();
+            DataTable dt = GetCardByIdentify(identify);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                cardDTO.Identify = dt.Rows[0].Field<int>("Identify");
+                cardDTO.Id = dt.Rows[0].Field<string>("Id");
+                cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
+                cardDTO.Type = dt.Rows[0].Field<string>("Type");
+                cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                return cardDTO;
+            }
+            return null;
         }
     }
 }

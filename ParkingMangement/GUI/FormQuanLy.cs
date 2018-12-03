@@ -48,6 +48,7 @@ namespace ParkingMangement.GUI
         {
             loadUserInfoTab();
             checkShowHideAllTabPage();
+            labelKetQuaTaoThe.Text = "";
         }
 
         private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)
@@ -257,7 +258,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvUserList.Rows.Count;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadUserInfoFromDataGridViewRow(Index);
             }
@@ -806,8 +807,8 @@ namespace ParkingMangement.GUI
         private void createPart()
         {
             PartDTO partDTO = new PartDTO();
-            partDTO.PartType = tbPartIdCreate.Text;
-            partDTO.ID = partDTO.PartType + "_1";
+            partDTO.PartID = tbPartIdCreate.Text;
+            partDTO.ID = partDTO.PartID + "_1";
             DataRow typeNameDataRow = ((DataRowView)cbTypeNameCreate.SelectedItem).Row;
             partDTO.TypeID = Convert.ToString(typeNameDataRow["TypeID"]);
             partDTO.CardTypeID = "1";
@@ -817,7 +818,7 @@ namespace ParkingMangement.GUI
             PartDAO.Insert(partDTO);
 
             PartDTO partDTO2 = (PartDTO) partDTO.Clone();
-            partDTO2.ID = partDTO.PartType + "_2";
+            partDTO2.ID = partDTO.PartID + "_2";
             partDTO2.CardTypeID = "2";
             PartDAO.Insert(partDTO2);
 
@@ -829,7 +830,7 @@ namespace ParkingMangement.GUI
         private void updatePart()
         {
             PartDTO partDTO = new PartDTO();
-            partDTO.PartType = tbPartIdEdit.Text;
+            partDTO.PartID = tbPartIdEdit.Text;
             partDTO.Name = tbPartNameEdit.Text;
             partDTO.Sign = tbPartSignEdit.Text;
             partDTO.Amount = int.Parse(tbPartAmountEdit.Text);
@@ -920,7 +921,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvPartList.Rows.Count;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadPartInfoFromDataGridViewRow(Index);
             }
@@ -1037,11 +1038,16 @@ namespace ParkingMangement.GUI
             }
             try
             {
-                Convert.ToInt32(tbCardIdentifyCreate.Text.Trim());
+                int cardIdentify = Convert.ToInt32(tbCardIdentifyCreate.Text.Trim());
+                if (CardDAO.GetCardModelByIdentify(cardIdentify) != null)
+                {
+                    labelKetQuaTaoThe.Text = "Số thẻ đã tồn tại";
+                    return false;
+                }
             }
             catch (Exception e)
             {
-                labelKetQuaTaoThe.Text = "Số thứ tự không hợp lệ";
+                labelKetQuaTaoThe.Text = "Số thẻ không hợp lệ";
                 return false;
             }
             return true;
@@ -1061,7 +1067,11 @@ namespace ParkingMangement.GUI
             cardDTO.Id = tbCardIDCreate.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameCreate.SelectedItem).Row;
-            cardDTO.Type = Convert.ToInt32(partDataRow["PartID"]);
+            string partID = Convert.ToString(partDataRow["PartID"]);
+
+            DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameCreate.SelectedItem).Row;
+            string cardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
+            cardDTO.Type = PartDAO.GetIDByPartIDAndCardTypeID(partID, cardTypeID);
 
             string isUsing = "0";
             if (cbIsUsingCreate.Checked)
@@ -1123,7 +1133,7 @@ namespace ParkingMangement.GUI
             }
             catch (Exception e)
             {
-                MessageBox.Show("Số thứ tự không hợp lệ");
+                MessageBox.Show("Số thẻ không hợp lệ");
                 return false;
             }
             return true;
@@ -1143,7 +1153,11 @@ namespace ParkingMangement.GUI
             cardDTO.Id = tbCardIDEdit.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameEdit.SelectedItem).Row;
-            cardDTO.Type = Convert.ToInt32(partDataRow["PartID"]);
+            string partID = Convert.ToString(partDataRow["PartID"]);
+
+            DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameEdit.SelectedItem).Row;
+            string cardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
+            cardDTO.Type = PartDAO.GetIDByPartIDAndCardTypeID(partID, cardTypeID);
 
             string isUsing = "0";
             if (cbIsUsingEdit.Checked)
@@ -1155,6 +1169,7 @@ namespace ParkingMangement.GUI
 
             CardDAO.Update(cardDTO);
             loadCardList();
+            loadCardStatistic();
         }
 
         private void searchCard()
@@ -1209,6 +1224,9 @@ namespace ParkingMangement.GUI
             }
             string partName = Convert.ToString(dgvCardList.Rows[Index].Cells["CardPartName"].Value);
             cbPartNameEdit.Text = partName;
+            string cardTypeName = Convert.ToString(dgvCardList.Rows[Index].Cells["CardTypeName"].Value);
+            cbCardTypeNameCreate.Text = cardTypeName;
+            cbCardTypeNameEdit.Text = cardTypeName;
         }
 
         private void tabQuanLy_SelectedIndexChanged(object sender, EventArgs e)
@@ -1282,7 +1300,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvCardList.Rows.Count;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadCardInfoFromDataGridViewRow(Index);
             }
@@ -1458,7 +1476,8 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.CarKind = tbTicketMonthCarKindCreate.Text;
 
             DataRow dataRow = ((DataRowView)cbTicketMonthPartCreate.SelectedItem).Row;
-            ticketMonthDTO.IdPart = Convert.ToString(dataRow["PartID"]);
+            CardDTO cardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
+            ticketMonthDTO.IdPart = cardDTO.Type;
 
             ticketMonthDTO.Account = Program.CurrentUserID;
             ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateCreate.Value.Date;
@@ -1791,7 +1810,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvTicketMonthList.Rows.Count;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadTicketMonthInfoFromDataGridViewRow(Index);
             }
@@ -1865,7 +1884,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvLostTicketMonthList.Rows.Count;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadLostTicketMonthInfoFromDataGridViewRow(Index);
             }
@@ -1942,7 +1961,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvCarList.RowCount;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadCarInfoFromDataGridViewRow(Index);
             }
@@ -2978,7 +2997,7 @@ namespace ParkingMangement.GUI
         {
             int Index = e.RowIndex;
             int Count = dgvLogList.Rows.Count;
-            if (Index < Count - 1)
+            if (Index < Count)
             {
                 loadLogInfoFromDataGridViewRow(Index);
             }
@@ -3911,6 +3930,7 @@ namespace ParkingMangement.GUI
                 //}
             }
             loadCardList();
+            loadCardStatistic();
         }
 
         private void dgvPartList_MouseClick(object sender, MouseEventArgs ev)
@@ -4262,6 +4282,109 @@ namespace ParkingMangement.GUI
         private void dgvLogList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Util.setRowNumber(dgvLogList, "STT_Log");
+        }
+
+        private void tbTicketMonthIDCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    ticketMonthCardIdLeaveEvent();
+                    break;
+            }
+        }
+
+        private void tbTicketMonthIDCreate_Leave(object sender, EventArgs e)
+        {
+            ticketMonthCardIdLeaveEvent();
+        }
+
+        private void ticketMonthCardIdLeaveEvent()
+        {
+            string cardId = tbTicketMonthIDCreate.Text;
+            if (!cardId.Equals(""))
+            {
+                CardDTO cardDTO = CardDAO.GetCardModelByID(cardId);
+                if (cardDTO == null)
+                {
+                    MessageBox.Show("Thẻ chưa được đăng kí vào hệ thống");
+                    tbTicketMonthIDCreate.Text = "";
+                }
+                else
+                {
+                    string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
+                    if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                    {
+                        MessageBox.Show("Loại thẻ này không dành cho xe tháng");
+                        tbTicketMonthIDCreate.Text = "";
+                    }
+                    else
+                    {
+                        tbTicketMonthIdentifyCreate.Text = cardDTO.Identify + "";
+                        string typeName = PartDAO.GetPartNameByPartID(cardDTO.Type);
+                        cbTicketMonthPartCreate.Text = typeName;
+                        tbTicketMonthChargesAmountCreate.Text = PartDAO.GetAmountByPartID(cardDTO.Type) + "";
+                    }
+                }
+            }
+        }
+
+        private void ticketMonthCardIdentifyLeaveEvent()
+        {
+            if (!tbTicketMonthIdentifyCreate.Text.Equals(""))
+            {
+                try
+                {
+                    int cardIdentify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
+                    CardDTO cardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
+                    if (cardDTO == null)
+                    {
+                        MessageBox.Show("Thẻ chưa được đăng kí vào hệ thống");
+                        tbTicketMonthIdentifyCreate.Text = "";
+                    }
+                    else
+                    {
+                        string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
+                        if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                        {
+                            MessageBox.Show("Loại thẻ này không dành cho xe tháng");
+                            tbTicketMonthIdentifyCreate.Text = "";
+                        }
+                        else
+                        {
+                            if (CardDAO.GetCardModelByIdentify(cardIdentify) != null)
+                            {
+                                MessageBox.Show("Số thẻ đã tồn tại");
+                            } else
+                            {
+                                tbTicketMonthIdentifyCreate.Text = cardDTO.Identify + "";
+                                string typeName = PartDAO.GetPartNameByPartID(cardDTO.Type);
+                                cbTicketMonthPartCreate.Text = typeName;
+                                tbTicketMonthChargesAmountCreate.Text = PartDAO.GetAmountByPartID(cardDTO.Type) + "";
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Số thẻ không hợp lệ");
+                }
+            }
+        }
+
+        private void tbTicketMonthIdentifyCreate_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    ticketMonthCardIdentifyLeaveEvent();
+                    break;
+            }
+        }
+
+        private void tbTicketMonthIdentifyCreate_Leave(object sender, EventArgs e)
+        {
+            ticketMonthCardIdentifyLeaveEvent();
         }
     }
 }

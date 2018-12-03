@@ -11,7 +11,7 @@ namespace ParkingMangement.DAO
 {
     class TicketLogDAO
     {
-        private static string sqlGetAllData = "select TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
+        private static string sqlGetAllData = "select DISTINCT TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
                 ", TicketLog.TicketMonthID, TicketLog.Digit, TicketLog.CustomerName, TicketLog.CMND, TicketLog.Email, " +
                 "TicketLog.Address, TicketLog.CarKind, Part.PartName, TicketLog.RegistrationDate, TicketLog.ExpirationDate from" +
                 " [TicketLog], [LogType], [Part], [UserCar], [SmartCard] where TicketLog.IDPart = Part.PartID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account and TicketLog.TicketMonthID = SmartCard.ID";
@@ -19,7 +19,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllData()
         {
-            string sql = sqlGetAllData + sqlOrderByIdentify;
+            string sql = sqlGetAllData;
             return Database.ExcuQuery(sql);
         }
 
@@ -41,7 +41,6 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Part.PartID like '" + partID + "'";
             }
-            sql += sqlOrderByIdentify;
             return Database.ExcuQuery(sql);
         }
 

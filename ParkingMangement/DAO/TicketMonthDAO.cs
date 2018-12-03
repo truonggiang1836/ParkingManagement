@@ -10,16 +10,16 @@ namespace ParkingMangement.DAO
 {
     class TicketMonthDAO
     {
-        private static string sqlGetAllData = "select SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
+        private static string sqlGetAllData = "select DISTINCT SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
                 " TicketMonth.Company, TicketMonth.Email, TicketMonth.Address, TicketMonth.CarKind, TicketMonth.ChargesAmount, Part.PartName," +
-                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from [TicketMonth], [Part], [SmartCard] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = SmartCard.ID";
+                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from [TicketMonth], [Part], [SmartCard] where TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
 
-        private static string sqlGetAllNearExpiredTicketData = "select Part.PartName, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
-                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from [TicketMonth], [Part], [SmartCard] where TicketMonth.IDPart = Part.PartID and TicketMonth.ID = SmartCard.ID";
+        private static string sqlGetAllNearExpiredTicketData = "select DISTINCT Part.PartName, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
+                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from [TicketMonth], [Part], [SmartCard] where TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
 
-        private static string sqlGetAllLostTicketData = "select TicketMonth.Identify as TicketMonthIdentify, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address," +
+        private static string sqlGetAllLostTicketData = "select DISTINCT TicketMonth.Identify as TicketMonthIdentify, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address," +
             " Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from " +
-            "[TicketMonth], [Part], [UserCar], [SmartCard] where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IDPart = Part.PartID and TicketMonth.Account = UserCar.UserID and TicketMonth.ID = SmartCard.ID";
+            "[TicketMonth], [Part], [UserCar], [SmartCard] where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IDPart = Part.ID and TicketMonth.Account = UserCar.UserID and TicketMonth.ID = SmartCard.ID";
 
         private static string sqlGetAllActiveTicketData = "select SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Company, TicketMonth.Address, " +
             "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit from [TicketMonth], [SmartCard] where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0'";
@@ -33,8 +33,8 @@ namespace ParkingMangement.DAO
 
         public static void Insert(TicketMonthDTO ticketMonthDTO)
         {
-            string sql = "insert into TicketMonth(Identify, ID, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
-                ", ChargesAmount, IDPart, Account) values (" + ticketMonthDTO.Identify + ",'" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
+            string sql = "insert into TicketMonth(ID, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
+                ", ChargesAmount, IDPart, Account) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" + 
                 ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate + 
                 "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
@@ -201,6 +201,12 @@ namespace ParkingMangement.DAO
         public static DataTable GetDataByID(string id)
         {
             string sql = "select * from [TicketMonth] where ID = '" + id + "'";
+            return Database.ExcuQuery(sql);
+        }
+
+        public static DataTable GetDataByIdentify(int identify)
+        {
+            string sql = "select * from [TicketMonth] where Identify = " + identify;
             return Database.ExcuQuery(sql);
         }
 

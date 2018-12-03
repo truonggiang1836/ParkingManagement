@@ -11,7 +11,7 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select * from [CardType]";
+            string sql = "select * from [CardType] order by CardTypeID asc";
             return Database.ExcuQuery(sql);
         }
 
