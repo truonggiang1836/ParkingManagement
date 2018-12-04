@@ -1136,6 +1136,15 @@ namespace ParkingMangement.GUI
                 MessageBox.Show("Số thẻ không hợp lệ");
                 return false;
             }
+
+            DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameEdit.SelectedItem).Row;
+            string cardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
+            DataTable dt = TicketMonthDAO.GetDataByID(tbCardIDEdit.Text);
+            if (dt != null && dt.Rows.Count > 0 && cardTypeID == CardTypeDTO.CARD_TYPE_TICKET_COMMON)
+            {
+                MessageBox.Show("Không thể thay đổi loại vé do thẻ này đã được đăng ký vé tháng");
+                return false;
+            }
             return true;
         }
 
@@ -1266,6 +1275,7 @@ namespace ParkingMangement.GUI
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
                 loadTabPageTicketLog();
+                loadTicketMonthData();
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
                 setFormatDateForDateTimePicker(dtTicketLogExpirationDateSearch);
                 dtTicketLogExpirationDateSearch.Value = DateTime.Now.AddMonths(1);
@@ -1407,7 +1417,7 @@ namespace ParkingMangement.GUI
             {
                 lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
             }
-            tbTicketMonthIdentifyCreate.Text = lastIdentify + 1 + "";
+            //tbTicketMonthIdentifyCreate.Text = lastIdentify + 1 + "";
 
             if (data != null && data.Rows.Count > 0)
             {
@@ -1486,6 +1496,12 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
 
+            int cardIdentify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
+            if (cardDTO.Identify != cardIdentify)
+            {
+                CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
+            }
+
             TicketMonthDAO.Insert(ticketMonthDTO);
             clearInputTicketMonthInfo();
             loadTicketMonthData();
@@ -1495,8 +1511,10 @@ namespace ParkingMangement.GUI
 
         private void updateTicketMonth()
         {
+            int identify = Convert.ToInt32(tbTicketMonthIdentifyEdit.Text);
+
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
-            ticketMonthDTO.Identify = Convert.ToInt32(tbTicketMonthIdentifyEdit.Text);
+            ticketMonthDTO.Identify = identify;
             ticketMonthDTO.Id = tbTicketMonthIDEdit.Text;
             ticketMonthDTO.ProcessDate = DateTime.Now;
             ticketMonthDTO.Digit = tbTicketMonthDigitEdit.Text;
@@ -1508,7 +1526,8 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.CarKind = tbTicketMonthCarKindEdit.Text;
 
             DataRow dataRow = ((DataRowView)cbTicketMonthPartEdit.SelectedItem).Row;
-            ticketMonthDTO.IdPart = Convert.ToString(dataRow["PartID"]);
+            CardDTO oldCardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
+            ticketMonthDTO.IdPart = oldCardDTO.Type;
 
             ticketMonthDTO.Account = Program.CurrentUserID;
             ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value.Date;
@@ -1517,10 +1536,19 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
 
-            TicketMonthDAO.Update(ticketMonthDTO);
-            loadTicketMonthData();
+            CardDTO newCardDTO = CardDAO.GetCardModelByIdentify(identify);
+            int oldIdentify = oldCardDTO.Identify;
+            if (newCardDTO != null && identify != oldIdentify)
+            {
+                MessageBox.Show("Số thẻ đã tồn tại");
+            } else
+            {
+                CardDAO.UpdateIdentify(identify, ticketMonthDTO.Id);
+                TicketMonthDAO.Update(ticketMonthDTO);
+                loadTicketMonthData();
 
-            addTicketLog(Constant.LOG_TYPE_UPDATE_TICKET_MONTH, ticketMonthDTO);
+                addTicketLog(Constant.LOG_TYPE_UPDATE_TICKET_MONTH, ticketMonthDTO);
+            }
         }
 
         private void clearInputTicketMonthInfo()
@@ -1569,6 +1597,15 @@ namespace ParkingMangement.GUI
 
         private bool checkUpdateTicketMonthData()
         {
+            try
+            {
+                Convert.ToInt32(tbTicketMonthIdentifyEdit.Text);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Số thẻ không hợp lệ");
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitEdit.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
@@ -1688,10 +1725,8 @@ namespace ParkingMangement.GUI
                 if (value != null && (Boolean)value)
                 {
                     string id = Convert.ToString(row.Cells["TicketMonthID"].Value);
-                    if (TicketMonthDAO.Delete(id))
-                    {
-                        addDeleteTicketMonthToLog(row.Index);
-                    }
+                    addDeleteTicketMonthToLog(row.Index);
+                    TicketMonthDAO.Delete(id);
                 }
             }
             loadTicketMonthData();
@@ -3921,6 +3956,7 @@ namespace ParkingMangement.GUI
                     if (CardDAO.Delete(cardId))
                     {
                         LogUtil.addLogXoaThe(identify, cardId);
+                        TicketMonthDAO.Delete(cardId);
                     }
                 }
                 //if (Convert.ToBoolean(checkCell.Value) == true)
@@ -4337,12 +4373,7 @@ namespace ParkingMangement.GUI
                 {
                     int cardIdentify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
                     CardDTO cardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
-                    if (cardDTO == null)
-                    {
-                        MessageBox.Show("Thẻ chưa được đăng kí vào hệ thống");
-                        tbTicketMonthIdentifyCreate.Text = "";
-                    }
-                    else
+                    if (cardDTO != null)
                     {
                         string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
                         if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
@@ -4352,12 +4383,13 @@ namespace ParkingMangement.GUI
                         }
                         else
                         {
-                            if (CardDAO.GetCardModelByIdentify(cardIdentify) != null)
+                            DataTable dt = TicketMonthDAO.GetDataByIdentify(cardIdentify);
+                            if (dt != null && dt.Rows.Count > 0)
                             {
                                 MessageBox.Show("Số thẻ đã tồn tại");
                             } else
                             {
-                                tbTicketMonthIdentifyCreate.Text = cardDTO.Identify + "";
+                                tbTicketMonthIDCreate.Text = cardDTO.Id;
                                 string typeName = PartDAO.GetPartNameByPartID(cardDTO.Type);
                                 cbTicketMonthPartCreate.Text = typeName;
                                 tbTicketMonthChargesAmountCreate.Text = PartDAO.GetAmountByPartID(cardDTO.Type) + "";

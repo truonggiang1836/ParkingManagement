@@ -43,7 +43,7 @@ namespace ParkingMangement.DAO
 
         public static void Update(TicketMonthDTO ticketMonthDTO)
         {
-            string sql = "update [TicketMonth] set Identify =" + ticketMonthDTO.Identify + ", ProcessDate ='" + ticketMonthDTO.ProcessDate + "', Digit ='" + ticketMonthDTO.Digit + "', CustomerName ='"
+            string sql = "update [TicketMonth] set ProcessDate ='" + ticketMonthDTO.ProcessDate + "', Digit ='" + ticketMonthDTO.Digit + "', CustomerName ='"
                 + ticketMonthDTO.CustomerName + "', CMND ='" + ticketMonthDTO.Cmnd + "', Company ='" + ticketMonthDTO.Company + "', Email ='" + ticketMonthDTO.Email + "', Address ='" + ticketMonthDTO.Address + "', CarKind ='"
                 + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount + "' where ID ='" + ticketMonthDTO.Id + "'";
             Database.ExcuNonQuery(sql);

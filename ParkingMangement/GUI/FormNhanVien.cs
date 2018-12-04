@@ -332,7 +332,7 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeStart = DateTime.Now;
             carDTO.IdIn = Program.CurrentUserID;
-            string partID = CardDAO.getPartIDByCardID(cardID);
+            string partID = CardDAO.getIDByCardID(cardID);
             carDTO.IdPart = partID;
             carDTO.Images = imagePath1;
             carDTO.Images2 = imagePath2;

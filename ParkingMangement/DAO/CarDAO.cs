@@ -17,12 +17,12 @@ namespace ParkingMangement.DAO
 
         private static string sqlGetAllData = "select DISTINCT Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Car.IDIn, Car.IDOut, Car.IDTicketMonth, Car.IsLostCard, Car.Cost, Part.PartName, Part.Sign, Car.Computer, Car.Account, " +
-            "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from [Car], [Part], [SmartCard] where Car.IDPart = Part.PartID and SmartCard.ID = Car.ID";
+            "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from [Car], [Part], [SmartCard] where Car.IDPart = Part.ID and SmartCard.ID = Car.ID";
 
 
         private static string sqlGetAllTicketMonthData = "select DISTINCT Car.Identify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from [Car], [Part], [TicketMonth] " +
-            "where Car.IDPart = Part.PartID and TicketMonth.ID = Car.IDTicketMonth";
+            "where Car.IDPart = Part.ID and TicketMonth.ID = Car.IDTicketMonth";
 
         private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
             "Car.IsLostCard, Car.Computer, UserCar.NameUser from [Car], [UserCar] where Car.Account = UserCar.UserID";
@@ -182,12 +182,12 @@ namespace ParkingMangement.DAO
                 // Tổng cộng
 
                 DataRow dataRow = data.NewRow();
-                dataRow.SetField("PartName", "____Tổng cộng");
+                dataRow.SetField("TypeName", "____Tổng cộng");
 
-                int countAllCarIn = GetCountCarInByPartAndDate(startTime, endTime, null, false, userID) + GetCountCarInByPartAndDate(startTime, endTime, null, true, userID);
+                int countAllCarIn = GetCountCarInByTypeAndDate(startTime, endTime, null, false, userID) + GetCountCarInByTypeAndDate(startTime, endTime, null, true, userID);
                 dataRow.SetField("CountCarIn", countAllCarIn);
 
-                int countAllCarOut = GetCountCarOutByPartAndDate(startTime, endTime, null, false, userID) + GetCountCarOutByPartAndDate(startTime, endTime, null, true, userID);
+                int countAllCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, null, false, userID) + GetCountCarOutByTypeAndDate(startTime, endTime, null, true, userID);
                 dataRow.SetField("CountCarOut", countAllCarOut);
 
                 int countAllCarSurvive = GetCountCarSurvive(null);
@@ -203,8 +203,8 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetTotalCostByType(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
-            string groupBySql = " group by Car.IDPart";
-            string sql = "select DISTINCT Car.IDPart, sum(Car.Cost) as SumCost from [Car], [Part] where Car.IDPart = Part.PartID";
+            string groupBySql = " group by Part.TypeID";
+            string sql = "select Part.TypeID, sum(Car.Cost) as SumCost from [Car], [Part] where Car.IDPart = Part.ID";
             if (!isTicketMonth)
             {
                 sql += sqlQueryTicketCommon;
@@ -228,8 +228,8 @@ namespace ParkingMangement.DAO
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
-                data.Columns.Add("PartName", typeof(string));
-                data.Columns["PartName"].SetOrdinal(0);
+                data.Columns.Add("TypeName", typeof(string));
+                data.Columns["TypeName"].SetOrdinal(0);
                 data.Columns.Add("CountCarIn", typeof(int));
                 data.Columns["CountCarIn"].SetOrdinal(1);
                 data.Columns.Add("CountCarOut", typeof(int));
@@ -238,14 +238,14 @@ namespace ParkingMangement.DAO
                 data.Columns["CountCarSurvive"].SetOrdinal(3);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
-                    string partID = data.Rows[row].Field<string>("IDPart");
-                    string partName = PartDAO.GetPartNameByPartID(partID);
-                    data.Rows[row].SetField("PartName", partName);
-                    int countCarIn = GetCountCarInByPartAndDate(startTime, endTime, partID, isTicketMonth, userID);
+                    string typeID = data.Rows[row].Field<string>("TypeID");
+                    string typeName = TypeDAO.GetTypeNameByTypeID(typeID);
+                    data.Rows[row].SetField("TypeName", typeName);
+                    int countCarIn = GetCountCarInByTypeAndDate(startTime, endTime, typeID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarIn", countCarIn);
-                    int countCarOut = GetCountCarOutByPartAndDate(startTime, endTime, partID, isTicketMonth, userID);
+                    int countCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, typeID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarOut", countCarOut);
-                    int countCarSurvive = GetCountCarSurvive(partID, isTicketMonth);
+                    int countCarSurvive = GetCountCarSurvive(typeID, isTicketMonth);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                 }
             }
@@ -256,16 +256,16 @@ namespace ParkingMangement.DAO
             DataRow dataRow = data.NewRow();
             if (!isTicketMonth)
             {
-                dataRow.SetField("PartName", "___Tổng xe thường");
+                dataRow.SetField("TypeName", "___Tổng xe thường");
             } else
             {
-                dataRow.SetField("PartName", "___Tổng xe tháng");
+                dataRow.SetField("TypeName", "___Tổng xe tháng");
             }
 
-            int countAllCarIn = GetCountCarInByPartAndDate(startTime, endTime, null, isTicketMonth, userID);
+            int countAllCarIn = GetCountCarInByTypeAndDate(startTime, endTime, null, isTicketMonth, userID);
             dataRow.SetField("CountCarIn", countAllCarIn);
 
-            int countAllCarOut = GetCountCarOutByPartAndDate(startTime, endTime, null, isTicketMonth, userID);
+            int countAllCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, null, isTicketMonth, userID);
             dataRow.SetField("CountCarOut", countAllCarOut);
 
             int countAllCarSurvive = GetCountCarSurvive(null, isTicketMonth);
@@ -281,24 +281,24 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetListCarSurvive()
         {
-            string groupBySql = " group by Car.IDPart";
-            string sql = "select Car.IDPart from [Car]";
+            string groupBySql = " group by Part.TypeID";
+            string sql = "select Part.TypeID from [Car], [Part] where Car.IDPart = Part.ID";
             sql += groupBySql;
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
-                data.Columns.Add("PartName", typeof(string));
-                data.Columns["PartName"].SetOrdinal(0);
+                data.Columns.Add("TypeName", typeof(string));
+                data.Columns["TypeName"].SetOrdinal(0);
                 data.Columns.Add("CountCarSurvive", typeof(int));
                 data.Columns["CountCarSurvive"].SetOrdinal(1);
                 data.Columns.Add("Status", typeof(string));
                 data.Columns["Status"].SetOrdinal(2);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
-                    string partID = data.Rows[row].Field<string>("IDPart");
-                    string partName = PartDAO.GetPartNameByPartID(partID);
-                    data.Rows[row].SetField("PartName", partName);
-                    int countCarSurvive = GetCountCarSurvive(partID);
+                    string typeID = data.Rows[row].Field<string>("TypeID");
+                    string typeName = TypeDAO.GetTypeNameByTypeID(typeID);
+                    data.Rows[row].SetField("TypeName", typeName);
+                    int countCarSurvive = GetCountCarSurvive(typeID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                     string status = "Còn trống";
                     data.Rows[row].SetField("Status", status);
@@ -328,16 +328,16 @@ namespace ParkingMangement.DAO
             return Database.ExcuValueQuery(sql);
         }
 
-        public static int GetCountCarInByPartAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
+        public static int GetCountCarInByTypeAndDate(DateTime? startTime, DateTime? endTime, string typeID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from [Car] where Car.IDIn is not null " + sqlQueryTicketCommon;
+            string sql = "select * from [Car], [Part] where Car.IDIn <> '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.IDIn is not null " + sqlQueryTicketMonth;
+                sql = "select * from [Car], [Part] where Car.IDIn <> '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
             }
-            if (partID != null)
+            if (typeID != null)
             {
-                sql += " and IDPart = '" + partID + "'";
+                sql += " and Part.TypeID = '" + typeID + "'";
             }
             if (startTime != null && endTime != null)
             {
@@ -358,16 +358,16 @@ namespace ParkingMangement.DAO
             return data.Rows.Count;
         }
 
-        public static int GetCountCarOutByPartAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
+        public static int GetCountCarOutByTypeAndDate(DateTime? startTime, DateTime? endTime, string typeID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from [Car] where Car.IDOut is not null " + sqlQueryTicketCommon;
+            string sql = "select * from [Car], [Part] where Car.IDOut <> '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.IDOut is not null " + sqlQueryTicketMonth;
+                sql = "select * from [Car], [Part] where Car.IDOut <> '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
             }
-            if (partID != null)
+            if (typeID != null)
             {
-                sql += " and IDPart = '" + partID + "'";
+                sql += " and Part.TypeID = '" + typeID + "'";
             }
             if (startTime != null && endTime != null)
             {
@@ -384,28 +384,28 @@ namespace ParkingMangement.DAO
             return data.Rows.Count;
         }
 
-        public static int GetCountCarSurvive(string partID)
+        public static int GetCountCarSurvive(string typeID)
         {
-            string sql = "select * from [Car] where Car.IDIn is not null and Car.IDOut = '' ";
-            if (partID != null)
+            string sql = "select * from [Car], [Part] where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID ";
+            if (typeID != null)
             {
-                sql += " and IDPart = '" + partID + "'";
+                sql += " and Part.TypeID = '" + typeID + "'";
             }
 
             DataTable data = Database.ExcuQuery(sql);
             return data.Rows.Count;
         }
 
-        public static int GetCountCarSurvive(string partID, bool isTicketMonth)
+        public static int GetCountCarSurvive(string typeID, bool isTicketMonth)
         {
-            string sql = "select * from [Car] where Car.IDIn is not null and Car.IDOut = '' " + sqlQueryTicketCommon;
+            string sql = "select * from[Car], [Part] where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select * from [Car] where Car.IDIn is not null and Car.IDOut = '' " + sqlQueryTicketMonth;
+                sql = "select * from[Car], [Part] where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
             }
-            if (partID != null)
+            if (typeID != null)
             {
-                sql += " and IDPart = '" + partID + "'";
+                sql += " and Part.TypeID = '" + typeID + "'";
             }
 
             DataTable data = Database.ExcuQuery(sql);

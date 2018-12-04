@@ -47,6 +47,12 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
+        public static void UpdateIdentify(int identify, string cardId)
+        {
+            string sql = "update [SmartCard] set Identify = " + identify + " where ID = '" + cardId + "'";
+            Database.ExcuNonQuery(sql);
+        }
+
         public static DataTable SearchData(string key)
         {
             string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.ID and "
@@ -97,13 +103,24 @@ namespace ParkingMangement.DAO
             return Database.ExcuNonQuery(sql);
         }
 
-        public static string getPartIDByCardID(string cardID)
+        public static string getIDByCardID(string cardID)
         {
             string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("Type");
+            }
+            return "";
+        }
+
+        public static string getPartIDByCardID(string cardID)
+        {
+            string sql = "select Part.PartID from [Part], [SmartCard] where SmartCard.ID = '" + cardID + "' and SmartCard.Type = Part.ID";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("PartID");
             }
             return "";
         }

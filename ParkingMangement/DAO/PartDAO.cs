@@ -20,7 +20,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "select * from [Part] where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
-            if (data != null)
+            if (data != null && data.Rows.Count > 0)
             {
                 return data.Rows[0].Field<string>("PartName");
             }
