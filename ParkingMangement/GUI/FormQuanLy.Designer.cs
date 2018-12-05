@@ -28,78 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle73 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle74 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle75 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle76 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle79 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle80 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle81 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle82 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle83 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle84 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
-            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
-            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
-            treeNode85,
-            treeNode86});
-            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("Xem thống kê");
-            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
-            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
-            treeNode88,
-            treeNode89});
-            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
-            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
-            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
-            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
-            treeNode91,
-            treeNode92,
-            treeNode93});
-            System.Windows.Forms.TreeNode treeNode95 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
-            System.Windows.Forms.TreeNode treeNode96 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
-            System.Windows.Forms.TreeNode treeNode97 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
-            System.Windows.Forms.TreeNode treeNode98 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
-            System.Windows.Forms.TreeNode treeNode99 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
-            System.Windows.Forms.TreeNode treeNode100 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
-            treeNode95,
-            treeNode96,
-            treeNode97,
-            treeNode98,
-            treeNode99});
-            System.Windows.Forms.TreeNode treeNode101 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
-            System.Windows.Forms.TreeNode treeNode102 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
-            System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
-            System.Windows.Forms.TreeNode treeNode104 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
-            System.Windows.Forms.TreeNode treeNode105 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
-            treeNode101,
-            treeNode102,
-            treeNode103,
-            treeNode104});
-            System.Windows.Forms.TreeNode treeNode106 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
-            System.Windows.Forms.TreeNode treeNode107 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
-            System.Windows.Forms.TreeNode treeNode108 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
-            System.Windows.Forms.TreeNode treeNode109 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode110 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
-            treeNode106,
-            treeNode107,
-            treeNode108,
-            treeNode109});
-            System.Windows.Forms.TreeNode treeNode111 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
-            System.Windows.Forms.TreeNode treeNode112 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Xem thống kê");
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Điều chỉnh công thức tính tiền");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Quản lý doanh thu", new System.Windows.Forms.TreeNode[] {
+            treeNode32,
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Quản lý loại xe");
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe");
+            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Kích hoạt thẻ");
+            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Quản lý thẻ xe - loại xe", new System.Windows.Forms.TreeNode[] {
+            treeNode35,
+            treeNode36,
+            treeNode37});
+            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Nhật ký vé tháng");
+            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Cập nhật thông tin vé tháng");
+            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Gia hạn vé tháng");
+            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Mất thẻ tháng");
+            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Kích hoạt vé tháng");
+            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Quản lý vé tháng", new System.Windows.Forms.TreeNode[] {
+            treeNode39,
+            treeNode40,
+            treeNode41,
+            treeNode42,
+            treeNode43});
+            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Cấu hình cơ bản");
+            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Quản lý tiền thu");
+            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Phân quyền truy cập");
+            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Nhật ký hệ thống");
+            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Quản lý hệ thống", new System.Windows.Forms.TreeNode[] {
+            treeNode45,
+            treeNode46,
+            treeNode47,
+            treeNode48});
+            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Thiết lập ra vào");
+            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
+            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
+            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Xem hộp đen");
+            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            treeNode50,
+            treeNode51,
+            treeNode52,
+            treeNode53});
+            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
+            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -486,7 +486,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panel19 = new System.Windows.Forms.Panel();
             this.label100 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tbTicketMonthIDCreate = new System.Windows.Forms.TextBox();
             this.label67 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
@@ -518,7 +517,6 @@
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.panelChinhSuaVeThang = new System.Windows.Forms.Panel();
             this.tbTicketMonthIDEdit = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label66 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.dateTimePickerTicketMonthExpirationDateEdit = new System.Windows.Forms.DateTimePicker();
@@ -656,7 +654,6 @@
             this.btnLuuCauHinhHienThi = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label189 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.panel34 = new System.Windows.Forms.Panel();
             this.label188 = new System.Windows.Forms.Label();
@@ -808,11 +805,8 @@
             this.tbCarDigitSearch = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
             this.btnSearchCar = new System.Windows.Forms.Button();
             this.btnSaveLostCard = new System.Windows.Forms.Button();
             this.btnExportDanhSachXe = new System.Windows.Forms.Button();
@@ -824,7 +818,6 @@
             this.comboBoxTruyVanLoaiXe = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
             this.tabPageTraCuuVaoRaVeThang = new System.Windows.Forms.TabPage();
             this.dgvCarTicketMonthList = new System.Windows.Forms.DataGridView();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -856,6 +849,17 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DoanhThuSumCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
+            this.tb_ip_host = new System.Windows.Forms.TextBox();
+            this.label129 = new System.Windows.Forms.Label();
+            this.tb_folder_root = new System.Windows.Forms.TextBox();
+            this.label130 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -951,10 +955,8 @@
             this.tabControl1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage8.SuspendLayout();
             this.panelChinhSuaVeThang.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage17.SuspendLayout();
             this.tabPageGiaHanVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRenewTicketMonthList)).BeginInit();
@@ -975,7 +977,6 @@
             this.groupBox2.SuspendLayout();
             this.tabPageCauHinhHienThi.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.groupBox11.SuspendLayout();
             this.panel34.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -999,16 +1000,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
             this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
             this.tabPageTraCuuVaoRaVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1521,8 +1525,8 @@
             // TimeStart
             // 
             this.TimeStart.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle73.Format = "dd-MM-yyyy HH:mm:ss";
-            this.TimeStart.DefaultCellStyle = dataGridViewCellStyle73;
+            dataGridViewCellStyle25.Format = "dd-MM-yyyy HH:mm:ss";
+            this.TimeStart.DefaultCellStyle = dataGridViewCellStyle25;
             this.TimeStart.HeaderText = "TG đăng nhập";
             this.TimeStart.Name = "TimeStart";
             this.TimeStart.ReadOnly = true;
@@ -1531,8 +1535,8 @@
             // TimeEnd
             // 
             this.TimeEnd.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle74.Format = "dd-MM-yyyy HH:mm:ss";
-            this.TimeEnd.DefaultCellStyle = dataGridViewCellStyle74;
+            dataGridViewCellStyle26.Format = "dd-MM-yyyy HH:mm:ss";
+            this.TimeEnd.DefaultCellStyle = dataGridViewCellStyle26;
             this.TimeEnd.HeaderText = "TG đăng xuất";
             this.TimeEnd.Name = "TimeEnd";
             this.TimeEnd.ReadOnly = true;
@@ -3711,7 +3715,7 @@
             this.tabPage29.Location = new System.Drawing.Point(4, 25);
             this.tabPage29.Name = "tabPage29";
             this.tabPage29.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage29.Size = new System.Drawing.Size(440, 210);
+            this.tabPage29.Size = new System.Drawing.Size(440, 174);
             this.tabPage29.TabIndex = 2;
             this.tabPage29.Text = "Import/Export DS thẻ";
             this.tabPage29.UseVisualStyleBackColor = true;
@@ -4610,8 +4614,8 @@
             // ProcessDate
             // 
             this.ProcessDate.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle75.Format = "dd-MM-yyyy HH:mm:ss";
-            this.ProcessDate.DefaultCellStyle = dataGridViewCellStyle75;
+            dataGridViewCellStyle27.Format = "dd-MM-yyyy HH:mm:ss";
+            this.ProcessDate.DefaultCellStyle = dataGridViewCellStyle27;
             this.ProcessDate.HeaderText = "Ngày XL";
             this.ProcessDate.Name = "ProcessDate";
             this.ProcessDate.ReadOnly = true;
@@ -4648,8 +4652,8 @@
             // RegistrationDate_Log
             // 
             this.RegistrationDate_Log.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle76.Format = "dd-MM-yyyy";
-            this.RegistrationDate_Log.DefaultCellStyle = dataGridViewCellStyle76;
+            dataGridViewCellStyle28.Format = "dd-MM-yyyy";
+            this.RegistrationDate_Log.DefaultCellStyle = dataGridViewCellStyle28;
             this.RegistrationDate_Log.HeaderText = "Ngày BĐ";
             this.RegistrationDate_Log.Name = "RegistrationDate_Log";
             this.RegistrationDate_Log.ReadOnly = true;
@@ -4657,8 +4661,8 @@
             // ExpirationDate_Log
             // 
             this.ExpirationDate_Log.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle77.Format = "dd-MM-yyyy";
-            this.ExpirationDate_Log.DefaultCellStyle = dataGridViewCellStyle77;
+            dataGridViewCellStyle29.Format = "dd-MM-yyyy";
+            this.ExpirationDate_Log.DefaultCellStyle = dataGridViewCellStyle29;
             this.ExpirationDate_Log.HeaderText = "Ngày KT";
             this.ExpirationDate_Log.Name = "ExpirationDate_Log";
             this.ExpirationDate_Log.ReadOnly = true;
@@ -4998,8 +5002,8 @@
             // RegistrationDate
             // 
             this.RegistrationDate.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle78.Format = "dd-MM-yyyy";
-            this.RegistrationDate.DefaultCellStyle = dataGridViewCellStyle78;
+            dataGridViewCellStyle30.Format = "dd-MM-yyyy";
+            this.RegistrationDate.DefaultCellStyle = dataGridViewCellStyle30;
             this.RegistrationDate.HeaderText = "Ngày đăng ký";
             this.RegistrationDate.Name = "RegistrationDate";
             this.RegistrationDate.ReadOnly = true;
@@ -5008,8 +5012,8 @@
             // ExpirationDate
             // 
             this.ExpirationDate.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle79.Format = "dd-MM-yyyy";
-            this.ExpirationDate.DefaultCellStyle = dataGridViewCellStyle79;
+            dataGridViewCellStyle31.Format = "dd-MM-yyyy";
+            this.ExpirationDate.DefaultCellStyle = dataGridViewCellStyle31;
             this.ExpirationDate.HeaderText = "Ngày hết hạn";
             this.ExpirationDate.Name = "ExpirationDate";
             this.ExpirationDate.ReadOnly = true;
@@ -5092,15 +5096,6 @@
             this.label100.Size = new System.Drawing.Size(63, 16);
             this.label100.TabIndex = 27;
             this.label100.Text = "Mã chip *";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox2.Location = new System.Drawing.Point(115, 373);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(211, 117);
-            this.pictureBox2.TabIndex = 49;
-            this.pictureBox2.TabStop = false;
             // 
             // tbTicketMonthIDCreate
             // 
@@ -5411,15 +5406,6 @@
             this.tbTicketMonthIDEdit.Size = new System.Drawing.Size(84, 22);
             this.tbTicketMonthIDEdit.TabIndex = 50;
             this.tbTicketMonthIDEdit.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(115, 346);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(211, 117);
-            this.pictureBox1.TabIndex = 49;
-            this.pictureBox1.TabStop = false;
             // 
             // label66
             // 
@@ -5833,8 +5819,8 @@
             // dataGridViewTextBoxColumn15
             // 
             this.dataGridViewTextBoxColumn15.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle80.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle80;
+            dataGridViewCellStyle32.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridViewTextBoxColumn15.HeaderText = "Ngày ĐK";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
@@ -5842,8 +5828,8 @@
             // RenewExpirationDate
             // 
             this.RenewExpirationDate.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle81.Format = "dd-MM-yyyy";
-            this.RenewExpirationDate.DefaultCellStyle = dataGridViewCellStyle81;
+            dataGridViewCellStyle33.Format = "dd-MM-yyyy";
+            this.RenewExpirationDate.DefaultCellStyle = dataGridViewCellStyle33;
             this.RenewExpirationDate.HeaderText = "Ngày HH";
             this.RenewExpirationDate.Name = "RenewExpirationDate";
             this.RenewExpirationDate.ReadOnly = true;
@@ -6144,8 +6130,8 @@
             // dataGridViewTextBoxColumn22
             // 
             this.dataGridViewTextBoxColumn22.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle82.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle82;
+            dataGridViewCellStyle34.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle34;
             this.dataGridViewTextBoxColumn22.HeaderText = "Ngày đăng ký";
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
             this.dataGridViewTextBoxColumn22.ReadOnly = true;
@@ -6154,8 +6140,8 @@
             // dataGridViewTextBoxColumn23
             // 
             this.dataGridViewTextBoxColumn23.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle83.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle83;
+            dataGridViewCellStyle35.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle35;
             this.dataGridViewTextBoxColumn23.HeaderText = "Ngày hết hạn";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             this.dataGridViewTextBoxColumn23.ReadOnly = true;
@@ -6164,8 +6150,8 @@
             // dataGridViewTextBoxColumn21
             // 
             this.dataGridViewTextBoxColumn21.DataPropertyName = "DayUnlimit";
-            dataGridViewCellStyle84.Format = "dd-MM-yyyy HH:mm:ss";
-            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle84;
+            dataGridViewCellStyle36.Format = "dd-MM-yyyy HH:mm:ss";
+            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle36;
             this.dataGridViewTextBoxColumn21.HeaderText = "Ngày mất thẻ";
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             this.dataGridViewTextBoxColumn21.ReadOnly = true;
@@ -6188,8 +6174,8 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle85.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle37.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle37;
             this.Column6.HeaderText = "Ngày xử lý";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
@@ -6399,8 +6385,8 @@
             // Column45
             // 
             this.Column45.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle86.Format = "dd-MM-yyyy";
-            this.Column45.DefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle38.Format = "dd-MM-yyyy";
+            this.Column45.DefaultCellStyle = dataGridViewCellStyle38;
             this.Column45.HeaderText = "Ngày đăng ký";
             this.Column45.Name = "Column45";
             this.Column45.ReadOnly = true;
@@ -6409,8 +6395,8 @@
             // Column46
             // 
             this.Column46.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle87.Format = "dd-MM-yyyy";
-            this.Column46.DefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle39.Format = "dd-MM-yyyy";
+            this.Column46.DefaultCellStyle = dataGridViewCellStyle39;
             this.Column46.HeaderText = "Ngày hết hạn";
             this.Column46.Name = "Column46";
             this.Column46.ReadOnly = true;
@@ -6419,8 +6405,8 @@
             // Column47
             // 
             this.Column47.DataPropertyName = "DayUnlimit";
-            dataGridViewCellStyle88.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column47.DefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle40.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column47.DefaultCellStyle = dataGridViewCellStyle40;
             this.Column47.HeaderText = "Ngày mất thẻ";
             this.Column47.Name = "Column47";
             this.Column47.ReadOnly = true;
@@ -6568,6 +6554,10 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tb_ip_host);
+            this.groupBox2.Controls.Add(this.label129);
+            this.groupBox2.Controls.Add(this.tb_folder_root);
+            this.groupBox2.Controls.Add(this.label130);
             this.groupBox2.Controls.Add(this.tb_rfid_1);
             this.groupBox2.Controls.Add(this.tb_camera_url_4);
             this.groupBox2.Controls.Add(this.label137);
@@ -6739,15 +6729,6 @@
             this.label189.Size = new System.Drawing.Size(39, 16);
             this.label189.TabIndex = 20;
             this.label189.Text = "Logo";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox3.Location = new System.Drawing.Point(36, 278);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(150, 140);
-            this.pictureBox3.TabIndex = 18;
-            this.pictureBox3.TabStop = false;
             // 
             // groupBox11
             // 
@@ -7109,8 +7090,8 @@
             // dataGridViewTextBoxColumn41
             // 
             this.dataGridViewTextBoxColumn41.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle89.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle41.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle41;
             this.dataGridViewTextBoxColumn41.HeaderText = "Thời gian vào";
             this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
             this.dataGridViewTextBoxColumn41.ReadOnly = true;
@@ -7119,8 +7100,8 @@
             // dataGridViewTextBoxColumn42
             // 
             this.dataGridViewTextBoxColumn42.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle90.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle42.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridViewTextBoxColumn42.HeaderText = "Thời gian ra";
             this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
             this.dataGridViewTextBoxColumn42.ReadOnly = true;
@@ -7383,71 +7364,71 @@
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(3, 3);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
-            treeNode85.Name = "NodeName1";
-            treeNode85.Text = "Thông tin nhân sự";
-            treeNode86.Name = "NodeName2";
-            treeNode86.Text = "Dò bảng chấm công";
-            treeNode87.Name = "NodeQuanLyNhanSu";
-            treeNode87.Text = "Quản lý nhân sự";
-            treeNode88.Name = "NodeName3";
-            treeNode88.Text = "Xem thống kê";
-            treeNode89.Name = "NodeName4";
-            treeNode89.Text = "Điều chỉnh công thức tính tiền";
-            treeNode90.Name = "NodeQuanLyDoanhThu";
-            treeNode90.Text = "Quản lý doanh thu";
-            treeNode91.Name = "NodeName5";
-            treeNode91.Text = "Quản lý loại xe";
-            treeNode92.Name = "NodeName6";
-            treeNode92.Text = "Quản lý thẻ xe";
-            treeNode93.Name = "NodeName7";
-            treeNode93.Text = "Kích hoạt thẻ";
-            treeNode94.Name = "NodeQuanLyTheLoaiXe";
-            treeNode94.Text = "Quản lý thẻ xe - loại xe";
-            treeNode95.Name = "NodeName8";
-            treeNode95.Text = "Nhật ký vé tháng";
-            treeNode96.Name = "NodeName9";
-            treeNode96.Text = "Cập nhật thông tin vé tháng";
-            treeNode97.Name = "NodeName10";
-            treeNode97.Text = "Gia hạn vé tháng";
-            treeNode98.Name = "NodeName11";
-            treeNode98.Text = "Mất thẻ tháng";
-            treeNode99.Name = "NodeName12";
-            treeNode99.Text = "Kích hoạt vé tháng";
-            treeNode100.Name = "NodeQuanLyVeThang";
-            treeNode100.Text = "Quản lý vé tháng";
-            treeNode101.Name = "NodeName13";
-            treeNode101.Text = "Cấu hình cơ bản";
-            treeNode102.Name = "NodeName14";
-            treeNode102.Text = "Quản lý tiền thu";
-            treeNode103.Name = "NodeName15";
-            treeNode103.Text = "Phân quyền truy cập";
-            treeNode104.Name = "NodeName16";
-            treeNode104.Text = "Nhật ký hệ thống";
-            treeNode105.Name = "NodeQuanLyHeThong";
-            treeNode105.Text = "Quản lý hệ thống";
-            treeNode106.Name = "NodeName17";
-            treeNode106.Text = "Thiết lập ra vào";
-            treeNode107.Name = "NodeName18";
-            treeNode107.Text = "Tra cứu vào ra";
-            treeNode108.Name = "NodeName19";
-            treeNode108.Text = "Tra cứu vào ra vé tháng";
-            treeNode109.Name = "NodeName20";
-            treeNode109.Text = "Xem hộp đen";
-            treeNode110.Name = "NodeQuanLyXe";
-            treeNode110.Text = "Quản lý xe vào ra";
-            treeNode111.Name = "NodeName21";
-            treeNode111.Text = "Lưu mất thẻ";
-            treeNode112.Name = "NodeName22";
-            treeNode112.Text = "Xem báo cáo F7";
+            treeNode29.Name = "NodeName1";
+            treeNode29.Text = "Thông tin nhân sự";
+            treeNode30.Name = "NodeName2";
+            treeNode30.Text = "Dò bảng chấm công";
+            treeNode31.Name = "NodeQuanLyNhanSu";
+            treeNode31.Text = "Quản lý nhân sự";
+            treeNode32.Name = "NodeName3";
+            treeNode32.Text = "Xem thống kê";
+            treeNode33.Name = "NodeName4";
+            treeNode33.Text = "Điều chỉnh công thức tính tiền";
+            treeNode34.Name = "NodeQuanLyDoanhThu";
+            treeNode34.Text = "Quản lý doanh thu";
+            treeNode35.Name = "NodeName5";
+            treeNode35.Text = "Quản lý loại xe";
+            treeNode36.Name = "NodeName6";
+            treeNode36.Text = "Quản lý thẻ xe";
+            treeNode37.Name = "NodeName7";
+            treeNode37.Text = "Kích hoạt thẻ";
+            treeNode38.Name = "NodeQuanLyTheLoaiXe";
+            treeNode38.Text = "Quản lý thẻ xe - loại xe";
+            treeNode39.Name = "NodeName8";
+            treeNode39.Text = "Nhật ký vé tháng";
+            treeNode40.Name = "NodeName9";
+            treeNode40.Text = "Cập nhật thông tin vé tháng";
+            treeNode41.Name = "NodeName10";
+            treeNode41.Text = "Gia hạn vé tháng";
+            treeNode42.Name = "NodeName11";
+            treeNode42.Text = "Mất thẻ tháng";
+            treeNode43.Name = "NodeName12";
+            treeNode43.Text = "Kích hoạt vé tháng";
+            treeNode44.Name = "NodeQuanLyVeThang";
+            treeNode44.Text = "Quản lý vé tháng";
+            treeNode45.Name = "NodeName13";
+            treeNode45.Text = "Cấu hình cơ bản";
+            treeNode46.Name = "NodeName14";
+            treeNode46.Text = "Quản lý tiền thu";
+            treeNode47.Name = "NodeName15";
+            treeNode47.Text = "Phân quyền truy cập";
+            treeNode48.Name = "NodeName16";
+            treeNode48.Text = "Nhật ký hệ thống";
+            treeNode49.Name = "NodeQuanLyHeThong";
+            treeNode49.Text = "Quản lý hệ thống";
+            treeNode50.Name = "NodeName17";
+            treeNode50.Text = "Thiết lập ra vào";
+            treeNode51.Name = "NodeName18";
+            treeNode51.Text = "Tra cứu vào ra";
+            treeNode52.Name = "NodeName19";
+            treeNode52.Text = "Tra cứu vào ra vé tháng";
+            treeNode53.Name = "NodeName20";
+            treeNode53.Text = "Xem hộp đen";
+            treeNode54.Name = "NodeQuanLyXe";
+            treeNode54.Text = "Quản lý xe vào ra";
+            treeNode55.Name = "NodeName21";
+            treeNode55.Text = "Lưu mất thẻ";
+            treeNode56.Name = "NodeName22";
+            treeNode56.Text = "Xem báo cáo F7";
             this.treeViewPhanQuyenTruyCap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode87,
-            treeNode90,
-            treeNode94,
-            treeNode100,
-            treeNode105,
-            treeNode110,
-            treeNode111,
-            treeNode112});
+            treeNode31,
+            treeNode34,
+            treeNode38,
+            treeNode44,
+            treeNode49,
+            treeNode54,
+            treeNode55,
+            treeNode56});
             this.treeViewPhanQuyenTruyCap.Size = new System.Drawing.Size(365, 446);
             this.treeViewPhanQuyenTruyCap.TabIndex = 0;
             this.treeViewPhanQuyenTruyCap.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeViewPhanQuyenTruyCap_AfterCheck);
@@ -7625,8 +7606,8 @@
             // CommonLogProcessDate
             // 
             this.CommonLogProcessDate.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle91.Format = "dd-MM-yyyy HH:mm:ss";
-            this.CommonLogProcessDate.DefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle43.Format = "dd-MM-yyyy HH:mm:ss";
+            this.CommonLogProcessDate.DefaultCellStyle = dataGridViewCellStyle43;
             this.CommonLogProcessDate.HeaderText = "Ngày XL";
             this.CommonLogProcessDate.Name = "CommonLogProcessDate";
             this.CommonLogProcessDate.ReadOnly = true;
@@ -8096,8 +8077,8 @@
             // Column25
             // 
             this.Column25.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle92.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column25.DefaultCellStyle = dataGridViewCellStyle92;
+            dataGridViewCellStyle44.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column25.DefaultCellStyle = dataGridViewCellStyle44;
             this.Column25.HeaderText = "Thời gian vào";
             this.Column25.Name = "Column25";
             this.Column25.ReadOnly = true;
@@ -8106,8 +8087,8 @@
             // Column26
             // 
             this.Column26.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle93.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column26.DefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle45.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column26.DefaultCellStyle = dataGridViewCellStyle45;
             this.Column26.HeaderText = "Thời gian ra";
             this.Column26.Name = "Column26";
             this.Column26.ReadOnly = true;
@@ -8166,8 +8147,8 @@
             // Column34
             // 
             this.Column34.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle94.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column34.DefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle46.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column34.DefaultCellStyle = dataGridViewCellStyle46;
             this.Column34.HeaderText = "Ngày xử lý";
             this.Column34.Name = "Column34";
             this.Column34.ReadOnly = true;
@@ -8315,15 +8296,6 @@
             this.panel13.Size = new System.Drawing.Size(222, 138);
             this.panel13.TabIndex = 18;
             // 
-            // pictureBoxCarLogImage3
-            // 
-            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
-            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(214, 130);
-            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage3.TabIndex = 1;
-            this.pictureBoxCarLogImage3.TabStop = false;
-            // 
             // panel14
             // 
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -8333,15 +8305,6 @@
             this.panel14.Size = new System.Drawing.Size(222, 138);
             this.panel14.TabIndex = 17;
             // 
-            // pictureBoxCarLogImage1
-            // 
-            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
-            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(214, 130);
-            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage1.TabIndex = 0;
-            this.pictureBoxCarLogImage1.TabStop = false;
-            // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -8350,15 +8313,6 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(222, 138);
             this.panel12.TabIndex = 16;
-            // 
-            // pictureBoxCarLogImage4
-            // 
-            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
-            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(214, 130);
-            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage4.TabIndex = 1;
-            this.pictureBoxCarLogImage4.TabStop = false;
             // 
             // btnSearchCar
             // 
@@ -8457,15 +8411,6 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(222, 138);
             this.panel11.TabIndex = 0;
-            // 
-            // pictureBoxCarLogImage2
-            // 
-            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
-            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(214, 130);
-            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage2.TabIndex = 1;
-            this.pictureBoxCarLogImage2.TabStop = false;
             // 
             // tabPageTraCuuVaoRaVeThang
             // 
@@ -8684,8 +8629,8 @@
             // Column40
             // 
             this.Column40.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle95.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column40.DefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle47.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column40.DefaultCellStyle = dataGridViewCellStyle47;
             this.Column40.HeaderText = "Thời gian vào";
             this.Column40.Name = "Column40";
             this.Column40.ReadOnly = true;
@@ -8694,8 +8639,8 @@
             // Column41
             // 
             this.Column41.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle96.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column41.DefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle48.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column41.DefaultCellStyle = dataGridViewCellStyle48;
             this.Column41.HeaderText = "Thời gian ra";
             this.Column41.Name = "Column41";
             this.Column41.ReadOnly = true;
@@ -8755,6 +8700,103 @@
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
             this.Column9.Visible = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox2.Location = new System.Drawing.Point(115, 373);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(211, 117);
+            this.pictureBox2.TabIndex = 49;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox1.Location = new System.Drawing.Point(115, 346);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(211, 117);
+            this.pictureBox1.TabIndex = 49;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox3.Location = new System.Drawing.Point(36, 278);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(150, 140);
+            this.pictureBox3.TabIndex = 18;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBoxCarLogImage3
+            // 
+            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
+            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage3.TabIndex = 1;
+            this.pictureBoxCarLogImage3.TabStop = false;
+            // 
+            // pictureBoxCarLogImage1
+            // 
+            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
+            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage1.TabIndex = 0;
+            this.pictureBoxCarLogImage1.TabStop = false;
+            // 
+            // pictureBoxCarLogImage4
+            // 
+            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
+            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage4.TabIndex = 1;
+            this.pictureBoxCarLogImage4.TabStop = false;
+            // 
+            // pictureBoxCarLogImage2
+            // 
+            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
+            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(214, 130);
+            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage2.TabIndex = 1;
+            this.pictureBoxCarLogImage2.TabStop = false;
+            // 
+            // tb_ip_host
+            // 
+            this.tb_ip_host.Location = new System.Drawing.Point(104, 192);
+            this.tb_ip_host.Name = "tb_ip_host";
+            this.tb_ip_host.Size = new System.Drawing.Size(603, 22);
+            this.tb_ip_host.TabIndex = 47;
+            // 
+            // label129
+            // 
+            this.label129.AutoSize = true;
+            this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.Location = new System.Drawing.Point(17, 223);
+            this.label129.Name = "label129";
+            this.label129.Size = new System.Drawing.Size(73, 16);
+            this.label129.TabIndex = 46;
+            this.label129.Text = "Folder root";
+            // 
+            // tb_folder_root
+            // 
+            this.tb_folder_root.Location = new System.Drawing.Point(104, 220);
+            this.tb_folder_root.Name = "tb_folder_root";
+            this.tb_folder_root.Size = new System.Drawing.Size(603, 22);
+            this.tb_folder_root.TabIndex = 45;
+            // 
+            // label130
+            // 
+            this.label130.AutoSize = true;
+            this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.Location = new System.Drawing.Point(17, 195);
+            this.label130.Name = "label130";
+            this.label130.Size = new System.Drawing.Size(73, 16);
+            this.label130.TabIndex = 44;
+            this.label130.Text = "IP máy chủ";
             // 
             // FormQuanLy
             // 
@@ -8891,12 +8933,10 @@
             this.tabPage3.ResumeLayout(false);
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage8.ResumeLayout(false);
             this.tabPage8.PerformLayout();
             this.panelChinhSuaVeThang.ResumeLayout(false);
             this.panelChinhSuaVeThang.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage17.ResumeLayout(false);
             this.tabPageGiaHanVeThang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRenewTicketMonthList)).EndInit();
@@ -8926,7 +8966,6 @@
             this.tabPageCauHinhHienThi.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
             this.panel34.ResumeLayout(false);
@@ -8962,17 +9001,20 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             this.panel14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
             this.panel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
             this.panel11.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
             this.tabPageTraCuuVaoRaVeThang.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).EndInit();
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -9735,5 +9777,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuSumCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.TextBox tb_ip_host;
+        private System.Windows.Forms.Label label129;
+        private System.Windows.Forms.TextBox tb_folder_root;
+        private System.Windows.Forms.Label label130;
     }
 }

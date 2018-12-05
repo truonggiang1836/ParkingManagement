@@ -6,4 +6,6 @@
   <camera_url_4><![CDATA[rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif]]></camera_url_4>
   <rfid_in><![CDATA[\\?\HID#VID_0E6A&PID_0305#6&570cfd7&0&0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}]]></rfid_in>
   <rfid_out><![CDATA[\\?\HID#VID_0E6A&PID_0305#6&182a807c&0&0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}]]></rfid_out>
+  <ip_host>192.168.1.111</ip_host>
+  <folder_root>ParkingManagement</folder_root>
 </xml>

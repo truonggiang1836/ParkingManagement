@@ -6,6 +6,10 @@ using System.Data.OleDb;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParkingMangement.Utils;
+using ParkingMangement.DAO;
+using ParkingMangement.Model;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace ParkingMangement
 {
@@ -15,10 +19,16 @@ namespace ParkingMangement
         protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb";
 
         static OleDbConnection connection;
+        static Config config;
         public static void OpenConnection()
         {
             try
             {
+                //if (config == null)
+                //{
+                //    config = Util.getConfigFile();
+                //}
+                //_connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\" + config.ipHost + @"\" + config.folderRoot + @"\ParkingManagement.mdb";
                 connection = new OleDbConnection(_connectionString);
                 connection.Open();
             }

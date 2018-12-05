@@ -3,6 +3,7 @@ using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -190,7 +191,7 @@ namespace ParkingMangement.DAO
                 int countAllCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, null, false, userID) + GetCountCarOutByTypeAndDate(startTime, endTime, null, true, userID);
                 dataRow.SetField("CountCarOut", countAllCarOut);
 
-                int countAllCarSurvive = GetCountCarSurvive(null);
+                int countAllCarSurvive = countAllCarIn - countAllCarOut;
                 dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
                 int sumCost = GetCountCost(startTime, endTime, false, userID) + GetCountCost(startTime, endTime, true, userID);
@@ -245,7 +246,7 @@ namespace ParkingMangement.DAO
                     data.Rows[row].SetField("CountCarIn", countCarIn);
                     int countCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, typeID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarOut", countCarOut);
-                    int countCarSurvive = GetCountCarSurvive(typeID, isTicketMonth);
+                    int countCarSurvive = countCarIn - countCarOut;
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                 }
             }
@@ -268,7 +269,7 @@ namespace ParkingMangement.DAO
             int countAllCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, null, isTicketMonth, userID);
             dataRow.SetField("CountCarOut", countAllCarOut);
 
-            int countAllCarSurvive = GetCountCarSurvive(null, isTicketMonth);
+            int countAllCarSurvive = countAllCarIn - countAllCarOut;
             dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
             int sumCost = GetCountCost(startTime, endTime, isTicketMonth, userID);
@@ -287,21 +288,31 @@ namespace ParkingMangement.DAO
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
-                data.Columns.Add("TypeName", typeof(string));
+                data.Columns.Add("TypeName", typeof(Bitmap));
                 data.Columns["TypeName"].SetOrdinal(0);
                 data.Columns.Add("CountCarSurvive", typeof(int));
                 data.Columns["CountCarSurvive"].SetOrdinal(1);
-                data.Columns.Add("Status", typeof(string));
-                data.Columns["Status"].SetOrdinal(2);
+                data.Columns.Add("CountCarEmpty", typeof(string));
+                data.Columns["CountCarEmpty"].SetOrdinal(2);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string typeID = data.Rows[row].Field<string>("TypeID");
-                    string typeName = TypeDAO.GetTypeNameByTypeID(typeID);
-                    data.Rows[row].SetField("TypeName", typeName);
                     int countCarSurvive = GetCountCarSurvive(typeID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
-                    string status = "Còn trống";
-                    data.Rows[row].SetField("Status", status);
+                    Bitmap bitmap = new Bitmap(Properties.Resources.ic_bike_icon);
+                    int countCarEmpty = 0;
+                    if (typeID == TypeDTO.TYPE_BIKE)
+                    {
+                        bitmap = new Bitmap(Properties.Resources.ic_bike_icon);
+                        countCarEmpty = ConfigDAO.GetBikeSpace() - countCarSurvive;
+                    }
+                    else
+                    {
+                        bitmap = new Bitmap(Properties.Resources.ic_car_icon);
+                        countCarEmpty = ConfigDAO.GetCarSpace() - countCarSurvive;
+                    }
+                    data.Rows[row].SetField("TypeName", bitmap);
+                    data.Rows[row].SetField("CountCarEmpty", countCarEmpty);
                 }
             }
             return data;

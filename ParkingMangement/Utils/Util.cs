@@ -1,5 +1,6 @@
 ﻿using ParkingMangement.DAO;
 using ParkingMangement.DTO;
+using ParkingMangement.Model;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ParkingMangement.Utils
 {
@@ -154,6 +156,32 @@ namespace ParkingMangement.Utils
             TimeSpan span = newDate - oldDate;
             int ms = (int)span.TotalMilliseconds;
             return ms;
+        }
+
+        public static Config getConfigFile()
+        {
+            try
+            {
+                String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+                if (File.Exists(filePath))
+                {
+                    string xmlString = File.ReadAllText(filePath);
+                    XmlRootAttribute xmlRoot = new XmlRootAttribute();
+                    xmlRoot.ElementName = "xml";
+                    xmlRoot.IsNullable = true;
+                    XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
+                    using (TextReader reader = new StringReader(xmlString))
+                    {
+                        Config config = (Config)serializer.Deserialize(reader);
+                        return config;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+            }
+            return null;
         }
     }
 }

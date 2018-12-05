@@ -163,6 +163,16 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_bike_icon {
+            get {
+                object obj = ResourceManager.GetObject("ic_bike_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_bottom_background {
             get {
                 object obj = ResourceManager.GetObject("ic_bottom_background", resourceCulture);
@@ -176,6 +186,16 @@ namespace ParkingMangement.Properties {
         internal static System.Drawing.Bitmap ic_bottom_background_login {
             get {
                 object obj = ResourceManager.GetObject("ic_bottom_background_login", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_car_icon {
+            get {
+                object obj = ResourceManager.GetObject("ic_car_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -309,6 +309,12 @@
   <ItemGroup>
     <None Include="resources\ic_property_management.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_bike_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_car_icon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

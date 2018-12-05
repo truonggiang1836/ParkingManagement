@@ -1463,9 +1463,21 @@ namespace ParkingMangement.GUI
             int sum = 0;
             for (int i = 0; i < dgvThongKeXeTrongBai.Rows.Count; ++i)
             {
-                sum += Convert.ToInt32(dgvThongKeXeTrongBai.Rows[i].Cells["DoanhThuCountCarIn"].Value);
+                sum += Convert.ToInt32(dgvThongKeXeTrongBai.Rows[i].Cells["CountCarSurvive"].Value);
             }
             labelTongXeTrongBaiValue.Text = sum.ToString();
+        }
+
+        private void dgvThongKeXeTrongBai_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            DataGridViewRow row = dgvThongKeXeTrongBai.Rows[e.RowIndex];
+            row.DefaultCellStyle.BackColor = Color.Black;
+            row.DefaultCellStyle.ForeColor = Color.White;
+        }
+
+        private void dgvThongKeXeTrongBai_SelectionChanged(object sender, EventArgs e)
+        {
+            dgvThongKeXeTrongBai.ClearSelection();
         }
     }
 }
