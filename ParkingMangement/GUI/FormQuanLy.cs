@@ -4046,30 +4046,33 @@ namespace ParkingMangement.GUI
 
         private void luuCauHinhKetNoiVaoConfig()
         {
-            //try
-            //{
-            //    String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
-            //    if (File.Exists(filePath))
-            //    {
-            //        Config config = new Config();
-            //        config.cameraUrl1 = Constant.sEncodeStart + tb_camera_url_1.Text + Constant.sEncodeEnd;
-            //        config.cameraUrl2 = Constant.sEncodeStart + tb_camera_url_2.Text + Constant.sEncodeEnd;
-            //        config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
-            //        config.cameraUrl4 = Constant.sEncodeStart + tb_camera_url_4.Text + Constant.sEncodeEnd;
-            //        config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
-            //        config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
-            //        XmlSerializer xs = new XmlSerializer(typeof(Config));
-            //        TextWriter txtWriter = new StreamWriter(filePath);
-            //        xs.Serialize(txtWriter, config);
-            //        txtWriter.Close();
-            //        this.ActiveControl = null;
-            //        MessageBox.Show(Constant.sMessageUpdateSuccess);
-            //    }
-            //}
-            //catch (Exception e)
-            //{
+            try
+            {
+                String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+                if (File.Exists(filePath))
+                {
+                    Config config = new Config();
+                    config.cameraUrl1 = Constant.sEncodeStart + tb_camera_url_1.Text + Constant.sEncodeEnd;
+                    config.cameraUrl2 = Constant.sEncodeStart + tb_camera_url_2.Text + Constant.sEncodeEnd;
+                    config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
+                    config.cameraUrl4 = Constant.sEncodeStart + tb_camera_url_4.Text + Constant.sEncodeEnd;
+                    config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
+                    config.ipHost = tb_ip_host.Text;
+                    config.folderRoot = tb_folder_root.Text;
+                    XmlSerializer xs = new XmlSerializer(typeof(Config));
+                    TextWriter txtWriter = new StreamWriter(filePath);
+                    xs.Serialize(txtWriter, config);
+                    txtWriter.Close();
+                    this.ActiveControl = null;
+                    MessageBox.Show(Constant.sMessageUpdateSuccess);
+                }
+            }
+            catch (Exception e)
+            {
 
-            //}
+            }
+
+
             ConfigDTO configDTO = new ConfigDTO();
             configDTO.Camera1 = tb_camera_url_1.Text;
             configDTO.Camera2 = tb_camera_url_2.Text;
@@ -4116,6 +4119,9 @@ namespace ParkingMangement.GUI
             tb_camera_url_4.Text = ConfigDAO.GetCamera4();
             tb_rfid_1.Text = ConfigDAO.GetRFID1();
             tb_rfid_2.Text = ConfigDAO.GetRFID2();
+            tb_ip_host.Text = Util.getConfigFile().ipHost;
+            tb_folder_root.Text = Util.getConfigFile().folderRoot;
+
         }
 
         private void OnKeyPressed(object sender, RawInputEventArg e)
