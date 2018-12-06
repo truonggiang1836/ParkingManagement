@@ -23,7 +23,7 @@ namespace ParkingMangement
         static void Main()
         {
             string currentIP = Util.GetLocalIPAddress();
-            if (currentIP.Equals(Util.getConfigFile().ipHost))
+            if (Util.getConfigFile() != null && currentIP.Equals(Util.getConfigFile().ipHost))
             {
                 isHostMachine = true;
             }

@@ -55,7 +55,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable SearchData(string key)
         {
-            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from [SmartCard], [Part] where SmartCard.Type = Part.ID and "
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from [SmartCard], [Part], [CardType] where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
                 + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
