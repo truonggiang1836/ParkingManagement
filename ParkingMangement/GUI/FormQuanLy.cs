@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ParkingMangement.DAO;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
@@ -2094,6 +2095,10 @@ namespace ParkingMangement.GUI
                 }
             }
 
+            if (data != null)
+            {
+                Util.sendOrderListToServer(data);
+            }
         }
 
         private void searchCarByDateTime(DateTime startDate, DateTime endDate)
@@ -4057,8 +4062,9 @@ namespace ParkingMangement.GUI
                     config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
                     config.cameraUrl4 = Constant.sEncodeStart + tb_camera_url_4.Text + Constant.sEncodeEnd;
                     config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
-                    config.ipHost = tb_ip_host.Text;
-                    config.folderRoot = tb_folder_root.Text;
+                    config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
+                    config.ipHost = Constant.sEncodeStart + tb_ip_host.Text + Constant.sEncodeEnd;
+                    config.folderRoot = Constant.sEncodeStart + tb_folder_root.Text + Constant.sEncodeEnd;
                     XmlSerializer xs = new XmlSerializer(typeof(Config));
                     TextWriter txtWriter = new StreamWriter(filePath);
                     xs.Serialize(txtWriter, config);
@@ -4073,54 +4079,45 @@ namespace ParkingMangement.GUI
             }
 
 
-            ConfigDTO configDTO = new ConfigDTO();
-            configDTO.Camera1 = tb_camera_url_1.Text;
-            configDTO.Camera2 = tb_camera_url_2.Text;
-            configDTO.Camera3 = tb_camera_url_3.Text;
-            configDTO.Camera4 = tb_camera_url_4.Text;
-            configDTO.Rfid1 = tb_rfid_1.Text;
-            configDTO.Rfid2 = tb_rfid_2.Text;
-            ConfigDAO.UpdateCauHinhKetNoi(configDTO);
-            this.ActiveControl = null;
-            MessageBox.Show(Constant.sMessageUpdateSuccess);
+            //ConfigDTO configDTO = new ConfigDTO();
+            //configDTO.Camera1 = tb_camera_url_1.Text;
+            //configDTO.Camera2 = tb_camera_url_2.Text;
+            //configDTO.Camera3 = tb_camera_url_3.Text;
+            //configDTO.Camera4 = tb_camera_url_4.Text;
+            //configDTO.Rfid1 = tb_rfid_1.Text;
+            //configDTO.Rfid2 = tb_rfid_2.Text;
+            //ConfigDAO.UpdateCauHinhKetNoi(configDTO);
+            //this.ActiveControl = null;
+            //MessageBox.Show(Constant.sMessageUpdateSuccess);
         }
 
         private void hienCauHinhKetNoiTuConfig()
         {
-            //try
-            //{
-            //    String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
-            //    if (File.Exists(filePath))
-            //    {
-            //        string xmlString = File.ReadAllText(filePath);
-            //        XmlRootAttribute xmlRoot = new XmlRootAttribute();
-            //        xmlRoot.ElementName = "xml";
-            //        xmlRoot.IsNullable = true;
-            //        XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
-            //        using (TextReader reader = new StringReader(xmlString))
-            //        {
-            //            Config config = (Config)serializer.Deserialize(reader);
-            //            tb_camera_url_1.Text = config.cameraUrl1.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-            //            tb_camera_url_2.Text = config.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-            //            tb_camera_url_3.Text = config.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-            //            tb_camera_url_4.Text = config.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-            //            tb_rfid_1.Text = config.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-            //            tb_rfid_2.Text = config.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-            //        }
-            //    }
-            //}
-            //catch (Exception e)
-            //{
+            try
+            {
+                Config config = Util.getConfigFile();
+                tb_camera_url_1.Text = config.cameraUrl1;
+                tb_camera_url_2.Text = config.cameraUrl2;
+                tb_camera_url_3.Text = config.cameraUrl3;
+                tb_camera_url_4.Text = config.cameraUrl4;
+                tb_rfid_1.Text = config.rfidIn;
+                tb_rfid_2.Text = config.rfidOut;
+                tb_ip_host.Text = config.ipHost;
+                tb_folder_root.Text = config.folderRoot;
+            }
+            catch (Exception e)
+            {
 
-            //}
-            tb_camera_url_1.Text = ConfigDAO.GetCamera1();
-            tb_camera_url_2.Text = ConfigDAO.GetCamera2();
-            tb_camera_url_3.Text = ConfigDAO.GetCamera3();
-            tb_camera_url_4.Text = ConfigDAO.GetCamera4();
-            tb_rfid_1.Text = ConfigDAO.GetRFID1();
-            tb_rfid_2.Text = ConfigDAO.GetRFID2();
-            tb_ip_host.Text = Util.getConfigFile().ipHost;
-            tb_folder_root.Text = Util.getConfigFile().folderRoot;
+            }
+
+            //tb_camera_url_1.Text = ConfigDAO.GetCamera1();
+            //tb_camera_url_2.Text = ConfigDAO.GetCamera2();
+            //tb_camera_url_3.Text = ConfigDAO.GetCamera3();
+            //tb_camera_url_4.Text = ConfigDAO.GetCamera4();
+            //tb_rfid_1.Text = ConfigDAO.GetRFID1();
+            //tb_rfid_2.Text = ConfigDAO.GetRFID2();
+            //tb_ip_host.Text = Util.getConfigFile().ipHost;
+            //tb_folder_root.Text = Util.getConfigFile().folderRoot;
 
         }
 

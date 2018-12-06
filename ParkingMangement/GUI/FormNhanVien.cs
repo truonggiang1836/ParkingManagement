@@ -1004,12 +1004,19 @@ namespace ParkingMangement.GUI
             //{
 
             //}
-            cameraUrl1 = ConfigDAO.GetCamera1();
-            cameraUrl2 = ConfigDAO.GetCamera2();
-            cameraUrl3 = ConfigDAO.GetCamera3();
-            cameraUrl4 = ConfigDAO.GetCamera4();
-            rfidIn = ConfigDAO.GetRFID1();
-            rfidOut = ConfigDAO.GetRFID2();
+
+            cameraUrl1 = Util.getConfigFile().cameraUrl1;
+            cameraUrl2 = Util.getConfigFile().cameraUrl2;
+            cameraUrl3 = Util.getConfigFile().cameraUrl3;
+            cameraUrl4 = Util.getConfigFile().cameraUrl4;
+            rfidIn = Util.getConfigFile().rfidIn;
+            rfidOut = Util.getConfigFile().rfidOut;
+            //cameraUrl1 = ConfigDAO.GetCamera1();
+            //cameraUrl2 = ConfigDAO.GetCamera2();
+            //cameraUrl3 = ConfigDAO.GetCamera3();
+            //cameraUrl4 = ConfigDAO.GetCamera4();
+            //rfidIn = ConfigDAO.GetRFID1();
+            //rfidOut = ConfigDAO.GetRFID2();
         }
 
         //private void parseConfigFile(Config config)
@@ -1478,6 +1485,11 @@ namespace ParkingMangement.GUI
         private void dgvThongKeXeTrongBai_SelectionChanged(object sender, EventArgs e)
         {
             dgvThongKeXeTrongBai.ClearSelection();
+        }
+
+        private void FormNhanVien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

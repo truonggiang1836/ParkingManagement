@@ -149,6 +149,7 @@
     <Compile Include="GUI\FormQuanLyXeVaoRa.designer.cs">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrdersListBody.cs" />
     <Compile Include="Model\OrdersListResponse.cs" />
     <Compile Include="Model\Config.cs" />

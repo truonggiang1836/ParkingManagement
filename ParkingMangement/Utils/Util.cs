@@ -1,12 +1,16 @@
-﻿using ParkingMangement.DAO;
+﻿using Newtonsoft.Json;
+using ParkingMangement.DAO;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +18,7 @@ using System.Xml.Serialization;
 
 namespace ParkingMangement.Utils
 {
-    class Util
+    static class Util
     {
         public static string ImageToBase64(string Path)
         {
@@ -173,6 +177,14 @@ namespace ParkingMangement.Utils
                     using (TextReader reader = new StringReader(xmlString))
                     {
                         Config config = (Config)serializer.Deserialize(reader);
+                        config.cameraUrl1 = config.cameraUrl1.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.cameraUrl2 = config.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.cameraUrl3 = config.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.cameraUrl4 = config.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.rfidIn = config.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.rfidOut = config.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.ipHost = config.ipHost.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.folderRoot = config.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         return config;
                     }
                 }
@@ -182,6 +194,90 @@ namespace ParkingMangement.Utils
 
             }
             return null;
+        }
+
+        public static string EscapeXml(this string s)
+        {
+            string toxml = s;
+            if (!string.IsNullOrEmpty(toxml))
+            {
+                // replace literal values with entities
+                toxml = toxml.Replace("'", "&apos;");
+                toxml = toxml.Replace("\"", "&quot;");
+                toxml = toxml.Replace(">", "&gt;");
+                toxml = toxml.Replace("<", "&lt;");
+                toxml = toxml.Replace("&", "&amp;");
+            }
+            return toxml;
+        }
+
+        public static string UnescapeXml(this string s)
+        {
+            string unxml = s;
+            if (!string.IsNullOrEmpty(unxml))
+            {
+                // replace entities with literal values
+                unxml = unxml.Replace("&apos;", "'");
+                unxml = unxml.Replace("&quot;", "\"");
+                unxml = unxml.Replace("&gt;", ">");
+                unxml = unxml.Replace("&lt;", "<");
+                unxml = unxml.Replace("&amp;", "&");
+            }
+            return unxml;
+        }
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
+        public static void sendOrderListToServer(DataTable data)
+        {
+            string json = JsonConvert.SerializeObject(data);
+            DataTable dtTable = data;
+            List<Order> listOrder = new List<Order>();
+            foreach (DataRow dtRow in dtTable.Rows)
+            {
+                Order order = new Order();
+                order.CardCode = dtRow.Field<string>("ID");
+                DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
+                order.CheckinTime = DateTimeToMillisecond(checkinDatetime) / 1000;
+                DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+                order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime) / 1000;
+                order.CarNumber = dtRow.Field<string>("Digit");
+                order.CarNumberIn = dtRow.Field<string>("Digit");
+                order.CarNumberOut = dtRow.Field<string>("Digit");
+                order.AdminCheckinId = dtRow.Field<string>("IDIn");
+                order.AdminCheckoutId = dtRow.Field<string>("IDOut");
+                order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
+                order.IsCardLost = dtRow.Field<int>("IsLostCard");
+                order.TotalPrice = dtRow.Field<int>("Cost");
+                order.PcName = dtRow.Field<string>("Computer");
+                order.Account = dtRow.Field<string>("Account");
+                DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
+                order.Created = DateTimeToMillisecond(dateUpdate) / 1000;
+                order.Updated = DateTimeToMillisecond(dateUpdate) / 1000;
+                listOrder.Add(order);
+            }
+            string jsonString = JsonConvert.SerializeObject(listOrder);
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            webClient.QueryString.Add(ApiUtil.PARAM_DATA, jsonString);
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_ORDERS_BATCH_INSERT);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

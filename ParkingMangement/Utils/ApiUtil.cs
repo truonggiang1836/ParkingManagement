@@ -29,6 +29,7 @@ namespace ParkingMangement.Utils
         public static string PARAM_PAGE = "page";
         public static string PARAM_LIMIT = "limit";
         public static string PARAM_DISABLE = "disable";
+        public static string PARAM_DATA = "data";
 
         public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         public static string API_LOGIN = BASE_URL + "admins/login";
@@ -36,6 +37,7 @@ namespace ParkingMangement.Utils
         public static string API_CHECKIN = BASE_URL + "cards/checkin";
         public static string API_CHECKOUT = BASE_URL + "cards/checkout";
         public static string API_ORDERS_LIST = BASE_URL + "orders/list";
+        public static string API_ORDERS_BATCH_INSERT = BASE_URL + "orders/batchinsert";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 

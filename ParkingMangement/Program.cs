@@ -14,6 +14,7 @@ namespace ParkingMangement
         public static DateTime EndWorkTime;
         public static string CurrentUserID = "";
         public static string CurrentToken = "";
+        public static bool isHostMachine = false;
 
         /// <summary>
         /// The main entry point for the application.
@@ -21,6 +22,11 @@ namespace ParkingMangement
         [STAThread]
         static void Main()
         {
+            string currentIP = Util.GetLocalIPAddress();
+            if (currentIP.Equals(Util.getConfigFile().ipHost))
+            {
+                isHostMachine = true;
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
