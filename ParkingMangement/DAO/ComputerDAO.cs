@@ -53,5 +53,16 @@ namespace ParkingMangement.DAO
                 " where Identify =" + computerDTO.Identify;
             return Database.ExcuNonQuery(sql);
         }
+
+        public static bool Insert(ComputerDTO computerDTO)
+        {
+            string sql = "insert into Computer(IDPart, ParkingTypeID, DayCost, NightCost, DayNightCost, IntervalBetweenDayNight, StartHourNight, EndHourNight, HourMilestone1, HourMilestone2, HourMilestone3," +
+                " CostMilestone1, CostMilestone2, CostMilestone3, CycleMilestone3, IsAdd, CycleTicketMonth, CostTicketMonth, MinMinute, MinCost) values ('" + computerDTO.PartID + "', " + computerDTO.ParkingTypeID
+                + ", " + computerDTO.DayCost + ", " + computerDTO.NightCost + ", " + computerDTO.DayNightCost + ", " + computerDTO.IntervalBetweenDayNight + ", " + computerDTO.StartHourNight + ", " + 
+                computerDTO.EndHourNight + ", " + computerDTO.HourMilestone1 + ", " + computerDTO.HourMilestone2 + ", " + computerDTO.HourMilestone3 + ", " + computerDTO.CostMilestone1 + ", " + 
+                computerDTO.CostMilestone2 + ", " + computerDTO.CostMilestone3 + ", " + computerDTO.CycleMilestone3 + ", '" + computerDTO.IsAdd + "', " + computerDTO.CycleTicketMonth + ", " + 
+                computerDTO.CostTicketMonth + ", " + computerDTO.MinMinute + ", " + computerDTO.MinCost + ")";
+            return Database.ExcuNonQuery(sql);
+        }
     }
 }

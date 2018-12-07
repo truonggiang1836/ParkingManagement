@@ -102,13 +102,15 @@ namespace ParkingMangement.GUI
             labelDigitRegisterHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelCardIDHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelCustomerNameHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
-            labelVND.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelVND1.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelVND2.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelDigitInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDigitOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDigitRegisterHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCardIDHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCustomerNameHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
-            labelVND.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelVND1.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelVND2.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDateInHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDateOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
 

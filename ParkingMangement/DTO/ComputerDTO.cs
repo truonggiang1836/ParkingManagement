@@ -11,24 +11,24 @@ namespace ParkingMangement.DTO
         private int identify;
         private string partID;
         private int parkingTypeID;
-        private int dayCost;
-        private int nightCost;
-        private int dayNightCost;
-        private int intervalBetweenDayNight;
-        private int startHourNight;
-        private int endHourNight;
-        private int hourMilestone1;
-        private int hourMilestone2;
-        private int hourMilestone3;
-        private int costMilestone1;
-        private int costMilestone2;
-        private int costMilestone3;
-        private int cycleMilestone3;
-        private string isAdd;
-        private int cycleTicketMonth;
-        private int costTicketMonth;
-        private int minMinute;
-        private int minCost;
+        private int dayCost = 0;
+        private int nightCost = 0;
+        private int dayNightCost = 0;
+        private int intervalBetweenDayNight = 0;
+        private int startHourNight = 0;
+        private int endHourNight = 0;
+        private int hourMilestone1 = 0;
+        private int hourMilestone2 = 0;
+        private int hourMilestone3 = 0;
+        private int costMilestone1 = 0;
+        private int costMilestone2 = 0;
+        private int costMilestone3 = 0;
+        private int cycleMilestone3 = 0;
+        private string isAdd = "";
+        private int cycleTicketMonth = 0;
+        private int costTicketMonth = 0;
+        private int minMinute = 0;
+        private int minCost = 0;
 
         public int Identify { get => identify; set => identify = value; }
         public string PartID { get => partID; set => partID = value; }

@@ -10,9 +10,15 @@ namespace ParkingMangement.DAO
 {
     class PartDAO
     {
-        public static DataTable GetAllCommonData()
+        public static DataTable GetAllData()
         {
-            string sql = "select Part.ID, Part.PartName, Part.PartID, Part.Sign, Part.Amount, Type.TypeName from [Part], [Type] where Part.TypeID = Type.TypeID and Part.CardTypeID = '1'";
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from [Part], [Type], [CardType] where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID";
+            return Database.ExcuQuery(sql);
+        }
+
+        public static DataTable GetAllTicketMonthData()
+        {
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from [Part], [Type], [CardType] where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1'";
             return Database.ExcuQuery(sql);
         }
 
@@ -51,32 +57,21 @@ namespace ParkingMangement.DAO
 
         public static void Insert(PartDTO partDTO)
         {
-            string sql = "insert into Part(ID, PartID, PartName, Sign, Amount, TypeID, CardTypeID) values ('" + partDTO.ID + "', '" + partDTO.PartID + "', '" + partDTO.Name + "', '" +
+            string sql = "insert into Part(ID, PartName, Sign, Amount, TypeID, CardTypeID) values ('" + partDTO.ID + "', '" + partDTO.Name + "', '" +
                 partDTO.Sign + "', " + partDTO.Amount + ", '" + partDTO.TypeID + "', '" + partDTO.CardTypeID + "')";
             Database.ExcuNonQuery(sql);
         }
 
         public static void Update(PartDTO partDTO)
         {
-            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), TypeID =('" + partDTO.TypeID + "') where PartID = '" + partDTO.PartID + "'";
+            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), TypeID =('" + partDTO.TypeID + "'), CardTypeID =('" + partDTO.CardTypeID + "') where ID = '" + partDTO.ID + "'";
             Database.ExcuNonQuery(sql);
         }
 
         public static void Delete(string partID)
         {
-            string sql = "delete from [Part] where PartID = '" + partID + "'";
+            string sql = "delete from [Part] where ID = '" + partID + "'";
             Database.ExcuNonQuery(sql);
-        }
-
-        public static string GetIDByPartIDAndCardTypeID(string partID, string cardTypeID)
-        {
-            string sql = "select * from [Part] where PartID = '" + partID + "' and CardTypeID = '" + cardTypeID + "'";
-            DataTable data = Database.ExcuQuery(sql);
-            if (data != null)
-            {
-                return data.Rows[0].Field<string>("ID");
-            }
-            return "";
         }
     }
 }

@@ -436,17 +436,17 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dtEndDateSaleReport);
             } else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
             {
-                loadPartDataToComboBox(cbLoaiXeTinhTienCongVan);
+                loadTicketMonthPartDataToComboBox(cbLoaiXeTinhTienCongVan);
                 loadDataTinhTienTheoCongVan();
             }
             else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienLuyTien"])
             {
-                loadPartDataToComboBox(cbLoaiXeTinhTienLuyTien);
+                loadTicketMonthPartDataToComboBox(cbLoaiXeTinhTienLuyTien);
                 loadDataTinhTienLuyTien();
             }
             else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTongHop"])
             {
-                loadPartDataToComboBox(cbLoaiXeTinhTienTongHop);
+                loadTicketMonthPartDataToComboBox(cbLoaiXeTinhTienTongHop);
                 loadDataTinhTienTongHop();
             }
         }
@@ -454,23 +454,26 @@ namespace ParkingMangement.GUI
         private void loadDataTinhTienTheoCongVan()
         {
             DataRow partDataRow = ((DataRowView)cbLoaiXeTinhTienCongVan.SelectedItem).Row;
-            string partID = Convert.ToString(partDataRow["PartID"]);
+            string partID = Convert.ToString(partDataRow["ID"]);
             mComputerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
-            if (mComputerDTO != null)
+            if (mComputerDTO == null)
             {
-                numericTinhTienCongVanStartHourNight.Value = mComputerDTO.StartHourNight;
-                numericTinhTienCongVanEndHourNight.Value = mComputerDTO.EndHourNight;
-                trackBarTinhTienCongVanIntervalBetweenDayNight.Value = mComputerDTO.IntervalBetweenDayNight;
-                labelIntervalBetweenDayNight.Text = mComputerDTO.IntervalBetweenDayNight + "";
-                numericTinhTienCongVanDayCost.Value = mComputerDTO.DayCost;
-                numericTinhTienCongVanNightCost.Value = mComputerDTO.NightCost;
-                numericTinhTienCongVanDayNightCost.Value = mComputerDTO.DayNightCost;
-                trackBarTinhTienCongVanCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
-                labelTinhTienCongVanCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
-                numericTinhTienCongVanCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
-                numericTinhTienCongVanMinTime.Value = mComputerDTO.MinMinute;
-                numericTinhTienCongVanMinCost.Value = mComputerDTO.MinCost;
+                mComputerDTO = new ComputerDTO();
+                mComputerDTO.PartID = partID;
+                mComputerDTO.ParkingTypeID = Constant.LOAI_GIU_XE_THEO_CONG_VAN;
             }
+            numericTinhTienCongVanStartHourNight.Value = mComputerDTO.StartHourNight;
+            numericTinhTienCongVanEndHourNight.Value = mComputerDTO.EndHourNight;
+            trackBarTinhTienCongVanIntervalBetweenDayNight.Value = mComputerDTO.IntervalBetweenDayNight;
+            labelIntervalBetweenDayNight.Text = mComputerDTO.IntervalBetweenDayNight + "";
+            numericTinhTienCongVanDayCost.Value = mComputerDTO.DayCost;
+            numericTinhTienCongVanNightCost.Value = mComputerDTO.NightCost;
+            numericTinhTienCongVanDayNightCost.Value = mComputerDTO.DayNightCost;
+            trackBarTinhTienCongVanCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
+            labelTinhTienCongVanCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
+            numericTinhTienCongVanCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+            numericTinhTienCongVanMinTime.Value = mComputerDTO.MinMinute;
+            numericTinhTienCongVanMinCost.Value = mComputerDTO.MinCost;
         }
 
         private void updateTinhTienTheoCongVan()
@@ -496,10 +499,21 @@ namespace ParkingMangement.GUI
                     return;
                 }
 
-                if (ComputerDAO.Update(mComputerDTO))
+                if (ComputerDAO.GetDataByPartIDAndParkingTypeID(mComputerDTO.PartID, Constant.LOAI_GIU_XE_THEO_CONG_VAN) != null)
                 {
-                    MessageBox.Show(Constant.sMessageUpdateSuccess);
-                    panelTinhTienCongVan.Enabled = false;
+                    if (ComputerDAO.Update(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienCongVan.Enabled = false;
+                    }
+                }
+                else
+                {
+                    if (ComputerDAO.Insert(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienCongVan.Enabled = false;
+                    }
                 }
             }
         }
@@ -507,35 +521,39 @@ namespace ParkingMangement.GUI
         private void loadDataTinhTienLuyTien()
         {
             DataRow partDataRow = ((DataRowView)cbLoaiXeTinhTienLuyTien.SelectedItem).Row;
-            string partID = Convert.ToString(partDataRow["PartID"]);
+            string partID = Convert.ToString(partDataRow["ID"]);
             mComputerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_LUY_TIEN);
-            if (mComputerDTO != null)
+            if (mComputerDTO == null)
             {
-                numericTinhTienLuyTienHourMilestone1.Value = mComputerDTO.HourMilestone1;
-                numericTinhTienLuyTienCostMilestone1.Value = mComputerDTO.CostMilestone1;
-                numericTinhTienLuyTienHourMilestone2.Value = mComputerDTO.HourMilestone2;
-                numericTinhTienLuyTienCostMilestone2.Value = mComputerDTO.CostMilestone2;
+                mComputerDTO = new ComputerDTO();
+                mComputerDTO.PartID = partID;
+                mComputerDTO.ParkingTypeID = Constant.LOAI_GIU_XE_LUY_TIEN;
+            }
 
-                trackBarTinhTienLuyTienCycleMilestone3.Value = mComputerDTO.CycleMilestone3;
-                labelTinhTienLuyTienCycleMilestone3.Text = mComputerDTO.CycleMilestone3 + "";
-                numericTinhTienLuyTienCostMilestone3.Value = mComputerDTO.CostMilestone3;
+            numericTinhTienLuyTienHourMilestone1.Value = mComputerDTO.HourMilestone1;
+            numericTinhTienLuyTienCostMilestone1.Value = mComputerDTO.CostMilestone1;
+            numericTinhTienLuyTienHourMilestone2.Value = mComputerDTO.HourMilestone2;
+            numericTinhTienLuyTienCostMilestone2.Value = mComputerDTO.CostMilestone2;
 
-                trackBarTinhTienLuyTienCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
-                labelTinhTienLuyTienCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
-                numericTinhTienLuyTienCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+            trackBarTinhTienLuyTienCycleMilestone3.Value = mComputerDTO.CycleMilestone3;
+            labelTinhTienLuyTienCycleMilestone3.Text = mComputerDTO.CycleMilestone3 + "";
+            numericTinhTienLuyTienCostMilestone3.Value = mComputerDTO.CostMilestone3;
 
-                if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
-                {
-                    radioTinhTienLuyTienNoAdd.Checked = true;
-                }
-                else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
-                {
-                    radioTinhTienLuyTienAdd1Milestone.Checked = true;
-                }
-                else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
-                {
-                    radioTinhTienLuyTienAdd2Milestone.Checked = true;
-                }
+            trackBarTinhTienLuyTienCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
+            labelTinhTienLuyTienCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
+            numericTinhTienLuyTienCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+
+            if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+            {
+                radioTinhTienLuyTienNoAdd.Checked = true;
+            }
+            else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+            {
+                radioTinhTienLuyTienAdd1Milestone.Checked = true;
+            }
+            else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+            {
+                radioTinhTienLuyTienAdd2Milestone.Checked = true;
             }
         }
 
@@ -573,10 +591,20 @@ namespace ParkingMangement.GUI
                     return;
                 }
 
-                if (ComputerDAO.Update(mComputerDTO))
+                if (ComputerDAO.GetDataByPartIDAndParkingTypeID(mComputerDTO.PartID, Constant.LOAI_GIU_XE_LUY_TIEN) != null)
                 {
-                    MessageBox.Show(Constant.sMessageUpdateSuccess);
-                    panelTinhTienLuyTien.Enabled = false;
+                    if (ComputerDAO.Update(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienLuyTien.Enabled = false;
+                    }
+                } else
+                {
+                    if (ComputerDAO.Insert(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienLuyTien.Enabled = false;
+                    }
                 }
             }
         }
@@ -584,39 +612,42 @@ namespace ParkingMangement.GUI
         private void loadDataTinhTienTongHop()
         {
             DataRow partDataRow = ((DataRowView)cbLoaiXeTinhTienTongHop.SelectedItem).Row;
-            string partID = Convert.ToString(partDataRow["PartID"]);
+            string partID = Convert.ToString(partDataRow["ID"]);
             mComputerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_TONG_HOP);
-            if (mComputerDTO != null)
+            if (mComputerDTO == null)
             {
-                numericTinhTienTongHopStartHourNight.Value = mComputerDTO.StartHourNight;
-                numericTinhTienTongHopEndHourNight.Value = mComputerDTO.EndHourNight;
-                numericTinhTienTongHopNightCost.Value = mComputerDTO.NightCost;
+                mComputerDTO = new ComputerDTO();
+                mComputerDTO.PartID = partID;
+                mComputerDTO.ParkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP;
+            }
+            numericTinhTienTongHopStartHourNight.Value = mComputerDTO.StartHourNight;
+            numericTinhTienTongHopEndHourNight.Value = mComputerDTO.EndHourNight;
+            numericTinhTienTongHopNightCost.Value = mComputerDTO.NightCost;
 
-                numericTinhTienTongHopHourMilestone1.Value = mComputerDTO.HourMilestone1;
-                numericTinhTienTongHopCostMilestone1.Value = mComputerDTO.CostMilestone1;
-                numericTinhTienTongHopHourMilestone2.Value = mComputerDTO.HourMilestone2;
-                numericTinhTienTongHopCostMilestone2.Value = mComputerDTO.CostMilestone2;
+            numericTinhTienTongHopHourMilestone1.Value = mComputerDTO.HourMilestone1;
+            numericTinhTienTongHopCostMilestone1.Value = mComputerDTO.CostMilestone1;
+            numericTinhTienTongHopHourMilestone2.Value = mComputerDTO.HourMilestone2;
+            numericTinhTienTongHopCostMilestone2.Value = mComputerDTO.CostMilestone2;
 
-                trackBarTinhTienTongHopCycleMilestone3.Value = mComputerDTO.CycleMilestone3;
-                labelTinhTienTongHopCycleMilestone3.Text = mComputerDTO.CycleMilestone3 + "";
-                numericTinhTienTongHopCostMilestone3.Value = mComputerDTO.CostMilestone3;
+            trackBarTinhTienTongHopCycleMilestone3.Value = mComputerDTO.CycleMilestone3;
+            labelTinhTienTongHopCycleMilestone3.Text = mComputerDTO.CycleMilestone3 + "";
+            numericTinhTienTongHopCostMilestone3.Value = mComputerDTO.CostMilestone3;
 
-                trackBarTinhTienTongHopCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
-                labelTinhTienTongHopCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
-                numericTinhTienTongHopCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
+            trackBarTinhTienTongHopCycleTicketMonth.Value = mComputerDTO.CycleTicketMonth;
+            labelTinhTienTongHopCycleTicketMonth.Text = mComputerDTO.CycleTicketMonth + "";
+            numericTinhTienTongHopCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
 
-                if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
-                {
-                    radioTinhTienTongHopNoAdd.Checked = true;
-                }
-                else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
-                {
-                    radioTinhTienTongHopAdd1Milestone.Checked = true;
-                }
-                else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
-                {
-                    radioTinhTienTongHopAdd2Milestone.Checked = true;
-                }
+            if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+            {
+                radioTinhTienTongHopNoAdd.Checked = true;
+            }
+            else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+            {
+                radioTinhTienTongHopAdd1Milestone.Checked = true;
+            }
+            else if (mComputerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+            {
+                radioTinhTienTongHopAdd2Milestone.Checked = true;
             }
         }
 
@@ -663,10 +694,21 @@ namespace ParkingMangement.GUI
                     return;
                 }
 
-                if (ComputerDAO.Update(mComputerDTO))
+                if (ComputerDAO.GetDataByPartIDAndParkingTypeID(mComputerDTO.PartID, Constant.LOAI_GIU_XE_TONG_HOP) != null)
                 {
-                    MessageBox.Show(Constant.sMessageUpdateSuccess);
-                    panelTinhTienTongHop.Enabled = false;
+                    if (ComputerDAO.Update(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienTongHop.Enabled = false;
+                    }
+                }
+                else
+                {
+                    if (ComputerDAO.Insert(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienTongHop.Enabled = false;
+                    }
                 }
             }
         }
@@ -765,7 +807,7 @@ namespace ParkingMangement.GUI
 
         private void loadPartList()
         {
-            dgvPartList.DataSource = PartDAO.GetAllCommonData();
+            dgvPartList.DataSource = PartDAO.GetAllData();
             int Index = dgvPartList.CurrentRow.Index;
             loadPartInfoFromDataGridViewRow(Index);
         }
@@ -808,35 +850,33 @@ namespace ParkingMangement.GUI
         private void createPart()
         {
             PartDTO partDTO = new PartDTO();
-            partDTO.PartID = tbPartIdCreate.Text;
-            partDTO.ID = partDTO.PartID + "_1";
+            partDTO.ID = tbPartIdCreate.Text;
             DataRow typeNameDataRow = ((DataRowView)cbTypeNameCreate.SelectedItem).Row;
             partDTO.TypeID = Convert.ToString(typeNameDataRow["TypeID"]);
-            partDTO.CardTypeID = "1";
+
+            DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameCreate.SelectedItem).Row;
+            partDTO.CardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
+
             partDTO.Name = tbPartNameCreate.Text;
             partDTO.Sign = tbPartSignCreate.Text;
             partDTO.Amount = int.Parse(tbPartAmountCreate.Text);
             PartDAO.Insert(partDTO);
 
-            PartDTO partDTO2 = (PartDTO) partDTO.Clone();
-            partDTO2.ID = partDTO.PartID + "_2";
-            partDTO2.CardTypeID = "2";
-            PartDAO.Insert(partDTO2);
-
             loadPartList();
             LogUtil.addLogTaoMoiLoaiXe(partDTO);
-            LogUtil.addLogTaoMoiLoaiXe(partDTO2);
         }
 
         private void updatePart()
         {
             PartDTO partDTO = new PartDTO();
-            partDTO.PartID = tbPartIdEdit.Text;
+            partDTO.ID = tbPartIdEdit.Text;
             partDTO.Name = tbPartNameEdit.Text;
             partDTO.Sign = tbPartSignEdit.Text;
             partDTO.Amount = int.Parse(tbPartAmountEdit.Text);
             DataRow typeNameDataRow = ((DataRowView)cbTypeNameEdit.SelectedItem).Row;
             partDTO.TypeID = Convert.ToString(typeNameDataRow["TypeID"]);
+            DataRow cardTypeNameDataRow = ((DataRowView)cbCardTypeNameEdit.SelectedItem).Row;
+            partDTO.CardTypeID = Convert.ToString(cardTypeNameDataRow["CardTypeID"]);
 
             PartDAO.Update(partDTO);
             loadPartList();
@@ -858,6 +898,8 @@ namespace ParkingMangement.GUI
             tbPartAmountEdit.Text = amount;
             string typeName = Convert.ToString(dgvPartList.Rows[Index].Cells["TypeName"].Value);
             cbTypeNameEdit.Text = typeName;
+            string cardTypeName = Convert.ToString(dgvPartList.Rows[Index].Cells["CardTypeName_CreatePart"].Value);
+            cbCardTypeNameEdit.Text = cardTypeName;
         }
 
         private void clearInputPartInfo()
@@ -997,10 +1039,18 @@ namespace ParkingMangement.GUI
 
         private void loadPartDataToComboBox(ComboBox cb)
         {
-            DataTable dt = PartDAO.GetAllCommonData();
+            DataTable dt = PartDAO.GetAllData();
             cb.DataSource = dt;
             cb.DisplayMember = "PartName";
-            cb.ValueMember = "PartID";
+            cb.ValueMember = "ID";
+        }
+
+        private void loadTicketMonthPartDataToComboBox(ComboBox cb)
+        {
+            DataTable dt = PartDAO.GetAllTicketMonthData();
+            cb.DataSource = dt;
+            cb.DisplayMember = "PartName";
+            cb.ValueMember = "ID";
         }
 
         private void loadTypeDataToComboBox(ComboBox cb)
@@ -1021,13 +1071,13 @@ namespace ParkingMangement.GUI
 
         private void loadPartDataWithFieldAllToComboBox(ComboBox cb)
         {
-            DataTable dt = PartDAO.GetAllCommonData();
+            DataTable dt = PartDAO.GetAllData();
             DataRow dr = dt.NewRow();
             dr["PartName"] = "Tất cả";
             dt.Rows.InsertAt(dr, 0);
             cb.DataSource = dt;
             cb.DisplayMember = "PartName";
-            cb.ValueMember = "PartID";
+            cb.ValueMember = "ID";
         }
 
         private bool checkCreateCardData()
@@ -1068,11 +1118,8 @@ namespace ParkingMangement.GUI
             cardDTO.Id = tbCardIDCreate.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameCreate.SelectedItem).Row;
-            string partID = Convert.ToString(partDataRow["PartID"]);
-
-            DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameCreate.SelectedItem).Row;
-            string cardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
-            cardDTO.Type = PartDAO.GetIDByPartIDAndCardTypeID(partID, cardTypeID);
+            string partID = Convert.ToString(partDataRow["ID"]);
+            cardDTO.Type = partID;
 
             string isUsing = "0";
             if (cbIsUsingCreate.Checked)
@@ -1163,11 +1210,9 @@ namespace ParkingMangement.GUI
             cardDTO.Id = tbCardIDEdit.Text.Trim();
 
             DataRow partDataRow = ((DataRowView)cbPartNameEdit.SelectedItem).Row;
-            string partID = Convert.ToString(partDataRow["PartID"]);
+            string partID = Convert.ToString(partDataRow["ID"]);
 
-            DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameEdit.SelectedItem).Row;
-            string cardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
-            cardDTO.Type = PartDAO.GetIDByPartIDAndCardTypeID(partID, cardTypeID);
+            cardDTO.Type = partID;
 
             string isUsing = "0";
             if (cbIsUsingEdit.Checked)
@@ -1398,7 +1443,7 @@ namespace ParkingMangement.GUI
             if (cbPartNameTicketLogSearch.SelectedIndex > 0)
             {
                 DataRow partDataRow = ((DataRowView) cbPartNameTicketLogSearch.SelectedItem).Row;
-                partID = Convert.ToString(partDataRow["PartID"]);
+                partID = Convert.ToString(partDataRow["ID"]);
             }
             DateTime registrationDate = dtTicketLogRegistrationDateSearch.Value;
             registrationDate = new DateTime(registrationDate.Year, registrationDate.Month, registrationDate.Day, 0, 0, 0);
@@ -2057,7 +2102,7 @@ namespace ParkingMangement.GUI
             if (comboBoxTruyVanLoaiXe.SelectedIndex > 0)
             {
                 DataRow dataRow = ((DataRowView)comboBoxTruyVanLoaiXe.SelectedItem).Row;
-                carDTO.IdPart = Convert.ToString(dataRow["PartID"]);
+                carDTO.IdPart = Convert.ToString(dataRow["ID"]);
             }
             try
             {
@@ -2097,7 +2142,7 @@ namespace ParkingMangement.GUI
 
             if (data != null)
             {
-                Util.sendOrderListToServer(data);
+                //Util.sendOrderListToServer(data);
             }
         }
 
