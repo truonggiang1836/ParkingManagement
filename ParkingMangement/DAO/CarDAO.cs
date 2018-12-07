@@ -17,7 +17,7 @@ namespace ParkingMangement.DAO
         public static int MONTH_TICKET = 2;
 
         private static string sqlGetAllData = "select DISTINCT Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
-            "Car.Digit, Car.IDIn, Car.IDOut, Car.IDTicketMonth, Car.IsLostCard, Car.Cost, Part.PartName, Part.Sign, Car.Computer, Car.Account, " +
+            "Car.Digit, Car.IDIn, Car.IDOut, Car.IDTicketMonth, Car.IsLostCard, Car.Cost, Part.ID as PartID, Part.PartName, Part.Sign, Car.Computer, Car.Account, " +
             "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from [Car], [Part], [SmartCard] where Car.IDPart = Part.ID and SmartCard.ID = Car.ID";
 
 
@@ -39,6 +39,13 @@ namespace ParkingMangement.DAO
             string sql = sqlGetAllData + sqlOrderByIdentify;
             DataTable data = Database.ExcuQuery(sql);
             setUserNameForDataTable(data);
+            return data;
+        }
+
+        public static DataTable GetAllDataWithoutSetUserName()
+        {
+            string sql = sqlGetAllData + sqlOrderByIdentify;
+            DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 
@@ -97,6 +104,15 @@ namespace ParkingMangement.DAO
             {
                 setUserNameForDataTable(data);
             }
+            return data;
+        }
+
+        public static DataTable searchAllDataWithoutSetUserName(CarDTO carDTO)
+        {
+            string sql = sqlSearchData(carDTO);
+            sql += sqlOrderByIdentify;
+
+            DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 

@@ -247,6 +247,8 @@ namespace ParkingMangement.Utils
             foreach (DataRow dtRow in dtTable.Rows)
             {
                 Order order = new Order();
+                order.AreaId = 1;
+                order.OrderId = dtRow.Field<int>("Identify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
                 order.CheckinTime = DateTimeToMillisecond(checkinDatetime) / 1000;
@@ -256,8 +258,12 @@ namespace ParkingMangement.Utils
                 order.CarNumberIn = dtRow.Field<string>("Digit");
                 order.CarNumberOut = dtRow.Field<string>("Digit");
                 order.AdminCheckinId = dtRow.Field<string>("IDIn");
+                order.AdminCheckinName = UserDAO.GetUserNameByID(order.AdminCheckinId);
                 order.AdminCheckoutId = dtRow.Field<string>("IDOut");
+                order.AdminCheckoutName = UserDAO.GetUserNameByID(order.AdminCheckoutId);
                 order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
+                order.VehicleId = Int32.Parse(dtRow.Field<string>("PartID"));
+                order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId +"");
                 order.IsCardLost = dtRow.Field<int>("IsLostCard");
                 order.TotalPrice = dtRow.Field<int>("Cost");
                 order.PcName = dtRow.Field<string>("Computer");
@@ -266,6 +272,10 @@ namespace ParkingMangement.Utils
                 order.Created = DateTimeToMillisecond(dateUpdate) / 1000;
                 order.Updated = DateTimeToMillisecond(dateUpdate) / 1000;
                 listOrder.Add(order);
+                if (listOrder.Count == 3)
+                {
+                    break;
+                }
             }
             string jsonString = JsonConvert.SerializeObject(listOrder);
             WebClient webClient = (new ApiUtil()).getWebClient();
@@ -273,6 +283,7 @@ namespace ParkingMangement.Utils
             try
             {
                 String responseString = webClient.DownloadString(ApiUtil.API_ORDERS_BATCH_INSERT);
+                int x = 0;
             }
             catch (Exception e)
             {
