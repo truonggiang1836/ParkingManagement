@@ -114,17 +114,6 @@ namespace ParkingMangement.DAO
             return "";
         }
 
-        public static string getPartIDByCardID(string cardID)
-        {
-            string sql = "select Part.PartID from [Part], [SmartCard] where SmartCard.ID = '" + cardID + "' and SmartCard.Type = Part.ID";
-            DataTable dt = Database.ExcuQuery(sql);
-            if (dt != null && dt.Rows.Count > 0)
-            {
-                return dt.Rows[0].Field<string>("PartID");
-            }
-            return "";
-        }
-
         public static int getIdentifyByCardID(string cardID)
         {
             string sql = "select * from [SmartCard] where ID = '" + cardID + "'";

@@ -1039,10 +1039,10 @@ namespace ParkingMangement.GUI
             axVLCPlugin3.video.aspectRatio = "209:253";
             axVLCPlugin4.video.aspectRatio = "209:253";
 
-            //axVLCPlugin1.video.scale = 0.25f;
-            //axVLCPlugin2.video.scale = 0.25f;
-            //axVLCPlugin3.video.scale = 0.25f;
-            //axVLCPlugin4.video.scale = 0.25f;
+            axVLCPlugin1.video.scale = 0.7f;
+            axVLCPlugin2.video.scale = 0.7f;
+            axVLCPlugin3.video.scale = 0.7f;
+            axVLCPlugin4.video.scale = 0.7f;
 
             axVLCPlugin1.Toolbar = false;
             axVLCPlugin2.Toolbar = false;
@@ -1132,7 +1132,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienTheoCongVan()
         {
-            string partID = CardDAO.getPartIDByCardID(cardID);
+            string partID = CardDAO.getIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
             DataTable dt = CarDAO.GetLastCarByID(cardID);
             if (dt != null)
@@ -1183,7 +1183,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienLuyTien()
         {
-            string partID = CardDAO.getPartIDByCardID(cardID);
+            string partID = CardDAO.getIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_LUY_TIEN);
             DataTable dt = CarDAO.GetLastCarByID(cardID);
             if (dt != null)
@@ -1219,7 +1219,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienTongHop()
         {
-            string partID = CardDAO.getPartIDByCardID(cardID);
+            string partID = CardDAO.getIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_TONG_HOP);
             DataTable dt = CarDAO.GetLastCarByID(cardID);
             if (dt != null)
