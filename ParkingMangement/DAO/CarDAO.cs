@@ -21,9 +21,9 @@ namespace ParkingMangement.DAO
             "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from [Car], [Part], [SmartCard] where Car.IDPart = Part.ID and SmartCard.ID = Car.ID";
 
 
-        private static string sqlGetAllTicketMonthData = "select DISTINCT Car.Identify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
-            "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from [Car], [Part], [TicketMonth] " +
-            "where Car.IDPart = Part.ID and TicketMonth.ID = Car.IDTicketMonth";
+        private static string sqlGetAllTicketMonthData = "select DISTINCT Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
+            "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from [Car], [Part], [TicketMonth], [SmartCard] " +
+            "where Car.IDPart = Part.ID and TicketMonth.ID = Car.IDTicketMonth and SmartCard.ID = Car.ID";
 
         private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
             "Car.IsLostCard, Car.Computer, UserCar.NameUser from [Car], [UserCar] where Car.Account = UserCar.UserID";
@@ -66,7 +66,7 @@ namespace ParkingMangement.DAO
         public static string sqlSearchData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
-            sql += " and Car.TimeStart >= #" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.TimeEnd <= #" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "#";
+            sql += " and Car.TimeStart >= #" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "# and ((Car.TimeEnd <= #" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "# and Car.IDOut <> '') or Car.IDOut = '')";
             if (!string.IsNullOrEmpty(carDTO.IdPart))
             {
                 sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
