@@ -252,8 +252,11 @@ namespace ParkingMangement.Utils
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
                 order.CheckinTime = DateTimeToMillisecond(checkinDatetime) / 1000;
-                DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
-                order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime) / 1000;
+                if (dtRow.Field<DateTime?>("TimeEnd") != null)
+                {
+                    DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+                    order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime) / 1000;
+                }
                 order.CarNumber = dtRow.Field<string>("Digit");
                 order.CarNumberIn = dtRow.Field<string>("Digit");
                 order.CarNumberOut = dtRow.Field<string>("Digit");
