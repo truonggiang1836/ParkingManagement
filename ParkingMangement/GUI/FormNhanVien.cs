@@ -183,7 +183,7 @@ namespace ParkingMangement.GUI
                 case Keys.F1:
                     //    var formChangePassword = new FormChangePassword();
                     //    formChangePassword.Show();
-                    //open_bitmap();
+                    open_bitmap();
                     break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
