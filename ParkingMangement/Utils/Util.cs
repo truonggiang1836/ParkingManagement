@@ -267,6 +267,7 @@ namespace ParkingMangement.Utils
                 order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
                 order.VehicleId = Int32.Parse(dtRow.Field<string>("PartID"));
                 order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId +"");
+                order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
                 order.IsCardLost = dtRow.Field<int>("IsLostCard");
                 order.TotalPrice = dtRow.Field<int>("Cost");
                 order.PcName = dtRow.Field<string>("Computer");

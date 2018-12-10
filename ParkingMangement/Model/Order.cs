@@ -33,6 +33,8 @@ namespace ParkingMangement.Model
         public int VehicleId { get; set; }
         [JsonProperty("vehicle_name")]
         public string VehicleName { get; set; }
+        [JsonProperty("vehicle_code")]
+        public string VehicleCode { get; set; }
         [JsonProperty("is_card_lost")]
         public int IsCardLost { get; set; }
         [JsonProperty("total_price")]
