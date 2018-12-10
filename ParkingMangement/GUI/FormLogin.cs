@@ -80,6 +80,8 @@ namespace ParkingMangement
                 UserDTO userDTO = new UserDTO(responseString);
                 Program.CurrentUserID = userDTO.Id;
                 Program.CurrentToken = userDTO.Token;
+
+                Program.sendOrderListToServer();
             } catch (WebException exception)
             {
                 string responseText;
