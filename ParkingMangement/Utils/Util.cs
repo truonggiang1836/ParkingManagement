@@ -248,14 +248,14 @@ namespace ParkingMangement.Utils
             {
                 Order order = new Order();
                 order.AreaId = 1;
-                order.OrderId = dtRow.Field<int>("Identify");
+                //order.OrderId = dtRow.Field<int>("Identify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
-                order.CheckinTime = DateTimeToMillisecond(checkinDatetime) / 1000;
+                order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
                 if (dtRow.Field<DateTime?>("TimeEnd") != null)
                 {
                     DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
-                    order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime) / 1000;
+                    order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
                 }
                 order.CarNumber = dtRow.Field<string>("Digit");
                 order.CarNumberIn = dtRow.Field<string>("Digit");
@@ -267,15 +267,16 @@ namespace ParkingMangement.Utils
                 order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
                 order.VehicleId = Int32.Parse(dtRow.Field<string>("PartID"));
                 order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId +"");
+                order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
                 order.IsCardLost = dtRow.Field<int>("IsLostCard");
                 order.TotalPrice = dtRow.Field<int>("Cost");
                 order.PcName = dtRow.Field<string>("Computer");
                 order.Account = dtRow.Field<string>("Account");
                 DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
-                order.Created = DateTimeToMillisecond(dateUpdate) / 1000;
-                order.Updated = DateTimeToMillisecond(dateUpdate) / 1000;
+                order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
+                order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 listOrder.Add(order);
-                if (listOrder.Count == 3)
+                if (listOrder.Count == 1)
                 {
                     break;
                 }
