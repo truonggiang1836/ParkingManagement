@@ -43,16 +43,20 @@ namespace ParkingMangement
 
         public static void sendOrderListToServer()
         {
+            Util.sendOrderListToServer(CarDAO.GetAllDataWithoutSetUserName());
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 10000;
+            aTimer.Interval = 300000;
             aTimer.Enabled = true;
             aTimer.Start();
         }
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            Util.sendOrderListToServer(CarDAO.GetAllDataWithoutSetUserName());
+            if (isHostMachine)
+            {
+                Util.sendOrderListToServer(CarDAO.GetAllDataWithoutSetUserName());
+            }
         }
     }
 }

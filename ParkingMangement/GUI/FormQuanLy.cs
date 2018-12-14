@@ -2142,7 +2142,7 @@ namespace ParkingMangement.GUI
 
             if (data != null)
             {
-                Util.sendOrderListToServer(CarDAO.searchAllDataWithoutSetUserName(carDTO));
+                //Util.sendOrderListToServer(CarDAO.searchAllDataWithoutSetUserName(carDTO));
             }
         }
 

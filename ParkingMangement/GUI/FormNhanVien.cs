@@ -183,7 +183,7 @@ namespace ParkingMangement.GUI
                 case Keys.F1:
                     //    var formChangePassword = new FormChangePassword();
                     //    formChangePassword.Show();
-                    open_bitmap();
+                    //open_bitmap();
                     break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
@@ -908,7 +908,7 @@ namespace ParkingMangement.GUI
                 imagePath2 = DateTime.Now.Ticks + ".jpg";
                 saveBitmapToFile(bmpScreenshot, imagePath2);
 
-                bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\huynh.JPG");
+                //bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\huynh.JPG");
                 ImagePlate = new clsImagePlate(bmpScreenshot);
                 DisplayNumberPalate(true);
             }
@@ -986,7 +986,7 @@ namespace ParkingMangement.GUI
             imagePath4 = DateTime.Now.Ticks + ".jpg";
             saveBitmapToFile(bmpScreenshot, imagePath4);
 
-            bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\khue.JPG");
+            //bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\khue.JPG");
             ImagePlate = new clsImagePlate(bmpScreenshot);
             DisplayNumberPalate(false);
         }
