@@ -11,16 +11,16 @@ namespace ParkingMangement.Model
     {
         [JsonProperty("area_id")]
         public int AreaId { get; set; }
-        [JsonProperty("order_id")]
-        public int OrderId { get; set; }
+        //[JsonProperty("order_id")]
+        //public int OrderId { get; set; }
         //[JsonProperty("card_id")]
         //public int CardId { get; set; }
         [JsonProperty("card_code")]
         public string CardCode { get; set; }
         [JsonProperty("checkin_time")]
-        public long CheckinTime { get; set; }
+        public string CheckinTime { get; set; }
         [JsonProperty("checkout_time")]
-        public long CheckoutTime { get; set; }
+        public string CheckoutTime { get; set; }
         [JsonProperty("car_number")]
         public string CarNumber { get; set; }
         [JsonProperty("admin_checkin_id")]
@@ -33,6 +33,8 @@ namespace ParkingMangement.Model
         public int VehicleId { get; set; }
         [JsonProperty("vehicle_name")]
         public string VehicleName { get; set; }
+        [JsonProperty("vehicle_code")]
+        public string VehicleCode { get; set; }
         [JsonProperty("is_card_lost")]
         public int IsCardLost { get; set; }
         [JsonProperty("total_price")]
@@ -42,9 +44,9 @@ namespace ParkingMangement.Model
         [JsonProperty("account")]
         public string Account { get; set; }
         [JsonProperty("created")]
-        public long Created { get; set; }
+        public string Created { get; set; }
         [JsonProperty("updated")]
-        public long Updated { get; set; }
+        public string Updated { get; set; }
         [JsonProperty("customer_name")]
         public string CustomerName { get; set; }
         [JsonProperty("car_number_in")]

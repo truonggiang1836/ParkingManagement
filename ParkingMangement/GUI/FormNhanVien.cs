@@ -22,6 +22,17 @@ using System.Diagnostics;
 using System.Security;
 using AxAXVLC;
 using Newtonsoft.Json.Linq;
+using AForge;
+using AForge.Imaging;
+using AForge.Math;
+using AForge.Imaging.Filters;
+using AForge.Imaging.Textures;
+using AForge.Video;
+using AForge.Video.DirectShow;
+using AForge.Vision.Motion;
+using ParkingMangement.TextRecognized;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
 
 namespace ParkingMangement.GUI
 {
@@ -55,9 +66,16 @@ namespace ParkingMangement.GUI
 
         private int _lastFormSize;
 
+
+        //=======class============
+        clsImagePlate ImagePlate;
+        clsLicensePlate LicensePlate;
+        clsNetwork Network;
+
         public FormNhanVien()
         {
             InitializeComponent();
+            CvInvoke.UseOpenCL = false;
             Control.CheckForIllegalCrossThreadCalls = false;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -74,6 +92,10 @@ namespace ParkingMangement.GUI
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
+            Network = new clsNetwork();
+            Network.AutoLoadNetworkChar();
+            Network.AutoLoadNetworkNum();
+
             CurrentUserID = Program.CurrentUserID;
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
             this.ActiveControl = tbRFIDCardID;
@@ -130,12 +152,18 @@ namespace ParkingMangement.GUI
             Util.CreateFolderIfMissing(Constant.IMAGE_FOLDER);
             loadInfo();
             configVLC();
-            loadCamera1VLC();
-            loadCamera2VLC();
-            loadCamera3VLC();
-            loadCamera4VLC();
+            //loadCamera1VLC();
+            //loadCamera2VLC();
+            //loadCamera3VLC();
+            //loadCamera4VLC();
 
             oldSize = base.Size;
+
+            CheckForIllegalCrossThreadCalls = false;
+            loadEmguCvCamera1();
+            loadEmguCvCamera2();
+            loadEmguCvCamera3();
+            loadEmguCvCamera4();
         }
 
         private void loadInfo()
@@ -161,10 +189,11 @@ namespace ParkingMangement.GUI
                     resetData();
                     tbRFIDCardID.Focus();
                     break;
-                //case Keys.F1:
-                //    var formChangePassword = new FormChangePassword();
-                //    formChangePassword.Show();
-                //    break;
+                case Keys.F1:
+                    //    var formChangePassword = new FormChangePassword();
+                    //    formChangePassword.Show();
+                    //open_bitmap();
+                    break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
                     formLogin.formNhanVien = this;
@@ -216,7 +245,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void saveImageToFile(Image image, string fileName)
+        private void saveImageToFile(System.Drawing.Image image, string fileName)
         {
             string path = Constant.IMAGE_FOLDER + fileName;
             image.Save(path, ImageFormat.Jpeg);
@@ -710,22 +739,22 @@ namespace ParkingMangement.GUI
                 {
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)
                     {
-                        pictureBoxImage1.Image = Image.FromFile(imagePath1);
+                        pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
                         if (keyboardDeviceName.Equals(rfidIn))
                         {
-                            pictureBoxImage1.Image = Image.FromFile(imagePath1);
+                            pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
                         }
                         else
                         {
-                            pictureBoxImage3.Image = Image.FromFile(imagePath1);
+                            pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
                         }
                     }
                     else
                     {
-                        pictureBoxImage3.Image = Image.FromFile(imagePath1);
+                        pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
                     }
                 }
                 string image2 = dt.Rows[0].Field<string>("Images2");
@@ -734,22 +763,22 @@ namespace ParkingMangement.GUI
                 {
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)
                     {
-                        pictureBoxImage2.Image = Image.FromFile(imagePath2);
+                        pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
                         if (keyboardDeviceName.Equals(rfidIn))
                         {
-                            pictureBoxImage2.Image = Image.FromFile(imagePath2);
+                            pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
                         }
                         else
                         {
-                            pictureBoxImage4.Image = Image.FromFile(imagePath2);
+                            pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
                         }
                     }
                     else
                     {
-                        pictureBoxImage4.Image = Image.FromFile(imagePath2);
+                        pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
                     }
                 }
                     
@@ -887,6 +916,10 @@ namespace ParkingMangement.GUI
                 pictureBox.Image = bmpScreenshot;
                 imagePath2 = DateTime.Now.Ticks + ".jpg";
                 saveBitmapToFile(bmpScreenshot, imagePath2);
+
+                //bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\huynh.JPG");
+                ImagePlate = new clsImagePlate(bmpScreenshot);
+                DisplayNumberPalate(true);
             }
         }
 
@@ -961,6 +994,10 @@ namespace ParkingMangement.GUI
 
             imagePath4 = DateTime.Now.Ticks + ".jpg";
             saveBitmapToFile(bmpScreenshot, imagePath4);
+
+            //bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\khue.JPG");
+            ImagePlate = new clsImagePlate(bmpScreenshot);
+            DisplayNumberPalate(false);
         }
 
         private Bitmap getBitMapFromCamera(AxVLCPlugin2 axVLCPlugin)
@@ -972,7 +1009,7 @@ namespace ParkingMangement.GUI
             System.Drawing.Size imgSize = new System.Drawing.Size(
                 axVLCPlugin.ClientRectangle.Width,
                 axVLCPlugin.ClientRectangle.Height);
-            Point ps = axVLCPlugin.PointToScreen(Point.Empty);
+            System.Drawing.Point ps = axVLCPlugin.PointToScreen(System.Drawing.Point.Empty);
             gfxScreenshot.CopyFromScreen(ps.X, ps.Y, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
             axVLCPlugin.playlist.play();
             return bmpScreenshot;
@@ -1492,6 +1529,172 @@ namespace ParkingMangement.GUI
         private void FormNhanVien_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+
+
+        private void open_bitmap()
+        {
+            try
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                op.InitialDirectory = Application.StartupPath + "\\foreground";
+                op.Filter = ("Image files (*.jpg,*.png,*.tif,*.bmp,*.gif)|*.jpg;*.png;*.tif;*.bmp;*.gif|JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|TIF files (*.tif)|*.tif|BMP files (*.bmp)|*.bmp|GIF files (*.gif)|*.gif|All files(*.*)|*.*");
+                if (op.ShowDialog() == DialogResult.OK)
+                {
+                    if (op.FileName != null)
+                    {
+                        StreamReader bitmap_file_stream = new StreamReader(op.FileName);
+                        string bmp_file_name = Path.GetFileName(op.FileName);
+                        ImagePlate = new clsImagePlate(new Bitmap(op.FileName));
+
+                        bitmap_file_stream.Close();
+                        pictureBoxImage1.Image = ImagePlate.IMAGE;
+                        DisplayNumberPalate(true);
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+        }
+        private void DisplayNumberPalate(bool isCarIn)
+        {
+            try
+            {
+                //lay anh bang so
+                ImagePlate.Get_Plate();
+                //tao anh bang so
+                LicensePlate = new clsLicensePlate();
+                LicensePlate.PLATE = ImagePlate.PLATE;
+                //cat ky tu
+                LicensePlate.Split(ImagePlate.Plate_Type);
+                //recognize
+                Network.IMAGEARR = LicensePlate.IMAGEARR;
+                int sum = LicensePlate.getsumcharacter();
+                Network.recognition(sum, ImagePlate.Plate_Type);
+                if (isCarIn)
+                {
+                    labelDigitIn.Text = Network.LICENSETEXT.Trim();
+                } else
+                {
+                    labelDigitOut.Text = Network.LICENSETEXT.Trim();
+                }
+            }
+            catch
+            {
+                //MessageBox.Show("Not Recognized");
+            }
+        }
+
+        private Capture capture1 = null;
+        private Capture capture2 = null;
+        private Capture capture3 = null;
+        private Capture capture4 = null;
+        private void ProcessFrame1(object sender, EventArgs arg)
+        {
+            int height = imageBox1.Height;
+            int width = imageBox1.Width;
+            Mat frame = new Mat();
+
+            capture1.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox1.Image = frame;
+        }
+
+        private void ProcessFrame2(object sender, EventArgs arg)
+        {
+            int height = imageBox2.Height;
+            int width = imageBox2.Width;
+            Mat frame = new Mat();
+
+            capture2.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox2.Image = frame;
+        }
+
+        private void ProcessFrame3(object sender, EventArgs arg)
+        {
+            int height = imageBox3.Height;
+            int width = imageBox3.Width;
+            Mat frame = new Mat();
+
+            capture3.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox3.Image = frame;
+        }
+
+        private void ProcessFrame4(object sender, EventArgs arg)
+        {
+            int height = imageBox4.Height;
+            int width = imageBox4.Width;
+            Mat frame = new Mat();
+
+            capture4.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox4.Image = frame;
+        }
+
+        private void loadEmguCvCamera1()
+        {
+            try
+            {
+                capture1 = new Emgu.CV.Capture(cameraUrl1);
+                capture1.ImageGrabbed += ProcessFrame1;
+                capture1.Start();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void loadEmguCvCamera2()
+        {
+            try
+            {
+                capture2 = new Emgu.CV.Capture(cameraUrl2);
+                capture2.ImageGrabbed += ProcessFrame2;
+                capture2.Start();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void loadEmguCvCamera3()
+        {
+            try
+            {
+                capture3 = new Emgu.CV.Capture(cameraUrl3);
+                capture3.ImageGrabbed += ProcessFrame3;
+                capture3.Start();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void loadEmguCvCamera4()
+        {
+            try
+            {
+                capture4 = new Emgu.CV.Capture(cameraUrl4);
+                capture4.ImageGrabbed += ProcessFrame4;
+                capture4.Start();
+            }
+            catch
+            {
+
+            }
         }
     }
 }

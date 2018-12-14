@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
@@ -105,6 +105,12 @@
             this.labelMoiRa = new System.Windows.Forms.Label();
             this.labelXeVao = new System.Windows.Forms.Label();
             this.labelXeRa = new System.Windows.Forms.Label();
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.imageBox1 = new Emgu.CV.UI.ImageBox();
+            this.imageBox2 = new Emgu.CV.UI.ImageBox();
+            this.imageBox3 = new Emgu.CV.UI.ImageBox();
+            this.imageBox4 = new Emgu.CV.UI.ImageBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -138,10 +144,18 @@
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.imageBox4);
+            this.panel1.Controls.Add(this.imageBox3);
+            this.panel1.Controls.Add(this.imageBox2);
+            this.panel1.Controls.Add(this.imageBox1);
             this.panel1.Controls.Add(this.axVLCPlugin4);
             this.panel1.Controls.Add(this.axVLCPlugin3);
             this.panel1.Controls.Add(this.axVLCPlugin2);
@@ -491,34 +505,34 @@
             // dgvThongKeXeTrongBai
             // 
             this.dgvThongKeXeTrongBai.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvThongKeXeTrongBai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvThongKeXeTrongBai.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKeXeTrongBai.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvThongKeXeTrongBai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongKeXeTrongBai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.DoanhThuPartName,
             this.CountCarSurvive,
             this.CountCarEmpty});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle10;
             this.dgvThongKeXeTrongBai.Location = new System.Drawing.Point(1, 27);
             this.dgvThongKeXeTrongBai.Name = "dgvThongKeXeTrongBai";
             this.dgvThongKeXeTrongBai.ReadOnly = true;
@@ -541,10 +555,10 @@
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "TypeName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle3.NullValue")));
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle8.NullValue")));
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle8;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.DoanhThuPartName.Name = "DoanhThuPartName";
@@ -556,8 +570,8 @@
             // CountCarSurvive
             // 
             this.CountCarSurvive.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle9;
             this.CountCarSurvive.HeaderText = "SL trong bãi";
             this.CountCarSurvive.Name = "CountCarSurvive";
             this.CountCarSurvive.ReadOnly = true;
@@ -905,6 +919,38 @@
             this.labelXeRa.TabIndex = 14;
             this.labelXeRa.Text = "LÀN RA";
             // 
+            // imageBox1
+            // 
+            this.imageBox1.Location = new System.Drawing.Point(2, 2);
+            this.imageBox1.Name = "imageBox1";
+            this.imageBox1.Size = new System.Drawing.Size(209, 239);
+            this.imageBox1.TabIndex = 2;
+            this.imageBox1.TabStop = false;
+            // 
+            // imageBox2
+            // 
+            this.imageBox2.Location = new System.Drawing.Point(216, 2);
+            this.imageBox2.Name = "imageBox2";
+            this.imageBox2.Size = new System.Drawing.Size(209, 239);
+            this.imageBox2.TabIndex = 18;
+            this.imageBox2.TabStop = false;
+            // 
+            // imageBox3
+            // 
+            this.imageBox3.Location = new System.Drawing.Point(444, 2);
+            this.imageBox3.Name = "imageBox3";
+            this.imageBox3.Size = new System.Drawing.Size(209, 239);
+            this.imageBox3.TabIndex = 19;
+            this.imageBox3.TabStop = false;
+            // 
+            // imageBox4
+            // 
+            this.imageBox4.Location = new System.Drawing.Point(658, 2);
+            this.imageBox4.Name = "imageBox4";
+            this.imageBox4.Size = new System.Drawing.Size(209, 239);
+            this.imageBox4.TabIndex = 20;
+            this.imageBox4.TabStop = false;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1001,6 +1047,10 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1078,5 +1128,11 @@
         private System.Windows.Forms.DataGridViewImageColumn DoanhThuPartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CountCarSurvive;
         private System.Windows.Forms.DataGridViewTextBoxColumn CountCarEmpty;
+        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Timer timer1;
+        private Emgu.CV.UI.ImageBox imageBox1;
+        private Emgu.CV.UI.ImageBox imageBox4;
+        private Emgu.CV.UI.ImageBox imageBox3;
+        private Emgu.CV.UI.ImageBox imageBox2;
     }
 }
