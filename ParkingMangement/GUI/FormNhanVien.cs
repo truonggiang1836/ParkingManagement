@@ -31,6 +31,8 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using AForge.Vision.Motion;
 using ParkingMangement.TextRecognized;
+using Emgu.CV;
+using Emgu.CV.CvEnum;
 
 namespace ParkingMangement.GUI
 {
@@ -73,6 +75,7 @@ namespace ParkingMangement.GUI
         public FormNhanVien()
         {
             InitializeComponent();
+            CvInvoke.UseOpenCL = false;
             Control.CheckForIllegalCrossThreadCalls = false;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -149,12 +152,18 @@ namespace ParkingMangement.GUI
             Util.CreateFolderIfMissing(Constant.IMAGE_FOLDER);
             loadInfo();
             configVLC();
-            loadCamera1VLC();
-            loadCamera2VLC();
-            loadCamera3VLC();
-            loadCamera4VLC();
+            //loadCamera1VLC();
+            //loadCamera2VLC();
+            //loadCamera3VLC();
+            //loadCamera4VLC();
 
             oldSize = base.Size;
+
+            CheckForIllegalCrossThreadCalls = false;
+            loadEmguCvCamera1();
+            loadEmguCvCamera2();
+            loadEmguCvCamera3();
+            loadEmguCvCamera4();
         }
 
         private void loadInfo()
@@ -1577,6 +1586,114 @@ namespace ParkingMangement.GUI
             catch
             {
                 //MessageBox.Show("Not Recognized");
+            }
+        }
+
+        private Capture capture1 = null;
+        private Capture capture2 = null;
+        private Capture capture3 = null;
+        private Capture capture4 = null;
+        private void ProcessFrame1(object sender, EventArgs arg)
+        {
+            int height = imageBox1.Height;
+            int width = imageBox1.Width;
+            Mat frame = new Mat();
+
+            capture1.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox1.Image = frame;
+        }
+
+        private void ProcessFrame2(object sender, EventArgs arg)
+        {
+            int height = imageBox2.Height;
+            int width = imageBox2.Width;
+            Mat frame = new Mat();
+
+            capture2.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox2.Image = frame;
+        }
+
+        private void ProcessFrame3(object sender, EventArgs arg)
+        {
+            int height = imageBox3.Height;
+            int width = imageBox3.Width;
+            Mat frame = new Mat();
+
+            capture3.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox3.Image = frame;
+        }
+
+        private void ProcessFrame4(object sender, EventArgs arg)
+        {
+            int height = imageBox4.Height;
+            int width = imageBox4.Width;
+            Mat frame = new Mat();
+
+            capture4.Retrieve(frame, 0);
+            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+
+            imageBox4.Image = frame;
+        }
+
+        private void loadEmguCvCamera1()
+        {
+            try
+            {
+                capture1 = new Emgu.CV.Capture(cameraUrl1);
+                capture1.ImageGrabbed += ProcessFrame1;
+                capture1.Start();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void loadEmguCvCamera2()
+        {
+            try
+            {
+                capture2 = new Emgu.CV.Capture(cameraUrl2);
+                capture2.ImageGrabbed += ProcessFrame2;
+                capture2.Start();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void loadEmguCvCamera3()
+        {
+            try
+            {
+                capture3 = new Emgu.CV.Capture(cameraUrl3);
+                capture3.ImageGrabbed += ProcessFrame3;
+                capture3.Start();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void loadEmguCvCamera4()
+        {
+            try
+            {
+                capture4 = new Emgu.CV.Capture(cameraUrl4);
+                capture4.ImageGrabbed += ProcessFrame4;
+                capture4.Start();
+            }
+            catch
+            {
+
             }
         }
     }
