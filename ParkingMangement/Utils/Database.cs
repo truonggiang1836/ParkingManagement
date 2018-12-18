@@ -24,11 +24,11 @@ namespace ParkingMangement
         {
             try
             {
-                //if (config == null)
-                //{
-                //    config = Util.getConfigFile();
-                //}
-                //_connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=\\" + config.ipHost + @"\" + config.folderRoot + @"\ParkingManagement.mdb";
+                if (config == null)
+                {
+                    config = Util.getConfigFile();
+                }
+                _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Constant.getSharedParkingManagementFolder() + "ParkingManagement.mdb";
                 connection = new OleDbConnection(_connectionString);
                 connection.Open();
             }

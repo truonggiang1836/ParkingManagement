@@ -28,6 +28,7 @@ namespace ParkingMangement
             if (Util.getConfigFile() != null && currentIP.Equals(Util.getConfigFile().ipHost))
             {
                 isHostMachine = true;
+                //Util.ShareFolder(Constant.LOCAL_ROOT_FOLDER, Constant.FOLDER_NAME_PARKING_MANAGEMENT, "");
             }
 
             Application.EnableVisualStyles();

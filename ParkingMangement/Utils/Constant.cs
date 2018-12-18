@@ -65,7 +65,10 @@ namespace ParkingMangement.Utils
         public static string sMessageRenewPlusDateInvalidError = "Số ngày gia hạn không hợp lệ";
 
         // Config
-        public static string IMAGE_FOLDER = Application.StartupPath + @"\Images\";
+        public static string FOLDER_NAME_IMAGES = "Images";
+        public static string FOLDER_NAME_PARKING_MANAGEMENT = "ParkingManagement";
+        public static string LOCAL_ROOT_FOLDER = Application.StartupPath + @"\" + FOLDER_NAME_PARKING_MANAGEMENT + @"\";
+        public static string LOCAL_IMAGE_FOLDER = Application.StartupPath + @"\" + FOLDER_NAME_PARKING_MANAGEMENT + @"\" + FOLDER_NAME_IMAGES + @"\";
         public const int LOG_TYPE_CREATE_TICKET_MONTH = 1;
         public const int LOG_TYPE_UPDATE_TICKET_MONTH = 2;
         public const int LOG_TYPE_DELETE_TICKET_MONTH = 3;
@@ -145,5 +148,20 @@ namespace ParkingMangement.Utils
 
         public static String sDateTimeFormatForQuery = "yyyy/MM/dd HH:mm:ss";
         public static String sDateTimeFormatForAPI = "yyyy-MM-dd HH:mm";
+
+        public static string getSharedImageFolder()
+        {
+            return @"\\" + Util.getConfigFile().ipHost + @"\" + Util.getConfigFile().folderRoot + FOLDER_NAME_IMAGES + @"\";
+        }
+
+        public static string getSharedParkingManagementFolder()
+        {
+            return @"\\" + Util.getConfigFile().ipHost + @"\" + Util.getConfigFile().folderRoot + @"\";
+        }
+
+        public static string getSharedRootFolder()
+        {
+            return @"\\" + Util.getConfigFile().ipHost + @"\";
+        }
     }
 }

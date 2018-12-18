@@ -149,7 +149,6 @@ namespace ParkingMangement.GUI
             //Random rnd = new Random();
             //cardID = rnd.Next(119, 122) + "";
 
-            Util.CreateFolderIfMissing(Constant.IMAGE_FOLDER);
             loadInfo();
             configVLC();
             //loadCamera1VLC();
@@ -245,16 +244,19 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void saveImageToFile(System.Drawing.Image image, string fileName)
-        {
-            string path = Constant.IMAGE_FOLDER + fileName;
-            image.Save(path, ImageFormat.Jpeg);
-        }
+        //private void saveImageToFile(System.Drawing.Image image, string fileName)
+        //{
+        //    string path = Constant.LOCAL_IMAGE_FOLDER + fileName;
+        //    image.Save(path, ImageFormat.Jpeg);
+        //}
 
         private void saveBitmapToFile(Bitmap bitmap, string fileName)
         {
-            string path = Constant.IMAGE_FOLDER + fileName;
-            bitmap.Save(path, ImageFormat.Jpeg);
+            string sharedPath = Constant.getSharedImageFolder() + fileName;
+            //string path = Constant.LOCAL_IMAGE_FOLDER + fileName;
+            //bitmap.Save(path, ImageFormat.Jpeg);
+            //File.Move(path, sharedPath);
+            bitmap.Save(sharedPath, ImageFormat.Jpeg);
         }
 
         private void saveImage()
@@ -734,7 +736,7 @@ namespace ParkingMangement.GUI
             {
                 int inOutType = ConfigDAO.GetInOutType();
                 string image = dt.Rows[0].Field<string>("Images");
-                string imagePath1 = Constant.IMAGE_FOLDER + image;
+                string imagePath1 = Constant.getSharedImageFolder() + image;
                 if (File.Exists(imagePath1))
                 {
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)
@@ -758,7 +760,7 @@ namespace ParkingMangement.GUI
                     }
                 }
                 string image2 = dt.Rows[0].Field<string>("Images2");
-                string imagePath2 = Constant.IMAGE_FOLDER + image2;
+                string imagePath2 = Constant.getSharedImageFolder() + image2;
                 if (File.Exists(imagePath2))
                 {
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)

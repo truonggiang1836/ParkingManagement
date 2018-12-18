@@ -28,6 +28,7 @@ namespace ParkingMangement
         private void FormMain_Load(object sender, EventArgs e)
         {
             initView();
+            copyFile();
         }
 
         private void initView()
@@ -199,6 +200,13 @@ namespace ParkingMangement
         {
             if (string.IsNullOrWhiteSpace(tbPassword.Text))
                 tbPassword.Text = Constant.sHintTextPassword;
+        }
+
+        private void copyFile()
+        {
+            //string localPath = Application.StartupPath + @"\Images\" + "636666552009185502.jpg";
+            //string sharedPath = Constant.getSharedImageFolder() + "636666552009185502.jpg";
+            //File.Copy(localPath, sharedPath);
         }
     }
 }

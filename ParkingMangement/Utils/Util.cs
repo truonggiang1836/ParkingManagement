@@ -11,10 +11,13 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Management;
+using System.Security.Principal;
 
 namespace ParkingMangement.Utils
 {
@@ -292,6 +295,57 @@ namespace ParkingMangement.Utils
             catch (Exception e)
             {
 
+            }
+        }
+
+        public static void ShareFolder(string FolderPath, string ShareName, string Description)
+        {
+            try
+            {
+                NTAccount ntAccount = new NTAccount("Everyone");
+                SecurityIdentifier oGrpSID = (SecurityIdentifier)ntAccount.Translate(typeof(SecurityIdentifier));
+                byte[] utenteSIDArray = new byte[oGrpSID.BinaryLength];
+                oGrpSID.GetBinaryForm(utenteSIDArray, 0);
+                ManagementObject oGrpTrustee = new ManagementClass(new ManagementPath("Win32_Trustee"), null);
+                oGrpTrustee["Name"] = "Everyone";
+                oGrpTrustee["SID"] = utenteSIDArray;
+                ManagementObject oGrpACE = new ManagementClass(new ManagementPath("Win32_Ace"), null);
+                oGrpACE["AccessMask"] = 2032127;//Full access
+                oGrpACE["AceFlags"] = AceFlags.ObjectInherit | AceFlags.ContainerInherit; //propagate the AccessMask to the subfolders
+                oGrpACE["AceType"] = AceType.AccessAllowed;
+                oGrpACE["Trustee"] = oGrpTrustee;             
+                ManagementObject oGrpSecurityDescriptor = new ManagementClass(new ManagementPath("Win32_SecurityDescriptor"), null);
+                oGrpSecurityDescriptor["ControlFlags"] = 4; //SE_DACL_PRESENT
+                oGrpSecurityDescriptor["DACL"] = new object[] { oGrpACE };
+
+
+                CreateFolderIfMissing(FolderPath);
+                // Create a ManagementClass object
+                ManagementClass managementClass = new ManagementClass("win32_share");
+
+                // Create ManagementBaseObjects for in and out parameters
+                ManagementBaseObject inParams = managementClass.GetMethodParameters("Create");
+                ManagementBaseObject outParams;
+
+                // Set the input parameters
+                inParams["Description"] = Description;
+                inParams["Name"] = ShareName;
+                inParams["Path"] = FolderPath;
+                inParams["Type"] = 0x0; // Disk Drive
+                inParams["MaximumAllowed"] = null;
+                inParams["Password"] = null;
+                inParams["Access"] = oGrpSecurityDescriptor;
+
+                // Invoke the method on the ManagementClass object
+                outParams = managementClass.InvokeMethod("Create", inParams, null);
+                if ((uint)(outParams.Properties["ReturnValue"].Value) != 0)
+                {
+                    throw new Exception("Unable to share directory.");
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message, "error!");
             }
         }
     }

@@ -198,7 +198,7 @@ namespace ParkingMangement.GUI
             string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
             if (!string.IsNullOrEmpty(image1))
             {
-                string filePath = Constant.IMAGE_FOLDER + image1;
+                string filePath = Constant.getSharedImageFolder() + image1;
                 if (File.Exists(filePath))
                 {
                     pictureBoxCarLogImage1.Image = Image.FromFile(filePath);
@@ -207,7 +207,7 @@ namespace ParkingMangement.GUI
             string image2 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages2"].Value);
             if (!string.IsNullOrEmpty(image2))
             {
-                string filePath = Constant.IMAGE_FOLDER + image2;
+                string filePath = Constant.getSharedImageFolder() + image2;
                 if (File.Exists(filePath))
                 {
                     pictureBoxCarLogImage2.Image = Image.FromFile(filePath);
@@ -216,7 +216,7 @@ namespace ParkingMangement.GUI
             string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
             if (!string.IsNullOrEmpty(image3))
             {
-                string filePath = Constant.IMAGE_FOLDER + image3;
+                string filePath = Constant.getSharedImageFolder() + image3;
                 if (File.Exists(filePath))
                 {
                     pictureBoxCarLogImage3.Image = Image.FromFile(filePath);
@@ -225,7 +225,7 @@ namespace ParkingMangement.GUI
             string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
             if (!string.IsNullOrEmpty(image4))
             {
-                string filePath = Constant.IMAGE_FOLDER + image4;
+                string filePath = Constant.getSharedImageFolder() + image4;
                 if (File.Exists(filePath))
                 {
                     pictureBoxCarLogImage4.Image = Image.FromFile(filePath);
