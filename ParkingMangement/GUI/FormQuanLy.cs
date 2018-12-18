@@ -4183,7 +4183,7 @@ namespace ParkingMangement.GUI
         private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
             _rawinput.KeyPressed -= OnKeyPressed;
-            Application.Exit();
+            //Application.Exit();
         }
 
         private void btnKichHoatThe_Click(object sender, EventArgs e)

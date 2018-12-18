@@ -151,18 +151,22 @@ namespace ParkingMangement.GUI
 
             loadInfo();
             configVLC();
-            //loadCamera1VLC();
-            //loadCamera2VLC();
-            //loadCamera3VLC();
-            //loadCamera4VLC();
+            loadCamera1VLC();
+            loadCamera2VLC();
+            loadCamera3VLC();
+            loadCamera4VLC();
 
             oldSize = base.Size;
 
             CheckForIllegalCrossThreadCalls = false;
-            loadEmguCvCamera1();
-            loadEmguCvCamera2();
-            loadEmguCvCamera3();
-            loadEmguCvCamera4();
+            //loadEmguCvCamera1();
+            //loadEmguCvCamera2();
+            //loadEmguCvCamera3();
+            //loadEmguCvCamera4();
+            imageBox1.Visible = false;
+            imageBox2.Visible = false;
+            imageBox3.Visible = false;
+            imageBox4.Visible = false;
         }
 
         private void loadInfo()
@@ -1564,31 +1568,31 @@ namespace ParkingMangement.GUI
         }
         private void DisplayNumberPalate(bool isCarIn)
         {
-            try
-            {
-                //lay anh bang so
-                ImagePlate.Get_Plate();
-                //tao anh bang so
-                LicensePlate = new clsLicensePlate();
-                LicensePlate.PLATE = ImagePlate.PLATE;
-                //cat ky tu
-                LicensePlate.Split(ImagePlate.Plate_Type);
-                //recognize
-                Network.IMAGEARR = LicensePlate.IMAGEARR;
-                int sum = LicensePlate.getsumcharacter();
-                Network.recognition(sum, ImagePlate.Plate_Type);
-                if (isCarIn)
-                {
-                    labelDigitIn.Text = Network.LICENSETEXT.Trim();
-                } else
-                {
-                    labelDigitOut.Text = Network.LICENSETEXT.Trim();
-                }
-            }
-            catch
-            {
-                //MessageBox.Show("Not Recognized");
-            }
+            //try
+            //{
+            //    //lay anh bang so
+            //    ImagePlate.Get_Plate();
+            //    //tao anh bang so
+            //    LicensePlate = new clsLicensePlate();
+            //    LicensePlate.PLATE = ImagePlate.PLATE;
+            //    //cat ky tu
+            //    LicensePlate.Split(ImagePlate.Plate_Type);
+            //    //recognize
+            //    Network.IMAGEARR = LicensePlate.IMAGEARR;
+            //    int sum = LicensePlate.getsumcharacter();
+            //    Network.recognition(sum, ImagePlate.Plate_Type);
+            //    if (isCarIn)
+            //    {
+            //        labelDigitIn.Text = Network.LICENSETEXT.Trim();
+            //    } else
+            //    {
+            //        labelDigitOut.Text = Network.LICENSETEXT.Trim();
+            //    }
+            //}
+            //catch
+            //{
+            //    //MessageBox.Show("Not Recognized");
+            //}
         }
 
         private Capture capture1 = null;
