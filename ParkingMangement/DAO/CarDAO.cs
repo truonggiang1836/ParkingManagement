@@ -32,7 +32,7 @@ namespace ParkingMangement.DAO
         private static string sqlQueryTicketCommon= " and Car.IDTicketMonth = '' ";
         private static string sqlQueryXeTon = " and Car.IDOut = '' ";
         private static string sqlQueryMatThe = " and Car.IsLostCard > " + 0 + "";
-        private static string sqlOrderByIdentify = " order by Car.Identify asc";
+        private static string sqlOrderByIdentify = " order by Car.Identify desc";
 
         public static DataTable GetAllData()
         {

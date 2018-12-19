@@ -16,7 +16,7 @@ namespace ParkingMangement
     class Database
     {
         //protected static String _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ParkingManagement.accdb";
-        protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb";
+        protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb;Mode=Share Deny None";
 
         static OleDbConnection connection;
         static Config config;
@@ -28,7 +28,7 @@ namespace ParkingMangement
                 {
                     config = Util.getConfigFile();
                 }
-                _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Constant.getSharedParkingManagementFolder() + "ParkingManagement.mdb";
+                _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Constant.getSharedParkingManagementFolder() + "ParkingManagement.mdb;Mode=Share Deny None";
                 connection = new OleDbConnection(_connectionString);
                 connection.Open();
             }

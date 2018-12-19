@@ -251,7 +251,7 @@ namespace ParkingMangement.Utils
             {
                 Order order = new Order();
                 order.AreaId = 1;
-                //order.OrderId = dtRow.Field<int>("Identify");
+                order.OrderId = dtRow.Field<int>("Identify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
                 order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
@@ -279,14 +279,18 @@ namespace ParkingMangement.Utils
                 order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 listOrder.Add(order);
-                if (listOrder.Count == 1)
+                if (listOrder.Count == 10)
                 {
                     break;
                 }
             }
-            string jsonString = JsonConvert.SerializeObject(listOrder);
             WebClient webClient = (new ApiUtil()).getWebClient();
-            webClient.QueryString.Add(ApiUtil.PARAM_DATA, jsonString);
+            for (int i = 0; i < listOrder.Count; i++)
+            {
+                string jsonString = JsonConvert.SerializeObject(listOrder[i]);
+                string index = (i + 1).ToString();
+                webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
+            }
             try
             {
                 String responseString = webClient.DownloadString(ApiUtil.API_ORDERS_BATCH_INSERT);

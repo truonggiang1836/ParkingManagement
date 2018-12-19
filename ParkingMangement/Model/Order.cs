@@ -11,8 +11,8 @@ namespace ParkingMangement.Model
     {
         [JsonProperty("area_id")]
         public int AreaId { get; set; }
-        //[JsonProperty("order_id")]
-        //public int OrderId { get; set; }
+        [JsonProperty("order_id")]
+        public int OrderId { get; set; }
         //[JsonProperty("card_id")]
         //public int CardId { get; set; }
         [JsonProperty("card_code")]
