@@ -88,13 +88,23 @@ namespace ParkingMangement.DAO
         public static int GetUsingCardCount()
         {
             string sql = "select * from [SmartCard] where SmartCard.IsUsing = '1'";
-            return Database.ExcuQuery(sql).Rows.Count;
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null)
+            {
+                return dt.Rows.Count;
+            }
+            return 0;
         }
 
         public static int GetNotUsingCardCount()
         {
             string sql = "select * from [SmartCard] where SmartCard.IsUsing = '0'";
-            return Database.ExcuQuery(sql).Rows.Count;
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null)
+            {
+                return dt.Rows.Count;
+            }
+            return 0;
         }
 
         public static bool Delete(string userID)

@@ -2179,12 +2179,15 @@ namespace ParkingMangement.GUI
         public static void loadUserDataToComboBox(ComboBox cb)
         {
             DataTable dt = UserDAO.GetAllData();
-            DataRow dr = dt.NewRow();
-            dr["NameUser"] = "Tất cả";
-            dt.Rows.InsertAt(dr, 0);
-            cb.DataSource = dt;
-            cb.DisplayMember = "NameUser";
-            cb.ValueMember = "UserID";
+            if (dt != null)
+            {
+                DataRow dr = dt.NewRow();
+                dr["NameUser"] = "Tất cả";
+                dt.Rows.InsertAt(dr, 0);
+                cb.DataSource = dt;
+                cb.DisplayMember = "NameUser";
+                cb.ValueMember = "UserID";
+            }
         }
 
         public static void setFormatTimeForDateTimePicker(DateTimePicker dateTimePicker)

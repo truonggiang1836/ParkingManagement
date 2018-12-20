@@ -32,33 +32,34 @@ namespace ParkingMangement.DAO
         private static string sqlQueryTicketCommon= " and Car.IDTicketMonth = '' ";
         private static string sqlQueryXeTon = " and Car.IDOut = '' ";
         private static string sqlQueryMatThe = " and Car.IsLostCard > " + 0 + "";
-        private static string sqlOrderByIdentify = " order by Car.Identify desc";
+        private static string sqlOrderByIdentifyDesc = " order by Car.Identify desc";
+        private static string sqlOrderByIdentifyAsc = " order by Car.Identify asc";
 
         public static DataTable GetAllData()
         {
-            string sql = sqlGetAllData + sqlOrderByIdentify;
+            string sql = sqlGetAllData + sqlOrderByIdentifyDesc;
             DataTable data = Database.ExcuQuery(sql);
             setUserNameForDataTable(data);
             return data;
         }
 
-        public static DataTable GetAllDataWithoutSetUserName()
+        public static DataTable GetDataWithoutSetUserName(int identify)
         {
-            string sql = sqlGetAllData + sqlOrderByIdentify;
+            string sql = sqlGetAllData + " and Car.Identify > " + identify + sqlOrderByIdentifyAsc;
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 
         public static DataTable GetAllDataForCashManagement()
         {
-            string sql = sqlGetDataForCashManagement + sqlOrderByIdentify;
+            string sql = sqlGetDataForCashManagement + sqlOrderByIdentifyDesc;
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 
         public static DataTable GetAllTicketMonthData()
         {
-            string sql = sqlGetAllTicketMonthData + sqlQueryTicketMonth + sqlOrderByIdentify;
+            string sql = sqlGetAllTicketMonthData + sqlQueryTicketMonth + sqlOrderByIdentifyDesc;
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
@@ -97,7 +98,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchAllData(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlOrderByIdentify;
+            sql += sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
@@ -110,7 +111,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchAllDataWithoutSetUserName(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlOrderByIdentify;
+            sql += sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -119,7 +120,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchXeTon(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlQueryXeTon + sqlOrderByIdentify;
+            sql += sqlQueryXeTon + sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
@@ -132,7 +133,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchMatThe(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlQueryMatThe + sqlOrderByIdentify;
+            sql += sqlQueryMatThe + sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
@@ -154,7 +155,7 @@ namespace ParkingMangement.DAO
             {
                 sql += " and TicketMonth.Company like '%" + ticketMonthDTO.Company + "%'";
             }         
-            sql += sqlOrderByIdentify;
+            sql += sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -454,6 +455,18 @@ namespace ParkingMangement.DAO
         public static int GetLastIdentifyByID(string id)
         {
             string sql = "select * from [Car] where ID = '" + id + "'" + " order by Identify desc";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                int identify = dt.Rows[0].Field<int>("Identify");
+                return identify;
+            }
+            return 0;
+        }
+
+        public static int GetLastIdentify()
+        {
+            string sql = "select * from [Car] order by Identify desc";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {

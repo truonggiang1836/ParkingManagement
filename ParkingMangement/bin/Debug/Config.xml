@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <camera_url_1>&lt;![CDATA[rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov]]&gt;</camera_url_1>
-  <camera_url_2>&lt;![CDATA[rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov]]&gt;</camera_url_2>
-  <camera_url_3>&lt;![CDATA[rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov]]&gt;</camera_url_3>
-  <camera_url_4>&lt;![CDATA[rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov]]&gt;</camera_url_4>
-  <rfid_in>&lt;![CDATA[\\?\HID#VID_0E6A&amp;PID_0305#6&amp;570cfd7&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}]]&gt;</rfid_in>
-  <rfid_out>&lt;![CDATA[\\?\HID#VID_0E6A&amp;PID_0305#6&amp;182a807c&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}]]&gt;</rfid_out>
-  <ip_host>&lt;![CDATA[192.168.1.111]]&gt;</ip_host>
-  <folder_root>&lt;![CDATA[ParkingManagement]]&gt;</folder_root>
+  <camera_url_1>rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov</camera_url_1>
+  <camera_url_2>rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov</camera_url_2>
+  <camera_url_3>rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov</camera_url_3>
+  <camera_url_4>rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov</camera_url_4>
+  <rfid_in>\\?\HID#VID_0E6A&amp;PID_0305#6&amp;570cfd7&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_in>
+  <rfid_out>\\?\HID#VID_0E6A&amp;PID_0305#6&amp;182a807c&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_out>
+  <ip_host>192.168.1.111</ip_host>
+  <folder_root>ParkingManagement</folder_root>
+  <last_saved_order>145</last_saved_order>
 </xml>

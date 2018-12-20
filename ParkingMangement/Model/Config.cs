@@ -33,5 +33,8 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "folder_root")]
         public string folderRoot { get; set; }
+
+        [XmlElement(ElementName = "last_saved_order")]
+        public string lastSavedOrder { get; set; }
     }
 }

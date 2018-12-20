@@ -1,12 +1,16 @@
 ﻿using ParkingMangement.DAO;
 using ParkingMangement.GUI;
+using ParkingMangement.Model;
 using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ParkingMangement
 {
@@ -44,19 +48,32 @@ namespace ParkingMangement
 
         public static void sendOrderListToServer()
         {
-            Util.sendOrderListToServer(CarDAO.GetAllDataWithoutSetUserName());
-            System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 300000;
-            aTimer.Enabled = true;
-            aTimer.Start();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                /* run your code here */
+                updateOrderToSever();
+
+                System.Timers.Timer aTimer = new System.Timers.Timer();
+                aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                aTimer.Interval = 30 * 60 * 1000;
+                aTimer.Enabled = true;
+                aTimer.Start();
+            }).Start();
         }
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
+            updateOrderToSever();
+        }
+
+        private static void updateOrderToSever()
+        {
             if (isHostMachine)
             {
-                Util.sendOrderListToServer(CarDAO.GetAllDataWithoutSetUserName());
+                string lastSavedIdentifyString = Util.getConfigFile().lastSavedOrder;
+                int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
+                Util.sendOrderListToServer(CarDAO.GetDataWithoutSetUserName(lastSavedIdentify));
             }
         }
     }

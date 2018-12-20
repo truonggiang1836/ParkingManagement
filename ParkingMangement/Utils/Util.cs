@@ -188,6 +188,7 @@ namespace ParkingMangement.Utils
                         config.rfidOut = config.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.ipHost = config.ipHost.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.folderRoot = config.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.lastSavedOrder = config.lastSavedOrder;
                         return config;
                     }
                 }
@@ -285,16 +286,43 @@ namespace ParkingMangement.Utils
                 }
             }
             WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
             for (int i = 0; i < listOrder.Count; i++)
             {
                 string jsonString = JsonConvert.SerializeObject(listOrder[i]);
                 string index = (i + 1).ToString();
                 webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
             }
             try
             {
-                String responseString = webClient.DownloadString(ApiUtil.API_ORDERS_BATCH_INSERT);
-                int x = 0;
+                byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
+                String responseString = Encoding.UTF8.GetString(responsebytes);
+
+                int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
+                saveLastOrderToConfig(lastIdentify);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private static void saveLastOrderToConfig(int lastIdentify)
+        {
+            try
+            {
+                String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+                if (File.Exists(filePath))
+                {
+                    Config config = Util.getConfigFile();
+                    config.lastSavedOrder = lastIdentify + "";
+
+                    XmlSerializer xs = new XmlSerializer(typeof(Config));
+                    TextWriter txtWriter = new StreamWriter(filePath);
+                    xs.Serialize(txtWriter, config);
+                    txtWriter.Close();
+                }
             }
             catch (Exception e)
             {

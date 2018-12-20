@@ -64,23 +64,22 @@ namespace ParkingMangement
 
         public static DataTable ExcuQuery(string sql)
         {
+            DataTable dt = new DataTable();
             try
             {
                 OpenConnection();
-                DataTable dt = new DataTable();
                 OleDbCommand command = connection.CreateCommand();
                 command.CommandText = sql;
                 OleDbDataAdapter adapter = new OleDbDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
                 CloseConnection();
-                return dt;
             } catch (Exception e)
             {
                 //MessageBox.Show(Constant.sMessageCommonError);
                 MessageBox.Show(e.Message);
-                return null;
             }
+            return dt;
         }
         public static bool ExcuNonQuery(string sql)
         {
