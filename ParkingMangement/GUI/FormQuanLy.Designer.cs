@@ -838,6 +838,16 @@
             this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
             this.tabPageTraCuuVaoRaVeThang = new System.Windows.Forms.TabPage();
             this.dgvCarTicketMonthList = new System.Windows.Forms.DataGridView();
+            this.STT_CarTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column49 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column51 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel15 = new System.Windows.Forms.Panel();
             this.dateTimePickerCarTicketMonthTimeOut = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerCarTicketMonthTimeIn = new System.Windows.Forms.DateTimePicker();
@@ -852,16 +862,6 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.STT_CarTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column39 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column49 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column36 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column37 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column41 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column42 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column51 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -6672,7 +6672,7 @@
             this.label129.Name = "label129";
             this.label129.Size = new System.Drawing.Size(73, 16);
             this.label129.TabIndex = 46;
-            this.label129.Text = "Folder root";
+            this.label129.Text = "Folder gốc";
             // 
             // tb_folder_root
             // 
@@ -6685,11 +6685,11 @@
             // 
             this.label130.AutoSize = true;
             this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.Location = new System.Drawing.Point(17, 195);
+            this.label130.Location = new System.Drawing.Point(15, 195);
             this.label130.Name = "label130";
-            this.label130.Size = new System.Drawing.Size(73, 16);
+            this.label130.Size = new System.Drawing.Size(85, 16);
             this.label130.TabIndex = 44;
-            this.label130.Text = "IP máy chủ";
+            this.label130.Text = "Tên máy chủ";
             // 
             // tb_rfid_1
             // 
@@ -8607,6 +8607,86 @@
             this.dgvCarTicketMonthList.TabIndex = 2;
             this.dgvCarTicketMonthList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCarTicketMonthList_DataBindingComplete);
             // 
+            // STT_CarTicketMonthList
+            // 
+            this.STT_CarTicketMonthList.HeaderText = "STT";
+            this.STT_CarTicketMonthList.Name = "STT_CarTicketMonthList";
+            this.STT_CarTicketMonthList.ReadOnly = true;
+            this.STT_CarTicketMonthList.Width = 70;
+            // 
+            // Column38
+            // 
+            this.Column38.DataPropertyName = "CustomerName";
+            this.Column38.HeaderText = "Tên KH";
+            this.Column38.Name = "Column38";
+            this.Column38.ReadOnly = true;
+            this.Column38.Width = 150;
+            // 
+            // Column39
+            // 
+            this.Column39.DataPropertyName = "Digit";
+            this.Column39.HeaderText = "Biển số";
+            this.Column39.Name = "Column39";
+            this.Column39.ReadOnly = true;
+            // 
+            // Column49
+            // 
+            this.Column49.DataPropertyName = "SmartCardIdentify";
+            this.Column49.HeaderText = "Số thẻ";
+            this.Column49.Name = "Column49";
+            this.Column49.ReadOnly = true;
+            // 
+            // Column36
+            // 
+            this.Column36.DataPropertyName = "ID";
+            this.Column36.HeaderText = "Mã chíp";
+            this.Column36.Name = "Column36";
+            this.Column36.ReadOnly = true;
+            // 
+            // Column37
+            // 
+            this.Column37.DataPropertyName = "Company";
+            this.Column37.HeaderText = "Công ty";
+            this.Column37.Name = "Column37";
+            this.Column37.ReadOnly = true;
+            this.Column37.Width = 170;
+            // 
+            // Column40
+            // 
+            this.Column40.DataPropertyName = "TimeStart";
+            dataGridViewCellStyle23.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column40.DefaultCellStyle = dataGridViewCellStyle23;
+            this.Column40.HeaderText = "Thời gian vào";
+            this.Column40.Name = "Column40";
+            this.Column40.ReadOnly = true;
+            this.Column40.Width = 135;
+            // 
+            // Column41
+            // 
+            this.Column41.DataPropertyName = "TimeEnd";
+            dataGridViewCellStyle24.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column41.DefaultCellStyle = dataGridViewCellStyle24;
+            this.Column41.HeaderText = "Thời gian ra";
+            this.Column41.Name = "Column41";
+            this.Column41.ReadOnly = true;
+            this.Column41.Width = 135;
+            // 
+            // Column42
+            // 
+            this.Column42.DataPropertyName = "PartName";
+            this.Column42.HeaderText = "Loại xe";
+            this.Column42.Name = "Column42";
+            this.Column42.ReadOnly = true;
+            this.Column42.Width = 130;
+            // 
+            // Column51
+            // 
+            this.Column51.DataPropertyName = "Identify";
+            this.Column51.HeaderText = "Column51";
+            this.Column51.Name = "Column51";
+            this.Column51.ReadOnly = true;
+            this.Column51.Visible = false;
+            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.dateTimePickerCarTicketMonthTimeOut);
@@ -8743,86 +8823,6 @@
             this.tabPageXemHopDen.TabIndex = 3;
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
-            // 
-            // STT_CarTicketMonthList
-            // 
-            this.STT_CarTicketMonthList.HeaderText = "STT";
-            this.STT_CarTicketMonthList.Name = "STT_CarTicketMonthList";
-            this.STT_CarTicketMonthList.ReadOnly = true;
-            this.STT_CarTicketMonthList.Width = 70;
-            // 
-            // Column38
-            // 
-            this.Column38.DataPropertyName = "CustomerName";
-            this.Column38.HeaderText = "Tên KH";
-            this.Column38.Name = "Column38";
-            this.Column38.ReadOnly = true;
-            this.Column38.Width = 150;
-            // 
-            // Column39
-            // 
-            this.Column39.DataPropertyName = "Digit";
-            this.Column39.HeaderText = "Biển số";
-            this.Column39.Name = "Column39";
-            this.Column39.ReadOnly = true;
-            // 
-            // Column49
-            // 
-            this.Column49.DataPropertyName = "SmartCardIdentify";
-            this.Column49.HeaderText = "Số thẻ";
-            this.Column49.Name = "Column49";
-            this.Column49.ReadOnly = true;
-            // 
-            // Column36
-            // 
-            this.Column36.DataPropertyName = "ID";
-            this.Column36.HeaderText = "Mã chíp";
-            this.Column36.Name = "Column36";
-            this.Column36.ReadOnly = true;
-            // 
-            // Column37
-            // 
-            this.Column37.DataPropertyName = "Company";
-            this.Column37.HeaderText = "Công ty";
-            this.Column37.Name = "Column37";
-            this.Column37.ReadOnly = true;
-            this.Column37.Width = 170;
-            // 
-            // Column40
-            // 
-            this.Column40.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle23.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column40.DefaultCellStyle = dataGridViewCellStyle23;
-            this.Column40.HeaderText = "Thời gian vào";
-            this.Column40.Name = "Column40";
-            this.Column40.ReadOnly = true;
-            this.Column40.Width = 135;
-            // 
-            // Column41
-            // 
-            this.Column41.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle24.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column41.DefaultCellStyle = dataGridViewCellStyle24;
-            this.Column41.HeaderText = "Thời gian ra";
-            this.Column41.Name = "Column41";
-            this.Column41.ReadOnly = true;
-            this.Column41.Width = 135;
-            // 
-            // Column42
-            // 
-            this.Column42.DataPropertyName = "PartName";
-            this.Column42.HeaderText = "Loại xe";
-            this.Column42.Name = "Column42";
-            this.Column42.ReadOnly = true;
-            this.Column42.Width = 130;
-            // 
-            // Column51
-            // 
-            this.Column51.DataPropertyName = "Identify";
-            this.Column51.HeaderText = "Column51";
-            this.Column51.Name = "Column51";
-            this.Column51.ReadOnly = true;
-            this.Column51.Visible = false;
             // 
             // FormQuanLy
             // 
