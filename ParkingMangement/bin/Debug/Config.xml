@@ -6,7 +6,8 @@
   <camera_url_4>rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov</camera_url_4>
   <rfid_in>\\?\HID#VID_0E6A&amp;PID_0305#6&amp;570cfd7&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_in>
   <rfid_out>\\?\HID#VID_0E6A&amp;PID_0305#6&amp;182a807c&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_out>
-  <ip_host>192.168.1.111</ip_host>
+  <ip_host>TRUONGGIANG</ip_host>
   <folder_root>ParkingManagement</folder_root>
   <last_saved_order>145</last_saved_order>
+  <in_out_type>1</in_out_type>
 </xml>

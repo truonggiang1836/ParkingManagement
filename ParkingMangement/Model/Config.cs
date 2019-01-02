@@ -36,5 +36,8 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "last_saved_order")]
         public string lastSavedOrder { get; set; }
+
+        [XmlElement(ElementName = "in_out_type")]
+        public int inOutType { get; set; }
     }
 }

@@ -31,8 +31,6 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using AForge.Vision.Motion;
 using ParkingMangement.TextRecognized;
-using Emgu.CV;
-using Emgu.CV.CvEnum;
 
 namespace ParkingMangement.GUI
 {
@@ -75,7 +73,7 @@ namespace ParkingMangement.GUI
         public FormNhanVien()
         {
             InitializeComponent();
-            CvInvoke.UseOpenCL = false;
+            //CvInvoke.UseOpenCL = false;
             Control.CheckForIllegalCrossThreadCalls = false;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
@@ -163,10 +161,10 @@ namespace ParkingMangement.GUI
             //loadEmguCvCamera2();
             //loadEmguCvCamera3();
             //loadEmguCvCamera4();
-            imageBox1.Visible = false;
-            imageBox2.Visible = false;
-            imageBox3.Visible = false;
-            imageBox4.Visible = false;
+            //imageBox1.Visible = false;
+            //imageBox2.Visible = false;
+            //imageBox3.Visible = false;
+            //imageBox4.Visible = false;
         }
 
         private void loadInfo()
@@ -426,7 +424,7 @@ namespace ParkingMangement.GUI
         {
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 labelMoiVao.Text = "";
@@ -648,7 +646,7 @@ namespace ParkingMangement.GUI
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";
 
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 labelMoiVao.Text = Constant.sLabelMoiRa;
@@ -738,7 +736,7 @@ namespace ParkingMangement.GUI
             DataTable dt = CarDAO.GetLastCarByID(cardID);
             if (dt != null)
             {
-                int inOutType = ConfigDAO.GetInOutType();
+                int inOutType = Util.getConfigFile().inOutType;
                 string image = dt.Rows[0].Field<string>("Images");
                 string imagePath1 = Constant.getSharedImageFolder() + image;
                 if (File.Exists(imagePath1))
@@ -859,7 +857,7 @@ namespace ParkingMangement.GUI
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
             PictureBox pictureBox = pictureBoxImage1;
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin3;
@@ -902,7 +900,7 @@ namespace ParkingMangement.GUI
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
             PictureBox pictureBox = pictureBoxImage2;
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin4;
@@ -948,7 +946,7 @@ namespace ParkingMangement.GUI
         private void saveImage3ToFile()
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin3;
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin1;
@@ -984,7 +982,7 @@ namespace ParkingMangement.GUI
         private void saveImage4ToFile()
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin4;
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin2;
@@ -1127,7 +1125,7 @@ namespace ParkingMangement.GUI
 
         private bool isCarIn()
         {
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             switch (inOutType)
             {
                 case ConfigDTO.TYPE_IN_IN:
@@ -1361,7 +1359,7 @@ namespace ParkingMangement.GUI
 
         public void updateCauHinhHienThiXeRaVao()
         {
-            int inOutType = ConfigDAO.GetInOutType();
+            int inOutType = Util.getConfigFile().inOutType;
             switch (inOutType)
             {
                 case ConfigDTO.TYPE_IN_IN:
@@ -1595,112 +1593,112 @@ namespace ParkingMangement.GUI
             //}
         }
 
-        private Capture capture1 = null;
-        private Capture capture2 = null;
-        private Capture capture3 = null;
-        private Capture capture4 = null;
-        private void ProcessFrame1(object sender, EventArgs arg)
-        {
-            int height = imageBox1.Height;
-            int width = imageBox1.Width;
-            Mat frame = new Mat();
+        //private Capture capture1 = null;
+        //private Capture capture2 = null;
+        //private Capture capture3 = null;
+        //private Capture capture4 = null;
+        //private void ProcessFrame1(object sender, EventArgs arg)
+        //{
+        //    int height = imageBox1.Height;
+        //    int width = imageBox1.Width;
+        //    Mat frame = new Mat();
 
-            capture1.Retrieve(frame, 0);
-            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+        //    capture1.Retrieve(frame, 0);
+        //    CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
 
-            imageBox1.Image = frame;
-        }
+        //    imageBox1.Image = frame;
+        //}
 
-        private void ProcessFrame2(object sender, EventArgs arg)
-        {
-            int height = imageBox2.Height;
-            int width = imageBox2.Width;
-            Mat frame = new Mat();
+        //private void ProcessFrame2(object sender, EventArgs arg)
+        //{
+        //    int height = imageBox2.Height;
+        //    int width = imageBox2.Width;
+        //    Mat frame = new Mat();
 
-            capture2.Retrieve(frame, 0);
-            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+        //    capture2.Retrieve(frame, 0);
+        //    CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
 
-            imageBox2.Image = frame;
-        }
+        //    imageBox2.Image = frame;
+        //}
 
-        private void ProcessFrame3(object sender, EventArgs arg)
-        {
-            int height = imageBox3.Height;
-            int width = imageBox3.Width;
-            Mat frame = new Mat();
+        //private void ProcessFrame3(object sender, EventArgs arg)
+        //{
+        //    int height = imageBox3.Height;
+        //    int width = imageBox3.Width;
+        //    Mat frame = new Mat();
 
-            capture3.Retrieve(frame, 0);
-            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+        //    capture3.Retrieve(frame, 0);
+        //    CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
 
-            imageBox3.Image = frame;
-        }
+        //    imageBox3.Image = frame;
+        //}
 
-        private void ProcessFrame4(object sender, EventArgs arg)
-        {
-            int height = imageBox4.Height;
-            int width = imageBox4.Width;
-            Mat frame = new Mat();
+        //private void ProcessFrame4(object sender, EventArgs arg)
+        //{
+        //    int height = imageBox4.Height;
+        //    int width = imageBox4.Width;
+        //    Mat frame = new Mat();
 
-            capture4.Retrieve(frame, 0);
-            CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
+        //    capture4.Retrieve(frame, 0);
+        //    CvInvoke.Resize(frame, frame, new Size(width, height), 0, 0, Inter.Linear);
 
-            imageBox4.Image = frame;
-        }
+        //    imageBox4.Image = frame;
+        //}
 
-        private void loadEmguCvCamera1()
-        {
-            try
-            {
-                capture1 = new Emgu.CV.Capture(cameraUrl1);
-                capture1.ImageGrabbed += ProcessFrame1;
-                capture1.Start();
-            }
-            catch
-            {
+        //private void loadEmguCvCamera1()
+        //{
+        //    try
+        //    {
+        //        capture1 = new Emgu.CV.Capture(cameraUrl1);
+        //        capture1.ImageGrabbed += ProcessFrame1;
+        //        capture1.Start();
+        //    }
+        //    catch
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void loadEmguCvCamera2()
-        {
-            try
-            {
-                capture2 = new Emgu.CV.Capture(cameraUrl2);
-                capture2.ImageGrabbed += ProcessFrame2;
-                capture2.Start();
-            }
-            catch
-            {
+        //private void loadEmguCvCamera2()
+        //{
+        //    try
+        //    {
+        //        capture2 = new Emgu.CV.Capture(cameraUrl2);
+        //        capture2.ImageGrabbed += ProcessFrame2;
+        //        capture2.Start();
+        //    }
+        //    catch
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void loadEmguCvCamera3()
-        {
-            try
-            {
-                capture3 = new Emgu.CV.Capture(cameraUrl3);
-                capture3.ImageGrabbed += ProcessFrame3;
-                capture3.Start();
-            }
-            catch
-            {
+        //private void loadEmguCvCamera3()
+        //{
+        //    try
+        //    {
+        //        capture3 = new Emgu.CV.Capture(cameraUrl3);
+        //        capture3.ImageGrabbed += ProcessFrame3;
+        //        capture3.Start();
+        //    }
+        //    catch
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void loadEmguCvCamera4()
-        {
-            try
-            {
-                capture4 = new Emgu.CV.Capture(cameraUrl4);
-                capture4.ImageGrabbed += ProcessFrame4;
-                capture4.Start();
-            }
-            catch
-            {
+        //private void loadEmguCvCamera4()
+        //{
+        //    try
+        //    {
+        //        capture4 = new Emgu.CV.Capture(cameraUrl4);
+        //        capture4.ImageGrabbed += ProcessFrame4;
+        //        capture4.Start();
+        //    }
+        //    catch
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }

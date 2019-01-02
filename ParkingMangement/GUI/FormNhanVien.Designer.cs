@@ -36,10 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.imageBox4 = new Emgu.CV.UI.ImageBox();
-            this.imageBox3 = new Emgu.CV.UI.ImageBox();
-            this.imageBox2 = new Emgu.CV.UI.ImageBox();
-            this.imageBox1 = new Emgu.CV.UI.ImageBox();
             this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
@@ -112,10 +108,6 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
@@ -152,10 +144,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.imageBox4);
-            this.panel1.Controls.Add(this.imageBox3);
-            this.panel1.Controls.Add(this.imageBox2);
-            this.panel1.Controls.Add(this.imageBox1);
             this.panel1.Controls.Add(this.axVLCPlugin4);
             this.panel1.Controls.Add(this.axVLCPlugin3);
             this.panel1.Controls.Add(this.axVLCPlugin2);
@@ -168,38 +156,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(870, 489);
             this.panel1.TabIndex = 0;
-            // 
-            // imageBox4
-            // 
-            this.imageBox4.Location = new System.Drawing.Point(658, 2);
-            this.imageBox4.Name = "imageBox4";
-            this.imageBox4.Size = new System.Drawing.Size(209, 239);
-            this.imageBox4.TabIndex = 20;
-            this.imageBox4.TabStop = false;
-            // 
-            // imageBox3
-            // 
-            this.imageBox3.Location = new System.Drawing.Point(444, 2);
-            this.imageBox3.Name = "imageBox3";
-            this.imageBox3.Size = new System.Drawing.Size(209, 239);
-            this.imageBox3.TabIndex = 19;
-            this.imageBox3.TabStop = false;
-            // 
-            // imageBox2
-            // 
-            this.imageBox2.Location = new System.Drawing.Point(216, 2);
-            this.imageBox2.Name = "imageBox2";
-            this.imageBox2.Size = new System.Drawing.Size(209, 239);
-            this.imageBox2.TabIndex = 18;
-            this.imageBox2.TabStop = false;
-            // 
-            // imageBox1
-            // 
-            this.imageBox1.Location = new System.Drawing.Point(2, 2);
-            this.imageBox1.Name = "imageBox1";
-            this.imageBox1.Size = new System.Drawing.Size(209, 239);
-            this.imageBox1.TabIndex = 2;
-            this.imageBox1.TabStop = false;
             // 
             // axVLCPlugin4
             // 
@@ -1013,10 +969,6 @@
             this.Load += new System.EventHandler(this.FormStaff_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imageBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
@@ -1130,9 +1082,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CountCarEmpty;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Windows.Forms.Timer timer1;
-        private Emgu.CV.UI.ImageBox imageBox1;
-        private Emgu.CV.UI.ImageBox imageBox4;
-        private Emgu.CV.UI.ImageBox imageBox3;
-        private Emgu.CV.UI.ImageBox imageBox2;
     }
 }
