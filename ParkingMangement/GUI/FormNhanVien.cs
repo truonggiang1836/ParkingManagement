@@ -642,6 +642,7 @@ namespace ParkingMangement.GUI
             carDTO.DateUpdate = DateTime.Now;
 
             CarDAO.UpdateCarOut(carDTO);
+            //Util.sendOrderToServer(CarDAO.GetCarByIdentify(identify));
 
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";
