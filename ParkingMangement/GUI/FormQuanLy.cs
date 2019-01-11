@@ -2400,10 +2400,10 @@ namespace ParkingMangement.GUI
             foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
             {
                 bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
-                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
+                string id = Convert.ToString(row.Cells["RenewTicketMonthID"].Value);
                 if (isChoose)
                 {
-                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, identify);
+                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, id);
                 }
             }
             loadRenewTicketMonthData();
@@ -2432,12 +2432,12 @@ namespace ParkingMangement.GUI
             foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
             {
                 bool isChoose = Convert.ToBoolean(row.Cells["RenewIsChosen"].Value);
-                int identify = Convert.ToInt32(row.Cells["RenewIdentify"].Value);
+                string id = Convert.ToString(row.Cells["RenewTicketMonthID"].Value);
                 DateTime expirationDate = Convert.ToDateTime(row.Cells["RenewExpirationDate"].Value);
                 expirationDate = expirationDate.AddDays(plusDate);
                 if (isChoose)
                 {
-                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, identify);
+                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, id);
                 }
             }
             loadRenewTicketMonthData();

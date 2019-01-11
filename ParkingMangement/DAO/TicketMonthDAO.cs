@@ -128,9 +128,9 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static void updateTicketByExpirationDate(DateTime expirationDate, int identify)
+        public static void updateTicketByExpirationDate(DateTime expirationDate, string id)
         {
-            string sql = "update [TicketMonth] set ExpirationDate = '" + expirationDate + "' where Identify = " + identify;
+            string sql = "update [TicketMonth] set ExpirationDate = '" + expirationDate + "'  where ID ='" + id + "'";
             Database.ExcuNonQuery(sql);
         }
 
