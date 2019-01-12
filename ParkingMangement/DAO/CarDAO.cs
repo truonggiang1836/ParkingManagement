@@ -43,9 +43,9 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable GetDataWithoutSetUserName(int identify)
+        public static DataTable GetDataRecently(int identify)
         {
-            string sql = sqlGetAllData + " and Car.Identify > " + identify + sqlOrderByIdentifyAsc;
+            string sql = "select * from [Car] where Car.Identify > " + identify + sqlOrderByIdentifyAsc;
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }

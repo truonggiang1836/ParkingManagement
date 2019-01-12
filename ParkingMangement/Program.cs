@@ -28,8 +28,8 @@ namespace ParkingMangement
         [STAThread]
         static void Main()
         {
-            string currentIP = Util.GetLocalIPAddress();
-            if (Util.getConfigFile() != null && currentIP.Equals(Util.getConfigFile().ipHost))
+            string pcName = Environment.MachineName;
+            if (Util.getConfigFile() != null && pcName.Equals(Util.getConfigFile().ipHost))
             {
                 isHostMachine = true;
                 //Util.ShareFolder(Constant.LOCAL_ROOT_FOLDER, Constant.FOLDER_NAME_PARKING_MANAGEMENT, "");
@@ -64,7 +64,11 @@ namespace ParkingMangement
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            updateOrderToSever();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                updateOrderToSever();
+            }).Start();
         }
 
         private static void updateOrderToSever()
@@ -73,7 +77,7 @@ namespace ParkingMangement
             {
                 string lastSavedIdentifyString = Util.getConfigFile().lastSavedOrder;
                 int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
-                Util.sendOrderListToServer(CarDAO.GetDataWithoutSetUserName(lastSavedIdentify));
+                Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
             }
         }
     }
