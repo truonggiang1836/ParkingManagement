@@ -280,7 +280,7 @@ namespace ParkingMangement.Utils
                 order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 listOrder.Add(order);
-                if (listOrder.Count == 10)
+                if (listOrder.Count == 5)
                 {
                     break;
                 }
