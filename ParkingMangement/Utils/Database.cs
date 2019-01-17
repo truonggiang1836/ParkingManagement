@@ -68,11 +68,14 @@ namespace ParkingMangement
             try
             {
                 OpenConnection();
-                OleDbCommand command = connection.CreateCommand();
-                command.CommandText = sql;
-                OleDbDataAdapter adapter = new OleDbDataAdapter();
-                adapter.SelectCommand = command;
-                adapter.Fill(dt);
+                if (connection.State == ConnectionState.Open)
+                {
+                    OleDbCommand command = connection.CreateCommand();
+                    command.CommandText = sql;
+                    OleDbDataAdapter adapter = new OleDbDataAdapter();
+                    adapter.SelectCommand = command;
+                    adapter.Fill(dt);
+                }
                 CloseConnection();
             } catch (Exception e)
             {
@@ -85,10 +88,14 @@ namespace ParkingMangement
         {
             try
             {
+                int result = 0;
                 OpenConnection();
-                OleDbCommand command = connection.CreateCommand();
-                command.CommandText = sql;
-                int result = command.ExecuteNonQuery();
+                if (connection.State == ConnectionState.Open)
+                {
+                    OleDbCommand command = connection.CreateCommand();
+                    command.CommandText = sql;
+                    result = command.ExecuteNonQuery();
+                }
                 CloseConnection();
                 if (result > 0)
                 {
