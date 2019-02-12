@@ -187,7 +187,10 @@ namespace ParkingMangement.GUI
                     //{
                     //    resetData();
                     //}
-                    resetData();
+                    if (!labelDigitIn.Focused)
+                    {
+                        resetData();
+                    }
                     tbRFIDCardID.Focus();
                     break;
                 case Keys.F1:
@@ -335,7 +338,7 @@ namespace ParkingMangement.GUI
 
         private void updateDigitCarIn()
         {
-            cardID = labelCardID.Text;
+            //cardID = labelCardID.Text;
             string digit = labelDigitIn.Text;
             if (!digit.Equals(""))
             {
@@ -799,7 +802,7 @@ namespace ParkingMangement.GUI
                 labelTimeOut.Text = DateTime.Now.ToString("HH:mm");
 
                 string digit = dt.Rows[0].Field<string>("Digit");
-                //labelDigitIn.Text = digit;
+                labelDigitIn.Text = digit;
             }
         }
 
@@ -1108,6 +1111,9 @@ namespace ParkingMangement.GUI
                 if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
             {
                 keyboardDeviceName = e.KeyPressEvent.DeviceName;
+            } else
+            {
+                keyboardDeviceName = "";
             }
         }
 
@@ -1422,13 +1428,19 @@ namespace ParkingMangement.GUI
 
         private void labelDigitIn_KeyDown(object sender, KeyEventArgs e)
         {
-            //switch (e.KeyCode)
-            //{
-            //    case Keys.Enter:
-            //        updateDigitCarIn();
-            //        tbRFIDCardID.Focus();
-            //        break;
-            //}
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    if (!keyboardDeviceName.Equals(rfidIn) && !keyboardDeviceName.Equals(rfidOut))
+                    {
+                        updateDigitCarIn();
+                        tbRFIDCardID.Focus();
+                    } else
+                    {
+                        labelDigitIn.Text = "";
+                    }
+                    break;
+            }
         }
 
         private void tbRFIDCardID_KeyDown(object sender, KeyEventArgs e)
