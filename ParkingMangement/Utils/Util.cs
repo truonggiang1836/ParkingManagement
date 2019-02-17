@@ -245,6 +245,10 @@ namespace ParkingMangement.Utils
 
         public static void sendOrderListToServer(DataTable data)
         {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
             string json = JsonConvert.SerializeObject(data);
             DataTable dtTable = data;
             List<Order> listOrder = new List<Order>();
@@ -310,6 +314,10 @@ namespace ParkingMangement.Utils
 
         public static void sendOrderToServer(DataTable data)
         {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
             DataTable dtTable = data;
             List<Order> listOrder = new List<Order>();
             foreach (DataRow dtRow in dtTable.Rows)
