@@ -31,6 +31,7 @@ using AForge.Video;
 using AForge.Video.DirectShow;
 using AForge.Vision.Motion;
 using ParkingMangement.TextRecognized;
+using WebEye.Controls.WinForms.StreamPlayerControl;
 
 namespace ParkingMangement.GUI
 {
@@ -149,10 +150,14 @@ namespace ParkingMangement.GUI
 
             loadInfo();
             configVLC();
-            loadCamera1VLC();
-            loadCamera2VLC();
-            loadCamera3VLC();
-            loadCamera4VLC();
+            //loadCamera1VLC();
+            //loadCamera2VLC();
+            //loadCamera3VLC();
+            //loadCamera4VLC();
+            loadCameraStreamPlayer(streamPlayerControl1, cameraUrl1);
+            loadCameraStreamPlayer(streamPlayerControl2, cameraUrl2);
+            loadCameraStreamPlayer(streamPlayerControl3, cameraUrl3);
+            loadCameraStreamPlayer(streamPlayerControl4, cameraUrl4);
 
             oldSize = base.Size;
 
@@ -1718,5 +1723,13 @@ namespace ParkingMangement.GUI
 
         //    }
         //}
+
+        private void loadCameraStreamPlayer(StreamPlayerControl streamPlayerControl, String cameraUrl)
+        {
+            var uri = new Uri(cameraUrl);
+            streamPlayerControl.AutoSize = false;
+            
+            streamPlayerControl.StartPlay(uri);
+        }
     }
 }

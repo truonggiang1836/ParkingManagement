@@ -245,132 +245,132 @@ namespace ParkingMangement.Utils
 
         public static void sendOrderListToServer(DataTable data)
         {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                return;
-            }
-            string json = JsonConvert.SerializeObject(data);
-            DataTable dtTable = data;
-            List<Order> listOrder = new List<Order>();
-            foreach (DataRow dtRow in dtTable.Rows)
-            {
-                Order order = new Order();
-                order.AreaId = 1;
-                order.OrderId = dtRow.Field<int>("Identify");
-                order.CardCode = dtRow.Field<string>("ID");
-                DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
-                order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
-                if (dtRow.Field<DateTime?>("TimeEnd") != null)
-                {
-                    DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
-                    order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
-                }
-                order.CarNumber = dtRow.Field<string>("Digit");
-                order.CarNumberIn = dtRow.Field<string>("Digit");
-                order.CarNumberOut = dtRow.Field<string>("Digit");
-                order.AdminCheckinId = dtRow.Field<string>("IDIn");
-                order.AdminCheckinName = UserDAO.GetUserNameByID(order.AdminCheckinId);
-                order.AdminCheckoutId = dtRow.Field<string>("IDOut");
-                order.AdminCheckoutName = UserDAO.GetUserNameByID(order.AdminCheckoutId);
-                order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
-                order.VehicleId = Int32.Parse(dtRow.Field<string>("IDPart"));
-                order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId +"");
-                order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
-                order.IsCardLost = dtRow.Field<int>("IsLostCard");
-                order.TotalPrice = dtRow.Field<int>("Cost");
-                order.PcName = dtRow.Field<string>("Computer");
-                order.Account = dtRow.Field<string>("Account");
-                DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
-                order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
-                order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
-                listOrder.Add(order);
-                if (listOrder.Count == 5)
-                {
-                    break;
-                }
-            }
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            var param = new System.Collections.Specialized.NameValueCollection();
-            for (int i = 0; i < listOrder.Count; i++)
-            {
-                string jsonString = JsonConvert.SerializeObject(listOrder[i]);
-                string index = (i + 1).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
-                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
-            }
-            try
-            {
-                byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
-                String responseString = Encoding.UTF8.GetString(responsebytes);
+            //if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            //{
+            //    return;
+            //}
+            //string json = JsonConvert.SerializeObject(data);
+            //DataTable dtTable = data;
+            //List<Order> listOrder = new List<Order>();
+            //foreach (DataRow dtRow in dtTable.Rows)
+            //{
+            //    Order order = new Order();
+            //    order.AreaId = 1;
+            //    order.OrderId = dtRow.Field<int>("Identify");
+            //    order.CardCode = dtRow.Field<string>("ID");
+            //    DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
+            //    order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
+            //    if (dtRow.Field<DateTime?>("TimeEnd") != null)
+            //    {
+            //        DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+            //        order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
+            //    }
+            //    order.CarNumber = dtRow.Field<string>("Digit");
+            //    order.CarNumberIn = dtRow.Field<string>("Digit");
+            //    order.CarNumberOut = dtRow.Field<string>("Digit");
+            //    order.AdminCheckinId = dtRow.Field<string>("IDIn");
+            //    order.AdminCheckinName = UserDAO.GetUserNameByID(order.AdminCheckinId);
+            //    order.AdminCheckoutId = dtRow.Field<string>("IDOut");
+            //    order.AdminCheckoutName = UserDAO.GetUserNameByID(order.AdminCheckoutId);
+            //    order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
+            //    order.VehicleId = Int32.Parse(dtRow.Field<string>("IDPart"));
+            //    order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId +"");
+            //    order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
+            //    order.IsCardLost = dtRow.Field<int>("IsLostCard");
+            //    order.TotalPrice = dtRow.Field<int>("Cost");
+            //    order.PcName = dtRow.Field<string>("Computer");
+            //    order.Account = dtRow.Field<string>("Account");
+            //    DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
+            //    order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
+            //    order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
+            //    listOrder.Add(order);
+            //    if (listOrder.Count == 5)
+            //    {
+            //        break;
+            //    }
+            //}
+            //WebClient webClient = (new ApiUtil()).getWebClient();
+            //var param = new System.Collections.Specialized.NameValueCollection();
+            //for (int i = 0; i < listOrder.Count; i++)
+            //{
+            //    string jsonString = JsonConvert.SerializeObject(listOrder[i]);
+            //    string index = (i + 1).ToString();
+            //    webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
+            //    param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+            //}
+            //try
+            //{
+            //    byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
+            //    String responseString = Encoding.UTF8.GetString(responsebytes);
 
-                int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
-                saveLastOrderToConfig(lastIdentify);
-            }
-            catch (Exception e)
-            {
+            //    int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
+            //    saveLastOrderToConfig(lastIdentify);
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
         }
 
         public static void sendOrderToServer(DataTable data)
         {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                return;
-            }
-            DataTable dtTable = data;
-            List<Order> listOrder = new List<Order>();
-            foreach (DataRow dtRow in dtTable.Rows)
-            {
-                Order order = new Order();
-                order.AreaId = 1;
-                order.OrderId = dtRow.Field<int>("Identify");
-                order.CardCode = dtRow.Field<string>("ID");
-                DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
-                order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
-                if (dtRow.Field<DateTime?>("TimeEnd") != null)
-                {
-                    DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
-                    order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
-                }
-                order.CarNumber = dtRow.Field<string>("Digit");
-                order.CarNumberIn = dtRow.Field<string>("Digit");
-                order.CarNumberOut = dtRow.Field<string>("Digit");
-                order.AdminCheckinId = dtRow.Field<string>("IDIn");
-                order.AdminCheckinName = UserDAO.GetUserNameByID(order.AdminCheckinId);
-                order.AdminCheckoutId = dtRow.Field<string>("IDOut");
-                order.AdminCheckoutName = UserDAO.GetUserNameByID(order.AdminCheckoutId);
-                order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
-                order.VehicleId = Int32.Parse(dtRow.Field<string>("IDPart"));
-                order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId + "");
-                order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
-                order.IsCardLost = dtRow.Field<int>("IsLostCard");
-                order.TotalPrice = dtRow.Field<int>("Cost");
-                order.PcName = dtRow.Field<string>("Computer");
-                order.Account = dtRow.Field<string>("Account");
-                DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
-                order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
-                order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
-                listOrder.Add(order);
-            }
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            var param = new System.Collections.Specialized.NameValueCollection();
-            for (int i = 0; i < listOrder.Count; i++)
-            {
-                string jsonString = JsonConvert.SerializeObject(listOrder[i]);
-                string index = (i + 1).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
-                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
-            }
-            try
-            {
-                Uri uri = new Uri(ApiUtil.API_ORDERS_BATCH_INSERT);
-                webClient.UploadValuesTaskAsync(uri, "POST", param);
-            }
-            catch (Exception e)
-            {
+            //if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            //{
+            //    return;
+            //}
+            //DataTable dtTable = data;
+            //List<Order> listOrder = new List<Order>();
+            //foreach (DataRow dtRow in dtTable.Rows)
+            //{
+            //    Order order = new Order();
+            //    order.AreaId = 1;
+            //    order.OrderId = dtRow.Field<int>("Identify");
+            //    order.CardCode = dtRow.Field<string>("ID");
+            //    DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
+            //    order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
+            //    if (dtRow.Field<DateTime?>("TimeEnd") != null)
+            //    {
+            //        DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+            //        order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
+            //    }
+            //    order.CarNumber = dtRow.Field<string>("Digit");
+            //    order.CarNumberIn = dtRow.Field<string>("Digit");
+            //    order.CarNumberOut = dtRow.Field<string>("Digit");
+            //    order.AdminCheckinId = dtRow.Field<string>("IDIn");
+            //    order.AdminCheckinName = UserDAO.GetUserNameByID(order.AdminCheckinId);
+            //    order.AdminCheckoutId = dtRow.Field<string>("IDOut");
+            //    order.AdminCheckoutName = UserDAO.GetUserNameByID(order.AdminCheckoutId);
+            //    order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
+            //    order.VehicleId = Int32.Parse(dtRow.Field<string>("IDPart"));
+            //    order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId + "");
+            //    order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
+            //    order.IsCardLost = dtRow.Field<int>("IsLostCard");
+            //    order.TotalPrice = dtRow.Field<int>("Cost");
+            //    order.PcName = dtRow.Field<string>("Computer");
+            //    order.Account = dtRow.Field<string>("Account");
+            //    DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
+            //    order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
+            //    order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
+            //    listOrder.Add(order);
+            //}
+            //WebClient webClient = (new ApiUtil()).getWebClient();
+            //var param = new System.Collections.Specialized.NameValueCollection();
+            //for (int i = 0; i < listOrder.Count; i++)
+            //{
+            //    string jsonString = JsonConvert.SerializeObject(listOrder[i]);
+            //    string index = (i + 1).ToString();
+            //    webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
+            //    param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+            //}
+            //try
+            //{
+            //    Uri uri = new Uri(ApiUtil.API_ORDERS_BATCH_INSERT);
+            //    webClient.UploadValuesTaskAsync(uri, "POST", param);
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
         }
 
         private static void saveLastOrderToConfig(int lastIdentify)
