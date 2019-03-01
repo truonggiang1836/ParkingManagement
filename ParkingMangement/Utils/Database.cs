@@ -10,6 +10,7 @@ using ParkingMangement.DAO;
 using ParkingMangement.Model;
 using System.IO;
 using System.Xml.Serialization;
+using MySql.Data.MySqlClient;
 
 namespace ParkingMangement
 {
@@ -18,32 +19,61 @@ namespace ParkingMangement
         //protected static String _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=ParkingManagement.accdb";
         protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb;Mode=Share Deny None";
 
-        static OleDbConnection connection;
-        static Config config;
+        //static OleDbConnection connection;
+        static MySqlConnection mySqlConnection;
+        //static Config config;
+
+        public static MySqlConnection GetDBConnection()
+        {
+            string host = "localhost";
+            int port = 3306;
+            string database = "movedb";
+            string username = "root";
+            string password = "root";
+
+            return GetDBConnection(host, port, database, username, password);
+        }
+        public static MySqlConnection GetDBConnection(string host, int port, string database, string username, string password)
+        {
+            // Connection String.
+            String connString = "Server=" + host + ";Database=" + database
+                + ";port=" + port + ";User Id=" + username + ";password=" + password;
+
+            MySqlConnection conn = new MySqlConnection(connString);
+
+            return conn;
+        }
+
         public static void OpenConnection()
         {
+            Console.WriteLine("Getting Connection ...");
+            if (mySqlConnection == null)
+            {
+                mySqlConnection = GetDBConnection();
+            }
+
             try
             {
-                if (config == null)
-                {
-                    config = Util.getConfigFile();
-                }
-                _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Constant.getSharedParkingManagementFolder() + "ParkingManagement.mdb;Mode=Share Deny None";
-                connection = new OleDbConnection(_connectionString);
-                connection.Open();
-            }
-            catch
-            {
+                Console.WriteLine("Openning Connection ...");
 
+                mySqlConnection.Open();
+
+                Console.WriteLine("Connection successful!");
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+
+            Console.Read();
         }
 
         public static void CloseConnection()
         {
-            if (connection != null)
-            {
-                connection.Close();
-            }
+            // Đóng kết nối.
+            mySqlConnection.Close();
+            // Tiêu hủy đối tượng, giải phóng tài nguyên.
+            mySqlConnection.Dispose();
         }
 
         public static int ExcuValueQuery(string sql)
@@ -52,7 +82,7 @@ namespace ParkingMangement
             {
                 OpenConnection();
                 DataTable dt = new DataTable();
-                OleDbCommand command = connection.CreateCommand();
+                MySqlCommand command = mySqlConnection.CreateCommand();
                 command.CommandText = sql;
                 return Convert.ToInt32(command.ExecuteScalar());
             }
@@ -68,14 +98,11 @@ namespace ParkingMangement
             try
             {
                 OpenConnection();
-                if (connection.State == ConnectionState.Open)
-                {
-                    OleDbCommand command = connection.CreateCommand();
-                    command.CommandText = sql;
-                    OleDbDataAdapter adapter = new OleDbDataAdapter();
-                    adapter.SelectCommand = command;
-                    adapter.Fill(dt);
-                }
+                MySqlCommand command = mySqlConnection.CreateCommand();
+                command.CommandText = sql;
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = command;
+                adapter.Fill(dt);
                 CloseConnection();
             } catch (Exception e)
             {
@@ -90,12 +117,9 @@ namespace ParkingMangement
             {
                 int result = 0;
                 OpenConnection();
-                if (connection.State == ConnectionState.Open)
-                {
-                    OleDbCommand command = connection.CreateCommand();
-                    command.CommandText = sql;
-                    result = command.ExecuteNonQuery();
-                }
+                MySqlCommand command = mySqlConnection.CreateCommand();
+                command.CommandText = sql;
+                result = command.ExecuteNonQuery();
                 CloseConnection();
                 if (result > 0)
                 {
@@ -126,7 +150,7 @@ namespace ParkingMangement
             try
             {
                 OpenConnection();
-                OleDbCommand command = connection.CreateCommand();
+                MySqlCommand command = mySqlConnection.CreateCommand();
                 command.CommandText = sql;
                 int result = command.ExecuteNonQuery();
                 CloseConnection();

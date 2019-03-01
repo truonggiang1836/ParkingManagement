@@ -13,7 +13,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetConfig()
         {
-            string sql = "select * from [Config]";
+            string sql = "select * from Config";
             return Database.ExcuQuery(sql);
         }
 
@@ -227,7 +227,7 @@ namespace ParkingMangement.DAO
 
         public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
-            string sql = "update [Config] set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
+            string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID;
             return Database.ExcuNonQuery(sql);
@@ -235,7 +235,7 @@ namespace ParkingMangement.DAO
 
         public static bool UpdateCauHinhKetNoi(ConfigDTO configDTO)
         {
-            string sql = "update [Config] set Camera1 = '" + configDTO.Camera1 + "', Camera2 = '" + configDTO.Camera2 +
+            string sql = "update Config set Camera1 = '" + configDTO.Camera1 + "', Camera2 = '" + configDTO.Camera2 +
                 "', Camera3 = '" + configDTO.Camera3 + "', Camera4 = '" + configDTO.Camera4 + "', RFID1 = '" + configDTO.Rfid1 +
                 "', RFID2 = '" + configDTO.Rfid2 + "'";
             return Database.ExcuNonQuery(sql);
@@ -243,7 +243,7 @@ namespace ParkingMangement.DAO
 
         public static bool SetInOutType(int inOutType)
         {
-            string sql = "update [Config] set InOutType = " + inOutType;
+            string sql = "update Config set InOutType = " + inOutType;
             return Database.ExcuNonQuery(sql);
         }
     }

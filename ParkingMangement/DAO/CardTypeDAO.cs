@@ -11,13 +11,13 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select * from [CardType] order by CardTypeID asc";
+            string sql = "select * from CardType order by CardTypeID asc";
             return Database.ExcuQuery(sql);
         }
 
         public static string GetTypeNameByTypeID(string cardTypeID)
         {
-            string sql = "select * from [CardType] where CardTypeID = '" + cardTypeID + "'";
+            string sql = "select * from CardType where CardTypeID = '" + cardTypeID + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {

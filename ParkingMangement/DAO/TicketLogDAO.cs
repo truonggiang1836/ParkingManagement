@@ -14,7 +14,7 @@ namespace ParkingMangement.DAO
         private static string sqlGetAllData = "select DISTINCT TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
                 ", TicketLog.TicketMonthID, TicketLog.Digit, TicketLog.CustomerName, TicketLog.CMND, TicketLog.Email, " +
                 "TicketLog.Address, TicketLog.CarKind, Part.PartName, TicketLog.RegistrationDate, TicketLog.ExpirationDate from" +
-                " [TicketLog], [LogType], [Part], [UserCar], [SmartCard] where TicketLog.IDPart = Part.ID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account and TicketLog.TicketMonthID = SmartCard.ID";
+                " TicketLog, LogType, Part, UserCar, SmartCard where TicketLog.IDPart = Part.ID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account and TicketLog.TicketMonthID = SmartCard.ID";
         private static string sqlOrderByIdentify = " order by TicketLog.Identify asc";
 
         public static DataTable GetAllData()

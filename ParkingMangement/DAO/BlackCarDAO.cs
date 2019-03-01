@@ -11,7 +11,7 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select * from [BlackCar] order by Identify asc";
+            string sql = "select * from BlackCar order by Identify asc";
             return Database.ExcuQuery(sql);
         }
 
@@ -23,7 +23,7 @@ namespace ParkingMangement.DAO
 
         public static void Delete(int identify)
         {
-            string sql = "delete from [BlackCar] where Identify =" + identify;
+            string sql = "delete from BlackCar where Identify =" + identify;
             Database.ExcuNonQuery(sql);
         }
     }

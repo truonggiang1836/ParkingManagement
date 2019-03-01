@@ -12,19 +12,19 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from [Part], [Type], [CardType] where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID";
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetAllTicketMonthData()
         {
-            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from [Part], [Type], [CardType] where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1'";
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1'";
             return Database.ExcuQuery(sql);
         }
 
         public static string GetPartNameByPartID(string id)
         {
-            string sql = "select * from [Part] where ID = '" + id + "'";
+            string sql = "select * from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null && data.Rows.Count > 0)
             {
@@ -35,7 +35,7 @@ namespace ParkingMangement.DAO
 
         public static string GetSignByPartID(string id)
         {
-            string sql = "select * from [Part] where ID = '" + id + "'";
+            string sql = "select * from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null && data.Rows.Count > 0)
             {
@@ -46,7 +46,7 @@ namespace ParkingMangement.DAO
 
         public static string GetCardTypeByID(string id)
         {
-            string sql = "select * from [Part] where ID = '" + id + "'";
+            string sql = "select * from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
@@ -57,7 +57,7 @@ namespace ParkingMangement.DAO
 
         public static int GetAmountByPartID(string id)
         {
-            string sql = "select * from [Part] where ID = '" + id + "'";
+            string sql = "select * from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
@@ -81,7 +81,7 @@ namespace ParkingMangement.DAO
 
         public static void Delete(string partID)
         {
-            string sql = "delete from [Part] where ID = '" + partID + "'";
+            string sql = "delete from Part where ID = '" + partID + "'";
             Database.ExcuNonQuery(sql);
         }
     }

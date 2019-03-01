@@ -12,13 +12,13 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from [SmartCard], [Part], [CardType] where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID order by SmartCard.Identify asc";
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from SmartCard, Part, CardType where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetLostCardData()
         {
-            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID order by SmartCard.Identify asc";
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, Part.PartName from SmartCard, Part where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
@@ -30,46 +30,46 @@ namespace ParkingMangement.DAO
 
         public static void Update(CardDTO cartDTO)
         {
-            string sql = "update [SmartCard] set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
+            string sql = "update SmartCard set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
                 + cartDTO.DayUnlimit + "') where ID ='" + cartDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
 
         public static void UpdateIsUsing(string isUsing, string cardId)
         {
-            string sql = "update [SmartCard] set IsUsing = '" + isUsing + "' where ID = '" + cardId + "'";
+            string sql = "update SmartCard set IsUsing = '" + isUsing + "' where ID = '" + cardId + "'";
             Database.ExcuNonQuery(sql);
         }
 
         public static void UpdateDayUnlimit(DateTime dayUnlimit, string cardId)
         {
-            string sql = "update [SmartCard] set DayUnlimit = '" + dayUnlimit + "' where ID = '" + cardId + "'";
+            string sql = "update SmartCard set DayUnlimit = '" + dayUnlimit + "' where ID = '" + cardId + "'";
             Database.ExcuNonQuery(sql);
         }
 
         public static void UpdateIdentify(int identify, string cardId)
         {
-            string sql = "update [SmartCard] set Identify = " + identify + " where ID = '" + cardId + "'";
+            string sql = "update SmartCard set Identify = " + identify + " where ID = '" + cardId + "'";
             Database.ExcuNonQuery(sql);
         }
 
         public static DataTable SearchData(string key)
         {
-            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from [SmartCard], [Part], [CardType] where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from SmartCard, Part, CardType where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
                 + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable SearchLostCardData(string key)
         {
-            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, Part.PartName from [SmartCard], [Part] where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID and "
+            string sql = "select DISTINCT SmartCard.Identify, SmartCard.ID, Part.PartName from SmartCard, Part where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID and "
                 + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') order by SmartCard.Identify asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetDataGroupByType()
         {
-            string sql = "select DISTINCT Part.PartName, count(Identify) as SumCard from [SmartCard], [Part] where (SmartCard.Type = Part.ID) and (SmartCard.IsUsing = '1') group by Part.PartName";
+            string sql = "select DISTINCT Part.PartName, count(Identify) as SumCard from SmartCard, Part where (SmartCard.Type = Part.ID) and (SmartCard.IsUsing = '1') group by Part.PartName";
             DataTable data = Database.ExcuQuery(sql);
 
             data.Columns.Add("IsUsing", typeof(System.String));
@@ -87,7 +87,7 @@ namespace ParkingMangement.DAO
 
         public static int GetUsingCardCount()
         {
-            string sql = "select * from [SmartCard] where SmartCard.IsUsing = '1'";
+            string sql = "select * from SmartCard where SmartCard.IsUsing = '1'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null)
             {
@@ -98,7 +98,7 @@ namespace ParkingMangement.DAO
 
         public static int GetNotUsingCardCount()
         {
-            string sql = "select * from [SmartCard] where SmartCard.IsUsing = '0'";
+            string sql = "select * from SmartCard where SmartCard.IsUsing = '0'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null)
             {
@@ -109,13 +109,13 @@ namespace ParkingMangement.DAO
 
         public static bool Delete(string userID)
         {
-            string sql = "delete from [SmartCard] where ID = '" + userID + "'";
+            string sql = "delete from SmartCard where ID = '" + userID + "'";
             return Database.ExcuNonQuery(sql);
         }
 
         public static string getIDByCardID(string cardID)
         {
-            string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
+            string sql = "select * from SmartCard where ID = '" + cardID + "'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -126,7 +126,7 @@ namespace ParkingMangement.DAO
 
         public static int getIdentifyByCardID(string cardID)
         {
-            string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
+            string sql = "select * from SmartCard where ID = '" + cardID + "'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -137,7 +137,7 @@ namespace ParkingMangement.DAO
 
         public static bool isUsingByCardID(string cardID)
         {
-            string sql = "select * from [SmartCard] where ID = '" + cardID + "'";
+            string sql = "select * from SmartCard where ID = '" + cardID + "'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -149,13 +149,13 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetCardByID(string id)
         {
-            string sql = "select * from [SmartCard] where ID = '" + id + "'";
+            string sql = "select * from SmartCard where ID = '" + id + "'";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetCardByIdentify(int identify)
         {
-            string sql = "select * from [SmartCard] where Identify = " + identify;
+            string sql = "select * from SmartCard where Identify = " + identify;
             return Database.ExcuQuery(sql);
         }
 

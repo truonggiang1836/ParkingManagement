@@ -17,7 +17,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetTicketLog()
         {
-            string sql = "select * from [LogType] where IsTicketLog = '1'";
+            string sql = "select * from LogType where IsTicketLog = '1'";
             return Database.ExcuQuery(sql);
         }
     }

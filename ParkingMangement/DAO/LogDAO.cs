@@ -11,7 +11,7 @@ namespace ParkingMangement.DAO
 {
     class LogDAO
     {
-        private static string sqlGetAllData = "select Log.Identify, LogType.LogTypeName, Log.ProcessDate, UserCar.NameUser, Log.LogNote, Log.Computer from [Log], [LogType], [UserCar] where Log.LogTypeID = LogType.LogTypeID and Log.Account = UserCar.Account";
+        private static string sqlGetAllData = "select Log.Identify, LogType.LogTypeName, Log.ProcessDate, UserCar.NameUser, Log.LogNote, Log.Computer from Log, LogType, UserCar where Log.LogTypeID = LogType.LogTypeID and Log.Account = UserCar.Account";
         private static string sqlOrderByIdentify = " order by Log.Identify asc";
         public static DataTable GetAllData()
         {

@@ -12,14 +12,14 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select UserCar.UserID, UserCar.Account, UserCar.Pass, UserCar.NameUser, Sex.SexName, Functional.FunctionName from [UserCar], [Functional], [Sex] " +
+            string sql = "select UserCar.UserID, UserCar.Account, UserCar.Pass, UserCar.NameUser, Sex.SexName, Functional.FunctionName from UserCar, Functional, Sex " +
                 "where Functional.FunctionID = UserCar.IDFunct and Sex.SexID = UserCar.SexID order by UserCar.UserID asc";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetID_Name_Function()
         {
-            string sql = "select UserCar.UserID, UserCar.NameUser, Functional.FunctionName from [UserCar], [Functional] " +
+            string sql = "select UserCar.UserID, UserCar.NameUser, Functional.FunctionName from UserCar, Functional " +
                 "where Functional.FunctionID = UserCar.IDFunct";
             return Database.ExcuQuery(sql);
         }
@@ -33,32 +33,32 @@ namespace ParkingMangement.DAO
 
         public static void Update(UserDTO userDTO)
         {
-            string sql = "update [UserCar] set Account ='" + userDTO.Account + "', Pass ='" + userDTO.Password + "', NameUser ='" + userDTO.Name + "', SexID ="
+            string sql = "update UserCar set Account ='" + userDTO.Account + "', Pass ='" + userDTO.Password + "', NameUser ='" + userDTO.Name + "', SexID ="
                 + userDTO.SexId + ", IDFunct ='" + userDTO.FunctionId + "' where UserID ='" + userDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
 
         public static bool UpdatePassword(string password, string account)
         {
-            string sql = "update [UserCar] set Pass ='" + password + "' where Account ='" + account + "'";
+            string sql = "update UserCar set Pass ='" + password + "' where Account ='" + account + "'";
             return Database.ExcuNonQuery(sql);
         }
 
         public static bool UpdateRememberMe(int isRemember, string account)
         {
-            string sql = "update [UserCar] set RememberMe =" + isRemember + " where Account ='" + account + "'";
+            string sql = "update UserCar set RememberMe =" + isRemember + " where Account ='" + account + "'";
             return Database.ExcuNonQuery(sql);
         }
 
         public static DataTable GetUserByAccount(string account)
         {
-            string sql = "select * from [UserCar] where UserCar.Account = '" + account + "'";
+            string sql = "select * from UserCar where UserCar.Account = '" + account + "'";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetUserByID(string id)
         {
-            string sql = "select * from [UserCar] where UserCar.UserID = '" + id + "'";
+            string sql = "select * from UserCar where UserCar.UserID = '" + id + "'";
             return Database.ExcuQuery(sql);
         }
 
@@ -144,7 +144,7 @@ namespace ParkingMangement.DAO
 
         public static void Delete(string userID)
         {
-            string sql = "delete from [UserCar] where UserID = '" + userID + "'";
+            string sql = "delete from UserCar where UserID = '" + userID + "'";
             Database.ExcuNonQuery(sql);
         }
     }

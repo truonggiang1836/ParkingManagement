@@ -11,13 +11,13 @@ namespace ParkingMangement.DAO
     {
         static public DataTable GetAllData()
         {
-            string sql = "select * from [Sex]";
+            string sql = "select * from Sex";
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetSexByID(int sexID)
         {
-            string sql = "select * from [Sex] where SexID = " + sexID;
+            string sql = "select * from Sex where SexID = " + sexID;
             return Database.ExcuQuery(sql);
         }
 

@@ -11,13 +11,13 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select * from [Type]";
+            string sql = "select * from Type";
             return Database.ExcuQuery(sql);
         }
 
         public static string GetTypeNameByTypeID(string typeID)
         {
-            string sql = "select * from [Type] where TypeID = '" + typeID + "'";
+            string sql = "select * from Type where TypeID = '" + typeID + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {

@@ -12,7 +12,7 @@ namespace ParkingMangement.DAO
     {
         public static ComputerDTO GetDataByPartIDAndParkingTypeID(string partID, int parkingTypeID)
         {
-            string sql = "select * from [Computer] where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
+            string sql = "select * from Computer where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -45,7 +45,7 @@ namespace ParkingMangement.DAO
 
         public static bool Update(ComputerDTO computerDTO)
         {
-            string sql = "update [Computer] set DayCost =" + computerDTO.DayCost + ", NightCost =" + computerDTO.NightCost + ", DayNightCost =" + computerDTO.DayNightCost + ", IntervalBetweenDayNight ="
+            string sql = "update Computer set DayCost =" + computerDTO.DayCost + ", NightCost =" + computerDTO.NightCost + ", DayNightCost =" + computerDTO.DayNightCost + ", IntervalBetweenDayNight ="
                 + computerDTO.IntervalBetweenDayNight + ", StartHourNight =" + computerDTO.StartHourNight + ", EndHourNight =" + computerDTO.EndHourNight + ", HourMilestone1 =" + computerDTO.HourMilestone1 +
                 ", HourMilestone2 =" + computerDTO.HourMilestone2 + ", HourMilestone3 =" + computerDTO.HourMilestone3 + ", CostMilestone1 =" + computerDTO.CostMilestone1 + ", CostMilestone2 =" +
                 computerDTO.CostMilestone2 + ", CostMilestone3 =" + computerDTO.CostMilestone3 + ", CycleMilestone3 =" + computerDTO.CycleMilestone3 + ", IsAdd ='" + computerDTO.IsAdd +
