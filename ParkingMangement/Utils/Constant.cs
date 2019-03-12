@@ -146,7 +146,7 @@ namespace ParkingMangement.Utils
         // path file
         public static String sFileNameConfig = "Config.xml";
 
-        public static String sDateTimeFormatForQuery = "yyyy/MM/dd HH:mm:ss";
+        public static String sDateTimeFormatForQuery = "yyyy-MM-dd HH:mm:ss";
         public static String sDateTimeFormatForAPI = "yyyy-MM-dd HH:mm";
 
         public static string getSharedImageFolder()

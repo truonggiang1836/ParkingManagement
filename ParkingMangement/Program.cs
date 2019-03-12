@@ -76,8 +76,11 @@ namespace ParkingMangement
             if (isHostMachine)
             {
                 string lastSavedIdentifyString = Util.getConfigFile().lastSavedOrder;
-                int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
-                Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
+                if (!string.IsNullOrEmpty(lastSavedIdentifyString))
+                {
+                    int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
+                    Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
+                }
             }
         }
     }

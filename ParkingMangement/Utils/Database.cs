@@ -25,11 +25,12 @@ namespace ParkingMangement
 
         public static MySqlConnection GetDBConnection()
         {
-            string host = "localhost";
+            //string host = "localhost";
+            string host = "127.0.0.1";
             int port = 3306;
-            string database = "movedb";
-            string username = "root";
-            string password = "root";
+            string database = "parkingmanagement";
+            string username = "user";
+            string password = "user";
 
             return GetDBConnection(host, port, database, username, password);
         }
