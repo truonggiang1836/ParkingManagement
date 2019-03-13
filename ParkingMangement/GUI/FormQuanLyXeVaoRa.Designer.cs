@@ -48,8 +48,11 @@
             this.tbCarDigitSearch = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
             this.btnSearchCar = new System.Windows.Forms.Button();
             this.btnSaveLostCard = new System.Windows.Forms.Button();
             this.btnExportDanhSachXe = new System.Windows.Forms.Button();
@@ -59,9 +62,6 @@
             this.dateTimePickerCarDateIn = new System.Windows.Forms.DateTimePicker();
             this.label40 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
             this.STT_CarList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,15 +84,16 @@
             this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
+            this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
+            this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
+            this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,7 +129,8 @@
             this.CarLogIsLostCard,
             this.Column32,
             this.Column33,
-            this.Column34});
+            this.Column34,
+            this.Column1});
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -302,6 +304,15 @@
             this.panel13.Size = new System.Drawing.Size(284, 168);
             this.panel13.TabIndex = 18;
             // 
+            // pictureBoxCarLogImage3
+            // 
+            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
+            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage3.TabIndex = 1;
+            this.pictureBoxCarLogImage3.TabStop = false;
+            // 
             // panel14
             // 
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -311,6 +322,15 @@
             this.panel14.Size = new System.Drawing.Size(284, 168);
             this.panel14.TabIndex = 17;
             // 
+            // pictureBoxCarLogImage1
+            // 
+            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
+            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage1.TabIndex = 0;
+            this.pictureBoxCarLogImage1.TabStop = false;
+            // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -319,6 +339,15 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(284, 168);
             this.panel12.TabIndex = 16;
+            // 
+            // pictureBoxCarLogImage4
+            // 
+            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
+            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage4.TabIndex = 1;
+            this.pictureBoxCarLogImage4.TabStop = false;
             // 
             // btnSearchCar
             // 
@@ -406,33 +435,6 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(284, 168);
             this.panel11.TabIndex = 0;
-            // 
-            // pictureBoxCarLogImage3
-            // 
-            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
-            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage3.TabIndex = 1;
-            this.pictureBoxCarLogImage3.TabStop = false;
-            // 
-            // pictureBoxCarLogImage1
-            // 
-            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
-            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage1.TabIndex = 0;
-            this.pictureBoxCarLogImage1.TabStop = false;
-            // 
-            // pictureBoxCarLogImage4
-            // 
-            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
-            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage4.TabIndex = 1;
-            this.pictureBoxCarLogImage4.TabStop = false;
             // 
             // pictureBoxCarLogImage2
             // 
@@ -606,6 +608,14 @@
             this.Column34.ReadOnly = true;
             this.Column34.Width = 150;
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "PartID";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
             // FormQuanLyXeVaoRa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -621,12 +631,12 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel13.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
+            this.panel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
+            this.panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
+            this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
             this.ResumeLayout(false);
 
@@ -685,5 +695,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column32;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

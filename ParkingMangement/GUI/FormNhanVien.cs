@@ -645,12 +645,12 @@ namespace ParkingMangement.GUI
             carDTO.DateUpdate = DateTime.Now;
 
             CarDAO.UpdateCarOut(carDTO);
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                /* run your code here */
-                Util.sendOrderToServer(CarDAO.GetCarByIdentify(identify));
-            }).Start();
+            //new Thread(() =>
+            //{
+            //    Thread.CurrentThread.IsBackground = true;
+            //    /* run your code here */
+            //    Util.sendOrderToServer(CarDAO.GetCarByIdentify(identify));
+            //}).Start();
 
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";

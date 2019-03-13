@@ -153,7 +153,7 @@ namespace ParkingMangement.Utils
             }
         }
 
-        public static string formatNumberAsMoney(int number)
+        public static string formatNumberAsMoney(long number)
         {
             return string.Format("{0:#,000}", number);
         }

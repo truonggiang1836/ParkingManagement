@@ -26,7 +26,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchData(string key, string ticketLogID, string partID, DateTime registrationDate, DateTime expirationDate)
         {
             string sql = sqlGetAllData;
-            sql += " and TicketLog.RegistrationDate >= #" + registrationDate.ToString(Constant.sDateTimeFormatForQuery) + "# and TicketLog.ExpirationDate <= #" + expirationDate.ToString(Constant.sDateTimeFormatForQuery) + "#";
+            sql += " and TicketLog.RegistrationDate >= '" + registrationDate.ToString(Constant.sDateTimeFormatForQuery) + "' and TicketLog.ExpirationDate <= '" + expirationDate.ToString(Constant.sDateTimeFormatForQuery) + "'";
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (UserCar.NameUser like '%" + key + "%' or SmartCard.Identify like '%" + key + "%' or TicketLog.TicketMonthID like '%" + key + "%' or TicketLog.Digit like '%" + key

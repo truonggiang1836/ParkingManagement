@@ -37,7 +37,7 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Log.LogTypeID like '" + logTypeID + "'";
             }
-            sql += " and Log.ProcessDate >= #" + startTime.ToString(Constant.sDateTimeFormatForQuery) + "# and Log.ProcessDate <= #" + endTime.ToString(Constant.sDateTimeFormatForQuery) + "#";
+            sql += " and Log.ProcessDate >= '" + startTime.ToString(Constant.sDateTimeFormatForQuery) + "' and Log.ProcessDate <= '" + endTime.ToString(Constant.sDateTimeFormatForQuery) + "'";
             sql += sqlOrderByIdentify;
             return Database.ExcuQuery(sql);
         }
