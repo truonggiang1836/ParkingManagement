@@ -325,7 +325,7 @@ namespace ParkingMangement.GUI
                 }
             } else
             {
-                if (KiemTraXeChuaRa())
+                if (KiemTraXeChuaRa() || KiemTraCapNhatXeRa())
                 {
                     updateCarOut(isTicketCard);
                     loadCarInData();
@@ -843,6 +843,29 @@ namespace ParkingMangement.GUI
             return false;
         }
 
+        private bool KiemTraCapNhatXeRa()
+        {
+            DataTable dt = CarDAO.GetLastCarByID(cardID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                String idIn = dt.Rows[0].Field<String>("IDIn");
+                String idOut = dt.Rows[0].Field<String>("IDOut");
+                if (!idIn.Equals("") && !idOut.Equals(""))
+                {
+                    string lastCardId = CarDAO.GetLastCardID();
+                    if (cardID.Equals(lastCardId))
+                    {
+                        DateTime timeEnd = dt.Rows[0].Field<DateTime>("TimeEnd");
+                        if (Util.getMillisecondBetweenTwoDate(timeEnd, DateTime.Now) < 60000)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
         private void loadCamera1VLC()
         {
             String rtspString = cameraUrl1;
@@ -1193,6 +1216,10 @@ namespace ParkingMangement.GUI
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
                 DateTime timeOut = DateTime.Now;
                 double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
+                if (spentTimeByMinute <= 1)
+                {
+                    return 0;
+                }
                 if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
                     return computerDTO.MinCost;
@@ -1243,6 +1270,11 @@ namespace ParkingMangement.GUI
             {
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
                 DateTime timeOut = DateTime.Now;
+                double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
+                if (spentTimeByMinute <= 1)
+                {
+                    return 0;
+                }
                 if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
@@ -1279,6 +1311,11 @@ namespace ParkingMangement.GUI
             {
                 DateTime timeIn = dt.Rows[0].Field<DateTime>("TimeStart");
                 DateTime timeOut = DateTime.Now;
+                double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
+                if (spentTimeByMinute <= 1)
+                {
+                    return 0;
+                }
                 if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
