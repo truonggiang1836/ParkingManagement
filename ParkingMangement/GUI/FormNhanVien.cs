@@ -1116,6 +1116,10 @@ namespace ParkingMangement.GUI
             axVLCPlugin2.video.scale = 0.7f;
             axVLCPlugin3.video.scale = 0.7f;
             axVLCPlugin4.video.scale = 0.7f;
+            //axVLCPlugin1.video.scale = 0.4f;
+            //axVLCPlugin2.video.scale = 0.4f;
+            //axVLCPlugin3.video.scale = 0.4f;
+            //axVLCPlugin4.video.scale = 0.4f;
 
             axVLCPlugin1.Toolbar = false;
             axVLCPlugin2.Toolbar = false;

@@ -25,11 +25,24 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "rfid_in")]
         public string rfidIn { get; set; }
+
         [XmlElement(ElementName = "rfid_out")]
         public string rfidOut { get; set; }
 
-        [XmlElement(ElementName = "ip_host")]
-        public string ipHost { get; set; }
+        [XmlElement(ElementName = "computer_name")]
+        public string computerName { get; set; }
+
+        [XmlElement(ElementName = "sql_datasource")]
+        public string sqlDataSource { get; set; }
+
+        [XmlElement(ElementName = "sql_port")]
+        public string sqlPort { get; set; }
+
+        [XmlElement(ElementName = "sql_username")]
+        public string sqlUsername { get; set; }
+
+        [XmlElement(ElementName = "sql_password")]
+        public string sqlPassword { get; set; }
 
         [XmlElement(ElementName = "folder_root")]
         public string folderRoot { get; set; }

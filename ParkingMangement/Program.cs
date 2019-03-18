@@ -29,7 +29,7 @@ namespace ParkingMangement
         static void Main()
         {
             string pcName = Environment.MachineName;
-            if (Util.getConfigFile() != null && pcName.Equals(Util.getConfigFile().ipHost))
+            if (Util.getConfigFile() != null && pcName.Equals(Util.getConfigFile().computerName))
             {
                 isHostMachine = true;
                 //Util.ShareFolder(Constant.LOCAL_ROOT_FOLDER, Constant.FOLDER_NAME_PARKING_MANAGEMENT, "");

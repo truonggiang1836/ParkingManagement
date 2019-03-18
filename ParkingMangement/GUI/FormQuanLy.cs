@@ -4104,14 +4104,14 @@ namespace ParkingMangement.GUI
                 String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
                 if (File.Exists(filePath))
                 {
-                    Config config = new Config();
+                    Config config = Util.getConfigFile();
                     config.cameraUrl1 = Constant.sEncodeStart + tb_camera_url_1.Text + Constant.sEncodeEnd;
                     config.cameraUrl2 = Constant.sEncodeStart + tb_camera_url_2.Text + Constant.sEncodeEnd;
                     config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
                     config.cameraUrl4 = Constant.sEncodeStart + tb_camera_url_4.Text + Constant.sEncodeEnd;
                     config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
                     config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
-                    config.ipHost = Constant.sEncodeStart + tb_ip_host.Text + Constant.sEncodeEnd;
+                    config.computerName = Constant.sEncodeStart + tb_ip_host.Text + Constant.sEncodeEnd;
                     config.folderRoot = Constant.sEncodeStart + tb_folder_root.Text + Constant.sEncodeEnd;
                     XmlSerializer xs = new XmlSerializer(typeof(Config));
                     TextWriter txtWriter = new StreamWriter(filePath);
@@ -4150,7 +4150,7 @@ namespace ParkingMangement.GUI
                 tb_camera_url_4.Text = config.cameraUrl4;
                 tb_rfid_1.Text = config.rfidIn;
                 tb_rfid_2.Text = config.rfidOut;
-                tb_ip_host.Text = config.ipHost;
+                tb_ip_host.Text = config.computerName;
                 tb_folder_root.Text = config.folderRoot;
             }
             catch (Exception e)

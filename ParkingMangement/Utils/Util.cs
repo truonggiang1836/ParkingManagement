@@ -186,7 +186,11 @@ namespace ParkingMangement.Utils
                         config.cameraUrl4 = config.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.rfidIn = config.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.rfidOut = config.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.ipHost = config.ipHost.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.computerName = config.computerName.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.sqlDataSource = config.sqlDataSource.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.sqlPort = config.sqlPort.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.sqlUsername = config.sqlUsername.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.sqlPassword = config.sqlPassword.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.folderRoot = config.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.lastSavedOrder = config.lastSavedOrder;
                         return config;

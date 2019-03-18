@@ -151,17 +151,17 @@ namespace ParkingMangement.Utils
 
         public static string getSharedImageFolder()
         {
-            return @"\\" + Util.getConfigFile().ipHost + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\";
+            return @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\";
         }
 
         public static string getSharedParkingManagementFolder()
         {
-            return @"\\" + Util.getConfigFile().ipHost + @"\" + Util.getConfigFile().folderRoot + @"\";
+            return @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\";
         }
 
         public static string getSharedRootFolder()
         {
-            return @"\\" + Util.getConfigFile().ipHost + @"\";
+            return @"\\" + Util.getConfigFile().computerName + @"\";
         }
     }
 }

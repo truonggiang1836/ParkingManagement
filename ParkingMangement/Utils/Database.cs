@@ -24,10 +24,10 @@ namespace ParkingMangement
 
         public static SqlConnection GetDBConnection()
         {
-            string datasource = @"TRUONGGIANG\SQLEXPRESS,1433";
+            string datasource = Util.getConfigFile().sqlDataSource + @"," + Util.getConfigFile().sqlPort;
             string database = "ParkingManagement";
-            string username = "sa";
-            string password = "admin";
+            string username = Util.getConfigFile().sqlUsername;
+            string password = Util.getConfigFile().sqlPassword;
 
             return GetDBConnection(datasource, database, username, password);
         }
@@ -139,7 +139,7 @@ namespace ParkingMangement
                     MessageBox.Show(Constant.sMessageDuplicateDataError);
                 } else
                 {
-                    MessageBox.Show(Constant.sMessageCommonError);
+                    MessageBox.Show(Ex.Message);
                 }
                 return false;
             }
