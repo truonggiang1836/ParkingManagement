@@ -252,15 +252,15 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetTotalCostByType(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
-            string groupBySql = " group by Part.ID";
-            string sql = "select Car.IDPart, Part.CardTypeID, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID where 0 = 0";
+            string groupBySql = " group by Car.IDPart";
+            string sql = "select Car.IDPart, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID where 0 = 0";
             if (!isTicketMonth)
             {
-                groupBySql += " having Part.CardTypeID = " + TypeDTO.TYPE_BIKE;
+                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
             }
             else
             {
-                groupBySql += " having Part.CardTypeID = " + TypeDTO.TYPE_CAR;
+                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
             }
             if (!isTicketMonth)
             {
@@ -403,10 +403,10 @@ namespace ParkingMangement.DAO
             if (isTicketMonth)
             {
                 sql = "select * from Car, Part where Car.IDIn <> '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
-                sql += " and Part.CardTypeID = 2";
+                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
             } else
             {
-                sql += " and Part.CardTypeID = 1";
+                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
             }
             if (partID != null)
             {
@@ -437,10 +437,10 @@ namespace ParkingMangement.DAO
             if (isTicketMonth)
             {
                 sql = "select * from Car, Part where Car.IDOut <> '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
-                sql += " and Part.CardTypeID = 2";
+                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
             } else
             {
-                sql += " and Part.CardTypeID = 1";
+                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
             }
             if (partID != null)
             {
