@@ -278,7 +278,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetTotalCostByType(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
             string groupBySql = " group by Car.IDPart";
-            string sql = "select Car.IDPart, Part.PartName, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID";
+            string sql = "select Car.IDPart, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID";
             if (!isTicketMonth)
             {
                 sql += sqlQueryTicketCommon;
@@ -287,7 +287,7 @@ namespace ParkingMangement.DAO
             {
                 sql += sqlQueryTicketMonth;
             }
-            sql += " where 0 = 0";
+            sql += "  where 0 = 0";
 
             if (startTime != null && endTime != null)
             {
@@ -308,6 +308,7 @@ namespace ParkingMangement.DAO
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
+                data.Columns.Add("PartName", typeof(string));
                 data.Columns["PartName"].SetOrdinal(0);
                 data.Columns.Add("CountCarIn", typeof(long));
                 data.Columns["CountCarIn"].SetOrdinal(1);
@@ -318,6 +319,8 @@ namespace ParkingMangement.DAO
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string partID = data.Rows[row].Field<string>("IDPart");
+                    string partName = PartDAO.GetPartNameByPartID(partID);
+                    data.Rows[row].SetField("PartName", partName);
                     long countCarIn = GetCountCarInByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarIn", countCarIn);
                     long countCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
