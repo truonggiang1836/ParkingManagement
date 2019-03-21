@@ -24,6 +24,10 @@ namespace ParkingMangement.GUI
 {
     public partial class FormQuanLy : Form
     {
+        const int EXPORT_SALE_NOT_YET_SEARCH = 0;
+        const int EXPORT_SALE_SEARCH_CONDITION = 1;
+        const int EXPORT_SALE_SEARCH_ALL = 2;
+
         private string[] listFunctionQuanLyNhanSu = { "1", "2" };
         private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
         private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "7" };
@@ -34,6 +38,7 @@ namespace ParkingMangement.GUI
         private readonly RawInput _rawinput;
         const bool CaptureOnlyInForeground = true;
         private ComputerDTO mComputerDTO;
+        private int mExportSaleType = EXPORT_SALE_NOT_YET_SEARCH;
         public FormQuanLy()
         {
             InitializeComponent();
@@ -399,32 +404,13 @@ namespace ParkingMangement.GUI
         private void btnAllSaleReport_Click(object sender, EventArgs e)
         {
             loadSaleReportData();
-            loadCarList();
+            mExportSaleType = EXPORT_SALE_SEARCH_ALL;
         }
 
         private void btnSearchSaleReport_Click(object sender, EventArgs e)
         {
             searchSaleReport();
-
-            DateTime startDateReport = DateTime.Now;
-            DateTime endDateReport = DateTime.Now;
-            if (rbOneDateSaleReport.Checked)
-            {
-                DateTime timeReport = dtDateSaleReport.Value;
-                startDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
-                endDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
-
-            }
-            if (rbMultiDateSaleReport.Checked)
-            {
-                startDateReport = dtStartDateSaleReport.Value;
-                DateTime startTimeReport = dtStartTimeSaleReport.Value;
-                startDateReport = new DateTime(startDateReport.Year, startDateReport.Month, startDateReport.Day, startTimeReport.Hour, startTimeReport.Minute, 0);
-                endDateReport = dtEndDateSaleReport.Value;
-                DateTime endTimeReport = dtEndTimeSaleReport.Value;
-                endDateReport = new DateTime(endDateReport.Year, endDateReport.Month, endDateReport.Day, endTimeReport.Hour, endTimeReport.Minute, 0);
-            }
-            searchCarByDateTime(startDateReport, endDateReport);
+            mExportSaleType = EXPORT_SALE_SEARCH_CONDITION;
         }
 
         private void tabQuanLyDoanhThu_SelectedIndexChanged(object sender, EventArgs e)
@@ -2146,13 +2132,13 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void searchCarByDateTime(DateTime startDate, DateTime endDate)
+        private void searchCarByCondition(DateTime startDate, DateTime endDate, string userId, int ticketType)
         {
             CarDTO carDTO = new CarDTO();
             carDTO.TimeStart = startDate;
             carDTO.TimeEnd = endDate;
 
-            DataTable data = CarDAO.searchAllData(carDTO);
+            DataTable data = CarDAO.searchAllData(carDTO, userId, ticketType);
             dgvCarList.DataSource = data;
         }
 
@@ -3112,9 +3098,48 @@ namespace ParkingMangement.GUI
             loadLogList();
         }
 
-        private void exportDanhSachXeToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportToExcel(DataGridView dataGridView, Microsoft.Office.Interop.Excel._Worksheet worksheet, int cellRowIndex, int cellColumnIndex)
         {
-            int firstRowIndex = cellRowIndex;
+            int originalCellColumnIndex = cellColumnIndex;
+            //Loop through each row and read value from each column. 
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
+                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+                    setColerForRange(range);
+                    setAllBorderForRange(range);
+                    cellColumnIndex++;
+                }
+            }
+
+            cellRowIndex++;
+            cellColumnIndex = originalCellColumnIndex;
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView.Columns.Count; j++)
+                {
+                    if (dataGridView.Columns[j].Visible && dataGridView.Columns[j].CellType == typeof(DataGridViewTextBoxCell))
+                    {
+                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Rows[i].Cells[j].Value.ToString();
+                        setLeftBorderForRange(range);
+                        setRightBorderForRange(range);
+                        if (i == dataGridView.Rows.Count - 1)
+                        {
+                            setBottomBorderForRange(range);
+                        }
+                        cellColumnIndex++;
+                    }
+                }
+                cellColumnIndex = 1;
+                cellRowIndex++;
+            }
+        }
+
+        private void exportDanhSachXeToExcel()
+        {
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3127,46 +3152,23 @@ namespace ParkingMangement.GUI
                 worksheet.Name = "Danh sách xe ra vào";
 
                 //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvCarList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvCarList.Columns.Count; j++)
-                    {
-                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                        if (cellRowIndex == firstRowIndex)
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarList.Columns[j].HeaderText;
-                            setColerForRange(range);
-                            setAllBorderForRange(range);
-                        }
-                        else
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarList.Rows[i].Cells[j].Value.ToString();
-                            setLeftBorderForRange(range);
-                            setRightBorderForRange(range);
-                            if (i == dgvCarList.Rows.Count - 2)
-                            {
-                                setBottomBorderForRange(range);
-                            }
-                        }
-
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvCarList, worksheet, 1, 1);
+                
                 excel.Columns.AutoFit();
 
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_danhsach_xe_ravao_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3181,9 +3183,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportDanhSachXeThangToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportDanhSachXeThangToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3193,49 +3194,26 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách xe ra vào";
+                worksheet.Name = "Danh sách xe tháng";
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvCarTicketMonthList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvCarTicketMonthList.Columns.Count; j++)
-                    {
-                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                        if (cellRowIndex == firstRowIndex)
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarTicketMonthList.Columns[j].HeaderText;
-                            setColerForRange(range);
-                            setAllBorderForRange(range);
-                        }
-                        else
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarTicketMonthList.Rows[i].Cells[j].Value.ToString();
-                            setLeftBorderForRange(range);
-                            setRightBorderForRange(range);
-                            if (i == dgvCarTicketMonthList.Rows.Count - 2)
-                            {
-                                setBottomBorderForRange(range);
-                            }
-                        }
-
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                //Loop through each row and read value from each column.
+                exportToExcel(dgvCarTicketMonthList, worksheet, 1, 1);
+                
                 excel.Columns.AutoFit();
 
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_danhsach_xethang_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3250,9 +3228,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportBangChamCongToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportBangChamCongToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3262,39 +3239,11 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Danh sách chấm công";
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvWorkList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvWorkList.Columns.Count; j++)
-                    {
-                        if (dgvWorkList.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvWorkList.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvWorkList.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvWorkList.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                //Loop through each row and read value from each column.
+                exportToExcel(dgvWorkList, worksheet, 1, 1);
+                
                 excel.Columns.AutoFit();
 
 
@@ -3324,9 +3273,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportDoanhThuTongQuatToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportDoanhThuTongQuatToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3334,41 +3282,11 @@ namespace ParkingMangement.GUI
 
             try
             {
-
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Doanh thu tổng quát";
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvThongKeDoanhThu.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvThongKeDoanhThu.Columns.Count; j++)
-                    {
-                        if (dgvThongKeDoanhThu.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvThongKeDoanhThu.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvThongKeDoanhThu.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvThongKeDoanhThu.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1);
+
                 excel.Columns.AutoFit();
 
 
@@ -3398,9 +3316,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportDoanhSachTheXeToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportDoanhSachTheXeToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3410,82 +3327,26 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Danh sách thẻ xe";
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvCardStatistic.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvCardStatistic.Columns.Count; j++)
-                    {
-                        if (dgvCardStatistic.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCardStatistic.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCardStatistic.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvCardStatistic.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
-
-                cellRowIndex = dgvCardStatistic.Rows.Count + 2;
-                firstRowIndex = cellRowIndex;
-                for (int i = 0; i < dgvCardList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvCardList.Columns.Count; j++)
-                    {
-                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                        if (cellRowIndex == firstRowIndex)
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCardList.Columns[j].HeaderText;
-                            setColerForRange(range);
-                            setAllBorderForRange(range);
-                        }
-                        else
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCardList.Rows[i].Cells[j].Value.ToString();
-                            setLeftBorderForRange(range);
-                            setRightBorderForRange(range);
-                            if (i == dgvCardList.Rows.Count - 2)
-                            {
-                                setBottomBorderForRange(range);
-                            }
-                        }
-
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvCardStatistic, worksheet, 1, 1);
+                int cellRowIndex = dgvCardStatistic.Rows.Count + 3;
+                exportToExcel(dgvCardList, worksheet, cellRowIndex, 1);
 
                 excel.Columns.AutoFit();
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_danhsach_thexe_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3500,9 +3361,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportNhatKyVeThangToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportNhatKyVeThangToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3512,51 +3372,25 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Nhật ký vé tháng";
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvTicketLogList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvTicketLogList.Columns.Count; j++)
-                    {
-                        if (dgvTicketLogList.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvTicketLogList.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvTicketLogList.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvTicketLogList.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvTicketLogList, worksheet, 1, 1);
+
                 excel.Columns.AutoFit();
 
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_nhatky_vethang_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3571,9 +3405,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportDanhSachTheHetHanToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportDanhSachTheHetHanToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3583,55 +3416,26 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Danh sách thẻ hết hạn";
 
                 //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvRenewTicketMonthList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvRenewTicketMonthList.Columns.Count; j++)
-                    {
-                        if (j == 0)
-                        {
-                            continue;
-                        }
-                        if (dgvRenewTicketMonthList.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvRenewTicketMonthList.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvRenewTicketMonthList.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvRenewTicketMonthList.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvRenewTicketMonthList, worksheet, 1, 1);
+
                 excel.Columns.AutoFit();
 
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_danhsach_the_hethan_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3646,9 +3450,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportNhatKyHeThongToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportNhatKyHeThongToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3658,51 +3461,26 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Nhật ký hệ thống";
 
                 //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvLogList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvLogList.Columns.Count; j++)
-                    {
-                        if (dgvLogList.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvLogList.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvLogList.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvLogList.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvLogList, worksheet, 1, 1);
+                
                 excel.Columns.AutoFit();
 
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_nhatky_hethong_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3717,9 +3495,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportDoanhThuChiTietToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportDoanhThuChiTietToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3729,70 +3506,12 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Doanh thu chi tiết";
 
                 //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvThongKeDoanhThu.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvThongKeDoanhThu.Columns.Count; j++)
-                    {
-                        if (dgvThongKeDoanhThu.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvThongKeDoanhThu.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvThongKeDoanhThu.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvThongKeDoanhThu.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
-
-                cellRowIndex = dgvThongKeDoanhThu.Rows.Count + 2;
-                firstRowIndex = cellRowIndex;
-                for (int i = 0; i < dgvCarList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvCarList.Columns.Count; j++)
-                    {
-                        // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                        if (cellRowIndex == firstRowIndex)
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarList.Columns[j].HeaderText;
-                            setColerForRange(range);
-                            setAllBorderForRange(range);
-                        }
-                        else
-                        {
-                            worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvCarList.Rows[i].Cells[j].Value.ToString();
-                            setLeftBorderForRange(range);
-                            setRightBorderForRange(range);
-                            if (i == dgvCarList.Rows.Count - 2)
-                            {
-                                setBottomBorderForRange(range);
-                            }
-                        }
-
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1);
+                int cellRowIndex = dgvThongKeDoanhThu.Rows.Count + 3;
+                exportToExcel(dgvCarList, worksheet, cellRowIndex, 1);
 
                 excel.Columns.AutoFit();
 
@@ -3822,9 +3541,8 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void exportDanhSachTheThangToExcel(int cellRowIndex, int cellColumnIndex)
+        private void exportDanhSachTheThangToExcel()
         {
-            int firstRowIndex = cellRowIndex;
             // Creating a Excel object. 
             Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
             Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
@@ -3834,51 +3552,25 @@ namespace ParkingMangement.GUI
             {
 
                 worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Sheet1";
+                worksheet.Name = "Danh sách thẻ tháng";
 
-                //Loop through each row and read value from each column. 
-                for (int i = 0; i < dgvTicketMonthList.Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j < dgvTicketMonthList.Columns.Count; j++)
-                    {
-                        if (dgvTicketMonthList.Columns[j].Visible)
-                        {
-                            // Excel index starts from 1,1. As first Row would have the Column headers, adding a condition check. 
-                            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                            if (cellRowIndex == firstRowIndex)
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvTicketMonthList.Columns[j].HeaderText;
-                                setColerForRange(range);
-                                setAllBorderForRange(range);
-                            }
-                            else
-                            {
-                                worksheet.Cells[cellRowIndex, cellColumnIndex] = dgvTicketMonthList.Rows[i].Cells[j].Value.ToString();
-                                setLeftBorderForRange(range);
-                                setRightBorderForRange(range);
-                                if (i == dgvTicketMonthList.Rows.Count - 2)
-                                {
-                                    setBottomBorderForRange(range);
-                                }
-                            }
-                            cellColumnIndex++;
-                        }
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
+                exportToExcel(dgvTicketMonthList, worksheet, 1, 1);
+                
                 excel.Columns.AutoFit();
 
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Export_danhsach_thethang_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     workbook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageExportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
                 }
             }
             catch (System.Exception ex)
@@ -3929,47 +3621,103 @@ namespace ParkingMangement.GUI
 
         private void btnExportDoanhThuTongQuat_Click(object sender, EventArgs e)
         {
-            exportDoanhThuTongQuatToExcel(1, 1);
+            if (mExportSaleType == EXPORT_SALE_NOT_YET_SEARCH)
+            {
+                MessageBox.Show("Chưa có dữ liệu để xuất Excel");
+            } else
+            {
+                exportDoanhThuTongQuatToExcel();
+            }
         }
 
         private void btnExportDoanhThuChiTiet_Click(object sender, EventArgs e)
         {
-            exportDoanhThuChiTietToExcel(1, 1);
+            if (mExportSaleType == EXPORT_SALE_SEARCH_ALL)
+            {
+                loadCarList();
+                exportDoanhThuChiTietToExcel();
+            } else if (mExportSaleType == EXPORT_SALE_SEARCH_CONDITION)
+            {
+                string userID = null;
+                int ticketType = CarDAO.ALL_TICKET;
+                if (cbNhanVienReport.SelectedIndex > 0)
+                {
+                    DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
+                    userID = Convert.ToString(dataRow["UserID"]);
+                }
+
+                DateTime startDateReport = DateTime.Now;
+                DateTime endDateReport = DateTime.Now;
+                if (rbOneDateSaleReport.Checked)
+                {
+                    DateTime timeReport = dtDateSaleReport.Value;
+                    startDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 0, 0, 0);
+                    endDateReport = new DateTime(timeReport.Year, timeReport.Month, timeReport.Day, 23, 59, 59);
+
+                }
+                if (rbMultiDateSaleReport.Checked)
+                {
+                    startDateReport = dtStartDateSaleReport.Value;
+                    DateTime startTimeReport = dtStartTimeSaleReport.Value;
+                    startDateReport = new DateTime(startDateReport.Year, startDateReport.Month, startDateReport.Day, startTimeReport.Hour, startTimeReport.Minute, 0);
+                    endDateReport = dtEndDateSaleReport.Value;
+                    DateTime endTimeReport = dtEndTimeSaleReport.Value;
+                    endDateReport = new DateTime(endDateReport.Year, endDateReport.Month, endDateReport.Day, endTimeReport.Hour, endTimeReport.Minute, 0);
+                }
+
+                if (rbAllTicketSaleReport.Checked)
+                {
+                    ticketType = CarDAO.ALL_TICKET;
+                }
+                else if (rbCommonTicketSaleReport.Checked)
+                {
+                    ticketType = CarDAO.COMMON_TICKET;
+                }
+                else if (rbMonthTicketSaleReport.Checked)
+                {
+                    ticketType = CarDAO.MONTH_TICKET;
+                }
+                searchCarByCondition(startDateReport, endDateReport, userID, ticketType);
+                exportDoanhThuChiTietToExcel();
+            } else
+            {
+                MessageBox.Show("Chưa có dữ liệu để xuất Excel");
+            }
         }
 
         private void btnExportBangChamCong_Click(object sender, EventArgs e)
         {
-            exportBangChamCongToExcel(1, 1);
+            exportBangChamCongToExcel();
         }
 
         private void btnExportDanhSachTheXe_Click(object sender, EventArgs e)
         {
-            exportDoanhSachTheXeToExcel(1, 1);
+            exportDoanhSachTheXeToExcel();
         }
 
         private void btnExportNhatKyVeThang_Click(object sender, EventArgs e)
         {
-            exportNhatKyVeThangToExcel(1, 1);
+            exportNhatKyVeThangToExcel();
         }
 
         private void btnExportDanhSachTheHetHan_Click(object sender, EventArgs e)
         {
-            exportDanhSachTheHetHanToExcel(1, 1);
+            exportDanhSachTheHetHanToExcel();
         }
 
         private void btnExportNhatKyHeThong_Click(object sender, EventArgs e)
         {
-            exportNhatKyHeThongToExcel(1, 1);
+            exportNhatKyHeThongToExcel();
         }
 
         private void btnExportDanhSachXe_Click(object sender, EventArgs e)
         {
-            exportDanhSachXeToExcel(1, 1);
+            exportDanhSachXeToExcel();
         }
 
         private void btnExportDanhSachXeThang_Click(object sender, EventArgs e)
         {
-            exportDanhSachXeThangToExcel(1, 1);
+            exportDanhSachXeThangToExcel();
         }
 
         void Delete_Card_Click(Object sender, System.EventArgs e, int currentRow)
@@ -4066,7 +3814,7 @@ namespace ParkingMangement.GUI
 
         private void btnExportDanhSachVeThang_Click(object sender, EventArgs e)
         {
-            exportDanhSachTheThangToExcel(1, 1);
+            exportDanhSachTheThangToExcel();
         }
 
         private void addDataToRFIDComboBox()

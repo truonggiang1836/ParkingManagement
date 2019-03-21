@@ -18,8 +18,7 @@ namespace ParkingMangement.DAO
 
         private static string sqlGetAllData = "select DISTINCT Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Car.IDIn, Car.IDOut, Car.IDTicketMonth, Car.IsLostCard, Car.Cost, Part.ID as PartID, Part.PartName, Part.Sign, Car.Computer, Car.Account, " +
-            "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from Car, Part, SmartCard where Car.IDPart = Part.ID and SmartCard.ID = Car.ID";
-
+            "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from Car join Part on Car.IDPart = Part.ID join SmartCard on SmartCard.ID = Car.ID where 0 = 0";
 
         private static string sqlGetAllTicketMonthData = "select DISTINCT Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from Car, Part, TicketMonth, SmartCard " +
@@ -28,8 +27,8 @@ namespace ParkingMangement.DAO
         private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
             "Car.IsLostCard, Car.Computer, UserCar.NameUser from Car, UserCar where Car.Account = UserCar.UserID";
 
-        private static string sqlQueryTicketMonth = " and Car.IDTicketMonth <> '' ";
-        private static string sqlQueryTicketCommon= " and Car.IDTicketMonth = '' ";
+        private static string sqlQueryTicketMonth = " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
+        private static string sqlQueryTicketCommon = " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
         private static string sqlQueryXeTon = " and Car.IDOut = '' ";
         private static string sqlQueryMatThe = " and Car.IsLostCard > " + 0 + "";
         private static string sqlOrderByIdentifyDesc = " order by Car.Identify desc";
@@ -67,7 +66,8 @@ namespace ParkingMangement.DAO
         public static string sqlSearchData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
-            sql += " and Car.TimeStart >= '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and ((Car.TimeEnd <= '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> '') or Car.IDOut = '')";
+            sql += " and ((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "')"
+                + " or (Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> ''))";
             if (!string.IsNullOrEmpty(carDTO.IdPart))
             {
                 sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
@@ -98,6 +98,30 @@ namespace ParkingMangement.DAO
         public static DataTable searchAllData(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
+            sql += sqlOrderByIdentifyDesc;
+
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                setUserNameForDataTable(data);
+            }
+            return data;
+        }
+
+        public static DataTable searchAllData(CarDTO carDTO, string userID, int ticketType)
+        {
+            string sql = sqlSearchData(carDTO);
+            if (userID != null)
+            {
+                sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
+            }
+            if (ticketType == COMMON_TICKET)
+            {
+                sql += sqlQueryTicketCommon;
+            } else if (ticketType == MONTH_TICKET)
+            {
+                sql += sqlQueryTicketMonth;
+            }
             sql += sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
@@ -154,7 +178,7 @@ namespace ParkingMangement.DAO
             if (!string.IsNullOrEmpty(ticketMonthDTO.Company))
             {
                 sql += " and TicketMonth.Company like '%" + ticketMonthDTO.Company + "%'";
-            }         
+            }
             sql += sqlOrderByIdentifyDesc;
 
             DataTable data = Database.ExcuQuery(sql);
@@ -186,7 +210,8 @@ namespace ParkingMangement.DAO
             DataTable data = new DataTable();
             DataTable commonData = GetTotalCostByType(startTime, endTime, false, userID);
             DataTable ticketData = GetTotalCostByType(startTime, endTime, true, userID);
-            if (ticketType == ALL_TICKET || ticketType == COMMON_TICKET) {
+            if (ticketType == ALL_TICKET || ticketType == COMMON_TICKET)
+            {
                 data.Merge(commonData);
             }
             if (ticketType == ALL_TICKET || ticketType == MONTH_TICKET)
@@ -242,7 +267,7 @@ namespace ParkingMangement.DAO
                 {
                     long sumCostTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString());
                     sumCost += sumCostTicketData;
-                }                
+                }
                 dataRow.SetField("SumCost", sumCost);
                 data.Rows.Add(dataRow);
             }
@@ -253,27 +278,23 @@ namespace ParkingMangement.DAO
         public static DataTable GetTotalCostByType(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
             string groupBySql = " group by Car.IDPart";
-            string sql = "select Car.IDPart, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID where 0 = 0";
+            string sql = "select Car.IDPart, Part.PartName, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID";
             if (!isTicketMonth)
             {
-                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
+                sql += sqlQueryTicketCommon;
             }
             else
             {
-                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
-            }
-            if (!isTicketMonth)
-            {
-                sql += sqlQueryTicketCommon; 
-            } else
-            {
                 sql += sqlQueryTicketMonth;
             }
+            sql += " where 0 = 0";
+
             if (startTime != null && endTime != null)
             {
                 DateTime startTime1 = startTime ?? DateTime.Now;
                 DateTime endTime1 = endTime ?? DateTime.Now;
-                sql += " and Car.TimeStart >= '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.TimeEnd <= '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'";
+                sql += " and ((Car.TimeStart between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "')"
+                + " or (Car.TimeEnd between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> ''))";
             }
             if (userID != null)
             {
@@ -287,7 +308,6 @@ namespace ParkingMangement.DAO
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
-                data.Columns.Add("PartName", typeof(string));
                 data.Columns["PartName"].SetOrdinal(0);
                 data.Columns.Add("CountCarIn", typeof(long));
                 data.Columns["CountCarIn"].SetOrdinal(1);
@@ -298,8 +318,6 @@ namespace ParkingMangement.DAO
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string partID = data.Rows[row].Field<string>("IDPart");
-                    string partName = PartDAO.GetPartNameByPartID(partID);
-                    data.Rows[row].SetField("PartName", partName);
                     long countCarIn = GetCountCarInByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarIn", countCarIn);
                     long countCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
@@ -320,7 +338,8 @@ namespace ParkingMangement.DAO
             if (!isTicketMonth)
             {
                 dataRow.SetField("PartName", "___Tổng xe thường");
-            } else
+            }
+            else
             {
                 dataRow.SetField("PartName", "___Tổng xe tháng");
             }
@@ -399,18 +418,19 @@ namespace ParkingMangement.DAO
 
         public static long GetCountCarInByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from Car, Part where Car.IDIn <> '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
-            if (isTicketMonth)
+            string sql = "select * from Car join Part on Car.IDPart = Part.ID";
+            if (!isTicketMonth)
             {
-                sql = "select * from Car, Part where Car.IDIn <> '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
-                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
-            } else
-            {
-                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
+                sql += sqlQueryTicketCommon;
             }
+            else
+            {
+                sql += sqlQueryTicketMonth;
+            }
+            sql += " where Car.IDIn <> ''";
             if (partID != null)
             {
-                sql += " and Part.ID = '" + partID + "'";
+                sql += " and Car.IDPart = '" + partID + "'";
             }
             if (startTime != null && endTime != null)
             {
@@ -433,18 +453,19 @@ namespace ParkingMangement.DAO
 
         public static long GetCountCarOutByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select * from Car, Part where Car.IDOut <> '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
-            if (isTicketMonth)
+            string sql = "select * from Car join Part on Car.IDPart = Part.ID";
+            if (!isTicketMonth)
             {
-                sql = "select * from Car, Part where Car.IDOut <> '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
-                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
-            } else
-            {
-                sql += " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
+                sql += sqlQueryTicketCommon;
             }
+            else
+            {
+                sql += sqlQueryTicketMonth;
+            }
+            sql += " where Car.IDOut <> ''";
             if (partID != null)
             {
-                sql += " and Part.ID = '" + partID + "'";
+                sql += " and Car.IDPart = '" + partID + "'";
             }
             if (startTime != null && endTime != null)
             {
@@ -563,7 +584,7 @@ namespace ParkingMangement.DAO
 
         public static void UpdateCarIn(CarDTO carDTO)
         {
-            string sql = "update Car set TimeStart ='" + carDTO.TimeStart + "', IDIn ='" + carDTO.IdIn + "', Digit ='" + carDTO.Digit + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account + 
+            string sql = "update Car set TimeStart ='" + carDTO.TimeStart + "', IDIn ='" + carDTO.IdIn + "', Digit ='" + carDTO.Digit + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account +
                 "', DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
             Database.ExcuNonQuery(sql);
         }
@@ -608,7 +629,8 @@ namespace ParkingMangement.DAO
             if (dt != null && dt.Rows.Count > 0)
             {
                 string IDOut = dt.Rows[0].Field<string>("IDOut");
-                if (string.IsNullOrEmpty(IDOut)) {
+                if (string.IsNullOrEmpty(IDOut))
+                {
                     return false;
                 }
             }
