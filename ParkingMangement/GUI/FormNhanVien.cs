@@ -1111,14 +1111,14 @@ namespace ParkingMangement.GUI
             axVLCPlugin3.video.aspectRatio = "209:253";
             axVLCPlugin4.video.aspectRatio = "209:253";
 
-            axVLCPlugin1.video.scale = 0.7f;
-            axVLCPlugin2.video.scale = 0.7f;
-            axVLCPlugin3.video.scale = 0.7f;
-            axVLCPlugin4.video.scale = 0.7f;
-            //axVLCPlugin1.video.scale = 0.4f;
-            //axVLCPlugin2.video.scale = 0.4f;
-            //axVLCPlugin3.video.scale = 0.4f;
-            //axVLCPlugin4.video.scale = 0.4f;
+            //axVLCPlugin1.video.scale = 0.7f;
+            //axVLCPlugin2.video.scale = 0.7f;
+            //axVLCPlugin3.video.scale = 0.7f;
+            //axVLCPlugin4.video.scale = 0.7f;
+            axVLCPlugin1.video.scale = 0.4f;
+            axVLCPlugin2.video.scale = 0.4f;
+            axVLCPlugin3.video.scale = 0.4f;
+            axVLCPlugin4.video.scale = 0.4f;
 
             axVLCPlugin1.Toolbar = false;
             axVLCPlugin2.Toolbar = false;
@@ -1588,7 +1588,13 @@ namespace ParkingMangement.GUI
 
         private void FormNhanVien_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Application.OpenForms.Count == 1)
+            int count = 0;
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+                    count++;
+            }
+            if (count == 1)
             {
                 Application.Exit();
             }

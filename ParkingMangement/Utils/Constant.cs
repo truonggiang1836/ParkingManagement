@@ -39,6 +39,7 @@ namespace ParkingMangement.Utils
         public static string sMessageUserNameNullError = "Họ và tên không được rỗng";
         public static string sMessageAccountNullError = "Tài khoản không được rỗng";
         public static string sMessagePasswordNullError = "Mật khẩu không được rỗng";
+        public static string sMessageConfirmPasswordError = "Mật khẩu xác nhận không đúng";
 
         // part
         public static string sMessagePartIdNullError = "Mã loại xe không được rỗng";

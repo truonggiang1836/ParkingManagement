@@ -132,7 +132,7 @@ namespace ParkingMangement.Utils
             String hour = datevalue.Hour.ToString();
             String minute = datevalue.Minute.ToString();
             String second = datevalue.Second.ToString();
-            return year + month + day + "_" + hour + minute;
+            return year + month + day + "_" + hour + minute + second;
         }
 
         public static DateTime getDateTimeFromMilliSecond(double milliSec)

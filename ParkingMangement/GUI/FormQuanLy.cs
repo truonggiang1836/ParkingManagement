@@ -125,6 +125,11 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessagePasswordNullError);
                 return false;
             }
+            if (!tbUserPassCreate.Text.Equals(tbUserConfirmPassCreate.Text))
+            {
+                MessageBox.Show(Constant.sMessageConfirmPasswordError);
+                return false;
+            }
             return true;
         }
 
@@ -143,6 +148,11 @@ namespace ParkingMangement.GUI
             if (string.IsNullOrWhiteSpace(tbUserPassEdit.Text))
             {
                 MessageBox.Show(Constant.sMessagePasswordNullError);
+                return false;
+            }
+            if (!tbUserPassEdit.Text.Equals(tbUserConfirmPassEdit.Text))
+            {
+                MessageBox.Show(Constant.sMessageConfirmPasswordError);
                 return false;
             }
             return true;
@@ -3934,7 +3944,13 @@ namespace ParkingMangement.GUI
         private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
             _rawinput.KeyPressed -= OnKeyPressed;
-            if (Application.OpenForms.Count == 1)
+            int count = 0;
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+                    count++;
+            }
+            if (count == 1)
             {
                 Application.Exit();
             }
@@ -4220,6 +4236,11 @@ namespace ParkingMangement.GUI
         private void tbTicketMonthIdentifyCreate_Leave(object sender, EventArgs e)
         {
             ticketMonthCardIdentifyLeaveEvent();
+        }
+
+        private void btnExportDanhSachTheXe2_Click(object sender, EventArgs e)
+        {
+            exportDoanhSachTheXeToExcel();
         }
     }
 }
