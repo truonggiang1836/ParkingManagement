@@ -31,7 +31,8 @@ namespace ParkingMangement.Utils
         public static string PARAM_DISABLE = "disable";
         public static string PARAM_DATA = "data";
 
-        public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
+        //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
+        public static string BASE_URL = "http://api.spmgroup.vn/public/";
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
         public static string API_CHECKIN = BASE_URL + "cards/checkin";
