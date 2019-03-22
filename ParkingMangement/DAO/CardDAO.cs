@@ -28,6 +28,25 @@ namespace ParkingMangement.DAO
             return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
+        public static bool Insert(List<CardDTO> listCardDTO)
+        {
+            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, Type, DayUnlimit) values ";
+            if (listCardDTO.Count > 0)
+            {
+                for (int i = 0; i < listCardDTO.Count; i++)
+                {
+                    CardDTO cardDTO = listCardDTO[i];
+                    sql += "('" + cardDTO.SystemId + "', " + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
+                    if (i < listCardDTO.Count - 1)
+                    {
+                        sql += ",";
+                    }
+                }
+                return Database.ExcuNonQueryNoErrorMessage(sql);
+            }
+            return false;
+        }
+
         public static void Update(CardDTO cartDTO)
         {
             string sql = "update SmartCard set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
