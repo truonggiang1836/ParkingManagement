@@ -2811,19 +2811,15 @@ namespace ParkingMangement.GUI
             }
             else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
             {
-                loadCarListForCashManagement();
+                //loadCarListForCashManagement
                 setFormatDateForDateTimePicker(dtCashManagementStartDate);
                 setFormatDateForDateTimePicker(dtCashManagementEndDate);
             }
-            else if(tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageQuanLyThuTienXe"])
-            {
-                loadCarListForCashManagement();
-                setFormatDateForDateTimePicker(dtCashManagementStartDate);
-                setFormatDateForDateTimePicker(dtCashManagementEndDate);
-            } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
+            else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPagePhanQuyenTruyCap"])
             {
                 loadUserAcessData();
-            } else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageNhatKyHeThong"])
+            }
+            else if (tabQuanLyHeThong.SelectedTab == tabQuanLyHeThong.TabPages["tabPageNhatKyHeThong"])
             {
                 //loadLogList();
                 loadLogTypeDataWithAllToComboBox(cbLogType);
@@ -4241,6 +4237,11 @@ namespace ParkingMangement.GUI
         private void btnExportDanhSachTheXe2_Click(object sender, EventArgs e)
         {
             exportDoanhSachTheXeToExcel();
+        }
+
+        private void btnSearchCash_Click(object sender, EventArgs e)
+        {
+            loadCarListForCashManagement();
         }
     }
 }

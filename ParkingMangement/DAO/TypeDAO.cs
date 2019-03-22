@@ -17,7 +17,7 @@ namespace ParkingMangement.DAO
 
         public static string GetTypeNameByTypeID(string typeID)
         {
-            string sql = "select * from Type where TypeID = '" + typeID + "'";
+            string sql = "select TypeName from Type where TypeID = '" + typeID + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {

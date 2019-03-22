@@ -24,7 +24,7 @@ namespace ParkingMangement.DAO
 
         public static string GetPartNameByPartID(string id)
         {
-            string sql = "select * from Part where ID = '" + id + "'";
+            string sql = "select PartName from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null && data.Rows.Count > 0)
             {
@@ -35,7 +35,7 @@ namespace ParkingMangement.DAO
 
         public static string GetSignByPartID(string id)
         {
-            string sql = "select * from Part where ID = '" + id + "'";
+            string sql = "select Sign from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null && data.Rows.Count > 0)
             {
@@ -46,7 +46,7 @@ namespace ParkingMangement.DAO
 
         public static string GetCardTypeByID(string id)
         {
-            string sql = "select * from Part where ID = '" + id + "'";
+            string sql = "select CardTypeID from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
@@ -57,7 +57,7 @@ namespace ParkingMangement.DAO
 
         public static int GetAmountByPartID(string id)
         {
-            string sql = "select * from Part where ID = '" + id + "'";
+            string sql = "select Amount from Part where ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {

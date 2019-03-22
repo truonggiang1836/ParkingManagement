@@ -17,7 +17,7 @@ namespace ParkingMangement.DAO
 
         public static string GetTypeNameByTypeID(string cardTypeID)
         {
-            string sql = "select * from CardType where CardTypeID = '" + cardTypeID + "'";
+            string sql = "select CardTypeName from CardType where CardTypeID = '" + cardTypeID + "'";
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {

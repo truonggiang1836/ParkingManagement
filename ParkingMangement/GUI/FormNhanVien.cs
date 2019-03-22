@@ -373,7 +373,7 @@ namespace ParkingMangement.GUI
             carDTO.Id = cardID;
             carDTO.TimeStart = DateTime.Now;
             carDTO.IdIn = Program.CurrentUserID;
-            string partID = CardDAO.getIDByCardID(cardID);
+            string partID = CardDAO.getPartIDByCardID(cardID);
             carDTO.IdPart = partID;
             carDTO.Images = imagePath1;
             carDTO.Images2 = imagePath2;
@@ -1213,7 +1213,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienTheoCongVan(DataTable dtLastCar)
         {
-            string partID = CardDAO.getIDByCardID(cardID);
+            string partID = CardDAO.getPartIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
             if (dtLastCar != null)
             {
@@ -1267,7 +1267,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienLuyTien(DataTable dtLastCar)
         {
-            string partID = CardDAO.getIDByCardID(cardID);
+            string partID = CardDAO.getPartIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_LUY_TIEN);
             if (dtLastCar != null)
             {
@@ -1307,7 +1307,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienTongHop(DataTable dtLastCar)
         {
-            string partID = CardDAO.getIDByCardID(cardID);
+            string partID = CardDAO.getPartIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_TONG_HOP);
             if (dtLastCar != null)
             {

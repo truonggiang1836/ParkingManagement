@@ -564,14 +564,14 @@
             // 
             // Column29
             // 
-            this.Column29.DataPropertyName = "IDIn";
+            this.Column29.DataPropertyName = "UserIn";
             this.Column29.HeaderText = "Người vào";
             this.Column29.Name = "Column29";
             this.Column29.ReadOnly = true;
             // 
             // Column30
             // 
-            this.Column30.DataPropertyName = "IDOut";
+            this.Column30.DataPropertyName = "UserOut";
             this.Column30.HeaderText = "Người ra";
             this.Column30.Name = "Column30";
             this.Column30.ReadOnly = true;
