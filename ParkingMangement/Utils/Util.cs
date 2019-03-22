@@ -256,8 +256,11 @@ namespace ParkingMangement.Utils
             string json = JsonConvert.SerializeObject(data);
             DataTable dtTable = data;
             List<Order> listOrder = new List<Order>();
-            foreach (DataRow dtRow in dtTable.Rows)
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            for (int i = 0; i < dtTable.Rows.Count; i++)
             {
+                DataRow dtRow = dtTable.Rows[i];
                 Order order = new Order();
                 order.AreaId = 1;
                 order.OrderId = dtRow.Field<int>("Identify");
@@ -273,13 +276,13 @@ namespace ParkingMangement.Utils
                 order.CarNumberIn = dtRow.Field<string>("Digit");
                 order.CarNumberOut = dtRow.Field<string>("Digit");
                 order.AdminCheckinId = dtRow.Field<string>("IDIn");
-                order.AdminCheckinName = UserDAO.GetUserNameByID(order.AdminCheckinId);
+                order.AdminCheckinName = dtRow.Field<string>("UserIn");
                 order.AdminCheckoutId = dtRow.Field<string>("IDOut");
-                order.AdminCheckoutName = UserDAO.GetUserNameByID(order.AdminCheckoutId);
+                order.AdminCheckoutName = dtRow.Field<string>("UserOut");
                 order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
                 order.VehicleId = Int32.Parse(dtRow.Field<string>("IDPart"));
-                order.VehicleName = PartDAO.GetPartNameByPartID(order.VehicleId + "");
-                order.VehicleCode = PartDAO.GetSignByPartID(order.VehicleId + "");
+                order.VehicleName = dtRow.Field<string>("PartName");
+                order.VehicleCode = dtRow.Field<string>("Sign");
                 order.IsCardLost = dtRow.Field<int>("IsLostCard");
                 order.TotalPrice = dtRow.Field<int>("Cost");
                 order.PcName = dtRow.Field<string>("Computer");
@@ -288,20 +291,13 @@ namespace ParkingMangement.Utils
                 order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 listOrder.Add(order);
-                if (listOrder.Count == 5)
-                {
-                    break;
-                }
-            }
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            var param = new System.Collections.Specialized.NameValueCollection();
-            for (int i = 0; i < listOrder.Count; i++)
-            {
-                string jsonString = JsonConvert.SerializeObject(listOrder[i]);
+
+                string jsonString = JsonConvert.SerializeObject(order);
                 string index = (i + 1).ToString();
                 webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
                 param.Add(ApiUtil.PARAM_DATA + index, jsonString);
             }
+            
             try
             {
                 //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);

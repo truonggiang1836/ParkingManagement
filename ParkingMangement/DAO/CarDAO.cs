@@ -21,6 +21,11 @@ namespace ParkingMangement.DAO
             "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from Car left join Part on Car.IDPart = Part.ID left join SmartCard on SmartCard.ID = Car.ID " +
             "left join UserCar userA on Car.IDIn = userA.UserID left join UserCar userB on Car.IDOut = userB.UserID left join UserCar userC on Car.Account = userC.UserID where 0 = 0";
 
+        private static string sqlGetAllDataForCallAPI = "select car.*, userA.NameUser as UserIn, " +
+            "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
+            " from Car car left join Part on car.IDPart = Part.ID " +
+            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where 0 = 0";
+
         private static string sqlGetAllTicketMonthData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from Car, Part, TicketMonth, SmartCard " +
             "where Car.IDPart = Part.ID and TicketMonth.ID = Car.IDTicketMonth and SmartCard.ID = Car.ID";
@@ -44,7 +49,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetDataRecently(int identify)
         {
-            string sql = "select * from Car where Car.Identify > " + identify + sqlOrderByIdentifyAsc;
+            string sql = sqlGetAllDataForCallAPI + " and car.Identify > " + identify + " order by car.Identify asc";
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }

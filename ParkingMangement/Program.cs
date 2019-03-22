@@ -54,11 +54,11 @@ namespace ParkingMangement
                 /* run your code here */
                 updateOrderToSever();
 
-                System.Timers.Timer aTimer = new System.Timers.Timer();
-                aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                aTimer.Interval = 2 * 60 * 1000;
-                aTimer.Enabled = true;
-                aTimer.Start();
+                //System.Timers.Timer aTimer = new System.Timers.Timer();
+                //aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                //aTimer.Interval = 2 * 60 * 1000;
+                //aTimer.Enabled = true;
+                //aTimer.Start();
             }).Start();
         }
 
@@ -79,7 +79,7 @@ namespace ParkingMangement
                 if (!string.IsNullOrEmpty(lastSavedIdentifyString))
                 {
                     int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
-                    //Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
+                    Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
                 }
             }
         }
