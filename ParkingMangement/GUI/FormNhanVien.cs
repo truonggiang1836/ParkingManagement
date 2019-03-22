@@ -651,7 +651,7 @@ namespace ParkingMangement.GUI
             {
                 Thread.CurrentThread.IsBackground = true;
                 /* run your code here */
-                Util.sendOrderToServer(CarDAO.GetCarByIdentify(identify));
+                //Util.sendOrderToServer(CarDAO.GetCarByIdentify(identify));
             }).Start();
 
             labelCostIn.Text = "-";

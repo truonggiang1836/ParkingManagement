@@ -79,7 +79,7 @@ namespace ParkingMangement
                 if (!string.IsNullOrEmpty(lastSavedIdentifyString))
                 {
                     int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
-                    Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
+                    //Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
                 }
             }
         }
