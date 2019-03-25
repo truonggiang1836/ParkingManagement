@@ -253,7 +253,7 @@ namespace ParkingMangement.Utils
             {
                 return;
             }
-            string json = JsonConvert.SerializeObject(data);
+            //string json = JsonConvert.SerializeObject(data);
             DataTable dtTable = data;
             List<Order> listOrder = new List<Order>();
             WebClient webClient = (new ApiUtil()).getWebClient();
@@ -294,24 +294,19 @@ namespace ParkingMangement.Utils
 
                 string jsonString = JsonConvert.SerializeObject(order);
                 string index = (i + 1).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_DATA + index, jsonString);
                 param.Add(ApiUtil.PARAM_DATA + index, jsonString);
-                if (listOrder.Count == 100)
-                {
-                    break;
-                }
             }
             
             try
             {
-                byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
-                String responseString = Encoding.UTF8.GetString(responsebytes);
+                //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
+                //String responseString = Encoding.UTF8.GetString(responsebytes);
 
-                int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
-                if (listOrder.Count > 1)
-                {
-                    saveLastOrderToConfig(lastIdentify);
-                }
+                //int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
+                //if (listOrder.Count > 1)
+                //{
+                //    saveLastOrderToConfig(lastIdentify);
+                //}
             }
             catch (Exception e)
             {
@@ -338,57 +333,6 @@ namespace ParkingMangement.Utils
             catch (Exception e)
             {
 
-            }
-        }
-
-        public static void ShareFolder(string FolderPath, string ShareName, string Description)
-        {
-            try
-            {
-                NTAccount ntAccount = new NTAccount("Everyone");
-                SecurityIdentifier oGrpSID = (SecurityIdentifier)ntAccount.Translate(typeof(SecurityIdentifier));
-                byte[] utenteSIDArray = new byte[oGrpSID.BinaryLength];
-                oGrpSID.GetBinaryForm(utenteSIDArray, 0);
-                ManagementObject oGrpTrustee = new ManagementClass(new ManagementPath("Win32_Trustee"), null);
-                oGrpTrustee["Name"] = "Everyone";
-                oGrpTrustee["SID"] = utenteSIDArray;
-                ManagementObject oGrpACE = new ManagementClass(new ManagementPath("Win32_Ace"), null);
-                oGrpACE["AccessMask"] = 2032127;//Full access
-                oGrpACE["AceFlags"] = AceFlags.ObjectInherit | AceFlags.ContainerInherit; //propagate the AccessMask to the subfolders
-                oGrpACE["AceType"] = AceType.AccessAllowed;
-                oGrpACE["Trustee"] = oGrpTrustee;             
-                ManagementObject oGrpSecurityDescriptor = new ManagementClass(new ManagementPath("Win32_SecurityDescriptor"), null);
-                oGrpSecurityDescriptor["ControlFlags"] = 4; //SE_DACL_PRESENT
-                oGrpSecurityDescriptor["DACL"] = new object[] { oGrpACE };
-
-
-                CreateFolderIfMissing(FolderPath);
-                // Create a ManagementClass object
-                ManagementClass managementClass = new ManagementClass("win32_share");
-
-                // Create ManagementBaseObjects for in and out parameters
-                ManagementBaseObject inParams = managementClass.GetMethodParameters("Create");
-                ManagementBaseObject outParams;
-
-                // Set the input parameters
-                inParams["Description"] = Description;
-                inParams["Name"] = ShareName;
-                inParams["Path"] = FolderPath;
-                inParams["Type"] = 0x0; // Disk Drive
-                inParams["MaximumAllowed"] = null;
-                inParams["Password"] = null;
-                inParams["Access"] = oGrpSecurityDescriptor;
-
-                // Invoke the method on the ManagementClass object
-                outParams = managementClass.InvokeMethod("Create", inParams, null);
-                if ((uint)(outParams.Properties["ReturnValue"].Value) != 0)
-                {
-                    throw new Exception("Unable to share directory.");
-                }
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message, "error!");
             }
         }
     }

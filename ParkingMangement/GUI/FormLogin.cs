@@ -82,7 +82,7 @@ namespace ParkingMangement
                 Program.CurrentUserID = userDTO.Id;
                 Program.CurrentToken = userDTO.Token;
 
-                Program.sendOrderListToServer();
+                //Program.sendOrderListToServer();
             } catch (WebException exception)
             {
                 string responseText;

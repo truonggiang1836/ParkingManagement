@@ -61,9 +61,9 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable GetDataByIdForAPI(string id)
+        public static DataTable GetLastDataByIdForAPI(string id)
         {
-            string sql = sqlGetAllDataForCallAPI + " and car.ID = '" + id+ "'";
+            string sql = sqlGetAllDataForCallAPI + " and car.ID = '" + id + "' order by car.Identify desc limit 1";
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
@@ -487,21 +487,15 @@ namespace ParkingMangement.DAO
             return Database.ExcuValueQuery(sql);
         }
 
-        public static DataTable GetCarByID(string id)
-        {
-            string sql = "select * from Car where ID = '" + id + "'" + " order by Identify desc";
-            return Database.ExcuQuery(sql);
-        }
-
         public static DataTable GetCarByIdentify(int identify)
         {
-            string sql = "select * from Car where Identify = " + identify + " order by Identify desc";
+            string sql = "select * from Car where Identify = " + identify + sqlOrderByIdentifyDesc;
             return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetLastCarByID(string id)
         {
-            string sql = "select * from Car where ID = '" + id + "'" + " order by Identify desc";
+            string sql = "select * from Car where ID = '" + id + "'" + sqlOrderByIdentifyDesc + " limit 1";
             return Database.ExcuQuery(sql);
         }
 

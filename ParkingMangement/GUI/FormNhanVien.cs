@@ -389,13 +389,12 @@ namespace ParkingMangement.GUI
 
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
-            //new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    /* run your code here */
-            //    Thread.Sleep(5000);
-            //    Util.sendOrderListToServer(CarDAO.GetDataByIdForAPI(cardID));
-            //}).Start();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                /* run your code here */
+                Util.sendOrderListToServer(CarDAO.GetLastDataByIdForAPI(cardID));
+            }).Start();
 
             updateScreenForCarIn(isTicketMonthCard);
         }
