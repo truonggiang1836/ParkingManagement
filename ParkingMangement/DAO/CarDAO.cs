@@ -54,6 +54,20 @@ namespace ParkingMangement.DAO
             return data;
         }
 
+        public static DataTable GetDataByIdentifyForAPI(int identify)
+        {
+            string sql = sqlGetAllDataForCallAPI + " and car.Identify = " + identify;
+            DataTable data = Database.ExcuQuery(sql);
+            return data;
+        }
+
+        public static DataTable GetDataByIdForAPI(string id)
+        {
+            string sql = sqlGetAllDataForCallAPI + " and car.ID = '" + id+ "'";
+            DataTable data = Database.ExcuQuery(sql);
+            return data;
+        }
+
         public static DataTable GetAllDataForCashManagement()
         {
             string sql = sqlGetDataForCashManagement + sqlOrderByIdentifyDesc;

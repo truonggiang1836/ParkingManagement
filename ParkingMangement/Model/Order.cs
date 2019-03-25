@@ -30,7 +30,7 @@ namespace ParkingMangement.Model
         [JsonProperty("monthly_card_id")]
         public string MonthlyCardId { get; set; }
         [JsonProperty("vehicle_id")]
-        public int VehicleId { get; set; }
+        public string VehicleId { get; set; }
         [JsonProperty("vehicle_name")]
         public string VehicleName { get; set; }
         [JsonProperty("vehicle_code")]

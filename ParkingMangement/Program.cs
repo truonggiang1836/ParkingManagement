@@ -54,11 +54,11 @@ namespace ParkingMangement
                 /* run your code here */
                 updateOrderToSever();
 
-                //System.Timers.Timer aTimer = new System.Timers.Timer();
-                //aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                //aTimer.Interval = 2 * 60 * 1000;
-                //aTimer.Enabled = true;
-                //aTimer.Start();
+                System.Timers.Timer aTimer = new System.Timers.Timer();
+                aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                aTimer.Interval = 5 * 60 * 1000;
+                aTimer.Enabled = true;
+                aTimer.Start();
             }).Start();
         }
 
@@ -73,7 +73,7 @@ namespace ParkingMangement
 
         private static void updateOrderToSever()
         {
-            if (isHostMachine)
+            //if (isHostMachine)
             {
                 string lastSavedIdentifyString = Util.getConfigFile().lastSavedOrder;
                 if (!string.IsNullOrEmpty(lastSavedIdentifyString))

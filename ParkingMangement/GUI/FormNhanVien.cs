@@ -389,6 +389,13 @@ namespace ParkingMangement.GUI
 
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
+            //new Thread(() =>
+            //{
+            //    Thread.CurrentThread.IsBackground = true;
+            //    /* run your code here */
+            //    Thread.Sleep(5000);
+            //    Util.sendOrderListToServer(CarDAO.GetDataByIdForAPI(cardID));
+            //}).Start();
 
             updateScreenForCarIn(isTicketMonthCard);
         }
@@ -608,7 +615,7 @@ namespace ParkingMangement.GUI
                 {
                     Thread.CurrentThread.IsBackground = true;
                     /* run your code here */
-                    //Util.sendOrderToServer(CarDAO.GetCarByIdentify(identify));
+                    Util.sendOrderListToServer(CarDAO.GetDataByIdentifyForAPI(identify));
                 }).Start();
 
                 labelCostIn.Text = "-";
