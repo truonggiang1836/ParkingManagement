@@ -299,10 +299,10 @@ namespace ParkingMangement.Utils
                 string index = (i + 1).ToString();
                 param.Add(ApiUtil.PARAM_DATA + index, jsonString);
 
-                if (listOrder.Count == 50)
-                {
-                    break;
-                }
+                //if (listOrder.Count == 50)
+                //{
+                //    break;
+                //}
             }
             
             try

@@ -613,15 +613,15 @@ namespace ParkingMangement.GUI
                 carDTO.DateUpdate = DateTime.Now;
 
                 CarDAO.UpdateCarOut(carDTO);
-                //if (!isUpdateCarOut)
-                //{
-                //    new Thread(() =>
-                //    {
-                //        Thread.CurrentThread.IsBackground = true;
-                //        /* run your code here */
-                //        Util.sendOrderListToServer(CarDAO.GetDataByIdentifyForAPI(identify));
-                //    }).Start();
-                //}
+                if (!isUpdateCarOut)
+                {
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        /* run your code here */
+                        Util.sendOrderListToServer(CarDAO.GetDataByIdentifyForAPI(identify));
+                    }).Start();
+                }
 
                 labelCostIn.Text = "-";
                 labelCostOut.Text = "-";
