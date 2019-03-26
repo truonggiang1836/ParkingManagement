@@ -63,6 +63,8 @@ namespace ParkingMangement.GUI
         private const float LARGER_FONT_FACTOR = 1.5f;
         private const float SMALLER_FONT_FACTOR = 0.8f;
 
+        //private bool mIsHasCarInOut = false;
+
         private int _lastFormSize;
 
 
@@ -142,7 +144,7 @@ namespace ParkingMangement.GUI
             labelComputer.Text = Environment.MachineName;
 
             updateThongKeXeTrongBaiByTimer();
-
+            Program.sendOrderListToServer();
 
             readConfigFile();
             //Random rnd = new Random();
@@ -267,6 +269,7 @@ namespace ParkingMangement.GUI
 
         private void saveImage()
         {
+            Program.isHasCarInOut = true;
             DataTable dtCommonCard = CardDAO.GetCardByID(cardID);
             DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
             if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
@@ -333,7 +336,7 @@ namespace ParkingMangement.GUI
             {
                 if (KiemTraXeChuaRa(dtLastCar) || KiemTraCapNhatXeRa(dtLastCar))
                 {
-                    updateCarOut(isTicketCard, dtLastCar);
+                    updateCarOut(isTicketCard, dtLastCar, KiemTraCapNhatXeRa(dtLastCar));
                     loadCarInData(dtLastCar);
                 } else
                 {
@@ -389,12 +392,12 @@ namespace ParkingMangement.GUI
 
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                /* run your code here */
-                Util.sendOrderListToServer(CarDAO.GetLastDataByIdForAPI(cardID));
-            }).Start();
+            //new Thread(() =>
+            //{
+            //    Thread.CurrentThread.IsBackground = true;
+            //    /* run your code here */
+            //    Util.sendOrderListToServer(CarDAO.GetLastDataByIdForAPI(cardID));
+            //}).Start();
 
             updateScreenForCarIn(isTicketMonthCard);
         }
@@ -561,7 +564,7 @@ namespace ParkingMangement.GUI
             return -1;
         }
 
-        private void updateCarOut(bool isTicketMonthCard, DataTable dtLastCar)
+        private void updateCarOut(bool isTicketMonthCard, DataTable dtLastCar, bool isUpdateCarOut)
         {
             if (dtLastCar != null && dtLastCar.Rows.Count > 0)
             {
@@ -610,12 +613,15 @@ namespace ParkingMangement.GUI
                 carDTO.DateUpdate = DateTime.Now;
 
                 CarDAO.UpdateCarOut(carDTO);
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    /* run your code here */
-                    Util.sendOrderListToServer(CarDAO.GetDataByIdentifyForAPI(identify));
-                }).Start();
+                //if (!isUpdateCarOut)
+                //{
+                //    new Thread(() =>
+                //    {
+                //        Thread.CurrentThread.IsBackground = true;
+                //        /* run your code here */
+                //        Util.sendOrderListToServer(CarDAO.GetDataByIdentifyForAPI(identify));
+                //    }).Start();
+                //}
 
                 labelCostIn.Text = "-";
                 labelCostOut.Text = "-";
@@ -1777,7 +1783,7 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 5 * 1000;
+            aTimer.Interval = 10 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
         }
@@ -1786,5 +1792,40 @@ namespace ParkingMangement.GUI
         {
             Invoke(new MethodInvoker(() => { dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive(); }));
         }
+
+        //private void updateDataToServerByTimer()
+        //{
+        //    System.Timers.Timer aTimer = new System.Timers.Timer();
+        //    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventUpdateDataToServer);
+        //    aTimer.Interval = 1 * 20 * 1000;
+        //    aTimer.Enabled = true;
+        //    aTimer.Start();
+        //}
+
+        //private void updateOrderToSever()
+        //{
+        //    if (!mIsHasCarInOut)
+        //    {
+        //        new Thread(() =>
+        //        {
+        //            Thread.CurrentThread.IsBackground = true;
+        //            Program.updateOrderToSever();
+        //        }).Start();
+        //    }
+        //    mIsHasCarInOut = false;
+        //}
+
+        //private void OnTimedEventUpdateDataToServer(object source, ElapsedEventArgs e)
+        //{
+        //    if (!mIsHasCarInOut)
+        //    {
+        //        new Thread(() =>
+        //        {
+        //            Thread.CurrentThread.IsBackground = true;
+        //            Program.updateOrderToSever();
+        //        }).Start();
+        //    }
+        //    mIsHasCarInOut = false;
+        //}
     }
 }

@@ -21,6 +21,7 @@ namespace ParkingMangement
         public static string CurrentUserID = "";
         public static string CurrentToken = "";
         public static bool isHostMachine = false;
+        public static bool isHasCarInOut = false;
 
         /// <summary>
         /// The main entry point for the application.
@@ -46,42 +47,46 @@ namespace ParkingMangement
             Util.doLogOut();
         }
 
-        //public static void sendOrderListToServer()
-        //{
-        //    new Thread(() =>
-        //    {
-        //        Thread.CurrentThread.IsBackground = true;
-        //        /* run your code here */
-        //        updateOrderToSever();
+        public static void sendOrderListToServer()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                /* run your code here */
+                updateOrderToSever();
 
-        //        System.Timers.Timer aTimer = new System.Timers.Timer();
-        //        aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-        //        aTimer.Interval = 10 * 60 * 1000;
-        //        aTimer.Enabled = true;
-        //        aTimer.Start();
-        //    }).Start();
-        //}
+                System.Timers.Timer aTimer = new System.Timers.Timer();
+                aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                aTimer.Interval = 3 * 60 * 1000;
+                aTimer.Enabled = true;
+                aTimer.Start();
+            }).Start();
+        }
 
-        //private static void OnTimedEvent(object source, ElapsedEventArgs e)
-        //{
-        //    new Thread(() =>
-        //    {
-        //        Thread.CurrentThread.IsBackground = true;
-        //        updateOrderToSever();
-        //    }).Start();
-        //}
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
+            if (!isHasCarInOut)
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    updateOrderToSever();
+                }).Start();
+            }
+            isHasCarInOut = false; 
+        }
 
-        //private static void updateOrderToSever()
-        //{
-        //    //if (isHostMachine)
-        //    {
-        //        string lastSavedIdentifyString = Util.getConfigFile().lastSavedOrder;
-        //        if (!string.IsNullOrEmpty(lastSavedIdentifyString))
-        //        {
-        //            int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
-        //            Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
-        //        }
-        //    }
-        //}
+        public static void updateOrderToSever()
+        {
+            //if (isHostMachine)
+            {
+                string lastSavedIdentifyString = Util.getConfigFile().lastSavedOrder;
+                if (!string.IsNullOrEmpty(lastSavedIdentifyString))
+                {
+                    int lastSavedIdentify = Int32.Parse(lastSavedIdentifyString);
+                    Util.sendOrderListToServer(CarDAO.GetDataRecently(lastSavedIdentify));
+                }
+            }
+        }
     }
 }

@@ -104,10 +104,10 @@ namespace ParkingMangement
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
                 CloseConnection();
-            } catch (Exception e)
+            } catch (Exception Ex)
             {
                 //MessageBox.Show(Constant.sMessageCommonError);
-                MessageBox.Show(e.Message);
+                MessageBox.Show(Ex.Message + "_sql: " + sql);
             }
             return dt;
         }
@@ -139,7 +139,7 @@ namespace ParkingMangement
                     MessageBox.Show(Constant.sMessageDuplicateDataError);
                 } else
                 {
-                    MessageBox.Show(Ex.Message);
+                    MessageBox.Show(Ex.Message + "_sql: " + sql);
                 }
                 return false;
             }

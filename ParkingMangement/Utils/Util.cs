@@ -266,10 +266,12 @@ namespace ParkingMangement.Utils
                 order.OrderId = dtRow.Field<int>("Identify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
+                checkinDatetime = checkinDatetime.AddHours(11);
                 order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
                 if (dtRow.Field<DateTime?>("TimeEnd") != null)
                 {
                     DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+                    checkoutDatetime = checkoutDatetime.AddHours(11);
                     order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
                 }
                 order.CarNumber = dtRow.Field<string>("Digit");
@@ -288,6 +290,7 @@ namespace ParkingMangement.Utils
                 order.PcName = dtRow.Field<string>("Computer");
                 order.Account = dtRow.Field<string>("Account");
                 DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
+                dateUpdate = checkinDatetime.AddHours(11);
                 order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
                 listOrder.Add(order);
@@ -295,18 +298,23 @@ namespace ParkingMangement.Utils
                 string jsonString = JsonConvert.SerializeObject(order);
                 string index = (i + 1).ToString();
                 param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+
+                if (listOrder.Count == 50)
+                {
+                    break;
+                }
             }
             
             try
             {
-                //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
-                //String responseString = Encoding.UTF8.GetString(responsebytes);
+                byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
+                String responseString = Encoding.UTF8.GetString(responsebytes);
 
-                //int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
-                //if (listOrder.Count > 1)
-                //{
-                //    saveLastOrderToConfig(lastIdentify);
-                //}
+                int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
+                if (listOrder.Count > 1)
+                {
+                    saveLastOrderToConfig(lastIdentify);
+                }
             }
             catch (Exception e)
             {
