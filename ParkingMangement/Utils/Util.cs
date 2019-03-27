@@ -309,12 +309,6 @@ namespace ParkingMangement.Utils
             {
                 byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
                 String responseString = Encoding.UTF8.GetString(responsebytes);
-
-                int lastIdentify = listOrder[listOrder.Count - 1].OrderId;
-                if (listOrder.Count > 1)
-                {
-                    saveLastOrderToConfig(lastIdentify);
-                }
             }
             catch (Exception e)
             {

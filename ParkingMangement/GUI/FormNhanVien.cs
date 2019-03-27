@@ -144,7 +144,10 @@ namespace ParkingMangement.GUI
             labelComputer.Text = Environment.MachineName;
 
             updateThongKeXeTrongBaiByTimer();
-            Program.sendOrderListToServer();
+            if (Program.isHostMachine)
+            {
+                Program.sendOrderListToServer();
+            }
 
             readConfigFile();
             //Random rnd = new Random();
@@ -392,12 +395,7 @@ namespace ParkingMangement.GUI
 
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
-            //new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    /* run your code here */
-            //    Util.sendOrderListToServer(CarDAO.GetLastDataByIdForAPI(cardID));
-            //}).Start();
+            WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
 
             updateScreenForCarIn(isTicketMonthCard);
         }
@@ -615,12 +613,7 @@ namespace ParkingMangement.GUI
                 CarDAO.UpdateCarOut(carDTO);
                 if (!isUpdateCarOut)
                 {
-                    new Thread(() =>
-                    {
-                        Thread.CurrentThread.IsBackground = true;
-                        /* run your code here */
-                        Util.sendOrderListToServer(CarDAO.GetDataByIdentifyForAPI(identify));
-                    }).Start();
+                    WaitSyncCarOutDAO.Insert(identify);
                 }
 
                 labelCostIn.Text = "-";

@@ -21,15 +21,27 @@ namespace ParkingMangement.DAO
             "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from Car left join Part on Car.IDPart = Part.ID left join SmartCard on SmartCard.ID = Car.ID " +
             "left join UserCar userA on Car.IDIn = userA.UserID left join UserCar userB on Car.IDOut = userB.UserID left join UserCar userC on Car.Account = userC.UserID where '0' = '0'";
 
-        private static string sqlGetAllDataForCallAPI = "select car.*, userA.NameUser as UserIn, " +
-            "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
-            " from Car car left join Part on car.IDPart = Part.ID " +
-            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
+        //private static string sqlGetAllDataForCallAPI = "select car.*, userA.NameUser as UserIn, " +
+        //    "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
+        //    " from Car car left join Part on car.IDPart = Part.ID " +
+        //    "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
 
-        private static string sqlGetFirstDataForCallAPI = "select top 1 car.*, userA.NameUser as UserIn, " +
+        private static string sqlGetAllDataInForCallAPI = "select car.*, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
             " from Car car left join Part on car.IDPart = Part.ID " +
-            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
+            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
+            "left join UserCar userC on car.Account = userC.UserID right join WaitSyncCarIn on car.Identify = WaitSyncCarIn.Identify where '0' = '0'";
+
+        private static string sqlGetAllDataOutForCallAPI = "select car.*, userA.NameUser as UserIn, " +
+            "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
+            " from Car car left join Part on car.IDPart = Part.ID " +
+            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
+            "left join UserCar userC on car.Account = userC.UserID right join WaitSyncCarOut on car.Identify = WaitSyncCarOut.Identify where '0' = '0'";
+
+        //private static string sqlGetFirstDataForCallAPI = "select top 1 car.*, userA.NameUser as UserIn, " +
+        //    "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
+        //    " from Car car left join Part on car.IDPart = Part.ID " +
+        //    "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
 
         private static string sqlGetAllTicketMonthData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
             "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.CustomerName from Car, Part, TicketMonth, SmartCard " +
@@ -52,26 +64,33 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable GetDataRecently(int identify)
+        public static DataTable GetDataInRecently()
         {
-            string sql = sqlGetAllDataForCallAPI + " and car.Identify > " + identify + " order by car.Identify asc";
+            string sql = sqlGetAllDataInForCallAPI + " order by car.Identify asc";
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 
-        public static DataTable GetDataByIdentifyForAPI(int identify)
+        public static DataTable GetDataOutRecently()
         {
-            string sql = sqlGetAllDataForCallAPI + " and car.Identify = " + identify;
+            string sql = sqlGetAllDataOutForCallAPI + " order by car.Identify asc";
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
 
-        public static DataTable GetLastDataByIdForAPI(string id)
-        {
-            string sql = sqlGetFirstDataForCallAPI + " and car.ID = '" + id + "' order by car.Identify desc";
-            DataTable data = Database.ExcuQuery(sql);
-            return data;
-        }
+        //public static DataTable GetDataByIdentifyForAPI(int identify)
+        //{
+        //    string sql = sqlGetAllDataForCallAPI + " and car.Identify = " + identify;
+        //    DataTable data = Database.ExcuQuery(sql);
+        //    return data;
+        //}
+
+        //public static DataTable GetLastDataByIdForAPI(string id)
+        //{
+        //    string sql = sqlGetFirstDataForCallAPI + " and car.ID = '" + id + "' order by car.Identify desc";
+        //    DataTable data = Database.ExcuQuery(sql);
+        //    return data;
+        //}
 
         public static DataTable GetAllDataForCashManagement()
         {
