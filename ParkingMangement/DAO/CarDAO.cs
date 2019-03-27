@@ -26,15 +26,15 @@ namespace ParkingMangement.DAO
         //    " from Car car left join Part on car.IDPart = Part.ID " +
         //    "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
 
-        private static string sqlGetAllDataInForCallAPI = "select car.*, userA.NameUser as UserIn, " +
+        private static string sqlGetAllDataInForCallAPI = "select car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
-            " from Car car left join Part on car.IDPart = Part.ID " +
+            " from Car car left join Part on car.IDPart = Part.ID left join SmartCard on SmartCard.ID = car.ID " +
             "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
             "left join UserCar userC on car.Account = userC.UserID right join WaitSyncCarIn on car.Identify = WaitSyncCarIn.Identify where '0' = '0'";
 
-        private static string sqlGetAllDataOutForCallAPI = "select car.*, userA.NameUser as UserIn, " +
+        private static string sqlGetAllDataOutForCallAPI = "select car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
-            " from Car car left join Part on car.IDPart = Part.ID " +
+            " from Car car left join Part on car.IDPart = Part.ID left join SmartCard on SmartCard.ID = car.ID " +
             "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
             "left join UserCar userC on car.Account = userC.UserID right join WaitSyncCarOut on car.Identify = WaitSyncCarOut.Identify where '0' = '0'";
 

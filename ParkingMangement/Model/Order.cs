@@ -17,6 +17,8 @@ namespace ParkingMangement.Model
         //public int CardId { get; set; }
         [JsonProperty("card_code")]
         public string CardCode { get; set; }
+        [JsonProperty("card_stt")]
+        public string CardSTT { get; set; }
         [JsonProperty("checkin_time")]
         public string CheckinTime { get; set; }
         [JsonProperty("checkout_time")]

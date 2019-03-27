@@ -264,6 +264,7 @@ namespace ParkingMangement.Utils
                 Order order = new Order();
                 order.AreaId = 1;
                 order.OrderId = dtRow.Field<int>("Identify");
+                order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
                 checkinDatetime = checkinDatetime.AddHours(11);
