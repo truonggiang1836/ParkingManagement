@@ -2524,6 +2524,7 @@ namespace ParkingMangement.GUI
                     break;
             }
 
+            tbParkingName.Text = ConfigDAO.GetParkingName();
             tbLostCard.Text = ConfigDAO.GetLostCard().ToString();
             tbBikeSpace2.Text = ConfigDAO.GetBikeSpace().ToString();
             tbCarSpace2.Text = ConfigDAO.GetCarSpace().ToString();
@@ -2694,6 +2695,8 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageInvalidError);
                 return;
             }
+
+            configDTO.ParkingName = tbParkingName.Text;
 
             if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
             {

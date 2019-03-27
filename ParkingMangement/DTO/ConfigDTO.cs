@@ -29,6 +29,7 @@ namespace ParkingMangement.DTO
         private int expiredTicketMonthTypeID;
         private string ipHost;
         private string folderRoot;
+        private string parkingName;
 
         public int BikeSpace { get => bikeSpace; set => bikeSpace = value; }
         public int CarSpace { get => carSpace; set => carSpace = value; }
@@ -46,5 +47,6 @@ namespace ParkingMangement.DTO
         public int ExpiredTicketMonthTypeID { get => expiredTicketMonthTypeID; set => expiredTicketMonthTypeID = value; }
         public string IpHost { get => ipHost; set => ipHost = value; }
         public string FolderRoot { get => folderRoot; set => folderRoot = value; }
+        public string ParkingName { get => parkingName; set => parkingName = value; }
     }
 }

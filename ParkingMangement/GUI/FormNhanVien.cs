@@ -142,6 +142,7 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.EnableHeadersVisualStyles = false;
             dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Bold);
             labelComputer.Text = Environment.MachineName;
+            labelParkingName.Text = ConfigDAO.GetParkingName();
 
             updateThongKeXeTrongBaiByTimer();
             if (Program.isHostMachine)

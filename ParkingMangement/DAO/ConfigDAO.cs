@@ -225,11 +225,24 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static string GetParkingName()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null)
+            {
+                return dt.Rows[0].Field<string>("ParkingName");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
-                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID;
+                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "'";
             return Database.ExcuNonQuery(sql);
         }
 
