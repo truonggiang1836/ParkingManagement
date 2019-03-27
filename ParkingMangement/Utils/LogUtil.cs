@@ -73,7 +73,7 @@ namespace ParkingMangement.Utils
             addLog(logDTO);
         }
 
-        public static void addLogXoaThe(int identidy, string cardId)
+        public static void addLogXoaThe(string identidy, string cardId)
         {
             LogDTO logDTO = createCommonLog();
             logDTO.LogTypeID = Constant.LOG_TYPE_XOA_THE;

@@ -160,6 +160,8 @@
     <Compile Include="DAO\CardTypeDAO.cs" />
     <Compile Include="DAO\TypeDAO.cs" />
     <Compile Include="DAO\UserDAO.CS" />
+    <Compile Include="DAO\WaitSyncCarInDAO.cs" />
+    <Compile Include="DAO\WaitSyncCarOutDAO.cs" />
     <Compile Include="DAO\WorkDAO.cs" />
     <Compile Include="DTO\CardDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />

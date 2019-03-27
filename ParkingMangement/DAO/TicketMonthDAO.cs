@@ -204,9 +204,9 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static DataTable GetDataByIdentify(int identify)
+        public static DataTable GetDataByIdentify(string cardIdentify)
         {
-            string sql = "select * from TicketMonth where Identify = " + identify;
+            string sql = "select * from TicketMonth left join SmartCard on TicketMonth.ID = SmartCard.ID where SmartCard.Identify = '" + cardIdentify + "'";
             return Database.ExcuQuery(sql);
         }
 

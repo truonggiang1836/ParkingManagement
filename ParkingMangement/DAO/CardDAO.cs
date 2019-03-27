@@ -24,7 +24,7 @@ namespace ParkingMangement.DAO
 
         public static bool Insert(CardDTO cardDTO)
         {
-            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', " + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
+            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
             return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
@@ -36,7 +36,7 @@ namespace ParkingMangement.DAO
                 for (int i = 0; i < listCardDTO.Count; i++)
                 {
                     CardDTO cardDTO = listCardDTO[i];
-                    sql += "('" + cardDTO.SystemId + "', " + cardDTO.Identify + ",'" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
+                    sql += "('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
                     if (i < listCardDTO.Count - 1)
                     {
                         sql += ",";
@@ -49,7 +49,7 @@ namespace ParkingMangement.DAO
 
         public static void Update(CardDTO cartDTO)
         {
-            string sql = "update SmartCard set Identify =(" + cartDTO.Identify + "), IsUsing =('" + cartDTO.IsUsing + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
+            string sql = "update SmartCard set Identify =('" + cartDTO.Identify + "'), IsUsing =('" + cartDTO.IsUsing + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
                 + cartDTO.DayUnlimit + "') where ID ='" + cartDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
@@ -66,9 +66,9 @@ namespace ParkingMangement.DAO
             Database.ExcuNonQuery(sql);
         }
 
-        public static void UpdateIdentify(int identify, string cardId)
+        public static void UpdateIdentify(string identify, string cardId)
         {
-            string sql = "update SmartCard set Identify = " + identify + " where ID = '" + cardId + "'";
+            string sql = "update SmartCard set Identify = '" + identify + "' where ID = '" + cardId + "'";
             Database.ExcuNonQuery(sql);
         }
 
@@ -143,15 +143,15 @@ namespace ParkingMangement.DAO
             return "";
         }
 
-        public static int getIdentifyByCardID(string cardID)
+        public static string getIdentifyByCardID(string cardID)
         {
             string sql = "select Identify from SmartCard where ID = '" + cardID + "'";
             DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
-                return dt.Rows[0].Field<int>("Identify");
+                return dt.Rows[0].Field<string>("Identify");
             }
-            return 0;
+            return "";
         }
 
         public static bool isUsingByCardID(string cardID)
@@ -172,9 +172,9 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static DataTable GetCardByIdentify(int identify)
+        public static DataTable GetCardByIdentify(string identify)
         {
-            string sql = "select * from SmartCard where Identify = " + identify;
+            string sql = "select * from SmartCard where Identify = '" + identify + "'";
             return Database.ExcuQuery(sql);
         }
 
@@ -184,7 +184,7 @@ namespace ParkingMangement.DAO
             DataTable dt = GetCardByID(id);
             if (dt != null && dt.Rows.Count > 0)
             {
-                cardDTO.Identify = dt.Rows[0].Field<int>("Identify");
+                cardDTO.Identify = dt.Rows[0].Field<string>("Identify");
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");
@@ -194,13 +194,13 @@ namespace ParkingMangement.DAO
             return null;
         }
 
-        public static CardDTO GetCardModelByIdentify(int identify)
+        public static CardDTO GetCardModelByIdentify(string identify)
         {
             CardDTO cardDTO = new CardDTO();
             DataTable dt = GetCardByIdentify(identify);
             if (dt != null && dt.Rows.Count > 0)
             {
-                cardDTO.Identify = dt.Rows[0].Field<int>("Identify");
+                cardDTO.Identify = dt.Rows[0].Field<string>("Identify");
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");

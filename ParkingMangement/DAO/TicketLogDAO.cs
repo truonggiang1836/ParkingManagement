@@ -48,7 +48,7 @@ namespace ParkingMangement.DAO
         {
             TicketMonthDTO ticketMonthDTO = ticketLogDTO.TicketMonthDTO;
             string sql = "insert into TicketLog(LogTypeID, TicketMonthID, TicketMonthIdentify, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
-                ", ChargesAmount, IDPart, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketMonthDTO.Id + "', " + ticketMonthDTO.Identify + ", '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" +
+                ", ChargesAmount, IDPart, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.CardIdentify + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" +
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" +
                 ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate +
                 "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";

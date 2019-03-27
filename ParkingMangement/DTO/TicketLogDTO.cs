@@ -8,7 +8,7 @@ namespace ParkingMangement.DTO
 {
     class TicketLogDTO
     {
-        private int identify;
+        private string identify;
         private int logTypeID;
         private TicketMonthDTO ticketMonthDTO;
 
@@ -22,7 +22,7 @@ namespace ParkingMangement.DTO
             this.ticketMonthDTO = ticketMonthDTO;
         }
 
-        public int Identify { get => identify; set => identify = value; }
+        public string Identify { get => identify; set => identify = value; }
         public int LogTypeID { get => logTypeID; set => logTypeID = value; }
         internal TicketMonthDTO TicketMonthDTO { get => ticketMonthDTO; set => ticketMonthDTO = value; }
     }

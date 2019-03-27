@@ -9,13 +9,13 @@ namespace ParkingMangement.DTO
     class CardDTO
     {
         private string systemId;
-        private int identify;
+        private string identify;
         private string id;
         private string isUsing;
         private string type;
         private DateTime dayUnlimit;
 
-        public int Identify { get => identify; set => identify = value; }
+        public string Identify { get => identify; set => identify = value; }
         public string Id { get => id; set => id = value; }
         public string IsUsing { get => isUsing; set => isUsing = value; }
         public string Type { get => type; set => type = value; }

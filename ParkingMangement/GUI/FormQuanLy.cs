@@ -985,14 +985,7 @@ namespace ParkingMangement.GUI
                     {
                         data.Rows[row].SetField("IsUsing", Constant.sLabelCardNotUsing);
                     }
-
                 }
-                int lastIdentify = 0;
-                if (data.Rows.Count > 0)
-                {
-                    lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
-                }                
-                tbCardIdentifyCreate.Text = lastIdentify + 1 + "";
 
                 dgvCardList.DataSource = data;
             }
@@ -1085,7 +1078,7 @@ namespace ParkingMangement.GUI
             }
             try
             {
-                int cardIdentify = Convert.ToInt32(tbCardIdentifyCreate.Text.Trim());
+                string cardIdentify = tbCardIdentifyCreate.Text.Trim();
                 if (CardDAO.GetCardModelByIdentify(cardIdentify) != null)
                 {
                     labelKetQuaTaoThe.Text = "Số thẻ đã tồn tại";
@@ -1105,7 +1098,7 @@ namespace ParkingMangement.GUI
             CardDTO cardDTO = new CardDTO();
             try
             {
-                cardDTO.Identify = Convert.ToInt32(tbCardIdentifyCreate.Text.Trim());
+                cardDTO.Identify = tbCardIdentifyCreate.Text.Trim();
             }
             catch (Exception e)
             {
@@ -1171,15 +1164,6 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageCardIdNullError);
                 return false;
             }
-            try
-            {
-                int.Parse(tbCardIdentifyEdit.Text.Trim());
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Số thẻ không hợp lệ");
-                return false;
-            }
 
             DataRow cardTypeDataRow = ((DataRowView)cbCardTypeNameEdit.SelectedItem).Row;
             string cardTypeID = Convert.ToString(cardTypeDataRow["CardTypeID"]);
@@ -1197,7 +1181,7 @@ namespace ParkingMangement.GUI
             CardDTO cardDTO = new CardDTO();
             try
             {
-                cardDTO.Identify = int.Parse(tbCardIdentifyEdit.Text.Trim());
+                cardDTO.Identify = tbCardIdentifyEdit.Text.Trim();
             }
             catch (Exception e)
             {
@@ -1454,12 +1438,6 @@ namespace ParkingMangement.GUI
         {
             DataTable data = TicketMonthDAO.GetAllData();
             dgvTicketMonthList.DataSource = data;
-            int lastIdentify = 0;
-            if (data != null && data.Rows.Count > 0)
-            {
-                lastIdentify = data.Rows[data.Rows.Count - 1].Field<int>("Identify");
-            }
-            //tbTicketMonthIdentifyCreate.Text = lastIdentify + 1 + "";
 
             if (data != null && data.Rows.Count > 0)
             {
@@ -1516,7 +1494,7 @@ namespace ParkingMangement.GUI
         {
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
 
-            ticketMonthDTO.Identify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
+            ticketMonthDTO.CardIdentify = Convert.ToString(tbTicketMonthIdentifyCreate.Text);
             ticketMonthDTO.Id = tbTicketMonthIDCreate.Text;
             ticketMonthDTO.ProcessDate = DateTime.Now;
             ticketMonthDTO.Digit = tbTicketMonthDigitCreate.Text;
@@ -1538,8 +1516,8 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
 
-            int cardIdentify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
-            if (cardDTO.Identify != cardIdentify)
+            string cardIdentify = tbTicketMonthIdentifyCreate.Text;
+            if (!cardDTO.Identify.Equals(cardIdentify))
             {
                 CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
             }
@@ -1553,10 +1531,10 @@ namespace ParkingMangement.GUI
 
         private void updateTicketMonth()
         {
-            int identify = Convert.ToInt32(tbTicketMonthIdentifyEdit.Text);
+            string cardIdentify = tbTicketMonthIdentifyEdit.Text;
 
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
-            ticketMonthDTO.Identify = identify;
+            ticketMonthDTO.CardIdentify = cardIdentify;
             ticketMonthDTO.Id = tbTicketMonthIDEdit.Text;
             ticketMonthDTO.ProcessDate = DateTime.Now;
             ticketMonthDTO.Digit = tbTicketMonthDigitEdit.Text;
@@ -1578,14 +1556,14 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
 
-            CardDTO newCardDTO = CardDAO.GetCardModelByIdentify(identify);
-            int oldIdentify = oldCardDTO.Identify;
-            if (newCardDTO != null && identify != oldIdentify)
+            CardDTO newCardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
+            string oldIdentify = oldCardDTO.Identify;
+            if (newCardDTO != null && !cardIdentify.Equals(oldIdentify))
             {
                 MessageBox.Show("Số thẻ đã tồn tại");
             } else
             {
-                CardDAO.UpdateIdentify(identify, ticketMonthDTO.Id);
+                CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
                 TicketMonthDAO.Update(ticketMonthDTO);
                 loadTicketMonthData();
 
@@ -1639,15 +1617,6 @@ namespace ParkingMangement.GUI
 
         private bool checkUpdateTicketMonthData()
         {
-            try
-            {
-                Convert.ToInt32(tbTicketMonthIdentifyEdit.Text);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Số thẻ không hợp lệ");
-                return false;
-            }
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitEdit.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
@@ -1779,9 +1748,9 @@ namespace ParkingMangement.GUI
             string id = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthID"].Value);
             DataTable data = TicketMonthDAO.GetDataByID(id);
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
-            int identify = Convert.ToInt32(dgvTicketMonthList.Rows[Index].Cells["TicketMonthIdentify"].Value);
+            string cardIdentify = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthIdentify"].Value);
             ticketMonthDTO.Id = id;
-            ticketMonthDTO.Identify = identify;
+            ticketMonthDTO.CardIdentify = cardIdentify;
             ticketMonthDTO.ProcessDate = DateTime.Now;
             string digit = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Digit"].Value);
             ticketMonthDTO.Digit = digit;
@@ -3762,7 +3731,7 @@ namespace ParkingMangement.GUI
                 if (value != null && (Boolean)value)
                 {
                     string cardId = Convert.ToString(row.Cells["CardID"].Value);
-                    int identify = CardDAO.getIdentifyByCardID(cardId);
+                    string identify = CardDAO.getIdentifyByCardID(cardId);
                     if (CardDAO.Delete(cardId))
                     {
                         LogUtil.addLogXoaThe(identify, cardId);
@@ -4189,7 +4158,7 @@ namespace ParkingMangement.GUI
             {
                 try
                 {
-                    int cardIdentify = Convert.ToInt32(tbTicketMonthIdentifyCreate.Text);
+                    string cardIdentify = tbTicketMonthIdentifyCreate.Text;
                     CardDTO cardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
                     if (cardDTO != null)
                     {
