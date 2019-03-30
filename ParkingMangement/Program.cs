@@ -47,7 +47,7 @@ namespace ParkingMangement
             Util.doLogOut();
         }
 
-        public static void sendOrderListToServer()
+        public static void sendOrderListToServerTimer()
         {
             new Thread(() =>
             {
@@ -55,7 +55,7 @@ namespace ParkingMangement
                 /* run your code here */
                 System.Timers.Timer aTimer = new System.Timers.Timer();
                 aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                aTimer.Interval = 2 * 60 * 1000;
+                aTimer.Interval = 3 * 60 * 1000;
                 aTimer.Enabled = true;
                 aTimer.Start();
             }).Start();

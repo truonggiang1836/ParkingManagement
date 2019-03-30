@@ -308,8 +308,10 @@ namespace ParkingMangement.Utils
             
             try
             {
-                byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
-                String responseString = Encoding.UTF8.GetString(responsebytes);
+                //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
+                //String responseString = Encoding.UTF8.GetString(responsebytes);
+
+                webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
             }
             catch (Exception e)
             {

@@ -147,7 +147,7 @@ namespace ParkingMangement.GUI
             updateThongKeXeTrongBaiByTimer();
             if (Program.isHostMachine)
             {
-                Program.sendOrderListToServer();
+                Program.sendOrderListToServerTimer();
             }
 
             readConfigFile();
@@ -396,9 +396,8 @@ namespace ParkingMangement.GUI
 
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
-            WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
-
             updateScreenForCarIn(isTicketMonthCard);
+            WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
         }
 
         private void updateCarIn(bool isTicketMonthCard, DataTable dtLastCar)
