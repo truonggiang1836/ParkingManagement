@@ -284,7 +284,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetTotalCostByType(DateTime? startTime, DateTime? endTime, bool isTicketMonth, string userID)
         {
             string groupBySql = " group by Car.IDPart";
-            string sql = "select Car.IDPart, sum(Car.Cost) as SumCost from Car join Part on Car.IDPart = Part.ID";
+            string sql = "select Car.IDPart, sum(cast(Car.Cost as bigint)) as SumCost from Car join Part on Car.IDPart = Part.ID";
             if (!isTicketMonth)
             {
                 sql += sqlQueryTicketCommon;
