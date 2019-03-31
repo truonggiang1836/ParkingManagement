@@ -1279,32 +1279,37 @@ namespace ParkingMangement.GUI
                 DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
                 DateTime timeOut = DateTime.Now;
                 double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
+                double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
                 if (spentTimeByMinute <= 1)
                 {
                     return 0;
                 }
-                if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1)
+                if (spentTimeByHour <= computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
-                } else if (Util.getTotalTimeByHour(timeIn, timeOut) > computerDTO.HourMilestone1 && Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
+                } else if (spentTimeByHour > computerDTO.HourMilestone1 && spentTimeByHour <= computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
                 {
                     return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
-                } else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                } else
                 {
-                    return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
-                }
-                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
-                {
-                    double cost = computerDTO.CostMilestone1 + 
-                        (((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3) + ((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3)) 
-                        * computerDTO.CostMilestone3;
-                    return (int) cost;
-                }
-                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
-                {
-                    double cost = ((Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.CycleMilestone3) + (Util.getTotalTimeByHour(timeIn, timeOut) % computerDTO.CycleMilestone3))
-                        * computerDTO.CostMilestone3;
-                    return (int) cost;
+                    if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                    {
+                        return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
+                    }
+                    else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+                    {
+                        int temp1 = ((int)spentTimeByHour - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3;
+                        int temp2 = ((int)spentTimeByHour - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3;
+                        int cost = computerDTO.CostMilestone1 + (temp1 + temp2) * computerDTO.CostMilestone3;
+                        return cost;
+                    }
+                    else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+                    {
+                        int temp1 = (int)spentTimeByHour / computerDTO.CycleMilestone3;
+                        int temp2 = (int)spentTimeByHour % computerDTO.CycleMilestone3;
+                        int cost = (temp1 + temp2) * computerDTO.CostMilestone3;
+                        return cost;
+                    }
                 }
             }
             return 0;
@@ -1319,34 +1324,39 @@ namespace ParkingMangement.GUI
                 DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
                 DateTime timeOut = DateTime.Now;
                 double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
+                double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
                 if (spentTimeByMinute <= 1)
                 {
                     return 0;
                 }
-                if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone1)
+                if (spentTimeByHour <= computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
                 }
-                else if (Util.getTotalTimeByHour(timeIn, timeOut) > computerDTO.HourMilestone1 && Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.HourMilestone2)
+                else if (spentTimeByHour > computerDTO.HourMilestone1 && spentTimeByHour <= computerDTO.HourMilestone2)
                 {
                     return computerDTO.CostMilestone2;
                 }
-                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                else
                 {
-                    return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
-                }
-                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
-                {
-                    double cost = computerDTO.CostMilestone1 +
-                        (((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3) + ((Util.getTotalTimeByHour(timeIn, timeOut) - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3))
-                        * computerDTO.CostMilestone3;
-                    return (int)cost;
-                }
-                else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
-                {
-                    double cost = ((Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.CycleMilestone3) + (Util.getTotalTimeByHour(timeIn, timeOut) % computerDTO.CycleMilestone3))
-                        * computerDTO.CostMilestone3;
-                    return (int)cost;
+                    if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
+                    {
+                        return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
+                    }
+                    else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
+                    {
+                        int temp1 = ((int) spentTimeByHour - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3;
+                        int temp2 = ((int) spentTimeByHour - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3;
+                        int cost = computerDTO.CostMilestone1 + (temp1 + temp2) * computerDTO.CostMilestone3;
+                        return cost;
+                    }
+                    else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_2_MOC))
+                    {
+                        int temp1 = (int) spentTimeByHour / computerDTO.CycleMilestone3;
+                        int temp2 = (int) spentTimeByHour % computerDTO.CycleMilestone3;
+                        int cost = (temp1 + temp2) * computerDTO.CostMilestone3;
+                        return cost;
+                    }
                 }
             }
             return 0;
