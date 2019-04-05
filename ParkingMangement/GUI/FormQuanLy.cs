@@ -4252,5 +4252,10 @@ namespace ParkingMangement.GUI
             excel.Workbooks.Close();
             return dt;
         }
+
+        private void trackBarTinhTienTongHopCycleMilestone3_ValueChanged(object sender, EventArgs e)
+        {
+            labelTinhTienTongHopCycleMilestone3.Text = trackBarTinhTienTongHopCycleMilestone3.Value + "";
+        }
     }
 }

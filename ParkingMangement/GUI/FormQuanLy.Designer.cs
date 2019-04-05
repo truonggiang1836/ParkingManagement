@@ -669,6 +669,8 @@
             this.label142 = new System.Windows.Forms.Label();
             this.tb_camera_url_1 = new System.Windows.Forms.TextBox();
             this.tabPageCauHinhHienThi = new System.Windows.Forms.TabPage();
+            this.label133 = new System.Windows.Forms.Label();
+            this.tbParkingName = new System.Windows.Forms.TextBox();
             this.btnLuuCauHinhHienThi = new System.Windows.Forms.Button();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label189 = new System.Windows.Forms.Label();
@@ -868,8 +870,6 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.label133 = new System.Windows.Forms.Label();
-            this.tbParkingName = new System.Windows.Forms.TextBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -3129,6 +3129,7 @@
             this.trackBarTinhTienTongHopCycleMilestone3.Name = "trackBarTinhTienTongHopCycleMilestone3";
             this.trackBarTinhTienTongHopCycleMilestone3.Size = new System.Drawing.Size(231, 45);
             this.trackBarTinhTienTongHopCycleMilestone3.TabIndex = 39;
+            this.trackBarTinhTienTongHopCycleMilestone3.ValueChanged += new System.EventHandler(this.trackBarTinhTienTongHopCycleMilestone3_ValueChanged);
             // 
             // numericTinhTienTongHopCostMilestone2
             // 
@@ -6876,6 +6877,23 @@
             this.tabPageCauHinhHienThi.Text = "Cấu hình hiển thị";
             this.tabPageCauHinhHienThi.UseVisualStyleBackColor = true;
             // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label133.Location = new System.Drawing.Point(10, 89);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(71, 16);
+            this.label133.TabIndex = 19;
+            this.label133.Text = "Tên bãi xe";
+            // 
+            // tbParkingName
+            // 
+            this.tbParkingName.Location = new System.Drawing.Point(87, 86);
+            this.tbParkingName.Name = "tbParkingName";
+            this.tbParkingName.Size = new System.Drawing.Size(286, 22);
+            this.tbParkingName.TabIndex = 18;
+            // 
             // btnLuuCauHinhHienThi
             // 
             this.btnLuuCauHinhHienThi.Location = new System.Drawing.Point(325, 521);
@@ -8898,23 +8916,6 @@
             this.tabPageXemHopDen.TabIndex = 3;
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
-            // 
-            // label133
-            // 
-            this.label133.AutoSize = true;
-            this.label133.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.Location = new System.Drawing.Point(10, 89);
-            this.label133.Name = "label133";
-            this.label133.Size = new System.Drawing.Size(71, 16);
-            this.label133.TabIndex = 19;
-            this.label133.Text = "Tên bãi xe";
-            // 
-            // tbParkingName
-            // 
-            this.tbParkingName.Location = new System.Drawing.Point(87, 86);
-            this.tbParkingName.Name = "tbParkingName";
-            this.tbParkingName.Size = new System.Drawing.Size(286, 22);
-            this.tbParkingName.TabIndex = 18;
             // 
             // FormQuanLy
             // 
