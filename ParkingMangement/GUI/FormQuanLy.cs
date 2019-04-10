@@ -295,7 +295,8 @@ namespace ParkingMangement.GUI
                     panelChinhSuaNhanVien.Enabled = false;
                     btnUpdateUser.Text = Constant.sButtonEdit;
                 }
-            } else
+            }
+            else
             {
                 panelChinhSuaNhanVien.Enabled = true;
                 btnUpdateUser.Text = Constant.sButtonUpdate;
@@ -430,7 +431,8 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dtDateSaleReport);
                 setFormatDateForDateTimePicker(dtStartDateSaleReport);
                 setFormatDateForDateTimePicker(dtEndDateSaleReport);
-            } else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
+            }
+            else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTinhTienTheoCongVan"])
             {
                 loadTicketMonthPartDataToComboBox(cbLoaiXeTinhTienCongVan);
                 loadDataTinhTienTheoCongVan();
@@ -594,7 +596,8 @@ namespace ParkingMangement.GUI
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         panelTinhTienLuyTien.Enabled = false;
                     }
-                } else
+                }
+                else
                 {
                     if (ComputerDAO.Insert(mComputerDTO))
                     {
@@ -651,20 +654,20 @@ namespace ParkingMangement.GUI
         {
             if (mComputerDTO != null)
             {
-                mComputerDTO.StartHourNight = (int) numericTinhTienTongHopStartHourNight.Value;
-                mComputerDTO.EndHourNight = (int) numericTinhTienTongHopEndHourNight.Value;
-                mComputerDTO.NightCost = (int) numericTinhTienTongHopNightCost.Value;
+                mComputerDTO.StartHourNight = (int)numericTinhTienTongHopStartHourNight.Value;
+                mComputerDTO.EndHourNight = (int)numericTinhTienTongHopEndHourNight.Value;
+                mComputerDTO.NightCost = (int)numericTinhTienTongHopNightCost.Value;
 
-                mComputerDTO.HourMilestone1 = (int) numericTinhTienTongHopHourMilestone1.Value;
-                mComputerDTO.CostMilestone1 = (int) numericTinhTienTongHopCostMilestone1.Value;
-                mComputerDTO.HourMilestone2 = (int) numericTinhTienTongHopHourMilestone2.Value;
-                mComputerDTO.CostMilestone2 = (int) numericTinhTienTongHopCostMilestone2.Value;
+                mComputerDTO.HourMilestone1 = (int)numericTinhTienTongHopHourMilestone1.Value;
+                mComputerDTO.CostMilestone1 = (int)numericTinhTienTongHopCostMilestone1.Value;
+                mComputerDTO.HourMilestone2 = (int)numericTinhTienTongHopHourMilestone2.Value;
+                mComputerDTO.CostMilestone2 = (int)numericTinhTienTongHopCostMilestone2.Value;
 
                 mComputerDTO.CycleMilestone3 = trackBarTinhTienTongHopCycleMilestone3.Value;
-                mComputerDTO.CostMilestone3 = (int) numericTinhTienTongHopCostMilestone3.Value;
+                mComputerDTO.CostMilestone3 = (int)numericTinhTienTongHopCostMilestone3.Value;
 
                 mComputerDTO.CycleTicketMonth = trackBarTinhTienTongHopCycleTicketMonth.Value;
-                mComputerDTO.CostTicketMonth = (int) numericTinhTienTongHopCostTicketMonth.Value;
+                mComputerDTO.CostTicketMonth = (int)numericTinhTienTongHopCostTicketMonth.Value;
 
                 if (radioTinhTienTongHopNoAdd.Checked)
                 {
@@ -913,7 +916,8 @@ namespace ParkingMangement.GUI
                 loadPartList();
                 panelChinhSuaLoaiXe.Enabled = false;
                 btnUpdatePart.Text = Constant.sButtonEdit;
-            } else if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageKichHoatThe"])
+            }
+            else if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageKichHoatThe"])
             {
                 searchLostCard();
             }
@@ -1132,10 +1136,11 @@ namespace ParkingMangement.GUI
                 labelKetQuaTaoThe.Text = "Tạo thẻ thành công!";
                 cardDTO.Identify = CardDAO.getIdentifyByCardID(cardDTO.Id);
                 LogUtil.addLogTaoMoiThe(cardDTO);
-            } else
+            }
+            else
             {
                 labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
-            } 
+            }
         }
 
         private string createCardAPI(CardDTO cardDTO)
@@ -1232,7 +1237,8 @@ namespace ParkingMangement.GUI
             if (key.Equals(""))
             {
                 loadLostCardList();
-            } else
+            }
+            else
             {
                 DataTable data = CardDAO.SearchLostCardData(key);
                 dgvActiveCardList.DataSource = data;
@@ -1253,7 +1259,8 @@ namespace ParkingMangement.GUI
             if (isUsing == Constant.sLabelCardUsing)
             {
                 cbIsUsingEdit.Checked = true;
-            } else
+            }
+            else
             {
                 cbIsUsingEdit.Checked = false;
             }
@@ -1277,7 +1284,8 @@ namespace ParkingMangement.GUI
                 loadUserDataToComboBox(cbNhanVienReport);
 
                 //loadSaleReportData();
-            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
+            }
+            else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
             {
                 loadCardList();
                 loadPartDataToComboBox(cbPartNameCreate);
@@ -1294,18 +1302,21 @@ namespace ParkingMangement.GUI
                     int Index = dgvCardList.CurrentRow.Index;
                     loadCardInfoFromDataGridViewRow(Index);
                 }
-            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyXeRaVao"])
+            }
+            else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyXeRaVao"])
             {
                 loadBlackCarList();
                 loadConfig();
-            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
+            }
+            else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
                 loadTabPageTicketLog();
                 loadTicketMonthData();
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
                 setFormatDateForDateTimePicker(dtTicketLogExpirationDateSearch);
                 dtTicketLogExpirationDateSearch.Value = DateTime.Now.AddMonths(1);
-            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
+            }
+            else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
             {
                 addDataToRFIDComboBox();
                 loadCauHinhHienThiData();
@@ -1387,7 +1398,8 @@ namespace ParkingMangement.GUI
         private void searchNearExpiredTicketMonthData()
         {
             string key = tbRenewTicketMonthKeyWordSearch.Text;
-            if (!string.IsNullOrWhiteSpace(tbRenewTicketMonthDaysRemainingSearch.Text)) {
+            if (!string.IsNullOrWhiteSpace(tbRenewTicketMonthDaysRemainingSearch.Text))
+            {
                 int daysRemaining = 0;
                 if (int.TryParse(tbRenewTicketMonthDaysRemainingSearch.Text, out daysRemaining))
                 {
@@ -1403,11 +1415,12 @@ namespace ParkingMangement.GUI
                     return;
                 }
                 dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTicketData(key, daysRemaining);
-            } else
+            }
+            else
             {
                 dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTicketData(key, null);
             }
-            
+
         }
 
         private void searchTicketLogData()
@@ -1416,13 +1429,13 @@ namespace ParkingMangement.GUI
             string ticketLogID = null;
             if (cbTicketLogNameSearch.SelectedIndex > 0)
             {
-                DataRow ticketLoDataRow = ((DataRowView) cbTicketLogNameSearch.SelectedItem).Row;
+                DataRow ticketLoDataRow = ((DataRowView)cbTicketLogNameSearch.SelectedItem).Row;
                 ticketLogID = Convert.ToString(ticketLoDataRow["LogTypeID"]);
             }
             string partID = null;
             if (cbPartNameTicketLogSearch.SelectedIndex > 0)
             {
-                DataRow partDataRow = ((DataRowView) cbPartNameTicketLogSearch.SelectedItem).Row;
+                DataRow partDataRow = ((DataRowView)cbPartNameTicketLogSearch.SelectedItem).Row;
                 partID = Convert.ToString(partDataRow["ID"]);
             }
             DateTime registrationDate = dtTicketLogRegistrationDateSearch.Value;
@@ -1469,16 +1482,19 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateCreate);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateEdit);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateEdit);
-            } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
+            }
+            else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
             {
                 loadRenewTicketMonthData();
                 setFormatDateForDateTimePicker(dtRenewDate);
                 setFormatDateForDateTimePicker(dtRenewExpirationDate);
                 dtRenewExpirationDate.Value = DateTime.Now.AddMonths(1);
-            } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
+            }
+            else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
                 searchLostTicketMonth();
-            } else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
+            }
+            else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
             {
                 searchActiveTicketMonth();
             }
@@ -1561,7 +1577,8 @@ namespace ParkingMangement.GUI
             if (newCardDTO != null && !cardIdentify.Equals(oldIdentify))
             {
                 MessageBox.Show("Số thẻ đã tồn tại");
-            } else
+            }
+            else
             {
                 CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
                 TicketMonthDAO.Update(ticketMonthDTO);
@@ -2072,7 +2089,8 @@ namespace ParkingMangement.GUI
             try
             {
                 carDTO.CardIdentify = Convert.ToInt32(tbCardIdentifySearchCar.Text);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
 
             }
@@ -2080,7 +2098,7 @@ namespace ParkingMangement.GUI
             carDTO.Id = tbCarIDSearch.Text;
             if (comboBoxNhanVienVao.SelectedIndex > 0)
             {
-                DataRow dataRow = ((DataRowView) comboBoxNhanVienVao.SelectedItem).Row;
+                DataRow dataRow = ((DataRowView)comboBoxNhanVienVao.SelectedItem).Row;
                 carDTO.IdIn = Convert.ToString(dataRow["UserID"]);
             }
             if (comboBoxNhanVienRa.SelectedIndex > 0)
@@ -2183,7 +2201,8 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dateTimePickerCarDateIn);
                 setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
 
-            } else if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRaVeThang"])
+            }
+            else if (tabQuanLyXe.SelectedTab == tabQuanLyXe.TabPages["tabPageTraCuuVaoRaVeThang"])
             {
                 //loadCarTicketMonthList();
 
@@ -2275,7 +2294,8 @@ namespace ParkingMangement.GUI
                     MessageBox.Show(Constant.sMessageInvalidError);
                     return;
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show(Constant.sMessageInvalidError);
                 return;
@@ -2293,7 +2313,8 @@ namespace ParkingMangement.GUI
                     MessageBox.Show(Constant.sMessageInvalidError);
                     return;
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show(Constant.sMessageInvalidError);
                 return;
@@ -2312,7 +2333,8 @@ namespace ParkingMangement.GUI
                     MessageBox.Show(Constant.sMessageInvalidError);
                     return;
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show(Constant.sMessageInvalidError);
                 return;
@@ -2389,7 +2411,8 @@ namespace ParkingMangement.GUI
                     MessageBox.Show(Constant.sMessageRenewPlusDateInvalidError);
                     return;
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show(Constant.sMessageRenewPlusDateInvalidError);
                 return;
@@ -2543,13 +2566,16 @@ namespace ParkingMangement.GUI
             if (rbGiuXeMienPhi.Checked)
             {
                 parkingTypeID = Constant.LOAI_GIU_XE_MIEN_PHI;
-            } else if (rbGiuXeTheoCongVan.Checked)
+            }
+            else if (rbGiuXeTheoCongVan.Checked)
             {
                 parkingTypeID = Constant.LOAI_GIU_XE_THEO_CONG_VAN;
-            } else if (rbGiuXeLuyTien.Checked)
+            }
+            else if (rbGiuXeLuyTien.Checked)
             {
                 parkingTypeID = Constant.LOAI_GIU_XE_LUY_TIEN;
-            } else if (rbGiuXeTongHop.Checked)
+            }
+            else if (rbGiuXeTongHop.Checked)
             {
                 parkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP;
             }
@@ -2759,7 +2785,7 @@ namespace ParkingMangement.GUI
         private void searchLog()
         {
             string key = tbLogSearchKeyWord.Text;
-            DataRow dataRow = ((DataRowView) cbLogType.SelectedItem).Row;
+            DataRow dataRow = ((DataRowView)cbLogType.SelectedItem).Row;
             string logTypeID = dataRow["LogTypeID"].ToString();
             DateTime startTime = dtLogSearchStartTime.Value;
             startTime = new DateTime(startTime.Year, startTime.Month, startTime.Day, 0, 0, 0);
@@ -3131,7 +3157,7 @@ namespace ParkingMangement.GUI
 
                 //Loop through each row and read value from each column. 
                 exportToExcel(dgvCarList, worksheet, 1, 1);
-                
+
                 excel.Columns.AutoFit();
 
 
@@ -3176,7 +3202,7 @@ namespace ParkingMangement.GUI
 
                 //Loop through each row and read value from each column.
                 exportToExcel(dgvCarTicketMonthList, worksheet, 1, 1);
-                
+
                 excel.Columns.AutoFit();
 
 
@@ -3221,7 +3247,7 @@ namespace ParkingMangement.GUI
 
                 //Loop through each row and read value from each column.
                 exportToExcel(dgvWorkList, worksheet, 1, 1);
-                
+
                 excel.Columns.AutoFit();
 
 
@@ -3270,7 +3296,7 @@ namespace ParkingMangement.GUI
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;  
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
                 saveDialog.FileName = "Export_thongke_doanhthu_tongquat_" + Util.getCurrentDateTimeString();
@@ -3443,7 +3469,7 @@ namespace ParkingMangement.GUI
 
                 //Loop through each row and read value from each column. 
                 exportToExcel(dgvLogList, worksheet, 1, 1);
-                
+
                 excel.Columns.AutoFit();
 
 
@@ -3533,7 +3559,7 @@ namespace ParkingMangement.GUI
                 worksheet.Name = "Danh sách thẻ tháng";
 
                 exportToExcel(dgvTicketMonthList, worksheet, 1, 1);
-                
+
                 excel.Columns.AutoFit();
 
 
@@ -3602,7 +3628,8 @@ namespace ParkingMangement.GUI
             if (mExportSaleType == EXPORT_SALE_NOT_YET_SEARCH)
             {
                 MessageBox.Show("Chưa có dữ liệu để xuất Excel");
-            } else
+            }
+            else
             {
                 exportDoanhThuTongQuatToExcel();
             }
@@ -3614,7 +3641,8 @@ namespace ParkingMangement.GUI
             {
                 loadCarList();
                 exportDoanhThuChiTietToExcel();
-            } else if (mExportSaleType == EXPORT_SALE_SEARCH_CONDITION)
+            }
+            else if (mExportSaleType == EXPORT_SALE_SEARCH_CONDITION)
             {
                 string userID = null;
                 int ticketType = CarDAO.ALL_TICKET;
@@ -3657,7 +3685,8 @@ namespace ParkingMangement.GUI
                 }
                 searchCarByCondition(startDateReport, endDateReport, userID, ticketType);
                 exportDoanhThuChiTietToExcel();
-            } else
+            }
+            else
             {
                 MessageBox.Show("Chưa có dữ liệu để xuất Excel");
             }
@@ -4174,7 +4203,8 @@ namespace ParkingMangement.GUI
                             if (dt != null && dt.Rows.Count > 0)
                             {
                                 MessageBox.Show("Số thẻ đã tồn tại");
-                            } else
+                            }
+                            else
                             {
                                 tbTicketMonthIDCreate.Text = cardDTO.Id;
                                 string typeName = PartDAO.GetPartNameByPartID(cardDTO.Type);
@@ -4216,46 +4246,92 @@ namespace ParkingMangement.GUI
             loadCarListForCashManagement();
         }
 
-        public DataTable ImportExcel()
+        public DataTable ImportDanhSachTheFromExcel(String path)
         {
-            String path = "";
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook workBook = excel.Workbooks.Open(path, 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
-
-            int index = 0;
-            object rowIndex = 2;
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("FirstName");
-            dt.Columns.Add("LastName");
-            dt.Columns.Add("Mobile");
-            dt.Columns.Add("Landline");
-            dt.Columns.Add("Email");
-            dt.Columns.Add("ID");
-
-            DataRow row;
-
-            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 1]).Value2 != null)
+            System.Data.DataTable dt = null;
+            try
             {
-                rowIndex = 2 + index;
-                row = dt.NewRow();
-                row[0] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 1]).Value2);
-                row[1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 2]).Value2);
-                row[2] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 3]).Value2);
-                row[3] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 4]).Value2);
-                row[4] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, 5]).Value2);
-                index++;
-                dt.Rows.Add(row);
-            }
+                object rowIndex = 1;
+                dt = new System.Data.DataTable();
+                DataRow row;
+                Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
+                    Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+                int temp = 1;
+                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+                {
+                    dt.Columns.Add(Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2));
+                     temp++;
+                }
+                rowIndex = Convert.ToInt32(rowIndex) + 2;
+                int columnCount = temp;
+                temp = 1;
+                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+                {
+                    row = dt.NewRow();
+                    for (int i = 1; i < columnCount; i++)
+                    {
+                        row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                    }
 
-            excel.Workbooks.Close();
+                    CardDTO cardDTO = CardDAO.getCardFromDataRow(row);
+                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[rowIndex];
+
+                    if (CardDAO.GetCardModelByIdentify(cardDTO.Identify) != null)
+                    {
+                        range.Font.Color = ColorTranslator.ToOle(Color.Red);
+                        workSheet.Cells[rowIndex, columnCount + 1] = "Số thẻ đã tồn tại";
+                    }
+                    else if (!CardDAO.Insert(cardDTO))
+                    {
+                        range.Font.Color = ColorTranslator.ToOle(Color.Red);
+                        workSheet.Cells[rowIndex, columnCount + 1] = "Mã thẻ đã tồn tại";
+                    } else
+                    {
+                        range.Font.Color = ColorTranslator.ToOle(Color.Green);
+                    }
+                    dt.Rows.Add(row);
+                    rowIndex = Convert.ToInt32(rowIndex) + 1;
+                    temp = 1;
+                }
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Ketqua_" + app.ActiveWorkbook.Name;
+
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    workBook.SaveAs(saveDialog.FileName);
+                    MessageBox.Show(Constant.sMessageImportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
+                }
+
+                workBook.Close();
+                app.Quit();
+            }
+            catch (Exception ex)
+            {
+                //lblError.Text = ex.Message;
+            }
             return dt;
         }
 
         private void trackBarTinhTienTongHopCycleMilestone3_ValueChanged(object sender, EventArgs e)
         {
             labelTinhTienTongHopCycleMilestone3.Text = trackBarTinhTienTongHopCycleMilestone3.Value + "";
+        }
+
+        private void btnImportDanhSachTheXe_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+                ImportDanhSachTheFromExcel(path);
+            }
         }
     }
 }
