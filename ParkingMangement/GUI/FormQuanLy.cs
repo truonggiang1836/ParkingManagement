@@ -4318,6 +4318,66 @@ namespace ParkingMangement.GUI
             return dt;
         }
 
+        public DataTable ImportDanhSachTheThangFromExcel(String path)
+        {
+            System.Data.DataTable dt = null;
+            try
+            {
+                object rowIndex = 1;
+                dt = new System.Data.DataTable();
+                DataRow row;
+                Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
+                    Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+                Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+                int temp = 1;
+                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+                {
+                    dt.Columns.Add(Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2));
+                    temp++;
+                }
+                rowIndex = Convert.ToInt32(rowIndex) + 2;
+                int columnCount = temp;
+                temp = 1;
+                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+                {
+                    row = dt.NewRow();
+                    for (int i = 1; i < columnCount; i++)
+                    {
+                        row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                    }
+
+                    TicketMonthDTO ticketMonthDTO = TicketMonthDAO.getTicketMonthFromDataRow(row);
+                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[rowIndex];
+
+                    
+                    dt.Rows.Add(row);
+                    rowIndex = Convert.ToInt32(rowIndex) + 1;
+                    temp = 1;
+                }
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.InitialDirectory = Environment.CurrentDirectory;
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+                saveDialog.FilterIndex = 2;
+                saveDialog.FileName = "Ketqua_" + app.ActiveWorkbook.Name;
+
+                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    workBook.SaveAs(saveDialog.FileName);
+                    MessageBox.Show(Constant.sMessageImportExcelSuccess);
+                    Process.Start(saveDialog.FileName);
+                }
+
+                workBook.Close();
+                app.Quit();
+            }
+            catch (Exception ex)
+            {
+                //lblError.Text = ex.Message;
+            }
+            return dt;
+        }
+
         private void trackBarTinhTienTongHopCycleMilestone3_ValueChanged(object sender, EventArgs e)
         {
             labelTinhTienTongHopCycleMilestone3.Text = trackBarTinhTienTongHopCycleMilestone3.Value + "";

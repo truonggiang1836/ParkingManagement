@@ -247,5 +247,24 @@ namespace ParkingMangement.DAO
                 return "";
             }
         }
+
+        public static TicketMonthDTO getTicketMonthFromDataRow(DataRow dataRow)
+        {
+            TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
+            ticketMonthDTO.Id = dataRow.Field<String>("ID");
+            ticketMonthDTO.Digit = dataRow.Field<String>("Digit");
+            ticketMonthDTO.CustomerName = dataRow.Field<String>("CustomerName");
+            ticketMonthDTO.Cmnd = dataRow.Field<String>("CMND");
+            ticketMonthDTO.Company = dataRow.Field<String>("Company");
+            ticketMonthDTO.Email = dataRow.Field<String>("Email");
+            ticketMonthDTO.Address = dataRow.Field<String>("Address");
+            ticketMonthDTO.CarKind = dataRow.Field<String>("CarKind");
+            ticketMonthDTO.IdPart = dataRow.Field<String>("IDPart");
+            ticketMonthDTO.RegistrationDate = dataRow.Field<DateTime>("RegistrationDate");
+            ticketMonthDTO.ExpirationDate = dataRow.Field<DateTime>("ExpirationDate");
+            ticketMonthDTO.Note = dataRow.Field<String>("Note");
+            ticketMonthDTO.ChargesAmount = dataRow.Field<String>("ChargesAmount");
+            return ticketMonthDTO;
+        }
     }
 }
