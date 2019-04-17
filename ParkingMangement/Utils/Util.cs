@@ -249,7 +249,6 @@ namespace ParkingMangement.Utils
 
         public static void sendOrderListToServer(DataTable data)
         {
-            return;
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
                 return;

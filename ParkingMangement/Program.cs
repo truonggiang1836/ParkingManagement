@@ -76,10 +76,10 @@ namespace ParkingMangement
 
         public static void updateOrderToSever()
         {
-            Util.sendOrderListToServer(CarDAO.GetDataInRecently());
-            Util.sendOrderListToServer(CarDAO.GetDataOutRecently());
-            WaitSyncCarInDAO.DeleteAll();
-            WaitSyncCarOutDAO.DeleteAll();
+            //Util.sendOrderListToServer(CarDAO.GetDataInRecently());
+            //Util.sendOrderListToServer(CarDAO.GetDataOutRecently());
+            //WaitSyncCarInDAO.DeleteAll();
+            //WaitSyncCarOutDAO.DeleteAll();
         }
     }
 }

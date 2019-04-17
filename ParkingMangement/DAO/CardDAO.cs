@@ -155,6 +155,20 @@ namespace ParkingMangement.DAO
             return "";
         }
 
+        public static string GetPartName_TypeNameByCartID(string cardID)
+        {
+            string sql = "select Part.PartName, Type.TypeName from SmartCard, Part, Type where SmartCard.Type = Part.ID"
+                + " and Part.TypeID = Type.TypeID and SmartCard.ID = '" + cardID + "'";
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null && data.Rows.Count > 0)
+            {
+                string partName = data.Rows[0].Field<string>("PartName");
+                string typeName = data.Rows[0].Field<string>("TypeName");
+                return partName + " - " + typeName;
+            }
+            return "";
+        }
+
         public static string getIdentifyByCardID(string cardID)
         {
             string sql = "select Identify from SmartCard where ID = '" + cardID + "'";

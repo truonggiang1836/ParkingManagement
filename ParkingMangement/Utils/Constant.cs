@@ -55,16 +55,21 @@ namespace ParkingMangement.Utils
         public static string sMessageCardIsLost = "THẺ ĐÃ HỦY";
         public static string sLabelCardUsing = "Dùng";
         public static string sLabelCardNotUsing = "Không dùng";
+        public static string sMessageCardIdentifyExisted = "Số thẻ đã tồn tại";
+        public static string sMessageCardIdExisted = "Mã thẻ chíp đã tồn tại";
 
         // car
         public static string sMessageXeDaRaKhoiBai = "Xe này đã ra khỏi bãi";
 
         // Ticktet month
-        public static string sMessageTicketMonthIdNullError = "Mã thẻ không được rỗng";
-        public static string sMessageTicketMonthIdDuplicateError = "Mã thẻ không được trùng";
+        public static string sMessageTicketMonthIdentifyNullError = "Số thẻ không được rỗng";
+        public static string sMessageTicketMonthIdNullError = "Mã thẻ chíp không được rỗng";
+        public static string sMessageTicketMonthIdDuplicateError = "Mã thẻ chíp không được trùng";
         public static string sMessageTicketMonthDigitNullError = "Biển số không được rỗng";
         public static string sMessageNoChooseDataError = "Vui lòng chọn dữ liệu cần xử lý";
         public static string sMessageRenewPlusDateInvalidError = "Số ngày gia hạn không hợp lệ";
+        public static string sMessageCardTypeIsNotTicketMonth = "Loại thẻ này không dành cho xe tháng";
+        public static string sMessageDigitExisted = "Biển số đã tồn tại";
 
         // Config
         public static string FOLDER_NAME_IMAGES = "Images";

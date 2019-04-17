@@ -115,6 +115,7 @@ namespace ParkingMangement.GUI
             labelDigitRegister.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCustomerName.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
+            labelPartNameTypeName.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCostOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
@@ -124,6 +125,7 @@ namespace ParkingMangement.GUI
             labelDigitOutHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelDigitRegisterHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelCardIDHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
+            labelPartNameTypeNameHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelCustomerNameHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelVND1.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelVND2.BackColor = ColorTranslator.FromHtml("#2e2925");
@@ -131,6 +133,7 @@ namespace ParkingMangement.GUI
             labelDigitOutHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelDigitRegisterHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCardIDHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            labelPartNameTypeNameHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCustomerNameHeader.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelVND1.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelVND2.ForeColor = ColorTranslator.FromHtml("#cf9f51");
@@ -155,7 +158,7 @@ namespace ParkingMangement.GUI
             //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
-            configVLC();
+            configVLC(Util.getConfigFile().zoomCameraValue);
             loadCamera1VLC();
             loadCamera2VLC();
             loadCamera3VLC();
@@ -215,9 +218,10 @@ namespace ParkingMangement.GUI
                     formLoginByCard.formNhanVien = this;
                     formLoginByCard.Show();
                     break;
-                //case Keys.F5:
-                //    openInOutSetting();
-                //    break;
+                case Keys.F5:
+                    //    openInOutSetting();
+                    openZoomCameraSetting();
+                    break;
                 case Keys.F7:
                     openFormQuanLyXeRaVao();
                     break;
@@ -254,6 +258,13 @@ namespace ParkingMangement.GUI
             {
                 MessageBox.Show(Constant.sMessageCanNotSeeReport);
             }
+        }
+
+        private void openZoomCameraSetting()
+        {
+            FormZoomCameraSetting formZoomCameraSetting = new FormZoomCameraSetting();
+            formZoomCameraSetting.formNhanVien = this;
+            formZoomCameraSetting.Show();
         }
 
         //private void saveImageToFile(System.Drawing.Image image, string fileName)
@@ -311,6 +322,7 @@ namespace ParkingMangement.GUI
             labelDigitOut.Text = "";
             labelDigitRegister.Text = "";
             labelCustomerName.Text = "-";
+            labelPartNameTypeName.Text = CardDAO.GetPartName_TypeNameByCartID(cardID);
             if (isTicketCard)
             {
                 labelCustomerName.Text = TicketMonthDAO.GetCustomerNameByID(cardID);
@@ -359,10 +371,10 @@ namespace ParkingMangement.GUI
                 saveImage2ToFile();
                 CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
                 labelDigitIn.Text = "";
-                pictureBoxImage1.Image = Properties.Resources.ic_logo;
-                pictureBoxImage2.Image = Properties.Resources.ic_logo;
-                pictureBoxImage3.Image = Properties.Resources.ic_logo;
-                pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage4.Image = Properties.Resources.ic_logo;
             }
             DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
             if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
@@ -443,8 +455,8 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = "";
                 labelMoiRa.Text = Constant.sLabelMoiVao;
 
-                pictureBoxImage1.Image = Properties.Resources.ic_logo;
-                pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
@@ -460,8 +472,8 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = "";
                     labelMoiRa.Text = Constant.sLabelMoiVao;
 
-                    pictureBoxImage1.Image = Properties.Resources.ic_logo;
-                    pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -475,8 +487,8 @@ namespace ParkingMangement.GUI
                     labelMoiVao.Text = Constant.sLabelMoiVao;
                     labelMoiRa.Text = "";
 
-                    pictureBoxImage3.Image = Properties.Resources.ic_logo;
-                    pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -491,8 +503,8 @@ namespace ParkingMangement.GUI
                 labelMoiVao.Text = Constant.sLabelMoiVao;
                 labelMoiRa.Text = "";
 
-                pictureBoxImage3.Image = Properties.Resources.ic_logo;
-                pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                //pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                 if (isTicketMonthCard)
                 {
@@ -631,8 +643,8 @@ namespace ParkingMangement.GUI
                     }
                     labelCostOut.Text = "-";
 
-                    pictureBoxImage3.Image = Properties.Resources.ic_logo;
-                    pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -653,8 +665,8 @@ namespace ParkingMangement.GUI
                         }
                         labelCostOut.Text = "-";
 
-                        pictureBoxImage3.Image = Properties.Resources.ic_logo;
-                        pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                        //pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                        //pictureBoxImage4.Image = Properties.Resources.ic_logo;
 
                         if (isTicketMonthCard)
                         {
@@ -673,8 +685,8 @@ namespace ParkingMangement.GUI
                             labelCostOut.Text = Util.formatNumberAsMoney((int)carDTO.Cost);
                         }
 
-                        pictureBoxImage1.Image = Properties.Resources.ic_logo;
-                        pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                        //pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                        //pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                         if (isTicketMonthCard)
                         {
@@ -694,8 +706,8 @@ namespace ParkingMangement.GUI
                         labelCostOut.Text = Util.formatNumberAsMoney((int)carDTO.Cost);
                     }
 
-                    pictureBoxImage1.Image = Properties.Resources.ic_logo;
-                    pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                    //pictureBoxImage2.Image = Properties.Resources.ic_logo;
 
                     if (isTicketMonthCard)
                     {
@@ -1111,7 +1123,7 @@ namespace ParkingMangement.GUI
         //    rfidOut = config.rfidOut;
         //}
 
-        private void configVLC()
+        public void configVLC(float zoomValue)
         {
             axVLCPlugin1.video.aspectRatio = "209:253";
             axVLCPlugin2.video.aspectRatio = "209:253";
@@ -1122,10 +1134,10 @@ namespace ParkingMangement.GUI
             //axVLCPlugin2.video.scale = 0.7f;
             //axVLCPlugin3.video.scale = 0.7f;
             //axVLCPlugin4.video.scale = 0.7f;
-            axVLCPlugin1.video.scale = 0.4f;
-            axVLCPlugin2.video.scale = 0.4f;
-            axVLCPlugin3.video.scale = 0.4f;
-            axVLCPlugin4.video.scale = 0.4f;
+            axVLCPlugin1.video.scale = zoomValue;
+            axVLCPlugin2.video.scale = zoomValue;
+            axVLCPlugin3.video.scale = zoomValue;
+            axVLCPlugin4.video.scale = zoomValue;
 
             axVLCPlugin1.Toolbar = false;
             axVLCPlugin2.Toolbar = false;
@@ -1461,6 +1473,7 @@ namespace ParkingMangement.GUI
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
             labelCardID.Text = "-";
+            labelPartNameTypeName.Text = "-";
             labelCustomerName.Text = "-";
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";

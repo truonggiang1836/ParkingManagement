@@ -1085,7 +1085,7 @@ namespace ParkingMangement.GUI
                 string cardIdentify = tbCardIdentifyCreate.Text.Trim();
                 if (CardDAO.GetCardModelByIdentify(cardIdentify) != null)
                 {
-                    labelKetQuaTaoThe.Text = "Số thẻ đã tồn tại";
+                    labelKetQuaTaoThe.Text = Constant.sMessageCardIdentifyExisted;
                     return false;
                 }
             }
@@ -1127,7 +1127,7 @@ namespace ParkingMangement.GUI
             DataTable dt = CardDAO.GetCardByID(cardDTO.Id);
             if (dt != null && dt.Rows.Count > 0)
             {
-                labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
+                labelKetQuaTaoThe.Text = Constant.sMessageCardIdExisted;
                 return;
             }
             if (CardDAO.Insert(cardDTO))
@@ -1576,7 +1576,7 @@ namespace ParkingMangement.GUI
             string oldIdentify = oldCardDTO.Identify;
             if (newCardDTO != null && !cardIdentify.Equals(oldIdentify))
             {
-                MessageBox.Show("Số thẻ đã tồn tại");
+                MessageBox.Show(Constant.sMessageCardIdentifyExisted);
             }
             else
             {
@@ -1590,6 +1590,7 @@ namespace ParkingMangement.GUI
 
         private void clearInputTicketMonthInfo()
         {
+            tbTicketMonthIdentifyCreate.Text = "";
             tbTicketMonthIDCreate.Text = "";
             tbTicketMonthDigitCreate.Text = "";
             tbTicketMonthCustomerNameCreate.Text = "";
@@ -1608,6 +1609,11 @@ namespace ParkingMangement.GUI
 
         private bool checkCreateTicketMonthData()
         {
+            if (string.IsNullOrWhiteSpace(tbTicketMonthIdentifyCreate.Text))
+            {
+                MessageBox.Show(Constant.sMessageTicketMonthIdentifyNullError);
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(tbTicketMonthIDCreate.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
@@ -1629,14 +1635,31 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
                 return false;
             }
+            DataTable dtByDigit = TicketMonthDAO.GetDataByDigit(tbTicketMonthDigitCreate.Text);
+            if (dtByDigit != null && dtByDigit.Rows.Count > 0)
+            {
+                MessageBox.Show(Constant.sMessageDigitExisted);
+                return false;
+            }
             return true;
         }
 
         private bool checkUpdateTicketMonthData()
         {
+            if (string.IsNullOrWhiteSpace(tbTicketMonthIdentifyEdit.Text))
+            {
+                MessageBox.Show(Constant.sMessageTicketMonthIdentifyNullError);
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitEdit.Text))
             {
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
+                return false;
+            }
+            DataTable dtByDigit = TicketMonthDAO.GetDataByDigit(tbTicketMonthDigitEdit.Text);
+            if (dtByDigit != null && dtByDigit.Rows.Count > 0)
+            {
+                MessageBox.Show(Constant.sMessageDigitExisted);
                 return false;
             }
             return true;
@@ -4159,7 +4182,7 @@ namespace ParkingMangement.GUI
                 CardDTO cardDTO = CardDAO.GetCardModelByID(cardId);
                 if (cardDTO == null)
                 {
-                    MessageBox.Show("Thẻ chưa được đăng kí vào hệ thống");
+                    MessageBox.Show(Constant.sMessageCardIdNotExist);
                     tbTicketMonthIDCreate.Text = "";
                 }
                 else
@@ -4167,7 +4190,7 @@ namespace ParkingMangement.GUI
                     string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
                     if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
                     {
-                        MessageBox.Show("Loại thẻ này không dành cho xe tháng");
+                        MessageBox.Show(Constant.sMessageCardTypeIsNotTicketMonth);
                         tbTicketMonthIDCreate.Text = "";
                     }
                     else
@@ -4185,38 +4208,32 @@ namespace ParkingMangement.GUI
         {
             if (!tbTicketMonthIdentifyCreate.Text.Equals(""))
             {
-                try
+                string cardIdentify = tbTicketMonthIdentifyCreate.Text;
+                CardDTO cardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
+                if (cardDTO != null)
                 {
-                    string cardIdentify = tbTicketMonthIdentifyCreate.Text;
-                    CardDTO cardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
-                    if (cardDTO != null)
+                    string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
+                    if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
                     {
-                        string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
-                        if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                        MessageBox.Show(Constant.sMessageCardTypeIsNotTicketMonth);
+                        tbTicketMonthIdentifyCreate.Text = "";
+                    }
+                    else
+                    {
+                        DataTable dt = TicketMonthDAO.GetDataByIdentify(cardIdentify);
+                        if (dt != null && dt.Rows.Count > 0)
                         {
-                            MessageBox.Show("Loại thẻ này không dành cho xe tháng");
+                            MessageBox.Show(Constant.sMessageCardIdentifyExisted);
                             tbTicketMonthIdentifyCreate.Text = "";
                         }
                         else
                         {
-                            DataTable dt = TicketMonthDAO.GetDataByIdentify(cardIdentify);
-                            if (dt != null && dt.Rows.Count > 0)
-                            {
-                                MessageBox.Show("Số thẻ đã tồn tại");
-                            }
-                            else
-                            {
-                                tbTicketMonthIDCreate.Text = cardDTO.Id;
-                                string typeName = PartDAO.GetPartNameByPartID(cardDTO.Type);
-                                cbTicketMonthPartCreate.Text = typeName;
-                                tbTicketMonthChargesAmountCreate.Text = PartDAO.GetAmountByPartID(cardDTO.Type) + "";
-                            }
+                            tbTicketMonthIDCreate.Text = cardDTO.Id;
+                            string typeName = PartDAO.GetPartNameByPartID(cardDTO.Type);
+                            cbTicketMonthPartCreate.Text = typeName;
+                            tbTicketMonthChargesAmountCreate.Text = PartDAO.GetAmountByPartID(cardDTO.Type) + "";
                         }
                     }
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Số thẻ không hợp lệ");
                 }
             }
         }
@@ -4281,12 +4298,12 @@ namespace ParkingMangement.GUI
                     if (CardDAO.GetCardModelByIdentify(cardDTO.Identify) != null)
                     {
                         range.Font.Color = ColorTranslator.ToOle(Color.Red);
-                        workSheet.Cells[rowIndex, columnCount + 1] = "Số thẻ đã tồn tại";
+                        workSheet.Cells[rowIndex, columnCount + 1] = Constant.sMessageCardIdentifyExisted;
                     }
                     else if (!CardDAO.Insert(cardDTO))
                     {
                         range.Font.Color = ColorTranslator.ToOle(Color.Red);
-                        workSheet.Cells[rowIndex, columnCount + 1] = "Mã thẻ đã tồn tại";
+                        workSheet.Cells[rowIndex, columnCount + 1] = Constant.sMessageCardIdExisted;
                     } else
                     {
                         range.Font.Color = ColorTranslator.ToOle(Color.Green);
@@ -4305,6 +4322,7 @@ namespace ParkingMangement.GUI
                 {
                     workBook.SaveAs(saveDialog.FileName);
                     MessageBox.Show(Constant.sMessageImportExcelSuccess);
+                    loadCardList();
                     Process.Start(saveDialog.FileName);
                 }
 
@@ -4318,64 +4336,159 @@ namespace ParkingMangement.GUI
             return dt;
         }
 
-        public DataTable ImportDanhSachTheThangFromExcel(String path)
+        private void ImportDanhSachTheThangFromExcel(String path)
         {
+            return;
             System.Data.DataTable dt = null;
-            try
+            object rowIndex = 1;
+            dt = new System.Data.DataTable();
+            DataRow row;
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
+                Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+            int temp = 1;
+            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
             {
-                object rowIndex = 1;
-                dt = new System.Data.DataTable();
-                DataRow row;
-                Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-                Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
-                    Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-                Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
-                int temp = 1;
-                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
-                {
-                    dt.Columns.Add(Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2));
-                    temp++;
-                }
-                rowIndex = Convert.ToInt32(rowIndex) + 2;
-                int columnCount = temp;
-                temp = 1;
-                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+                String columnName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2);
+                dt.Columns.Add(columnName);
+                temp++;
+            }
+            rowIndex = Convert.ToInt32(rowIndex) + 2;
+            int columnCount = temp;
+            temp = 1;
+            bool isHasData1 = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null);
+            bool isHasData2 = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 1]).Value2 != null);
+            bool isHasData3 = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 2]).Value2 != null);
+            bool isHasData = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null) ||
+                (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 1]).Value2 != null) ||
+                (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 2]).Value2 != null);
+            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+            {
+                try
                 {
                     row = dt.NewRow();
                     for (int i = 1; i < columnCount; i++)
                     {
-                        row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                        if (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2 != null)
+                        {
+                            row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                        }
+                        else
+                        {
+                            row[i - 1] = "";
+                        }
                     }
 
                     TicketMonthDTO ticketMonthDTO = TicketMonthDAO.getTicketMonthFromDataRow(row);
+                    ticketMonthDTO.ProcessDate = DateTime.Now;
+                    ticketMonthDTO.Account = Program.CurrentUserID;
+                    ticketMonthDTO.Status = 0;
+                    ticketMonthDTO.DayUnlimit = DateTime.Now;
+                    CardDTO cardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
+                    if (cardDTO != null)
+                    {
+                        ticketMonthDTO.IdPart = cardDTO.Type;
+                    }
+
                     Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[rowIndex];
+                    range.Font.Color = ColorTranslator.ToOle(Color.Red);
 
-                    
+                    string errorMessage = getErrorMessageImportTheThang(ticketMonthDTO, cardDTO);
+                    //string errorMessage = null;
+                    if (errorMessage != null)
+                    {
+                        workSheet.Cells[rowIndex, columnCount + 1] = errorMessage;
+                    }
+                    else
+                    {
+                        range.Font.Color = ColorTranslator.ToOle(Color.Green);
+                        if (!cardDTO.Identify.Equals(ticketMonthDTO.CardIdentify))
+                        {
+                            CardDAO.UpdateIdentify(ticketMonthDTO.CardIdentify, ticketMonthDTO.Id);
+                        }
+                        if (TicketMonthDAO.Insert(ticketMonthDTO))
+                        {
+                            addTicketLog(Constant.LOG_TYPE_CREATE_TICKET_MONTH, ticketMonthDTO);
+                        }
+                        else
+                        {
+                            workSheet.Cells[rowIndex, columnCount + 1] = Constant.sMessageCardIdExisted;
+                        }
+                    }
+
                     dt.Rows.Add(row);
-                    rowIndex = Convert.ToInt32(rowIndex) + 1;
-                    temp = 1;
                 }
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Ketqua_" + app.ActiveWorkbook.Name;
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                catch (Exception ex)
                 {
-                    workBook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageImportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
+                    workSheet.Cells[rowIndex, columnCount + 1] = ex.Message;
                 }
+                rowIndex = Convert.ToInt32(rowIndex) + 1;
+                temp = 1;
+            }
+       
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.InitialDirectory = Environment.CurrentDirectory;
+            saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveDialog.FilterIndex = 2;
+            saveDialog.FileName = "Ketqua_" + app.ActiveWorkbook.Name;
 
-                workBook.Close();
-                app.Quit();
-            }
-            catch (Exception ex)
+            if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                //lblError.Text = ex.Message;
+                workBook.SaveAs(saveDialog.FileName);
+                MessageBox.Show(Constant.sMessageImportExcelSuccess);
+                loadTicketMonthData();
+                Process.Start(saveDialog.FileName);
             }
-            return dt;
+
+            workBook.Close();
+            app.Quit();
+        }
+
+        private string getErrorMessageImportTheThang(TicketMonthDTO ticketMonthDTO, CardDTO cardDTO)
+        {
+            if (string.IsNullOrWhiteSpace(ticketMonthDTO.CardIdentify))
+            {
+                return Constant.sMessageTicketMonthIdentifyNullError;
+            }
+            if (string.IsNullOrWhiteSpace(ticketMonthDTO.Id))
+            {
+                return Constant.sMessageTicketMonthIdNullError;
+            }
+            if (string.IsNullOrWhiteSpace(ticketMonthDTO.Digit))
+            {
+                return Constant.sMessageTicketMonthDigitNullError;
+            }
+            DataTable dtByDigit = TicketMonthDAO.GetDataByDigit(ticketMonthDTO.Digit);
+            if (dtByDigit != null && dtByDigit.Rows.Count > 0)
+            {
+                return Constant.sMessageDigitExisted;
+            }
+            if (cardDTO == null)
+            {
+                return Constant.sMessageCardIdNotExist;
+            }
+            else
+            {
+                if (!CardDAO.isUsingByCardID(cardDTO.Id))
+                {
+                    return Constant.sMessageCardIsLost;
+                }
+                string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
+                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                {
+                    return Constant.sMessageCardTypeIsNotTicketMonth;
+                }
+                else
+                {
+                    DataTable dt = TicketMonthDAO.GetDataByIdentify(ticketMonthDTO.CardIdentify);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        return Constant.sMessageCardIdentifyExisted;
+                    }
+                }
+            }
+            return null;
         }
 
         private void trackBarTinhTienTongHopCycleMilestone3_ValueChanged(object sender, EventArgs e)
@@ -4391,6 +4504,17 @@ namespace ParkingMangement.GUI
             {
                 string path = openFileDialog.FileName;
                 ImportDanhSachTheFromExcel(path);
+            }
+        }
+
+        private void btnImportDanhSachVeThang_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = openFileDialog.FileName;
+                ImportDanhSachTheThangFromExcel(path);
             }
         }
     }

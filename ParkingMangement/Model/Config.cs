@@ -52,5 +52,8 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "in_out_type")]
         public int inOutType { get; set; }
+
+        [XmlElement(ElementName = "zoom_camera_value")]
+        public float zoomCameraValue { get; set; }
     }
 }

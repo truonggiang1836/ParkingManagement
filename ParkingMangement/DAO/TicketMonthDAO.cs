@@ -31,14 +31,14 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
-        public static void Insert(TicketMonthDTO ticketMonthDTO)
+        public static bool Insert(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "insert into TicketMonth(ID, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
                 ", ChargesAmount, IDPart, Account) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" + 
                 ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate + 
                 "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
-            Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static void Update(TicketMonthDTO ticketMonthDTO)
@@ -204,6 +204,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static DataTable GetDataByDigit(string digit)
+        {
+            string sql = "select * from TicketMonth where Digit = '" + digit + "'";
+            return Database.ExcuQuery(sql);
+        }
+
         public static DataTable GetDataByIdentify(string cardIdentify)
         {
             string sql = "select * from TicketMonth left join SmartCard on TicketMonth.ID = SmartCard.ID where SmartCard.Identify = '" + cardIdentify + "'";
@@ -251,6 +257,7 @@ namespace ParkingMangement.DAO
         public static TicketMonthDTO getTicketMonthFromDataRow(DataRow dataRow)
         {
             TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
+            ticketMonthDTO.CardIdentify = dataRow.Field<String>("CardIdentify");
             ticketMonthDTO.Id = dataRow.Field<String>("ID");
             ticketMonthDTO.Digit = dataRow.Field<String>("Digit");
             ticketMonthDTO.CustomerName = dataRow.Field<String>("CustomerName");
@@ -259,10 +266,12 @@ namespace ParkingMangement.DAO
             ticketMonthDTO.Email = dataRow.Field<String>("Email");
             ticketMonthDTO.Address = dataRow.Field<String>("Address");
             ticketMonthDTO.CarKind = dataRow.Field<String>("CarKind");
-            ticketMonthDTO.IdPart = dataRow.Field<String>("IDPart");
-            ticketMonthDTO.RegistrationDate = dataRow.Field<DateTime>("RegistrationDate");
-            ticketMonthDTO.ExpirationDate = dataRow.Field<DateTime>("ExpirationDate");
-            ticketMonthDTO.Note = dataRow.Field<String>("Note");
+            String registrationDateString = dataRow.Field<String>("RegistrationDate");
+            DateTime registrationDate = DateTime.FromOADate(double.Parse(registrationDateString));
+            ticketMonthDTO.RegistrationDate = registrationDate;
+            String expirationDateString = dataRow.Field<String>("ExpirationDate");
+            DateTime expirationDate = DateTime.FromOADate(double.Parse(expirationDateString));
+            ticketMonthDTO.ExpirationDate = expirationDate;
             ticketMonthDTO.ChargesAmount = dataRow.Field<String>("ChargesAmount");
             return ticketMonthDTO;
         }
