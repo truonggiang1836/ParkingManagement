@@ -17,7 +17,7 @@ namespace ParkingMangement.GUI
     public partial class FormZoomCameraSetting : Form
     {
         public FormNhanVien formNhanVien;
-        private List<float> listZoomValue = new List<float>();
+        private List<int> listZoomValue = new List<int>();
         public FormZoomCameraSetting()
         {
             InitializeComponent();
@@ -25,13 +25,13 @@ namespace ParkingMangement.GUI
 
         private void FormZoomCameraSetting_Load(object sender, EventArgs e)
         {
-            for (int i = 1; i <= 10; i++)
+            for (int i = 0; i <= 100; i = i + 5)
             {
-                float value = (float) i / 10;
+                int value = i;
                 listZoomValue.Add(value);
                 cbZoomValue.Items.Add(value);
             }
-            cbZoomValue.SelectedIndex = 0;
+            cbZoomValue.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().zoomCameraValue);
         }
 
         private void btnNo_Click(object sender, EventArgs e)
@@ -43,13 +43,13 @@ namespace ParkingMangement.GUI
         {
             if (formNhanVien != null)
             {
-                float value = listZoomValue[cbZoomValue.SelectedIndex];
+                int value = listZoomValue[cbZoomValue.SelectedIndex];
                 saveZoomCameraValueToConfig(value);
                 formNhanVien.configVLC(value);
             }
         }
 
-        private static bool saveZoomCameraValueToConfig(float value)
+        private static bool saveZoomCameraValueToConfig(int value)
         {
             try
             {

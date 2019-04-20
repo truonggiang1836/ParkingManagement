@@ -13,5 +13,5 @@
   <sql_password>admin</sql_password>
   <folder_root>ParkingManagement</folder_root>
   <in_out_type>3</in_out_type>
-  <zoom_camera_value>0.7</zoom_camera_value>
+  <zoom_camera_value>100</zoom_camera_value>
 </xml>

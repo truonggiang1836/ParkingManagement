@@ -199,7 +199,13 @@ namespace ParkingMangement.GUI
                     //}
                     if (!labelDigitIn.Focused)
                     {
-                        resetData();
+                        if (!tbRFIDCardID.Text.Equals(""))
+                        {
+                            resetData(false);
+                        } else
+                        {
+                            resetData(true);
+                        }
                     }
                     tbRFIDCardID.Focus();
                     break;
@@ -1123,8 +1129,9 @@ namespace ParkingMangement.GUI
         //    rfidOut = config.rfidOut;
         //}
 
-        public void configVLC(float zoomValue)
+        public void configVLC(int value)
         {
+            float zoomValue = (float) value / 100;
             axVLCPlugin1.video.aspectRatio = "209:253";
             axVLCPlugin2.video.aspectRatio = "209:253";
             axVLCPlugin3.video.aspectRatio = "209:253";
@@ -1465,10 +1472,10 @@ namespace ParkingMangement.GUI
                     break;
             }
 
-            resetData();
+            resetData(true);
         }
 
-        private void resetData()
+        private void resetData(bool isResetImage)
         {
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
@@ -1481,10 +1488,13 @@ namespace ParkingMangement.GUI
             labelTimeIn.Text = "-";
             labelDateOut.Text = "-";
             labelTimeOut.Text = "-";
-            pictureBoxImage1.Image = Properties.Resources.ic_logo;
-            pictureBoxImage2.Image = Properties.Resources.ic_logo;
-            pictureBoxImage3.Image = Properties.Resources.ic_logo;
-            pictureBoxImage4.Image = Properties.Resources.ic_logo;
+            if (isResetImage)
+            {
+                pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                pictureBoxImage2.Image = Properties.Resources.ic_logo;
+                pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                pictureBoxImage4.Image = Properties.Resources.ic_logo;
+            }
             labelDigitIn.Text = "";
             labelDigitOut.Text = "-";
             labelDigitRegister.Text = "-";
@@ -1509,6 +1519,7 @@ namespace ParkingMangement.GUI
                     {
                         updateDigitCarIn();
                         tbRFIDCardID.Focus();
+                        tbRFIDCardID.Text = "";
                     } else
                     {
                         labelDigitIn.Text = "";
@@ -1523,7 +1534,7 @@ namespace ParkingMangement.GUI
             {
                 case Keys.Enter:
                 case Keys.Space:
-                    cardID = tbRFIDCardID.Text;
+                    cardID = tbRFIDCardID.Text.Trim();
                     labelCardID.Text = CardDAO.getIdentifyByCardID(cardID) + "";
                     string x = keyboardDeviceName;
                     tbRFIDCardID.Text = "";
@@ -1538,6 +1549,7 @@ namespace ParkingMangement.GUI
         private void labelDigitIn_Leave(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
+            tbRFIDCardID.Text = "";
         }
 
         protected override void OnResize(System.EventArgs e)

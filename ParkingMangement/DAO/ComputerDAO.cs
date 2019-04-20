@@ -40,7 +40,7 @@ namespace ParkingMangement.DAO
                 computerDTO.MinCost = dt.Rows[0].Field<int>("MinCost");
                 return computerDTO;
             }
-            return null;
+            return new ComputerDTO();
         }
 
         public static bool Update(ComputerDTO computerDTO)
