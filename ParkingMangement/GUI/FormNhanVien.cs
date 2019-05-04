@@ -158,7 +158,8 @@ namespace ParkingMangement.GUI
             //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
-            configVLC(Util.getConfigFile().zoomCameraValue);
+            configVLC(Util.getConfigFile().ZoomCamera1, Util.getConfigFile().ZoomCamera2, 
+                Util.getConfigFile().ZoomCamera3, Util.getConfigFile().ZoomCamera4);
             loadCamera1VLC();
             loadCamera2VLC();
             loadCamera3VLC();
@@ -594,8 +595,8 @@ namespace ParkingMangement.GUI
                 if (isTicketMonthCard)
                 {
                     carDTO.Cost = 0;
-                    DateTime expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
-                    if (DateTime.Now.CompareTo(expirationDate) > 0)
+                    DateTime? expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
+                    if (expirationDate != null && DateTime.Now.CompareTo(expirationDate) > 0)
                     {
                         // vé tháng hết hạn
                         int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
@@ -1129,9 +1130,12 @@ namespace ParkingMangement.GUI
         //    rfidOut = config.rfidOut;
         //}
 
-        public void configVLC(int value)
+        public void configVLC(int value1, int value2, int value3, int value4)
         {
-            float zoomValue = (float) value / 100;
+            float zoomValue1 = (float) value1 / 100;
+            float zoomValue2 = (float) value2 / 100;
+            float zoomValue3 = (float) value3 / 100;
+            float zoomValue4 = (float) value4 / 100;
             axVLCPlugin1.video.aspectRatio = "209:253";
             axVLCPlugin2.video.aspectRatio = "209:253";
             axVLCPlugin3.video.aspectRatio = "209:253";
@@ -1141,10 +1145,10 @@ namespace ParkingMangement.GUI
             //axVLCPlugin2.video.scale = 0.7f;
             //axVLCPlugin3.video.scale = 0.7f;
             //axVLCPlugin4.video.scale = 0.7f;
-            axVLCPlugin1.video.scale = zoomValue;
-            axVLCPlugin2.video.scale = zoomValue;
-            axVLCPlugin3.video.scale = zoomValue;
-            axVLCPlugin4.video.scale = zoomValue;
+            axVLCPlugin1.video.scale = zoomValue1;
+            axVLCPlugin2.video.scale = zoomValue2;
+            axVLCPlugin3.video.scale = zoomValue3;
+            axVLCPlugin4.video.scale = zoomValue4;
 
             axVLCPlugin1.Toolbar = false;
             axVLCPlugin2.Toolbar = false;

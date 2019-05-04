@@ -29,9 +29,15 @@ namespace ParkingMangement.GUI
             {
                 int value = i;
                 listZoomValue.Add(value);
-                cbZoomValue.Items.Add(value);
+                cbZoomValue1.Items.Add(value);
+                cbZoomValue2.Items.Add(value);
+                cbZoomValue3.Items.Add(value);
+                cbZoomValue4.Items.Add(value);
             }
-            cbZoomValue.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().zoomCameraValue);
+            cbZoomValue1.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera1);
+            cbZoomValue2.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera2);
+            cbZoomValue3.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera3);
+            cbZoomValue4.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera4);
         }
 
         private void btnNo_Click(object sender, EventArgs e)
@@ -43,13 +49,16 @@ namespace ParkingMangement.GUI
         {
             if (formNhanVien != null)
             {
-                int value = listZoomValue[cbZoomValue.SelectedIndex];
-                saveZoomCameraValueToConfig(value);
-                formNhanVien.configVLC(value);
+                int value1 = listZoomValue[cbZoomValue1.SelectedIndex];
+                int value2 = listZoomValue[cbZoomValue2.SelectedIndex];
+                int value3 = listZoomValue[cbZoomValue3.SelectedIndex];
+                int value4 = listZoomValue[cbZoomValue4.SelectedIndex];
+                saveZoomCameraValueToConfig(value1, value2, value3, value4);
+                formNhanVien.configVLC(value1, value2, value3, value4);
             }
         }
 
-        private static bool saveZoomCameraValueToConfig(int value)
+        private static bool saveZoomCameraValueToConfig(int value1, int value2, int value3, int value4)
         {
             try
             {
@@ -57,7 +66,10 @@ namespace ParkingMangement.GUI
                 if (File.Exists(filePath))
                 {
                     Config config = Util.getConfigFile();
-                    config.zoomCameraValue = value;
+                    config.ZoomCamera1 = value1;
+                    config.ZoomCamera2 = value2;
+                    config.ZoomCamera3 = value3;
+                    config.ZoomCamera4 = value4;
 
                     XmlSerializer xs = new XmlSerializer(typeof(Config));
                     TextWriter txtWriter = new StreamWriter(filePath);

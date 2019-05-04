@@ -229,12 +229,12 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static DateTime GetExpirationDateByID(string id)
+        public static DateTime? GetExpirationDateByID(string id)
         {
             DataTable dt = GetDataByID(id);
             if (dt != null && dt.Rows.Count > 0)
             {
-                return dt.Rows[0].Field<DateTime>("ExpirationDate");
+                return dt.Rows[0].Field<DateTime?>("ExpirationDate");
             }
             else
             {

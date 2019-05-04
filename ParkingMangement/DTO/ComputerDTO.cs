@@ -23,7 +23,7 @@ namespace ParkingMangement.DTO
         private int costMilestone1 = 0;
         private int costMilestone2 = 0;
         private int costMilestone3 = 0;
-        private int cycleMilestone3 = 0;
+        private int cycleMilestone3 = 1;
         private string isAdd = "";
         private int cycleTicketMonth = 0;
         private int costTicketMonth = 0;
