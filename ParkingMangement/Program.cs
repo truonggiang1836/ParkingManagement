@@ -55,7 +55,7 @@ namespace ParkingMangement
                 /* run your code here */
                 System.Timers.Timer aTimer = new System.Timers.Timer();
                 aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                aTimer.Interval = 3 * 60 * 1000;
+                aTimer.Interval = 1 * 10 * 1000;
                 aTimer.Enabled = true;
                 aTimer.Start();
             }).Start();
@@ -68,7 +68,7 @@ namespace ParkingMangement
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    updateOrderToSever();
+                    //updateOrderToSever();
                 }).Start();
             }
             isHasCarInOut = false; 
@@ -76,10 +76,10 @@ namespace ParkingMangement
 
         public static void updateOrderToSever()
         {
-            //Util.sendOrderListToServer(CarDAO.GetDataInRecently());
-            //Util.sendOrderListToServer(CarDAO.GetDataOutRecently());
-            //WaitSyncCarInDAO.DeleteAll();
-            //WaitSyncCarOutDAO.DeleteAll();
+            Util.sendOrderListToServer(CarDAO.GetDataInRecently());
+            Util.sendOrderListToServer(CarDAO.GetDataOutRecently());
+            WaitSyncCarInDAO.DeleteAll();
+            WaitSyncCarOutDAO.DeleteAll();
         }
     }
 }

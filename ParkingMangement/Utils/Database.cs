@@ -83,8 +83,11 @@ namespace ParkingMangement
                 OpenConnection();
                 DataTable dt = new DataTable();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
-                return Convert.ToInt32(command.ExecuteScalar());
+                int value = Convert.ToInt32(command.ExecuteScalar());
+                CloseConnection();
+                return value;
             }
             catch (Exception e)
             {
@@ -99,6 +102,7 @@ namespace ParkingMangement
             {
                 OpenConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
@@ -118,6 +122,7 @@ namespace ParkingMangement
                 int result = 0;
                 OpenConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 result = command.ExecuteNonQuery();
                 CloseConnection();
@@ -151,6 +156,7 @@ namespace ParkingMangement
             {
                 OpenConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 int result = command.ExecuteNonQuery();
                 CloseConnection();

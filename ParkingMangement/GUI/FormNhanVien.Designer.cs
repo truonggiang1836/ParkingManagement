@@ -248,7 +248,7 @@
             // 
             // tbRFIDCardID
             // 
-            this.tbRFIDCardID.Location = new System.Drawing.Point(982, 43);
+            this.tbRFIDCardID.Location = new System.Drawing.Point(463, 41);
             this.tbRFIDCardID.Name = "tbRFIDCardID";
             this.tbRFIDCardID.Size = new System.Drawing.Size(0, 20);
             this.tbRFIDCardID.TabIndex = 16;
