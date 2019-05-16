@@ -2162,6 +2162,16 @@ namespace ParkingMangement.GUI
             dgvCarList.DataSource = data;
         }
 
+        private void searchCarByConditionThongKeDoanhThu(DateTime startDate, DateTime endDate, string userId, int ticketType)
+        {
+            CarDTO carDTO = new CarDTO();
+            carDTO.TimeStart = startDate;
+            carDTO.TimeEnd = endDate;
+
+            DataTable data = CarDAO.searchAllDataThongKeDoanhThu(carDTO, userId, ticketType);
+            dgvCarList.DataSource = data;
+        }
+
         private void searchCarTicketMonth()
         {
             CarDTO carDTO = new CarDTO();
@@ -3706,7 +3716,7 @@ namespace ParkingMangement.GUI
                 {
                     ticketType = CarDAO.MONTH_TICKET;
                 }
-                searchCarByCondition(startDateReport, endDateReport, userID, ticketType);
+                searchCarByConditionThongKeDoanhThu(startDateReport, endDateReport, userID, ticketType);
                 exportDoanhThuChiTietToExcel();
             }
             else

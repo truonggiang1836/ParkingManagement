@@ -50,8 +50,8 @@ namespace ParkingMangement.DAO
         private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
             "Car.IsLostCard, Car.Computer, UserCar.NameUser from Car left join UserCar on Car.Account = UserCar.UserID where 0 = 0";
 
-        private static string sqlQueryTicketMonth = " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
-        private static string sqlQueryTicketCommon = " and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
+        private static string sqlQueryTicketMonth = " and Car.IDTicketMonth <> '' and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_MONTH;
+        private static string sqlQueryTicketCommon = " and Car.IDTicketMonth = '' and Part.CardTypeID = " + CardTypeDTO.CARD_TYPE_TICKET_COMMON;
         private static string sqlQueryXeTon = " and Car.IDOut = '' ";
         private static string sqlQueryMatThe = " and Car.IsLostCard > " + 0 + "";
         private static string sqlOrderByIdentifyDesc = " order by Car.Identify desc";
@@ -138,6 +138,37 @@ namespace ParkingMangement.DAO
             return sql;
         }
 
+        public static string sqlSearchDataThongKeDoanhThu(CarDTO carDTO)
+        {
+            string sql = sqlGetAllData;
+            sql += " and (Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> '')";
+            if (!string.IsNullOrEmpty(carDTO.IdPart))
+            {
+                sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
+            }
+            if (carDTO.CardIdentify != -1)
+            {
+                sql += " and SmartCard.Identify like '%" + carDTO.CardIdentify + "%'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.Digit))
+            {
+                sql += " and Car.Digit like '%" + carDTO.Digit + "%'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.Id))
+            {
+                sql += " and SmartCard.ID like '%" + carDTO.Id + "%'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.IdIn))
+            {
+                sql += " and Car.IDIn like '" + carDTO.IdIn + "'";
+            }
+            if (!string.IsNullOrEmpty(carDTO.IdOut))
+            {
+                sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
+            }
+            return sql;
+        }
+
         public static DataTable searchAllData(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
@@ -158,6 +189,48 @@ namespace ParkingMangement.DAO
             {
                 sql += sqlQueryTicketCommon;
             } else if (ticketType == MONTH_TICKET)
+            {
+                sql += sqlQueryTicketMonth;
+            }
+            sql += sqlOrderByIdentifyDesc;
+
+            DataTable data = Database.ExcuQuery(sql);
+            return data;
+        }
+
+        public static DataTable searchAllDataThongKeDoanhThu(CarDTO carDTO, string userID, int ticketType)
+        {
+            string sql = sqlSearchDataThongKeDoanhThu(carDTO);
+            if (userID != null)
+            {
+                sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
+            }
+            if (ticketType == COMMON_TICKET)
+            {
+                sql += sqlQueryTicketCommon;
+            }
+            else if (ticketType == MONTH_TICKET)
+            {
+                sql += sqlQueryTicketMonth;
+            }
+            sql += sqlOrderByIdentifyDesc;
+
+            DataTable data = Database.ExcuQuery(sql);
+            return data;
+        }
+
+        public static DataTable searchDataThongKeDoanhThu(CarDTO carDTO, string userID, int ticketType)
+        {
+            string sql = sqlSearchData(carDTO);
+            if (userID != null)
+            {
+                sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
+            }
+            if (ticketType == COMMON_TICKET)
+            {
+                sql += sqlQueryTicketCommon;
+            }
+            else if (ticketType == MONTH_TICKET)
             {
                 sql += sqlQueryTicketMonth;
             }
@@ -299,8 +372,7 @@ namespace ParkingMangement.DAO
             {
                 DateTime startTime1 = startTime ?? DateTime.Now;
                 DateTime endTime1 = endTime ?? DateTime.Now;
-                sql += " and ((Car.TimeStart between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "')"
-                + " or (Car.TimeEnd between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> ''))";
+                sql += " and (Car.TimeEnd between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> '')";
             }
             if (userID != null)
             {

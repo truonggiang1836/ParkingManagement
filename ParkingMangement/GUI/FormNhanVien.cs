@@ -117,9 +117,9 @@ namespace ParkingMangement.GUI
             labelCardID.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelPartNameTypeName.BackColor = ColorTranslator.FromHtml("#fcfdfc");
             labelCostIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
-            labelCostIn.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            //labelCostIn.ForeColor = ColorTranslator.FromHtml("#cf9f51");
             labelCostOut.BackColor = ColorTranslator.FromHtml("#fcfdfc");
-            labelCostOut.ForeColor = ColorTranslator.FromHtml("#cf9f51");
+            //labelCostOut.ForeColor = ColorTranslator.FromHtml("#cf9f51");
 
             labelDigitInHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
             labelDigitOutHeader.BackColor = ColorTranslator.FromHtml("#2e2925");
@@ -1255,7 +1255,7 @@ namespace ParkingMangement.GUI
                 if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
                     return computerDTO.MinCost;
-                } else if (timeIn.Hour > computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                } else if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
                 {
                     return computerDTO.DayCost;
                 } else if (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour <= computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day >= 1)
@@ -1263,7 +1263,7 @@ namespace ParkingMangement.GUI
                     return computerDTO.NightCost;
                 } else if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO) || isCarInNightOutDayOneDate(timeIn, timeOut, computerDTO))
                 {
-                    if (Util.getTotalTimeByHour(timeIn, timeOut) < computerDTO.IntervalBetweenDayNight)
+                    if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
                         if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                         {
