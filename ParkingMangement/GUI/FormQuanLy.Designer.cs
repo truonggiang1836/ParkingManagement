@@ -870,6 +870,7 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
+            this.checkBoxTinhTienVeThang = new System.Windows.Forms.CheckBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -7057,6 +7058,7 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.checkBoxTinhTienVeThang);
             this.groupBox8.Controls.Add(this.panel32);
             this.groupBox8.Controls.Add(this.rbGiuXeTongHop);
             this.groupBox8.Controls.Add(this.rbGiuXeLuyTien);
@@ -7081,9 +7083,9 @@
             this.panel32.Controls.Add(this.tbBikeSpace2);
             this.panel32.Controls.Add(this.label187);
             this.panel32.Controls.Add(this.tbLostCard);
-            this.panel32.Location = new System.Drawing.Point(6, 128);
+            this.panel32.Location = new System.Drawing.Point(6, 176);
             this.panel32.Name = "panel32";
-            this.panel32.Size = new System.Drawing.Size(348, 157);
+            this.panel32.Size = new System.Drawing.Size(348, 98);
             this.panel32.TabIndex = 4;
             // 
             // label183
@@ -8921,6 +8923,16 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
+            // checkBoxTinhTienVeThang
+            // 
+            this.checkBoxTinhTienVeThang.AutoSize = true;
+            this.checkBoxTinhTienVeThang.Location = new System.Drawing.Point(51, 137);
+            this.checkBoxTinhTienVeThang.Name = "checkBoxTinhTienVeThang";
+            this.checkBoxTinhTienVeThang.Size = new System.Drawing.Size(131, 20);
+            this.checkBoxTinhTienVeThang.TabIndex = 21;
+            this.checkBoxTinhTienVeThang.Text = "Tính tiền vé tháng";
+            this.checkBoxTinhTienVeThang.UseVisualStyleBackColor = true;
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -9914,5 +9926,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column48;
         private System.Windows.Forms.Label label133;
         private System.Windows.Forms.TextBox tbParkingName;
+        private System.Windows.Forms.CheckBox checkBoxTinhTienVeThang;
     }
 }

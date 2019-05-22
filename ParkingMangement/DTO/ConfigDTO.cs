@@ -12,6 +12,8 @@ namespace ParkingMangement.DTO
         public const int TYPE_OUT_OUT = 2;
         public const int TYPE_IN_OUT = 3;
         public const int TYPE_OUT_IN = 4;
+        public const int CALCULATION_TICKET_MONTH_NO = 0;
+        public const int CALCULATION_TICKET_MONTH_YES = 1;
 
         private int lostCard;
         private int bikeSpace;
@@ -30,6 +32,7 @@ namespace ParkingMangement.DTO
         private string ipHost;
         private string folderRoot;
         private string parkingName;
+        private int calculationTicketMonth = CALCULATION_TICKET_MONTH_NO;
 
         public int BikeSpace { get => bikeSpace; set => bikeSpace = value; }
         public int CarSpace { get => carSpace; set => carSpace = value; }
@@ -48,5 +51,6 @@ namespace ParkingMangement.DTO
         public string IpHost { get => ipHost; set => ipHost = value; }
         public string FolderRoot { get => folderRoot; set => folderRoot = value; }
         public string ParkingName { get => parkingName; set => parkingName = value; }
+        public int CalculationTicketMonth { get => calculationTicketMonth; set => calculationTicketMonth = value; }
     }
 }

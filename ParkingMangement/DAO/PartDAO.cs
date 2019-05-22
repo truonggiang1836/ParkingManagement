@@ -12,11 +12,11 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID";
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID order by Part.ID asc";
             return Database.ExcuQuery(sql);
         }
 
-        public static DataTable GetAllTicketMonthData()
+        public static DataTable GetAllTicketCommonData()
         {
             string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1'";
             return Database.ExcuQuery(sql);

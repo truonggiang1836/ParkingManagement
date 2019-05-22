@@ -121,11 +121,24 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static int GetCalculationTicketMonth()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("CalculationTicketMonth");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
-                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "'";
+                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth;
             return Database.ExcuNonQuery(sql);
         }
 

@@ -43,6 +43,17 @@ namespace ParkingMangement.DAO
             return new ComputerDTO();
         }
 
+        public static bool IsHasData(string partID, int parkingTypeID)
+        {
+            string sql = "select * from Computer where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static bool Update(ComputerDTO computerDTO)
         {
             string sql = "update Computer set DayCost =" + computerDTO.DayCost + ", NightCost =" + computerDTO.NightCost + ", DayNightCost =" + computerDTO.DayNightCost + ", IntervalBetweenDayNight ="

@@ -469,7 +469,10 @@ namespace ParkingMangement.GUI
                 {
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                     labelCostIn.Text = "-";
-                    labelCostOut.Text = "VE THANG";
+                    if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    {
+                        labelCostOut.Text = "VE THANG";
+                    }
                 }
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
@@ -486,7 +489,10 @@ namespace ParkingMangement.GUI
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
                         labelCostIn.Text = "-";
-                        labelCostOut.Text = "VE THANG";
+                        if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                        {
+                            labelCostOut.Text = "VE THANG";
+                        }
                     }
                 }
                 else
@@ -500,7 +506,10 @@ namespace ParkingMangement.GUI
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
-                        labelCostIn.Text = "VE THANG";
+                        if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                        {
+                            labelCostIn.Text = "VE THANG";
+                        }
                         labelCostOut.Text = "-";
                     }
                 }
@@ -516,7 +525,10 @@ namespace ParkingMangement.GUI
                 if (isTicketMonthCard)
                 {
                     labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
-                    labelCostIn.Text = "VE THANG";
+                    if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    {
+                        labelCostIn.Text = "VE THANG";
+                    }
                     labelCostOut.Text = "-";
                 }
             }
@@ -594,7 +606,14 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    carDTO.Cost = 0;
+                    if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    {
+                        carDTO.Cost = 0;
+                    } else
+                    {
+                        carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                    }
+
                     DateTime? expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
                     if (expirationDate != null && DateTime.Now.CompareTo(expirationDate) > 0)
                     {
@@ -607,7 +626,7 @@ namespace ParkingMangement.GUI
                             case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
                             default:
                                 carDTO.Cost = tinhTienGiuXe(dtLastCar);
-                                labelCostOut.Text = carDTO.Cost + "";
+                                isTicketMonthCard = false;
                                 break;
                         }
                         MessageBox.Show("Thẻ tháng đã hết hạn");
@@ -656,7 +675,10 @@ namespace ParkingMangement.GUI
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
-                        labelCostIn.Text = "VE THANG";
+                        if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                        {
+                            labelCostIn.Text = "VE THANG";
+                        }
                     }
                 }
                 else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
@@ -678,7 +700,10 @@ namespace ParkingMangement.GUI
                         if (isTicketMonthCard)
                         {
                             labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
-                            labelCostIn.Text = "VE THANG";
+                            if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                            {
+                                labelCostIn.Text = "VE THANG";
+                            }
                         }
                     }
                     else
@@ -698,7 +723,10 @@ namespace ParkingMangement.GUI
                         if (isTicketMonthCard)
                         {
                             labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
-                            labelCostOut.Text = "VE THANG";
+                            if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                            {
+                                labelCostOut.Text = "VE THANG";
+                            }
                         }
                     }
                 }
@@ -719,7 +747,10 @@ namespace ParkingMangement.GUI
                     if (isTicketMonthCard)
                     {
                         labelDigitRegister.Text = TicketMonthDAO.GetDigitByID(cardID);
-                        labelCostOut.Text = "VE THANG";
+                        if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                        {
+                            labelCostOut.Text = "VE THANG";
+                        }
                     }
                 }
             }
