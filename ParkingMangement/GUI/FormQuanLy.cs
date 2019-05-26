@@ -1326,10 +1326,20 @@ namespace ParkingMangement.GUI
 
         private void btnCardEdit_Click(object sender, EventArgs e)
         {
-            if (checkUpdateCardData())
+            if (panelChinhSuaTheXe.Enabled)
             {
-                updateCard();
-                loadCardStatistic();
+                if (checkUpdateCardData())
+                {
+                    updateCard();
+                    loadCardStatistic();
+                    panelChinhSuaTheXe.Enabled = false;
+                    btnCardEdit.Text = Constant.sButtonEdit;
+                }
+            }
+            else
+            {
+                panelChinhSuaTheXe.Enabled = true;
+                btnCardEdit.Text = Constant.sButtonUpdate;
             }
         }
 
@@ -1343,13 +1353,13 @@ namespace ParkingMangement.GUI
             }
 
             if (e.RowIndex < 0) return;
-            var dataGridView = (DataGridView)sender;
-            var cell = dataGridView["SelectCard", e.RowIndex];
-            if (cell.Value == null)
-            {
-                cell.Value = false;
-            }
-            cell.Value = !(bool)cell.Value;
+            //var dataGridView = (DataGridView)sender;
+            //var cell = dataGridView["SelectCard", e.RowIndex];
+            //if (cell.Value == null)
+            //{
+            //    cell.Value = false;
+            //}
+            //cell.Value = !(bool)cell.Value;
         }
 
         private void tbCardSearch_TextChanged(object sender, EventArgs e)
@@ -1892,13 +1902,13 @@ namespace ParkingMangement.GUI
             }
 
             if (e.RowIndex < 0) return;
-            var dataGridView = (DataGridView)sender;
-            var cell = dataGridView["SelectTicketMonth", e.RowIndex];
-            if (cell.Value == null)
-            {
-                cell.Value = false;
-            }
-            cell.Value = !(bool)cell.Value;
+            //var dataGridView = (DataGridView)sender;
+            //var cell = dataGridView["SelectTicketMonth", e.RowIndex];
+            //if (cell.Value == null)
+            //{
+            //    cell.Value = false;
+            //}
+            //cell.Value = !(bool)cell.Value;
         }
 
         private void dgvTicketMonthList_MouseClick(object sender, MouseEventArgs ev)
@@ -3809,6 +3819,37 @@ namespace ParkingMangement.GUI
             loadCardStatistic();
         }
 
+        private void showConfirmDeleteAllCard()
+        {
+            DialogResult dialogResult = MessageBox.Show(Constant.sMessageConfirmDelete, Constant.sTitleDelete, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                deleteAllCard();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void deleteAllCard()
+        {
+            foreach (DataGridViewRow row in dgvCardList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectCard"] as DataGridViewCheckBoxCell;
+                string cardId = Convert.ToString(row.Cells["CardID"].Value);
+                string identify = CardDAO.getIdentifyByCardID(cardId);
+                if (CardDAO.Delete(cardId))
+                {
+                    LogUtil.addLogXoaThe(identify, cardId);
+                    TicketMonthDAO.Delete(cardId);
+                }
+            }
+            loadCardList();
+            loadCardStatistic();
+        }
+
         private void dgvPartList_MouseClick(object sender, MouseEventArgs ev)
         {
             if (ev.Button == MouseButtons.Right)
@@ -4524,6 +4565,11 @@ namespace ParkingMangement.GUI
                 string path = openFileDialog.FileName;
                 ImportDanhSachTheThangFromExcel(path);
             }
+        }
+
+        private void btnDeleteAllCard_Click(object sender, EventArgs e)
+        {
+            showConfirmDeleteAllCard();
         }
     }
 }

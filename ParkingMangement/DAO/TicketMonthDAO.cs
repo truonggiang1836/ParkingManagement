@@ -18,8 +18,8 @@ namespace ParkingMangement.DAO
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from TicketMonth, Part, SmartCard where TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
 
         private static string sqlGetAllLostTicketData = "select DISTINCT TicketMonth.Identify as TicketMonthIdentify, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address," +
-            " Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit, TicketMonth.Note, UserCar.NameUser, TicketMonth.ProcessDate from " +
-            "TicketMonth, Part, UserCar, SmartCard where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IDPart = Part.ID and TicketMonth.Account = UserCar.UserID and TicketMonth.ID = SmartCard.ID";
+            " Part.PartName, TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit, TicketMonth.Note, TicketMonth.ProcessDate from " +
+            "TicketMonth, Part, UserCar, SmartCard where TicketMonth.ID = SmartCard.ID and TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
 
         private static string sqlGetAllActiveTicketData = "select SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Company, TicketMonth.Address, " +
             "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit from TicketMonth, SmartCard where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0'";
