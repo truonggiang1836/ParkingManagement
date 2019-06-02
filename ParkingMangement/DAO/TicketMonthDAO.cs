@@ -186,10 +186,10 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static void updateTicketByID(string id, int identify)
+        public static bool updateTicketByID(string id, int identify)
         {
             string sql = "update TicketMonth set ID = '" + id + "' where Identify = " + identify;
-            Database.ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static DataTable GetSearchData()

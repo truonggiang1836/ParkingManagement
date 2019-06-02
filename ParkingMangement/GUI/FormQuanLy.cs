@@ -1985,8 +1985,32 @@ namespace ParkingMangement.GUI
             }
             int identify = Convert.ToInt32(tbTicketMonthIdentify.Text);
             string id = tbLostTicketMonthID.Text;
-            TicketMonthDAO.updateTicketByID(id, identify);
-            searchLostTicketMonth();
+            if (TicketMonthDAO.updateTicketByID(id, identify))
+            {
+                searchLostTicketMonth();
+                MessageBox.Show(Constant.sMessageUpdateSuccess);
+            }
+        }
+
+        private bool checkUpdateTicketMonthID(string ticketMonthID)
+        {
+            if (string.IsNullOrWhiteSpace(ticketMonthID))
+            {
+                MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
+                return false;
+            }
+            DataTable dtCard = CardDAO.GetCardByID(ticketMonthID);
+            if (dtCard == null || dtCard.Rows.Count == 0)
+            {
+                MessageBox.Show(Constant.sMessageCardIdNotExist);
+                return false;
+            }
+            if (!CardDAO.isUsingByCardID(ticketMonthID))
+            {
+                MessageBox.Show(Constant.sMessageCardIsLost);
+                return false;
+            }
+            return true;
         }
 
         private void loadCarInfoFromDataGridViewRow(int Index)
@@ -2515,7 +2539,10 @@ namespace ParkingMangement.GUI
 
         private void btnLostTicketMonthUpdate_Click(object sender, EventArgs e)
         {
-            upDateLostTicketMonth();
+            if (checkUpdateTicketMonthID(tbLostTicketMonthID.Text))
+            {
+                upDateLostTicketMonth();
+            }
         }
 
         /*
@@ -4570,6 +4597,43 @@ namespace ParkingMangement.GUI
         private void btnDeleteAllCard_Click(object sender, EventArgs e)
         {
             showConfirmDeleteAllCard();
+        }
+
+        private void tbLostTicketMonthID_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    lostTicketMonthCardIdLeaveEvent();
+                    break;
+            }
+        }
+
+        private void lostTicketMonthCardIdLeaveEvent()
+        {
+            string cardId = tbLostTicketMonthID.Text;
+            if (!cardId.Equals(""))
+            {
+                CardDTO cardDTO = CardDAO.GetCardModelByID(cardId);
+                if (cardDTO == null)
+                {
+                    MessageBox.Show(Constant.sMessageCardIdNotExist);
+                    tbLostTicketMonthID.Text = "";
+                }
+                else
+                {
+                    string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
+                    if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                    {
+                        MessageBox.Show(Constant.sMessageCardTypeIsNotTicketMonth);
+                        tbLostTicketMonthID.Text = "";
+                    }
+                    else
+                    {
+                        tbLostTicketMonthCardIdentify.Text = cardDTO.Identify + "";
+                    }
+                }
+            }
         }
     }
 }
