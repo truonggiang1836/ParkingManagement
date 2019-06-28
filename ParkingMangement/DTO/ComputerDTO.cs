@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingMangement.DTO
 {
-    class ComputerDTO
+    class ComputerDTO : ICloneable
     {
         private int identify;
         private string partID;
@@ -51,5 +51,11 @@ namespace ParkingMangement.DTO
         public int CostTicketMonth { get => costTicketMonth; set => costTicketMonth = value; }
         public int MinMinute { get => minMinute; set => minMinute = value; }
         public int MinCost { get => minCost; set => minCost = value; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+            throw new NotImplementedException();
+        }
     }
 }

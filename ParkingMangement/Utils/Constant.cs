@@ -9,6 +9,9 @@ namespace ParkingMangement.Utils
 {
     class Constant
     {
+        public const string BREAK_LINE = "\r\n";
+        public const string ARROW_STRING = " -> ";
+
         // common
         public static string sHintTextUsername = "User";
         public static string sHintTextPassword = "Password";
@@ -88,6 +91,8 @@ namespace ParkingMangement.Utils
         public const int LOG_TYPE_CHINH_SUA_NHAN_VIEN = 10;
         public const int LOG_TYPE_XOA_NHAN_VIEN = 11;
 
+        public const int LOG_TYPE_CHINH_SUA_GIA_TIEN_GUI_XE = 17;
+
         public const int LOG_TYPE_TAO_MOI_THE = 20;
         public const int LOG_TYPE_CHINH_SUA_THE = 21;
         public const int LOG_TYPE_XOA_THE = 22;
@@ -107,6 +112,8 @@ namespace ParkingMangement.Utils
         public const string LOG_NOTE_TAO_MOI_THE = "Tạo mới thẻ chip";
         public const string LOG_NOTE_CHINH_SUA_THE = "Chỉnh sửa thẻ chip";
         public const string LOG_NOTE_XOA_THE = "Xóa thẻ chip";
+
+        public const string LOG_NOTE_CHINH_SUA_GIA_TIEN_GUI_XE = "Chỉnh sửa giá tiền gửi xe";
 
         public const string LOG_NOTE_TAO_MOI_LOAI_XE = "Tạo mới loại xe";
         public const string LOG_NOTE_CHINH_SUA_LOAI_XE = "Chỉnh sửa loại xe";

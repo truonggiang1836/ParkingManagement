@@ -475,6 +475,7 @@ namespace ParkingMangement.GUI
         {
             if (mComputerDTO != null)
             {
+                ComputerDTO oldComputerDTO = (ComputerDTO) mComputerDTO.Clone();
                 mComputerDTO.StartHourNight = (int)numericTinhTienCongVanStartHourNight.Value;
                 mComputerDTO.EndHourNight = (int)numericTinhTienCongVanEndHourNight.Value;
 
@@ -500,6 +501,7 @@ namespace ParkingMangement.GUI
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         panelTinhTienCongVan.Enabled = false;
+                        LogUtil.addLogChinhSuaGiaTienGuiXe(oldComputerDTO, mComputerDTO, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
                     }
                 }
                 else
@@ -552,6 +554,7 @@ namespace ParkingMangement.GUI
         {
             if (mComputerDTO != null)
             {
+                ComputerDTO oldComputerDTO = (ComputerDTO) mComputerDTO.Clone();
                 mComputerDTO.HourMilestone1 = (int)numericTinhTienLuyTienHourMilestone1.Value;
                 mComputerDTO.CostMilestone1 = (int)numericTinhTienLuyTienCostMilestone1.Value;
                 mComputerDTO.HourMilestone2 = (int)numericTinhTienLuyTienHourMilestone2.Value;
@@ -588,6 +591,7 @@ namespace ParkingMangement.GUI
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         panelTinhTienLuyTien.Enabled = false;
+                        LogUtil.addLogChinhSuaGiaTienGuiXe(oldComputerDTO, mComputerDTO, Constant.LOAI_GIU_XE_LUY_TIEN);
                     }
                 }
                 else
@@ -644,6 +648,7 @@ namespace ParkingMangement.GUI
         {
             if (mComputerDTO != null)
             {
+                ComputerDTO oldComputerDTO = (ComputerDTO)mComputerDTO.Clone();
                 mComputerDTO.StartHourNight = (int)numericTinhTienTongHopStartHourNight.Value;
                 mComputerDTO.EndHourNight = (int)numericTinhTienTongHopEndHourNight.Value;
                 mComputerDTO.NightCost = (int)numericTinhTienTongHopNightCost.Value;
@@ -689,6 +694,7 @@ namespace ParkingMangement.GUI
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         panelTinhTienTongHop.Enabled = false;
+                        LogUtil.addLogChinhSuaGiaTienGuiXe(oldComputerDTO, mComputerDTO, Constant.LOAI_GIU_XE_TONG_HOP);
                     }
                 }
                 else
