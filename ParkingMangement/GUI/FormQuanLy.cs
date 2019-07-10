@@ -1662,12 +1662,6 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageTicketMonthDigitNullError);
                 return false;
             }
-            DataTable dtByDigit = TicketMonthDAO.GetDataByDigit(tbTicketMonthDigitEdit.Text);
-            if (dtByDigit != null && dtByDigit.Rows.Count > 0)
-            {
-                MessageBox.Show(Constant.sMessageDigitExisted);
-                return false;
-            }
             return true;
         }
 

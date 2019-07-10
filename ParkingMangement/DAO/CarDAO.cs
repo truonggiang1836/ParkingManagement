@@ -109,8 +109,8 @@ namespace ParkingMangement.DAO
         public static string sqlSearchData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
-            sql += " and ((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "')"
-                + " and ((Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "') or Car.IDOut = ''))";
+            sql += " and (((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "') and Car.IDOut = '')"
+                + " or (Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "'))";
             if (!string.IsNullOrEmpty(carDTO.IdPart))
             {
                 sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
@@ -261,8 +261,8 @@ namespace ParkingMangement.DAO
         public static DataTable searchTicketMonthData(CarDTO carDTO, TicketMonthDTO ticketMonthDTO)
         {
             string sql = sqlGetAllTicketMonthData + sqlQueryTicketMonth;
-            sql += " and ((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "')"
-                + " or (Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut <> ''))";
+            sql += " and ((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "' and Car.IDOut = '')"
+                + " or (Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "'))";
             if (!string.IsNullOrEmpty(ticketMonthDTO.CustomerName))
             {
                 sql += " and TicketMonth.CustomerName like '%" + ticketMonthDTO.CustomerName + "%'";
@@ -333,7 +333,17 @@ namespace ParkingMangement.DAO
                 }
                 dataRow.SetField("CountCarOut", countAllCarOut);
 
-                long countAllCarSurvive = countAllCarIn - countAllCarOut;
+                long countAllCarSurvive = 0;
+                if (commonData.Rows.Count > 0)
+                {
+                    long countCarSurviveCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString());
+                    countAllCarSurvive += countCarSurviveCommonData;
+                }
+                if (ticketData.Rows.Count > 0)
+                {
+                    long countCarSurviveTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString());
+                    countAllCarSurvive += countCarSurviveTicketData;
+                }
                 dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
                 long sumCost = 0;
@@ -382,6 +392,7 @@ namespace ParkingMangement.DAO
 
             long countAllCarIn = 0;
             long countAllCarOut = 0;
+            long countAllCarSurvive = 0;
             long sumCost = 0;
             DataTable data = Database.ExcuQuery(sql);
             if (data != null)
@@ -403,10 +414,11 @@ namespace ParkingMangement.DAO
                     data.Rows[row].SetField("CountCarIn", countCarIn);
                     long countCarOut = GetCountCarOutByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarOut", countCarOut);
-                    long countCarSurvive = countCarIn - countCarOut;
+                    long countCarSurvive = GetCountCarSurviveByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                     countAllCarIn += countCarIn;
                     countAllCarOut += countCarOut;
+                    countAllCarSurvive += countCarSurvive;
                     long cost = long.Parse(data.Rows[row]["SumCost"].ToString());
                     sumCost += cost;
                 }
@@ -427,8 +439,6 @@ namespace ParkingMangement.DAO
 
             dataRow.SetField("CountCarIn", countAllCarIn);
             dataRow.SetField("CountCarOut", countAllCarOut);
-
-            long countAllCarSurvive = countAllCarIn - countAllCarOut;
             dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
             //string sumCostString = Util.formatNumberAsMoney(sumCost);
@@ -548,6 +558,39 @@ namespace ParkingMangement.DAO
                 DateTime startTime1 = startTime ?? DateTime.Now;
                 DateTime endTime1 = endTime ?? DateTime.Now;
                 sql += " and Car.TimeEnd between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'";
+            }
+            if (userID != null)
+            {
+                sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
+            }
+
+            return Database.ExcuValueQuery(sql);
+        }
+
+        public static long GetCountCarSurviveByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
+        {
+            string sql = "select count(Car.ID) from Car join Part on Car.IDPart = Part.ID";
+            if (!isTicketMonth)
+            {
+                sql += sqlQueryTicketCommon;
+            }
+            else
+            {
+                sql += sqlQueryTicketMonth;
+            }
+            if (startTime != null && endTime != null)
+            {
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " where (Car.TimeStart <= '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and (Car.IDOut = '' or Car.TimeEnd > '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'))";
+            }
+            else
+            {
+                sql += " where Car.IDOut = ''";
+            }
+            if (partID != null)
+            {
+                sql += " and Car.IDPart = '" + partID + "'";
             }
             if (userID != null)
             {
