@@ -16,6 +16,18 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static string GetLastCardIdentify()
+        {
+            string sql = "select Identify from SmartCard order by DayUnlimit desc";
+            DataTable dt = Database.ExcuQuery(sql);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                string identify = dt.Rows[0].Field<string>("Identify");
+                return identify;
+            }
+            return "";
+        }
+
         public static DataTable GetLostCardData()
         {
             string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from SmartCard, Part where SmartCard.IsUsing = '0' and SmartCard.Type = Part.ID order by SmartCard.Identify asc";

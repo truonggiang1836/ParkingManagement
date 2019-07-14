@@ -1132,10 +1132,24 @@ namespace ParkingMangement.GUI
                 labelKetQuaTaoThe.Text = "Tạo thẻ thành công!";
                 cardDTO.Identify = CardDAO.getIdentifyByCardID(cardDTO.Id);
                 LogUtil.addLogTaoMoiThe(cardDTO);
+                autoFillCardIdentify();
             }
             else
             {
                 labelKetQuaTaoThe.Text = "Thẻ đã tồn tại!";
+            }
+        }
+
+        private void autoFillCardIdentify()
+        {
+            try
+            {
+                string cardIdentify = CardDAO.GetLastCardIdentify();
+                int identify = Int32.Parse(cardIdentify);
+                tbCardIdentifyCreate.Text = identify + 1 + "";
+            } catch (Exception)
+            {
+
             }
         }
 
@@ -1284,6 +1298,7 @@ namespace ParkingMangement.GUI
             else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyTheXeLoaiXe"])
             {
                 loadCardList();
+                autoFillCardIdentify();
                 loadPartDataToComboBox(cbPartNameCreate);
                 loadPartDataToComboBox(cbPartNameEdit);
                 loadTypeDataToComboBox(cbTypeNameCreate);
@@ -1524,6 +1539,7 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Cmnd = tbTicketMonthCMNDCreate.Text;
             ticketMonthDTO.Company = tbTicketMonthCompanyCreate.Text;
             ticketMonthDTO.Email = tbTicketMonthEmailCreate.Text;
+            ticketMonthDTO.Phone = tbTicketMonthPhoneCreate.Text;
             ticketMonthDTO.Address = tbTicketMonthAddressCreate.Text;
             ticketMonthDTO.CarKind = tbTicketMonthCarKindCreate.Text;
 
@@ -1564,6 +1580,7 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Cmnd = tbTicketMonthCMNDEdit.Text;
             ticketMonthDTO.Company = tbTicketMonthCompanyEdit.Text;
             ticketMonthDTO.Email = tbTicketMonthEmailEdit.Text;
+            ticketMonthDTO.Phone = tbTicketMonthPhoneEdit.Text;
             ticketMonthDTO.Address = tbTicketMonthAddressEdit.Text;
             ticketMonthDTO.CarKind = tbTicketMonthCarKindEdit.Text;
 
@@ -1685,6 +1702,8 @@ namespace ParkingMangement.GUI
             tbTicketMonthCompanyEdit.Text = company;
             string email = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Email"].Value);
             tbTicketMonthEmailEdit.Text = email;
+            string phone = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Phone"].Value);
+            tbTicketMonthPhoneEdit.Text = phone;
             string address = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Address"].Value);
             tbTicketMonthAddressEdit.Text = address;
             string carKind = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["CarKind"].Value);
@@ -4633,6 +4652,38 @@ namespace ParkingMangement.GUI
                         tbLostTicketMonthCardIdentify.Text = cardDTO.Identify + "";
                     }
                 }
+            }
+        }
+
+        private void dgvTicketMonthList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvTicketMonthList.IsCurrentCellDirty)
+            {
+                dgvTicketMonthList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvRenewTicketMonthList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvRenewTicketMonthList.IsCurrentCellDirty)
+            {
+                dgvRenewTicketMonthList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvActiveTicketMonthList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvActiveTicketMonthList.IsCurrentCellDirty)
+            {
+                dgvActiveTicketMonthList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgvCardList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvCardList.IsCurrentCellDirty)
+            {
+                dgvCardList.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
     }
