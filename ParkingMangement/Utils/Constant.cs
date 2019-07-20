@@ -165,7 +165,13 @@ namespace ParkingMangement.Utils
 
         public static string getSharedImageFolder()
         {
-            return @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\";
+            string path = @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\";
+            return path;
+        }
+
+        public static string getCurrentDateString()
+        {
+            return DateTime.Now.ToString("yyyyMMdd");
         }
 
         public static string getSharedParkingManagementFolder()

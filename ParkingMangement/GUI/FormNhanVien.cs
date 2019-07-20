@@ -878,50 +878,20 @@ namespace ParkingMangement.GUI
             return false;
         }
 
-        private void loadCamera1VLC()
+        private string getPathFromSnapshot(AxVLCPlugin2 axVLCPlugin, PictureBox pictureBox)
         {
-            String rtspString = cameraUrl1;
-            var uri = new Uri(rtspString);
-            var convertedURI = uri.AbsoluteUri;
-            //axVLCPlugin1.playlist.add(convertedURI);
-            axVLCPlugin1.playlist.add(rtspString, "1", "--network-caching=100");
-            try
-            {
-                axVLCPlugin1.playlist.play();
-                axVLCPlugin1.BringToFront();
+            string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString();
+            Directory.CreateDirectory(path);
+            Util.ShareFolder(path, "Test Share", "This is a Test Share");
+            Directory.SetCurrentDirectory(path);
+            axVLCPlugin.video.takeSnapshot();
 
-            }
-            catch (Exception ex)
+            string imageFile = Util.NewestFileofDirectory(path);
+            if (pictureBox != null)
             {
-                MessageBox.Show(ex.ToString());
+                pictureBox.Image = Bitmap.FromFile(imageFile);
             }
-        }
-
-        private void saveImage1ToFile()
-        {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
-            PictureBox pictureBox = pictureBoxImage1;
-            int inOutType = Util.getConfigFile().inOutType;
-            if (inOutType == ConfigDTO.TYPE_OUT_IN)
-            {
-                axVLCPlugin = axVLCPlugin3;
-                pictureBox = pictureBoxImage3;
-            } else if (inOutType == ConfigDTO.TYPE_IN_IN)
-            {
-                if (keyboardDeviceName.Equals(rfidOut))
-                {
-                    axVLCPlugin = axVLCPlugin3;
-                    pictureBox = pictureBoxImage3;
-                }
-            }
-            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-
-            if (isCarIn())
-            {
-                pictureBox.Image = bmpScreenshot;
-                imagePath1 = DateTime.Now.Ticks + ".jpg";
-                saveBitmapToFile(bmpScreenshot, imagePath1);
-            }
+            return Constant.getCurrentDateString() + @"\" + imageFile;
         }
 
         private void resetPictureBoxImage1()
@@ -968,6 +938,50 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void loadCamera1VLC()
+        {
+            String rtspString = cameraUrl1;
+            var uri = new Uri(rtspString);
+            var convertedURI = uri.AbsoluteUri;
+            //axVLCPlugin1.playlist.add(convertedURI);
+            axVLCPlugin1.playlist.add(rtspString, "1", "--network-caching=100");
+            try
+            {
+                axVLCPlugin1.playlist.play();
+                axVLCPlugin1.BringToFront();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void saveImage1ToFile()
+        {
+            AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
+            PictureBox pictureBox = pictureBoxImage1;
+            int inOutType = Util.getConfigFile().inOutType;
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                axVLCPlugin = axVLCPlugin3;
+                pictureBox = pictureBoxImage3;
+            }
+            else if (inOutType == ConfigDTO.TYPE_IN_IN)
+            {
+                if (keyboardDeviceName.Equals(rfidOut))
+                {
+                    axVLCPlugin = axVLCPlugin3;
+                    pictureBox = pictureBoxImage3;
+                }
+            }
+
+            if (isCarIn())
+            {
+                imagePath1 = getPathFromSnapshot(axVLCPlugin, pictureBox);
+            }
+        }
+
         private void loadCamera2VLC()
         {
             String rtspString = cameraUrl2;
@@ -1001,17 +1015,10 @@ namespace ParkingMangement.GUI
                     pictureBox = pictureBoxImage4;
                 }
             }
-            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
 
             if (isCarIn())
             {
-                pictureBox.Image = bmpScreenshot;
-                imagePath2 = DateTime.Now.Ticks + ".jpg";
-                saveBitmapToFile(bmpScreenshot, imagePath2);
-
-                //bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\huynh.JPG");
-                ImagePlate = new clsImagePlate(bmpScreenshot);
-                DisplayNumberPalate(true);
+                imagePath2 = getPathFromSnapshot(axVLCPlugin, pictureBox);
             }
         }
 
@@ -1045,10 +1052,7 @@ namespace ParkingMangement.GUI
                     axVLCPlugin = axVLCPlugin1;
                 }
             }
-            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-
-            imagePath3 = DateTime.Now.Ticks + ".jpg";
-            saveBitmapToFile(bmpScreenshot, imagePath3);
+            imagePath3 = getPathFromSnapshot(axVLCPlugin, null);
         }
 
         private void loadCamera4VLC()
@@ -1082,14 +1086,7 @@ namespace ParkingMangement.GUI
                     axVLCPlugin = axVLCPlugin2;
                 }
             }
-            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-
-            imagePath4 = DateTime.Now.Ticks + ".jpg";
-            saveBitmapToFile(bmpScreenshot, imagePath4);
-
-            //bmpScreenshot = new Bitmap(Application.StartupPath + "\\anh\\khue.JPG");
-            ImagePlate = new clsImagePlate(bmpScreenshot);
-            DisplayNumberPalate(false);
+            imagePath4 = getPathFromSnapshot(axVLCPlugin, null);
         }
 
         private Bitmap getBitMapFromCamera(AxVLCPlugin2 axVLCPlugin)

@@ -4686,5 +4686,29 @@ namespace ParkingMangement.GUI
                 dgvCardList.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
+
+        private void pictureBoxCarLogImage1_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage1.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage2_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage2.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage3_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage3.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage4_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage4.Image);
+            f.Show();
+        }
     }
 }
