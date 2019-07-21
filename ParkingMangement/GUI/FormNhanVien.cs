@@ -93,9 +93,9 @@ namespace ParkingMangement.GUI
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
-            Network = new clsNetwork();
-            Network.AutoLoadNetworkChar();
-            Network.AutoLoadNetworkNum();
+            //Network = new clsNetwork();
+            //Network.AutoLoadNetworkChar();
+            //Network.AutoLoadNetworkNum();
 
             CurrentUserID = Program.CurrentUserID;
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
@@ -214,6 +214,7 @@ namespace ParkingMangement.GUI
                     //    var formChangePassword = new FormChangePassword();
                     //    formChangePassword.Show();
                     //open_bitmap();
+                    changeInOutSetting(true);
                     break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
@@ -237,11 +238,12 @@ namespace ParkingMangement.GUI
                 //    formLogout.formNhanVien = this;
                 //    formLogout.Show();
                 //    break;
-                //case Keys.F12:
-                //    var formLogoutByCard = new FormLogOutByCard();
-                //    formLogoutByCard.formNhanVien = this;
-                //    formLogoutByCard.Show();
-                //    break;
+                case Keys.F12:
+                    //    var formLogoutByCard = new FormLogOutByCard();
+                    //    formLogoutByCard.formNhanVien = this;
+                    //    formLogoutByCard.Show();
+                    changeInOutSetting(false);
+                    break;
             }
         }
 
@@ -374,8 +376,8 @@ namespace ParkingMangement.GUI
             string digit = labelDigitIn.Text;
             if (!digit.Equals(""))
             {
-                saveImage1ToFile();
-                saveImage2ToFile();
+                //saveImage1ToFile();
+                //saveImage2ToFile();
                 CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
                 labelDigitIn.Text = "";
                 //pictureBoxImage1.Image = Properties.Resources.ic_logo;
@@ -611,7 +613,14 @@ namespace ParkingMangement.GUI
                         carDTO.Cost = 0;
                     } else
                     {
-                        carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                        if (!isUpdateCarOut)
+                        {
+                            carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                        } else
+                        {
+                            labelCostOut.Text = dtLastCar.Rows[0].Field<int>("Cost") + "";
+                        }
+                        
                     }
 
                     DateTime? expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
@@ -648,7 +657,10 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
-                CarDAO.UpdateCarOut(carDTO);
+                if (!isUpdateCarOut)
+                {
+                    CarDAO.UpdateCarOut(carDTO);
+                }
                 if (!isUpdateCarOut)
                 {
                     WaitSyncCarOutDAO.Insert(identify);
@@ -884,7 +896,7 @@ namespace ParkingMangement.GUI
             var uri = new Uri(rtspString);
             var convertedURI = uri.AbsoluteUri;
             //axVLCPlugin1.playlist.add(convertedURI);
-            axVLCPlugin1.playlist.add(rtspString, "1", "--network-caching=100");
+            axVLCPlugin1.playlist.add(rtspString);
             try
             {
                 axVLCPlugin1.playlist.play();
@@ -971,7 +983,7 @@ namespace ParkingMangement.GUI
         private void loadCamera2VLC()
         {
             String rtspString = cameraUrl2;
-            axVLCPlugin2.playlist.add(rtspString, "2", "--network-caching=100");
+            axVLCPlugin2.playlist.add(rtspString);
             try
             {
                 axVLCPlugin2.playlist.play();
@@ -1018,7 +1030,7 @@ namespace ParkingMangement.GUI
         private void loadCamera3VLC()
         {
             String rtspString = cameraUrl3;
-            axVLCPlugin3.playlist.add(rtspString, "3", "--network-caching=100");
+            axVLCPlugin3.playlist.add(rtspString);
             try
             {
                 axVLCPlugin3.playlist.play();
@@ -1054,7 +1066,7 @@ namespace ParkingMangement.GUI
         private void loadCamera4VLC()
         {
             String rtspString = cameraUrl4;
-            axVLCPlugin4.playlist.add(rtspString, "4", "--network-caching=100");
+            axVLCPlugin4.playlist.add(rtspString);
             try
             {
                 axVLCPlugin4.playlist.play();
@@ -1167,10 +1179,10 @@ namespace ParkingMangement.GUI
             float zoomValue2 = (float) value2 / 100;
             float zoomValue3 = (float) value3 / 100;
             float zoomValue4 = (float) value4 / 100;
-            axVLCPlugin1.video.aspectRatio = "209:253";
-            axVLCPlugin2.video.aspectRatio = "209:253";
-            axVLCPlugin3.video.aspectRatio = "209:253";
-            axVLCPlugin4.video.aspectRatio = "209:253";
+            //axVLCPlugin1.video.aspectRatio = "209:253";
+            //axVLCPlugin2.video.aspectRatio = "209:253";
+            //axVLCPlugin3.video.aspectRatio = "209:253";
+            //axVLCPlugin4.video.aspectRatio = "209:253";
 
             //axVLCPlugin1.video.scale = 0.7f;
             //axVLCPlugin2.video.scale = 0.7f;
@@ -1896,5 +1908,49 @@ namespace ParkingMangement.GUI
         //    }
         //    mIsHasCarInOut = false;
         //}
+
+        private void changeInOutSetting(bool isLeftSide)
+        {
+            int inOutType = Util.getConfigFile().inOutType;
+            int newInOutType = ConfigDTO.TYPE_IN_OUT;
+            if (isLeftSide)
+            {
+                switch (inOutType)
+                {
+                    case ConfigDTO.TYPE_IN_IN:
+                        newInOutType = ConfigDTO.TYPE_OUT_IN;
+                        break;
+                    case ConfigDTO.TYPE_OUT_OUT:
+                        newInOutType = ConfigDTO.TYPE_IN_OUT;
+                        break;
+                    case ConfigDTO.TYPE_IN_OUT:
+                        newInOutType = ConfigDTO.TYPE_OUT_OUT;
+                        break;
+                    case ConfigDTO.TYPE_OUT_IN:
+                        newInOutType = ConfigDTO.TYPE_IN_IN;
+                        break;
+                }
+            }
+            else
+            {
+                switch (inOutType)
+                {
+                    case ConfigDTO.TYPE_IN_IN:
+                        newInOutType = ConfigDTO.TYPE_IN_OUT;
+                        break;
+                    case ConfigDTO.TYPE_OUT_OUT:
+                        newInOutType = ConfigDTO.TYPE_OUT_IN;
+                        break;
+                    case ConfigDTO.TYPE_IN_OUT:
+                        newInOutType = ConfigDTO.TYPE_IN_IN;
+                        break;
+                    case ConfigDTO.TYPE_OUT_IN:
+                        newInOutType = ConfigDTO.TYPE_OUT_OUT;
+                        break;
+                }
+            }
+            FormInOutSetting.saveInOutTypeToConfig(newInOutType);
+            updateCauHinhHienThiXeRaVao();
+        }
     }
 }
