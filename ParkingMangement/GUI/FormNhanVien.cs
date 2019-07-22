@@ -1179,10 +1179,10 @@ namespace ParkingMangement.GUI
             float zoomValue2 = (float) value2 / 100;
             float zoomValue3 = (float) value3 / 100;
             float zoomValue4 = (float) value4 / 100;
-            //axVLCPlugin1.video.aspectRatio = "209:253";
-            //axVLCPlugin2.video.aspectRatio = "209:253";
-            //axVLCPlugin3.video.aspectRatio = "209:253";
-            //axVLCPlugin4.video.aspectRatio = "209:253";
+            axVLCPlugin1.video.aspectRatio = "209:253";
+            axVLCPlugin2.video.aspectRatio = "209:253";
+            axVLCPlugin3.video.aspectRatio = "209:253";
+            axVLCPlugin4.video.aspectRatio = "209:253";
 
             //axVLCPlugin1.video.scale = 0.7f;
             //axVLCPlugin2.video.scale = 0.7f;
