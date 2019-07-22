@@ -419,6 +419,7 @@ namespace ParkingMangement.GUI
             CarDAO.Insert(carDTO);
             updateScreenForCarIn(isTicketMonthCard);
             WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
+            openBarie();
         }
 
         private void updateCarIn(bool isTicketMonthCard, DataTable dtLastCar)
@@ -660,9 +661,7 @@ namespace ParkingMangement.GUI
                 if (!isUpdateCarOut)
                 {
                     CarDAO.UpdateCarOut(carDTO);
-                }
-                if (!isUpdateCarOut)
-                {
+                    openBarie();
                     WaitSyncCarOutDAO.Insert(identify);
                 }
 
@@ -1284,6 +1283,7 @@ namespace ParkingMangement.GUI
 
         private int tinhGiaTienTheoCongVan(DataTable dtLastCar)
         {
+            double limit = 1.5;
             string partID = CardDAO.getPartIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
             if (dtLastCar != null)
@@ -1308,7 +1308,8 @@ namespace ParkingMangement.GUI
                 {
                     if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
-                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO)
+                            && getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
                         {
                             return computerDTO.DayCost;
                         } else
@@ -1323,7 +1324,13 @@ namespace ParkingMangement.GUI
                 {
                     if (isCarInDayOutDay(timeIn, timeOut, computerDTO))
                     {
-                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
+                        if (getTotalHourOfDayWhenOutDay(timeOut, computerDTO) <= limit)
+                        {
+                            return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
+                        } else
+                        {
+                            return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
+                        }
                     } else if (isCarInNightOutNight(timeIn, timeOut, computerDTO))
                     {
                         return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.NightCost;
@@ -1446,23 +1453,31 @@ namespace ParkingMangement.GUI
 
         private bool IsCarInDayOutNightOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour <= computerDTO.StartHourNight) && (timeOut.Hour >= computerDTO.StartHourNight || timeOut.Hour <= computerDTO.EndHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour < computerDTO.StartHourNight) && 
+                ((timeOut.Hour >= computerDTO.StartHourNight && timeOut.Date.Day == timeIn.Date.Day) || (timeOut.Hour < computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day == 1));
         }
 
         private bool isCarInNightOutDayOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.StartHourNight || timeIn.Hour <= computerDTO.EndHourNight) && (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+            return (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight) && 
+                ((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Date.Day == timeIn.Date.Day) || (timeIn.Hour < computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day == 1));
         }
 
         private double getTotalHourOfDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
             {
-                return computerDTO.StartHourNight - timeIn.Hour - (double) timeIn.Date.Minute / 60; 
+                return computerDTO.StartHourNight - timeIn.Hour - (double) timeIn.Minute / 60; 
             } else
             {
-                return timeOut.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.EndHourNight;
+                return timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.EndHourNight;
             }
+        }
+
+        private double getTotalHourOfDayWhenOutDay(DateTime timeOut, ComputerDTO computerDTO)
+        {
+            double value = timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.EndHourNight;
+            return value;
         }
 
         private double getTotalHourOfNight(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
@@ -1492,7 +1507,8 @@ namespace ParkingMangement.GUI
 
         private int soLuotQuaNgay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return Util.getTotalTimeByDay(timeIn, timeOut);
+            int value = Util.getTotalTimeByDay(timeIn, timeOut);
+            return value;
         }
 
         public void updateCauHinhHienThiXeRaVao()
@@ -1951,6 +1967,24 @@ namespace ParkingMangement.GUI
             }
             FormInOutSetting.saveInOutTypeToConfig(newInOutType);
             updateCauHinhHienThiXeRaVao();
+        }
+
+        private void openBarie()
+        {
+            string data = "@barie_open&";
+            writeDataToPort(data);
+        }
+
+        private void writeDataToPort(string data)
+        {
+            try
+            {
+                SerialPort port = new SerialPort("COM9", 9600, Parity.None, 8, StopBits.One);
+                port.Write(data);
+            } catch (Exception e)
+            {
+
+            }
         }
     }
 }
