@@ -469,6 +469,7 @@ namespace ParkingMangement.GUI
             numericTinhTienCongVanCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
             numericTinhTienCongVanMinTime.Value = mComputerDTO.MinMinute;
             numericTinhTienCongVanMinCost.Value = mComputerDTO.MinCost;
+            numericTinhTienCongVanLimit.Value = mComputerDTO.Limit;
         }
 
         private void updateTinhTienTheoCongVan()
@@ -488,6 +489,7 @@ namespace ParkingMangement.GUI
                 mComputerDTO.CostTicketMonth = (int)numericTinhTienCongVanCostTicketMonth.Value;
                 mComputerDTO.MinMinute = (int)numericTinhTienCongVanMinTime.Value;
                 mComputerDTO.MinCost = (int)numericTinhTienCongVanMinCost.Value;
+                mComputerDTO.Limit = (int)numericTinhTienCongVanLimit.Value;
 
                 if (mComputerDTO.StartHourNight <= mComputerDTO.EndHourNight)
                 {

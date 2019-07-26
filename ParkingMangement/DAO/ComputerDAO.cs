@@ -38,6 +38,7 @@ namespace ParkingMangement.DAO
                 computerDTO.CostTicketMonth = dt.Rows[0].Field<int>("CostTicketMonth");
                 computerDTO.MinMinute = dt.Rows[0].Field<int>("MinMinute");
                 computerDTO.MinCost = dt.Rows[0].Field<int>("MinCost");
+                computerDTO.Limit = dt.Rows[0].Field<int>("Limit");
                 return computerDTO;
             }
             return new ComputerDTO();
@@ -60,7 +61,7 @@ namespace ParkingMangement.DAO
                 + computerDTO.IntervalBetweenDayNight + ", StartHourNight =" + computerDTO.StartHourNight + ", EndHourNight =" + computerDTO.EndHourNight + ", HourMilestone1 =" + computerDTO.HourMilestone1 +
                 ", HourMilestone2 =" + computerDTO.HourMilestone2 + ", HourMilestone3 =" + computerDTO.HourMilestone3 + ", CostMilestone1 =" + computerDTO.CostMilestone1 + ", CostMilestone2 =" +
                 computerDTO.CostMilestone2 + ", CostMilestone3 =" + computerDTO.CostMilestone3 + ", CycleMilestone3 =" + computerDTO.CycleMilestone3 + ", IsAdd ='" + computerDTO.IsAdd +
-                "', CycleTicketMonth =" + computerDTO.CycleTicketMonth + ", CostTicketMonth =" + computerDTO.CostTicketMonth + ", MinMinute =" + computerDTO.MinMinute + ", MinCost =" + computerDTO.MinCost +
+                "', CycleTicketMonth =" + computerDTO.CycleTicketMonth + ", CostTicketMonth =" + computerDTO.CostTicketMonth + ", MinMinute =" + computerDTO.MinMinute + ", MinCost =" + computerDTO.MinCost + ", Limit =" + computerDTO.Limit +
                 " where Identify =" + computerDTO.Identify;
             return Database.ExcuNonQuery(sql);
         }
@@ -68,11 +69,11 @@ namespace ParkingMangement.DAO
         public static bool Insert(ComputerDTO computerDTO)
         {
             string sql = "insert into Computer(IDPart, ParkingTypeID, DayCost, NightCost, DayNightCost, IntervalBetweenDayNight, StartHourNight, EndHourNight, HourMilestone1, HourMilestone2, HourMilestone3," +
-                " CostMilestone1, CostMilestone2, CostMilestone3, CycleMilestone3, IsAdd, CycleTicketMonth, CostTicketMonth, MinMinute, MinCost) values ('" + computerDTO.PartID + "', " + computerDTO.ParkingTypeID
+                " CostMilestone1, CostMilestone2, CostMilestone3, CycleMilestone3, IsAdd, CycleTicketMonth, CostTicketMonth, MinMinute, MinCost, Limit) values ('" + computerDTO.PartID + "', " + computerDTO.ParkingTypeID
                 + ", " + computerDTO.DayCost + ", " + computerDTO.NightCost + ", " + computerDTO.DayNightCost + ", " + computerDTO.IntervalBetweenDayNight + ", " + computerDTO.StartHourNight + ", " + 
                 computerDTO.EndHourNight + ", " + computerDTO.HourMilestone1 + ", " + computerDTO.HourMilestone2 + ", " + computerDTO.HourMilestone3 + ", " + computerDTO.CostMilestone1 + ", " + 
                 computerDTO.CostMilestone2 + ", " + computerDTO.CostMilestone3 + ", " + computerDTO.CycleMilestone3 + ", '" + computerDTO.IsAdd + "', " + computerDTO.CycleTicketMonth + ", " + 
-                computerDTO.CostTicketMonth + ", " + computerDTO.MinMinute + ", " + computerDTO.MinCost + ")";
+                computerDTO.CostTicketMonth + ", " + computerDTO.MinMinute + ", " + computerDTO.MinCost + ", " + computerDTO.Limit + ")";
             return Database.ExcuNonQuery(sql);
         }
     }
