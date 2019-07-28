@@ -42,7 +42,8 @@ namespace ParkingMangement.GUI
         public string CurrentUserID;
         const bool CaptureOnlyInForeground = true;
         private string cardID = "0";
-        private string keyboardDeviceName = "";
+        private string rfidInput = "";
+        private string portNameComReceiveInput = "";
 
         //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
         const string cameraUrl = @"rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
@@ -53,6 +54,11 @@ namespace ParkingMangement.GUI
 
         private string rfidIn = "";
         private string rfidOut = "";
+        private string portNameComReceiveIn = "";
+        private string portNameComReceiveOut = "";
+
+        private SerialPort portComReceiveIn;
+        private SerialPort portComReceiveOut;
 
         private string imagePath1;
         private string imagePath2;
@@ -164,6 +170,8 @@ namespace ParkingMangement.GUI
             loadCamera2VLC();
             loadCamera3VLC();
             loadCamera4VLC();
+
+            getDataFromComReceive();
 
             oldSize = base.Size;
 
@@ -486,7 +494,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     labelMoiVao.Text = "";
                     labelMoiRa.Text = Constant.sLabelMoiVao;
@@ -708,7 +716,7 @@ namespace ParkingMangement.GUI
                 }
                 else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                 {
-                    if (keyboardDeviceName.Equals(rfidIn))
+                    if (inputIsInside())
                     {
                         labelMoiVao.Text = Constant.sLabelMoiRa;
                         labelMoiRa.Text = "";
@@ -796,7 +804,7 @@ namespace ParkingMangement.GUI
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
-                        if (keyboardDeviceName.Equals(rfidIn))
+                        if (inputIsInside())
                         {
                             pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
                         }
@@ -820,7 +828,7 @@ namespace ParkingMangement.GUI
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
-                        if (keyboardDeviceName.Equals(rfidIn))
+                        if (inputIsInside())
                         {
                             pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
                         }
@@ -933,7 +941,7 @@ namespace ParkingMangement.GUI
                 pictureBox = pictureBoxImage3;
             } else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     axVLCPlugin = axVLCPlugin3;
                     pictureBox = pictureBoxImage3;
@@ -959,7 +967,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     pictureBox = pictureBoxImage3;
                 }
@@ -981,7 +989,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     pictureBox = pictureBoxImage4;
                 }
@@ -1020,7 +1028,7 @@ namespace ParkingMangement.GUI
                 pictureBox = pictureBoxImage4;
             } else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     axVLCPlugin = axVLCPlugin4;
                     pictureBox = pictureBoxImage4;
@@ -1065,7 +1073,7 @@ namespace ParkingMangement.GUI
                 axVLCPlugin = axVLCPlugin1;
             } else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
-                if (keyboardDeviceName.Equals(rfidIn))
+                if (inputIsInside())
                 {
                     axVLCPlugin = axVLCPlugin1;
                 }
@@ -1102,7 +1110,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
-                if (keyboardDeviceName.Equals(rfidIn))
+                if (inputIsInside())
                 {
                     axVLCPlugin = axVLCPlugin2;
                 }
@@ -1167,6 +1175,8 @@ namespace ParkingMangement.GUI
             cameraUrl4 = Util.getConfigFile().cameraUrl4;
             rfidIn = Util.getConfigFile().rfidIn;
             rfidOut = Util.getConfigFile().rfidOut;
+            portNameComReceiveIn = Util.getConfigFile().comReceiveIn;
+            portNameComReceiveOut = Util.getConfigFile().comReceiveOut;
             //cameraUrl1 = ConfigDAO.GetCamera1();
             //cameraUrl2 = ConfigDAO.GetCamera2();
             //cameraUrl3 = ConfigDAO.GetCamera3();
@@ -1222,10 +1232,10 @@ namespace ParkingMangement.GUI
             String source = e.KeyPressEvent.Source;
                 if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
             {
-                keyboardDeviceName = e.KeyPressEvent.DeviceName;
+                rfidInput = e.KeyPressEvent.DeviceName;
             } else
             {
-                keyboardDeviceName = "";
+                rfidInput = "";
             }
         }
 
@@ -1257,19 +1267,19 @@ namespace ParkingMangement.GUI
                 case ConfigDTO.TYPE_OUT_OUT:
                     return false;
                 case ConfigDTO.TYPE_IN_OUT:
-                    if (keyboardDeviceName.Equals(rfidOut))
+                    if (inputIsOutside())
                     {
                         return false;
                     }
                     return true;
                 case ConfigDTO.TYPE_OUT_IN:
-                    if (keyboardDeviceName.Equals(rfidOut))
+                    if (inputIsOutside())
                     {
                         return true;
                     }
                     return false;
                 default:
-                    if (keyboardDeviceName.Equals(rfidOut))
+                    if (inputIsOutside())
                     {
                         return false;
                     }
@@ -1612,7 +1622,7 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if (!keyboardDeviceName.Equals(rfidIn) && !keyboardDeviceName.Equals(rfidOut))
+                    if (!inputIsInside() && !inputIsOutside())
                     {
                         updateDigitCarIn();
                         tbRFIDCardID.Focus();
@@ -1633,7 +1643,6 @@ namespace ParkingMangement.GUI
                 case Keys.Space:
                     cardID = tbRFIDCardID.Text.Trim();
                     labelCardID.Text = CardDAO.getIdentifyByCardID(cardID) + "";
-                    string x = keyboardDeviceName;
                     tbRFIDCardID.Text = "";
                     if (!cardID.Equals(""))
                     {
@@ -2006,25 +2015,82 @@ namespace ParkingMangement.GUI
         private void openBarie()
         {
             string data = "@barie_open&";
-            writeDataToPort(data);
+            string portName = Util.getConfigFile().comSend;
+            writeDataToPort(data, portName);
         }
 
         private void closeBarie()
         {
             string data = "@barie_close&";
-            writeDataToPort(data);
+            string portName = Util.getConfigFile().comSend;
+            writeDataToPort(data, portName);
         }
 
-        private void writeDataToPort(string data)
+        private void writeDataToPort(string data, string portName)
         {
             try
             {
-                SerialPort port = new SerialPort("COM9", 9600, Parity.None, 8, StopBits.One);
+                SerialPort port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
                 port.Write(data);
             } catch (Exception e)
             {
 
             }
+        }
+
+        private void getDataFromComReceive()
+        {
+            try
+            {
+                portComReceiveIn = new SerialPort(portNameComReceiveIn, 9600, Parity.None, 8, StopBits.One);
+                portComReceiveIn.DataReceived += new SerialDataReceivedEventHandler(portComReceiveIn_DataReceived);
+                portComReceiveIn.Open();
+            } catch (Exception e)
+            {
+
+            }
+            try
+            {
+                portComReceiveOut = new SerialPort(portNameComReceiveOut, 9600, Parity.None, 8, StopBits.One);
+                portComReceiveOut.DataReceived += new SerialDataReceivedEventHandler(portComReceiveOut_DataReceived);
+                portComReceiveOut.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            portNameComReceiveInput = portNameComReceiveIn;
+            cardID = portComReceiveIn.ReadExisting().ToString();
+            cardID = "22";
+            if (!cardID.Equals(""))
+            {
+                saveImage();
+            }
+        }
+
+        private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            portNameComReceiveInput = portNameComReceiveOut;
+            cardID = portComReceiveOut.ReadExisting().ToString();
+            cardID = "22";
+            if (!cardID.Equals(""))
+            {
+                saveImage();
+            }
+        }
+
+        private bool inputIsOutside()
+        {
+            return rfidInput.Equals(rfidOut) || portNameComReceiveInput.Equals(portNameComReceiveOut);
+        }
+
+        private bool inputIsInside()
+        {
+            return rfidInput.Equals(rfidIn) || portNameComReceiveInput.Equals(portNameComReceiveIn);
         }
     }
 }

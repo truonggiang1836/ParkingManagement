@@ -192,6 +192,9 @@ namespace ParkingMangement.Utils
                         config.sqlUsername = config.sqlUsername.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.sqlPassword = config.sqlPassword.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.folderRoot = config.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.comReceiveIn = config.comReceiveIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.comReceiveOut = config.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.comSend = config.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.lastSavedOrder = config.lastSavedOrder;
                         return config;
                     }
