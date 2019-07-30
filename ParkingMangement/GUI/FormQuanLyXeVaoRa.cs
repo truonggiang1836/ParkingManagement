@@ -192,8 +192,8 @@ namespace ParkingMangement.GUI
             }
 
             pictureBoxCarLogImage1.Image = null;
-            pictureBoxCarLogImage2.Image = null;
             pictureBoxCarLogImage3.Image = null;
+            pictureBoxCarLogImage2.Image = null;
             pictureBoxCarLogImage4.Image = null;
             string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
             if (!string.IsNullOrEmpty(image1))
@@ -210,7 +210,7 @@ namespace ParkingMangement.GUI
                 string filePath = Constant.getSharedImageFolder() + image2;
                 if (File.Exists(filePath))
                 {
-                    pictureBoxCarLogImage2.Image = Image.FromFile(filePath);
+                    pictureBoxCarLogImage3.Image = Image.FromFile(filePath);
                 }
             }
             string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
@@ -219,7 +219,7 @@ namespace ParkingMangement.GUI
                 string filePath = Constant.getSharedImageFolder() + image3;
                 if (File.Exists(filePath))
                 {
-                    pictureBoxCarLogImage3.Image = Image.FromFile(filePath);
+                    pictureBoxCarLogImage2.Image = Image.FromFile(filePath);
                 }
             }
             string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
@@ -304,6 +304,30 @@ namespace ParkingMangement.GUI
         private void dgvCarList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Util.setRowNumber(dgvCarList, "STT_CarList");
+        }
+
+        private void pictureBoxCarLogImage1_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage1.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage2_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage3.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage3_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage2.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage4_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage4.Image);
+            f.Show();
         }
     }
 }

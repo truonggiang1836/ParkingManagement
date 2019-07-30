@@ -33,36 +33,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLyXeVaoRa));
             this.dgvCarList = new System.Windows.Forms.DataGridView();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.btnXemDanhSachXeTon = new System.Windows.Forms.Button();
-            this.tbCarLogIdentify = new System.Windows.Forms.TextBox();
-            this.dateTimePickerCarTimeOut = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerCarTimeIn = new System.Windows.Forms.DateTimePicker();
-            this.label45 = new System.Windows.Forms.Label();
-            this.comboBoxNhanVienVao = new System.Windows.Forms.ComboBox();
-            this.comboBoxNhanVienRa = new System.Windows.Forms.ComboBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.tbCarDigitSearch = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
-            this.btnSearchCar = new System.Windows.Forms.Button();
-            this.btnSaveLostCard = new System.Windows.Forms.Button();
-            this.btnExportDanhSachXe = new System.Windows.Forms.Button();
-            this.tbCarIDSearch = new System.Windows.Forms.TextBox();
-            this.tbCarIdentifySearch = new System.Windows.Forms.TextBox();
-            this.dateTimePickerCarDateOut = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerCarDateIn = new System.Windows.Forms.DateTimePicker();
-            this.label40 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
             this.STT_CarList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,16 +57,45 @@
             this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnXemDanhSachXeTon = new System.Windows.Forms.Button();
+            this.tbCarLogIdentify = new System.Windows.Forms.TextBox();
+            this.dateTimePickerCarTimeOut = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerCarTimeIn = new System.Windows.Forms.DateTimePicker();
+            this.label45 = new System.Windows.Forms.Label();
+            this.comboBoxNhanVienVao = new System.Windows.Forms.ComboBox();
+            this.comboBoxNhanVienRa = new System.Windows.Forms.ComboBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.tbCarDigitSearch = new System.Windows.Forms.TextBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.btnSearchCar = new System.Windows.Forms.Button();
+            this.btnSaveLostCard = new System.Windows.Forms.Button();
+            this.btnExportDanhSachXe = new System.Windows.Forms.Button();
+            this.tbCarIDSearch = new System.Windows.Forms.TextBox();
+            this.tbCarIdentifySearch = new System.Windows.Forms.TextBox();
+            this.dateTimePickerCarDateOut = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerCarDateIn = new System.Windows.Forms.DateTimePicker();
+            this.label40 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             this.panel14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
             this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvCarList
@@ -146,304 +147,6 @@
             this.dgvCarList.TabIndex = 3;
             this.dgvCarList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarList_CellClick);
             this.dgvCarList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCarList_DataBindingComplete);
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.btnXemDanhSachXeTon);
-            this.panel10.Controls.Add(this.tbCarLogIdentify);
-            this.panel10.Controls.Add(this.dateTimePickerCarTimeOut);
-            this.panel10.Controls.Add(this.dateTimePickerCarTimeIn);
-            this.panel10.Controls.Add(this.label45);
-            this.panel10.Controls.Add(this.comboBoxNhanVienVao);
-            this.panel10.Controls.Add(this.comboBoxNhanVienRa);
-            this.panel10.Controls.Add(this.label44);
-            this.panel10.Controls.Add(this.label43);
-            this.panel10.Controls.Add(this.label42);
-            this.panel10.Controls.Add(this.tbCarDigitSearch);
-            this.panel10.Controls.Add(this.label41);
-            this.panel10.Controls.Add(this.panel13);
-            this.panel10.Controls.Add(this.panel14);
-            this.panel10.Controls.Add(this.panel12);
-            this.panel10.Controls.Add(this.btnSearchCar);
-            this.panel10.Controls.Add(this.btnSaveLostCard);
-            this.panel10.Controls.Add(this.btnExportDanhSachXe);
-            this.panel10.Controls.Add(this.tbCarIDSearch);
-            this.panel10.Controls.Add(this.tbCarIdentifySearch);
-            this.panel10.Controls.Add(this.dateTimePickerCarDateOut);
-            this.panel10.Controls.Add(this.dateTimePickerCarDateIn);
-            this.panel10.Controls.Add(this.label40);
-            this.panel10.Controls.Add(this.panel11);
-            this.panel10.Location = new System.Drawing.Point(7, 7);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1138, 352);
-            this.panel10.TabIndex = 2;
-            // 
-            // btnXemDanhSachXeTon
-            // 
-            this.btnXemDanhSachXeTon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXemDanhSachXeTon.Location = new System.Drawing.Point(16, 267);
-            this.btnXemDanhSachXeTon.Name = "btnXemDanhSachXeTon";
-            this.btnXemDanhSachXeTon.Size = new System.Drawing.Size(395, 34);
-            this.btnXemDanhSachXeTon.TabIndex = 30;
-            this.btnXemDanhSachXeTon.Text = "DANH SÁCH XE TỒN";
-            this.btnXemDanhSachXeTon.UseVisualStyleBackColor = true;
-            this.btnXemDanhSachXeTon.Click += new System.EventHandler(this.btnXemDanhSachXeTon_Click);
-            // 
-            // tbCarLogIdentify
-            // 
-            this.tbCarLogIdentify.Location = new System.Drawing.Point(438, 14);
-            this.tbCarLogIdentify.Name = "tbCarLogIdentify";
-            this.tbCarLogIdentify.Size = new System.Drawing.Size(111, 20);
-            this.tbCarLogIdentify.TabIndex = 29;
-            this.tbCarLogIdentify.Visible = false;
-            // 
-            // dateTimePickerCarTimeOut
-            // 
-            this.dateTimePickerCarTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCarTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerCarTimeOut.Location = new System.Drawing.Point(300, 48);
-            this.dateTimePickerCarTimeOut.Name = "dateTimePickerCarTimeOut";
-            this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(111, 22);
-            this.dateTimePickerCarTimeOut.TabIndex = 28;
-            this.dateTimePickerCarTimeOut.Value = new System.DateTime(2018, 9, 27, 23, 59, 0, 0);
-            // 
-            // dateTimePickerCarTimeIn
-            // 
-            this.dateTimePickerCarTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCarTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePickerCarTimeIn.Location = new System.Drawing.Point(300, 14);
-            this.dateTimePickerCarTimeIn.Name = "dateTimePickerCarTimeIn";
-            this.dateTimePickerCarTimeIn.Size = new System.Drawing.Size(111, 22);
-            this.dateTimePickerCarTimeIn.TabIndex = 27;
-            this.dateTimePickerCarTimeIn.Value = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(236, 153);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(49, 16);
-            this.label45.TabIndex = 26;
-            this.label45.Text = "NV RA";
-            // 
-            // comboBoxNhanVienVao
-            // 
-            this.comboBoxNhanVienVao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNhanVienVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxNhanVienVao.FormattingEnabled = true;
-            this.comboBoxNhanVienVao.Location = new System.Drawing.Point(96, 150);
-            this.comboBoxNhanVienVao.Name = "comboBoxNhanVienVao";
-            this.comboBoxNhanVienVao.Size = new System.Drawing.Size(111, 24);
-            this.comboBoxNhanVienVao.TabIndex = 25;
-            // 
-            // comboBoxNhanVienRa
-            // 
-            this.comboBoxNhanVienRa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxNhanVienRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxNhanVienRa.FormattingEnabled = true;
-            this.comboBoxNhanVienRa.Location = new System.Drawing.Point(300, 150);
-            this.comboBoxNhanVienRa.Name = "comboBoxNhanVienRa";
-            this.comboBoxNhanVienRa.Size = new System.Drawing.Size(111, 24);
-            this.comboBoxNhanVienRa.TabIndex = 24;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(13, 153);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(58, 16);
-            this.label44.TabIndex = 23;
-            this.label44.Text = "NV VÀO";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(11, 119);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(77, 16);
-            this.label43.TabIndex = 22;
-            this.label43.Text = "QUÉT THẺ";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(234, 85);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(61, 16);
-            this.label42.TabIndex = 21;
-            this.label42.Text = "BIỂN SỐ";
-            // 
-            // tbCarDigitSearch
-            // 
-            this.tbCarDigitSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCarDigitSearch.Location = new System.Drawing.Point(300, 82);
-            this.tbCarDigitSearch.Name = "tbCarDigitSearch";
-            this.tbCarDigitSearch.Size = new System.Drawing.Size(111, 22);
-            this.tbCarDigitSearch.TabIndex = 20;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(11, 85);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(46, 16);
-            this.label41.TabIndex = 19;
-            this.label41.Text = "Số thẻ";
-            // 
-            // panel13
-            // 
-            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel13.Controls.Add(this.pictureBoxCarLogImage3);
-            this.panel13.Location = new System.Drawing.Point(558, 180);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(284, 168);
-            this.panel13.TabIndex = 18;
-            // 
-            // pictureBoxCarLogImage3
-            // 
-            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
-            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage3.TabIndex = 1;
-            this.pictureBoxCarLogImage3.TabStop = false;
-            // 
-            // panel14
-            // 
-            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel14.Controls.Add(this.pictureBoxCarLogImage1);
-            this.panel14.Location = new System.Drawing.Point(558, 7);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(284, 168);
-            this.panel14.TabIndex = 17;
-            // 
-            // pictureBoxCarLogImage1
-            // 
-            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
-            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage1.TabIndex = 0;
-            this.pictureBoxCarLogImage1.TabStop = false;
-            // 
-            // panel12
-            // 
-            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel12.Controls.Add(this.pictureBoxCarLogImage4);
-            this.panel12.Location = new System.Drawing.Point(847, 180);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(284, 168);
-            this.panel12.TabIndex = 16;
-            // 
-            // pictureBoxCarLogImage4
-            // 
-            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
-            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage4.TabIndex = 1;
-            this.pictureBoxCarLogImage4.TabStop = false;
-            // 
-            // btnSearchCar
-            // 
-            this.btnSearchCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchCar.Location = new System.Drawing.Point(16, 187);
-            this.btnSearchCar.Name = "btnSearchCar";
-            this.btnSearchCar.Size = new System.Drawing.Size(395, 34);
-            this.btnSearchCar.TabIndex = 15;
-            this.btnSearchCar.Text = "TÌM";
-            this.btnSearchCar.UseVisualStyleBackColor = true;
-            this.btnSearchCar.Click += new System.EventHandler(this.btnSearchCar_Click);
-            // 
-            // btnSaveLostCard
-            // 
-            this.btnSaveLostCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveLostCard.ForeColor = System.Drawing.Color.Red;
-            this.btnSaveLostCard.Location = new System.Drawing.Point(16, 307);
-            this.btnSaveLostCard.Name = "btnSaveLostCard";
-            this.btnSaveLostCard.Size = new System.Drawing.Size(393, 34);
-            this.btnSaveLostCard.TabIndex = 14;
-            this.btnSaveLostCard.Text = "LƯU MẤT THẺ";
-            this.btnSaveLostCard.UseVisualStyleBackColor = true;
-            this.btnSaveLostCard.Click += new System.EventHandler(this.btnSaveLostCard_Click);
-            // 
-            // btnExportDanhSachXe
-            // 
-            this.btnExportDanhSachXe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportDanhSachXe.Location = new System.Drawing.Point(16, 227);
-            this.btnExportDanhSachXe.Name = "btnExportDanhSachXe";
-            this.btnExportDanhSachXe.Size = new System.Drawing.Size(395, 34);
-            this.btnExportDanhSachXe.TabIndex = 13;
-            this.btnExportDanhSachXe.Text = "DANH SÁCH MẤT THẺ";
-            this.btnExportDanhSachXe.UseVisualStyleBackColor = true;
-            this.btnExportDanhSachXe.Click += new System.EventHandler(this.btnExportDanhSachXe_Click);
-            // 
-            // tbCarIDSearch
-            // 
-            this.tbCarIDSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCarIDSearch.Location = new System.Drawing.Point(96, 116);
-            this.tbCarIDSearch.Name = "tbCarIDSearch";
-            this.tbCarIDSearch.Size = new System.Drawing.Size(315, 22);
-            this.tbCarIDSearch.TabIndex = 11;
-            // 
-            // tbCarIdentifySearch
-            // 
-            this.tbCarIdentifySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCarIdentifySearch.Location = new System.Drawing.Point(96, 82);
-            this.tbCarIdentifySearch.Name = "tbCarIdentifySearch";
-            this.tbCarIdentifySearch.Size = new System.Drawing.Size(111, 22);
-            this.tbCarIdentifySearch.TabIndex = 10;
-            // 
-            // dateTimePickerCarDateOut
-            // 
-            this.dateTimePickerCarDateOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCarDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerCarDateOut.Location = new System.Drawing.Point(96, 48);
-            this.dateTimePickerCarDateOut.Name = "dateTimePickerCarDateOut";
-            this.dateTimePickerCarDateOut.Size = new System.Drawing.Size(189, 22);
-            this.dateTimePickerCarDateOut.TabIndex = 8;
-            // 
-            // dateTimePickerCarDateIn
-            // 
-            this.dateTimePickerCarDateIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCarDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePickerCarDateIn.Location = new System.Drawing.Point(96, 14);
-            this.dateTimePickerCarDateIn.Name = "dateTimePickerCarDateIn";
-            this.dateTimePickerCarDateIn.Size = new System.Drawing.Size(189, 22);
-            this.dateTimePickerCarDateIn.TabIndex = 6;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(11, 17);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(61, 16);
-            this.label40.TabIndex = 5;
-            this.label40.Text = "Ngày tìm";
-            // 
-            // panel11
-            // 
-            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel11.Controls.Add(this.pictureBoxCarLogImage2);
-            this.panel11.Location = new System.Drawing.Point(847, 7);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(284, 168);
-            this.panel11.TabIndex = 0;
-            // 
-            // pictureBoxCarLogImage2
-            // 
-            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
-            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage2.TabIndex = 1;
-            this.pictureBoxCarLogImage2.TabStop = false;
             // 
             // STT_CarList
             // 
@@ -616,6 +319,316 @@
             this.Column1.ReadOnly = true;
             this.Column1.Visible = false;
             // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.btnXemDanhSachXeTon);
+            this.panel10.Controls.Add(this.tbCarLogIdentify);
+            this.panel10.Controls.Add(this.dateTimePickerCarTimeOut);
+            this.panel10.Controls.Add(this.dateTimePickerCarTimeIn);
+            this.panel10.Controls.Add(this.label45);
+            this.panel10.Controls.Add(this.comboBoxNhanVienVao);
+            this.panel10.Controls.Add(this.comboBoxNhanVienRa);
+            this.panel10.Controls.Add(this.label44);
+            this.panel10.Controls.Add(this.label43);
+            this.panel10.Controls.Add(this.label42);
+            this.panel10.Controls.Add(this.tbCarDigitSearch);
+            this.panel10.Controls.Add(this.label41);
+            this.panel10.Controls.Add(this.panel13);
+            this.panel10.Controls.Add(this.panel14);
+            this.panel10.Controls.Add(this.panel12);
+            this.panel10.Controls.Add(this.btnSearchCar);
+            this.panel10.Controls.Add(this.btnSaveLostCard);
+            this.panel10.Controls.Add(this.btnExportDanhSachXe);
+            this.panel10.Controls.Add(this.tbCarIDSearch);
+            this.panel10.Controls.Add(this.tbCarIdentifySearch);
+            this.panel10.Controls.Add(this.dateTimePickerCarDateOut);
+            this.panel10.Controls.Add(this.dateTimePickerCarDateIn);
+            this.panel10.Controls.Add(this.label40);
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Location = new System.Drawing.Point(7, 7);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1138, 352);
+            this.panel10.TabIndex = 2;
+            // 
+            // btnXemDanhSachXeTon
+            // 
+            this.btnXemDanhSachXeTon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXemDanhSachXeTon.Location = new System.Drawing.Point(16, 267);
+            this.btnXemDanhSachXeTon.Name = "btnXemDanhSachXeTon";
+            this.btnXemDanhSachXeTon.Size = new System.Drawing.Size(395, 34);
+            this.btnXemDanhSachXeTon.TabIndex = 30;
+            this.btnXemDanhSachXeTon.Text = "DANH SÁCH XE TỒN";
+            this.btnXemDanhSachXeTon.UseVisualStyleBackColor = true;
+            this.btnXemDanhSachXeTon.Click += new System.EventHandler(this.btnXemDanhSachXeTon_Click);
+            // 
+            // tbCarLogIdentify
+            // 
+            this.tbCarLogIdentify.Location = new System.Drawing.Point(438, 14);
+            this.tbCarLogIdentify.Name = "tbCarLogIdentify";
+            this.tbCarLogIdentify.Size = new System.Drawing.Size(111, 20);
+            this.tbCarLogIdentify.TabIndex = 29;
+            this.tbCarLogIdentify.Visible = false;
+            // 
+            // dateTimePickerCarTimeOut
+            // 
+            this.dateTimePickerCarTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerCarTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerCarTimeOut.Location = new System.Drawing.Point(300, 48);
+            this.dateTimePickerCarTimeOut.Name = "dateTimePickerCarTimeOut";
+            this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(111, 22);
+            this.dateTimePickerCarTimeOut.TabIndex = 28;
+            this.dateTimePickerCarTimeOut.Value = new System.DateTime(2018, 9, 27, 23, 59, 0, 0);
+            // 
+            // dateTimePickerCarTimeIn
+            // 
+            this.dateTimePickerCarTimeIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerCarTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dateTimePickerCarTimeIn.Location = new System.Drawing.Point(300, 14);
+            this.dateTimePickerCarTimeIn.Name = "dateTimePickerCarTimeIn";
+            this.dateTimePickerCarTimeIn.Size = new System.Drawing.Size(111, 22);
+            this.dateTimePickerCarTimeIn.TabIndex = 27;
+            this.dateTimePickerCarTimeIn.Value = new System.DateTime(2018, 9, 27, 0, 0, 0, 0);
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(236, 153);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(49, 16);
+            this.label45.TabIndex = 26;
+            this.label45.Text = "NV RA";
+            // 
+            // comboBoxNhanVienVao
+            // 
+            this.comboBoxNhanVienVao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNhanVienVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNhanVienVao.FormattingEnabled = true;
+            this.comboBoxNhanVienVao.Location = new System.Drawing.Point(96, 150);
+            this.comboBoxNhanVienVao.Name = "comboBoxNhanVienVao";
+            this.comboBoxNhanVienVao.Size = new System.Drawing.Size(111, 24);
+            this.comboBoxNhanVienVao.TabIndex = 25;
+            // 
+            // comboBoxNhanVienRa
+            // 
+            this.comboBoxNhanVienRa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxNhanVienRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNhanVienRa.FormattingEnabled = true;
+            this.comboBoxNhanVienRa.Location = new System.Drawing.Point(300, 150);
+            this.comboBoxNhanVienRa.Name = "comboBoxNhanVienRa";
+            this.comboBoxNhanVienRa.Size = new System.Drawing.Size(111, 24);
+            this.comboBoxNhanVienRa.TabIndex = 24;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.Location = new System.Drawing.Point(13, 153);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(58, 16);
+            this.label44.TabIndex = 23;
+            this.label44.Text = "NV VÀO";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.Location = new System.Drawing.Point(11, 119);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(77, 16);
+            this.label43.TabIndex = 22;
+            this.label43.Text = "QUÉT THẺ";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.Location = new System.Drawing.Point(234, 85);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(61, 16);
+            this.label42.TabIndex = 21;
+            this.label42.Text = "BIỂN SỐ";
+            // 
+            // tbCarDigitSearch
+            // 
+            this.tbCarDigitSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCarDigitSearch.Location = new System.Drawing.Point(300, 82);
+            this.tbCarDigitSearch.Name = "tbCarDigitSearch";
+            this.tbCarDigitSearch.Size = new System.Drawing.Size(111, 22);
+            this.tbCarDigitSearch.TabIndex = 20;
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(11, 85);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(46, 16);
+            this.label41.TabIndex = 19;
+            this.label41.Text = "Số thẻ";
+            // 
+            // panel13
+            // 
+            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel13.Controls.Add(this.pictureBoxCarLogImage2);
+            this.panel13.Location = new System.Drawing.Point(558, 180);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(284, 168);
+            this.panel13.TabIndex = 18;
+            // 
+            // panel14
+            // 
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel14.Controls.Add(this.pictureBoxCarLogImage1);
+            this.panel14.Location = new System.Drawing.Point(558, 7);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(284, 168);
+            this.panel14.TabIndex = 17;
+            // 
+            // panel12
+            // 
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.pictureBoxCarLogImage4);
+            this.panel12.Location = new System.Drawing.Point(847, 180);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(284, 168);
+            this.panel12.TabIndex = 16;
+            // 
+            // btnSearchCar
+            // 
+            this.btnSearchCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchCar.Location = new System.Drawing.Point(16, 187);
+            this.btnSearchCar.Name = "btnSearchCar";
+            this.btnSearchCar.Size = new System.Drawing.Size(395, 34);
+            this.btnSearchCar.TabIndex = 15;
+            this.btnSearchCar.Text = "TÌM";
+            this.btnSearchCar.UseVisualStyleBackColor = true;
+            this.btnSearchCar.Click += new System.EventHandler(this.btnSearchCar_Click);
+            // 
+            // btnSaveLostCard
+            // 
+            this.btnSaveLostCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveLostCard.ForeColor = System.Drawing.Color.Red;
+            this.btnSaveLostCard.Location = new System.Drawing.Point(16, 307);
+            this.btnSaveLostCard.Name = "btnSaveLostCard";
+            this.btnSaveLostCard.Size = new System.Drawing.Size(393, 34);
+            this.btnSaveLostCard.TabIndex = 14;
+            this.btnSaveLostCard.Text = "LƯU MẤT THẺ";
+            this.btnSaveLostCard.UseVisualStyleBackColor = true;
+            this.btnSaveLostCard.Click += new System.EventHandler(this.btnSaveLostCard_Click);
+            // 
+            // btnExportDanhSachXe
+            // 
+            this.btnExportDanhSachXe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportDanhSachXe.Location = new System.Drawing.Point(16, 227);
+            this.btnExportDanhSachXe.Name = "btnExportDanhSachXe";
+            this.btnExportDanhSachXe.Size = new System.Drawing.Size(395, 34);
+            this.btnExportDanhSachXe.TabIndex = 13;
+            this.btnExportDanhSachXe.Text = "DANH SÁCH MẤT THẺ";
+            this.btnExportDanhSachXe.UseVisualStyleBackColor = true;
+            this.btnExportDanhSachXe.Click += new System.EventHandler(this.btnExportDanhSachXe_Click);
+            // 
+            // tbCarIDSearch
+            // 
+            this.tbCarIDSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCarIDSearch.Location = new System.Drawing.Point(96, 116);
+            this.tbCarIDSearch.Name = "tbCarIDSearch";
+            this.tbCarIDSearch.Size = new System.Drawing.Size(315, 22);
+            this.tbCarIDSearch.TabIndex = 11;
+            // 
+            // tbCarIdentifySearch
+            // 
+            this.tbCarIdentifySearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCarIdentifySearch.Location = new System.Drawing.Point(96, 82);
+            this.tbCarIdentifySearch.Name = "tbCarIdentifySearch";
+            this.tbCarIdentifySearch.Size = new System.Drawing.Size(111, 22);
+            this.tbCarIdentifySearch.TabIndex = 10;
+            // 
+            // dateTimePickerCarDateOut
+            // 
+            this.dateTimePickerCarDateOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerCarDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerCarDateOut.Location = new System.Drawing.Point(96, 48);
+            this.dateTimePickerCarDateOut.Name = "dateTimePickerCarDateOut";
+            this.dateTimePickerCarDateOut.Size = new System.Drawing.Size(189, 22);
+            this.dateTimePickerCarDateOut.TabIndex = 8;
+            // 
+            // dateTimePickerCarDateIn
+            // 
+            this.dateTimePickerCarDateIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerCarDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerCarDateIn.Location = new System.Drawing.Point(96, 14);
+            this.dateTimePickerCarDateIn.Name = "dateTimePickerCarDateIn";
+            this.dateTimePickerCarDateIn.Size = new System.Drawing.Size(189, 22);
+            this.dateTimePickerCarDateIn.TabIndex = 6;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.Location = new System.Drawing.Point(11, 17);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(61, 16);
+            this.label40.TabIndex = 5;
+            this.label40.Text = "Ngày tìm";
+            // 
+            // panel11
+            // 
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Controls.Add(this.pictureBoxCarLogImage3);
+            this.panel11.Location = new System.Drawing.Point(847, 7);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(284, 168);
+            this.panel11.TabIndex = 0;
+            // 
+            // pictureBoxCarLogImage2
+            // 
+            this.pictureBoxCarLogImage2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage2.Image")));
+            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
+            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage2.TabIndex = 1;
+            this.pictureBoxCarLogImage2.TabStop = false;
+            this.pictureBoxCarLogImage2.Click += new System.EventHandler(this.pictureBoxCarLogImage2_Click);
+            // 
+            // pictureBoxCarLogImage1
+            // 
+            this.pictureBoxCarLogImage1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage1.Image")));
+            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
+            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage1.TabIndex = 0;
+            this.pictureBoxCarLogImage1.TabStop = false;
+            this.pictureBoxCarLogImage1.Click += new System.EventHandler(this.pictureBoxCarLogImage1_Click);
+            // 
+            // pictureBoxCarLogImage4
+            // 
+            this.pictureBoxCarLogImage4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage4.Image")));
+            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
+            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage4.TabIndex = 1;
+            this.pictureBoxCarLogImage4.TabStop = false;
+            this.pictureBoxCarLogImage4.Click += new System.EventHandler(this.pictureBoxCarLogImage4_Click);
+            // 
+            // pictureBoxCarLogImage3
+            // 
+            this.pictureBoxCarLogImage3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage3.Image")));
+            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
+            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage3.TabIndex = 1;
+            this.pictureBoxCarLogImage3.TabStop = false;
+            this.pictureBoxCarLogImage3.Click += new System.EventHandler(this.pictureBoxCarLogImage3_Click);
+            // 
             // FormQuanLyXeVaoRa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -631,13 +644,13 @@
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel13.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             this.panel14.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
             this.panel12.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
             this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -658,7 +671,7 @@
         private System.Windows.Forms.TextBox tbCarDigitSearch;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.PictureBox pictureBoxCarLogImage3;
+        private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage1;
         private System.Windows.Forms.Panel panel12;
@@ -672,7 +685,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerCarDateIn;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.PictureBox pictureBoxCarLogImage2;
+        private System.Windows.Forms.PictureBox pictureBoxCarLogImage3;
         private System.Windows.Forms.Button btnXemDanhSachXeTon;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_CarList;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarLogIdentify;

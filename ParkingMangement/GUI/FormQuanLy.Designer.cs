@@ -100,6 +100,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLy));
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -866,10 +867,14 @@
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -1014,8 +1019,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarTicketMonthList)).BeginInit();
             this.panel15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
             this.SuspendLayout();
@@ -8403,6 +8408,10 @@
             this.panel10.Controls.Add(this.label40);
             this.panel10.Controls.Add(this.comboBoxTruyVanLoaiXe);
             this.panel10.Controls.Add(this.label35);
+            this.panel10.Controls.Add(this.panel14);
+            this.panel10.Controls.Add(this.panel11);
+            this.panel10.Controls.Add(this.panel13);
+            this.panel10.Controls.Add(this.panel12);
             this.panel10.Location = new System.Drawing.Point(6, 6);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1138, 294);
@@ -8410,7 +8419,7 @@
             // 
             // tbCarLogIdentify
             // 
-            this.tbCarLogIdentify.Location = new System.Drawing.Point(311, 32);
+            this.tbCarLogIdentify.Location = new System.Drawing.Point(311, 219);
             this.tbCarLogIdentify.Name = "tbCarLogIdentify";
             this.tbCarLogIdentify.Size = new System.Drawing.Size(111, 22);
             this.tbCarLogIdentify.TabIndex = 29;
@@ -8868,34 +8877,37 @@
             this.pictureBox3.TabIndex = 18;
             this.pictureBox3.TabStop = false;
             // 
-            // pictureBoxCarLogImage3
-            // 
-            this.pictureBoxCarLogImage3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(783, 60);
-            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
-            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(168, 173);
-            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage3.TabIndex = 1;
-            this.pictureBoxCarLogImage3.TabStop = false;
-            this.pictureBoxCarLogImage3.Click += new System.EventHandler(this.pictureBoxCarLogImage3_Click);
-            // 
             // pictureBoxCarLogImage4
             // 
             this.pictureBoxCarLogImage4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(957, 60);
+            this.pictureBoxCarLogImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage4.Image")));
+            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(688, 155);
             this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
-            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(168, 173);
+            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(231, 130);
             this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxCarLogImage4.TabIndex = 1;
             this.pictureBoxCarLogImage4.TabStop = false;
             this.pictureBoxCarLogImage4.Click += new System.EventHandler(this.pictureBoxCarLogImage4_Click);
             // 
+            // pictureBoxCarLogImage3
+            // 
+            this.pictureBoxCarLogImage3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage3.Image")));
+            this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(688, 14);
+            this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
+            this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(231, 130);
+            this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage3.TabIndex = 1;
+            this.pictureBoxCarLogImage3.TabStop = false;
+            this.pictureBoxCarLogImage3.Click += new System.EventHandler(this.pictureBoxCarLogImage3_Click);
+            // 
             // pictureBoxCarLogImage2
             // 
             this.pictureBoxCarLogImage2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(609, 60);
+            this.pictureBoxCarLogImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage2.Image")));
+            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(447, 154);
             this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
-            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(168, 173);
+            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(231, 130);
             this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxCarLogImage2.TabIndex = 1;
             this.pictureBoxCarLogImage2.TabStop = false;
@@ -8904,13 +8916,46 @@
             // pictureBoxCarLogImage1
             // 
             this.pictureBoxCarLogImage1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(435, 60);
+            this.pictureBoxCarLogImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage1.Image")));
+            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(447, 14);
             this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
-            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(168, 173);
+            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(231, 130);
             this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxCarLogImage1.TabIndex = 0;
             this.pictureBoxCarLogImage1.TabStop = false;
             this.pictureBoxCarLogImage1.Click += new System.EventHandler(this.pictureBoxCarLogImage1_Click);
+            // 
+            // panel14
+            // 
+            this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel14.Location = new System.Drawing.Point(444, 11);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(238, 137);
+            this.panel14.TabIndex = 30;
+            // 
+            // panel11
+            // 
+            this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel11.Location = new System.Drawing.Point(444, 151);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(238, 137);
+            this.panel11.TabIndex = 31;
+            // 
+            // panel12
+            // 
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Location = new System.Drawing.Point(685, 11);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(238, 137);
+            this.panel12.TabIndex = 32;
+            // 
+            // panel13
+            // 
+            this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel13.Location = new System.Drawing.Point(685, 151);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(238, 137);
+            this.panel13.TabIndex = 33;
             // 
             // FormQuanLy
             // 
@@ -9119,8 +9164,8 @@
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
             this.ResumeLayout(false);
@@ -9899,5 +9944,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Images;
         private System.Windows.Forms.PictureBox pictureBoxCarLogImage1;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel11;
+        private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.Panel panel12;
     }
 }
