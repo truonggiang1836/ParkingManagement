@@ -224,11 +224,13 @@ namespace ParkingMangement.GUI
                     //open_bitmap();
                     changeInOutSetting(true);
                     break;
-                case Keys.F2:
-                    openBarie();
-                    break;
                 case Keys.F10:
+                    openBarie();
+                    MessageBox.Show("Barie đã mở");
+                    break;
+                case Keys.F11:
                     closeBarie();
+                    MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
@@ -433,7 +435,6 @@ namespace ParkingMangement.GUI
             CarDAO.Insert(carDTO);
             updateScreenForCarIn(isTicketMonthCard);
             WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
-            openBarie();
         }
 
         private void updateCarIn(bool isTicketMonthCard, DataTable dtLastCar)
@@ -2026,15 +2027,18 @@ namespace ParkingMangement.GUI
             writeDataToPort(data, portName);
         }
 
+        private SerialPort port;
         private void writeDataToPort(string data, string portName)
         {
             try
             {
-                SerialPort port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                port.Open();
                 port.Write(data);
+                Console.WriteLine(data);
             } catch (Exception e)
             {
-
+                Console.WriteLine("bug: " + e.Message);
             }
         }
 
