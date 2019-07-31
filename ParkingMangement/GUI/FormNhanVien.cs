@@ -2096,5 +2096,10 @@ namespace ParkingMangement.GUI
         {
             return rfidInput.Equals(rfidIn) || portNameComReceiveInput.Equals(portNameComReceiveIn);
         }
+
+        private void FormNhanVien_Activated(object sender, EventArgs e)
+        {
+            tbRFIDCardID.Focus();
+        }
     }
 }
