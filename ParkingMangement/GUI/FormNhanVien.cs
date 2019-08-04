@@ -1552,8 +1552,9 @@ namespace ParkingMangement.GUI
 
         private int soLuotQuaNgay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            int value = Util.getTotalTimeByDay(timeIn, timeOut);
-            return value;
+            int dayDistant = Util.getTotalTimeByDay(timeIn, timeOut);
+            int countOfCircle = (int) Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.IntervalBetweenDayNight;
+            return countOfCircle - dayDistant;
         }
 
         public void updateCauHinhHienThiXeRaVao()
@@ -2055,7 +2056,7 @@ namespace ParkingMangement.GUI
             }
             try
             {
-                portComReceiveOut = new SerialPort(portNameComReceiveOut, 9600, Parity.None, 8, StopBits.One);
+                portComReceiveOut = new SerialPort(portNameComReceiveOut, 57600, Parity.None, 8, StopBits.One);
                 portComReceiveOut.DataReceived += new SerialDataReceivedEventHandler(portComReceiveOut_DataReceived);
                 portComReceiveOut.Open();
             }
@@ -2068,8 +2069,7 @@ namespace ParkingMangement.GUI
         private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             portNameComReceiveInput = portNameComReceiveIn;
-            cardID = portComReceiveIn.ReadExisting().ToString();
-            cardID = "22";
+            cardID = portComReceiveIn.ReadExisting();
             if (!cardID.Equals(""))
             {
                 saveImage();
@@ -2079,8 +2079,7 @@ namespace ParkingMangement.GUI
         private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             portNameComReceiveInput = portNameComReceiveOut;
-            cardID = portComReceiveOut.ReadExisting().ToString();
-            cardID = "22";
+            cardID = portComReceiveOut.ReadExisting();
             if (!cardID.Equals(""))
             {
                 saveImage();
