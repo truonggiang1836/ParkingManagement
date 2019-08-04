@@ -34,6 +34,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCarList = new System.Windows.Forms.DataGridView();
+            this.STT_CarList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogImages4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarLogIsLostCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnXemDanhSachXeTon = new System.Windows.Forms.Button();
             this.tbCarLogIdentify = new System.Windows.Forms.TextBox();
@@ -63,28 +85,8 @@
             this.label40 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
             this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
-            this.STT_CarList = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogImages4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column27 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column28 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarLogIsLostCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column32 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column33 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBoxTruyVanLoaiXe = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -147,8 +149,181 @@
             this.dgvCarList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCarList_CellClick);
             this.dgvCarList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCarList_DataBindingComplete);
             // 
+            // STT_CarList
+            // 
+            this.STT_CarList.HeaderText = "STT";
+            this.STT_CarList.Name = "STT_CarList";
+            this.STT_CarList.ReadOnly = true;
+            this.STT_CarList.Width = 70;
+            // 
+            // CarLogIdentify
+            // 
+            this.CarLogIdentify.DataPropertyName = "Identify";
+            this.CarLogIdentify.HeaderText = "Identify";
+            this.CarLogIdentify.Name = "CarLogIdentify";
+            this.CarLogIdentify.ReadOnly = true;
+            this.CarLogIdentify.Visible = false;
+            // 
+            // CarLogImages
+            // 
+            this.CarLogImages.DataPropertyName = "Images";
+            this.CarLogImages.HeaderText = "Images";
+            this.CarLogImages.Name = "CarLogImages";
+            this.CarLogImages.ReadOnly = true;
+            this.CarLogImages.Visible = false;
+            // 
+            // CarLogImages2
+            // 
+            this.CarLogImages2.DataPropertyName = "Images2";
+            this.CarLogImages2.HeaderText = "Images2";
+            this.CarLogImages2.Name = "CarLogImages2";
+            this.CarLogImages2.ReadOnly = true;
+            this.CarLogImages2.Visible = false;
+            // 
+            // CarLogImages3
+            // 
+            this.CarLogImages3.DataPropertyName = "Images3";
+            this.CarLogImages3.HeaderText = "Images3";
+            this.CarLogImages3.Name = "CarLogImages3";
+            this.CarLogImages3.ReadOnly = true;
+            this.CarLogImages3.Visible = false;
+            // 
+            // CarLogImages4
+            // 
+            this.CarLogImages4.DataPropertyName = "Images4";
+            this.CarLogImages4.HeaderText = "Images4";
+            this.CarLogImages4.Name = "CarLogImages4";
+            this.CarLogImages4.ReadOnly = true;
+            this.CarLogImages4.Visible = false;
+            // 
+            // Column20
+            // 
+            this.Column20.DataPropertyName = "SmartCardIdentify";
+            this.Column20.HeaderText = "Số thẻ";
+            this.Column20.Name = "Column20";
+            this.Column20.ReadOnly = true;
+            // 
+            // CarID
+            // 
+            this.CarID.DataPropertyName = "ID";
+            this.CarID.HeaderText = "Mã chíp";
+            this.CarID.Name = "CarID";
+            this.CarID.ReadOnly = true;
+            // 
+            // Column22
+            // 
+            this.Column22.DataPropertyName = "Sign";
+            this.Column22.HeaderText = "Ký hiệu";
+            this.Column22.Name = "Column22";
+            this.Column22.ReadOnly = true;
+            // 
+            // Column23
+            // 
+            this.Column23.DataPropertyName = "Digit";
+            this.Column23.HeaderText = "Biển số";
+            this.Column23.Name = "Column23";
+            this.Column23.ReadOnly = true;
+            // 
+            // Column24
+            // 
+            this.Column24.DataPropertyName = "PartName";
+            this.Column24.HeaderText = "Loại xe";
+            this.Column24.Name = "Column24";
+            this.Column24.ReadOnly = true;
+            this.Column24.Width = 130;
+            // 
+            // Column25
+            // 
+            this.Column25.DataPropertyName = "TimeStart";
+            dataGridViewCellStyle2.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column25.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column25.HeaderText = "Thời gian vào";
+            this.Column25.Name = "Column25";
+            this.Column25.ReadOnly = true;
+            this.Column25.Width = 150;
+            // 
+            // Column26
+            // 
+            this.Column26.DataPropertyName = "TimeEnd";
+            dataGridViewCellStyle3.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column26.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column26.HeaderText = "Thời gian ra";
+            this.Column26.Name = "Column26";
+            this.Column26.ReadOnly = true;
+            this.Column26.Width = 150;
+            // 
+            // Column27
+            // 
+            this.Column27.DataPropertyName = "Cost";
+            this.Column27.HeaderText = "Giá tiền";
+            this.Column27.Name = "Column27";
+            this.Column27.ReadOnly = true;
+            // 
+            // Column28
+            // 
+            this.Column28.DataPropertyName = "IDTicketMonth";
+            this.Column28.HeaderText = "Thẻ tháng";
+            this.Column28.Name = "Column28";
+            this.Column28.ReadOnly = true;
+            // 
+            // Column29
+            // 
+            this.Column29.DataPropertyName = "UserIn";
+            this.Column29.HeaderText = "Người vào";
+            this.Column29.Name = "Column29";
+            this.Column29.ReadOnly = true;
+            // 
+            // Column30
+            // 
+            this.Column30.DataPropertyName = "UserOut";
+            this.Column30.HeaderText = "Người ra";
+            this.Column30.Name = "Column30";
+            this.Column30.ReadOnly = true;
+            // 
+            // CarLogIsLostCard
+            // 
+            this.CarLogIsLostCard.DataPropertyName = "IsLostCard";
+            this.CarLogIsLostCard.HeaderText = "Mất  thẻ";
+            this.CarLogIsLostCard.Name = "CarLogIsLostCard";
+            this.CarLogIsLostCard.ReadOnly = true;
+            // 
+            // Column32
+            // 
+            this.Column32.DataPropertyName = "Computer";
+            this.Column32.HeaderText = "Máy";
+            this.Column32.Name = "Column32";
+            this.Column32.ReadOnly = true;
+            this.Column32.Width = 150;
+            // 
+            // Column33
+            // 
+            this.Column33.DataPropertyName = "Account";
+            this.Column33.HeaderText = "Tài khoản";
+            this.Column33.Name = "Column33";
+            this.Column33.ReadOnly = true;
+            // 
+            // Column34
+            // 
+            this.Column34.DataPropertyName = "DateUpdate";
+            dataGridViewCellStyle4.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column34.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column34.HeaderText = "Ngày xử lý";
+            this.Column34.Name = "Column34";
+            this.Column34.ReadOnly = true;
+            this.Column34.Width = 150;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "PartID";
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.label1);
+            this.panel10.Controls.Add(this.comboBoxTruyVanLoaiXe);
             this.panel10.Controls.Add(this.btnXemDanhSachXeTon);
             this.panel10.Controls.Add(this.tbCarLogIdentify);
             this.panel10.Controls.Add(this.dateTimePickerCarTimeOut);
@@ -388,7 +563,7 @@
             this.tbCarIDSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarIDSearch.Location = new System.Drawing.Point(96, 116);
             this.tbCarIDSearch.Name = "tbCarIDSearch";
-            this.tbCarIDSearch.Size = new System.Drawing.Size(315, 22);
+            this.tbCarIDSearch.Size = new System.Drawing.Size(111, 22);
             this.tbCarIDSearch.TabIndex = 11;
             // 
             // tbCarIdentifySearch
@@ -445,176 +620,24 @@
             this.pictureBoxCarLogImage2.TabIndex = 1;
             this.pictureBoxCarLogImage2.TabStop = false;
             // 
-            // STT_CarList
+            // comboBoxTruyVanLoaiXe
             // 
-            this.STT_CarList.HeaderText = "STT";
-            this.STT_CarList.Name = "STT_CarList";
-            this.STT_CarList.ReadOnly = true;
-            this.STT_CarList.Width = 70;
+            this.comboBoxTruyVanLoaiXe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTruyVanLoaiXe.FormattingEnabled = true;
+            this.comboBoxTruyVanLoaiXe.Location = new System.Drawing.Point(300, 116);
+            this.comboBoxTruyVanLoaiXe.Name = "comboBoxTruyVanLoaiXe";
+            this.comboBoxTruyVanLoaiXe.Size = new System.Drawing.Size(111, 21);
+            this.comboBoxTruyVanLoaiXe.TabIndex = 31;
             // 
-            // CarLogIdentify
+            // label1
             // 
-            this.CarLogIdentify.DataPropertyName = "Identify";
-            this.CarLogIdentify.HeaderText = "Identify";
-            this.CarLogIdentify.Name = "CarLogIdentify";
-            this.CarLogIdentify.ReadOnly = true;
-            this.CarLogIdentify.Visible = false;
-            // 
-            // CarLogImages
-            // 
-            this.CarLogImages.DataPropertyName = "Images";
-            this.CarLogImages.HeaderText = "Images";
-            this.CarLogImages.Name = "CarLogImages";
-            this.CarLogImages.ReadOnly = true;
-            this.CarLogImages.Visible = false;
-            // 
-            // CarLogImages2
-            // 
-            this.CarLogImages2.DataPropertyName = "Images2";
-            this.CarLogImages2.HeaderText = "Images2";
-            this.CarLogImages2.Name = "CarLogImages2";
-            this.CarLogImages2.ReadOnly = true;
-            this.CarLogImages2.Visible = false;
-            // 
-            // CarLogImages3
-            // 
-            this.CarLogImages3.DataPropertyName = "Images3";
-            this.CarLogImages3.HeaderText = "Images3";
-            this.CarLogImages3.Name = "CarLogImages3";
-            this.CarLogImages3.ReadOnly = true;
-            this.CarLogImages3.Visible = false;
-            // 
-            // CarLogImages4
-            // 
-            this.CarLogImages4.DataPropertyName = "Images4";
-            this.CarLogImages4.HeaderText = "Images4";
-            this.CarLogImages4.Name = "CarLogImages4";
-            this.CarLogImages4.ReadOnly = true;
-            this.CarLogImages4.Visible = false;
-            // 
-            // Column20
-            // 
-            this.Column20.DataPropertyName = "SmartCardIdentify";
-            this.Column20.HeaderText = "Số thẻ";
-            this.Column20.Name = "Column20";
-            this.Column20.ReadOnly = true;
-            // 
-            // CarID
-            // 
-            this.CarID.DataPropertyName = "ID";
-            this.CarID.HeaderText = "Mã chíp";
-            this.CarID.Name = "CarID";
-            this.CarID.ReadOnly = true;
-            // 
-            // Column22
-            // 
-            this.Column22.DataPropertyName = "Sign";
-            this.Column22.HeaderText = "Ký hiệu";
-            this.Column22.Name = "Column22";
-            this.Column22.ReadOnly = true;
-            // 
-            // Column23
-            // 
-            this.Column23.DataPropertyName = "Digit";
-            this.Column23.HeaderText = "Biển số";
-            this.Column23.Name = "Column23";
-            this.Column23.ReadOnly = true;
-            // 
-            // Column24
-            // 
-            this.Column24.DataPropertyName = "PartName";
-            this.Column24.HeaderText = "Loại xe";
-            this.Column24.Name = "Column24";
-            this.Column24.ReadOnly = true;
-            this.Column24.Width = 130;
-            // 
-            // Column25
-            // 
-            this.Column25.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle2.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column25.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column25.HeaderText = "Thời gian vào";
-            this.Column25.Name = "Column25";
-            this.Column25.ReadOnly = true;
-            this.Column25.Width = 150;
-            // 
-            // Column26
-            // 
-            this.Column26.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle3.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column26.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Column26.HeaderText = "Thời gian ra";
-            this.Column26.Name = "Column26";
-            this.Column26.ReadOnly = true;
-            this.Column26.Width = 150;
-            // 
-            // Column27
-            // 
-            this.Column27.DataPropertyName = "Cost";
-            this.Column27.HeaderText = "Giá tiền";
-            this.Column27.Name = "Column27";
-            this.Column27.ReadOnly = true;
-            // 
-            // Column28
-            // 
-            this.Column28.DataPropertyName = "IDTicketMonth";
-            this.Column28.HeaderText = "Thẻ tháng";
-            this.Column28.Name = "Column28";
-            this.Column28.ReadOnly = true;
-            // 
-            // Column29
-            // 
-            this.Column29.DataPropertyName = "UserIn";
-            this.Column29.HeaderText = "Người vào";
-            this.Column29.Name = "Column29";
-            this.Column29.ReadOnly = true;
-            // 
-            // Column30
-            // 
-            this.Column30.DataPropertyName = "UserOut";
-            this.Column30.HeaderText = "Người ra";
-            this.Column30.Name = "Column30";
-            this.Column30.ReadOnly = true;
-            // 
-            // CarLogIsLostCard
-            // 
-            this.CarLogIsLostCard.DataPropertyName = "IsLostCard";
-            this.CarLogIsLostCard.HeaderText = "Mất  thẻ";
-            this.CarLogIsLostCard.Name = "CarLogIsLostCard";
-            this.CarLogIsLostCard.ReadOnly = true;
-            // 
-            // Column32
-            // 
-            this.Column32.DataPropertyName = "Computer";
-            this.Column32.HeaderText = "Máy";
-            this.Column32.Name = "Column32";
-            this.Column32.ReadOnly = true;
-            this.Column32.Width = 150;
-            // 
-            // Column33
-            // 
-            this.Column33.DataPropertyName = "Account";
-            this.Column33.HeaderText = "Tài khoản";
-            this.Column33.Name = "Column33";
-            this.Column33.ReadOnly = true;
-            // 
-            // Column34
-            // 
-            this.Column34.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle4.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column34.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column34.HeaderText = "Ngày xử lý";
-            this.Column34.Name = "Column34";
-            this.Column34.ReadOnly = true;
-            this.Column34.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "PartID";
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(234, 119);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "LOẠI XE";
             // 
             // FormQuanLyXeVaoRa
             // 
@@ -696,5 +719,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxTruyVanLoaiXe;
     }
 }

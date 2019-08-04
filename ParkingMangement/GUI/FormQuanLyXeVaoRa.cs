@@ -34,6 +34,18 @@ namespace ParkingMangement.GUI
             FormQuanLy.setFormatTimeForDateTimePicker(dateTimePickerCarTimeOut);
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateIn);
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
+            loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
+        }
+
+        private void loadPartDataWithFieldAllToComboBox(ComboBox cb)
+        {
+            DataTable dt = PartDAO.GetAllData();
+            DataRow dr = dt.NewRow();
+            dr["PartName"] = "Tất cả";
+            dt.Rows.InsertAt(dr, 0);
+            cb.DataSource = dt;
+            cb.DisplayMember = "PartName";
+            cb.ValueMember = "ID";
         }
 
         private void btnSearchCar_Click(object sender, EventArgs e)
@@ -46,6 +58,11 @@ namespace ParkingMangement.GUI
         private CarDTO getCarModel()
         {
             CarDTO carDTO = new CarDTO();
+            if (comboBoxTruyVanLoaiXe.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)comboBoxTruyVanLoaiXe.SelectedItem).Row;
+                carDTO.IdPart = Convert.ToString(dataRow["ID"]);
+            }
             DateTime startDate = dateTimePickerCarDateIn.Value;
             DateTime startTime = dateTimePickerCarTimeIn.Value;
             startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, startTime.Hour, startTime.Minute, 0);

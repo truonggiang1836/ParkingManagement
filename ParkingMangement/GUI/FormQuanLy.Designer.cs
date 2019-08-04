@@ -44,8 +44,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
             System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
             System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
@@ -94,6 +92,8 @@
             treeNode53});
             System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
             System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -570,19 +570,6 @@
             this.btnImportDanhSachVeThang = new System.Windows.Forms.Button();
             this.tabPageGiaHanVeThang = new System.Windows.Forms.TabPage();
             this.dgvRenewTicketMonthList = new System.Windows.Forms.DataGridView();
-            this.RenewIsChosen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.STT_RenewTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RenewIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RenewTicketMonthID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RenewExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel27 = new System.Windows.Forms.Panel();
             this.btnRenewByPlusDate = new System.Windows.Forms.Button();
             this.label113 = new System.Windows.Forms.Label();
@@ -658,6 +645,12 @@
             this.tabPageCauHinhKetNoi = new System.Windows.Forms.TabPage();
             this.btnLuuCauHinhKetNoi = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tb_com_receive_out = new System.Windows.Forms.TextBox();
+            this.label190 = new System.Windows.Forms.Label();
+            this.tb_com_send = new System.Windows.Forms.TextBox();
+            this.label193 = new System.Windows.Forms.Label();
+            this.label194 = new System.Windows.Forms.Label();
+            this.tb_com_receive_in = new System.Windows.Forms.TextBox();
             this.tb_ip_host = new System.Windows.Forms.TextBox();
             this.label129 = new System.Windows.Forms.Label();
             this.tb_folder_root = new System.Windows.Forms.TextBox();
@@ -878,12 +871,19 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
-            this.tb_com_receive_out = new System.Windows.Forms.TextBox();
-            this.label190 = new System.Windows.Forms.Label();
-            this.tb_com_send = new System.Windows.Forms.TextBox();
-            this.label193 = new System.Windows.Forms.Label();
-            this.label194 = new System.Windows.Forms.Label();
-            this.tb_com_receive_in = new System.Windows.Forms.TextBox();
+            this.RenewIsChosen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.STT_RenewTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewTicketMonthID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewDaysRemaining = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RenewExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -5924,7 +5924,7 @@
             this.RenewIdentify,
             this.RenewTicketMonthID,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
+            this.RenewDaysRemaining,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn11,
@@ -5939,104 +5939,6 @@
             this.dgvRenewTicketMonthList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRenewTicketMonthList_CellClick);
             this.dgvRenewTicketMonthList.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvRenewTicketMonthList_CurrentCellDirtyStateChanged);
             this.dgvRenewTicketMonthList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvRenewTicketMonthList_DataBindingComplete);
-            // 
-            // RenewIsChosen
-            // 
-            this.RenewIsChosen.HeaderText = "Chọn";
-            this.RenewIsChosen.Name = "RenewIsChosen";
-            this.RenewIsChosen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.RenewIsChosen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.RenewIsChosen.Width = 70;
-            // 
-            // STT_RenewTicketMonthList
-            // 
-            this.STT_RenewTicketMonthList.HeaderText = "STT";
-            this.STT_RenewTicketMonthList.Name = "STT_RenewTicketMonthList";
-            this.STT_RenewTicketMonthList.Width = 70;
-            // 
-            // RenewIdentify
-            // 
-            this.RenewIdentify.DataPropertyName = "Identify";
-            this.RenewIdentify.HeaderText = "Số thẻ";
-            this.RenewIdentify.Name = "RenewIdentify";
-            this.RenewIdentify.ReadOnly = true;
-            // 
-            // RenewTicketMonthID
-            // 
-            this.RenewTicketMonthID.DataPropertyName = "ID";
-            this.RenewTicketMonthID.HeaderText = "Mã chíp";
-            this.RenewTicketMonthID.Name = "RenewTicketMonthID";
-            this.RenewTicketMonthID.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "PartName";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Loại xe";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 130;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "DaysRemaining";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Số ngày";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Digit";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Biển số";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "CustomerName";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Tên";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Address";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Địa chỉ";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.HeaderText = "Giới hạn giờ";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn14
-            // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "ChargesAmount";
-            this.dataGridViewTextBoxColumn14.HeaderText = "Tiền thu";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn15
-            // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle32.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle32;
-            this.dataGridViewTextBoxColumn15.HeaderText = "Ngày ĐK";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            // 
-            // RenewExpirationDate
-            // 
-            this.RenewExpirationDate.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle33.Format = "dd-MM-yyyy";
-            this.RenewExpirationDate.DefaultCellStyle = dataGridViewCellStyle33;
-            this.RenewExpirationDate.HeaderText = "Ngày HH";
-            this.RenewExpirationDate.Name = "RenewExpirationDate";
-            this.RenewExpirationDate.ReadOnly = true;
             // 
             // panel27
             // 
@@ -6345,8 +6247,8 @@
             // dataGridViewTextBoxColumn22
             // 
             this.dataGridViewTextBoxColumn22.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle34.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle32.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn22.DefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridViewTextBoxColumn22.HeaderText = "Ngày đăng ký";
             this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
             this.dataGridViewTextBoxColumn22.ReadOnly = true;
@@ -6355,8 +6257,8 @@
             // dataGridViewTextBoxColumn23
             // 
             this.dataGridViewTextBoxColumn23.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle35.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle35;
+            dataGridViewCellStyle33.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn23.DefaultCellStyle = dataGridViewCellStyle33;
             this.dataGridViewTextBoxColumn23.HeaderText = "Ngày hết hạn";
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             this.dataGridViewTextBoxColumn23.ReadOnly = true;
@@ -6365,8 +6267,8 @@
             // dataGridViewTextBoxColumn21
             // 
             this.dataGridViewTextBoxColumn21.DataPropertyName = "DayUnlimit";
-            dataGridViewCellStyle36.Format = "dd-MM-yyyy HH:mm:ss";
-            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle36;
+            dataGridViewCellStyle34.Format = "dd-MM-yyyy HH:mm:ss";
+            this.dataGridViewTextBoxColumn21.DefaultCellStyle = dataGridViewCellStyle34;
             this.dataGridViewTextBoxColumn21.HeaderText = "Ngày mất thẻ";
             this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
             this.dataGridViewTextBoxColumn21.ReadOnly = true;
@@ -6389,8 +6291,8 @@
             // Column6
             // 
             this.Column6.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle37.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle35.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle35;
             this.Column6.HeaderText = "Ngày xử lý";
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
@@ -6602,8 +6504,8 @@
             // Column45
             // 
             this.Column45.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle38.Format = "dd-MM-yyyy";
-            this.Column45.DefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle36.Format = "dd-MM-yyyy";
+            this.Column45.DefaultCellStyle = dataGridViewCellStyle36;
             this.Column45.HeaderText = "Ngày đăng ký";
             this.Column45.Name = "Column45";
             this.Column45.ReadOnly = true;
@@ -6612,8 +6514,8 @@
             // Column46
             // 
             this.Column46.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle39.Format = "dd-MM-yyyy";
-            this.Column46.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle37.Format = "dd-MM-yyyy";
+            this.Column46.DefaultCellStyle = dataGridViewCellStyle37;
             this.Column46.HeaderText = "Ngày hết hạn";
             this.Column46.Name = "Column46";
             this.Column46.ReadOnly = true;
@@ -6622,8 +6524,8 @@
             // Column47
             // 
             this.Column47.DataPropertyName = "DayUnlimit";
-            dataGridViewCellStyle40.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column47.DefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle38.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column47.DefaultCellStyle = dataGridViewCellStyle38;
             this.Column47.HeaderText = "Ngày mất thẻ";
             this.Column47.Name = "Column47";
             this.Column47.ReadOnly = true;
@@ -6798,6 +6700,57 @@
             this.groupBox2.Size = new System.Drawing.Size(726, 487);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
+            // 
+            // tb_com_receive_out
+            // 
+            this.tb_com_receive_out.Location = new System.Drawing.Point(104, 278);
+            this.tb_com_receive_out.Name = "tb_com_receive_out";
+            this.tb_com_receive_out.Size = new System.Drawing.Size(603, 22);
+            this.tb_com_receive_out.TabIndex = 53;
+            // 
+            // label190
+            // 
+            this.label190.AutoSize = true;
+            this.label190.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label190.Location = new System.Drawing.Point(17, 309);
+            this.label190.Name = "label190";
+            this.label190.Size = new System.Drawing.Size(72, 16);
+            this.label190.TabIndex = 52;
+            this.label190.Text = "COM barie";
+            // 
+            // tb_com_send
+            // 
+            this.tb_com_send.Location = new System.Drawing.Point(104, 306);
+            this.tb_com_send.Name = "tb_com_send";
+            this.tb_com_send.Size = new System.Drawing.Size(603, 22);
+            this.tb_com_send.TabIndex = 51;
+            // 
+            // label193
+            // 
+            this.label193.AutoSize = true;
+            this.label193.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label193.Location = new System.Drawing.Point(17, 281);
+            this.label193.Name = "label193";
+            this.label193.Size = new System.Drawing.Size(59, 16);
+            this.label193.TabIndex = 50;
+            this.label193.Text = "COM out";
+            // 
+            // label194
+            // 
+            this.label194.AutoSize = true;
+            this.label194.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label194.Location = new System.Drawing.Point(17, 252);
+            this.label194.Name = "label194";
+            this.label194.Size = new System.Drawing.Size(51, 16);
+            this.label194.TabIndex = 49;
+            this.label194.Text = "COM in";
+            // 
+            // tb_com_receive_in
+            // 
+            this.tb_com_receive_in.Location = new System.Drawing.Point(104, 249);
+            this.tb_com_receive_in.Name = "tb_com_receive_in";
+            this.tb_com_receive_in.Size = new System.Drawing.Size(603, 22);
+            this.tb_com_receive_in.TabIndex = 48;
             // 
             // tb_ip_host
             // 
@@ -7386,8 +7339,8 @@
             // dataGridViewTextBoxColumn41
             // 
             this.dataGridViewTextBoxColumn41.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle41.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle39.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle39;
             this.dataGridViewTextBoxColumn41.HeaderText = "Thời gian vào";
             this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
             this.dataGridViewTextBoxColumn41.ReadOnly = true;
@@ -7396,8 +7349,8 @@
             // dataGridViewTextBoxColumn42
             // 
             this.dataGridViewTextBoxColumn42.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle42.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle42;
+            dataGridViewCellStyle40.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle40;
             this.dataGridViewTextBoxColumn42.HeaderText = "Thời gian ra";
             this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
             this.dataGridViewTextBoxColumn42.ReadOnly = true;
@@ -7903,8 +7856,8 @@
             // CommonLogProcessDate
             // 
             this.CommonLogProcessDate.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle43.Format = "dd-MM-yyyy HH:mm:ss";
-            this.CommonLogProcessDate.DefaultCellStyle = dataGridViewCellStyle43;
+            dataGridViewCellStyle41.Format = "dd-MM-yyyy HH:mm:ss";
+            this.CommonLogProcessDate.DefaultCellStyle = dataGridViewCellStyle41;
             this.CommonLogProcessDate.HeaderText = "Ngày XL";
             this.CommonLogProcessDate.Name = "CommonLogProcessDate";
             this.CommonLogProcessDate.ReadOnly = true;
@@ -8369,8 +8322,8 @@
             // Column25
             // 
             this.Column25.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle44.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column25.DefaultCellStyle = dataGridViewCellStyle44;
+            dataGridViewCellStyle42.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column25.DefaultCellStyle = dataGridViewCellStyle42;
             this.Column25.HeaderText = "Thời gian vào";
             this.Column25.Name = "Column25";
             this.Column25.ReadOnly = true;
@@ -8379,8 +8332,8 @@
             // Column26
             // 
             this.Column26.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle45.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column26.DefaultCellStyle = dataGridViewCellStyle45;
+            dataGridViewCellStyle43.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column26.DefaultCellStyle = dataGridViewCellStyle43;
             this.Column26.HeaderText = "Thời gian ra";
             this.Column26.Name = "Column26";
             this.Column26.ReadOnly = true;
@@ -8446,8 +8399,8 @@
             // Column34
             // 
             this.Column34.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle46.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column34.DefaultCellStyle = dataGridViewCellStyle46;
+            dataGridViewCellStyle44.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column34.DefaultCellStyle = dataGridViewCellStyle44;
             this.Column34.HeaderText = "Ngày xử lý";
             this.Column34.Name = "Column34";
             this.Column34.ReadOnly = true;
@@ -8733,9 +8686,9 @@
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.Location = new System.Drawing.Point(22, 17);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(60, 16);
+            this.label35.Size = new System.Drawing.Size(51, 16);
             this.label35.TabIndex = 3;
-            this.label35.Text = "Truy vấn";
+            this.label35.Text = "Loại xe";
             // 
             // panel11
             // 
@@ -8846,8 +8799,8 @@
             // Column40
             // 
             this.Column40.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle47.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column40.DefaultCellStyle = dataGridViewCellStyle47;
+            dataGridViewCellStyle45.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column40.DefaultCellStyle = dataGridViewCellStyle45;
             this.Column40.HeaderText = "Thời gian vào";
             this.Column40.Name = "Column40";
             this.Column40.ReadOnly = true;
@@ -8856,8 +8809,8 @@
             // Column41
             // 
             this.Column41.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle48.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column41.DefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle46.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column41.DefaultCellStyle = dataGridViewCellStyle46;
             this.Column41.HeaderText = "Thời gian ra";
             this.Column41.Name = "Column41";
             this.Column41.ReadOnly = true;
@@ -9016,56 +8969,103 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
-            // tb_com_receive_out
+            // RenewIsChosen
             // 
-            this.tb_com_receive_out.Location = new System.Drawing.Point(104, 278);
-            this.tb_com_receive_out.Name = "tb_com_receive_out";
-            this.tb_com_receive_out.Size = new System.Drawing.Size(603, 22);
-            this.tb_com_receive_out.TabIndex = 53;
+            this.RenewIsChosen.HeaderText = "Chọn";
+            this.RenewIsChosen.Name = "RenewIsChosen";
+            this.RenewIsChosen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RenewIsChosen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.RenewIsChosen.Width = 70;
             // 
-            // label190
+            // STT_RenewTicketMonthList
             // 
-            this.label190.AutoSize = true;
-            this.label190.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label190.Location = new System.Drawing.Point(17, 309);
-            this.label190.Name = "label190";
-            this.label190.Size = new System.Drawing.Size(72, 16);
-            this.label190.TabIndex = 52;
-            this.label190.Text = "COM barie";
+            this.STT_RenewTicketMonthList.HeaderText = "STT";
+            this.STT_RenewTicketMonthList.Name = "STT_RenewTicketMonthList";
+            this.STT_RenewTicketMonthList.Width = 70;
             // 
-            // tb_com_send
+            // RenewIdentify
             // 
-            this.tb_com_send.Location = new System.Drawing.Point(104, 306);
-            this.tb_com_send.Name = "tb_com_send";
-            this.tb_com_send.Size = new System.Drawing.Size(603, 22);
-            this.tb_com_send.TabIndex = 51;
+            this.RenewIdentify.DataPropertyName = "Identify";
+            this.RenewIdentify.HeaderText = "Số thẻ";
+            this.RenewIdentify.Name = "RenewIdentify";
+            this.RenewIdentify.ReadOnly = true;
             // 
-            // label193
+            // RenewTicketMonthID
             // 
-            this.label193.AutoSize = true;
-            this.label193.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label193.Location = new System.Drawing.Point(17, 281);
-            this.label193.Name = "label193";
-            this.label193.Size = new System.Drawing.Size(59, 16);
-            this.label193.TabIndex = 50;
-            this.label193.Text = "COM out";
+            this.RenewTicketMonthID.DataPropertyName = "ID";
+            this.RenewTicketMonthID.HeaderText = "Mã chíp";
+            this.RenewTicketMonthID.Name = "RenewTicketMonthID";
+            this.RenewTicketMonthID.ReadOnly = true;
             // 
-            // label194
+            // dataGridViewTextBoxColumn4
             // 
-            this.label194.AutoSize = true;
-            this.label194.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label194.Location = new System.Drawing.Point(17, 252);
-            this.label194.Name = "label194";
-            this.label194.Size = new System.Drawing.Size(51, 16);
-            this.label194.TabIndex = 49;
-            this.label194.Text = "COM in";
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "PartName";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Loại xe";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 130;
             // 
-            // tb_com_receive_in
+            // RenewDaysRemaining
             // 
-            this.tb_com_receive_in.Location = new System.Drawing.Point(104, 249);
-            this.tb_com_receive_in.Name = "tb_com_receive_in";
-            this.tb_com_receive_in.Size = new System.Drawing.Size(603, 22);
-            this.tb_com_receive_in.TabIndex = 48;
+            this.RenewDaysRemaining.DataPropertyName = "DaysRemaining";
+            this.RenewDaysRemaining.HeaderText = "Số ngày";
+            this.RenewDaysRemaining.Name = "RenewDaysRemaining";
+            this.RenewDaysRemaining.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Digit";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Biển số";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "CustomerName";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Tên";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn13
+            // 
+            this.dataGridViewTextBoxColumn13.HeaderText = "Giới hạn giờ";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn14
+            // 
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "ChargesAmount";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Tiền thu";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn15
+            // 
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "RegistrationDate";
+            dataGridViewCellStyle47.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn15.DefaultCellStyle = dataGridViewCellStyle47;
+            this.dataGridViewTextBoxColumn15.HeaderText = "Ngày ĐK";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            // 
+            // RenewExpirationDate
+            // 
+            this.RenewExpirationDate.DataPropertyName = "ExpirationDate";
+            dataGridViewCellStyle48.Format = "dd-MM-yyyy";
+            this.RenewExpirationDate.DefaultCellStyle = dataGridViewCellStyle48;
+            this.RenewExpirationDate.HeaderText = "Ngày HH";
+            this.RenewExpirationDate.Name = "RenewExpirationDate";
+            this.RenewExpirationDate.ReadOnly = true;
             // 
             // FormQuanLy
             // 
@@ -9955,19 +9955,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CMND_Log;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartName_Log;
         private System.Windows.Forms.DataGridViewTextBoxColumn CarKind_Log;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn RenewIsChosen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT_RenewTicketMonthList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RenewIdentify;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RenewTicketMonthID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RenewExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuPartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarIn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarOut;
@@ -10073,5 +10060,18 @@
         private System.Windows.Forms.Label label193;
         private System.Windows.Forms.Label label194;
         private System.Windows.Forms.TextBox tb_com_receive_in;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn RenewIsChosen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_RenewTicketMonthList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RenewIdentify;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RenewTicketMonthID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RenewDaysRemaining;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RenewExpirationDate;
     }
 }

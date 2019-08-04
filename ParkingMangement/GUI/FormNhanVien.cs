@@ -310,30 +310,34 @@ namespace ParkingMangement.GUI
         private void saveImage()
         {
             Program.isHasCarInOut = true;
-            DataTable dtCommonCard = CardDAO.GetCardByID(cardID);
-            DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
-            if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
+            if (!cardID.Equals(""))
             {
-                if (CardDAO.isUsingByCardID(cardID))
+                DataTable dtCommonCard = CardDAO.GetCardByID(cardID);
+                DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
+                if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
                 {
-                    if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                    if (CardDAO.isUsingByCardID(cardID))
                     {
-                        checkForSaveToDB(true);
+                        if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                        {
+                            checkForSaveToDB(true);
+                        }
+                        else
+                        {
+                            checkForSaveToDB(false);
+                        }
                     }
                     else
                     {
-                        checkForSaveToDB(false);
+                        MessageBox.Show(Constant.sMessageCardIsLost);
                     }
-                } else
-                {
-                    MessageBox.Show(Constant.sMessageCardIsLost);
                 }
-            } else
-            {
-                MessageBox.Show(Constant.sMessageCardIdNotExist);
+                else
+                {
+                    MessageBox.Show(Constant.sMessageCardIdNotExist);
+                }
+                dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             }
-
-            dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)

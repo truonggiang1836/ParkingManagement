@@ -1443,7 +1443,23 @@ namespace ParkingMangement.GUI
             {
                 dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTicketData(key, null);
             }
+            setColorForRenewTicketMonthList();
+        }
 
+        private void setColorForRenewTicketMonthList()
+        {
+            dgvRenewTicketMonthList.DefaultCellStyle.ForeColor = Color.Black;
+            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+            {
+                int daysRemaining = Convert.ToInt32(dgvRenewTicketMonthList.Rows[row.Index].Cells["RenewDaysRemaining"].Value);
+                if (daysRemaining <= 0)
+                {
+                    foreach (DataGridViewColumn col in dgvRenewTicketMonthList.Columns)
+                    {
+                        dgvRenewTicketMonthList[col.Index, row.Index].Style.ForeColor = Color.Red;
+                    }
+                }
+            }
         }
 
         private void searchTicketLogData()
@@ -1485,6 +1501,7 @@ namespace ParkingMangement.GUI
         {
             DataTable data = TicketMonthDAO.GetAllNearExpiredTicketData(DateTime.Now);
             dgvRenewTicketMonthList.DataSource = data;
+            setColorForRenewTicketMonthList();
         }
 
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
