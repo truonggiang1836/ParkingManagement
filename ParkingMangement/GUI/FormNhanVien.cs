@@ -767,22 +767,26 @@ namespace ParkingMangement.GUI
                 {
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)
                     {
-                        pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
+                        //pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
+                        zoomImageShowToPictureBox(imagePath1, pictureBoxImage1);
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
                         if (keyboardDeviceName.Equals(rfidIn))
                         {
-                            pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
+                            //pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
+                            zoomImageShowToPictureBox(imagePath1, pictureBoxImage1);
                         }
                         else
                         {
-                            pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
+                            //pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
+                            zoomImageShowToPictureBox(imagePath1, pictureBoxImage3);
                         }
                     }
                     else
                     {
-                        pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
+                        //pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
+                        zoomImageShowToPictureBox(imagePath1, pictureBoxImage3);
                     }
                 }
                 string image2 = dtLastCar.Rows[0].Field<string>("Images2");
@@ -791,22 +795,26 @@ namespace ParkingMangement.GUI
                 {
                     if (inOutType == ConfigDTO.TYPE_OUT_IN)
                     {
-                        pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
+                        //pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
+                        zoomImageShowToPictureBox(imagePath2, pictureBoxImage2);
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
                         if (keyboardDeviceName.Equals(rfidIn))
                         {
-                            pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
+                            //pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
+                            zoomImageShowToPictureBox(imagePath2, pictureBoxImage2);
                         }
                         else
                         {
-                            pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
+                            //pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
+                            zoomImageShowToPictureBox(imagePath2, pictureBoxImage4);
                         }
                     }
                     else
                     {
-                        pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
+                        //pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
+                        zoomImageShowToPictureBox(imagePath2, pictureBoxImage4);
                     }
                 }
                     
@@ -880,18 +888,56 @@ namespace ParkingMangement.GUI
 
         private string getPathFromSnapshot(AxVLCPlugin2 axVLCPlugin, PictureBox pictureBox)
         {
+            float reduceSizePercent = 0.5f;
+            int compressedQuality = 25;
+
             string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString();
             Directory.CreateDirectory(path);
             Util.ShareFolder(path, "Test Share", "This is a Test Share");
             Directory.SetCurrentDirectory(path);
             axVLCPlugin.video.takeSnapshot();
 
-            string imageFile = Util.NewestFileofDirectory(path);
+            string originalFileName = Util.NewestFileofDirectory(path);
+            FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
+            System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+            zoomImageShowToPictureBox(originalFileName, pictureBox);
+            System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
+            string compressedFileName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
+            string destImagePath = path + @"\" + compressedFileName;
+            stream.Dispose();
+            File.Delete(originalFileName);
+            Util.SaveJpeg(destImagePath, resizeImage, compressedQuality);
+            return Constant.getCurrentDateString() + @"\" + compressedFileName;
+        }
+
+        private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
+        {
+            float zoomImageRatio = 0.5f;
+            if (pictureBox == pictureBoxImage1)
+            {
+                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera1 / 100;
+            }
+            else if (pictureBox == pictureBoxImage2)
+            {
+                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera2 / 100;
+            }
+            else if (pictureBox == pictureBoxImage3)
+            {
+                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera3 / 100;
+            }
+            else if (pictureBox == pictureBoxImage4)
+            {
+                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera4 / 100;
+            }
+            zoomImageRatio = 1 - zoomImageRatio;
+
+            FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             if (pictureBox != null)
             {
-                pictureBox.Image = Bitmap.FromFile(imageFile);
+                pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
             }
-            return Constant.getCurrentDateString() + @"\" + imageFile;
+            stream.Dispose();
         }
 
         private void resetPictureBoxImage1()

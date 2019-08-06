@@ -18,6 +18,8 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 using System.Management;
 using System.Security.Principal;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 
 namespace ParkingMangement.Utils
 {
@@ -426,5 +428,90 @@ namespace ParkingMangement.Utils
                 //MessageBox.Show(ex.Message, "error!");
             }
         }
+
+        public static Image Resize(Image img, float percent)
+        {
+            int originalW = img.Width;
+            int originalH = img.Height;
+            int resizeW = (int) (originalW * percent);
+            int resizeH = (int) (originalH * percent);
+            Bitmap bmp = new Bitmap(resizeW, resizeH);
+            Graphics graphics = Graphics.FromImage(bmp);
+            graphics.DrawImage(img, 0, 0, resizeW, resizeH);
+            graphics.Dispose();
+            return bmp;
+        }
+
+        /// <summary> 
+        /// Saves an image as a jpeg image, with the given quality 
+        /// </summary> 
+        /// <param name="path"> Path to which the image would be saved. </param> 
+        /// <param name="quality"> An integer from 0 to 100, with 100 being the highest quality. </param> 
+        public static void SaveJpeg(string path, Image img, int quality)
+        {
+            if (quality < 0 || quality > 100)
+                throw new ArgumentOutOfRangeException("quality must be between 0 and 100.");
+
+            // Encoder parameter for image quality 
+            EncoderParameter qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
+            // JPEG image codec 
+            ImageCodecInfo jpegCodec = GetEncoderInfo("image/jpeg");
+            EncoderParameters encoderParams = new EncoderParameters(1);
+            encoderParams.Param[0] = qualityParam;
+            img.Save(path, jpegCodec, encoderParams);
+        }
+
+        /// <summary> 
+        /// Returns the image codec with the given mime type 
+        /// </summary> 
+        private static ImageCodecInfo GetEncoderInfo(string mimeType)
+        {
+            // Get image codecs for all image formats 
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+
+            // Find the correct image codec 
+            for (int i = 0; i < codecs.Length; i++)
+                if (codecs[i].MimeType == mimeType)
+                    return codecs[i];
+
+            return null;
+        }
+
+        public static Image ResizeImage(Image imgToResize, float ratio)
+        {
+            var originalWidth = imgToResize.Width;
+            var originalHeight = imgToResize.Height;
+
+            //how many units are there to make the original length
+            int destinationHeight = (int) (originalHeight * ratio);
+            int destinationWidth = (int) (originalWidth * ratio);
+            
+
+            var hScale = Convert.ToInt32(destinationHeight * ratio);
+            var wScale = Convert.ToInt32(destinationWidth * ratio);
+
+            //start cropping from the center
+            var startX = (originalWidth - wScale) / 2;
+            var startY = (originalHeight - hScale) / 2;
+
+            //crop the image from the specified location and size
+            var sourceRectangle = new Rectangle(startX, startY, wScale, hScale);
+
+            //the future size of the image
+            var bitmap = new Bitmap(destinationWidth, destinationHeight);
+
+            //fill-in the whole bitmap
+            var destinationRectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+
+            //generate the new image
+            using (var g = Graphics.FromImage(bitmap))
+            {
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(imgToResize, destinationRectangle, sourceRectangle, GraphicsUnit.Pixel);
+            }
+
+            return bitmap;
+        }
+
     }
 }

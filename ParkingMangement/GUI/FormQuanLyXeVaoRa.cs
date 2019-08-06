@@ -314,13 +314,13 @@ namespace ParkingMangement.GUI
 
         private void pictureBoxCarLogImage2_Click(object sender, EventArgs e)
         {
-            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage3.Image);
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage2.Image);
             f.Show();
         }
 
         private void pictureBoxCarLogImage3_Click(object sender, EventArgs e)
         {
-            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage2.Image);
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage3.Image);
             f.Show();
         }
 
