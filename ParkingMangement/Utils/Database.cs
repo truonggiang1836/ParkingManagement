@@ -43,23 +43,18 @@ namespace ParkingMangement
 
         public static void OpenConnection()
         {
-            Console.WriteLine("Getting Connection ...");
             mySqlConnection = GetDBConnection();
 
             try
             {
-                Console.WriteLine("Openning Connection ...");
-
                 if (mySqlConnection.State == ConnectionState.Closed)
                 {
                     mySqlConnection.Open();
                 }
-
-                Console.WriteLine("Connection successful!");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                
             }
 
             Console.Read();

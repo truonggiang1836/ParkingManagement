@@ -75,7 +75,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private static bool saveInOutTypeToConfig(int inOutType)
+        public static bool saveInOutTypeToConfig(int inOutType)
         {
             try
             {

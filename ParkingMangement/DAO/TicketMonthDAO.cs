@@ -25,6 +25,7 @@ namespace ParkingMangement.DAO
             "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit from TicketMonth, SmartCard where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0'";
 
         private static string sqlOrderByIdentify = " order by SmartCard.Identify asc";
+        private static string sqlOrderByExpirationDate = " order by TicketMonth.ExpirationDate asc";
         public static DataTable GetAllData()
         {
             string sql = sqlGetAllData + sqlOrderByIdentify;
@@ -72,7 +73,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllNearExpiredTicketData(DateTime currentDate)
         {
             string sql = sqlGetAllNearExpiredTicketData;
-            sql += sqlOrderByIdentify;
+            sql += sqlOrderByExpirationDate;
             DataTable data = Database.ExcuQuery(sql);
 
             data.Columns.Add("DaysRemaining", typeof(System.Int32));
@@ -101,7 +102,7 @@ namespace ParkingMangement.DAO
                 sql += " and (SmartCard.Identify like '%" + key + "%' or TicketMonth.Digit like '%" + key
                     + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.Address like '%" + key + "%')";
             }
-            sql += sqlOrderByIdentify;
+            sql += sqlOrderByExpirationDate;
             DataTable data = Database.ExcuQuery(sql);
 
             DateTime currentDate = DateTime.Now;
@@ -124,7 +125,6 @@ namespace ParkingMangement.DAO
                     data.Rows[row].Delete();
                 }
             }
-
             return data;
         }
 

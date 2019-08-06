@@ -86,6 +86,8 @@
             this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
+            this.comboBoxTruyVanLoaiXe = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
@@ -321,6 +323,8 @@
             // 
             // panel10
             // 
+            this.panel10.Controls.Add(this.label1);
+            this.panel10.Controls.Add(this.comboBoxTruyVanLoaiXe);
             this.panel10.Controls.Add(this.btnXemDanhSachXeTon);
             this.panel10.Controls.Add(this.tbCarLogIdentify);
             this.panel10.Controls.Add(this.dateTimePickerCarTimeOut);
@@ -533,7 +537,7 @@
             this.tbCarIDSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCarIDSearch.Location = new System.Drawing.Point(96, 116);
             this.tbCarIDSearch.Name = "tbCarIDSearch";
-            this.tbCarIDSearch.Size = new System.Drawing.Size(315, 22);
+            this.tbCarIDSearch.Size = new System.Drawing.Size(111, 22);
             this.tbCarIDSearch.TabIndex = 11;
             // 
             // tbCarIdentifySearch
@@ -628,6 +632,25 @@
             this.pictureBoxCarLogImage3.TabIndex = 1;
             this.pictureBoxCarLogImage3.TabStop = false;
             this.pictureBoxCarLogImage3.Click += new System.EventHandler(this.pictureBoxCarLogImage3_Click);
+            //
+            // comboBoxTruyVanLoaiXe
+            // 
+            this.comboBoxTruyVanLoaiXe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTruyVanLoaiXe.FormattingEnabled = true;
+            this.comboBoxTruyVanLoaiXe.Location = new System.Drawing.Point(300, 116);
+            this.comboBoxTruyVanLoaiXe.Name = "comboBoxTruyVanLoaiXe";
+            this.comboBoxTruyVanLoaiXe.Size = new System.Drawing.Size(111, 21);
+            this.comboBoxTruyVanLoaiXe.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(234, 119);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "LOẠI XE";
             // 
             // FormQuanLyXeVaoRa
             // 
@@ -709,5 +732,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column33;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column34;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboBoxTruyVanLoaiXe;
     }
 }

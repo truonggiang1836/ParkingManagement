@@ -469,6 +469,7 @@ namespace ParkingMangement.GUI
             numericTinhTienCongVanCostTicketMonth.Value = mComputerDTO.CostTicketMonth;
             numericTinhTienCongVanMinTime.Value = mComputerDTO.MinMinute;
             numericTinhTienCongVanMinCost.Value = mComputerDTO.MinCost;
+            numericTinhTienCongVanLimit.Value = mComputerDTO.Limit;
         }
 
         private void updateTinhTienTheoCongVan()
@@ -488,6 +489,7 @@ namespace ParkingMangement.GUI
                 mComputerDTO.CostTicketMonth = (int)numericTinhTienCongVanCostTicketMonth.Value;
                 mComputerDTO.MinMinute = (int)numericTinhTienCongVanMinTime.Value;
                 mComputerDTO.MinCost = (int)numericTinhTienCongVanMinCost.Value;
+                mComputerDTO.Limit = (int)numericTinhTienCongVanLimit.Value;
 
                 if (mComputerDTO.StartHourNight <= mComputerDTO.EndHourNight)
                 {
@@ -1441,7 +1443,23 @@ namespace ParkingMangement.GUI
             {
                 dgvRenewTicketMonthList.DataSource = TicketMonthDAO.searchNearExpiredTicketData(key, null);
             }
+            setColorForRenewTicketMonthList();
+        }
 
+        private void setColorForRenewTicketMonthList()
+        {
+            dgvRenewTicketMonthList.DefaultCellStyle.ForeColor = Color.Black;
+            foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+            {
+                int daysRemaining = Convert.ToInt32(dgvRenewTicketMonthList.Rows[row.Index].Cells["RenewDaysRemaining"].Value);
+                if (daysRemaining <= 0)
+                {
+                    foreach (DataGridViewColumn col in dgvRenewTicketMonthList.Columns)
+                    {
+                        dgvRenewTicketMonthList[col.Index, row.Index].Style.ForeColor = Color.Red;
+                    }
+                }
+            }
         }
 
         private void searchTicketLogData()
@@ -1483,6 +1501,7 @@ namespace ParkingMangement.GUI
         {
             DataTable data = TicketMonthDAO.GetAllNearExpiredTicketData(DateTime.Now);
             dgvRenewTicketMonthList.DataSource = data;
+            setColorForRenewTicketMonthList();
         }
 
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
@@ -3987,6 +4006,9 @@ namespace ParkingMangement.GUI
                     config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
                     config.computerName = Constant.sEncodeStart + tb_ip_host.Text + Constant.sEncodeEnd;
                     config.folderRoot = Constant.sEncodeStart + tb_folder_root.Text + Constant.sEncodeEnd;
+                    config.comReceiveIn = Constant.sEncodeStart + tb_com_receive_in.Text + Constant.sEncodeEnd;
+                    config.comReceiveOut = Constant.sEncodeStart + tb_com_receive_out.Text + Constant.sEncodeEnd;
+                    config.comSend = Constant.sEncodeStart + tb_com_send.Text + Constant.sEncodeEnd;
                     XmlSerializer xs = new XmlSerializer(typeof(Config));
                     TextWriter txtWriter = new StreamWriter(filePath);
                     xs.Serialize(txtWriter, config);
@@ -4024,6 +4046,9 @@ namespace ParkingMangement.GUI
                 tb_camera_url_4.Text = config.cameraUrl4;
                 tb_rfid_1.Text = config.rfidIn;
                 tb_rfid_2.Text = config.rfidOut;
+                tb_com_receive_in.Text = config.comReceiveIn;
+                tb_com_receive_out.Text = config.comReceiveOut;
+                tb_com_send.Text = config.comSend;
                 tb_ip_host.Text = config.computerName;
                 tb_folder_root.Text = config.folderRoot;
             }

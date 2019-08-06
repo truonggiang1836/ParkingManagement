@@ -64,5 +64,14 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "zoom_camera_4")]
         public int ZoomCamera4 { get; set; }
+
+        [XmlElement(ElementName = "com_receive_in")]
+        public string comReceiveIn { get; set; }
+
+        [XmlElement(ElementName = "com_receive_out")]
+        public string comReceiveOut { get; set; }
+
+        [XmlElement(ElementName = "com_send")]
+        public string comSend { get; set; }
     }
 }

@@ -42,7 +42,8 @@ namespace ParkingMangement.GUI
         public string CurrentUserID;
         const bool CaptureOnlyInForeground = true;
         private string cardID = "0";
-        private string keyboardDeviceName = "";
+        private string rfidInput = "";
+        private string portNameComReceiveInput = "";
 
         //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
         const string cameraUrl = @"rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
@@ -53,6 +54,11 @@ namespace ParkingMangement.GUI
 
         private string rfidIn = "";
         private string rfidOut = "";
+        private string portNameComReceiveIn = "";
+        private string portNameComReceiveOut = "";
+
+        private SerialPort portComReceiveIn;
+        private SerialPort portComReceiveOut;
 
         private string imagePath1;
         private string imagePath2;
@@ -93,9 +99,9 @@ namespace ParkingMangement.GUI
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
-            Network = new clsNetwork();
-            Network.AutoLoadNetworkChar();
-            Network.AutoLoadNetworkNum();
+            //Network = new clsNetwork();
+            //Network.AutoLoadNetworkChar();
+            //Network.AutoLoadNetworkNum();
 
             CurrentUserID = Program.CurrentUserID;
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
@@ -165,6 +171,8 @@ namespace ParkingMangement.GUI
             loadCamera3VLC();
             loadCamera4VLC();
 
+            getDataFromComReceive();
+
             oldSize = base.Size;
 
             CheckForIllegalCrossThreadCalls = false;
@@ -214,6 +222,15 @@ namespace ParkingMangement.GUI
                     //    var formChangePassword = new FormChangePassword();
                     //    formChangePassword.Show();
                     //open_bitmap();
+                    changeInOutSetting(true);
+                    break;
+                case Keys.F10:
+                    openBarie();
+                    MessageBox.Show("Barie đã mở");
+                    break;
+                case Keys.F11:
+                    closeBarie();
+                    MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
@@ -237,11 +254,12 @@ namespace ParkingMangement.GUI
                 //    formLogout.formNhanVien = this;
                 //    formLogout.Show();
                 //    break;
-                //case Keys.F12:
-                //    var formLogoutByCard = new FormLogOutByCard();
-                //    formLogoutByCard.formNhanVien = this;
-                //    formLogoutByCard.Show();
-                //    break;
+                case Keys.F12:
+                    //    var formLogoutByCard = new FormLogOutByCard();
+                    //    formLogoutByCard.formNhanVien = this;
+                    //    formLogoutByCard.Show();
+                    changeInOutSetting(false);
+                    break;
             }
         }
 
@@ -292,30 +310,34 @@ namespace ParkingMangement.GUI
         private void saveImage()
         {
             Program.isHasCarInOut = true;
-            DataTable dtCommonCard = CardDAO.GetCardByID(cardID);
-            DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
-            if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
+            if (!cardID.Equals(""))
             {
-                if (CardDAO.isUsingByCardID(cardID))
+                DataTable dtCommonCard = CardDAO.GetCardByID(cardID);
+                DataTable dtTicketCard = TicketMonthDAO.GetDataByID(cardID);
+                if (dtCommonCard != null && dtCommonCard.Rows.Count > 0)
                 {
-                    if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                    if (CardDAO.isUsingByCardID(cardID))
                     {
-                        checkForSaveToDB(true);
+                        if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
+                        {
+                            checkForSaveToDB(true);
+                        }
+                        else
+                        {
+                            checkForSaveToDB(false);
+                        }
                     }
                     else
                     {
-                        checkForSaveToDB(false);
+                        MessageBox.Show(Constant.sMessageCardIsLost);
                     }
-                } else
-                {
-                    MessageBox.Show(Constant.sMessageCardIsLost);
                 }
-            } else
-            {
-                MessageBox.Show(Constant.sMessageCardIdNotExist);
+                else
+                {
+                    MessageBox.Show(Constant.sMessageCardIdNotExist);
+                }
+                dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             }
-
-            dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -374,8 +396,8 @@ namespace ParkingMangement.GUI
             string digit = labelDigitIn.Text;
             if (!digit.Equals(""))
             {
-                saveImage1ToFile();
-                saveImage2ToFile();
+                //saveImage1ToFile();
+                //saveImage2ToFile();
                 CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
                 labelDigitIn.Text = "";
                 //pictureBoxImage1.Image = Properties.Resources.ic_logo;
@@ -477,7 +499,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     labelMoiVao.Text = "";
                     labelMoiRa.Text = Constant.sLabelMoiVao;
@@ -611,25 +633,40 @@ namespace ParkingMangement.GUI
                         carDTO.Cost = 0;
                     } else
                     {
-                        carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                        if (!isUpdateCarOut)
+                        {
+                            carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                        } else
+                        {
+                            labelCostOut.Text = dtLastCar.Rows[0].Field<int>("Cost") + "";
+                        }
+                        
                     }
 
                     DateTime? expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
-                    if (expirationDate != null && DateTime.Now.CompareTo(expirationDate) > 0)
+                    int totalDaysLeft = (int) ((DateTime)expirationDate - DateTime.Now).TotalDays;
+                    if (expirationDate != null && totalDaysLeft <= 5)
                     {
                         // vé tháng hết hạn
-                        int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
-                        switch (expiredTicketMonthTypeID)
+                        if (DateTime.Now.CompareTo(expirationDate) > 0)
                         {
-                            case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
-                                break;
-                            case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
-                            default:
-                                carDTO.Cost = tinhTienGiuXe(dtLastCar);
-                                isTicketMonthCard = false;
-                                break;
+                            int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+                            switch (expiredTicketMonthTypeID)
+                            {
+                                case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                                    break;
+                                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                                default:
+                                    carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                                    isTicketMonthCard = false;
+                                    break;
+                            }
+                            MessageBox.Show("Thẻ tháng đã hết hạn");
+                        } else
+                        {
+                            string message = "Thẻ tháng còn " + totalDaysLeft + " ngày nữa sẽ hết hạn!";
+                            MessageBox.Show(message);
                         }
-                        MessageBox.Show("Thẻ tháng đã hết hạn");
                     }
                 }
                 else
@@ -648,9 +685,10 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
-                CarDAO.UpdateCarOut(carDTO);
                 if (!isUpdateCarOut)
                 {
+                    CarDAO.UpdateCarOut(carDTO);
+                    openBarie();
                     WaitSyncCarOutDAO.Insert(identify);
                 }
 
@@ -683,7 +721,7 @@ namespace ParkingMangement.GUI
                 }
                 else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                 {
-                    if (keyboardDeviceName.Equals(rfidIn))
+                    if (inputIsInside())
                     {
                         labelMoiVao.Text = Constant.sLabelMoiRa;
                         labelMoiRa.Text = "";
@@ -772,7 +810,7 @@ namespace ParkingMangement.GUI
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
-                        if (keyboardDeviceName.Equals(rfidIn))
+                        if (inputIsInside())
                         {
                             //pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
                             zoomImageShowToPictureBox(imagePath1, pictureBoxImage1);
@@ -800,7 +838,7 @@ namespace ParkingMangement.GUI
                     }
                     else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
                     {
-                        if (keyboardDeviceName.Equals(rfidIn))
+                        if (inputIsInside())
                         {
                             //pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
                             zoomImageShowToPictureBox(imagePath2, pictureBoxImage2);
@@ -950,7 +988,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     pictureBox = pictureBoxImage3;
                 }
@@ -972,7 +1010,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     pictureBox = pictureBoxImage4;
                 }
@@ -1015,7 +1053,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     axVLCPlugin = axVLCPlugin3;
                     pictureBox = pictureBoxImage3;
@@ -1031,7 +1069,7 @@ namespace ParkingMangement.GUI
         private void loadCamera2VLC()
         {
             String rtspString = cameraUrl2;
-            axVLCPlugin2.playlist.add(rtspString, "2", "--network-caching=100");
+            axVLCPlugin2.playlist.add(rtspString);
             try
             {
                 axVLCPlugin2.playlist.play();
@@ -1055,7 +1093,7 @@ namespace ParkingMangement.GUI
                 pictureBox = pictureBoxImage4;
             } else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (keyboardDeviceName.Equals(rfidOut))
+                if (inputIsOutside())
                 {
                     axVLCPlugin = axVLCPlugin4;
                     pictureBox = pictureBoxImage4;
@@ -1071,7 +1109,7 @@ namespace ParkingMangement.GUI
         private void loadCamera3VLC()
         {
             String rtspString = cameraUrl3;
-            axVLCPlugin3.playlist.add(rtspString, "3", "--network-caching=100");
+            axVLCPlugin3.playlist.add(rtspString);
             try
             {
                 axVLCPlugin3.playlist.play();
@@ -1093,7 +1131,7 @@ namespace ParkingMangement.GUI
                 axVLCPlugin = axVLCPlugin1;
             } else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
-                if (keyboardDeviceName.Equals(rfidIn))
+                if (inputIsInside())
                 {
                     axVLCPlugin = axVLCPlugin1;
                 }
@@ -1104,7 +1142,7 @@ namespace ParkingMangement.GUI
         private void loadCamera4VLC()
         {
             String rtspString = cameraUrl4;
-            axVLCPlugin4.playlist.add(rtspString, "4", "--network-caching=100");
+            axVLCPlugin4.playlist.add(rtspString);
             try
             {
                 axVLCPlugin4.playlist.play();
@@ -1127,7 +1165,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
-                if (keyboardDeviceName.Equals(rfidIn))
+                if (inputIsInside())
                 {
                     axVLCPlugin = axVLCPlugin2;
                 }
@@ -1185,6 +1223,8 @@ namespace ParkingMangement.GUI
             cameraUrl4 = Util.getConfigFile().cameraUrl4;
             rfidIn = Util.getConfigFile().rfidIn;
             rfidOut = Util.getConfigFile().rfidOut;
+            portNameComReceiveIn = Util.getConfigFile().comReceiveIn;
+            portNameComReceiveOut = Util.getConfigFile().comReceiveOut;
             //cameraUrl1 = ConfigDAO.GetCamera1();
             //cameraUrl2 = ConfigDAO.GetCamera2();
             //cameraUrl3 = ConfigDAO.GetCamera3();
@@ -1240,10 +1280,10 @@ namespace ParkingMangement.GUI
             String source = e.KeyPressEvent.Source;
                 if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
             {
-                keyboardDeviceName = e.KeyPressEvent.DeviceName;
+                rfidInput = e.KeyPressEvent.DeviceName;
             } else
             {
-                keyboardDeviceName = "";
+                rfidInput = "";
             }
         }
 
@@ -1275,19 +1315,19 @@ namespace ParkingMangement.GUI
                 case ConfigDTO.TYPE_OUT_OUT:
                     return false;
                 case ConfigDTO.TYPE_IN_OUT:
-                    if (keyboardDeviceName.Equals(rfidOut))
+                    if (inputIsOutside())
                     {
                         return false;
                     }
                     return true;
                 case ConfigDTO.TYPE_OUT_IN:
-                    if (keyboardDeviceName.Equals(rfidOut))
+                    if (inputIsOutside())
                     {
                         return true;
                     }
                     return false;
                 default:
-                    if (keyboardDeviceName.Equals(rfidOut))
+                    if (inputIsOutside())
                     {
                         return false;
                     }
@@ -1317,6 +1357,7 @@ namespace ParkingMangement.GUI
         {
             string partID = CardDAO.getPartIDByCardID(cardID);
             ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
+            double limit = (double)computerDTO.Limit / 60; // (hour)
             if (dtLastCar != null)
             {
                 DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
@@ -1329,37 +1370,64 @@ namespace ParkingMangement.GUI
                 if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
                     return computerDTO.MinCost;
-                } else if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                } else if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
                 {
+                    // vào ngày - ra ngày
                     return computerDTO.DayCost;
-                } else if (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour <= computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day >= 1)
+                } else if (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day <= 1)
                 {
+                    // vào đêm - ra đêm
                     return computerDTO.NightCost;
                 } else if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO) || isCarInNightOutDayOneDate(timeIn, timeOut, computerDTO))
                 {
+                    // vào ngày - ra đêm hoặc vào đêm - ra ngày trong 1 ngày
                     if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
+                        // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
                         if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                         {
-                            return computerDTO.DayCost;
+                            // thời gian ngày lớn hơn đêm
+                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
+                            {
+                                // thời gian ngày nhỏ hơn giới hạn
+                                return computerDTO.DayCost;
+                            } else
+                            {
+                                // thời gian ngày lớn hơn giới hạn
+                                return computerDTO.NightCost;
+                            }
                         } else
                         {
+                            // thời gian ngày nhỏ hơn đêm
                             return computerDTO.NightCost;
                         }
                     } else
                     {
+                        // thời gian trong bãi lớn hơn khoảng giao ngày - đêm
                         return computerDTO.DayNightCost;
                     }
                 } else
                 {
+                    // vào - ra trong nhiều ngày
                     if (isCarInDayOutDay(timeIn, timeOut, computerDTO))
                     {
-                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
+                        // vào ngày - ra ngày
+                        if (getTotalHourOfDayWhenOutDay(timeOut, computerDTO) <= limit)
+                        {
+                            // thời gian ngày nhỏ hơn giới hạn
+                            return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
+                        } else
+                        {
+                            // thời gian ngày lớn hơn giới hạn
+                            return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
+                        }
                     } else if (isCarInNightOutNight(timeIn, timeOut, computerDTO))
                     {
+                        // vào đêm - ra đêm
                         return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.NightCost;
                     } else
                     {
+                        // vào ngày - ra đêm hoặc vào đêm - ra ngày
                         return (soLuotQuaNgay(timeIn, timeOut, computerDTO) + 1) * computerDTO.DayNightCost;
                     }
                 }
@@ -1467,33 +1535,41 @@ namespace ParkingMangement.GUI
 
         private bool isCarInDayOutDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour <= computerDTO.StartHourNight) && (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight);
+            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour < computerDTO.StartHourNight) && (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight);
         }
 
         private bool isCarInNightOutNight(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.StartHourNight || timeIn.Hour <= computerDTO.EndHourNight) && (timeOut.Hour >= computerDTO.StartHourNight || timeOut.Hour <= computerDTO.EndHourNight);
+            return (timeIn.Hour >= computerDTO.StartHourNight || timeIn.Hour < computerDTO.EndHourNight) && (timeOut.Hour >= computerDTO.StartHourNight || timeOut.Hour < computerDTO.EndHourNight);
         }
 
         private bool IsCarInDayOutNightOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour <= computerDTO.StartHourNight) && (timeOut.Hour >= computerDTO.StartHourNight || timeOut.Hour <= computerDTO.EndHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour < computerDTO.StartHourNight) && 
+                ((timeOut.Hour >= computerDTO.StartHourNight && timeOut.Date.Day == timeIn.Date.Day) || (timeOut.Hour < computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day == 1));
         }
 
         private bool isCarInNightOutDayOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.StartHourNight || timeIn.Hour <= computerDTO.EndHourNight) && (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour <= computerDTO.StartHourNight) && timeOut.Date.Day - timeIn.Date.Day <= 1;
+            return (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight) && 
+                ((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Date.Day - timeIn.Date.Day == 1) || (timeIn.Hour < computerDTO.EndHourNight && timeOut.Date.Day == timeIn.Date.Day));
         }
 
         private double getTotalHourOfDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
             {
-                return computerDTO.StartHourNight - timeIn.Hour - (double) timeIn.Date.Minute / 60; 
+                return computerDTO.StartHourNight - timeIn.Hour - (double) timeIn.Minute / 60; 
             } else
             {
-                return timeOut.Hour + (double) timeOut.Date.Minute / 60 - computerDTO.EndHourNight;
+                return timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.EndHourNight;
             }
+        }
+
+        private double getTotalHourOfDayWhenOutDay(DateTime timeOut, ComputerDTO computerDTO)
+        {
+            double value = timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.EndHourNight;
+            return value;
         }
 
         private double getTotalHourOfNight(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
@@ -1523,7 +1599,9 @@ namespace ParkingMangement.GUI
 
         private int soLuotQuaNgay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return Util.getTotalTimeByDay(timeIn, timeOut);
+            int dayDistant = Util.getTotalTimeByDay(timeIn, timeOut);
+            int countOfCircle = (int) Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.IntervalBetweenDayNight;
+            return countOfCircle - dayDistant;
         }
 
         public void updateCauHinhHienThiXeRaVao()
@@ -1593,7 +1671,7 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if (!keyboardDeviceName.Equals(rfidIn) && !keyboardDeviceName.Equals(rfidOut))
+                    if (!inputIsInside() && !inputIsOutside())
                     {
                         updateDigitCarIn();
                         tbRFIDCardID.Focus();
@@ -1614,7 +1692,6 @@ namespace ParkingMangement.GUI
                 case Keys.Space:
                     cardID = tbRFIDCardID.Text.Trim();
                     labelCardID.Text = CardDAO.getIdentifyByCardID(cardID) + "";
-                    string x = keyboardDeviceName;
                     tbRFIDCardID.Text = "";
                     if (!cardID.Equals(""))
                     {
@@ -1939,5 +2016,136 @@ namespace ParkingMangement.GUI
         //    }
         //    mIsHasCarInOut = false;
         //}
+
+        private void changeInOutSetting(bool isLeftSide)
+        {
+            int inOutType = Util.getConfigFile().inOutType;
+            int newInOutType = ConfigDTO.TYPE_IN_OUT;
+            if (isLeftSide)
+            {
+                switch (inOutType)
+                {
+                    case ConfigDTO.TYPE_IN_IN:
+                        newInOutType = ConfigDTO.TYPE_OUT_IN;
+                        break;
+                    case ConfigDTO.TYPE_OUT_OUT:
+                        newInOutType = ConfigDTO.TYPE_IN_OUT;
+                        break;
+                    case ConfigDTO.TYPE_IN_OUT:
+                        newInOutType = ConfigDTO.TYPE_OUT_OUT;
+                        break;
+                    case ConfigDTO.TYPE_OUT_IN:
+                        newInOutType = ConfigDTO.TYPE_IN_IN;
+                        break;
+                }
+            }
+            else
+            {
+                switch (inOutType)
+                {
+                    case ConfigDTO.TYPE_IN_IN:
+                        newInOutType = ConfigDTO.TYPE_IN_OUT;
+                        break;
+                    case ConfigDTO.TYPE_OUT_OUT:
+                        newInOutType = ConfigDTO.TYPE_OUT_IN;
+                        break;
+                    case ConfigDTO.TYPE_IN_OUT:
+                        newInOutType = ConfigDTO.TYPE_IN_IN;
+                        break;
+                    case ConfigDTO.TYPE_OUT_IN:
+                        newInOutType = ConfigDTO.TYPE_OUT_OUT;
+                        break;
+                }
+            }
+            FormInOutSetting.saveInOutTypeToConfig(newInOutType);
+            updateCauHinhHienThiXeRaVao();
+        }
+
+        private void openBarie()
+        {
+            string data = "@barie_open&";
+            string portName = Util.getConfigFile().comSend;
+            writeDataToPort(data, portName);
+        }
+
+        private void closeBarie()
+        {
+            string data = "@barie_close&";
+            string portName = Util.getConfigFile().comSend;
+            writeDataToPort(data, portName);
+        }
+
+        private SerialPort port;
+        private void writeDataToPort(string data, string portName)
+        {
+            try
+            {
+                port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                port.Open();
+                port.Write(data);
+                Console.WriteLine(data);
+            } catch (Exception e)
+            {
+                Console.WriteLine("bug: " + e.Message);
+            }
+        }
+
+        private void getDataFromComReceive()
+        {
+            try
+            {
+                portComReceiveIn = new SerialPort(portNameComReceiveIn, 9600, Parity.None, 8, StopBits.One);
+                portComReceiveIn.DataReceived += new SerialDataReceivedEventHandler(portComReceiveIn_DataReceived);
+                portComReceiveIn.Open();
+            } catch (Exception e)
+            {
+
+            }
+            try
+            {
+                portComReceiveOut = new SerialPort(portNameComReceiveOut, 57600, Parity.None, 8, StopBits.One);
+                portComReceiveOut.DataReceived += new SerialDataReceivedEventHandler(portComReceiveOut_DataReceived);
+                portComReceiveOut.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            portNameComReceiveInput = portNameComReceiveIn;
+            cardID = portComReceiveIn.ReadExisting();
+            if (!cardID.Equals(""))
+            {
+                saveImage();
+            }
+        }
+
+        private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            portNameComReceiveInput = portNameComReceiveOut;
+            cardID = portComReceiveOut.ReadExisting();
+            if (!cardID.Equals(""))
+            {
+                saveImage();
+            }
+        }
+
+        private bool inputIsOutside()
+        {
+            return rfidInput.Equals(rfidOut) || portNameComReceiveInput.Equals(portNameComReceiveOut);
+        }
+
+        private bool inputIsInside()
+        {
+            return rfidInput.Equals(rfidIn) || portNameComReceiveInput.Equals(portNameComReceiveIn);
+        }
+
+        private void FormNhanVien_Activated(object sender, EventArgs e)
+        {
+            tbRFIDCardID.Focus();
+        }
     }
 }
