@@ -940,7 +940,7 @@ namespace ParkingMangement.GUI
             System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             zoomImageShowToPictureBox(originalFileName, pictureBox);
             System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
-            string compressedFileName = DateTime.Now.ToString("yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
+            string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
             string destImagePath = path + @"\" + compressedFileName;
             stream.Dispose();
             File.Delete(originalFileName);
