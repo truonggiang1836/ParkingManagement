@@ -69,6 +69,9 @@ namespace ParkingMangement.GUI
         private const float LARGER_FONT_FACTOR = 1.5f;
         private const float SMALLER_FONT_FACTOR = 0.8f;
 
+        private bool isClosedBarie1 = true;
+        private bool isClosedBarie2 = true;
+
         //private bool mIsHasCarInOut = false;
 
         private int _lastFormSize;
@@ -224,14 +227,6 @@ namespace ParkingMangement.GUI
                     //open_bitmap();
                     changeInOutSetting(true);
                     break;
-                case Keys.F10:
-                    openBarie();
-                    MessageBox.Show("Barie đã mở");
-                    break;
-                case Keys.F11:
-                    closeBarie();
-                    MessageBox.Show("Barie đã đóng");
-                    break;
                 case Keys.F3:
                     var formLogin = new FormLogin();
                     formLogin.formNhanVien = this;
@@ -249,11 +244,47 @@ namespace ParkingMangement.GUI
                 case Keys.F7:
                     openFormQuanLyXeRaVao();
                     break;
-                //case Keys.F11:
-                //    var formLogout = new FormLogout();
-                //    formLogout.formNhanVien = this;
-                //    formLogout.Show();
-                //    break;
+                case Keys.F8:
+                    openBarie1();
+                    MessageBox.Show("Barie đã mở");
+                    break;
+                case Keys.F9:
+                    closeBarie1();
+                    MessageBox.Show("Barie đã đóng");
+                    break;
+                case Keys.F10:
+                    //if (isClosedBarie1)
+                    //{
+                    //    openBarie1();
+                    //    MessageBox.Show("Barie đã mở");
+                    //}
+                    //else
+                    //{
+                    //    closeBarie1();
+                    //    MessageBox.Show("Barie đã đóng");
+                    //}
+                    openBarie2();
+                    MessageBox.Show("Barie đã mở");
+                    break;
+                case Keys.F11:
+                    //    var formLogout = new FormLogout();
+                    //    formLogout.formNhanVien = this;
+                    //    formLogout.Show();
+                    //    break;
+
+                    //if (isClosedBarie2)
+                    //{
+                    //    openBarie2();
+                    //    MessageBox.Show("Barie đã mở");
+                    //}
+                    //else
+                    //{
+                    //    closeBarie2();
+                    //    MessageBox.Show("Barie đã đóng");
+                    //}
+                    closeBarie2();
+                    MessageBox.Show("Barie đã đóng");
+                    break;
                 case Keys.F12:
                     //    var formLogoutByCard = new FormLogOutByCard();
                     //    formLogoutByCard.formNhanVien = this;
@@ -261,6 +292,7 @@ namespace ParkingMangement.GUI
                     changeInOutSetting(false);
                     break;
             }
+            //tbRFIDCardID.Focus();
         }
 
         private void openInOutSetting()
@@ -439,6 +471,12 @@ namespace ParkingMangement.GUI
             CarDAO.Insert(carDTO);
             updateScreenForCarIn(isTicketMonthCard);
             WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
+            int inOutType = Util.getConfigFile().inOutType;
+            string cardType = PartDAO.GetTypeByID(CardDAO.getPartIDByCardID(cardID));
+            if (cardType == TypeDTO.TYPE_CAR)
+            {
+                openBarie1();
+            }
         }
 
         private void updateCarIn(bool isTicketMonthCard, DataTable dtLastCar)
@@ -685,17 +723,21 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
+                int inOutType = Util.getConfigFile().inOutType;
                 if (!isUpdateCarOut)
                 {
                     CarDAO.UpdateCarOut(carDTO);
-                    openBarie();
                     WaitSyncCarOutDAO.Insert(identify);
+                    string cardType = PartDAO.GetTypeByID(CardDAO.getPartIDByCardID(cardID));
+                    if (cardType == TypeDTO.TYPE_CAR)
+                    {
+                        openBarie2();
+                    }
                 }
 
                 labelCostIn.Text = "-";
                 labelCostOut.Text = "-";
 
-                int inOutType = Util.getConfigFile().inOutType;
                 if (inOutType == ConfigDTO.TYPE_OUT_IN)
                 {
                     labelMoiVao.Text = Constant.sLabelMoiRa;
@@ -926,6 +968,7 @@ namespace ParkingMangement.GUI
 
         private string getPathFromSnapshot(AxVLCPlugin2 axVLCPlugin, PictureBox pictureBox)
         {
+            return @"E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingManagement\Images\20190807\33_20190807_200936_637008053763543873.jpg";
             float reduceSizePercent = 0.5f;
             int compressedQuality = 25;
 
@@ -967,7 +1010,7 @@ namespace ParkingMangement.GUI
             {
                 zoomImageRatio = (float)Util.getConfigFile().ZoomCamera4 / 100;
             }
-            zoomImageRatio = 1 - zoomImageRatio;
+            zoomImageRatio = 1 - zoomImageRatio * 1.5f;
 
             FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
@@ -2061,28 +2104,60 @@ namespace ParkingMangement.GUI
             updateCauHinhHienThiXeRaVao();
         }
 
-        private void openBarie()
+        private void openBarie1()
         {
-            string data = "@barie_open&";
+            string data = Util.getConfigFile().signalOpenBarieIn;
             string portName = Util.getConfigFile().comSend;
             writeDataToPort(data, portName);
+            isClosedBarie1 = false;
         }
 
-        private void closeBarie()
+        private void openBarie2()
         {
-            string data = "@barie_close&";
+            string data = Util.getConfigFile().signalOpenBarieOut;
             string portName = Util.getConfigFile().comSend;
             writeDataToPort(data, portName);
+            isClosedBarie2 = false;
         }
 
-        private SerialPort port;
+        private void closeBarie1()
+        {
+            string data = Util.getConfigFile().signalCloseBarieIn;
+            string portName = Util.getConfigFile().comSend;
+            writeDataToPort(data, portName);
+            isClosedBarie1 = true;
+        }
+
+        private void closeBarie2()
+        {
+            string data = Util.getConfigFile().signalCloseBarieOut;
+            string portName = Util.getConfigFile().comSend;
+            writeDataToPort(data, portName);
+            isClosedBarie2 = true;
+        }
+
+        //SerialPort port;
+        SerialPort port;
         private void writeDataToPort(string data, string portName)
         {
             try
             {
-                port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
-                port.Open();
+                if (port == null)
+                {
+                    port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                }
+                
+                if (!port.IsOpen)
+                {
+                    port.Open();
+                }
+                port.WriteTimeout = 500;
+                //port.BaudRate = 9600;
+                //port.Parity = Parity.None;
+                //port.DataBits = 8;
+                //port.StopBits = StopBits.One;
                 port.Write(data);
+                //port.Close();
                 Console.WriteLine(data);
             } catch (Exception e)
             {

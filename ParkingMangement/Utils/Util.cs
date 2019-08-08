@@ -197,6 +197,10 @@ namespace ParkingMangement.Utils
                         config.comReceiveIn = config.comReceiveIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.comReceiveOut = config.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.comSend = config.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.signalOpenBarieIn = config.signalOpenBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.signalCloseBarieIn = config.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.signalOpenBarieOut = config.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.signalCloseBarieOut = config.signalCloseBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.lastSavedOrder = config.lastSavedOrder;
                         return config;
                     }
@@ -204,7 +208,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
             return null;
         }

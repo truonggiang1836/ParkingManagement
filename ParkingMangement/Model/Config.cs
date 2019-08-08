@@ -73,5 +73,17 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "com_send")]
         public string comSend { get; set; }
+
+        [XmlElement(ElementName = "signal_open_barie_in")]
+        public string signalOpenBarieIn { get; set; }
+
+        [XmlElement(ElementName = "signal_close_barie_in")]
+        public string signalCloseBarieIn { get; set; }
+
+        [XmlElement(ElementName = "signal_open_barie_out")]
+        public string signalOpenBarieOut { get; set; }
+
+        [XmlElement(ElementName = "signal_close_barie_out")]
+        public string signalCloseBarieOut { get; set; }
     }
 }

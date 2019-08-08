@@ -55,6 +55,17 @@ namespace ParkingMangement.DAO
             return "";
         }
 
+        public static string GetTypeByID(string id)
+        {
+            string sql = "select TypeID from Part where ID = '" + id + "'";
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                return data.Rows[0].Field<string>("TypeID");
+            }
+            return "";
+        }
+
         public static int GetAmountByPartID(string id)
         {
             string sql = "select Amount from Part where ID = '" + id + "'";
