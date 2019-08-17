@@ -9,6 +9,7 @@ namespace ParkingMangement.Utils
 {
     class Constant
     {
+        public const int AUTO_CLOSE_MESSAGE_BOX_TIME = 1000;
         public const string BREAK_LINE = "\r\n";
         public const string ARROW_STRING = " -> ";
 

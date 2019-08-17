@@ -20,9 +20,12 @@ namespace ParkingMangement.GUI
     public partial class FormQuanLyXeVaoRa : Form
     {
         private bool isXemDanhSachXeTon = false;
+        private Timer timerReadUHFData;
         public FormQuanLyXeVaoRa()
         {
             InitializeComponent();
+
+            initTimer();
         }
 
         private void FormQuanLyXeVaoRa_Load(object sender, EventArgs e)
@@ -345,6 +348,37 @@ namespace ParkingMangement.GUI
         {
             FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage4.Image);
             f.Show();
+        }
+
+        private void timerReadUHFData_Tick(object sender, EventArgs e)
+        {
+            string uhfInCardId = Program.uhfInReader.GetUHFData();
+            string uhfOutCardId = Program.uhfOutReader.GetUHFData();
+            string uhfCardId = uhfInCardId;
+            if (uhfCardId == null)
+            {
+                uhfCardId = uhfOutCardId;
+            }
+
+            if (uhfCardId != null)
+            {
+                TextBox focusedTextbox = null;
+                if (tbCarIDSearch.Focused)
+                {
+                    focusedTextbox = tbCarIDSearch;
+                }
+                if (focusedTextbox != null)
+                {
+                    focusedTextbox.Text = uhfCardId;
+                }
+            }
+        }
+
+        private void initTimer()
+        {
+            timerReadUHFData = new Timer();
+            timerReadUHFData.Enabled = true;
+            timerReadUHFData.Tick += new System.EventHandler(this.timerReadUHFData_Tick);
         }
     }
 }

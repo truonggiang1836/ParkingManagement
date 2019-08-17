@@ -22,6 +22,8 @@ namespace ParkingMangement
         public static string CurrentToken = "";
         public static bool isHostMachine = false;
         public static bool isHasCarInOut = false;
+        public static UHFReader uhfInReader;
+        public static UHFReader uhfOutReader;
 
         /// <summary>
         /// The main entry point for the application.
@@ -38,8 +40,16 @@ namespace ParkingMangement
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            uhfInReader = new UHFReader();
+            uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
+            uhfOutReader = new UHFReader();
+            uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut);
+
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Application.Run(new FormLogin());
+
+            
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)

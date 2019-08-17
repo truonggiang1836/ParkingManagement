@@ -39,6 +39,7 @@ namespace ParkingMangement.GUI
         const bool CaptureOnlyInForeground = true;
         private ComputerDTO mComputerDTO;
         private int mExportSaleType = EXPORT_SALE_NOT_YET_SEARCH;
+        private System.Windows.Forms.Timer timerReadUHFData;
         public FormQuanLy()
         {
             InitializeComponent();
@@ -48,6 +49,8 @@ namespace ParkingMangement.GUI
             //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
 
             _rawinput.KeyPressed += OnKeyPressed;
+
+            initTimer();
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -3971,12 +3974,17 @@ namespace ParkingMangement.GUI
         {
             if (e.KeyCode == Keys.Enter && !tbCardIDCreate.Text.Equals(null))
             {
-                if (checkCreateCardData())
-                {
-                    createCard();
-                    loadCardStatistic();
-                    tbCardIDCreate.Text = "";
-                }
+                checkAndCreateCard();
+            }
+        }
+
+        private void checkAndCreateCard()
+        {
+            if (checkCreateCardData())
+            {
+                createCard();
+                loadCardStatistic();
+                tbCardIDCreate.Text = "";
             }
         }
 
@@ -4734,6 +4742,84 @@ namespace ParkingMangement.GUI
         {
             FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage4.Image);
             f.Show();
+        }
+
+        private void timerReadUHFData_Tick(object sender, EventArgs e)
+        {
+            string uhfInCardId = Program.uhfInReader.GetUHFData();
+            string uhfOutCardId = Program.uhfOutReader.GetUHFData();
+            string uhfCardId = uhfInCardId;
+            if (uhfCardId == null)
+            {
+                uhfCardId = uhfOutCardId;
+            }
+
+            if (uhfCardId != null)
+            {
+                TextBox focusedTextbox = null;
+                if (tbCardSearch.Focused)
+                {
+                    focusedTextbox = tbCardSearch;
+                }
+                if (tbCardIDCreate.Focused)
+                {
+                    focusedTextbox = tbCardIDCreate;
+                }
+                if (tbTicketMonthIDCreate.Focused)
+                {
+                    focusedTextbox = tbTicketMonthIDCreate;
+                }
+                if (tbTicketMonthKeyWordSearch.Focused)
+                {
+                    focusedTextbox = tbTicketMonthKeyWordSearch;
+                }
+                if (tbRenewTicketMonthKeyWordSearch.Focused)
+                {
+                    focusedTextbox = tbRenewTicketMonthKeyWordSearch;
+                }
+                if (tbLostTicketMonthKeyWordSearch.Focused)
+                {
+                    focusedTextbox = tbLostTicketMonthKeyWordSearch;
+                }
+                if (tbLostTicketMonthID.Focused)
+                {
+                    focusedTextbox = tbLostTicketMonthID;
+                }
+                if (tbActiveTicketMonthKeyWordSearch.Focused)
+                {
+                    focusedTextbox = tbActiveTicketMonthKeyWordSearch;
+                }
+                if (tbCarIDSearch.Focused)
+                {
+                    focusedTextbox = tbCarIDSearch;
+                }
+                if (tbLostCardSearch.Focused)
+                {
+                    focusedTextbox = tbLostCardSearch;
+                }
+                if (tbTicketLogKeyWordSearch.Focused)
+                {
+                    focusedTextbox = tbTicketLogKeyWordSearch;
+                }
+                if (focusedTextbox != null)
+                {
+                    focusedTextbox.Text = uhfCardId;
+                    if (focusedTextbox == tbCardIDCreate)
+                    {
+                        if (!tbCardIDCreate.Text.Equals(null))
+                        {
+                            checkAndCreateCard();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void initTimer()
+        {
+            timerReadUHFData = new System.Windows.Forms.Timer();
+            timerReadUHFData.Enabled = true;
+            timerReadUHFData.Tick += new System.EventHandler(this.timerReadUHFData_Tick);
         }
     }
 }
