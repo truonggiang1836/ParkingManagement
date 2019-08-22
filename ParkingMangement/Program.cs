@@ -41,10 +41,13 @@ namespace ParkingMangement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            uhfInReader = new UHFReader();
-            uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
-            uhfOutReader = new UHFReader();
-            uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut);
+            if (Util.getConfigFile().isUsingUhf == 1)
+            {
+                uhfInReader = new UHFReader();
+                uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
+                uhfOutReader = new UHFReader();
+                uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut);
+            }
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Application.Run(new FormLogin());

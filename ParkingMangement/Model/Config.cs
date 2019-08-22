@@ -85,5 +85,11 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "signal_close_barie_out")]
         public string signalCloseBarieOut { get; set; }
+
+        [XmlElement(ElementName = "uhf_query_time")]
+        public int uhfQueryTime { get; set; }
+
+        [XmlElement(ElementName = "is_using_uhf")]
+        public int isUsingUhf { get; set; }
     }
 }

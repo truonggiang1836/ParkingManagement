@@ -5,6 +5,7 @@ using ParkingMangement.DTO;
 using ParkingMangement.Model;
 using ParkingMangement.Utils;
 using RawInput_dll;
+using ReaderB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,7 +51,10 @@ namespace ParkingMangement.GUI
 
             _rawinput.KeyPressed += OnKeyPressed;
 
-            initTimer();
+            if (Util.getConfigFile().isUsingUhf == 1)
+            {
+                initUhfTimer();
+            }
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -4746,8 +4750,32 @@ namespace ParkingMangement.GUI
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
         {
-            string uhfInCardId = Program.uhfInReader.GetUHFData();
-            string uhfOutCardId = Program.uhfOutReader.GetUHFData();
+            int frmcomportindexIn = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+            int frmcomportindexOut = UHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
+            string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
+            string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
+            //string uhfInCardId = null;
+
+            //byte[] ScanModeData = new byte[40960];
+            //int ValidDatalength, i;
+            //string temp, temps;
+            //ValidDatalength = 0;
+            //int frmcomportindex = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+            //int fCmdRet = StaticClassReaderB.ReadActiveModeData(ScanModeData, ref ValidDatalength, frmcomportindex);
+            //if (fCmdRet == 0)
+            //{
+            //    temp = "";
+            //    temps = UHFReader.ByteArrayToHexString(ScanModeData);
+            //    for (i = 0; i < ValidDatalength; i++)
+            //    {
+            //        temp = temp + temps.Substring(i * 2, 2) + " ";
+            //    }
+            //    if (ValidDatalength > 0)
+            //    {
+            //        uhfInCardId = temp.Trim();
+            //    }
+            //}
+
             string uhfCardId = uhfInCardId;
             if (uhfCardId == null)
             {
@@ -4815,7 +4843,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void initTimer()
+        private void initUhfTimer()
         {
             timerReadUHFData = new System.Windows.Forms.Timer();
             timerReadUHFData.Enabled = true;

@@ -102,7 +102,10 @@ namespace ParkingMangement.GUI
             //this.Resize += new EventHandler(Form_Resize);
             _lastFormSize = GetFormArea(this.Size);
 
-            initTimer();
+            if (Util.getConfigFile().isUsingUhf == 1)
+            {
+                initUhfTimer();
+            }
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
@@ -378,10 +381,11 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    MessageBox.Show(Constant.sMessageCardIdNotExist);
+                    AutoClosingMessageBox.Show(Constant.sMessageCardIdNotExist, "", 1000);
                 }
                 dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             }
+            portNameComReceiveInput = null;
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -391,13 +395,27 @@ namespace ParkingMangement.GUI
 
         private void checkForOpenBarie(DataTable dtLastCar)
         {
-            if (!KiemTraXeChuaRa(dtLastCar))
+            //if (!KiemTraXeChuaRa(dtLastCar))
+            //{
+            //    checkForOpenBarieIn();
+            //}
+            //else
+            //{
+            //    checkForOpenBarieOut();
+            //}
+            if (isCarIn())
             {
-                checkForOpenBarieIn();
+                if (!KiemTraXeChuaRa(dtLastCar))
+                {
+                    checkForOpenBarieIn();
+                }
             }
             else
             {
-                checkForOpenBarieOut();
+                if (KiemTraXeChuaRa(dtLastCar))
+                {
+                    checkForOpenBarieOut();
+                }
             }
         }
 
@@ -423,7 +441,7 @@ namespace ParkingMangement.GUI
                         resetPictureBoxImage1();
                         resetPictureBoxImage2();
                         tbRFIDCardID.Focus();
-                        AutoClosingMessageBox.Show("Thẻ này chưa được quẹt đầu ra", "", Constant.AUTO_CLOSE_MESSAGE_BOX_TIME);
+                        AutoClosingMessageBox.Show("Thẻ này chưa được quẹt đầu ra", "", 1000);
                         return;
                     }
                 }
@@ -452,7 +470,7 @@ namespace ParkingMangement.GUI
                 } else
                 {
                     tbRFIDCardID.Focus();
-                    AutoClosingMessageBox.Show("Thẻ này chưa được quẹt đầu vào", "", Constant.AUTO_CLOSE_MESSAGE_BOX_TIME);
+                    AutoClosingMessageBox.Show("Thẻ này chưa được quẹt đầu vào", "", 1000);
                 }
             }
         }
@@ -728,6 +746,15 @@ namespace ParkingMangement.GUI
         {
             if (dtLastCar != null && dtLastCar.Rows.Count > 0)
             {
+                DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
+                labelDateIn.Text = timeIn.ToString("dd/MM/yyyy");
+                labelTimeIn.Text = timeIn.ToString("HH:mm");
+                labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                labelTimeOut.Text = DateTime.Now.ToString("HH:mm");
+
+                string digit = dtLastCar.Rows[0].Field<string>("Digit");
+                labelDigitIn.Text = digit;
+
                 int identify = dtLastCar.Rows[0].Field<int>("Identify");
                 CarDTO carDTO = new CarDTO();
                 carDTO.Identify = identify;
@@ -908,16 +935,6 @@ namespace ParkingMangement.GUI
         {
             if (dtLastCar != null)
             {                    
-                DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
-                labelDateIn.Text = timeIn.ToString("dd/MM/yyyy");
-                labelTimeIn.Text = timeIn.ToString("HH:mm");
-                labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy");
-                labelTimeOut.Text = DateTime.Now.ToString("HH:mm");
-
-                string digit = dtLastCar.Rows[0].Field<string>("Digit");
-                labelDigitIn.Text = digit;
-
-
                 int inOutType = Util.getConfigFile().inOutType;
                 string image = dtLastCar.Rows[0].Field<string>("Images");
                 string imagePath1 = Constant.getSharedImageFolder() + image;
@@ -1063,15 +1080,17 @@ namespace ParkingMangement.GUI
             //}
 
 
-            string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
-            FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
-            System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+            //string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
+            //FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
+            //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             //System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
-            string destImagePath = path + @"\" + compressedFileName;
-            Util.SaveJpeg(destImagePath, img, compressedQuality);
-            stream.Dispose();
-            File.Delete(originalFileName);
-            return Constant.getCurrentDateString() + @"\" + compressedFileName;
+            //string destImagePath = path + @"\" + compressedFileName;
+            //Util.SaveJpeg(destImagePath, img, compressedQuality);
+            //img.Dispose();
+            //stream.Dispose();
+            //File.Delete(originalFileName);
+            //return Constant.getCurrentDateString() + @"\" + compressedFileName;
+            return Constant.getCurrentDateString() + @"\" + originalFileName;
         }
 
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
@@ -1095,13 +1114,22 @@ namespace ParkingMangement.GUI
             }
             zoomImageRatio = 1 - zoomImageRatio * 1.5f;
 
-            FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+            //FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             if (pictureBox != null)
             {
-                pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
+                System.Drawing.Image image = pictureBox.Image;
+                //pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
+                pictureBox.Image = System.Drawing.Image.FromFile(filePath);
+                //img.Dispose();
+                if (image != null)
+                {
+                    image.Dispose();
+                }
             }
-            stream.Dispose();
+            //stream.Dispose();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void resetPictureBoxImage1()
@@ -2357,7 +2385,6 @@ namespace ParkingMangement.GUI
             if (portNameComReceiveInput != null)
             {
                 bool result = portNameComReceiveInput.Equals(portNameComReceiveOut);
-                portNameComReceiveInput = null;
                 return result;
             }
             else
@@ -2386,8 +2413,9 @@ namespace ParkingMangement.GUI
 
         private void handleUhfData()
         {
-            string uhfInCardId = Program.uhfInReader.GetUHFData();
-            string uhfOutCardId = Program.uhfOutReader.GetUHFData();
+            int frmcomportindexIn = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+            int frmcomportindexOut = UHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
+            string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
             string newUhfCardId = null;
 
             if (uhfInCardId != null)
@@ -2395,25 +2423,30 @@ namespace ParkingMangement.GUI
                 portNameComReceiveInput = portNameComReceiveIn;
                 newUhfCardId = uhfInCardId;
             }
-            else if (uhfOutCardId != null)
+            else
             {
-                portNameComReceiveInput = portNameComReceiveOut;
-                newUhfCardId = uhfOutCardId;
+                string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
+                if (uhfOutCardId != null)
+                {
+                    portNameComReceiveInput = portNameComReceiveOut;
+                    newUhfCardId = uhfOutCardId;
+                }
             }
 
             if (newUhfCardId != null)
             {
+                labelMaThe.Text = newUhfCardId;
                 if (!newUhfCardId.Equals(oldUhfCardId))
                 {
                     cardID = newUhfCardId;
                     oldUhfCardId = newUhfCardId;
-                    labelMaThe.Text = cardID;
+                    //labelMaThe.Text = cardID;
                     saveImage();
                 }
             }
         }
 
-        private void initTimer()
+        private void initUhfTimer()
         {
             timerReadUHFData = new System.Windows.Forms.Timer();
             timerReadUHFData.Enabled = true;

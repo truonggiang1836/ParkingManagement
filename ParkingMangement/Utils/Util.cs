@@ -25,6 +25,7 @@ namespace ParkingMangement.Utils
 {
     static class Util
     {
+        private static Bitmap bitmap = null;
         public static string ImageToBase64(string Path)
         {
             using (Image image = Image.FromFile(Path))
@@ -201,6 +202,7 @@ namespace ParkingMangement.Utils
                         config.signalCloseBarieIn = config.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.signalOpenBarieOut = config.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.signalCloseBarieOut = config.signalCloseBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        config.isUsingUhf = config.isUsingUhf;
                         config.lastSavedOrder = config.lastSavedOrder;
                         return config;
                     }
@@ -456,16 +458,18 @@ namespace ParkingMangement.Utils
         /// <param name="quality"> An integer from 0 to 100, with 100 being the highest quality. </param> 
         public static void SaveJpeg(string path, Image img, int quality)
         {
-            if (quality < 0 || quality > 100)
-                throw new ArgumentOutOfRangeException("quality must be between 0 and 100.");
+            //if (quality < 0 || quality > 100)
+            //    throw new ArgumentOutOfRangeException("quality must be between 0 and 100.");
 
-            // Encoder parameter for image quality 
-            EncoderParameter qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
-            // JPEG image codec 
-            ImageCodecInfo jpegCodec = GetEncoderInfo("image/jpeg");
-            EncoderParameters encoderParams = new EncoderParameters(1);
-            encoderParams.Param[0] = qualityParam;
-            img.Save(path, jpegCodec, encoderParams);
+            //// Encoder parameter for image quality 
+            //EncoderParameter qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
+            //// JPEG image codec 
+            //ImageCodecInfo jpegCodec = GetEncoderInfo("image/jpeg");
+            //EncoderParameters encoderParams = new EncoderParameters(1);
+            //encoderParams.Param[0] = qualityParam;
+            //img.Save(path, jpegCodec, encoderParams);
+
+            img.Save(path);
         }
 
         /// <summary> 
@@ -484,40 +488,55 @@ namespace ParkingMangement.Utils
             return null;
         }
 
-        public static Image ResizeImage(Image imgToResize, float ratio)
+        public static Bitmap ResizeImage(Image imgToResize, float ratio)
         {
-            var originalWidth = imgToResize.Width;
-            var originalHeight = imgToResize.Height;
-
-            //how many units are there to make the original length
-            int destinationHeight = (int) (originalHeight * ratio);
-            int destinationWidth = (int) (originalWidth * ratio);
-            
-
-            var hScale = Convert.ToInt32(destinationHeight * ratio);
-            var wScale = Convert.ToInt32(destinationWidth * ratio);
-
-            //start cropping from the center
-            var startX = (originalWidth - wScale) / 2;
-            var startY = (originalHeight - hScale) / 2;
-
-            //crop the image from the specified location and size
-            var sourceRectangle = new Rectangle(startX, startY, wScale, hScale);
-
-            //the future size of the image
-            var bitmap = new Bitmap(destinationWidth, destinationHeight);
-
-            //fill-in the whole bitmap
-            var destinationRectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
-
-            //generate the new image
-            using (var g = Graphics.FromImage(bitmap))
+            try
             {
-                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                g.DrawImage(imgToResize, destinationRectangle, sourceRectangle, GraphicsUnit.Pixel);
-            }
+                var originalWidth = imgToResize.Width;
+                var originalHeight = imgToResize.Height;
 
-            return bitmap;
+                //how many units are there to make the original length
+                int destinationHeight = (int)(originalHeight * ratio);
+                int destinationWidth = (int)(originalWidth * ratio);
+
+
+                var hScale = Convert.ToInt32(destinationHeight * ratio);
+                var wScale = Convert.ToInt32(destinationWidth * ratio);
+
+                //start cropping from the center
+                var startX = (originalWidth - wScale) / 2;
+                var startY = (originalHeight - hScale) / 2;
+
+                //crop the image from the specified location and size
+                var sourceRectangle = new Rectangle(startX, startY, wScale, hScale);
+
+                //the future size of the image
+                //if (bitmap != null)
+                //{
+                //    bitmap.Dispose();
+                //    bitmap = null;
+                //}
+                if (bitmap == null)
+                {
+                    bitmap = new Bitmap(destinationWidth, destinationHeight);
+                }
+
+                //fill-in the whole bitmap
+                var destinationRectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);
+
+                //generate the new image
+                using (var g = Graphics.FromImage(bitmap))
+                {
+                    g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    g.DrawImage(imgToResize, destinationRectangle, sourceRectangle, GraphicsUnit.Pixel);
+                }
+
+                return bitmap;
+            } catch (Exception e)
+            {
+                return null;
+            }
+            
         }
 
     }

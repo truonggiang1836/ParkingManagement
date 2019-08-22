@@ -25,7 +25,10 @@ namespace ParkingMangement.GUI
         {
             InitializeComponent();
 
-            initTimer();
+            if (Util.getConfigFile().isUsingUhf == 1)
+            {
+                initUhfTimer();
+            }
         }
 
         private void FormQuanLyXeVaoRa_Load(object sender, EventArgs e)
@@ -352,8 +355,10 @@ namespace ParkingMangement.GUI
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
         {
-            string uhfInCardId = Program.uhfInReader.GetUHFData();
-            string uhfOutCardId = Program.uhfOutReader.GetUHFData();
+            int frmcomportindexIn = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+            int frmcomportindexOut = UHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
+            string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
+            string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
             string uhfCardId = uhfInCardId;
             if (uhfCardId == null)
             {
@@ -374,7 +379,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void initTimer()
+        private void initUhfTimer()
         {
             timerReadUHFData = new Timer();
             timerReadUHFData.Enabled = true;
