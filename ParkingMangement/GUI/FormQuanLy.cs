@@ -50,11 +50,6 @@ namespace ParkingMangement.GUI
             //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
 
             _rawinput.KeyPressed += OnKeyPressed;
-
-            if (Util.getConfigFile().isUsingUhf == 1)
-            {
-                initUhfTimer();
-            }
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -62,6 +57,10 @@ namespace ParkingMangement.GUI
             loadUserInfoTab();
             checkShowHideAllTabPage();
             labelKetQuaTaoThe.Text = "";
+            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            {
+                initUhfTimer();
+            }
         }
 
         private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)

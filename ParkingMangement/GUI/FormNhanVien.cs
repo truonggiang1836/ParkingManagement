@@ -32,6 +32,7 @@ using AForge.Video.DirectShow;
 using AForge.Vision.Motion;
 using ParkingMangement.TextRecognized;
 using System.Timers;
+using ReaderB;
 
 namespace ParkingMangement.GUI
 {
@@ -77,8 +78,6 @@ namespace ParkingMangement.GUI
 
         private int _lastFormSize;
 
-        private System.Windows.Forms.Timer timerReadUHFData;
-
 
         //=======class============
         clsImagePlate ImagePlate;
@@ -101,11 +100,6 @@ namespace ParkingMangement.GUI
 
             //this.Resize += new EventHandler(Form_Resize);
             _lastFormSize = GetFormArea(this.Size);
-
-            if (Util.getConfigFile().isUsingUhf == 1)
-            {
-                initUhfTimer();
-            }
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
@@ -164,6 +158,11 @@ namespace ParkingMangement.GUI
             labelComputer.Text = Environment.MachineName;
             labelParkingName.Text = ConfigDAO.GetParkingName();
 
+            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            {
+                initUhfTimer();
+            }
+
             updateThongKeXeTrongBaiByTimer();
             if (Program.isHostMachine)
             {
@@ -195,6 +194,8 @@ namespace ParkingMangement.GUI
             //imageBox2.Visible = false;
             //imageBox3.Visible = false;
             //imageBox4.Visible = false;
+
+            //timerReadUHFData.Enabled = true;
         }
 
         private void loadInfo()
@@ -356,6 +357,7 @@ namespace ParkingMangement.GUI
 
         private void saveImage()
         {
+            deleteOldImages();
             Program.isHasCarInOut = true;
             if (!cardID.Equals(""))
             {
@@ -1093,6 +1095,15 @@ namespace ParkingMangement.GUI
             return Constant.getCurrentDateString() + @"\" + originalFileName;
         }
 
+        private void deleteOldImages()
+        {
+            string path = Constant.getSharedImageFolder() + Constant.getDateOnLastMonthString();
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path, true);
+            }
+        }
+
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
         {
             float zoomImageRatio = 0.5f;
@@ -1119,9 +1130,9 @@ namespace ParkingMangement.GUI
             if (pictureBox != null)
             {
                 System.Drawing.Image image = pictureBox.Image;
+                System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
                 //pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                pictureBox.Image = System.Drawing.Image.FromFile(filePath);
-                //img.Dispose();
+                pictureBox.Image = img;
                 if (image != null)
                 {
                     image.Dispose();
@@ -2405,9 +2416,13 @@ namespace ParkingMangement.GUI
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
         {
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
             if (ActiveForm == this)
             {
+                timerReadUHFData.Enabled = false;
                 handleUhfData();
+                timerReadUHFData.Enabled = true;
             }
         }
 
@@ -2448,9 +2463,7 @@ namespace ParkingMangement.GUI
 
         private void initUhfTimer()
         {
-            timerReadUHFData = new System.Windows.Forms.Timer();
             timerReadUHFData.Enabled = true;
-            timerReadUHFData.Tick += new System.EventHandler(this.timerReadUHFData_Tick);
         }
 
         private void FormNhanVien_Shown(object sender, EventArgs e)

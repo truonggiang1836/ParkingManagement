@@ -90,6 +90,6 @@ namespace ParkingMangement.Model
         public int uhfQueryTime { get; set; }
 
         [XmlElement(ElementName = "is_using_uhf")]
-        public int isUsingUhf { get; set; }
+        public string isUsingUhf { get; set; } = "false";
     }
 }

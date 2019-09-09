@@ -175,6 +175,11 @@ namespace ParkingMangement.Utils
             return DateTime.Now.ToString("yyyyMMdd");
         }
 
+        public static string getDateOnLastMonthString()
+        {
+            return DateTime.Now.AddDays(-30).ToString("yyyyMMdd");
+        }
+
         public static string getSharedParkingManagementFolder()
         {
             return @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\";

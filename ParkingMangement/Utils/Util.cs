@@ -202,7 +202,6 @@ namespace ParkingMangement.Utils
                         config.signalCloseBarieIn = config.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.signalOpenBarieOut = config.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         config.signalCloseBarieOut = config.signalCloseBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.isUsingUhf = config.isUsingUhf;
                         config.lastSavedOrder = config.lastSavedOrder;
                         return config;
                     }
@@ -370,7 +369,11 @@ namespace ParkingMangement.Utils
                     recentFile = file;
                 }
             }
-            return recentFile.Name;
+            if (recentFile != null)
+            {
+                return recentFile.Name;
+            }
+            return "";
         }
 
         public static void ShareFolder(string FolderPath, string ShareName, string Description)

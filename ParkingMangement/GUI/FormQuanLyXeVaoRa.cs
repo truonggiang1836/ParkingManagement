@@ -24,11 +24,6 @@ namespace ParkingMangement.GUI
         public FormQuanLyXeVaoRa()
         {
             InitializeComponent();
-
-            if (Util.getConfigFile().isUsingUhf == 1)
-            {
-                initUhfTimer();
-            }
         }
 
         private void FormQuanLyXeVaoRa_Load(object sender, EventArgs e)
@@ -41,6 +36,11 @@ namespace ParkingMangement.GUI
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateIn);
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
             loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
+
+            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            {
+                initUhfTimer();
+            }
         }
 
         private void loadPartDataWithFieldAllToComboBox(ComboBox cb)

@@ -41,7 +41,7 @@ namespace ParkingMangement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (Util.getConfigFile().isUsingUhf == 1)
+            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
             {
                 uhfInReader = new UHFReader();
                 uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
