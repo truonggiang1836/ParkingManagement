@@ -26,6 +26,7 @@ namespace ParkingMangement.Utils
     static class Util
     {
         private static Bitmap bitmap = null;
+        private static Config sConfig = null;
         public static string ImageToBase64(string Path)
         {
             using (Image image = Image.FromFile(Path))
@@ -170,6 +171,10 @@ namespace ParkingMangement.Utils
 
         public static Config getConfigFile()
         {
+            if (sConfig != null)
+            {
+                return sConfig;
+            }
             try
             {
                 String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
@@ -182,28 +187,31 @@ namespace ParkingMangement.Utils
                     XmlSerializer serializer = new XmlSerializer(typeof(Config), xmlRoot);
                     using (TextReader reader = new StringReader(xmlString))
                     {
-                        Config config = (Config)serializer.Deserialize(reader);
-                        config.cameraUrl1 = config.cameraUrl1.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.cameraUrl2 = config.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.cameraUrl3 = config.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.cameraUrl4 = config.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.rfidIn = config.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.rfidOut = config.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.computerName = config.computerName.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.sqlDataSource = config.sqlDataSource.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.sqlPort = config.sqlPort.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.sqlUsername = config.sqlUsername.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.sqlPassword = config.sqlPassword.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.folderRoot = config.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.comReceiveIn = config.comReceiveIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.comReceiveOut = config.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.comSend = config.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.signalOpenBarieIn = config.signalOpenBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.signalCloseBarieIn = config.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.signalOpenBarieOut = config.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.signalCloseBarieOut = config.signalCloseBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
-                        config.lastSavedOrder = config.lastSavedOrder;
-                        return config;
+                        sConfig = (Config)serializer.Deserialize(reader);
+                        sConfig.cameraUrl1 = sConfig.cameraUrl1.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraUrl2 = sConfig.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraUrl3 = sConfig.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraUrl4 = sConfig.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.rfidIn = sConfig.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.rfidOut = sConfig.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.computerName = sConfig.computerName.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.sqlDataSource = sConfig.sqlDataSource.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.sqlPort = sConfig.sqlPort.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.sqlUsername = sConfig.sqlUsername.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.sqlPassword = sConfig.sqlPassword.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.folderRoot = sConfig.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comReceiveIn = sConfig.comReceiveIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comReceiveOut = sConfig.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comSend = sConfig.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalOpenBarieIn = sConfig.signalOpenBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalCloseBarieIn = sConfig.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalOpenBarieOut = sConfig.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalCloseBarieOut = sConfig.signalCloseBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalOpenBarieInMotorbike = sConfig.signalOpenBarieInMotorbike.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalCloseBarieInMotorbike = sConfig.signalCloseBarieInMotorbike.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalOpenBarieOutMotorbike = sConfig.signalOpenBarieOutMotorbike.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.signalCloseBarieOutMotorbike = sConfig.signalCloseBarieOutMotorbike.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        return sConfig;
                     }
                 }
             }

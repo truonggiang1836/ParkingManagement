@@ -1563,6 +1563,7 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.CustomerName = tbTicketMonthCustomerNameCreate.Text;
             ticketMonthDTO.Cmnd = tbTicketMonthCMNDCreate.Text;
             ticketMonthDTO.Company = tbTicketMonthCompanyCreate.Text;
+            ticketMonthDTO.Note = tbTicketMonthNoteCreate.Text;
             ticketMonthDTO.Email = tbTicketMonthEmailCreate.Text;
             ticketMonthDTO.Phone = tbTicketMonthPhoneCreate.Text;
             ticketMonthDTO.Address = tbTicketMonthAddressCreate.Text;
@@ -1608,6 +1609,7 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.Phone = tbTicketMonthPhoneEdit.Text;
             ticketMonthDTO.Address = tbTicketMonthAddressEdit.Text;
             ticketMonthDTO.CarKind = tbTicketMonthCarKindEdit.Text;
+            ticketMonthDTO.Note = tbTicketMonthNoteEdit.Text;
 
             DataRow dataRow = ((DataRowView)cbTicketMonthPartEdit.SelectedItem).Row;
             CardDTO oldCardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
@@ -1644,6 +1646,7 @@ namespace ParkingMangement.GUI
             tbTicketMonthCustomerNameCreate.Text = "";
             tbTicketMonthCMNDCreate.Text = "";
             tbTicketMonthCompanyCreate.Text = "";
+            tbTicketMonthNoteCreate.Text = "";
             tbTicketMonthEmailCreate.Text = "";
             tbTicketMonthAddressCreate.Text = "";
             tbTicketMonthCarKindCreate.Text = "";
@@ -1725,6 +1728,8 @@ namespace ParkingMangement.GUI
             tbTicketMonthCMNDEdit.Text = cmnd;
             string company = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Company"].Value);
             tbTicketMonthCompanyEdit.Text = company;
+            string note = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Note"].Value);
+            tbTicketMonthNoteEdit.Text = note;
             string email = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Email"].Value);
             tbTicketMonthEmailEdit.Text = email;
             string phone = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["Phone"].Value);

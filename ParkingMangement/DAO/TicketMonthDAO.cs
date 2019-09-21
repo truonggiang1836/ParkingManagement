@@ -12,7 +12,7 @@ namespace ParkingMangement.DAO
     {
         private static string sqlGetAllData = "select DISTINCT SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.CMND," +
                 " TicketMonth.Company, TicketMonth.Email, TicketMonth.Phone, TicketMonth.Address, TicketMonth.CarKind, TicketMonth.ChargesAmount, Part.PartName," +
-                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images from TicketMonth, Part, SmartCard where TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
+                " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, TicketMonth.Images, TicketMonth.Note from TicketMonth, Part, SmartCard where TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
 
         private static string sqlGetAllNearExpiredTicketData = "select DISTINCT Part.PartName, SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Address, TicketMonth.ChargesAmount," +
                 " TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from TicketMonth, Part, SmartCard where TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID";
@@ -35,10 +35,10 @@ namespace ParkingMangement.DAO
         public static bool Insert(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "insert into TicketMonth(ID, ProcessDate, Digit, CustomerName, CMND, Company, Email, Phone, Address, CarKind, RegistrationDate, ExpirationDate" +
-                ", ChargesAmount, IDPart, Account) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
+                ", ChargesAmount, IDPart, Account, Note) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" + 
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" + ticketMonthDTO.Phone + "', '" + 
                 ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate + 
-                "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
+                "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "', '" + ticketMonthDTO.Note + "')";
             return Database.ExcuNonQuery(sql);
         }
 
@@ -46,7 +46,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate + "', Digit ='" + ticketMonthDTO.Digit + "', CustomerName ='"
                 + ticketMonthDTO.CustomerName + "', CMND ='" + ticketMonthDTO.Cmnd + "', Company ='" + ticketMonthDTO.Company + "', Email ='" + ticketMonthDTO.Email + "', Phone = '" + ticketMonthDTO.Phone + "', Address ='" + ticketMonthDTO.Address + "', CarKind ='"
-                + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount + "' where ID ='" + ticketMonthDTO.Id + "'";
+                + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount + "', Note ='" + ticketMonthDTO.Note + "' where ID ='" + ticketMonthDTO.Id + "'";
             Database.ExcuNonQuery(sql);
         }
 

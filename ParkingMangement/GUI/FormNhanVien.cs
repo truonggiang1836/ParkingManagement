@@ -67,12 +67,11 @@ namespace ParkingMangement.GUI
         private string imagePath3;
         private string imagePath4;
 
+        private Config mConfig;
+
         private Size oldSize;
         private const float LARGER_FONT_FACTOR = 1.5f;
         private const float SMALLER_FONT_FACTOR = 0.8f;
-
-        private bool isClosedBarie1 = true;
-        private bool isClosedBarie2 = true;
 
         //private bool mIsHasCarInOut = false;
 
@@ -158,7 +157,9 @@ namespace ParkingMangement.GUI
             labelComputer.Text = Environment.MachineName;
             labelParkingName.Text = ConfigDAO.GetParkingName();
 
-            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            mConfig = Util.getConfigFile();
+
+            if (mConfig.isUsingUhf.Equals("yes"))
             {
                 initUhfTimer();
             }
@@ -174,8 +175,8 @@ namespace ParkingMangement.GUI
             //cardID = rnd.Next(119, 122) + "";
 
             loadInfo();
-            configVLC(Util.getConfigFile().ZoomCamera1, Util.getConfigFile().ZoomCamera2, 
-                Util.getConfigFile().ZoomCamera3, Util.getConfigFile().ZoomCamera4);
+            configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2, 
+                mConfig.ZoomCamera3, mConfig.ZoomCamera4);
             loadCamera1VLC();
             loadCamera2VLC();
             loadCamera3VLC();
@@ -261,25 +262,15 @@ namespace ParkingMangement.GUI
                     openFormQuanLyXeRaVao();
                     break;
                 case Keys.F8:
-                    openBarie1();
+                    openBarieIn();
                     MessageBox.Show("Barie đã mở");
                     break;
                 case Keys.F9:
-                    closeBarie1();
+                    closeBarieIn();
                     MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F10:
-                    //if (isClosedBarie1)
-                    //{
-                    //    openBarie1();
-                    //    MessageBox.Show("Barie đã mở");
-                    //}
-                    //else
-                    //{
-                    //    closeBarie1();
-                    //    MessageBox.Show("Barie đã đóng");
-                    //}
-                    openBarie2();
+                    openBarieOut();
                     MessageBox.Show("Barie đã mở");
                     break;
                 case Keys.F11:
@@ -287,18 +278,27 @@ namespace ParkingMangement.GUI
                     //    formLogout.formNhanVien = this;
                     //    formLogout.Show();
                     //    break;
-
-                    //if (isClosedBarie2)
-                    //{
-                    //    openBarie2();
-                    //    MessageBox.Show("Barie đã mở");
-                    //}
-                    //else
-                    //{
-                    //    closeBarie2();
-                    //    MessageBox.Show("Barie đã đóng");
-                    //}
-                    closeBarie2();
+                    closeBarieOut();
+                    MessageBox.Show("Barie đã đóng");
+                    break;
+                case Keys.Up:
+                    openBarieInMotorbike();
+                    MessageBox.Show("Barie đã mở");
+                    break;
+                case Keys.Down:
+                    closeBarieInMotorbike();
+                    MessageBox.Show("Barie đã đóng");
+                    break;
+                case Keys.Left:
+                    openBarieOutMotorbike();
+                    MessageBox.Show("Barie đã mở");
+                    break;
+                case Keys.Right:
+                    //    var formLogout = new FormLogout();
+                    //    formLogout.formNhanVien = this;
+                    //    formLogout.Show();
+                    //    break;
+                    closeBarieOutMotorbike();
                     MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F12:
@@ -507,18 +507,22 @@ namespace ParkingMangement.GUI
             string cardType = CardDAO.GetTypeByID(cardID);
             if (cardType == TypeDTO.TYPE_CAR)
             {
-                if (cardID.Equals(oldUhfCardId))
-                {
-                    DialogResult dialogResult = MessageBox.Show("Đang có xe đi vào dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        openBarie1();
-                    }
-                }
-                else
-                {
-                    openBarie1();
-                }
+                //if (cardID.Equals(oldUhfCardId))
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Đang có xe đi vào dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        openBarieIn();
+                //    }
+                //}
+                //else
+                //{
+                //    openBarieIn();
+                //}
+                openBarieIn();
+            } else
+            {
+                openBarieInMotorbike();
             }
         }
 
@@ -527,18 +531,22 @@ namespace ParkingMangement.GUI
             string cardType = CardDAO.GetTypeByID(cardID);
             if (cardType == TypeDTO.TYPE_CAR)
             {
-                if (cardID.Equals(oldUhfCardId))
-                {
-                    DialogResult dialogResult = MessageBox.Show("Đang có xe đi ra dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        openBarie2();
-                    }
-                }
-                else
-                {
-                    openBarie2();
-                }
+                //if (cardID.Equals(oldUhfCardId))
+                //{
+                //    DialogResult dialogResult = MessageBox.Show("Đang có xe đi ra dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                //    if (dialogResult == DialogResult.Yes)
+                //    {
+                //        openBarieOut();
+                //    }
+                //}
+                //else
+                //{
+                //    openBarieOut();
+                //}
+                openBarieOut();
+            } else
+            {
+                openBarieOutMotorbike();
             }
         }
 
@@ -607,7 +615,7 @@ namespace ParkingMangement.GUI
         {
             labelCostIn.Text = "-";
             labelCostOut.Text = "-";
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 labelMoiVao.Text = "";
@@ -813,7 +821,7 @@ namespace ParkingMangement.GUI
                     //labelCostOut.Text = carDTO.Cost + "";
                 }
 
-                int inOutType = Util.getConfigFile().inOutType;
+                int inOutType = mConfig.inOutType;
 
                 labelCostIn.Text = "-";
                 labelCostOut.Text = "-";
@@ -937,7 +945,7 @@ namespace ParkingMangement.GUI
         {
             if (dtLastCar != null)
             {                    
-                int inOutType = Util.getConfigFile().inOutType;
+                int inOutType = mConfig.inOutType;
                 string image = dtLastCar.Rows[0].Field<string>("Images");
                 string imagePath1 = Constant.getSharedImageFolder() + image;
                 if (File.Exists(imagePath1))
@@ -1106,24 +1114,24 @@ namespace ParkingMangement.GUI
 
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
         {
-            float zoomImageRatio = 0.5f;
-            if (pictureBox == pictureBoxImage1)
-            {
-                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera1 / 100;
-            }
-            else if (pictureBox == pictureBoxImage2)
-            {
-                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera2 / 100;
-            }
-            else if (pictureBox == pictureBoxImage3)
-            {
-                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera3 / 100;
-            }
-            else if (pictureBox == pictureBoxImage4)
-            {
-                zoomImageRatio = (float)Util.getConfigFile().ZoomCamera4 / 100;
-            }
-            zoomImageRatio = 1 - zoomImageRatio * 1.5f;
+            //float zoomImageRatio = 0.5f;
+            //if (pictureBox == pictureBoxImage1)
+            //{
+            //    zoomImageRatio = (float)mConfig.ZoomCamera1 / 100;
+            //}
+            //else if (pictureBox == pictureBoxImage2)
+            //{
+            //    zoomImageRatio = (float)mConfig.ZoomCamera2 / 100;
+            //}
+            //else if (pictureBox == pictureBoxImage3)
+            //{
+            //    zoomImageRatio = (float)mConfig.ZoomCamera3 / 100;
+            //}
+            //else if (pictureBox == pictureBoxImage4)
+            //{
+            //    zoomImageRatio = (float)mConfig.ZoomCamera4 / 100;
+            //}
+            //zoomImageRatio = 1 - zoomImageRatio * 1.5f;
 
             //FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
@@ -1146,7 +1154,7 @@ namespace ParkingMangement.GUI
         private void resetPictureBoxImage1()
         {
             PictureBox pictureBox = pictureBoxImage1;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 pictureBox = pictureBoxImage3;
@@ -1168,7 +1176,7 @@ namespace ParkingMangement.GUI
         private void resetPictureBoxImage2()
         {
             PictureBox pictureBox = pictureBoxImage2;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 pictureBox = pictureBoxImage4;
@@ -1210,7 +1218,7 @@ namespace ParkingMangement.GUI
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
             PictureBox pictureBox = pictureBoxImage1;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin3;
@@ -1237,7 +1245,7 @@ namespace ParkingMangement.GUI
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
             PictureBox pictureBox = pictureBoxImage1;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin3;
@@ -1279,7 +1287,7 @@ namespace ParkingMangement.GUI
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
             PictureBox pictureBox = pictureBoxImage2;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin4;
@@ -1303,7 +1311,7 @@ namespace ParkingMangement.GUI
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
             PictureBox pictureBox = pictureBoxImage2;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin4;
@@ -1344,7 +1352,7 @@ namespace ParkingMangement.GUI
         private void saveImage3ToFile()
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin3;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin1;
@@ -1377,7 +1385,7 @@ namespace ParkingMangement.GUI
         private void saveImage4ToFile()
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin4;
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin2;
@@ -1436,14 +1444,14 @@ namespace ParkingMangement.GUI
 
             //}
 
-            cameraUrl1 = Util.getConfigFile().cameraUrl1;
-            cameraUrl2 = Util.getConfigFile().cameraUrl2;
-            cameraUrl3 = Util.getConfigFile().cameraUrl3;
-            cameraUrl4 = Util.getConfigFile().cameraUrl4;
-            rfidIn = Util.getConfigFile().rfidIn;
-            rfidOut = Util.getConfigFile().rfidOut;
-            portNameComReceiveIn = Util.getConfigFile().comReceiveIn;
-            portNameComReceiveOut = Util.getConfigFile().comReceiveOut;
+            cameraUrl1 = mConfig.cameraUrl1;
+            cameraUrl2 = mConfig.cameraUrl2;
+            cameraUrl3 = mConfig.cameraUrl3;
+            cameraUrl4 = mConfig.cameraUrl4;
+            rfidIn = mConfig.rfidIn;
+            rfidOut = mConfig.rfidOut;
+            portNameComReceiveIn = mConfig.comReceiveIn;
+            portNameComReceiveOut = mConfig.comReceiveOut;
             //cameraUrl1 = ConfigDAO.GetCamera1();
             //cameraUrl2 = ConfigDAO.GetCamera2();
             //cameraUrl3 = ConfigDAO.GetCamera3();
@@ -1526,7 +1534,7 @@ namespace ParkingMangement.GUI
 
         private bool isCarIn()
         {
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             switch (inOutType)
             {
                 case ConfigDTO.TYPE_IN_IN:
@@ -1829,7 +1837,7 @@ namespace ParkingMangement.GUI
 
         public void updateCauHinhHienThiXeRaVao()
         {
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             switch (inOutType)
             {
                 case ConfigDTO.TYPE_IN_IN:
@@ -2245,7 +2253,7 @@ namespace ParkingMangement.GUI
 
         private void changeInOutSetting(bool isLeftSide)
         {
-            int inOutType = Util.getConfigFile().inOutType;
+            int inOutType = mConfig.inOutType;
             int newInOutType = ConfigDTO.TYPE_IN_OUT;
             if (isLeftSide)
             {
@@ -2287,36 +2295,60 @@ namespace ParkingMangement.GUI
             updateCauHinhHienThiXeRaVao();
         }
 
-        private void openBarie1()
+        private void openBarieIn()
         {
-            string data = Util.getConfigFile().signalOpenBarieIn;
-            string portName = Util.getConfigFile().comSend;
+            string data = mConfig.signalOpenBarieIn;
+            string portName = mConfig.comSend;
             writeDataToPort(data, portName);
-            isClosedBarie1 = false;
         }
 
-        private void openBarie2()
+        private void openBarieInMotorbike()
         {
-            string data = Util.getConfigFile().signalOpenBarieOut;
-            string portName = Util.getConfigFile().comSend;
+            string data = mConfig.signalOpenBarieInMotorbike;
+            string portName = mConfig.comSend;
             writeDataToPort(data, portName);
-            isClosedBarie2 = false;
         }
 
-        private void closeBarie1()
+        private void openBarieOut()
         {
-            string data = Util.getConfigFile().signalCloseBarieIn;
-            string portName = Util.getConfigFile().comSend;
+            string data = mConfig.signalOpenBarieOut;
+            string portName = mConfig.comSend;
             writeDataToPort(data, portName);
-            isClosedBarie1 = true;
         }
 
-        private void closeBarie2()
+        private void openBarieOutMotorbike()
         {
-            string data = Util.getConfigFile().signalCloseBarieOut;
-            string portName = Util.getConfigFile().comSend;
+            string data = mConfig.signalOpenBarieOutMotorbike;
+            string portName = mConfig.comSend;
             writeDataToPort(data, portName);
-            isClosedBarie2 = true;
+        }
+
+        private void closeBarieIn()
+        {
+            string data = mConfig.signalCloseBarieIn;
+            string portName = mConfig.comSend;
+            writeDataToPort(data, portName);
+        }
+
+        private void closeBarieInMotorbike()
+        {
+            string data = mConfig.signalCloseBarieInMotorbike;
+            string portName = mConfig.comSend;
+            writeDataToPort(data, portName);
+        }
+
+        private void closeBarieOut()
+        {
+            string data = mConfig.signalCloseBarieOut;
+            string portName = mConfig.comSend;
+            writeDataToPort(data, portName);
+        }
+
+        private void closeBarieOutMotorbike()
+        {
+            string data = mConfig.signalCloseBarieOutMotorbike;
+            string portName = mConfig.comSend;
+            writeDataToPort(data, portName);
         }
 
         //SerialPort port;
@@ -2428,8 +2460,8 @@ namespace ParkingMangement.GUI
 
         private void handleUhfData()
         {
-            int frmcomportindexIn = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
-            int frmcomportindexOut = UHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
+            int frmcomportindexIn = UHFReader.getComportIndex(mConfig.comReceiveIn);
+            int frmcomportindexOut = UHFReader.getComportIndex(mConfig.comReceiveOut);
             string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
             string newUhfCardId = null;
 
