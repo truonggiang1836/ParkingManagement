@@ -1611,22 +1611,32 @@ namespace ParkingMangement.GUI
                     if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
                         // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
-                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit || getTotalHourOfNight(timeIn, timeOut, computerDTO) <= limit)
                         {
-                            // thời gian ngày lớn hơn đêm
-                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
+                            // thời gian ngày nhỏ hơn giới hạn hoặc thời gian đêm nhỏ hơn giới hạn
+                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                             {
-                                // thời gian ngày nhỏ hơn giới hạn
-                                return computerDTO.DayCost;
-                            } else
+                                // thời gian ngày lớn hơn đêm
+                                if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
+                                {
+                                    // thời gian ngày nhỏ hơn giới hạn
+                                    return computerDTO.DayCost;
+                                }
+                                else
+                                {
+                                    // thời gian ngày lớn hơn giới hạn
+                                    return computerDTO.NightCost;
+                                }
+                            }
+                            else
                             {
-                                // thời gian ngày lớn hơn giới hạn
+                                // thời gian ngày nhỏ hơn đêm
                                 return computerDTO.NightCost;
                             }
                         } else
                         {
-                            // thời gian ngày nhỏ hơn đêm
-                            return computerDTO.NightCost;
+                            // thời gian ngày lớn hơn giới hạn và thời gian đêm lớn hơn giới hạn
+                            return computerDTO.DayNightCost;
                         }
                     } else
                     {
@@ -2443,6 +2453,8 @@ namespace ParkingMangement.GUI
 
         private void FormNhanVien_Activated(object sender, EventArgs e)
         {
+            _rawinput.KeyPressed -= OnKeyPressed;
+            _rawinput.KeyPressed += OnKeyPressed;
             tbRFIDCardID.Focus();
         }
 
