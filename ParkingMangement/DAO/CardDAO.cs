@@ -258,5 +258,16 @@ namespace ParkingMangement.DAO
             }
             return "";
         }
+
+        public static string GetCardTypeByID(string id)
+        {
+            string sql = "select Part.CardTypeID from Part, SmartCard where SmartCard.Type = Part.ID and SmartCard.ID = '" + id + "'";
+            DataTable data = Database.ExcuQuery(sql);
+            if (data != null)
+            {
+                return data.Rows[0].Field<string>("CardTypeID");
+            }
+            return "";
+        }
     }
 }

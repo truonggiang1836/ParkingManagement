@@ -208,5 +208,26 @@ namespace ParkingMangement
             //string sharedPath = Constant.getSharedImageFolder() + "636666552009185502.jpg";
             //File.Copy(localPath, sharedPath);
         }
+
+        private void FormLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void tbAccount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !tbAccount.Text.Equals(null))
+            {
+                DataTable dt = UserDAO.GetUserByID(tbAccount.Text);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    loginDone(dt);
+                }
+                else
+                {
+                    labelError.Text = "Thông tin không chính xác";
+                }
+            }
+        }
     }
 }

@@ -58,6 +58,8 @@
             this.Column34 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxTruyVanLoaiXe = new System.Windows.Forms.ComboBox();
             this.btnXemDanhSachXeTon = new System.Windows.Forms.Button();
             this.tbCarLogIdentify = new System.Windows.Forms.TextBox();
             this.dateTimePickerCarTimeOut = new System.Windows.Forms.DateTimePicker();
@@ -71,8 +73,11 @@
             this.tbCarDigitSearch = new System.Windows.Forms.TextBox();
             this.label41 = new System.Windows.Forms.Label();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
             this.panel14 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
+            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
             this.btnSearchCar = new System.Windows.Forms.Button();
             this.btnSaveLostCard = new System.Windows.Forms.Button();
             this.btnExportDanhSachXe = new System.Windows.Forms.Button();
@@ -82,21 +87,16 @@
             this.dateTimePickerCarDateIn = new System.Windows.Forms.DateTimePicker();
             this.label40 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
-            this.pictureBoxCarLogImage2 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCarLogImage1 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCarLogImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCarLogImage3 = new System.Windows.Forms.PictureBox();
-            this.comboBoxTruyVanLoaiXe = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).BeginInit();
+            this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).BeginInit();
+            this.panel12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).BeginInit();
+            this.panel11.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -354,6 +354,25 @@
             this.panel10.Size = new System.Drawing.Size(1138, 352);
             this.panel10.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(234, 119);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 16);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "LOẠI XE";
+            // 
+            // comboBoxTruyVanLoaiXe
+            // 
+            this.comboBoxTruyVanLoaiXe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTruyVanLoaiXe.FormattingEnabled = true;
+            this.comboBoxTruyVanLoaiXe.Location = new System.Drawing.Point(300, 116);
+            this.comboBoxTruyVanLoaiXe.Name = "comboBoxTruyVanLoaiXe";
+            this.comboBoxTruyVanLoaiXe.Size = new System.Drawing.Size(111, 21);
+            this.comboBoxTruyVanLoaiXe.TabIndex = 31;
+            // 
             // btnXemDanhSachXeTon
             // 
             this.btnXemDanhSachXeTon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -480,6 +499,18 @@
             this.panel13.Size = new System.Drawing.Size(284, 168);
             this.panel13.TabIndex = 18;
             // 
+            // pictureBoxCarLogImage2
+            // 
+            this.pictureBoxCarLogImage2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage2.Image")));
+            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
+            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage2.TabIndex = 1;
+            this.pictureBoxCarLogImage2.TabStop = false;
+            this.pictureBoxCarLogImage2.Click += new System.EventHandler(this.pictureBoxCarLogImage2_Click);
+            // 
             // panel14
             // 
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -489,6 +520,18 @@
             this.panel14.Size = new System.Drawing.Size(284, 168);
             this.panel14.TabIndex = 17;
             // 
+            // pictureBoxCarLogImage1
+            // 
+            this.pictureBoxCarLogImage1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage1.Image")));
+            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
+            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage1.TabIndex = 0;
+            this.pictureBoxCarLogImage1.TabStop = false;
+            this.pictureBoxCarLogImage1.Click += new System.EventHandler(this.pictureBoxCarLogImage1_Click);
+            // 
             // panel12
             // 
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -497,6 +540,18 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(284, 168);
             this.panel12.TabIndex = 16;
+            // 
+            // pictureBoxCarLogImage4
+            // 
+            this.pictureBoxCarLogImage4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxCarLogImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage4.Image")));
+            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
+            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(275, 158);
+            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxCarLogImage4.TabIndex = 1;
+            this.pictureBoxCarLogImage4.TabStop = false;
+            this.pictureBoxCarLogImage4.Click += new System.EventHandler(this.pictureBoxCarLogImage4_Click);
             // 
             // btnSearchCar
             // 
@@ -585,42 +640,6 @@
             this.panel11.Size = new System.Drawing.Size(284, 168);
             this.panel11.TabIndex = 0;
             // 
-            // pictureBoxCarLogImage2
-            // 
-            this.pictureBoxCarLogImage2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage2.Image")));
-            this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
-            this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage2.TabIndex = 1;
-            this.pictureBoxCarLogImage2.TabStop = false;
-            this.pictureBoxCarLogImage2.Click += new System.EventHandler(this.pictureBoxCarLogImage2_Click);
-            // 
-            // pictureBoxCarLogImage1
-            // 
-            this.pictureBoxCarLogImage1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage1.Image")));
-            this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
-            this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage1.TabIndex = 0;
-            this.pictureBoxCarLogImage1.TabStop = false;
-            this.pictureBoxCarLogImage1.Click += new System.EventHandler(this.pictureBoxCarLogImage1_Click);
-            // 
-            // pictureBoxCarLogImage4
-            // 
-            this.pictureBoxCarLogImage4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxCarLogImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage4.Image")));
-            this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(3, 3);
-            this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
-            this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(275, 158);
-            this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCarLogImage4.TabIndex = 1;
-            this.pictureBoxCarLogImage4.TabStop = false;
-            this.pictureBoxCarLogImage4.Click += new System.EventHandler(this.pictureBoxCarLogImage4_Click);
-            // 
             // pictureBoxCarLogImage3
             // 
             this.pictureBoxCarLogImage3.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -632,25 +651,6 @@
             this.pictureBoxCarLogImage3.TabIndex = 1;
             this.pictureBoxCarLogImage3.TabStop = false;
             this.pictureBoxCarLogImage3.Click += new System.EventHandler(this.pictureBoxCarLogImage3_Click);
-            //
-            // comboBoxTruyVanLoaiXe
-            // 
-            this.comboBoxTruyVanLoaiXe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxTruyVanLoaiXe.FormattingEnabled = true;
-            this.comboBoxTruyVanLoaiXe.Location = new System.Drawing.Point(300, 116);
-            this.comboBoxTruyVanLoaiXe.Name = "comboBoxTruyVanLoaiXe";
-            this.comboBoxTruyVanLoaiXe.Size = new System.Drawing.Size(111, 21);
-            this.comboBoxTruyVanLoaiXe.TabIndex = 31;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(234, 119);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 16);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "LOẠI XE";
             // 
             // FormQuanLyXeVaoRa
             // 
@@ -662,17 +662,18 @@
             this.Name = "FormQuanLyXeVaoRa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý xe vào ra";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormQuanLyXeVaoRa_FormClosing);
             this.Load += new System.EventHandler(this.FormQuanLyXeVaoRa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCarList)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel13.ResumeLayout(false);
-            this.panel14.ResumeLayout(false);
-            this.panel12.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage2)).EndInit();
+            this.panel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage1)).EndInit();
+            this.panel12.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage4)).EndInit();
+            this.panel11.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCarLogImage3)).EndInit();
             this.ResumeLayout(false);
 

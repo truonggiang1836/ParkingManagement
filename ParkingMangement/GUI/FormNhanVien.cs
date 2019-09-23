@@ -44,6 +44,7 @@ namespace ParkingMangement.GUI
         const bool CaptureOnlyInForeground = true;
         private string cardID = "0";
         private string oldUhfCardId = null;
+        private DateTime oldUhfCardTime;
         private string rfidInput = "";
         private string portNameComReceiveInput = null;
 
@@ -263,15 +264,20 @@ namespace ParkingMangement.GUI
                     break;
                 case Keys.F8:
                     openBarieIn();
-                    MessageBox.Show("Barie đã mở");
+                    openBarieInMotorbike();
+                    AutoClosingMessageBox.Show("Barie đã mở", "", 500);
+                    //MessageBox.Show("Barie đã mở");
                     break;
                 case Keys.F9:
                     closeBarieIn();
-                    MessageBox.Show("Barie đã đóng");
+                    AutoClosingMessageBox.Show("Barie đã đóng", "", 500);
+                    //MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F10:
                     openBarieOut();
-                    MessageBox.Show("Barie đã mở");
+                    openBarieOutMotorbike();
+                    AutoClosingMessageBox.Show("Barie đã mở", "", 500);
+                    //MessageBox.Show("Barie đã mở");
                     break;
                 case Keys.F11:
                     //    var formLogout = new FormLogout();
@@ -279,19 +285,23 @@ namespace ParkingMangement.GUI
                     //    formLogout.Show();
                     //    break;
                     closeBarieOut();
-                    MessageBox.Show("Barie đã đóng");
+                    AutoClosingMessageBox.Show("Barie đã đóng", "", 500);
+                    //MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.Up:
                     openBarieInMotorbike();
-                    MessageBox.Show("Barie đã mở");
+                    AutoClosingMessageBox.Show("Barie đã mở", "", 500);
+                    //MessageBox.Show("Barie đã mở");
                     break;
                 case Keys.Down:
                     closeBarieInMotorbike();
-                    MessageBox.Show("Barie đã đóng");
+                    AutoClosingMessageBox.Show("Barie đã đóng", "", 500);
+                    //MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.Left:
                     openBarieOutMotorbike();
-                    MessageBox.Show("Barie đã mở");
+                    AutoClosingMessageBox.Show("Barie đã mở", "", 500);
+                    //MessageBox.Show("Barie đã mở");
                     break;
                 case Keys.Right:
                     //    var formLogout = new FormLogout();
@@ -299,7 +309,8 @@ namespace ParkingMangement.GUI
                     //    formLogout.Show();
                     //    break;
                     closeBarieOutMotorbike();
-                    MessageBox.Show("Barie đã đóng");
+                    AutoClosingMessageBox.Show("Barie đã đóng", "", 500);
+                    //MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F12:
                     //    var formLogoutByCard = new FormLogOutByCard();
@@ -383,7 +394,8 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    AutoClosingMessageBox.Show(Constant.sMessageCardIdNotExist, "", 1000);
+                    labelError.Text = Constant.sMessageCardIdNotExist;
+                    //AutoClosingMessageBox.Show(Constant.sMessageCardIdNotExist, "", 1000);
                 }
                 dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             }
@@ -433,7 +445,7 @@ namespace ParkingMangement.GUI
                 labelCustomerName.Text = TicketMonthDAO.GetCustomerNameByID(cardID);
             }
             DataTable dtLastCar = CarDAO.GetLastCarByID(cardID);
-            checkForOpenBarie(dtLastCar);
+            //checkForOpenBarie(dtLastCar);
             if (isCarIn())
             {
                 if (KiemTraXeChuaRa(dtLastCar))
@@ -443,7 +455,7 @@ namespace ParkingMangement.GUI
                         resetPictureBoxImage1();
                         resetPictureBoxImage2();
                         tbRFIDCardID.Focus();
-                        AutoClosingMessageBox.Show("Thẻ này chưa được quẹt đầu ra", "", 1000);
+                        labelError.Text = "Thẻ này chưa được quẹt đầu ra";
                         return;
                     }
                 }
@@ -472,9 +484,10 @@ namespace ParkingMangement.GUI
                 } else
                 {
                     tbRFIDCardID.Focus();
-                    AutoClosingMessageBox.Show("Thẻ này chưa được quẹt đầu vào", "", 1000);
+                    labelError.Text = "Thẻ này chưa được quẹt đầu vào";
                 }
             }
+            checkForOpenBarie(dtLastCar);
         }
 
         private void updateDigitCarIn()
@@ -505,8 +518,11 @@ namespace ParkingMangement.GUI
         private void checkForOpenBarieIn()
         {
             string cardType = CardDAO.GetTypeByID(cardID);
+            string cardTypeID = CardDAO.GetCardTypeByID(cardID);
             if (cardType == TypeDTO.TYPE_CAR)
             {
+                // XE OTO
+
                 //if (cardID.Equals(oldUhfCardId))
                 //{
                 //    DialogResult dialogResult = MessageBox.Show("Đang có xe đi vào dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
@@ -519,18 +535,44 @@ namespace ParkingMangement.GUI
                 //{
                 //    openBarieIn();
                 //}
-                openBarieIn();
+                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
+                {
+                    openBarieIn();
+                    openBarieInMotorbike();
+                } else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        openBarieIn();
+                        openBarieInMotorbike();
+                    }
+                }
             } else
             {
-                openBarieInMotorbike();
+                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
+                {
+                    // XE MAY
+                    openBarieInMotorbike();
+                } else if (!mConfig.signalOpenBarieInMotorbike.Equals(""))
+                {
+                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        openBarieInMotorbike();
+                    }
+                }
             }
         }
 
         private void checkForOpenBarieOut()
         {
             string cardType = CardDAO.GetTypeByID(cardID);
+            string cardTypeID = CardDAO.GetCardTypeByID(cardID);
             if (cardType == TypeDTO.TYPE_CAR)
             {
+                // XE OTO
+
                 //if (cardID.Equals(oldUhfCardId))
                 //{
                 //    DialogResult dialogResult = MessageBox.Show("Đang có xe đi ra dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
@@ -543,10 +585,34 @@ namespace ParkingMangement.GUI
                 //{
                 //    openBarieOut();
                 //}
-                openBarieOut();
+                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
+                {
+                    openBarieOut();
+                    openBarieOutMotorbike();
+                } else
+                {
+                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        openBarieOut();
+                        openBarieOutMotorbike();
+                    }
+                }
             } else
             {
-                openBarieOutMotorbike();
+                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
+                {
+                    // XE MAY
+                    openBarieOutMotorbike();
+                }
+                else if (!mConfig.signalOpenBarieOutMotorbike.Equals(""))
+                {
+                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        openBarieOutMotorbike();
+                    }
+                }
             }
         }
 
@@ -1089,18 +1155,25 @@ namespace ParkingMangement.GUI
             //zoomImageShowToPictureBox(originalFileName, pictureBox);
             //}
 
+            try
+            {
+                string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
+                FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
+                System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+                System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
+                string destImagePath = path + @"\" + compressedFileName;
+                Util.SaveJpeg(destImagePath, img, compressedQuality);
+                img.Dispose();
+                stream.Dispose();
+                File.Delete(originalFileName);
+                return Constant.getCurrentDateString() + @"\" + compressedFileName;
+                //return Constant.getCurrentDateString() + @"\" + originalFileName;
+            }
+            catch (Exception e)
+            {
 
-            //string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
-            //FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
-            //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
-            //System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
-            //string destImagePath = path + @"\" + compressedFileName;
-            //Util.SaveJpeg(destImagePath, img, compressedQuality);
-            //img.Dispose();
-            //stream.Dispose();
-            //File.Delete(originalFileName);
-            //return Constant.getCurrentDateString() + @"\" + compressedFileName;
-            return Constant.getCurrentDateString() + @"\" + originalFileName;
+            }
+            return "";
         }
 
         private void deleteOldImages()
@@ -1137,13 +1210,19 @@ namespace ParkingMangement.GUI
             //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             if (pictureBox != null)
             {
-                System.Drawing.Image image = pictureBox.Image;
-                System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
-                //pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                pictureBox.Image = img;
-                if (image != null)
+                try
                 {
-                    image.Dispose();
+                    System.Drawing.Image image = pictureBox.Image;
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
+                    //pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
+                    pictureBox.Image = img;
+                    if (image != null)
+                    {
+                        image.Dispose();
+                    }
+                } catch (Exception)
+                {
+
                 }
             }
             //stream.Dispose();
@@ -1517,6 +1596,16 @@ namespace ParkingMangement.GUI
         private void Keyboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             _rawinput.KeyPressed -= OnKeyPressed;
+            int count = 0;
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+                    count++;
+            }
+            if (count == 1)
+            {
+                Application.Exit();
+            }
         }
 
         private static void CurrentDomain_UnhandledException(Object sender, UnhandledExceptionEventArgs e)
@@ -1875,7 +1964,7 @@ namespace ParkingMangement.GUI
         private void resetData(bool isResetImage)
         {
             oldUhfCardId = null;
-            labelMaThe.Text = "";
+            labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
             labelCardID.Text = "-";
@@ -1897,6 +1986,7 @@ namespace ParkingMangement.GUI
             labelDigitIn.Text = "";
             labelDigitOut.Text = "-";
             labelDigitRegister.Text = "-";
+            labelError.Text = "";
         }
 
         private void pictureBoxChangeLane_Click(object sender, EventArgs e)
@@ -1914,7 +2004,7 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    if (!inputIsInside() && !inputIsOutside())
+                    if (!rfidInput.Equals(rfidIn) && !rfidInput.Equals(rfidOut))
                     {
                         updateDigitCarIn();
                         tbRFIDCardID.Focus();
@@ -1933,6 +2023,7 @@ namespace ParkingMangement.GUI
             {
                 case Keys.Enter:
                 case Keys.Space:
+                    labelError.Text = "";
                     cardID = tbRFIDCardID.Text.Trim();
                     labelCardID.Text = CardDAO.getIdentifyByCardID(cardID) + "";
                     tbRFIDCardID.Text = "";
@@ -2476,10 +2567,10 @@ namespace ParkingMangement.GUI
             int frmcomportindexOut = UHFReader.getComportIndex(mConfig.comReceiveOut);
             string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
             string newUhfCardId = null;
-
+            string portName = null;
             if (uhfInCardId != null)
             {
-                portNameComReceiveInput = portNameComReceiveIn;
+                portName = portNameComReceiveIn;
                 newUhfCardId = uhfInCardId;
             }
             else
@@ -2487,19 +2578,22 @@ namespace ParkingMangement.GUI
                 string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
                 if (uhfOutCardId != null)
                 {
-                    portNameComReceiveInput = portNameComReceiveOut;
+                    portName = portNameComReceiveOut;
                     newUhfCardId = uhfOutCardId;
                 }
             }
 
             if (newUhfCardId != null)
             {
-                labelMaThe.Text = newUhfCardId;
-                if (!newUhfCardId.Equals(oldUhfCardId))
+                labelError.Text = newUhfCardId;
+                int spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
+                oldUhfCardTime = DateTime.Now;
+                if (!newUhfCardId.Equals(oldUhfCardId) || spentTime > 60000)
                 {
                     cardID = newUhfCardId;
                     oldUhfCardId = newUhfCardId;
-                    //labelMaThe.Text = cardID;
+                    portNameComReceiveInput = portName;
+
                     saveImage();
                 }
             }

@@ -385,5 +385,19 @@ namespace ParkingMangement.GUI
             timerReadUHFData.Enabled = true;
             timerReadUHFData.Tick += new System.EventHandler(this.timerReadUHFData_Tick);
         }
+
+        private void FormQuanLyXeVaoRa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            int count = 0;
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+                    count++;
+            }
+            if (count == 1)
+            {
+                Application.Exit();
+            }
+        }
     }
 }

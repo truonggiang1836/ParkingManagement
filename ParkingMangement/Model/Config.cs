@@ -87,16 +87,16 @@ namespace ParkingMangement.Model
         public string signalCloseBarieOut { get; set; }
 
         [XmlElement(ElementName = "signal_open_barie_in_motorbike")]
-        public string signalOpenBarieInMotorbike { get; set; }
+        public string signalOpenBarieInMotorbike { get; set; } = "";
 
         [XmlElement(ElementName = "signal_close_barie_in_motorbike")]
-        public string signalCloseBarieInMotorbike { get; set; }
+        public string signalCloseBarieInMotorbike { get; set; } = "";
 
         [XmlElement(ElementName = "signal_open_barie_out_motorbike")]
-        public string signalOpenBarieOutMotorbike { get; set; }
+        public string signalOpenBarieOutMotorbike { get; set; } = "";
 
         [XmlElement(ElementName = "signal_close_barie_out_motorbike")]
-        public string signalCloseBarieOutMotorbike { get; set; }
+        public string signalCloseBarieOutMotorbike { get; set; } = "";
 
         [XmlElement(ElementName = "uhf_query_time")]
         public int uhfQueryTime { get; set; }

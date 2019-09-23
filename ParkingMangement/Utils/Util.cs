@@ -469,18 +469,18 @@ namespace ParkingMangement.Utils
         /// <param name="quality"> An integer from 0 to 100, with 100 being the highest quality. </param> 
         public static void SaveJpeg(string path, Image img, int quality)
         {
-            //if (quality < 0 || quality > 100)
-            //    throw new ArgumentOutOfRangeException("quality must be between 0 and 100.");
+            if (quality < 0 || quality > 100)
+                throw new ArgumentOutOfRangeException("quality must be between 0 and 100.");
 
-            //// Encoder parameter for image quality 
-            //EncoderParameter qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
-            //// JPEG image codec 
-            //ImageCodecInfo jpegCodec = GetEncoderInfo("image/jpeg");
-            //EncoderParameters encoderParams = new EncoderParameters(1);
-            //encoderParams.Param[0] = qualityParam;
-            //img.Save(path, jpegCodec, encoderParams);
+            // Encoder parameter for image quality 
+            EncoderParameter qualityParam = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, quality);
+            // JPEG image codec 
+            ImageCodecInfo jpegCodec = GetEncoderInfo("image/jpeg");
+            EncoderParameters encoderParams = new EncoderParameters(1);
+            encoderParams.Param[0] = qualityParam;
+            img.Save(path, jpegCodec, encoderParams);
 
-            img.Save(path);
+            //img.Save(path);
         }
 
         /// <summary> 

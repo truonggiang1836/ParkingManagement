@@ -57,6 +57,7 @@
             this.tbAccount.Size = new System.Drawing.Size(177, 17);
             this.tbAccount.TabIndex = 0;
             this.tbAccount.Text = "-";
+            this.tbAccount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbAccount_KeyDown);
             // 
             // tbPassword
             // 
@@ -200,6 +201,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormLogin_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
