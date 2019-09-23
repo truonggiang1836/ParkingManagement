@@ -539,7 +539,8 @@ namespace ParkingMangement.GUI
                 {
                     openBarieIn();
                     openBarieInMotorbike();
-                } else
+                }
+                else if (!mConfig.signalOpenBarieIn.Equals(""))
                 {
                     DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
@@ -589,7 +590,8 @@ namespace ParkingMangement.GUI
                 {
                     openBarieOut();
                     openBarieOutMotorbike();
-                } else
+                }
+                else if (!mConfig.signalOpenBarieOut.Equals(""))
                 {
                     DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
