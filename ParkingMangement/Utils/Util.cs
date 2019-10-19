@@ -25,7 +25,6 @@ namespace ParkingMangement.Utils
 {
     static class Util
     {
-        private static Bitmap bitmap = null;
         private static Config sConfig = null;
         public static string ImageToBase64(string Path)
         {
@@ -122,8 +121,14 @@ namespace ParkingMangement.Utils
 
         public static int getTotalTimeByDay(DateTime timeStart, DateTime timeEnd)
         {
-            TimeSpan duration = timeEnd - timeStart;
-            return (int) duration.TotalDays;
+            if (timeEnd.Year == timeStart.Year)
+            {
+                return timeEnd.DayOfYear - timeStart.DayOfYear;
+            } else
+            {
+                TimeSpan duration = timeEnd - timeStart;
+                return (int)duration.TotalDays;
+            }
         }
         public static string getCurrentDateTimeString()
         {
@@ -499,6 +504,13 @@ namespace ParkingMangement.Utils
             return null;
         }
 
+        public static Bitmap ResizeBitmap(Bitmap originalBitmap, float zoomFactor)
+        {
+            Size newSize = new Size((int)(originalBitmap.Width * zoomFactor), (int)(originalBitmap.Height * zoomFactor));
+            Bitmap bmp = new Bitmap(originalBitmap, newSize);
+            return bmp;
+        }
+
         public static Bitmap ResizeImage(Image imgToResize, float ratio)
         {
             try
@@ -522,15 +534,7 @@ namespace ParkingMangement.Utils
                 var sourceRectangle = new Rectangle(startX, startY, wScale, hScale);
 
                 //the future size of the image
-                //if (bitmap != null)
-                //{
-                //    bitmap.Dispose();
-                //    bitmap = null;
-                //}
-                if (bitmap == null)
-                {
-                    bitmap = new Bitmap(destinationWidth, destinationHeight);
-                }
+                var bitmap = new Bitmap(destinationWidth, destinationHeight);
 
                 //fill-in the whole bitmap
                 var destinationRectangle = new Rectangle(0, 0, bitmap.Width, bitmap.Height);

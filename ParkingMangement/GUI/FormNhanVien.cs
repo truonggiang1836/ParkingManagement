@@ -38,7 +38,7 @@ namespace ParkingMangement.GUI
 {
     public partial class FormNhanVien : Form
     {
-        private readonly RawInput _rawinput;
+        public readonly RawInput _rawinput;
 
         public string CurrentUserID;
         const bool CaptureOnlyInForeground = true;
@@ -47,6 +47,7 @@ namespace ParkingMangement.GUI
         private DateTime oldUhfCardTime;
         private string rfidInput = "";
         private string portNameComReceiveInput = null;
+        private string oldPortNameComReceiveInput = "";
 
         //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
         const string cameraUrl = @"rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
@@ -400,6 +401,7 @@ namespace ParkingMangement.GUI
                 dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             }
             portNameComReceiveInput = null;
+            oldPortNameComReceiveInput = null;
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -407,34 +409,43 @@ namespace ParkingMangement.GUI
             //labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
-        private void checkForOpenBarie(DataTable dtLastCar)
+        private void checkForOpenBarie(DataTable dtLastCar, string ticketType)
         {
-            //if (!KiemTraXeChuaRa(dtLastCar))
-            //{
-            //    checkForOpenBarieIn();
-            //}
-            //else
-            //{
-            //    checkForOpenBarieOut();
-            //}
+            string cardType = CardDAO.GetCardTypeByID(cardID);
             if (isCarIn())
             {
-                if (!KiemTraXeChuaRa(dtLastCar))
+                if (cardType.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
                 {
-                    checkForOpenBarieIn();
+                    checkForOpenBarieIn(ticketType);
+                } else
+                {
+                    if (!KiemTraXeChuaRa(dtLastCar))
+                    {
+                        checkForOpenBarieIn(ticketType);
+                    }
                 }
             }
             else
             {
-                if (KiemTraXeChuaRa(dtLastCar))
+                if (cardType.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
                 {
-                    checkForOpenBarieOut();
+                    checkForOpenBarieOut(ticketType);
+                }
+                else
+                {
+                    if (KiemTraXeChuaRa(dtLastCar))
+                    {
+                        checkForOpenBarieOut(ticketType);
+                    }
                 }
             }
         }
 
         private void checkForSaveToDB(bool isTicketCard)
         {
+            DataTable dtLastCar = CarDAO.GetLastCarByID(cardID);
+            checkForOpenBarie(dtLastCar, CardTypeDTO.CARD_TYPE_TICKET_MONTH);
+
             labelDigitIn.Text = "";
             labelDigitOut.Text = "";
             labelDigitRegister.Text = "";
@@ -444,8 +455,6 @@ namespace ParkingMangement.GUI
             {
                 labelCustomerName.Text = TicketMonthDAO.GetCustomerNameByID(cardID);
             }
-            DataTable dtLastCar = CarDAO.GetLastCarByID(cardID);
-            //checkForOpenBarie(dtLastCar);
             if (isCarIn())
             {
                 if (KiemTraXeChuaRa(dtLastCar))
@@ -487,7 +496,7 @@ namespace ParkingMangement.GUI
                     labelError.Text = "Thẻ này chưa được quẹt đầu vào";
                 }
             }
-            checkForOpenBarie(dtLastCar);
+            checkForOpenBarie(dtLastCar, CardTypeDTO.CARD_TYPE_TICKET_COMMON);
         }
 
         private void updateDigitCarIn()
@@ -515,104 +524,101 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void checkForOpenBarieIn()
+        private void checkForOpenBarieIn(string ticketType)
         {
-            string cardType = CardDAO.GetTypeByID(cardID);
-            string cardTypeID = CardDAO.GetCardTypeByID(cardID);
-            if (cardType == TypeDTO.TYPE_CAR)
+            string type = CardDAO.GetTypeByID(cardID);
+            string cardType = CardDAO.GetCardTypeByID(cardID);
+            if (ticketType.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
             {
-                // XE OTO
-
-                //if (cardID.Equals(oldUhfCardId))
-                //{
-                //    DialogResult dialogResult = MessageBox.Show("Đang có xe đi vào dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-                //        openBarieIn();
-                //    }
-                //}
-                //else
-                //{
-                //    openBarieIn();
-                //}
-                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
+                if (cardType.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
                 {
-                    openBarieIn();
-                    openBarieInMotorbike();
-                }
-                else if (!mConfig.signalOpenBarieIn.Equals(""))
-                {
-                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    if (type == TypeDTO.TYPE_CAR)
                     {
                         openBarieIn();
                         openBarieInMotorbike();
                     }
-                }
-            } else
-            {
-                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
-                {
-                    // XE MAY
-                    openBarieInMotorbike();
-                } else if (!mConfig.signalOpenBarieInMotorbike.Equals(""))
-                {
-                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    else
                     {
                         openBarieInMotorbike();
                     }
                 }
             }
+            else if (ticketType.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+            {
+                if (cardType.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                {
+                    if (type == TypeDTO.TYPE_CAR)
+                    {
+                        if (!mConfig.signalOpenBarieIn.Equals(""))
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                openBarieIn();
+                                openBarieInMotorbike();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!mConfig.signalOpenBarieInMotorbike.Equals(""))
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                openBarieInMotorbike();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
-        private void checkForOpenBarieOut()
+        private void checkForOpenBarieOut(string ticketType)
         {
-            string cardType = CardDAO.GetTypeByID(cardID);
-            string cardTypeID = CardDAO.GetCardTypeByID(cardID);
-            if (cardType == TypeDTO.TYPE_CAR)
+            string type = CardDAO.GetTypeByID(cardID);
+            string cardType = CardDAO.GetCardTypeByID(cardID);
+            if (ticketType.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
             {
-                // XE OTO
-
-                //if (cardID.Equals(oldUhfCardId))
-                //{
-                //    DialogResult dialogResult = MessageBox.Show("Đang có xe đi ra dùng thẻ tầm xa. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                //    if (dialogResult == DialogResult.Yes)
-                //    {
-                //        openBarieOut();
-                //    }
-                //}
-                //else
-                //{
-                //    openBarieOut();
-                //}
-                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
+                if (cardType.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
                 {
-                    openBarieOut();
-                    openBarieOutMotorbike();
-                }
-                else if (!mConfig.signalOpenBarieOut.Equals(""))
-                {
-                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    if (type == TypeDTO.TYPE_CAR)
                     {
                         openBarieOut();
                         openBarieOutMotorbike();
                     }
-                }
-            } else
-            {
-                if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH))
-                {
-                    // XE MAY
-                    openBarieOutMotorbike();
-                }
-                else if (!mConfig.signalOpenBarieOutMotorbike.Equals(""))
-                {
-                    DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
+                    else
                     {
                         openBarieOutMotorbike();
+                    }
+                }
+            }
+            else if (ticketType.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+            {
+                if (cardType.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))
+                {
+                    if (type == TypeDTO.TYPE_CAR)
+                    {
+                        if (!mConfig.signalOpenBarieOut.Equals(""))
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                openBarieOut();
+                                openBarieOutMotorbike();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (!mConfig.signalOpenBarieOutMotorbike.Equals(""))
+                        {
+                            DialogResult dialogResult = MessageBox.Show("Đang có xe vãng lai. Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+                            if (dialogResult == DialogResult.Yes)
+                            {
+                                openBarieOutMotorbike();
+                            }
+                        }
                     }
                 }
             }
@@ -875,11 +881,10 @@ namespace ParkingMangement.GUI
                                     isTicketMonthCard = false;
                                     break;
                             }
-                            MessageBox.Show("Thẻ tháng đã hết hạn");
+                            labelError.Text = "Thẻ tháng đã hết hạn!";
                         } else
                         {
-                            string message = "Thẻ tháng còn " + totalDaysLeft + " ngày nữa sẽ hết hạn!";
-                            MessageBox.Show(message);
+                            labelError.Text = "Thẻ tháng còn " + totalDaysLeft + " ngày nữa sẽ hết hạn!";
                         }
                     }
                 }
@@ -1134,7 +1139,7 @@ namespace ParkingMangement.GUI
         {
             //return @"E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingManagement\Images\20190807\33_20190807_200936_637008053763543873.jpg";
             float reduceSizePercent = 0.5f;
-            int compressedQuality = 20;
+            int compressedQuality = 15;
 
             string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString();
             Directory.CreateDirectory(path);
@@ -1189,47 +1194,48 @@ namespace ParkingMangement.GUI
 
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
         {
-            //float zoomImageRatio = 0.5f;
-            //if (pictureBox == pictureBoxImage1)
-            //{
-            //    zoomImageRatio = (float)mConfig.ZoomCamera1 / 100;
-            //}
-            //else if (pictureBox == pictureBoxImage2)
-            //{
-            //    zoomImageRatio = (float)mConfig.ZoomCamera2 / 100;
-            //}
-            //else if (pictureBox == pictureBoxImage3)
-            //{
-            //    zoomImageRatio = (float)mConfig.ZoomCamera3 / 100;
-            //}
-            //else if (pictureBox == pictureBoxImage4)
-            //{
-            //    zoomImageRatio = (float)mConfig.ZoomCamera4 / 100;
-            //}
-            //zoomImageRatio = 1 - zoomImageRatio * 1.5f;
+            float zoomImageRatio = 0.5f;
+            if (pictureBox == pictureBoxImage1)
+            {
+                zoomImageRatio = (float)mConfig.ZoomCamera1 / 100;
+            }
+            else if (pictureBox == pictureBoxImage2)
+            {
+                zoomImageRatio = (float)mConfig.ZoomCamera2 / 100;
+            }
+            else if (pictureBox == pictureBoxImage3)
+            {
+                zoomImageRatio = (float)mConfig.ZoomCamera3 / 100;
+            }
+            else if (pictureBox == pictureBoxImage4)
+            {
+                zoomImageRatio = (float)mConfig.ZoomCamera4 / 100;
+            }
+            zoomImageRatio = 1 - zoomImageRatio * 1.2f;
 
             //FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             if (pictureBox != null)
             {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
                 try
                 {
                     System.Drawing.Image image = pictureBox.Image;
-                    System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
-                    //pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                    pictureBox.Image = img;
+                    //pictureBox.Image = img;
+                    pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
+                    //zoomImageRatio = 0.5f;
                     if (image != null)
                     {
                         image.Dispose();
                     }
                 } catch (Exception)
                 {
-
+                    pictureBox.Image = img;
                 }
             }
             //stream.Dispose();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
         }
 
         private void resetPictureBoxImage1()
@@ -1702,32 +1708,24 @@ namespace ParkingMangement.GUI
                     if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
                         // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
-                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit || getTotalHourOfNight(timeIn, timeOut, computerDTO) <= limit)
+                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                         {
-                            // thời gian ngày nhỏ hơn giới hạn hoặc thời gian đêm nhỏ hơn giới hạn
-                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                            // thời gian ngày lớn hơn đêm
+                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
                             {
-                                // thời gian ngày lớn hơn đêm
-                                if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
-                                {
-                                    // thời gian ngày nhỏ hơn giới hạn
-                                    return computerDTO.DayCost;
-                                }
-                                else
-                                {
-                                    // thời gian ngày lớn hơn giới hạn
-                                    return computerDTO.NightCost;
-                                }
+                                // thời gian ngày nhỏ hơn giới hạn
+                                return computerDTO.DayCost;
                             }
                             else
                             {
-                                // thời gian ngày nhỏ hơn đêm
+                                // thời gian ngày lớn hơn giới hạn
                                 return computerDTO.NightCost;
                             }
-                        } else
+                        }
+                        else
                         {
-                            // thời gian ngày lớn hơn giới hạn và thời gian đêm lớn hơn giới hạn
-                            return computerDTO.DayNightCost;
+                            // thời gian ngày nhỏ hơn đêm
+                            return computerDTO.NightCost;
                         }
                     } else
                     {
@@ -1756,7 +1754,7 @@ namespace ParkingMangement.GUI
                     } else
                     {
                         // vào ngày - ra đêm hoặc vào đêm - ra ngày
-                        return (soLuotQuaNgay(timeIn, timeOut, computerDTO) + 1) * computerDTO.DayNightCost;
+                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
                     }
                 }
             }
@@ -1928,12 +1926,13 @@ namespace ParkingMangement.GUI
         private int soLuotQuaNgay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             int dayDistant = Util.getTotalTimeByDay(timeIn, timeOut);
-            if (computerDTO.IntervalBetweenDayNight == 0)
-            {
-                computerDTO.IntervalBetweenDayNight = 1;
-            }
-            int countOfCircle = (int) Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.IntervalBetweenDayNight;
-            return countOfCircle - dayDistant;
+            return dayDistant;
+            //if (computerDTO.IntervalBetweenDayNight == 0)
+            //{
+            //    computerDTO.IntervalBetweenDayNight = 1;
+            //}
+            //int countOfCircle = (int) Util.getTotalTimeByHour(timeIn, timeOut) / computerDTO.IntervalBetweenDayNight;
+            //return countOfCircle - dayDistant;
         }
 
         public void updateCauHinhHienThiXeRaVao()
@@ -2587,17 +2586,30 @@ namespace ParkingMangement.GUI
 
             if (newUhfCardId != null)
             {
-                labelError.Text = newUhfCardId;
                 int spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
                 oldUhfCardTime = DateTime.Now;
-                if (!newUhfCardId.Equals(oldUhfCardId) || spentTime > 60000)
+                int distant = 3 * 60 * 1000; // 3'
+                if (!newUhfCardId.Equals(oldUhfCardId) || spentTime > distant)
                 {
+                    //labelError.Text = newUhfCardId;
                     cardID = newUhfCardId;
-                    oldUhfCardId = newUhfCardId;
                     portNameComReceiveInput = portName;
 
                     saveImage();
                 }
+                oldUhfCardId = newUhfCardId;
+                if (portNameComReceiveInput != null && portNameComReceiveInput.Equals(oldPortNameComReceiveInput))
+                {
+                    if (isCarIn())
+                    {
+                        checkForOpenBarieIn(CardTypeDTO.CARD_TYPE_TICKET_MONTH);
+                    }
+                    else
+                    {
+                        checkForOpenBarieOut(CardTypeDTO.CARD_TYPE_TICKET_MONTH);
+                    }
+                }
+                oldPortNameComReceiveInput = portName;
             }
         }
 

@@ -25,6 +25,7 @@ namespace ParkingMangement.GUI
 {
     public partial class FormQuanLy : Form
     {
+        public FormNhanVien formNhanVien;
         const int EXPORT_SALE_NOT_YET_SEARCH = 0;
         const int EXPORT_SALE_SEARCH_CONDITION = 1;
         const int EXPORT_SALE_SEARCH_ALL = 2;
@@ -44,12 +45,14 @@ namespace ParkingMangement.GUI
         public FormQuanLy()
         {
             InitializeComponent();
-            _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
-
-            //_rawinput.AddMessageFilter();   // Adding a message filter will cause keypresses to be handled
-            //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
-
-            _rawinput.KeyPressed += OnKeyPressed;
+            if (formNhanVien != null && formNhanVien._rawinput != null)
+            {
+                _rawinput = formNhanVien._rawinput;
+            } else
+            {
+                _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
+                _rawinput.KeyPressed += OnKeyPressed;
+            }
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -3224,17 +3227,17 @@ namespace ParkingMangement.GUI
         {
             int originalCellColumnIndex = cellColumnIndex;
             //Loop through each row and read value from each column. 
-            for (int i = 0; i < dataGridView.Columns.Count; i++)
-            {
-                if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
-                {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
-                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                    setColerForRange(range);
-                    setAllBorderForRange(range);
-                    cellColumnIndex++;
-                }
-            }
+            //for (int i = 0; i < dataGridView.Columns.Count; i++)
+            //{
+            //    if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
+            //    {
+            //        worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
+            //        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+            //        setColerForRange(range);
+            //        setAllBorderForRange(range);
+            //        cellColumnIndex++;
+            //    }
+            //}
 
             cellRowIndex++;
             cellColumnIndex = originalCellColumnIndex;
@@ -3246,12 +3249,12 @@ namespace ParkingMangement.GUI
                     {
                         Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
                         worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Rows[i].Cells[j].Value.ToString();
-                        setLeftBorderForRange(range);
-                        setRightBorderForRange(range);
-                        if (i == dataGridView.Rows.Count - 1)
-                        {
-                            setBottomBorderForRange(range);
-                        }
+                        //setLeftBorderForRange(range);
+                        //setRightBorderForRange(range);
+                        //if (i == dataGridView.Rows.Count - 1)
+                        //{
+                        //    setBottomBorderForRange(range);
+                        //}
                         cellColumnIndex++;
                     }
                 }
@@ -4100,7 +4103,7 @@ namespace ParkingMangement.GUI
 
         private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _rawinput.KeyPressed -= OnKeyPressed;
+            //_rawinput.KeyPressed -= OnKeyPressed;
             int count = 0;
             for (int i = 0; i < Application.OpenForms.Count; i++)
             {

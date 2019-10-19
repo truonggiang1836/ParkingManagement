@@ -55,11 +55,11 @@ namespace ParkingMangement.DAO
         private static string sqlQueryXeTon = " and Car.IDOut = '' ";
         private static string sqlQueryMatThe = " and Car.IsLostCard > " + 0 + "";
         private static string sqlOrderByIdentifyDesc = " order by Car.Identify desc";
-        private static string sqlOrderByIdentifyAsc = " order by Car.Identify asc";
+        private static string sqlOrderTimeStartDesc = " order by Car.TimeStart desc";
 
         public static DataTable GetAllData()
         {
-            string sql = sqlGetAllData + sqlOrderByIdentifyDesc;
+            string sql = sqlGetAllData + sqlOrderTimeStartDesc;
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
@@ -94,7 +94,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllDataForCashManagement()
         {
-            string sql = sqlGetDataForCashManagement + sqlOrderByIdentifyDesc;
+            string sql = sqlGetDataForCashManagement + sqlOrderTimeStartDesc;
             DataTable data = Database.ExcuQuery(sql);
             return data;
         }
@@ -172,7 +172,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchAllData(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlOrderByIdentifyDesc;
+            sql += sqlOrderTimeStartDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -192,7 +192,7 @@ namespace ParkingMangement.DAO
             {
                 sql += sqlQueryTicketMonth;
             }
-            sql += sqlOrderByIdentifyDesc;
+            sql += sqlOrderTimeStartDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -243,7 +243,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchXeTon(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlQueryXeTon + sqlOrderByIdentifyDesc;
+            sql += sqlQueryXeTon + sqlOrderTimeStartDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -252,7 +252,7 @@ namespace ParkingMangement.DAO
         public static DataTable searchMatThe(CarDTO carDTO)
         {
             string sql = sqlSearchData(carDTO);
-            sql += sqlQueryMatThe + sqlOrderByIdentifyDesc;
+            sql += sqlQueryMatThe + sqlOrderTimeStartDesc;
 
             DataTable data = Database.ExcuQuery(sql);
             return data;
@@ -569,7 +569,7 @@ namespace ParkingMangement.DAO
 
         public static long GetCountCarSurviveByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
         {
-            string sql = "select count(Car.ID) from Car join Part on Car.IDPart = Part.ID";
+            string sql = "select count(DISTINCT(Car.ID)) from Car join Part on Car.IDPart = Part.ID";
             if (!isTicketMonth)
             {
                 sql += sqlQueryTicketCommon;
@@ -602,7 +602,7 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarSurvive(string typeID)
         {
-            string sql = "select count(Car.ID) from Car, Part where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID ";
+            string sql = "select count(DISTINCT(Car.ID)) from Car, Part where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID ";
             if (typeID != null)
             {
                 sql += " and Part.TypeID = '" + typeID + "'";
@@ -613,10 +613,10 @@ namespace ParkingMangement.DAO
 
         public static int GetCountCarSurvive(string typeID, bool isTicketMonth)
         {
-            string sql = "select count(Car.ID) fromCar, Part where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
+            string sql = "select count(DISTINCT(Car.ID)) from Car, Part where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select count(Car.ID) fromCar, Part where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
+                sql = "select count(DISTINCT(Car.ID)) from Car, Part where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
             }
             if (typeID != null)
             {
