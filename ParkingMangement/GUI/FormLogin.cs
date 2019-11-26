@@ -103,10 +103,11 @@ namespace ParkingMangement
             this.Hide();
             Program.StartWorkTime = DateTime.Now;
             Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
-            Form f = new FormQuanLy();
-            if (data.Rows[0].Field<string>("IDFunct") == Constant.FUNCTION_ID_NHAN_VIEN)
+            Form f = new FormNhanVien();
+            if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
             {
-                f = new FormNhanVien();
+                f = new FormQuanLy();
+                ((FormQuanLy)f).formNhanVien = this.formNhanVien;
             }
 
             if (formNhanVien != null)
@@ -120,9 +121,11 @@ namespace ParkingMangement
                     Util.doLogOut();
                     f.FormClosing += new FormClosingEventHandler(FormNhanVien_FormClosing);
                 }
+                f.Show();
+            } else
+            {
+                f.ShowDialog();
             }
-
-            f.Show();
             
             LogUtil.addLoginLog();
         }

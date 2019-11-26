@@ -37,30 +37,34 @@ namespace ParkingMangement.GUI
         private string[] listFunctionQuanLyHeThong = { "13", "14", "15", "16" };
         private string[] listFunctionQuanLyXe = { "17", "18", "19", "20" };
 
-        private readonly RawInput _rawinput;
+        private RawInput _rawinput;
         const bool CaptureOnlyInForeground = true;
         private ComputerDTO mComputerDTO;
         private int mExportSaleType = EXPORT_SALE_NOT_YET_SEARCH;
         private System.Windows.Forms.Timer timerReadUHFData;
+        private Config mConfig;
         public FormQuanLy()
         {
             InitializeComponent();
-            if (formNhanVien != null && formNhanVien._rawinput != null)
-            {
-                _rawinput = formNhanVien._rawinput;
-            } else
-            {
-                _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
-                _rawinput.KeyPressed += OnKeyPressed;
-            }
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
         {
+            mConfig = Util.getConfigFile();
+            if (formNhanVien != null && formNhanVien._rawinput != null)
+            {
+                _rawinput = formNhanVien._rawinput;
+            }
+            else
+            {
+                _rawinput = new RawInput(Handle, CaptureOnlyInForeground);
+            }
+            _rawinput.KeyPressed += OnKeyPressed;
+
             loadUserInfoTab();
             checkShowHideAllTabPage();
             labelKetQuaTaoThe.Text = "";
-            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            if (mConfig.isUsingUhf.Equals("yes"))
             {
                 initUhfTimer();
             }
@@ -4016,7 +4020,7 @@ namespace ParkingMangement.GUI
                 String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
                 if (File.Exists(filePath))
                 {
-                    Config config = Util.getConfigFile();
+                    Config config = mConfig;
                     config.cameraUrl1 = Constant.sEncodeStart + tb_camera_url_1.Text + Constant.sEncodeEnd;
                     config.cameraUrl2 = Constant.sEncodeStart + tb_camera_url_2.Text + Constant.sEncodeEnd;
                     config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
@@ -4028,6 +4032,14 @@ namespace ParkingMangement.GUI
                     config.comReceiveIn = Constant.sEncodeStart + tb_com_receive_in.Text + Constant.sEncodeEnd;
                     config.comReceiveOut = Constant.sEncodeStart + tb_com_receive_out.Text + Constant.sEncodeEnd;
                     config.comSend = Constant.sEncodeStart + tb_com_send.Text + Constant.sEncodeEnd;
+                    config.signalOpenBarieIn = Constant.sEncodeStart + tb_signal_open_barie_in.Text + Constant.sEncodeEnd;
+                    config.signalCloseBarieIn = Constant.sEncodeStart + tb_signal_close_barie_in.Text + Constant.sEncodeEnd;
+                    config.signalOpenBarieOut = Constant.sEncodeStart + tb_signal_open_barie_out.Text + Constant.sEncodeEnd;
+                    config.signalCloseBarieOut = Constant.sEncodeStart + tb_signal_close_barie_out.Text + Constant.sEncodeEnd;
+                    config.signalOpenBarieInMotorbike = Constant.sEncodeStart + tb_signal_open_barie_in_motobike.Text + Constant.sEncodeEnd;
+                    config.signalCloseBarieInMotorbike = Constant.sEncodeStart + tb_signal_close_barie_in_motobike.Text + Constant.sEncodeEnd;
+                    config.signalOpenBarieOutMotorbike = Constant.sEncodeStart + tb_signal_open_barie_out_motobike.Text + Constant.sEncodeEnd;
+                    config.signalCloseBarieOutMotorbike = Constant.sEncodeStart + tb_signal_close_barie_out_motobike.Text + Constant.sEncodeEnd;
                     XmlSerializer xs = new XmlSerializer(typeof(Config));
                     TextWriter txtWriter = new StreamWriter(filePath);
                     xs.Serialize(txtWriter, config);
@@ -4058,7 +4070,7 @@ namespace ParkingMangement.GUI
         {
             try
             {
-                Config config = Util.getConfigFile();
+                Config config = mConfig;
                 tb_camera_url_1.Text = config.cameraUrl1;
                 tb_camera_url_2.Text = config.cameraUrl2;
                 tb_camera_url_3.Text = config.cameraUrl3;
@@ -4068,6 +4080,14 @@ namespace ParkingMangement.GUI
                 tb_com_receive_in.Text = config.comReceiveIn;
                 tb_com_receive_out.Text = config.comReceiveOut;
                 tb_com_send.Text = config.comSend;
+                tb_signal_open_barie_in.Text = config.signalOpenBarieIn;
+                tb_signal_close_barie_in.Text = config.signalCloseBarieIn;
+                tb_signal_open_barie_out.Text = config.signalOpenBarieOut;
+                tb_signal_close_barie_out.Text = config.signalCloseBarieOut;
+                tb_signal_open_barie_in_motobike.Text = config.signalOpenBarieInMotorbike;
+                tb_signal_close_barie_in_motobike.Text = config.signalCloseBarieInMotorbike;
+                tb_signal_open_barie_out_motobike.Text = config.signalOpenBarieOutMotorbike;
+                tb_signal_close_barie_out_motobike.Text = config.signalCloseBarieOutMotorbike;
                 tb_ip_host.Text = config.computerName;
                 tb_folder_root.Text = config.folderRoot;
             }
@@ -4103,16 +4123,22 @@ namespace ParkingMangement.GUI
 
         private void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //_rawinput.KeyPressed -= OnKeyPressed;
-            int count = 0;
-            for (int i = 0; i < Application.OpenForms.Count; i++)
+            try
             {
-                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
-                    count++;
-            }
-            if (count == 1)
+                _rawinput.KeyPressed -= OnKeyPressed;
+                int count = 0;
+                for (int i = 0; i < Application.OpenForms.Count; i++)
+                {
+                    if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+                        count++;
+                }
+                if (count == 1)
+                {
+                    Application.Exit();
+                }
+            } catch (Exception)
             {
-                Application.Exit();
+
             }
         }
 
@@ -4757,97 +4783,103 @@ namespace ParkingMangement.GUI
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
         {
-            int frmcomportindexIn = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
-            int frmcomportindexOut = UHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
-            string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
-            string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
-            //string uhfInCardId = null;
-
-            //byte[] ScanModeData = new byte[40960];
-            //int ValidDatalength, i;
-            //string temp, temps;
-            //ValidDatalength = 0;
-            //int frmcomportindex = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
-            //int fCmdRet = StaticClassReaderB.ReadActiveModeData(ScanModeData, ref ValidDatalength, frmcomportindex);
-            //if (fCmdRet == 0)
-            //{
-            //    temp = "";
-            //    temps = UHFReader.ByteArrayToHexString(ScanModeData);
-            //    for (i = 0; i < ValidDatalength; i++)
-            //    {
-            //        temp = temp + temps.Substring(i * 2, 2) + " ";
-            //    }
-            //    if (ValidDatalength > 0)
-            //    {
-            //        uhfInCardId = temp.Trim();
-            //    }
-            //}
-
-            string uhfCardId = uhfInCardId;
-            if (uhfCardId == null)
+            try
             {
-                uhfCardId = uhfOutCardId;
-            }
+                int frmcomportindexIn = UHFReader.getComportIndex(mConfig.comReceiveIn);
+                int frmcomportindexOut = UHFReader.getComportIndex(mConfig.comReceiveOut);
+                string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
+                string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
+                //string uhfInCardId = null;
 
-            if (uhfCardId != null)
-            {
-                TextBox focusedTextbox = null;
-                if (tbCardSearch.Focused)
+                //byte[] ScanModeData = new byte[40960];
+                //int ValidDatalength, i;
+                //string temp, temps;
+                //ValidDatalength = 0;
+                //int frmcomportindex = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+                //int fCmdRet = StaticClassReaderB.ReadActiveModeData(ScanModeData, ref ValidDatalength, frmcomportindex);
+                //if (fCmdRet == 0)
+                //{
+                //    temp = "";
+                //    temps = UHFReader.ByteArrayToHexString(ScanModeData);
+                //    for (i = 0; i < ValidDatalength; i++)
+                //    {
+                //        temp = temp + temps.Substring(i * 2, 2) + " ";
+                //    }
+                //    if (ValidDatalength > 0)
+                //    {
+                //        uhfInCardId = temp.Trim();
+                //    }
+                //}
+
+                string uhfCardId = uhfInCardId;
+                if (uhfCardId == null)
                 {
-                    focusedTextbox = tbCardSearch;
+                    uhfCardId = uhfOutCardId;
                 }
-                if (tbCardIDCreate.Focused)
+
+                if (uhfCardId != null)
                 {
-                    focusedTextbox = tbCardIDCreate;
-                }
-                if (tbTicketMonthIDCreate.Focused)
-                {
-                    focusedTextbox = tbTicketMonthIDCreate;
-                }
-                if (tbTicketMonthKeyWordSearch.Focused)
-                {
-                    focusedTextbox = tbTicketMonthKeyWordSearch;
-                }
-                if (tbRenewTicketMonthKeyWordSearch.Focused)
-                {
-                    focusedTextbox = tbRenewTicketMonthKeyWordSearch;
-                }
-                if (tbLostTicketMonthKeyWordSearch.Focused)
-                {
-                    focusedTextbox = tbLostTicketMonthKeyWordSearch;
-                }
-                if (tbLostTicketMonthID.Focused)
-                {
-                    focusedTextbox = tbLostTicketMonthID;
-                }
-                if (tbActiveTicketMonthKeyWordSearch.Focused)
-                {
-                    focusedTextbox = tbActiveTicketMonthKeyWordSearch;
-                }
-                if (tbCarIDSearch.Focused)
-                {
-                    focusedTextbox = tbCarIDSearch;
-                }
-                if (tbLostCardSearch.Focused)
-                {
-                    focusedTextbox = tbLostCardSearch;
-                }
-                if (tbTicketLogKeyWordSearch.Focused)
-                {
-                    focusedTextbox = tbTicketLogKeyWordSearch;
-                }
-                if (focusedTextbox != null)
-                {
-                    focusedTextbox.Text = uhfCardId;
-                    if (focusedTextbox == tbCardIDCreate)
+                    TextBox focusedTextbox = null;
+                    if (tbCardSearch.Focused)
                     {
-                        if (!tbCardIDCreate.Text.Equals(null))
+                        focusedTextbox = tbCardSearch;
+                    }
+                    if (tbCardIDCreate.Focused)
+                    {
+                        focusedTextbox = tbCardIDCreate;
+                    }
+                    if (tbTicketMonthIDCreate.Focused)
+                    {
+                        focusedTextbox = tbTicketMonthIDCreate;
+                    }
+                    if (tbTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbTicketMonthKeyWordSearch;
+                    }
+                    if (tbRenewTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbRenewTicketMonthKeyWordSearch;
+                    }
+                    if (tbLostTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbLostTicketMonthKeyWordSearch;
+                    }
+                    if (tbLostTicketMonthID.Focused)
+                    {
+                        focusedTextbox = tbLostTicketMonthID;
+                    }
+                    if (tbActiveTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbActiveTicketMonthKeyWordSearch;
+                    }
+                    if (tbCarIDSearch.Focused)
+                    {
+                        focusedTextbox = tbCarIDSearch;
+                    }
+                    if (tbLostCardSearch.Focused)
+                    {
+                        focusedTextbox = tbLostCardSearch;
+                    }
+                    if (tbTicketLogKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbTicketLogKeyWordSearch;
+                    }
+                    if (focusedTextbox != null)
+                    {
+                        focusedTextbox.Text = uhfCardId;
+                        if (focusedTextbox == tbCardIDCreate)
                         {
-                            checkAndCreateCard();
+                            if (!tbCardIDCreate.Text.Equals(null))
+                            {
+                                checkAndCreateCard();
+                            }
                         }
                     }
                 }
-            }
+            } catch(Exception)
+            {
+
+            }            
         }
 
         private void initUhfTimer()

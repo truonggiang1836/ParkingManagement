@@ -231,6 +231,8 @@ namespace ParkingMangement.GUI
             //imageBox4.Visible = false;
 
             //timerReadUHFData.Enabled = true;
+
+            //runPythonServer();
         }
 
         private void loadInfo()
@@ -296,8 +298,7 @@ namespace ParkingMangement.GUI
                     openFormQuanLyXeRaVao();
                     break;
                 case Keys.F8:
-                    openBarieIn();
-                    openBarieInMotorbike();
+                    openBarieInCar();
                     AutoClosingMessageBox.Show("Barie đã mở", "", 500);
                     //MessageBox.Show("Barie đã mở");
                     break;
@@ -307,8 +308,7 @@ namespace ParkingMangement.GUI
                     //MessageBox.Show("Barie đã đóng");
                     break;
                 case Keys.F10:
-                    openBarieOut();
-                    openBarieOutMotorbike();
+                    openBarieOutCar();
                     AutoClosingMessageBox.Show("Barie đã mở", "", 500);
                     //MessageBox.Show("Barie đã mở");
                     break;
@@ -359,7 +359,7 @@ namespace ParkingMangement.GUI
         {
             FormInOutSetting formInOutSetting = new FormInOutSetting();
             formInOutSetting.formNhanVien = this;
-            formInOutSetting.Show();
+            formInOutSetting.ShowDialog();
         }
 
         private void openFormQuanLyXeRaVao()
@@ -369,7 +369,7 @@ namespace ParkingMangement.GUI
             if (listFunctionSec.Contains(Constant.NODE_VALUE_XEM_BAO_CAO_F7.ToString()))
             {
                 Form formQuanLyXeVaoRa = new FormQuanLyXeVaoRa();
-                formQuanLyXeVaoRa.Show();
+                formQuanLyXeVaoRa.ShowDialog();
             }
             else
             {
@@ -381,7 +381,7 @@ namespace ParkingMangement.GUI
         {
             FormZoomCameraSetting formZoomCameraSetting = new FormZoomCameraSetting();
             formZoomCameraSetting.formNhanVien = this;
-            formZoomCameraSetting.Show();
+            formZoomCameraSetting.ShowDialog();
         }
 
         //private void saveImageToFile(System.Drawing.Image image, string fileName)
@@ -452,7 +452,7 @@ namespace ParkingMangement.GUI
         private void checkForOpenBarie(DataTable dtLastCar, bool isUhfCard)
         {
             string cardType = CardDAO.GetCardTypeByID(cardID);
-            if (isCarIn())
+            if (!inputIsRightSide())
             {
                 checkForOpenBarieIn(isUhfCard);
             }
@@ -572,30 +572,37 @@ namespace ParkingMangement.GUI
         private void checkForOpenBarieIn(bool isUhfCard)
         {
             string type = CardDAO.GetTypeByID(cardID);
-            string cardType = CardDAO.GetCardTypeByID(cardID);
-
-            //if (cardID.Equals(oldUhfCardId))
             if (isUhfCard)
             {
-                openBarieIn();
-                return;
+                // truong hop quet the tam xa
+                if (mConfig.inOutType == ConfigDTO.TYPE_IN_IN || mConfig.inOutType == ConfigDTO.TYPE_OUT_OUT)
+                {
+                    // lan vao - vao hoac ra - ra thi mo ca 2 barie
+                    openBarieOutCar();
+                    openBarieInCar();
+                } else
+                {
+                    openBarieInCar();
+                }
             }
             else
             {
+                // truong hop quet the thuong
                 if (type == TypeDTO.TYPE_CAR)
                 {
+                    // truong hop xe oto
                     if (!mConfig.signalOpenBarieIn.Equals(""))
                     {
                         DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            openBarieIn();
-                            openBarieInMotorbike();
+                            openBarieInCar();
                         }
                     }
                 }
                 else
                 {
+                    // truong hop xe may
                     if (!mConfig.signalOpenBarieInMotorbike.Equals(""))
                     {
                         DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
@@ -611,28 +618,37 @@ namespace ParkingMangement.GUI
         private void checkForOpenBarieOut(bool isUhfCard)
         {
             string type = CardDAO.GetTypeByID(cardID);
-            string cardType = CardDAO.GetCardTypeByID(cardID);
-
-            //if (cardID.Equals(oldUhfCardId))
             if (isUhfCard)
             {
-                openBarieOut();
+                // truong hop quet the tam xa
+                if (mConfig.inOutType == ConfigDTO.TYPE_IN_IN || mConfig.inOutType == ConfigDTO.TYPE_OUT_OUT)
+                {
+                    // lan vao - vao hoac ra - ra thi mo ca 2 barie
+                    openBarieOutCar();
+                    openBarieInCar();
+                }
+                else
+                {
+                    openBarieOutCar();
+                }
             } else
             {
+                // truong hop quet the thuong
                 if (type == TypeDTO.TYPE_CAR)
                 {
+                    // truong hop xe oto
                     if (!mConfig.signalOpenBarieOut.Equals(""))
                     {
                         DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
                         if (dialogResult == DialogResult.Yes)
                         {
-                            openBarieOut();
-                            openBarieOutMotorbike();
+                            openBarieOutCar();
                         }
                     }
                 }
                 else
                 {
+                    // truong hop xe may
                     if (!mConfig.signalOpenBarieOutMotorbike.Equals(""))
                     {
                         DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
@@ -1633,7 +1649,7 @@ namespace ParkingMangement.GUI
         private void OnKeyPressed(object sender, RawInputEventArg e)
         {
             String source = e.KeyPressEvent.Source;
-                if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
+            if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
             {
                 rfidInput = e.KeyPressEvent.DeviceName;
             } else
@@ -1645,16 +1661,16 @@ namespace ParkingMangement.GUI
         private void Keyboard_FormClosing(object sender, FormClosingEventArgs e)
         {
             _rawinput.KeyPressed -= OnKeyPressed;
-            int count = 0;
-            for (int i = 0; i < Application.OpenForms.Count; i++)
-            {
-                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
-                    count++;
-            }
-            if (count == 1)
-            {
-                Application.Exit();
-            }
+            //int count = 0;
+            //for (int i = 0; i < Application.OpenForms.Count; i++)
+            //{
+            //    if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+            //        count++;
+            //}
+            //if (count == 1)
+            //{
+            //    Application.Exit();
+            //}
         }
 
         private static void CurrentDomain_UnhandledException(Object sender, UnhandledExceptionEventArgs e)
@@ -1978,6 +1994,7 @@ namespace ParkingMangement.GUI
 
         public void updateCauHinhHienThiXeRaVao()
         {
+            mConfig = Util.getConfigFile();
             int inOutType = mConfig.inOutType;
             switch (inOutType)
             {
@@ -2216,16 +2233,18 @@ namespace ParkingMangement.GUI
 
         private void FormNhanVien_FormClosing(object sender, FormClosingEventArgs e)
         {
-            int count = 0;
-            for (int i = 0; i < Application.OpenForms.Count; i++)
-            {
-                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
-                    count++;
-            }
-            if (count == 1)
-            {
-                Application.Exit();
-            }
+            //int count = 0;
+            //for (int i = 0; i < Application.OpenForms.Count; i++)
+            //{
+            //    if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+            //        count++;
+            //}
+            //if (count == 1)
+            //{
+            //    Application.Exit();
+            //}
+            Application.Exit();
+            System.Environment.Exit(1);
         }
 
         private void open_bitmap()
@@ -2404,7 +2423,13 @@ namespace ParkingMangement.GUI
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            Invoke(new MethodInvoker(() => { dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive(); }));
+            try
+            {
+                Invoke(new MethodInvoker(() => { dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive(); }));
+            } catch (Exception)
+            {
+
+            }
         }
 
         //private void updateDataToServerByTimer()
@@ -2486,6 +2511,17 @@ namespace ParkingMangement.GUI
             updateCauHinhHienThiXeRaVao();
         }
 
+        private void openBarieInCar()
+        {
+            openBarieIn();
+
+            string carSignal = mConfig.signalOpenBarieIn;
+            string motorBikeSignal = mConfig.signalOpenBarieInMotorbike;
+            if (!carSignal.Equals(motorBikeSignal)) {
+                openBarieInMotorbike();
+            }
+        }
+
         private void openBarieIn()
         {
             string data = mConfig.signalOpenBarieIn;
@@ -2505,6 +2541,18 @@ namespace ParkingMangement.GUI
             string data = mConfig.signalOpenBarieOut;
             string portName = mConfig.comSend;
             writeDataToPort(data, portName);
+        }
+
+        private void openBarieOutCar()
+        {
+            openBarieOut();
+
+            string carSignal = mConfig.signalOpenBarieOut;
+            string motorBikeSignal = mConfig.signalOpenBarieOutMotorbike;
+            if (!carSignal.Equals(motorBikeSignal))
+            {
+                openBarieOutMotorbike();
+            }
         }
 
         private void openBarieOutMotorbike()
@@ -2653,54 +2701,60 @@ namespace ParkingMangement.GUI
 
         private void handleUhfData()
         {
-            int frmcomportindexIn = UHFReader.getComportIndex(mConfig.comReceiveIn);
-            int frmcomportindexOut = UHFReader.getComportIndex(mConfig.comReceiveOut);
-            string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
-            string newUhfCardId = null;
-            string portName = null;
-            if (uhfInCardId != null)
+            try
             {
-                portName = portNameComReceiveIn;
-                newUhfCardId = uhfInCardId;
-            }
-            else
-            {
-                string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
-                if (uhfOutCardId != null)
+                int frmcomportindexIn = UHFReader.getComportIndex(mConfig.comReceiveIn);
+                int frmcomportindexOut = UHFReader.getComportIndex(mConfig.comReceiveOut);
+                string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
+                string newUhfCardId = null;
+                string portName = null;
+                if (uhfInCardId != null)
                 {
-                    portName = portNameComReceiveOut;
-                    newUhfCardId = uhfOutCardId;
+                    portName = portNameComReceiveIn;
+                    newUhfCardId = uhfInCardId;
                 }
-            }
-
-            if (newUhfCardId != null)
-            {
-                int spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
-                oldUhfCardTime = DateTime.Now;
-                int distant = 3 * 60 * 1000; // 3'
-                if (!newUhfCardId.Equals(oldUhfCardId) || spentTime > distant)
+                else
                 {
-                    oldUhfCardId = newUhfCardId;
-                    //labelError.Text = newUhfCardId;
-                    cardID = newUhfCardId;
-                    portNameComReceiveInput = portName;
-
-                    saveImage();
+                    string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
+                    if (uhfOutCardId != null)
+                    {
+                        portName = portNameComReceiveOut;
+                        newUhfCardId = uhfOutCardId;
+                    }
                 }
-                
 
-                //if (portNameComReceiveInput != null && portNameComReceiveInput.Equals(oldPortNameComReceiveInput))
-                //{
-                //    if (isCarIn())
-                //    {
-                //        openBarieIn();
-                //    }
-                //    else
-                //    {
-                //        openBarieOut();
-                //    }
-                //}
-                oldPortNameComReceiveInput = portName;
+                if (newUhfCardId != null)
+                {
+                    int spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
+                    oldUhfCardTime = DateTime.Now;
+                    int distant = 3 * 60 * 1000; // 3'
+                    if (!newUhfCardId.Equals(oldUhfCardId) || spentTime > distant)
+                    {
+                        oldUhfCardId = newUhfCardId;
+                        //labelError.Text = newUhfCardId;
+                        cardID = newUhfCardId;
+                        portNameComReceiveInput = portName;
+
+                        saveImage();
+                    }
+
+
+                    //if (portNameComReceiveInput != null && portNameComReceiveInput.Equals(oldPortNameComReceiveInput))
+                    //{
+                    //    if (isCarIn())
+                    //    {
+                    //        openBarieIn();
+                    //    }
+                    //    else
+                    //    {
+                    //        openBarieOut();
+                    //    }
+                    //}
+                    oldPortNameComReceiveInput = portName;
+                }
+            } catch (Exception)
+            {
+
             }
         }
 
@@ -2736,35 +2790,88 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void uploadCarNumberImage(string cardID)
-        {
-            try
-            {
-                WebClient client = new WebClient();
-                string server = @"http://localhost/uploads/upload.php";
-                string myFile = @"D:\test_file.txt";
-                client.Credentials = CredentialCache.DefaultCredentials;
-                client.UploadFile(server, "GET", myFile);
-                client.Dispose();
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-        }
-
         private void pictureBoxBarieLeft_Click(object sender, EventArgs e)
         {
-            openBarieIn();
-            openBarieInMotorbike();
+            openBarieInCar();
             AutoClosingMessageBox.Show("Barie đã mở", "", 500);
         }
 
         private void pictureBoxBarieRight_Click(object sender, EventArgs e)
         {
-            openBarieOut();
-            openBarieOutMotorbike();
+            openBarieOutCar();
             AutoClosingMessageBox.Show("Barie đã mở", "", 500);
+        }
+
+        private void uploadCarNumberImage(string fileName)
+        {
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            try
+            {
+                string url = @"http://127.0.0.1:8000/getPlateNumber/" + fileName;
+                String responseString = webClient.DownloadString(url);
+                Console.WriteLine(responseString);
+                JObject jObject = JObject.Parse(responseString);
+                string plateNumber = (string)jObject["plateNumber"];
+                labelDigitInRight.Text = plateNumber;
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                        MessageBox.Show(responseText);
+                    }
+                }
+            }
+        }
+
+        private void testDocBienSo()
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                InitialDirectory = @"E:\HINH_TEST_BIEN_SO\",
+                Title = "Browse Files",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "txt",
+                Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|All files (*.*)|*.*",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fileName = openFileDialog1.SafeFileName;
+                uploadCarNumberImage(fileName);
+            }
+        }
+
+        private void pictureBox8_Click(object sender, EventArgs e)
+        {
+            testDocBienSo();
+        }
+
+        private void runPythonServer()
+        {
+            System.Environment.CurrentDirectory = @"E:\WORK\GIT\DOC BIEN SO XE\License_Plate_Recognition_Python\";
+            Process myProcess = new Process();
+            myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            myProcess.StartInfo.CreateNoWindow = true;
+            myProcess.StartInfo.UseShellExecute = false;
+            myProcess.StartInfo.FileName = "cmd.exe";
+            myProcess.StartInfo.Arguments = "/c " + "python manage.py runserver";
+            myProcess.EnableRaisingEvents = true;
+            myProcess.Start();
         }
     }
 }

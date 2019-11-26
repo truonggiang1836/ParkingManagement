@@ -227,7 +227,10 @@ namespace ParkingMangement.DAO
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");
-                cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                if (dt.Rows[0].Field<Object>("DayUnlimit") != null)
+                {
+                    cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                }
                 return cardDTO;
             }
             return null;
@@ -243,7 +246,10 @@ namespace ParkingMangement.DAO
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");
-                cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                if (dt.Rows[0].Field<Object>("DayUnlimit") != null)
+                {
+                    cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                }
                 return cardDTO;
             }
             return null;

@@ -890,6 +890,22 @@
             this.dateTimePickerCarTicketMonthDateIn = new System.Windows.Forms.DateTimePicker();
             this.label51 = new System.Windows.Forms.Label();
             this.tabPageXemHopDen = new System.Windows.Forms.TabPage();
+            this.tb_signal_open_barie_out = new System.Windows.Forms.TextBox();
+            this.label197 = new System.Windows.Forms.Label();
+            this.tb_signal_close_barie_out = new System.Windows.Forms.TextBox();
+            this.label198 = new System.Windows.Forms.Label();
+            this.label199 = new System.Windows.Forms.Label();
+            this.tb_signal_close_barie_in = new System.Windows.Forms.TextBox();
+            this.label200 = new System.Windows.Forms.Label();
+            this.tb_signal_open_barie_in = new System.Windows.Forms.TextBox();
+            this.tb_signal_open_barie_out_motobike = new System.Windows.Forms.TextBox();
+            this.label201 = new System.Windows.Forms.Label();
+            this.tb_signal_close_barie_out_motobike = new System.Windows.Forms.TextBox();
+            this.label202 = new System.Windows.Forms.Label();
+            this.label203 = new System.Windows.Forms.Label();
+            this.tb_signal_close_barie_in_motobike = new System.Windows.Forms.TextBox();
+            this.label204 = new System.Windows.Forms.Label();
+            this.tb_signal_open_barie_in_motobike = new System.Windows.Forms.TextBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -6822,6 +6838,22 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tb_signal_open_barie_out_motobike);
+            this.groupBox2.Controls.Add(this.label201);
+            this.groupBox2.Controls.Add(this.tb_signal_close_barie_out_motobike);
+            this.groupBox2.Controls.Add(this.label202);
+            this.groupBox2.Controls.Add(this.label203);
+            this.groupBox2.Controls.Add(this.tb_signal_close_barie_in_motobike);
+            this.groupBox2.Controls.Add(this.label204);
+            this.groupBox2.Controls.Add(this.tb_signal_open_barie_in_motobike);
+            this.groupBox2.Controls.Add(this.tb_signal_open_barie_out);
+            this.groupBox2.Controls.Add(this.label197);
+            this.groupBox2.Controls.Add(this.tb_signal_close_barie_out);
+            this.groupBox2.Controls.Add(this.label198);
+            this.groupBox2.Controls.Add(this.label199);
+            this.groupBox2.Controls.Add(this.tb_signal_close_barie_in);
+            this.groupBox2.Controls.Add(this.label200);
+            this.groupBox2.Controls.Add(this.tb_signal_open_barie_in);
             this.groupBox2.Controls.Add(this.tb_com_receive_out);
             this.groupBox2.Controls.Add(this.label190);
             this.groupBox2.Controls.Add(this.tb_com_send);
@@ -6844,9 +6876,9 @@
             this.groupBox2.Controls.Add(this.tb_camera_url_2);
             this.groupBox2.Controls.Add(this.label142);
             this.groupBox2.Controls.Add(this.tb_camera_url_1);
-            this.groupBox2.Location = new System.Drawing.Point(205, 9);
+            this.groupBox2.Location = new System.Drawing.Point(184, 9);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(726, 487);
+            this.groupBox2.Size = new System.Drawing.Size(784, 487);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -6854,7 +6886,7 @@
             // 
             this.tb_com_receive_out.Location = new System.Drawing.Point(104, 278);
             this.tb_com_receive_out.Name = "tb_com_receive_out";
-            this.tb_com_receive_out.Size = new System.Drawing.Size(603, 22);
+            this.tb_com_receive_out.Size = new System.Drawing.Size(658, 22);
             this.tb_com_receive_out.TabIndex = 53;
             // 
             // label190
@@ -6871,7 +6903,7 @@
             // 
             this.tb_com_send.Location = new System.Drawing.Point(104, 306);
             this.tb_com_send.Name = "tb_com_send";
-            this.tb_com_send.Size = new System.Drawing.Size(603, 22);
+            this.tb_com_send.Size = new System.Drawing.Size(658, 22);
             this.tb_com_send.TabIndex = 51;
             // 
             // label193
@@ -6898,14 +6930,14 @@
             // 
             this.tb_com_receive_in.Location = new System.Drawing.Point(104, 249);
             this.tb_com_receive_in.Name = "tb_com_receive_in";
-            this.tb_com_receive_in.Size = new System.Drawing.Size(603, 22);
+            this.tb_com_receive_in.Size = new System.Drawing.Size(658, 22);
             this.tb_com_receive_in.TabIndex = 48;
             // 
             // tb_ip_host
             // 
             this.tb_ip_host.Location = new System.Drawing.Point(104, 192);
             this.tb_ip_host.Name = "tb_ip_host";
-            this.tb_ip_host.Size = new System.Drawing.Size(603, 22);
+            this.tb_ip_host.Size = new System.Drawing.Size(658, 22);
             this.tb_ip_host.TabIndex = 47;
             // 
             // label129
@@ -6922,7 +6954,7 @@
             // 
             this.tb_folder_root.Location = new System.Drawing.Point(104, 220);
             this.tb_folder_root.Name = "tb_folder_root";
-            this.tb_folder_root.Size = new System.Drawing.Size(603, 22);
+            this.tb_folder_root.Size = new System.Drawing.Size(658, 22);
             this.tb_folder_root.TabIndex = 45;
             // 
             // label130
@@ -6939,14 +6971,14 @@
             // 
             this.tb_rfid_1.Location = new System.Drawing.Point(104, 135);
             this.tb_rfid_1.Name = "tb_rfid_1";
-            this.tb_rfid_1.Size = new System.Drawing.Size(603, 22);
+            this.tb_rfid_1.Size = new System.Drawing.Size(658, 22);
             this.tb_rfid_1.TabIndex = 43;
             // 
             // tb_camera_url_4
             // 
             this.tb_camera_url_4.Location = new System.Drawing.Point(104, 107);
             this.tb_camera_url_4.Name = "tb_camera_url_4";
-            this.tb_camera_url_4.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_4.Size = new System.Drawing.Size(658, 22);
             this.tb_camera_url_4.TabIndex = 42;
             // 
             // label137
@@ -6963,7 +6995,7 @@
             // 
             this.tb_rfid_2.Location = new System.Drawing.Point(104, 163);
             this.tb_rfid_2.Name = "tb_rfid_2";
-            this.tb_rfid_2.Size = new System.Drawing.Size(603, 22);
+            this.tb_rfid_2.Size = new System.Drawing.Size(658, 22);
             this.tb_rfid_2.TabIndex = 18;
             // 
             // label138
@@ -7000,7 +7032,7 @@
             // 
             this.tb_camera_url_3.Location = new System.Drawing.Point(104, 79);
             this.tb_camera_url_3.Name = "tb_camera_url_3";
-            this.tb_camera_url_3.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_3.Size = new System.Drawing.Size(658, 22);
             this.tb_camera_url_3.TabIndex = 12;
             // 
             // label141
@@ -7017,7 +7049,7 @@
             // 
             this.tb_camera_url_2.Location = new System.Drawing.Point(104, 51);
             this.tb_camera_url_2.Name = "tb_camera_url_2";
-            this.tb_camera_url_2.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_2.Size = new System.Drawing.Size(658, 22);
             this.tb_camera_url_2.TabIndex = 10;
             // 
             // label142
@@ -7034,7 +7066,7 @@
             // 
             this.tb_camera_url_1.Location = new System.Drawing.Point(104, 23);
             this.tb_camera_url_1.Name = "tb_camera_url_1";
-            this.tb_camera_url_1.Size = new System.Drawing.Size(603, 22);
+            this.tb_camera_url_1.Size = new System.Drawing.Size(658, 22);
             this.tb_camera_url_1.TabIndex = 8;
             // 
             // tabPageCauHinhHienThi
@@ -9130,6 +9162,142 @@
             this.tabPageXemHopDen.Text = "Xem hộp đen";
             this.tabPageXemHopDen.UseVisualStyleBackColor = true;
             // 
+            // tb_signal_open_barie_out
+            // 
+            this.tb_signal_open_barie_out.Location = new System.Drawing.Point(168, 392);
+            this.tb_signal_open_barie_out.Name = "tb_signal_open_barie_out";
+            this.tb_signal_open_barie_out.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_open_barie_out.TabIndex = 61;
+            // 
+            // label197
+            // 
+            this.label197.AutoSize = true;
+            this.label197.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label197.Location = new System.Drawing.Point(17, 423);
+            this.label197.Name = "label197";
+            this.label197.Size = new System.Drawing.Size(144, 16);
+            this.label197.TabIndex = 60;
+            this.label197.Text = "Signal close barie right";
+            // 
+            // tb_signal_close_barie_out
+            // 
+            this.tb_signal_close_barie_out.Location = new System.Drawing.Point(168, 420);
+            this.tb_signal_close_barie_out.Name = "tb_signal_close_barie_out";
+            this.tb_signal_close_barie_out.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_close_barie_out.TabIndex = 59;
+            // 
+            // label198
+            // 
+            this.label198.AutoSize = true;
+            this.label198.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label198.Location = new System.Drawing.Point(17, 395);
+            this.label198.Name = "label198";
+            this.label198.Size = new System.Drawing.Size(142, 16);
+            this.label198.TabIndex = 58;
+            this.label198.Text = "Signal open barie right";
+            // 
+            // label199
+            // 
+            this.label199.AutoSize = true;
+            this.label199.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label199.Location = new System.Drawing.Point(17, 366);
+            this.label199.Name = "label199";
+            this.label199.Size = new System.Drawing.Size(136, 16);
+            this.label199.TabIndex = 57;
+            this.label199.Text = "Signal close barie left";
+            // 
+            // tb_signal_close_barie_in
+            // 
+            this.tb_signal_close_barie_in.Location = new System.Drawing.Point(168, 363);
+            this.tb_signal_close_barie_in.Name = "tb_signal_close_barie_in";
+            this.tb_signal_close_barie_in.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_close_barie_in.TabIndex = 56;
+            // 
+            // label200
+            // 
+            this.label200.AutoSize = true;
+            this.label200.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label200.Location = new System.Drawing.Point(17, 337);
+            this.label200.Name = "label200";
+            this.label200.Size = new System.Drawing.Size(134, 16);
+            this.label200.TabIndex = 55;
+            this.label200.Text = "Signal open barie left";
+            // 
+            // tb_signal_open_barie_in
+            // 
+            this.tb_signal_open_barie_in.Location = new System.Drawing.Point(168, 334);
+            this.tb_signal_open_barie_in.Name = "tb_signal_open_barie_in";
+            this.tb_signal_open_barie_in.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_open_barie_in.TabIndex = 54;
+            // 
+            // tb_signal_open_barie_out_motobike
+            // 
+            this.tb_signal_open_barie_out_motobike.Location = new System.Drawing.Point(612, 392);
+            this.tb_signal_open_barie_out_motobike.Name = "tb_signal_open_barie_out_motobike";
+            this.tb_signal_open_barie_out_motobike.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_open_barie_out_motobike.TabIndex = 69;
+            // 
+            // label201
+            // 
+            this.label201.AutoSize = true;
+            this.label201.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label201.Location = new System.Drawing.Point(401, 423);
+            this.label201.Name = "label201";
+            this.label201.Size = new System.Drawing.Size(203, 16);
+            this.label201.TabIndex = 68;
+            this.label201.Text = "Signal close barie right motobike";
+            // 
+            // tb_signal_close_barie_out_motobike
+            // 
+            this.tb_signal_close_barie_out_motobike.Location = new System.Drawing.Point(612, 420);
+            this.tb_signal_close_barie_out_motobike.Name = "tb_signal_close_barie_out_motobike";
+            this.tb_signal_close_barie_out_motobike.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_close_barie_out_motobike.TabIndex = 67;
+            // 
+            // label202
+            // 
+            this.label202.AutoSize = true;
+            this.label202.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label202.Location = new System.Drawing.Point(401, 395);
+            this.label202.Name = "label202";
+            this.label202.Size = new System.Drawing.Size(201, 16);
+            this.label202.TabIndex = 66;
+            this.label202.Text = "Signal open barie right motobike";
+            // 
+            // label203
+            // 
+            this.label203.AutoSize = true;
+            this.label203.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label203.Location = new System.Drawing.Point(401, 366);
+            this.label203.Name = "label203";
+            this.label203.Size = new System.Drawing.Size(195, 16);
+            this.label203.TabIndex = 65;
+            this.label203.Text = "Signal close barie left motobike";
+            // 
+            // tb_signal_close_barie_in_motobike
+            // 
+            this.tb_signal_close_barie_in_motobike.Location = new System.Drawing.Point(612, 363);
+            this.tb_signal_close_barie_in_motobike.Name = "tb_signal_close_barie_in_motobike";
+            this.tb_signal_close_barie_in_motobike.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_close_barie_in_motobike.TabIndex = 64;
+            // 
+            // label204
+            // 
+            this.label204.AutoSize = true;
+            this.label204.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label204.Location = new System.Drawing.Point(401, 337);
+            this.label204.Name = "label204";
+            this.label204.Size = new System.Drawing.Size(193, 16);
+            this.label204.TabIndex = 63;
+            this.label204.Text = "Signal open barie left motobike";
+            // 
+            // tb_signal_open_barie_in_motobike
+            // 
+            this.tb_signal_open_barie_in_motobike.Location = new System.Drawing.Point(612, 334);
+            this.tb_signal_open_barie_in_motobike.Name = "tb_signal_open_barie_in_motobike";
+            this.tb_signal_open_barie_in_motobike.Size = new System.Drawing.Size(150, 22);
+            this.tb_signal_open_barie_in_motobike.TabIndex = 62;
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -10140,5 +10308,21 @@
         private System.Windows.Forms.Label label195;
         private System.Windows.Forms.TextBox tbTicketMonthNoteEdit;
         private System.Windows.Forms.Label label196;
+        private System.Windows.Forms.TextBox tb_signal_open_barie_out_motobike;
+        private System.Windows.Forms.Label label201;
+        private System.Windows.Forms.TextBox tb_signal_close_barie_out_motobike;
+        private System.Windows.Forms.Label label202;
+        private System.Windows.Forms.Label label203;
+        private System.Windows.Forms.TextBox tb_signal_close_barie_in_motobike;
+        private System.Windows.Forms.Label label204;
+        private System.Windows.Forms.TextBox tb_signal_open_barie_in_motobike;
+        private System.Windows.Forms.TextBox tb_signal_open_barie_out;
+        private System.Windows.Forms.Label label197;
+        private System.Windows.Forms.TextBox tb_signal_close_barie_out;
+        private System.Windows.Forms.Label label198;
+        private System.Windows.Forms.Label label199;
+        private System.Windows.Forms.TextBox tb_signal_close_barie_in;
+        private System.Windows.Forms.Label label200;
+        private System.Windows.Forms.TextBox tb_signal_open_barie_in;
     }
 }

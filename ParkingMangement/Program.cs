@@ -52,7 +52,7 @@ namespace ParkingMangement
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             Application.Run(new FormLogin());
 
-            
+
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
@@ -62,16 +62,17 @@ namespace ParkingMangement
 
         public static void sendOrderListToServerTimer()
         {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                /* run your code here */
-                System.Timers.Timer aTimer = new System.Timers.Timer();
-                aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-                aTimer.Interval = 1 * 10 * 1000;
-                aTimer.Enabled = true;
-                aTimer.Start();
-            }).Start();
+            //new Thread(() =>
+            //{
+            //    Thread.CurrentThread.IsBackground = true;
+            //    /* run your code here */
+            //    System.Timers.Timer aTimer = new System.Timers.Timer();
+            //    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            //    aTimer.Interval = 1 * 10 * 1000;
+            //    aTimer.Enabled = true;
+            //    aTimer.Start();
+            //}).Start();
+            updateOrderToSever();
         }
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -81,7 +82,7 @@ namespace ParkingMangement
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    //updateOrderToSever();
+                    updateOrderToSever();
                 }).Start();
             }
             isHasCarInOut = false; 
@@ -89,10 +90,10 @@ namespace ParkingMangement
 
         public static void updateOrderToSever()
         {
-            Util.sendOrderListToServer(CarDAO.GetDataInRecently());
-            Util.sendOrderListToServer(CarDAO.GetDataOutRecently());
-            WaitSyncCarInDAO.DeleteAll();
-            WaitSyncCarOutDAO.DeleteAll();
+            //Util.sendOrderListToServer(CarDAO.GetDataInRecently());
+            //Util.sendOrderListToServer(CarDAO.GetDataOutRecently());
+            //WaitSyncCarInDAO.DeleteAll();
+            //WaitSyncCarOutDAO.DeleteAll();
         }
     }
 }

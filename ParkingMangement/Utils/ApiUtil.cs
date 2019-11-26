@@ -29,10 +29,11 @@ namespace ParkingMangement.Utils
         public static string PARAM_PAGE = "page";
         public static string PARAM_LIMIT = "limit";
         public static string PARAM_DISABLE = "disable";
-        public static string PARAM_DATA = "data";
+        public static string PARAM_DATA = "ordersDtos";
 
         //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
-        public static string BASE_URL = "http://api.spmgroup.vn/public/";
+        //public static string BASE_URL = "http://api.spmgroup.vn/public/";
+        public static string BASE_URL = "http://api.spmgroup.vn:8080/parking-apis/";
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
         public static string API_CHECKIN = BASE_URL + "cards/checkin";
@@ -53,20 +54,23 @@ namespace ParkingMangement.Utils
             {
                 WebClient webClient = new WebClient();
                 webClient.Encoding = Encoding.UTF8;
-                if (!Program.CurrentUserID.Equals(""))
-                {
-                    webClient.Headers.Set(HEADER_USER_ID, Program.CurrentUserID);
-                }
-                if (!Program.CurrentToken.Equals(""))
-                {
-                    webClient.Headers.Set(HEADER_AUTHORIZATION, Program.CurrentToken);
-                }
+                //webClient.Headers["Content-Type"] = "raw";
+                webClient.Headers.Set("Content-Type", "application/json");
+                //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                //if (!Program.CurrentUserID.Equals(""))
+                //{
+                //    webClient.Headers.Set(HEADER_USER_ID, Program.CurrentUserID);
+                //}
+                //if (!Program.CurrentToken.Equals(""))
+                //{
+                //    webClient.Headers.Set(HEADER_AUTHORIZATION, Program.CurrentToken);
+                //}
 
-                long currentSecond = CurrentTimeMillis() / 1000;
-                string apiAuthDate = currentSecond.ToString();
-                webClient.QueryString.Add(PARAM_API_AUTH_DATE, apiAuthDate);
-                string apiAuthKey = CreateMD5(SECRET_KEY + apiAuthDate);
-                webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
+                //long currentSecond = CurrentTimeMillis() / 1000;
+                //string apiAuthDate = currentSecond.ToString();
+                //webClient.QueryString.Add(PARAM_API_AUTH_DATE, apiAuthDate);
+                //string apiAuthKey = CreateMD5(SECRET_KEY + apiAuthDate);
+                //webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
                 return webClient;
             }
             catch (Exception e)
