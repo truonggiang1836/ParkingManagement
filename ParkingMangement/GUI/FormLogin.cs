@@ -106,6 +106,7 @@ namespace ParkingMangement
             Form f = new FormNhanVien();
             if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
             {
+                //Form f = new FormQuanLy();
                 f = new FormQuanLy();
                 ((FormQuanLy)f).formNhanVien = this.formNhanVien;
             }
@@ -115,18 +116,20 @@ namespace ParkingMangement
                 if (f.GetType() == typeof(FormQuanLy))
                 {
                     f.FormClosing += new FormClosingEventHandler(FormQuanLy_FormClosing);
-                } else
+                }
+                else
                 {
                     formNhanVien.Hide();
                     Util.doLogOut();
                     f.FormClosing += new FormClosingEventHandler(FormNhanVien_FormClosing);
                 }
                 f.Show();
-            } else
+            }
+            else
             {
                 f.ShowDialog();
             }
-            
+
             LogUtil.addLoginLog();
         }
 

@@ -74,6 +74,12 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "com_send")]
         public string comSend { get; set; }
 
+        [XmlElement(ElementName = "com_led_left")]
+        public string comLedLeft { get; set; }
+
+        [XmlElement(ElementName = "com_led_right")]
+        public string comLedRight { get; set; }
+
         [XmlElement(ElementName = "signal_open_barie_in")]
         public string signalOpenBarieIn { get; set; }
 
@@ -103,5 +109,8 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "is_using_uhf")]
         public string isUsingUhf { get; set; } = "false";
+
+        [XmlElement(ElementName = "read_digit_folder")]
+        public string readDigitFolder { get; set; } = "";
     }
 }

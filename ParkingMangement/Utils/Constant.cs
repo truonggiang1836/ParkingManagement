@@ -9,6 +9,7 @@ namespace ParkingMangement.Utils
 {
     class Constant
     {
+        public const bool IS_NAPSHOT_FULL_IMAGE = false;
         public const int AUTO_CLOSE_MESSAGE_BOX_TIME = 2000;
         public const string BREAK_LINE = "\r\n";
         public const string ARROW_STRING = " -> ";
@@ -77,6 +78,7 @@ namespace ParkingMangement.Utils
 
         // Config
         public static string FOLDER_NAME_IMAGES = "Images";
+        public static string FOLDER_NAME_CAR_NUMBER = "HinhBienSo";
         public static string FOLDER_NAME_PARKING_MANAGEMENT = "ParkingManagement";
         public static string LOCAL_ROOT_FOLDER = Application.StartupPath + @"\" + FOLDER_NAME_PARKING_MANAGEMENT + @"\";
         public static string LOCAL_IMAGE_FOLDER = Application.StartupPath + @"\" + FOLDER_NAME_PARKING_MANAGEMENT + @"\" + FOLDER_NAME_IMAGES + @"\";
@@ -125,6 +127,7 @@ namespace ParkingMangement.Utils
         public const int LOAI_GIU_XE_THEO_CONG_VAN = 1;
         public const int LOAI_GIU_XE_LUY_TIEN = 2;
         public const int LOAI_GIU_XE_TONG_HOP = 3;
+        public const int LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM = 4;
 
         public const int LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI = 0;
         public const int LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN = 1;
@@ -167,6 +170,13 @@ namespace ParkingMangement.Utils
         public static string getSharedImageFolder()
         {
             string path = @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\";
+            return path;
+        }
+
+        public static string getCarNumberImageFolder()
+        {
+            //string path = @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\" + FOLDER_NAME_CAR_NUMBER + @"\";
+            string path = @"D:\HINH_BIEN_SO\";
             return path;
         }
 

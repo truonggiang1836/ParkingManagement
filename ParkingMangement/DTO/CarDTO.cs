@@ -29,6 +29,8 @@ namespace ParkingMangement.DTO
         public DateTime TimeEnd { get; set; }
         [JsonProperty("car_number")]
         public string Digit { get; set; }
+        public string DigitIn { get; set; }
+        public string DigitOut { get; set; }
         [JsonProperty("admin_checkin_name")]
         public string IdIn { get; set; }
         [JsonProperty("admin_checkout_name")]

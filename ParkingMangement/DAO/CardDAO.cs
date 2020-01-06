@@ -259,7 +259,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "select Part.TypeID from Part, SmartCard where SmartCard.Type = Part.ID and SmartCard.ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
-            if (data != null)
+            if (data != null && data.Rows.Count > 0)
             {
                 return data.Rows[0].Field<string>("TypeID");
             }
@@ -270,7 +270,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "select Part.CardTypeID from Part, SmartCard where SmartCard.Type = Part.ID and SmartCard.ID = '" + id + "'";
             DataTable data = Database.ExcuQuery(sql);
-            if (data != null)
+            if (data != null && data.Rows.Count > 0)
             {
                 return data.Rows[0].Field<string>("CardTypeID");
             }

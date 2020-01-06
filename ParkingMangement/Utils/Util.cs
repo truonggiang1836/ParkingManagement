@@ -97,7 +97,7 @@ namespace ParkingMangement.Utils
 
         public static long DateTimeToMillisecond(DateTime date)
         {
-            return Convert.ToInt64(date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds);
+            return Convert.ToInt64(date.ToUniversalTime().Subtract(new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds);
         }
 
         public static void CreateFolderIfMissing(string path)
@@ -208,6 +208,8 @@ namespace ParkingMangement.Utils
                         sConfig.comReceiveIn = sConfig.comReceiveIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comReceiveOut = sConfig.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comSend = sConfig.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comLedLeft = sConfig.comLedLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comLedRight = sConfig.comLedRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.signalOpenBarieIn = sConfig.signalOpenBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.signalCloseBarieIn = sConfig.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.signalOpenBarieOut = sConfig.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
@@ -270,7 +272,7 @@ namespace ParkingMangement.Utils
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
-        public static void sendOrderListToServer(DataTable data)
+        public static void sendOrderListToServer(DataTable data, bool isCarIn)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
@@ -287,27 +289,66 @@ namespace ParkingMangement.Utils
                 DataRow dtRow = dtTable.Rows[i];
                 Order order = new Order();
                 order.AreaId = 1;
+                order.ProjectId = 1;
                 order.OrderId = dtRow.Field<int>("Identify");
                 order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
-                checkinDatetime = checkinDatetime.AddHours(11);
-                order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
+                //checkinDatetime = checkinDatetime.AddHours(11);
+                //order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
+                order.CheckinTime = DateTimeToMillisecond(checkinDatetime);
                 if (dtRow.Field<DateTime?>("TimeEnd") != null)
                 {
                     DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
-                    checkoutDatetime = checkoutDatetime.AddHours(11);
-                    order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
+                    //checkoutDatetime = checkoutDatetime.AddHours(11);
+                    //order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
+                    order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime);
                 }
-                order.CarNumber = dtRow.Field<string>("Digit");
-                order.CarNumberIn = dtRow.Field<string>("Digit");
-                order.CarNumberOut = dtRow.Field<string>("Digit");
-                order.AdminCheckinId = dtRow.Field<string>("IDIn");
+                if (dtRow["Digit"] != DBNull.Value)
+                {
+                    order.CarNumber = dtRow.Field<string>("Digit");
+                }
+                if (dtRow["DigitIn"] != DBNull.Value)
+                {
+                    order.CarNumberIn = dtRow.Field<string>("DigitIn");
+                }
+                if (dtRow["DigitOut"] != DBNull.Value)
+                {
+                    order.CarNumberOut = dtRow.Field<string>("DigitOut");
+                }
+
+                int adminCheckinId = 0;
+                Int32.TryParse(dtRow.Field<string>("IDIn"), out adminCheckinId);
+                order.AdminCheckinId = adminCheckinId;
+
                 order.AdminCheckinName = dtRow.Field<string>("UserIn");
-                order.AdminCheckoutId = dtRow.Field<string>("IDOut");
+                int adminCheckoutId = 0;
+                if (dtRow["IDOut"] != DBNull.Value)
+                {
+                    Int32.TryParse(dtRow.Field<string>("IDOut"), out adminCheckoutId);
+                }
+                order.AdminCheckoutId = adminCheckoutId;
+
                 order.AdminCheckoutName = dtRow.Field<string>("UserOut");
-                order.MonthlyCardId = dtRow.Field<string>("IDTicketMonth");
-                order.VehicleId = dtRow.Field<string>("IDPart");
+
+                int monthlyCardId = 0;
+                if (dtRow["IDTicketMonth"] != DBNull.Value)
+                {
+                    Int32.TryParse(dtRow.Field<string>("IDTicketMonth"), out monthlyCardId);
+                }
+                order.MonthlyCardId = monthlyCardId;
+
+
+                int vehicleId = 0;
+                try
+                {
+                    Int32.TryParse(dtRow.Field<string>("IDPart"), out vehicleId);
+                } catch (Exception)
+                {
+
+                }
+                order.VehicleId = vehicleId;
+
                 order.VehicleName = dtRow.Field<string>("PartName");
                 order.VehicleCode = dtRow.Field<string>("Sign");
                 order.IsCardLost = dtRow.Field<int>("IsLostCard");
@@ -315,33 +356,39 @@ namespace ParkingMangement.Utils
                 order.PcName = dtRow.Field<string>("Computer");
                 order.Account = dtRow.Field<string>("Account");
                 DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
-                dateUpdate = checkinDatetime.AddHours(11);
-                order.Created = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
-                order.Updated = dateUpdate.ToString(Constant.sDateTimeFormatForAPI);
+                //dateUpdate = checkinDatetime.AddHours(11);
+                order.Created = DateTimeToMillisecond(dateUpdate);
+                order.Updated = DateTimeToMillisecond(dateUpdate);
                 listOrder.Add(order);
 
                 jsonString = JsonConvert.SerializeObject(listOrder);
                 Console.WriteLine(":: " + jsonString);
-                string index = (i + 1).ToString();
-                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                //string index = (i + 1).ToString();
+                //param.Add(ApiUtil.PARAM_DATA + index, jsonString);
 
-                if (listOrder.Count == 10)
-                {
-                    break;
-                }
+                //if (listOrder.Count == 10)
+                //{
+                //    break;
+                //}
             }
             
             try
             {
                 //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
-                String response = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
+                if (!jsonString.Equals(""))
+                {
+                    webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
+                }
+                Console.WriteLine("json_api: " + jsonString);
+                int x = 0;
                 //String responseString = Encoding.UTF8.GetString(responsebytes);
 
                 //webClient.UploadData(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", Encoding.Default.GetBytes(jsonString));
             }
             catch (Exception e)
             {
-
+                int x = 0;
+                //MessageBox.Show(e.Message);
             }
         }
 
@@ -585,6 +632,17 @@ namespace ParkingMangement.Utils
             Size newSize = new Size((int)(originalBitmap.Width * zoomFactor), (int)(originalBitmap.Height * zoomFactor));
             Bitmap bmp = new Bitmap(originalBitmap, newSize);
             return bmp;
+        }
+
+        public static Bitmap cropImage(string filePath, float zoomFactor)
+        {
+            Image img = Image.FromFile(filePath);
+            Bitmap bmpImage = new Bitmap(img);
+            int width = (int) (bmpImage.Width * zoomFactor);
+            int height = (int)(bmpImage.Height * zoomFactor);
+            Bitmap bmpCrop = bmpImage.Clone(new Rectangle(0, 0, width, height), bmpImage.PixelFormat);
+            //bmpCrop.Save("c:\\hellocrop.jpg");
+            return bmpCrop;
         }
 
         public static Bitmap ResizeImage(Image imgToResize, float ratio)

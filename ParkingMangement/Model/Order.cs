@@ -11,6 +11,8 @@ namespace ParkingMangement.Model
     {
         [JsonProperty("area_id")]
         public int AreaId { get; set; }
+        [JsonProperty("project_id")]
+        public int ProjectId { get; set; }
         [JsonProperty("order_id")]
         public int OrderId { get; set; }
         //[JsonProperty("card_id")]
@@ -20,19 +22,19 @@ namespace ParkingMangement.Model
         [JsonProperty("card_stt")]
         public string CardSTT { get; set; }
         [JsonProperty("checkin_time")]
-        public string CheckinTime { get; set; }
+        public long CheckinTime { get; set; }
         [JsonProperty("checkout_time")]
-        public string CheckoutTime { get; set; }
+        public long CheckoutTime { get; set; }
         [JsonProperty("car_number")]
         public string CarNumber { get; set; }
         [JsonProperty("admin_checkin_id")]
-        public string AdminCheckinId { get; set; }
+        public int AdminCheckinId { get; set; }
         [JsonProperty("admin_checkin_name")]
         public string AdminCheckinName { get; set; }
         [JsonProperty("monthly_card_id")]
-        public string MonthlyCardId { get; set; }
+        public int MonthlyCardId { get; set; }
         [JsonProperty("vehicle_id")]
-        public string VehicleId { get; set; }
+        public int VehicleId { get; set; }
         [JsonProperty("vehicle_name")]
         public string VehicleName { get; set; }
         [JsonProperty("vehicle_code")]
@@ -46,9 +48,9 @@ namespace ParkingMangement.Model
         [JsonProperty("account")]
         public string Account { get; set; }
         [JsonProperty("created")]
-        public string Created { get; set; }
+        public long Created { get; set; }
         [JsonProperty("updated")]
-        public string Updated { get; set; }
+        public long Updated { get; set; }
         [JsonProperty("customer_name")]
         public string CustomerName { get; set; }
         [JsonProperty("car_number_in")]
@@ -56,7 +58,7 @@ namespace ParkingMangement.Model
         [JsonProperty("car_number_out")]
         public string CarNumberOut { get; set; }
         [JsonProperty("admin_checkout_id")]
-        public string AdminCheckoutId { get; set; }
+        public int AdminCheckoutId { get; set; }
         [JsonProperty("admin_checkout_name")]
         public string AdminCheckoutName { get; set; }
     }

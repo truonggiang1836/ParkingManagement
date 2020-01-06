@@ -99,7 +99,7 @@ namespace ParkingMangement.DAO
             string sql = sqlGetAllNearExpiredTicketData;
             if (!string.IsNullOrEmpty(key))
             {
-                sql += " and (SmartCard.Identify like '%" + key + "%' or TicketMonth.Digit like '%" + key
+                sql += " and (SmartCard.ID like '%" + key + "%' or SmartCard.Identify like '%" + key + "%' or TicketMonth.Digit like '%" + key
                     + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.Address like '%" + key + "%')";
             }
             sql += sqlOrderByExpirationDate;

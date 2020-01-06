@@ -460,6 +460,11 @@ namespace ParkingMangement.GUI
                 loadPartDataToComboBox(cbLoaiXeTinhTienTongHop);
                 loadDataTinhTienTongHop();
             }
+            else if (tabQuanLyDoanhThu.SelectedTab == tabQuanLyDoanhThu.TabPages["tabPageCongThucTongHop2"])
+            {
+                loadPartDataToComboBox(cbLoaiXeTinhTienTongHop2);
+                loadDataTinhTienTongHopTheoNgayDem();
+            }
         }
 
         private void loadDataTinhTienTheoCongVan()
@@ -718,6 +723,95 @@ namespace ParkingMangement.GUI
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         panelTinhTienTongHop.Enabled = false;
+                    }
+                }
+            }
+        }
+
+        private void loadDataTinhTienTongHopTheoNgayDem()
+        {
+            DataRow partDataRow = ((DataRowView)cbLoaiXeTinhTienTongHop2.SelectedItem).Row;
+            string partID = Convert.ToString(partDataRow["ID"]);
+            mComputerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM);
+            mComputerDTO.PartID = partID;
+            mComputerDTO.ParkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM;
+
+            numericTinhTienTongHop2StartHourNight.Value = mComputerDTO.StartHourNight;
+            numericTinhTienTongHop2EndHourNight.Value = mComputerDTO.EndHourNight;
+
+            numericTinhTienTongHop2HourMilestone1Day.Value = mComputerDTO.HourMilestone1;
+            numericTinhTienTongHop2CostMilestone1Day.Value = mComputerDTO.CostMilestone1;
+            numericTinhTienTongHop2HourMilestone2Day.Value = mComputerDTO.HourMilestone2;
+            numericTinhTienTongHop2CostMilestone2Day.Value = mComputerDTO.CostMilestone2;
+            numericTinhTienTongHop2HourMilestone3Day.Value = mComputerDTO.HourMilestone3;
+            numericTinhTienTongHop2CostMilestone3Day.Value = mComputerDTO.CostMilestone3;
+            numericTinhTienTongHop2CostMilestone4Day.Value = mComputerDTO.CostMilestone4;
+
+            numericTinhTienTongHop2CostMilestone1Night.Value = mComputerDTO.CostMilestoneNight1;
+            numericTinhTienTongHop2CostMilestone2Night.Value = mComputerDTO.CostMilestoneNight2;
+            numericTinhTienTongHop2CostMilestone3Night.Value = mComputerDTO.CostMilestoneNight3;
+            numericTinhTienTongHop2CostMilestone4Night.Value = mComputerDTO.CostMilestoneNight4;
+
+            trackBarTinhTienTongHop2CycleMilestone.Value = mComputerDTO.CycleMilestone3;
+            labelTinhTienTongHop2CycleMilestone.Text = mComputerDTO.CycleMilestone3 + "";
+            numericTinhTienTongHop2CostMilestone4Day.Value = mComputerDTO.CostMilestone4;
+        }
+
+        private void updateTinhTienTongHopTheoNgayDem()
+        {
+            if (mComputerDTO != null)
+            {
+                ComputerDTO oldComputerDTO = (ComputerDTO)mComputerDTO.Clone();
+                mComputerDTO.StartHourNight = (int)numericTinhTienTongHop2StartHourNight.Value;
+                mComputerDTO.EndHourNight = (int)numericTinhTienTongHop2EndHourNight.Value;
+
+                mComputerDTO.HourMilestone1 = (int)numericTinhTienTongHop2HourMilestone1Day.Value;
+                mComputerDTO.CostMilestone1 = (int)numericTinhTienTongHop2CostMilestone1Day.Value;
+                mComputerDTO.HourMilestone2 = (int)numericTinhTienTongHop2HourMilestone2Day.Value;
+                mComputerDTO.CostMilestone2 = (int)numericTinhTienTongHop2CostMilestone2Day.Value;
+                mComputerDTO.HourMilestone3 = (int)numericTinhTienTongHop2HourMilestone3Day.Value;
+                mComputerDTO.CostMilestone3 = (int)numericTinhTienTongHop2CostMilestone3Day.Value;
+                mComputerDTO.CostMilestone4 = (int)numericTinhTienTongHop2CostMilestone4Day.Value;
+
+                mComputerDTO.CostMilestoneNight1 = (int)numericTinhTienTongHop2CostMilestone1Night.Value;
+                mComputerDTO.CostMilestoneNight2 = (int)numericTinhTienTongHop2CostMilestone2Night.Value;
+                mComputerDTO.CostMilestoneNight3 = (int)numericTinhTienTongHop2CostMilestone3Night.Value;
+                mComputerDTO.CostMilestoneNight4 = (int)numericTinhTienTongHop2CostMilestone4Night.Value;
+
+                mComputerDTO.CycleMilestone3 = trackBarTinhTienTongHop2CycleMilestone.Value;
+                mComputerDTO.IsAdd = "";
+
+                if (mComputerDTO.StartHourNight <= mComputerDTO.EndHourNight)
+                {
+                    MessageBox.Show("Thời gian bắt đầu phải lớn hơn thời gian kết thúc tính đêm");
+                    return;
+                }
+                if (mComputerDTO.HourMilestone1 > mComputerDTO.HourMilestone2)
+                {
+                    MessageBox.Show("Thời gian mốc 2 phải lớn hơn thời gian mốc 1");
+                    return;
+                }
+                if (mComputerDTO.HourMilestone2 > mComputerDTO.HourMilestone3)
+                {
+                    MessageBox.Show("Thời gian mốc 3 phải lớn hơn thời gian mốc 2");
+                    return;
+                }
+
+                if (ComputerDAO.IsHasData(mComputerDTO.PartID, Constant.LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM))
+                {
+                    if (ComputerDAO.Update(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienTongHop2.Enabled = false;
+                        LogUtil.addLogChinhSuaGiaTienGuiXe(oldComputerDTO, mComputerDTO, Constant.LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM);
+                    }
+                }
+                else
+                {
+                    if (ComputerDAO.Insert(mComputerDTO))
+                    {
+                        MessageBox.Show(Constant.sMessageUpdateSuccess);
+                        panelTinhTienTongHop2.Enabled = false;
                     }
                 }
             }
@@ -2627,6 +2721,9 @@ namespace ParkingMangement.GUI
                 case Constant.LOAI_GIU_XE_TONG_HOP:
                     rbGiuXeTongHop.Checked = true;
                     break;
+                case Constant.LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM:
+                    rbGiuXeTongHop2.Checked = true;
+                    break;
                 default:
                     rbGiuXeTheoCongVan.Checked = true;
                     break;
@@ -2696,6 +2793,10 @@ namespace ParkingMangement.GUI
             else if (rbGiuXeTongHop.Checked)
             {
                 parkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP;
+            }
+            else if (rbGiuXeTongHop2.Checked)
+            {
+                parkingTypeID = Constant.LOAI_GIU_XE_TONG_HOP_THEO_NGAY_DEM;
             }
 
             int calculationTicketMonth = ConfigDTO.CALCULATION_TICKET_MONTH_NO;
@@ -4887,6 +4988,37 @@ namespace ParkingMangement.GUI
             timerReadUHFData = new System.Windows.Forms.Timer();
             timerReadUHFData.Enabled = true;
             timerReadUHFData.Tick += new System.EventHandler(this.timerReadUHFData_Tick);
+        }
+
+        private void btnChinhSuaTinhTienTongHop2_Click(object sender, EventArgs e)
+        {
+            panelTinhTienTongHop2.Enabled = true;
+        }
+
+        private void btnHuyTinhTienTongHop2_Click(object sender, EventArgs e)
+        {
+            loadDataTinhTienTongHopTheoNgayDem();
+            panelTinhTienTongHop2.Enabled = false;
+        }
+
+        private void btnCapNhatTinhTienTongHop2_Click(object sender, EventArgs e)
+        {
+            updateTinhTienTongHopTheoNgayDem();
+        }
+
+        private void cbLoaiXeTinhTienTongHop2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            loadDataTinhTienTongHopTheoNgayDem();
+        }
+
+        private void trackBarTinhTienTongHop2CycleMilestone_ValueChanged(object sender, EventArgs e)
+        {
+            labelTinhTienTongHop2CycleMilestone.Text = trackBarTinhTienTongHop2CycleMilestone.Value + "";
+        }
+
+        private void trackBarTinhTienTongHop2CycleMilestone_Scroll(object sender, EventArgs e)
+        {
+
         }
     }
 }
