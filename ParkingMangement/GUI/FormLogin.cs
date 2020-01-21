@@ -103,12 +103,15 @@ namespace ParkingMangement
             this.Hide();
             Program.StartWorkTime = DateTime.Now;
             Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
-            Form f = new FormNhanVien();
+            Form f = null;
             if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
             {
                 //Form f = new FormQuanLy();
                 f = new FormQuanLy();
                 ((FormQuanLy)f).formNhanVien = this.formNhanVien;
+            } else
+            {
+                f = new FormNhanVien();
             }
 
             if (formNhanVien != null)

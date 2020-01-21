@@ -132,7 +132,7 @@ namespace ParkingMangement
             }
             catch (SqlException Ex)
             {
-                if (Ex.ErrorCode == -2147467259 || Ex.ErrorCode == -2146232060)
+                if (Ex.ErrorCode == -2147467259)
                 {
                     //This code happens ONLY when trying to add duplicated values to the primary key in the database, 
                     // in this case just do nothing and continue loading the other no duplicated values

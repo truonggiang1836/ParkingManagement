@@ -755,6 +755,9 @@ namespace ParkingMangement.GUI
             trackBarTinhTienTongHop2CycleMilestone.Value = mComputerDTO.CycleMilestone3;
             labelTinhTienTongHop2CycleMilestone.Text = mComputerDTO.CycleMilestone3 + "";
             numericTinhTienTongHop2CostMilestone4Day.Value = mComputerDTO.CostMilestone4;
+
+            numericTinhTienTongHop2MinTime.Value = mComputerDTO.MinMinute;
+            numericTinhTienTongHop2MinCost.Value = mComputerDTO.MinCost;
         }
 
         private void updateTinhTienTongHopTheoNgayDem()
@@ -777,6 +780,9 @@ namespace ParkingMangement.GUI
                 mComputerDTO.CostMilestoneNight2 = (int)numericTinhTienTongHop2CostMilestone2Night.Value;
                 mComputerDTO.CostMilestoneNight3 = (int)numericTinhTienTongHop2CostMilestone3Night.Value;
                 mComputerDTO.CostMilestoneNight4 = (int)numericTinhTienTongHop2CostMilestone4Night.Value;
+
+                mComputerDTO.MinMinute = (int)numericTinhTienTongHop2MinTime.Value;
+                mComputerDTO.MinCost = (int)numericTinhTienTongHop2MinCost.Value;
 
                 mComputerDTO.CycleMilestone3 = trackBarTinhTienTongHop2CycleMilestone.Value;
                 mComputerDTO.IsAdd = "";

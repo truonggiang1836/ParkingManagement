@@ -20,12 +20,12 @@
   <com_receive_in>COM9</com_receive_in>
   <com_receive_out>COM8</com_receive_out>
   <com_send>COM1</com_send>
-  <com_led_left>COM3</com_led_left>
-  <com_led_right>COM5</com_led_right>
-  <signal_open_barie_in>@barie2_open1&amp;</signal_open_barie_in>
-  <signal_close_barie_in>@barie2_close1&amp;</signal_close_barie_in>
-  <signal_open_barie_out>@barie_open1&amp;</signal_open_barie_out>
-  <signal_close_barie_out>@barie_close1&amp;</signal_close_barie_out>
+  <com_led_left>COM5</com_led_left>
+  <com_led_right />
+  <signal_open_barie_in />
+  <signal_close_barie_in />
+  <signal_open_barie_out />
+  <signal_close_barie_out />
   <signal_open_barie_in_motorbike />
   <signal_close_barie_in_motorbike />
   <signal_open_barie_out_motorbike />

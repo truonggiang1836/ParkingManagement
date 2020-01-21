@@ -696,9 +696,9 @@ namespace ParkingMangement.GUI
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
             updateScreenForCarIn(isTicketMonthCard);
-            WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
 
             // send data to server
+            //WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
             //sendDataInToServer();
         }
 
@@ -1106,9 +1106,9 @@ namespace ParkingMangement.GUI
                     carDTO.DateUpdate = DateTime.Now;
 
                     CarDAO.UpdateCarOut(carDTO);
-                    WaitSyncCarOutDAO.Insert(identify);
 
                     // send data to server
+                    //WaitSyncCarOutDAO.Insert(identify);
                     //sendDataOutToServer();
                 }
             }
@@ -1957,10 +1957,10 @@ namespace ParkingMangement.GUI
                 {
                     return 0;
                 }
-                if (spentTimeByHour <= computerDTO.HourMilestone1)
+                if (spentTimeByHour < computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
-                } else if (spentTimeByHour > computerDTO.HourMilestone1 && spentTimeByHour <= computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
+                } else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
                 {
                     return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
                 } else
@@ -2005,11 +2005,11 @@ namespace ParkingMangement.GUI
                 {
                     return 0;
                 }
-                if (spentTimeByHour <= computerDTO.HourMilestone1)
+                if (spentTimeByHour < computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
                 }
-                else if (spentTimeByHour > computerDTO.HourMilestone1 && spentTimeByHour <= computerDTO.HourMilestone2)
+                else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone2)
                 {
                     return computerDTO.CostMilestone2;
                 }
@@ -2050,132 +2050,132 @@ namespace ParkingMangement.GUI
                 DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
                 DateTime timeOut = DateTime.Now;
                 double spentTimeByMinute = Util.getTotalTimeByMinute(timeIn, timeOut);
-                double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
-                double totalHourOfDay = getTotalHourOfDay(timeIn, timeOut, computerDTO);
-                double totalHourOfNight = getTotalHourOfNight(timeIn, timeOut, computerDTO);
                 if (spentTimeByMinute <= 5)
                 {
                     return 0;
                 }
-                if (spentTimeByHour <= computerDTO.HourMilestone1)
+                if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
-                    // mốc 1
-                    if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                    return computerDTO.MinCost;
+                }
+                else
+                {
+                    timeIn = timeIn.AddMinutes(computerDTO.MinMinute);
+
+                    return getCostTinhTienTongHop2(timeIn, timeOut, computerDTO);
+
+                }
+            }
+            return 0;
+        }
+
+        private int getCostTinhTienTongHop2(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
+            double totalHourOfDay = getTotalHourOfDay(timeIn, timeOut, computerDTO);
+            double totalHourOfNight = getTotalHourOfNight(timeIn, timeOut, computerDTO);
+
+            if (spentTimeByHour < computerDTO.HourMilestone1)
+            {
+                // mốc 1
+                if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                {
+                    // vào ngày - ra ngày
+                    return computerDTO.CostMilestone1;
+                }
+                else if (((timeIn.Hour >= computerDTO.StartHourNight && timeIn.Hour <= timeOut.Hour && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && timeOut.Date.Day - timeIn.Date.Day <= 1)
+                {
+                    // vào đêm - ra đêm
+                    return computerDTO.CostMilestoneNight1;
+                }
+                else
+                {
+                    if (totalHourOfDay >= totalHourOfNight)
                     {
-                        // vào ngày - ra ngày
                         return computerDTO.CostMilestone1;
                     }
-                    else if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && timeOut.Date.Day - timeIn.Date.Day <= 1)
+                    else
                     {
-                        // vào đêm - ra đêm
                         return computerDTO.CostMilestoneNight1;
                     }
-                    else
-                    {
-                        if (totalHourOfDay >= totalHourOfNight)
-                        {
-                            return computerDTO.CostMilestone1;
-                        }
-                        else
-                        {
-                            return computerDTO.CostMilestoneNight1;
-                        }
-                    }
                 }
-                else if (spentTimeByHour > computerDTO.HourMilestone1 && spentTimeByHour <= computerDTO.HourMilestone2)
+            }
+            else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone2)
+            {
+                // mốc 2
+                if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
                 {
-                    // mốc 2
-                    if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                    // vào ngày - ra ngày
+                    return computerDTO.CostMilestone2;
+                }
+                else if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && timeOut.Date.Day - timeIn.Date.Day <= 1)
+                {
+                    // vào đêm - ra đêm
+                    return computerDTO.CostMilestoneNight2;
+                }
+                else
+                {
+                    if (totalHourOfDay >= totalHourOfNight)
                     {
-                        // vào ngày - ra ngày
                         return computerDTO.CostMilestone2;
                     }
-                    else if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && timeOut.Date.Day - timeIn.Date.Day <= 1)
+                    else
                     {
-                        // vào đêm - ra đêm
                         return computerDTO.CostMilestoneNight2;
                     }
-                    else
-                    {
-                        if (totalHourOfDay >= totalHourOfNight)
-                        {
-                            return computerDTO.CostMilestone2;
-                        }
-                        else
-                        {
-                            return computerDTO.CostMilestoneNight2;
-                        }
-                    }
                 }
-                else if (spentTimeByHour > computerDTO.HourMilestone2 && spentTimeByHour <= computerDTO.HourMilestone3)
+            }
+            else if (spentTimeByHour >= computerDTO.HourMilestone2 && spentTimeByHour < computerDTO.HourMilestone3)
+            {
+                // mốc 3
+                if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
                 {
-                    // mốc 3
-                    if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                    // vào ngày - ra ngày
+                    return computerDTO.CostMilestone3;
+                }
+                else if (((timeIn.Hour >= computerDTO.StartHourNight && timeIn.Hour <= timeOut.Hour && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && timeOut.Date.Day - timeIn.Date.Day <= 1)
+                {
+                    // vào đêm - ra đêm
+                    return computerDTO.CostMilestoneNight3;
+                }
+                else
+                {
+                    if (totalHourOfDay >= totalHourOfNight)
                     {
-                        // vào ngày - ra ngày
                         return computerDTO.CostMilestone3;
                     }
-                    else if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && timeOut.Date.Day - timeIn.Date.Day <= 1)
-                    {
-                        // vào đêm - ra đêm
-                        return computerDTO.CostMilestoneNight3;
-                    }
                     else
                     {
-                        if (totalHourOfDay >= totalHourOfNight)
-                        {
-                            return computerDTO.CostMilestone3;
-                        }
-                        else
-                        {
-                            return computerDTO.CostMilestoneNight3;
-                        }
+                        return computerDTO.CostMilestoneNight3;
+                    }
+                }
+            } else
+            {
+                // lớn hơn mốc 3
+                int cost = 0;
+                if (computerDTO.CycleMilestone3 > computerDTO.HourMilestone1)
+                {
+                    // xe may
+                    int temp1 = ((int)spentTimeByHour) / computerDTO.CycleMilestone3;
+                    timeIn = timeIn.AddHours(temp1 * computerDTO.CycleMilestone3);
+                    cost = computerDTO.CostMilestone4;
+                    if (temp1 > 0)
+                    {
+                        int costMilestoneRemain = getCostTinhTienTongHop2(timeIn, timeOut, computerDTO);
+                        cost = costMilestoneRemain + temp1 * computerDTO.CostMilestone4;
                     }
                 }
                 else
                 {
-                    // lớn hơn mốc 3
-                    int cost = 0;
-                    if (computerDTO.CycleMilestone3 > computerDTO.CostMilestone1)
-                    {
-                        int temp1 = ((int)spentTimeByHour) / computerDTO.CycleMilestone3;
-                        //int temp2 = ((int)spentTimeByHour - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3;
-                        int spentTimeRemainByHour = (int)spentTimeByHour - computerDTO.CycleMilestone3 * temp1;
-                        int costMilestoneRemain = 0;
-                        if (spentTimeRemainByHour <= computerDTO.HourMilestone1)
-                        {
-                            costMilestoneRemain = computerDTO.CostMilestone1;
-                        }
-                        else if (spentTimeRemainByHour > computerDTO.HourMilestone1 && spentTimeRemainByHour <= computerDTO.HourMilestone2)
-                        {
-                            costMilestoneRemain = computerDTO.CostMilestone2;
-                        }
-                        else if (spentTimeRemainByHour > computerDTO.HourMilestone2 && spentTimeRemainByHour <= computerDTO.HourMilestone3)
-                        {
-                            costMilestoneRemain = computerDTO.CostMilestone3;
-                        }
-                        cost = computerDTO.CostMilestone4;
-                        if (temp1 > 0)
-                        {
-                            cost = costMilestoneRemain + temp1 * computerDTO.CostMilestone4;
-                        }
-                    } else
-                    {
-                        spentTimeByHour = spentTimeByHour - computerDTO.HourMilestone1;
-                        int temp1 = ((int)spentTimeByHour) / computerDTO.CycleMilestone3;
-                        int costMilestoneRemain = computerDTO.CostMilestone1;
-                        
-                        cost = computerDTO.CostMilestone4;
-                        if (temp1 > 0)
-                        {
-                            cost = costMilestoneRemain + temp1 * computerDTO.CostMilestone4;
-                        }
-                    }
-                    
-                    return cost;
+                    // o to
+                    spentTimeByHour = spentTimeByHour - computerDTO.HourMilestone1;
+                    int temp1 = ((int)spentTimeByHour) / computerDTO.CycleMilestone3;
+                    int costMilestoneRemain = computerDTO.CostMilestone1;
+                    cost = costMilestoneRemain + (temp1 + 1) * computerDTO.CostMilestone4;
                 }
+
+                return cost;
             }
-            return 0;
         }
 
         private bool isCarInDayOutDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
@@ -2876,7 +2876,7 @@ namespace ParkingMangement.GUI
                 if (inputIsLeftSide())
                 {
                     data = "@tien1_" + cost + "&";
-                    writeDataToLeftLedPort(data, portName);
+                    writeDataToRightLedPort(data, portName);
                 }
                 else
                 {

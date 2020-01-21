@@ -392,6 +392,48 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void sendCardListToServer(DataTable data)
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dtTable = data;
+            List<Order> listOrder = new List<Order>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+            var param = new System.Collections.Specialized.NameValueCollection();
+            string jsonString = "";
+            for (int i = 0; i < dtTable.Rows.Count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                Card card = new Card();
+                card.AreaId = 1;
+                card.ProjectId = 1;
+                card.Code = dtRow.Field<string>("Id");
+                card.Stt = dtRow.Field<string>("Identify");
+            }
+
+            try
+            {
+                //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
+                if (!jsonString.Equals(""))
+                {
+                    webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
+                }
+                Console.WriteLine("json_api: " + jsonString);
+                int x = 0;
+                //String responseString = Encoding.UTF8.GetString(responsebytes);
+
+                //webClient.UploadData(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", Encoding.Default.GetBytes(jsonString));
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+                //MessageBox.Show(e.Message);
+            }
+        }
+
         private static void saveLastOrderToConfig(int lastIdentify)
         {
             try

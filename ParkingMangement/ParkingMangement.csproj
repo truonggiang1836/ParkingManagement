@@ -233,6 +233,7 @@
     <Compile Include="GUI\FormZoomCameraSetting.Designer.cs">
       <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrdersListBody.cs" />
     <Compile Include="Model\OrdersListResponse.cs" />
