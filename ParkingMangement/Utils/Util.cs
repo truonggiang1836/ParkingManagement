@@ -399,7 +399,7 @@ namespace ParkingMangement.Utils
                 return;
             }
             DataTable dtTable = data;
-            List<Order> listOrder = new List<Order>();
+            List<Card> listCard = new List<Card>();
             WebClient webClient = (new ApiUtil()).getWebClient();
             //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             var param = new System.Collections.Specialized.NameValueCollection();
@@ -412,6 +412,49 @@ namespace ParkingMangement.Utils
                 card.ProjectId = 1;
                 card.Code = dtRow.Field<string>("Id");
                 card.Stt = dtRow.Field<string>("Identify");
+                int adminId = 0;
+                try
+                {
+                    Int32.TryParse(Program.CurrentUserID, out adminId);
+                }
+                catch (Exception)
+                {
+
+                }
+                card.AdminId = adminId;
+                if (dtRow.Field<string>("IsUsing").Equals("1"))
+                {
+                    card.Disable = 0;
+                } else
+                {
+                    card.Disable = 1;
+                }
+                int vehicleId = 0;
+                try
+                {
+                    Int32.TryParse(dtRow.Field<string>("Type"), out vehicleId);
+                }
+                catch (Exception)
+                {
+
+                }
+                card.VehicleId = vehicleId;
+                //card.Id = 999;
+                card.MonthlyCardId = 0;
+                DateTime dateUpdate = dtRow.Field<DateTime>("DayUnlimit");
+                card.Created = DateTimeToMillisecond(dateUpdate);
+                card.Updated = DateTimeToMillisecond(dateUpdate);
+                listCard.Add(card);
+
+                jsonString = JsonConvert.SerializeObject(listCard);
+                Console.WriteLine(":: " + jsonString);
+                string index = (i + 1).ToString();
+                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+
+                //if (listCard.Count == 1)
+                //{
+                //    break;
+                //}
             }
 
             try
@@ -419,7 +462,8 @@ namespace ParkingMangement.Utils
                 //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
                 if (!jsonString.Equals(""))
                 {
-                    webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_CARDS_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
                 }
                 Console.WriteLine("json_api: " + jsonString);
                 int x = 0;

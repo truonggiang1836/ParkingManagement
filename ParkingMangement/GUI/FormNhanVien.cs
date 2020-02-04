@@ -233,6 +233,8 @@ namespace ParkingMangement.GUI
             //timerReadUHFData.Enabled = true;
 
             //runPythonServer();
+
+            //Util.sendCardListToServer(CardDAO.GetAllDataForSync());
         }
 
         private void loadInfo()

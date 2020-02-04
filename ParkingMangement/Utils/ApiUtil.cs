@@ -40,6 +40,7 @@ namespace ParkingMangement.Utils
         public static string API_CHECKOUT = BASE_URL + "cards/checkout";
         public static string API_ORDERS_LIST = BASE_URL + "orders/list";
         public static string API_ORDERS_BATCH_INSERT = BASE_URL + "orders/batchinsert";
+        public static string API_CARDS_BATCH_INSERT = BASE_URL + "cards/batchinsert";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 

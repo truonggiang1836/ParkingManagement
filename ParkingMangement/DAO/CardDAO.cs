@@ -16,6 +16,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuQuery(sql);
         }
 
+        public static DataTable GetAllDataForSync()
+        {
+            string sql = "select * from SmartCard order by SmartCard.Identify asc";
+            return Database.ExcuQuery(sql);
+        }
+
         public static string GetLastCardIdentify()
         {
             string sql = "select Identify from SmartCard order by DayUnlimit desc";

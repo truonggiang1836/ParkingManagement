@@ -1934,6 +1934,7 @@ namespace ParkingMangement.GUI
                     string id = Convert.ToString(row.Cells["TicketMonthID"].Value);
                     addDeleteTicketMonthToLog(row.Index);
                     TicketMonthDAO.Delete(id);
+                    CarDAO.DeleteCarNotOut(id);
                 }
             }
             loadTicketMonthData();
@@ -3997,6 +3998,7 @@ namespace ParkingMangement.GUI
                     {
                         LogUtil.addLogXoaThe(identify, cardId);
                         TicketMonthDAO.Delete(cardId);
+                        CarDAO.DeleteCarNotOut(cardId);
                     }
                 }
                 //if (Convert.ToBoolean(checkCell.Value) == true)

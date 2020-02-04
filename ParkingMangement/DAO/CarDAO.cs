@@ -709,6 +709,12 @@ namespace ParkingMangement.DAO
             return Database.ExcuNonQuery(sql);
         }
 
+        public static bool DeleteCarNotOut(string cardId)
+        {
+            string sql = "delete from Car where ID = '" + cardId + "' and IDOut = ''";
+            return Database.ExcuNonQuery(sql);
+        }
+
         public static bool isCarIn(string id)
         {
             string sql = "select count(Car.ID) from Car where ID = '" + id + "'" + " and IDOut != ''";
