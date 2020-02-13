@@ -13,7 +13,7 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from [UserCar], [WorkAssign] " +
+            string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from UserCar, WorkAssign " +
                 "where UserCar.UserID = WorkAssign.UserID order by WorkAssign.Identify asc";
             DataTable data = Database.ExcuQuery(sql);
             setTotalTime(data);
@@ -22,10 +22,10 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetDataByMultiDate(DateTime startDate, DateTime endDate)
         {
-            //string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from [UserCar], [WorkAssign] " +
-            //    "where UserCar.UserID = WorkAssign.UserID and TimeStart >= #" + startDate + "# and TimeEnd <= #" + endDate + "#";
-            string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from [UserCar], [WorkAssign] " +
-                "where UserCar.UserID = WorkAssign.UserID and TimeStart Between #" + startDate + "# and TimeEnd and TimeEnd Between TimeStart and #" + endDate + "#";
+            //string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from UserCar, WorkAssign " +
+            //    "where UserCar.UserID = WorkAssign.UserID and TimeStart >= '" + startDate + "' and TimeEnd <= '" + endDate + "'";
+            string sql = "select WorkAssign.Identify, UserCar.NameUser, WorkAssign.TimeStart, WorkAssign.TimeEnd, WorkAssign.Computer from UserCar, WorkAssign " +
+                "where UserCar.UserID = WorkAssign.UserID and TimeStart Between '" + startDate.ToString(Constant.sDateTimeFormatForQuery) + "' and TimeEnd and TimeEnd Between TimeStart and '" + endDate.ToString(Constant.sDateTimeFormatForQuery) + "'";
             DataTable data = Database.ExcuQuery(sql);
             setTotalTime(data);
             return data;
@@ -33,7 +33,7 @@ namespace ParkingMangement.DAO
 
         private static void setTotalTime(DataTable data)
         {
-            data.Columns.Add("TotalTime", typeof(System.Double));
+            data.Columns.Add("TotalTime", typeof(System.Double)).SetOrdinal(5);
             for (int row = 0; row < data.Rows.Count; row++)
             {
                 DateTime timeStart = data.Rows[row].Field<DateTime>("TimeStart");

@@ -8,7 +8,7 @@ namespace ParkingMangement.DTO
 {
     class TicketMonthDTO
     {
-        private int identify;
+        private string cardIdentify;
         private string id;
         private DateTime processDate;
         private string digit;
@@ -27,8 +27,9 @@ namespace ParkingMangement.DTO
         private string account;
         private string images;
         private DateTime dayUnlimit;
+        private string phone;
 
-        public int Identify { get => identify; set => identify = value; }
+        public string CardIdentify { get => cardIdentify; set => cardIdentify = value; }
         public string Id { get => id; set => id = value; }
         public DateTime ProcessDate { get => processDate; set => processDate = value; }
         public string Digit { get => digit; set => digit = value; }
@@ -47,5 +48,6 @@ namespace ParkingMangement.DTO
         public string Account { get => account; set => account = value; }
         public string Images { get => images; set => images = value; }
         public DateTime DayUnlimit { get => dayUnlimit; set => dayUnlimit = value; }
+        public string Phone { get => phone; set => phone = value; }
     }
 }

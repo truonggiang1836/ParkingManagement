@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using ParkingMangement.Utils;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,50 +12,84 @@ namespace ParkingMangement.DTO
 {
     class CarDTO
     {
-        private int identify = -1;
-        private string id;
-        private DateTime timeStart;
-        private DateTime timeEnd;
-        private string digit;
-        private string idIn;
-        private string idOut;
-        private int cost;
-        private string part;
-        private int seri;
-        private string idTicketMonth;
-        private string idPart;
-        private string images;
-        private string images2;
-        private string images3;
-        private string images4;
-        private int islostCard;
-        private string computer;
-        private string note;
-        private string account;
-        private int costBefore;
-        private DateTime dateUpdate;
+        public List<CarDTO> getListCarDTO(string jsonString)
+        {
+            JObject jObject = JObject.Parse(jsonString);
+            JToken jUser = jObject["body"];
+            Id = (string)jUser["id"];
+            return null;
+        }
 
-        public int Identify { get => identify; set => identify = value; }
-        public string Id { get => id; set => id = value; }
-        public DateTime TimeStart { get => timeStart; set => timeStart = value; }
-        public DateTime TimeEnd { get => timeEnd; set => timeEnd = value; }
-        public string Digit { get => digit; set => digit = value; }
-        public string IdIn { get => idIn; set => idIn = value; }
-        public string IdOut { get => idOut; set => idOut = value; }
-        public int Cost { get => cost; set => cost = value; }
-        public string Part { get => part; set => part = value; }
-        public int Seri { get => seri; set => seri = value; }
-        public string IdTicketMonth { get => idTicketMonth; set => idTicketMonth = value; }
-        public string IdPart { get => idPart; set => idPart = value; }
-        public string Images { get => images; set => images = value; }
-        public string Images2 { get => images2; set => images2 = value; }
-        public string Images3 { get => images3; set => images3 = value; }
-        public string Images4 { get => images4; set => images4 = value; }
-        public int IslostCard { get => islostCard; set => islostCard = value; }
-        public string Computer { get => computer; set => computer = value; }
-        public string Note { get => note; set => note = value; }
-        public string Account { get => account; set => account = value; }
-        public int CostBefore { get => costBefore; set => costBefore = value; }
-        public DateTime DateUpdate { get => dateUpdate; set => dateUpdate = value; }
+        [JsonProperty("id")]
+        public int Identify { get; set; } = -1;
+        [JsonProperty("card_code")]
+        public int CardIdentify { get; set; } = -1;
+        public string Id { get; set; }
+        public DateTime TimeStart { get; set; }
+        public DateTime TimeEnd { get; set; }
+        [JsonProperty("car_number")]
+        public string Digit { get; set; }
+        public string DigitIn { get; set; }
+        public string DigitOut { get; set; }
+        [JsonProperty("admin_checkin_name")]
+        public string IdIn { get; set; }
+        [JsonProperty("admin_checkout_name")]
+        public string IdOut { get; set; }
+        [JsonProperty("total_price")]
+        public int? Cost { get; set; }
+        public int Seri { get; set; }
+        [JsonProperty("monthly_card_code")]
+        public string IdTicketMonth { get; set; }
+        [Browsable(false)]
+        [JsonProperty("vehicle_id")]
+        public string IdPart { get; set; }
+        public string Images { get; set; }
+        public string Images2 { get; set; }
+        public string Images3 { get; set; }
+        public string Images4 { get; set; }
+        [JsonProperty("is_card_lost")]
+        public int? IsLostCard { get; set; }
+        [JsonProperty("pc_name")]
+        public string Computer { get; set; }
+        [JsonProperty("notes")]
+        public string Note { get; set; }
+        [JsonProperty("account")]
+        public string Account { get; set; }
+        [Browsable(false)]
+        public int CostBefore { get; set; }
+        public DateTime DateUpdate { get; set; }
+        [Browsable(false)]
+        public DateTime DateLostCard { get; set; }
+
+
+        [Browsable(false)]
+        [JsonProperty("checkin_time")]
+        public int? CheckinTime { get; set; }
+        [Browsable(false)]
+        [JsonProperty("checkout_time")]
+        public int? CheckoutTime { get; set; }
+        [Browsable(false)]
+        [JsonProperty("updated")]
+        public int? Updated { get; set; }
+        [JsonProperty("card_stt")]
+        public int SmartCardIdentify { get; set; }
+        [JsonProperty("vehicle_name")]
+        public string PartName { get; set; }
+
+        public void setDataFromAPIForFields()
+        {
+            if (CheckinTime != null)
+            {
+                TimeStart = Util.getDateTimeFromMilliSecond((double)CheckinTime * 1000);
+            }
+            if (CheckoutTime != null)
+            {
+                TimeEnd = Util.getDateTimeFromMilliSecond((double)CheckoutTime * 1000);
+            }
+            if (Updated != null)
+            {
+                DateUpdate = Util.getDateTimeFromMilliSecond((double)Updated * 1000);
+            }
+        }
     }
 }

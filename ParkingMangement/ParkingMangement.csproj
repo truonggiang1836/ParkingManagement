@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.props" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,9 +12,11 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -21,6 +24,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,12 +36,96 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LibUsbDotNet, Version=2.2.8.104, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LibUsbDotNet.2.2.8\lib\LibUsbDotNet.dll</HintPath>
+    <Reference Include="AForge, Version=1.5.0.0, Culture=neutral, PublicKeyToken=75f8e82c5042a70f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Controls, Version=1.5.0.0, Culture=neutral, PublicKeyToken=19d43f345531bafb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Genetic, Version=1.5.0.0, Culture=neutral, PublicKeyToken=da51dbc1417b0844, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Genetic.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging, Version=1.5.1.0, Culture=neutral, PublicKeyToken=38eb47741dd0492e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.MachineLearning, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a685c9fe7f22607b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.MachineLearning.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Math, Version=1.5.0.0, Culture=neutral, PublicKeyToken=e12ceb15b47eb5cc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Math.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.NeuralNet, Version=1.0.2989.5669, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.NeuralNet.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Neuro, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31df34efda00f95d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Neuro.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=1.5.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=1.5.1.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.FFMPEG, Version=2.2.0.0, Culture=neutral, PublicKeyToken=03563089b1be05dd, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Video.FFMPEG.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.VFW, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a82f807c999637c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Video.VFW.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Vision, Version=1.5.1.0, Culture=neutral, PublicKeyToken=afefe794e0d71fcc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AForge.Vision.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AxInterop.AXVLC.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.AXVLC.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.OPTSHOLDLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.OPTSHOLDLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PKUHFReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PKUHFReader.dll</HintPath>
+    </Reference>
+    <Reference Include="RawInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\RawInput.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,75 +137,120 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\BlackCarDAO.cs" />
     <Compile Include="DAO\CarDAO.cs" />
     <Compile Include="DAO\CardDAO.cs" />
+    <Compile Include="DAO\ComputerDAO.cs" />
+    <Compile Include="DAO\ConfigDAO.cs" />
     <Compile Include="DAO\FunctionalDAO.CS" />
+    <Compile Include="DAO\LogDAO.cs" />
+    <Compile Include="DAO\LogTypeDAO.cs" />
     <Compile Include="DAO\PartDAO.cs" />
     <Compile Include="DAO\SexDAO.CS" />
     <Compile Include="DAO\TicketMonthDAO.cs" />
+    <Compile Include="DAO\TicketLogDAO.cs" />
+    <Compile Include="DAO\CardTypeDAO.cs" />
+    <Compile Include="DAO\TypeDAO.cs" />
     <Compile Include="DAO\UserDAO.CS" />
+    <Compile Include="DAO\WaitSyncCarInDAO.cs" />
+    <Compile Include="DAO\WaitSyncCarOutDAO.cs" />
     <Compile Include="DAO\WorkDAO.cs" />
     <Compile Include="DTO\CardDTO.cs" />
     <Compile Include="DTO\CarDTO.cs" />
+    <Compile Include="DTO\CardTypeDTO.cs" />
+    <Compile Include="DTO\ComputerDTO.cs" />
+    <Compile Include="DTO\ConfigDTO.cs" />
+    <Compile Include="DTO\LogDTO.cs" />
     <Compile Include="DTO\PartDTO.cs" />
+    <Compile Include="DTO\TicketLogDTO.cs" />
     <Compile Include="DTO\TicketMonthDTO.cs" />
+    <Compile Include="DTO\TypeDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\WorkDTO.cs" />
+    <Compile Include="GUI\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form2.designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormChangePassword.Designer.cs">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormImageDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormImageDetail.Designer.cs">
+      <DependentUpon>FormImageDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormInOutSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormInOutSetting.Designer.cs">
+      <DependentUpon>FormInOutSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormLoginByCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormLoginByCard.Designer.cs">
+      <DependentUpon>FormLoginByCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormLogout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormLogout.Designer.cs">
+      <DependentUpon>FormLogout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormLogOutByCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormLogOutByCard.Designer.cs">
+      <DependentUpon>FormLogOutByCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormQuanLy.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormQuanLy.Designer.cs">
       <DependentUpon>FormQuanLy.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FormQuanLyXeVaoRa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormQuanLyXeVaoRa.designer.cs">
+      <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormZoomCameraSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormZoomCameraSetting.Designer.cs">
+      <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MonthlyCard.cs" />
+    <Compile Include="Model\Card.cs" />
+    <Compile Include="Model\Order.cs" />
+    <Compile Include="Model\OrdersListBody.cs" />
+    <Compile Include="Model\OrdersListResponse.cs" />
+    <Compile Include="Model\Config.cs" />
+    <Compile Include="TextRecognized\clsImagePlate.cs" />
+    <Compile Include="TextRecognized\clsLicensePlate.cs" />
+    <Compile Include="TextRecognized\clsNetwork.cs" />
+    <Compile Include="Utils\ApiUtil.cs" />
+    <Compile Include="Utils\AutoClosingMessageBox.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\Database.cs" />
-    <Compile Include="GUI\FormDeleteStaff.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormDeleteStaff.Designer.cs">
-      <DependentUpon>FormDeleteStaff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormDeleteTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormDeleteTicket.Designer.cs">
-      <DependentUpon>FormDeleteTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormDeleteVehicle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormDeleteVehicle.Designer.cs">
-      <DependentUpon>FormDeleteVehicle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormEditStaff.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormEditStaff.Designer.cs">
-      <DependentUpon>FormEditStaff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormEditTicket.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormEditTicket.Designer.cs">
-      <DependentUpon>FormEditTicket.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormEditVehicle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormEditVehicle.Designer.cs">
-      <DependentUpon>FormEditVehicle.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormStaffManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormStaffManagement.Designer.cs">
-      <DependentUpon>FormStaffManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormNhanVien.cs">
       <SubType>Form</SubType>
@@ -124,56 +258,50 @@
     <Compile Include="GUI\FormNhanVien.Designer.cs">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\FormTicketManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormTicketManagement.Designer.cs">
-      <DependentUpon>FormTicketManagement.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\FormVehicleManagement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\FormVehicleManagement.Designer.cs">
-      <DependentUpon>FormVehicleManagement.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\LogUtil.cs" />
+    <Compile Include="Utils\UHFReader.cs" />
     <Compile Include="Utils\Util.cs" />
-    <EmbeddedResource Include="GUI\FormDeleteStaff.resx">
-      <DependentUpon>FormDeleteStaff.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormDeleteTicket.resx">
-      <DependentUpon>FormDeleteTicket.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormDeleteVehicle.resx">
-      <DependentUpon>FormDeleteVehicle.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FormChangePassword.resx">
+      <DependentUpon>FormChangePassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormEditStaff.resx">
-      <DependentUpon>FormEditStaff.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FormImageDetail.resx">
+      <DependentUpon>FormImageDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormEditTicket.resx">
-      <DependentUpon>FormEditTicket.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormEditVehicle.resx">
-      <DependentUpon>FormEditVehicle.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FormInOutSetting.resx">
+      <DependentUpon>FormInOutSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormLoginByCard.resx">
+      <DependentUpon>FormLoginByCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormLogout.resx">
+      <DependentUpon>FormLogout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormLogOutByCard.resx">
+      <DependentUpon>FormLogOutByCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLy.resx">
       <DependentUpon>FormQuanLy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormStaffManagement.resx">
-      <DependentUpon>FormStaffManagement.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormTicketManagement.resx">
-      <DependentUpon>FormTicketManagement.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FormQuanLyXeVaoRa.resx">
+      <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\FormVehicleManagement.resx">
-      <DependentUpon>FormVehicleManagement.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\FormZoomCameraSetting.resx">
+      <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -183,6 +311,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -198,5 +327,126 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_barie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_bottom_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_change_lane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_cost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_date.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_lane_in.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_lane_out.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_print_bill.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_time.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_top_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_write_ticket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\Untitled-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_date_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_time_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_get_card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_textbox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_thong_ke_xe_trong_bai.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_login_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_background_username.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_user_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_welcome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_bottom_background_login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_property_management.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_bike_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\ic_car_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <None Include="resources\ic_background_get_card_short.png" />
+    <None Include="resources\ic_logo_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EmguCV.3.1.0.1\build\EmguCV.props'))" />
+    <Error Condition="!Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EmguCV.3.1.0.1\build\EmguCV.targets'))" />
+    <Error Condition="!Exists('..\packages\Accord.3.8.0\build\Accord.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.3.8.0\build\Accord.targets'))" />
+    <Error Condition="!Exists('..\packages\Accord.Video.FFMPEG.3.8.0\build\Accord.Video.FFMPEG.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Accord.Video.FFMPEG.3.8.0\build\Accord.Video.FFMPEG.targets'))" />
+  </Target>
+  <Import Project="..\packages\EmguCV.3.1.0.1\build\EmguCV.targets" Condition="Exists('..\packages\EmguCV.3.1.0.1\build\EmguCV.targets')" />
+  <Import Project="..\packages\Accord.3.8.0\build\Accord.targets" Condition="Exists('..\packages\Accord.3.8.0\build\Accord.targets')" />
+  <Import Project="..\packages\Accord.Video.FFMPEG.3.8.0\build\Accord.Video.FFMPEG.targets" Condition="Exists('..\packages\Accord.Video.FFMPEG.3.8.0\build\Accord.Video.FFMPEG.targets')" />
 </Project>
