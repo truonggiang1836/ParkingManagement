@@ -19,12 +19,10 @@ namespace ParkingMangement
         //protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb;Mode=Share Deny None";
 
         //static OleDbConnection connection;
-        static SqlConnection mySqlConnection;
-        static SqlCommand mySqlCommand;
-        static SqlTransaction mySqlTransaction;
+        private SqlConnection mySqlConnection;
         //static Config config;
 
-        public static SqlConnection GetDBConnection()
+        public SqlConnection GetDBConnection()
         {
             string datasource = Util.getConfigFile().sqlDataSource + @"," + Util.getConfigFile().sqlPort;
             string database = "ParkingManagement";
@@ -33,7 +31,7 @@ namespace ParkingMangement
 
             return GetDBConnection(datasource, database, username, password);
         }
-        public static SqlConnection GetDBConnection(string datasource, string database, string username, string password)
+        public SqlConnection GetDBConnection(string datasource, string database, string username, string password)
         {
             // Connection String.
             string connString = @"Data Source=" + datasource + ";Initial Catalog="
@@ -43,8 +41,10 @@ namespace ParkingMangement
             return conn;
         }
 
-        public static void OpenConnection()
+        public void OpenConnection()
         {
+            Program.sCountConnection++;
+
             mySqlConnection = GetDBConnection();
 
             try
@@ -62,8 +62,10 @@ namespace ParkingMangement
             Console.Read();
         }
 
-        public static void CloseConnection()
+        public void CloseConnection()
         {
+            Program.sCountConnection--;
+
             // Đóng kết nối.
             if (mySqlConnection.State == ConnectionState.Open)
             {
@@ -73,66 +75,56 @@ namespace ParkingMangement
             mySqlConnection.Dispose();
         }
 
-        public static SqlCommand createSqlCommand(string sql, SqlConnection connection, SqlTransaction transaction)
-        {
-            //if (mySqlCommand == null)
-            //{
-            //    mySqlCommand = mySqlConnection.CreateCommand();
-            //}
-            return new SqlCommand(sql, connection, transaction);
-        }
-
-        public static int ExcuValueQuery(string sql)
+        public int ExcuValueQuery(string sql)
         {
             try
             {
                 OpenConnection();
-                mySqlTransaction = mySqlConnection.BeginTransaction();
-                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                DataTable dt = new DataTable();
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
                 int value = Convert.ToInt32(command.ExecuteScalar());
-                mySqlTransaction.Commit();
                 CloseConnection();
                 return value;
             }
             catch (Exception e)
             {
-                mySqlTransaction.Rollback();
                 return 0;
             }
         }
 
-        public static DataTable ExcuQuery(string sql)
+        public DataTable ExcuQuery(string sql)
         {
             DataTable dt = new DataTable();
             try
             {
                 OpenConnection();
-                mySqlTransaction = mySqlConnection.BeginTransaction();
-                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
-                mySqlTransaction.Commit();
                 CloseConnection();
             }
             catch (Exception Ex)
             {
-                mySqlTransaction.Rollback();
                 //MessageBox.Show(Constant.sMessageCommonError);
-                //MessageBox.Show(Ex.Message + "_sql: " + sql);
+                MessageBox.Show(Ex.Message + "_sql: " + sql);
             }
             return dt;
         }
-        public static bool ExcuNonQuery(string sql)
+        public bool ExcuNonQuery(string sql)
         {
             try
             {
                 int result = 0;
                 OpenConnection();
-                mySqlTransaction = mySqlConnection.BeginTransaction();
-                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
                 result = command.ExecuteNonQuery();
-                mySqlTransaction.Commit();
                 CloseConnection();
                 if (result > 0)
                 {
@@ -155,20 +147,19 @@ namespace ParkingMangement
                 {
                     MessageBox.Show(Ex.Message + "_sql: " + sql);
                 }
-                mySqlTransaction.Rollback();
                 return false;
             }
         }
 
-        public static bool ExcuNonQueryNoErrorMessage(string sql)
+        public bool ExcuNonQueryNoErrorMessage(string sql)
         {
             try
             {
                 OpenConnection();
-                mySqlTransaction = mySqlConnection.BeginTransaction();
-                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
                 int result = command.ExecuteNonQuery();
-                mySqlTransaction.Commit();
                 CloseConnection();
                 if (result > 0)
                 {
@@ -181,7 +172,6 @@ namespace ParkingMangement
             }
             catch (SqlException Ex)
             {
-                mySqlTransaction.Rollback();
                 return false;
             }
         }

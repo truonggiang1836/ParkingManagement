@@ -1933,11 +1933,14 @@ namespace ParkingMangement.GUI
                 {
                     string id = Convert.ToString(row.Cells["TicketMonthID"].Value);
                     addDeleteTicketMonthToLog(row.Index);
-                    TicketMonthDAO.Delete(id);
-                    CarDAO.DeleteCarNotOut(id);
+                    if (TicketMonthDAO.Delete(id))
+                    {
+                        CarDAO.DeleteCarNotOut(id);
+                        dgvTicketMonthList.Rows.RemoveAt(row.Index);
+                    }
                 }
             }
-            loadTicketMonthData();
+            //loadTicketMonthData();
         }
 
         private void addDeleteTicketMonthToLog(int Index)
@@ -2276,40 +2279,7 @@ namespace ParkingMangement.GUI
 
         private void searchCar()
         {
-            CarDTO carDTO = new CarDTO();
-            DateTime startDate = dateTimePickerCarDateIn.Value;
-            DateTime startTime = dateTimePickerCarTimeIn.Value;
-            startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, startTime.Hour, startTime.Minute, 0);
-            carDTO.TimeStart = startDate;
-            DateTime endDate = dateTimePickerCarDateOut.Value;
-            DateTime endTime = dateTimePickerCarTimeOut.Value;
-            endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endTime.Hour, endTime.Minute, 59);
-            carDTO.TimeEnd = endDate;
-            if (comboBoxTruyVanLoaiXe.SelectedIndex > 0)
-            {
-                DataRow dataRow = ((DataRowView)comboBoxTruyVanLoaiXe.SelectedItem).Row;
-                carDTO.IdPart = Convert.ToString(dataRow["ID"]);
-            }
-            try
-            {
-                carDTO.CardIdentify = Convert.ToInt32(tbCardIdentifySearchCar.Text);
-            }
-            catch (Exception e)
-            {
-
-            }
-            carDTO.Digit = tbCarDigitSearch.Text;
-            carDTO.Id = tbCarIDSearch.Text;
-            if (comboBoxNhanVienVao.SelectedIndex > 0)
-            {
-                DataRow dataRow = ((DataRowView)comboBoxNhanVienVao.SelectedItem).Row;
-                carDTO.IdIn = Convert.ToString(dataRow["UserID"]);
-            }
-            if (comboBoxNhanVienRa.SelectedIndex > 0)
-            {
-                DataRow dataRow = ((DataRowView)comboBoxNhanVienRa.SelectedItem).Row;
-                carDTO.IdOut = Convert.ToString(dataRow["UserID"]);
-            }
+            CarDTO carDTO = getCarModel();
 
             DataTable data = CarDAO.searchAllData(carDTO);
             dgvCarList.DataSource = data;
@@ -3339,17 +3309,17 @@ namespace ParkingMangement.GUI
         {
             int originalCellColumnIndex = cellColumnIndex;
             //Loop through each row and read value from each column. 
-            //for (int i = 0; i < dataGridView.Columns.Count; i++)
-            //{
-            //    if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
-            //    {
-            //        worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
-            //        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-            //        setColerForRange(range);
-            //        setAllBorderForRange(range);
-            //        cellColumnIndex++;
-            //    }
-            //}
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
+                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+                    setColerForRange(range);
+                    setAllBorderForRange(range);
+                    cellColumnIndex++;
+                }
+            }
 
             cellRowIndex++;
             cellColumnIndex = originalCellColumnIndex;
@@ -3361,12 +3331,12 @@ namespace ParkingMangement.GUI
                     {
                         Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
                         worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Rows[i].Cells[j].Value.ToString();
-                        //setLeftBorderForRange(range);
-                        //setRightBorderForRange(range);
-                        //if (i == dataGridView.Rows.Count - 1)
-                        //{
-                        //    setBottomBorderForRange(range);
-                        //}
+                        setLeftBorderForRange(range);
+                        setRightBorderForRange(range);
+                        if (i == dataGridView.Rows.Count - 1)
+                        {
+                            setBottomBorderForRange(range);
+                        }
                         cellColumnIndex++;
                     }
                 }
@@ -3999,6 +3969,8 @@ namespace ParkingMangement.GUI
                         LogUtil.addLogXoaThe(identify, cardId);
                         TicketMonthDAO.Delete(cardId);
                         CarDAO.DeleteCarNotOut(cardId);
+
+                        dgvCardList.Rows.RemoveAt(row.Index);
                     }
                 }
                 //if (Convert.ToBoolean(checkCell.Value) == true)
@@ -4007,8 +3979,61 @@ namespace ParkingMangement.GUI
                 //    CardDAO.Delete(cardId);
                 //}
             }
-            loadCardList();
+            //loadCardList();
             loadCardStatistic();
+        }
+
+        void Delete_Car_Click(Object sender, System.EventArgs e, int currentRow)
+        {
+            if (UserDAO.GetFunctionIDByUserID(Program.CurrentUserID) != Constant.FUNCTION_ID_ADMIN)
+            {
+                MessageBox.Show("Chỉ có admin mới được quyền xóa!");
+                return;
+            }          
+
+            if (!isChosenCar())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            showConfirmDeleteCar();
+        }
+
+        private void showConfirmDeleteCar()
+        {
+            DialogResult dialogResult = MessageBox.Show(Constant.sMessageConfirmDelete, Constant.sTitleDelete, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+                deleteCar();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void deleteCar()
+        {
+            foreach (DataGridViewRow row in dgvCarList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectCar"] as DataGridViewCheckBoxCell;
+                object value = checkCell.Value;
+                if (value != null && (Boolean)value)
+                {
+                    int identify = Convert.ToInt32(row.Cells["CarLogIdentify"].Value);
+                    if (CarDAO.isCarOutByIdentify(identify))
+                    {
+                        MessageBox.Show("Không thể xóa xe đã ra khỏi bãi!");
+                        return;
+                    }
+                    if (CarDAO.DeleteCar(identify +""))
+                    {
+                        dgvCarList.Rows.RemoveAt(row.Index);
+                    }
+                }
+            }
+            //loadCarList();
         }
 
         private void showConfirmDeleteAllCard()
@@ -4036,6 +4061,7 @@ namespace ParkingMangement.GUI
                 {
                     LogUtil.addLogXoaThe(identify, cardId);
                     TicketMonthDAO.Delete(cardId);
+                    CarDAO.DeleteCarNotOut(cardId);
                 }
             }
             loadCardList();
@@ -4313,6 +4339,19 @@ namespace ParkingMangement.GUI
             foreach (DataGridViewRow row in dgvCardList.Rows)
             {
                 bool isChoose = Convert.ToBoolean(row.Cells["SelectCard"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool isChosenCar()
+        {
+            foreach (DataGridViewRow row in dgvCarList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["SelectCar"].Value);
                 if (isChoose)
                 {
                     return true;
@@ -5027,6 +5066,95 @@ namespace ParkingMangement.GUI
         private void trackBarTinhTienTongHop2CycleMilestone_Scroll(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnXemDanhSachXeTon_Click(object sender, EventArgs e)
+        {
+            searchXeTon();
+        }
+
+        private void searchXeTon()
+        {
+            CarDTO carDTO = getCarModel();
+
+            DataTable data = CarDAO.searchXeTon(carDTO);
+            dgvCarList.DataSource = data;
+        }
+
+        private CarDTO getCarModel()
+        {
+            CarDTO carDTO = new CarDTO();
+            DateTime startDate = dateTimePickerCarDateIn.Value;
+            DateTime startTime = dateTimePickerCarTimeIn.Value;
+            startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, startTime.Hour, startTime.Minute, 0);
+            carDTO.TimeStart = startDate;
+            DateTime endDate = dateTimePickerCarDateOut.Value;
+            DateTime endTime = dateTimePickerCarTimeOut.Value;
+            endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endTime.Hour, endTime.Minute, 59);
+            carDTO.TimeEnd = endDate;
+            if (comboBoxTruyVanLoaiXe.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)comboBoxTruyVanLoaiXe.SelectedItem).Row;
+                carDTO.IdPart = Convert.ToString(dataRow["ID"]);
+            }
+            try
+            {
+                carDTO.CardIdentify = Convert.ToInt32(tbCardIdentifySearchCar.Text);
+            }
+            catch (Exception e)
+            {
+
+            }
+            carDTO.Digit = tbCarDigitSearch.Text;
+            carDTO.Id = tbCarIDSearch.Text;
+            if (comboBoxNhanVienVao.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)comboBoxNhanVienVao.SelectedItem).Row;
+                carDTO.IdIn = Convert.ToString(dataRow["UserID"]);
+            }
+            if (comboBoxNhanVienRa.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)comboBoxNhanVienRa.SelectedItem).Row;
+                carDTO.IdOut = Convert.ToString(dataRow["UserID"]);
+            }
+
+            return carDTO;
+        }
+
+        private void dgvCarList_MouseClick(object sender, MouseEventArgs ev)
+        {
+            if (ev.Button == MouseButtons.Right)
+            {
+                ContextMenu m = new ContextMenu();
+                MenuItem menuItem = new MenuItem(Constant.sButtonDelete);
+                int currentRow = dgvCarList.HitTest(ev.X, ev.Y).RowIndex;
+                menuItem.Click += new EventHandler((s, e) => Delete_Car_Click(s, e, currentRow));
+                m.MenuItems.Add(menuItem);
+
+                m.Show(dgvCarList, new Point(ev.X, ev.Y));
+            }
+        }
+
+        private void dgvCarList_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvCarList.IsCurrentCellDirty)
+            {
+                dgvCarList.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void tbPartIdCreate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void tbPartIdCreate_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(tbPartIdCreate.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Vui lòng chỉ nhập số!");
+                tbPartIdCreate.Text = tbPartIdCreate.Text.Remove(tbPartIdCreate.Text.Length - 1);
+            }
         }
     }
 }

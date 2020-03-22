@@ -24,6 +24,8 @@ namespace ParkingMangement
         public static bool isHasCarInOut = false;
         public static UHFReader uhfInReader;
         public static UHFReader uhfOutReader;
+        public static int sCountConnection = 0;
+        public static int MAX_CONNECTION = 5;
 
         /// <summary>
         /// The main entry point for the application.
@@ -41,57 +43,32 @@ namespace ParkingMangement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            if (!Constant.IS_SYNC_DATA_APP)
             {
-                uhfInReader = new UHFReader();
-                uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
-                uhfOutReader = new UHFReader();
-                uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut);
+                if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+                {
+                    uhfInReader = new UHFReader();
+                    uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
+                    uhfOutReader = new UHFReader();
+                    uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut);
+                }
             }
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            Application.Run(new FormLogin());
-
+            
+            if (Constant.IS_SYNC_DATA_APP)
+            {
+                Application.Run(new FormSyncData());
+            } else
+            {
+                Application.Run(new FormLogin());
+            }
 
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
         {
             Util.doLogOut();
-        }
-
-        public static void sendOrderListToServerTimer()
-        {
-            //new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    /* run your code here */
-            //    System.Timers.Timer aTimer = new System.Timers.Timer();
-            //    aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            //    aTimer.Interval = 1 * 10 * 1000;
-            //    aTimer.Enabled = true;
-            //    aTimer.Start();
-            //}).Start();
-            updateOrderToSever();
-        }
-
-        private static void OnTimedEvent(object source, ElapsedEventArgs e)
-        {
-            if (!isHasCarInOut)
-            {
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    updateOrderToSever();
-                }).Start();
-            }
-            isHasCarInOut = false; 
-        }
-
-        public static void updateOrderToSever()
-        {
-            //Util.sendOrderListToServer(CarDAO.GetDataInRecently(), true);
-            //Util.sendOrderListToServer(CarDAO.GetDataOutRecently(), false);
         }
     }
 }

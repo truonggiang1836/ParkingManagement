@@ -167,12 +167,6 @@
     <Compile Include="DTO\TypeDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\WorkDTO.cs" />
-    <Compile Include="GUI\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +221,12 @@
     <Compile Include="GUI\FormQuanLyXeVaoRa.designer.cs">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FormSyncData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormSyncData.Designer.cs">
+      <DependentUpon>FormSyncData.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormZoomCameraSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +239,7 @@
     <Compile Include="Model\OrdersListBody.cs" />
     <Compile Include="Model\OrdersListResponse.cs" />
     <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\Vehicle.cs" />
     <Compile Include="TextRecognized\clsImagePlate.cs" />
     <Compile Include="TextRecognized\clsLicensePlate.cs" />
     <Compile Include="TextRecognized\clsNetwork.cs" />
@@ -263,9 +264,6 @@
     <Compile Include="Utils\LogUtil.cs" />
     <Compile Include="Utils\UHFReader.cs" />
     <Compile Include="Utils\Util.cs" />
-    <EmbeddedResource Include="GUI\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -299,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLyXeVaoRa.resx">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormSyncData.resx">
+      <DependentUpon>FormSyncData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormZoomCameraSetting.resx">
       <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>

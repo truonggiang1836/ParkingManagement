@@ -28,6 +28,8 @@ namespace ParkingMangement.DTO
         private string images;
         private DateTime dayUnlimit;
         private string phone;
+        private string isSync = "0";
+        private string isDeleted = "0";
 
         public string CardIdentify { get => cardIdentify; set => cardIdentify = value; }
         public string Id { get => id; set => id = value; }
@@ -49,5 +51,7 @@ namespace ParkingMangement.DTO
         public string Images { get => images; set => images = value; }
         public DateTime DayUnlimit { get => dayUnlimit; set => dayUnlimit = value; }
         public string Phone { get => phone; set => phone = value; }
+        public string IsSync { get => isSync; set => isSync = value; }
+        public string IsDeleted { get => isDeleted; set => isDeleted = value; }
     }
 }

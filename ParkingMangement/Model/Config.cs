@@ -80,6 +80,9 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "com_led_right")]
         public string comLedRight { get; set; }
 
+        [XmlElement(ElementName = "com_lost_available")]
+        public string comLostAvailable { get; set; }
+
         [XmlElement(ElementName = "signal_open_barie_in")]
         public string signalOpenBarieIn { get; set; }
 
@@ -112,5 +115,8 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "read_digit_folder")]
         public string readDigitFolder { get; set; } = "";
+      
+        [XmlElement(ElementName = "project_id")]
+        public int projectId { get; set; }
     }
 }

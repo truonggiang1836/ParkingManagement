@@ -14,7 +14,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetConfig()
         {
             string sql = "select * from Config";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static int GetLostCard()
@@ -139,7 +139,7 @@ namespace ParkingMangement.DAO
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth;
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateCauHinhKetNoi(ConfigDTO configDTO)
@@ -147,7 +147,7 @@ namespace ParkingMangement.DAO
             string sql = "update Config set Camera1 = '" + configDTO.Camera1 + "', Camera2 = '" + configDTO.Camera2 +
                 "', Camera3 = '" + configDTO.Camera3 + "', Camera4 = '" + configDTO.Camera4 + "', RFID1 = '" + configDTO.Rfid1 +
                 "', RFID2 = '" + configDTO.Rfid2 + "'";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
     }
 }

@@ -210,6 +210,7 @@ namespace ParkingMangement.Utils
                         sConfig.comSend = sConfig.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comLedLeft = sConfig.comLedLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comLedRight = sConfig.comLedRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comLostAvailable = sConfig.comLostAvailable.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.signalOpenBarieIn = sConfig.signalOpenBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.signalCloseBarieIn = sConfig.signalCloseBarieIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.signalOpenBarieOut = sConfig.signalOpenBarieOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
@@ -284,13 +285,14 @@ namespace ParkingMangement.Utils
             //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
+            string listId = "(";
             for (int i = 0; i < dtTable.Rows.Count; i++)
             {
                 DataRow dtRow = dtTable.Rows[i];
                 Order order = new Order();
                 order.AreaId = 1;
-                order.ProjectId = 1;
-                order.OrderId = dtRow.Field<int>("Identify") + 1000000;
+                order.ProjectId = Util.getConfigFile().projectId;
+                order.OrderId = dtRow.Field<int>("Identify");
                 order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
                 order.CardCode = dtRow.Field<string>("ID");
                 DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
@@ -363,15 +365,19 @@ namespace ParkingMangement.Utils
 
                 jsonString = JsonConvert.SerializeObject(listOrder);
                 Console.WriteLine(":: " + jsonString);
-                //string index = (i + 1).ToString();
-                //param.Add(ApiUtil.PARAM_DATA + index, jsonString);
 
-                //if (listOrder.Count == 10)
-                //{
-                //    break;
-                //}
+                                
+                listId += order.OrderId + ",";        
             }
-            
+            if (listOrder.Count > 0)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            } else
+            {
+                listId = "";
+            }    
+
             try
             {
                 //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
@@ -379,8 +385,18 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
+
+                    if (isCarIn)
+                    {
+                        WaitSyncCarInDAO.DeleteWhereListId(listId);
+                    }
+                    else
+                    {
+                        WaitSyncCarOutDAO.DeleteWhereListId(listId);
+                    }
                 }
                 Console.WriteLine("json_api: " + jsonString);
+                
                 return true;
                 //String responseString = Encoding.UTF8.GetString(responsebytes);
 
@@ -396,6 +412,7 @@ namespace ParkingMangement.Utils
 
         public static void sendCardListToServer(DataTable data)
         {
+            //return;
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
                 return;
@@ -406,12 +423,13 @@ namespace ParkingMangement.Utils
             //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
+            string listId = "(";
             for (int i = 0; i < dtTable.Rows.Count; i++)
             {
                 DataRow dtRow = dtTable.Rows[i];
                 Card card = new Card();
                 card.AreaId = 1;
-                card.ProjectId = 1;
+                card.ProjectId = Util.getConfigFile().projectId;
                 card.Code = dtRow.Field<string>("Id");
                 card.Stt = dtRow.Field<string>("Identify");
                 int adminId = 0;
@@ -452,11 +470,21 @@ namespace ParkingMangement.Utils
                 Console.WriteLine(":: " + jsonString);
                 string index = (i + 1).ToString();
                 param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                listId += "'" + card.Code + "',";                
 
-                if (listCard.Count == 100)
-                {
-                    break;
-                }
+                //if (listCard.Count == 10)
+                //{
+                //    break;
+                //}
+            }
+            if (listId.Length > 1)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            }
+            else
+            {
+                listId = "";
             }
 
             try
@@ -466,9 +494,13 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_CARDS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        CardDAO.UpdateIsSync(listId);
+                    }
                 }
                 Console.WriteLine("json_api: " + jsonString);
-                int x = 0;
+                
                 //String responseString = Encoding.UTF8.GetString(responsebytes);
 
                 //webClient.UploadData(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", Encoding.Default.GetBytes(jsonString));
@@ -482,6 +514,7 @@ namespace ParkingMangement.Utils
 
         public static void sendMonthlyCardListToServer(DataTable data)
         {
+            //return;
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
                 return;
@@ -492,17 +525,18 @@ namespace ParkingMangement.Utils
             //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
+            string listId = "(";
             for (int i = 0; i < dtTable.Rows.Count; i++)
             {
                 DataRow dtRow = dtTable.Rows[i];
                 MonthlyCard monthlyCard = new MonthlyCard();
                 monthlyCard.AreaId = 1;
-                monthlyCard.ProjectId = 1;
+                monthlyCard.ProjectId = Util.getConfigFile().projectId;
                 monthlyCard.Address = dtRow.Field<string>("Address");
                 int adminId = 0;
                 try
                 {
-                    Int32.TryParse(Program.CurrentUserID, out adminId);
+                    Int32.TryParse(dtRow.Field<string>("Account"), out adminId);
                 }
                 catch (Exception)
                 {
@@ -511,6 +545,7 @@ namespace ParkingMangement.Utils
                 monthlyCard.AdminId = adminId;
                 monthlyCard.CarNumber = dtRow.Field<string>("Digit");
                 monthlyCard.Company = dtRow.Field<string>("Company");
+                monthlyCard.CompanyId = 1;
                 monthlyCard.CustomerName = dtRow.Field<string>("CustomerName");
                 monthlyCard.Disable = 0;
                 monthlyCard.Email = dtRow.Field<string>("Email");
@@ -532,7 +567,8 @@ namespace ParkingMangement.Utils
                 {
 
                 }
-                monthlyCard.IdNumber = dtRow.Field<string>("ID");
+                monthlyCard.CardCode = dtRow.Field<string>("ID");
+                monthlyCard.IdNumber = dtRow.Field<string>("CMND");
                 int parkingFee = 0;
                 try
                 {
@@ -560,12 +596,15 @@ namespace ParkingMangement.Utils
                 Console.WriteLine(":: " + jsonString);
                 string index = (i + 1).ToString();
                 param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                listId += "'" + monthlyCard.CardCode + "',";
 
-                if (listCard.Count == 1)
-                {
-                    break;
-                }
+                //if (listCard.Count == 10)
+                //{
+                //    break;
+                //}
             }
+            listId = listId.Remove(listId.Length - 1, 1);
+            listId += ")";
 
             try
             {
@@ -574,9 +613,12 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_MONTHLY_CARDS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        TicketMonthDAO.UpdateIsSync(listId);
+                    }
                 }
                 Console.WriteLine("json_api: " + jsonString);
-                int x = 0;
                 //String responseString = Encoding.UTF8.GetString(responsebytes);
 
                 //webClient.UploadData(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", Encoding.Default.GetBytes(jsonString));
@@ -585,6 +627,225 @@ namespace ParkingMangement.Utils
             {
                 int x = 0;
                 //MessageBox.Show(e.Message);
+            }
+        }
+
+        public static void sendVehicleListToServer(DataTable data)
+        {
+            //return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dtTable = data;
+            List<Vehicle> listVehicle = new List<Vehicle>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            string jsonString = "";
+            string listId = "(";
+            for (int i = 0; i < dtTable.Rows.Count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                Vehicle vehicle = new Vehicle();
+                vehicle.ProjectId = Util.getConfigFile().projectId;
+                int vehicleId = 0;
+                try
+                {
+                    Int32.TryParse(dtRow.Field<string>("ID"), out vehicleId);
+                }
+                catch (Exception)
+                {
+
+                }
+                vehicle.VehicleId = vehicleId;
+
+                int vehicleType = 0;
+                try
+                {
+                    Int32.TryParse(dtRow.Field<string>("TypeID"), out vehicleType);
+                }
+                catch (Exception)
+                {
+
+                }
+                vehicle.VehicleType = vehicleType;
+
+                int cardType = 0;
+                try
+                {
+                    Int32.TryParse(dtRow.Field<string>("CardTypeID"), out cardType);
+                }
+                catch (Exception)
+                {
+
+                }
+                vehicle.CardType = cardType;
+
+                vehicle.Deleted = dtRow.Field<int>("IsDeleted");
+                vehicle.Name = dtRow.Field<string>("PartName");
+                vehicle.Code = dtRow.Field<string>("Sign");
+
+                int monthlyCost = 0;
+                try
+                {
+                    Int32.TryParse(dtRow.Field<string>("Amount"), out monthlyCost);
+                }
+                catch (Exception)
+                {
+
+                }
+                vehicle.MonthlyCost = monthlyCost;
+
+                listVehicle.Add(vehicle);
+
+                jsonString = JsonConvert.SerializeObject(listVehicle);
+                Console.WriteLine(":: " + jsonString);
+                string index = (i + 1).ToString();
+                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                listId += "'" + vehicle.Code + "',";
+            }
+            if (listId.Length > 1)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            }
+            else
+            {
+                listId = "";
+            }
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_VEHICLE_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        CardDAO.UpdateIsSync(listId);
+                    }
+                }
+                Console.WriteLine("json_api: " + jsonString);
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+            }
+        }
+
+        public static void sendOrderDataToServer()
+        {
+            //if (Program.sCountConnection > Program.MAX_CONNECTION)
+            //{
+            //    return;
+            //}
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dataIn = CarDAO.GetDataInRecently();
+            DataTable dataOut = CarDAO.GetDataOutRecently();
+            if (Util.sendOrderListToServer(dataIn, true))
+            {
+                //WaitSyncCarInDAO.DeleteAll();
+            }
+
+            if (Util.sendOrderListToServer(dataOut, false))
+            {
+                //WaitSyncCarOutDAO.DeleteAll();
+            }
+        }
+
+        public static void syncCardListFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_PROJECT_ID, Util.getConfigFile().projectId + "");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_CARDS_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                CardDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncMonthlyCardListFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_PROJECT_ID, Util.getConfigFile().projectId + "");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                TicketMonthDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncVehicleListFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_PROJECT_ID, Util.getConfigFile().projectId + "");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_VEHICLE_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                PartDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
             }
         }
 

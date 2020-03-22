@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace ParkingMangement
         private void FormMain_Load(object sender, EventArgs e)
         {
             initView();
-            copyFile();
+            copyFile();     
         }
 
         private void initView()
@@ -103,6 +104,8 @@ namespace ParkingMangement
             this.Hide();
             Program.StartWorkTime = DateTime.Now;
             Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
+            runSyncDataProcess();
+
             Form f = null;
             if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
             {
@@ -133,6 +136,19 @@ namespace ParkingMangement
             }
 
             LogUtil.addLoginLog();
+        }
+
+        private void runSyncDataProcess()
+        {         
+            Process[] pname = Process.GetProcessesByName("ParkingMangement_SyncData");
+            if (pname.Length == 0)
+            {
+                string filePath = Application.StartupPath + "\\ParkingMangement_SyncData.exe";
+                if (File.Exists(filePath))
+                {
+                    Process.Start(filePath);
+                }                
+            }
         }
 
         void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)

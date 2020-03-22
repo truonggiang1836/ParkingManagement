@@ -18,7 +18,7 @@ namespace ParkingMangement.Model
         [JsonProperty("address")]
         public string Address { get; set; }
         [JsonProperty("brand")]
-        public int Brand { get; set; }
+        public string Brand { get; set; }
         [JsonProperty("created")]
         public long Created { get; set; }
         [JsonProperty("updated")]
@@ -27,8 +27,8 @@ namespace ParkingMangement.Model
         public int Disable { get; set; }
         [JsonProperty("car_number")]
         public string CarNumber { get; set; }
-        [JsonProperty("card_id")]
-        public int CardId { get; set; }
+        [JsonProperty("card_code")]
+        public string CardCode { get; set; }
         [JsonProperty("company")]
         public string Company { get; set; }
         [JsonProperty("company_id")]

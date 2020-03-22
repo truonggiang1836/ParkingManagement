@@ -13,7 +13,7 @@ namespace ParkingMangement.DAO
         public static ComputerDTO GetDataByPartIDAndParkingTypeID(string partID, int parkingTypeID)
         {
             string sql = "select * from Computer where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 ComputerDTO computerDTO = new ComputerDTO();
@@ -52,7 +52,7 @@ namespace ParkingMangement.DAO
         public static bool IsHasData(string partID, int parkingTypeID)
         {
             string sql = "select * from Computer where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 return true;
@@ -70,7 +70,7 @@ namespace ParkingMangement.DAO
                 ", CostMilestoneNight3 =" + computerDTO.CostMilestoneNight3 + ", CostMilestoneNight4 =" + computerDTO.CostMilestoneNight4 +
                 ", CycleTicketMonth =" + computerDTO.CycleTicketMonth + ", CostTicketMonth =" + computerDTO.CostTicketMonth + ", MinMinute =" + computerDTO.MinMinute + ", MinCost =" + computerDTO.MinCost + ", Limit =" + computerDTO.Limit +
                 " where Identify =" + computerDTO.Identify;
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool Insert(ComputerDTO computerDTO)
@@ -84,7 +84,7 @@ namespace ParkingMangement.DAO
                 computerDTO.CostMilestoneNight1 + ", " + computerDTO.CostMilestoneNight2 + ", " + computerDTO.CostMilestoneNight3 + ", " + computerDTO.CostMilestoneNight4 + ", " +
                 computerDTO.CycleMilestone3 + ", '" + computerDTO.IsAdd + "', " + computerDTO.CycleTicketMonth + ", " +
                 computerDTO.CostTicketMonth + ", " + computerDTO.MinMinute + ", " + computerDTO.MinCost + ", " + computerDTO.Limit + ")";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = sqlGetAllData;
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable searchData(string key, string ticketLogID, string partID, DateTime registrationDate, DateTime expirationDate)
@@ -41,7 +41,7 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Part.PartID like '" + partID + "'";
             }
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static void Insert(TicketLogDTO ticketLogDTO)
@@ -52,7 +52,7 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" +
                 ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate +
                 "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
     }
 }

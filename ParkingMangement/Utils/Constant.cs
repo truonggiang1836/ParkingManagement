@@ -9,10 +9,12 @@ namespace ParkingMangement.Utils
 {
     class Constant
     {
+        public const bool IS_SYNC_DATA_APP = true;
         public const bool IS_NAPSHOT_FULL_IMAGE = false;
         public const int AUTO_CLOSE_MESSAGE_BOX_TIME = 2000;
         public const string BREAK_LINE = "\r\n";
         public const string ARROW_STRING = " -> ";
+        public const int PROJECT_ID = 2;
 
         // common
         public static string sHintTextUsername = "User";
@@ -36,6 +38,7 @@ namespace ParkingMangement.Utils
         public static string sMessageDuplicateDataError = "Dữ liệu đã tồn tại";
         public static string sMessageInvalidError = "Dữ liệu không hợp lệ";
         public static string FUNCTION_ID_NHAN_VIEN = "Nh";
+        public static string FUNCTION_ID_ADMIN = "Ad";
         public static string sMessageCanNotSeeReport = "Bạn không có quyền xem báo cáo";
         public static string sMessageCanNotSaveLostCard = "Bạn không có quyền lưu mất thẻ";
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace ParkingMangement.DTO
         private string identify;
         private string id;
         private string isUsing;
+        private string isSync = "0";
+        private string isDeleted = "0";
         private string type;
         private DateTime dayUnlimit;
 
@@ -21,6 +24,8 @@ namespace ParkingMangement.DTO
         public string Type { get => type; set => type = value; }
         public DateTime DayUnlimit { get => dayUnlimit; set => dayUnlimit = value; }
         public string SystemId { get => systemId; set => systemId = value; }
+        public string IsDeleted { get => isDeleted; set => isDeleted = value; }
+        public string IsSync { get => isSync; set => isSync = value; }
 
         public static string IsUsingString(string IsUsing)
         {

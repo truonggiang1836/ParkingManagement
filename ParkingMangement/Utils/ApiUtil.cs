@@ -30,6 +30,7 @@ namespace ParkingMangement.Utils
         public static string PARAM_LIMIT = "limit";
         public static string PARAM_DISABLE = "disable";
         public static string PARAM_DATA = "ordersDtos";
+        public static string PARAM_PROJECT_ID = "projectId";
 
         //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         //public static string BASE_URL = "http://api.spmgroup.vn/public/";
@@ -41,7 +42,11 @@ namespace ParkingMangement.Utils
         public static string API_ORDERS_LIST = BASE_URL + "orders/list";
         public static string API_ORDERS_BATCH_INSERT = BASE_URL + "orders/batchinsert";
         public static string API_CARDS_BATCH_INSERT = BASE_URL + "cards/batchinsert";
+        public static string API_CARDS_BATCH_SYNCS = BASE_URL + "cards/batchsyncs";
         public static string API_MONTHLY_CARDS_BATCH_INSERT = BASE_URL + "monthlycards/batchinsert";
+        public static string API_MONTHLY_CARDS_BATCH_SYNCS = BASE_URL + "monthlycards/batchsyncs";
+        public static string API_VEHICLE_BATCH_INSERT = BASE_URL + "vehicle/batchinsert";
+        public static string API_VEHICLE_BATCH_SYNCS = BASE_URL + "vehicle/batchsyncs";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
