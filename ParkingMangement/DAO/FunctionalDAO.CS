@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using ParkingMangement.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -13,6 +15,33 @@ namespace ParkingMangement.DAO
         {
             string sql = "select * from Functional";
             return (new Database()).ExcuQuery(sql);
+        }
+
+        public static DataTable GetAllDataForSync()
+        {
+            string sql = "select * from Functional where IsSync = 0";
+            return (new Database()).ExcuQuery(sql);
+        }
+
+        public static void UpdateIsSync(string listId)
+        {
+            string sql = "update Functional set IsSync = 1 where FunctionID in " + listId;
+            (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool InsertNoErrorMessage(FunctionDTO functionDTO)
+        {
+            string sql = "insert into Function(FunctionID, FunctionName, FunctionSec, IsSync, IsDeleted) values ('" + functionDTO.ID + "', '" + functionDTO.Name + "', '" +
+                functionDTO.Sec + "', " + functionDTO.IsSync + ", " + functionDTO.IsDeleted + ")";
+
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
+        public static bool UpdateNoErrorMessage(FunctionDTO functionDTO)
+        {
+            string sql = "update Function set FunctionName =('" + functionDTO.Name + "'), FunctionSec =('" + functionDTO.Sec + "'), IsSync =(" + functionDTO.IsSync + "), IsDeleted =(" + functionDTO.IsDeleted + ") where FunctionID = '" + functionDTO.ID + "'";
+
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         static public DataTable GetAllDataWithoutAdmin()
@@ -56,6 +85,30 @@ namespace ParkingMangement.DAO
             else
             {
                 return "";
+            }
+        }
+
+        public static void syncFromJson(string json)
+        {
+            JArray jArray = JArray.Parse(json);
+            foreach (JObject jObject in jArray)
+            {
+                FunctionDTO functionDTO = new FunctionDTO();
+                functionDTO.ID = (string)jObject.SelectToken("functionId");
+                functionDTO.Name = (string)jObject.SelectToken("functionName");
+                functionDTO.Sec = (string)jObject.SelectToken("functionSec");                
+                functionDTO.IsSync = "1";
+                functionDTO.IsDeleted = (bool)jObject.SelectToken("deleted") ? "1" : "0";
+
+                InsertOrUpdate(functionDTO);
+            }
+        }
+
+        public static void InsertOrUpdate(FunctionDTO functionDTO)
+        {
+            if (!InsertNoErrorMessage(functionDTO))
+            {
+                UpdateNoErrorMessage(functionDTO);
             }
         }
     }

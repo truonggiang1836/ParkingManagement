@@ -6,20 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
+using System.Management;
 using System.Net;
 using System.Net.Sockets;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
-using System.Management;
-using System.Security.Principal;
-using System.Drawing.Imaging;
-using System.Drawing.Drawing2D;
 
 namespace ParkingMangement.Utils
 {
@@ -121,14 +115,15 @@ namespace ParkingMangement.Utils
 
         public static int getTotalTimeByDay(DateTime timeStart, DateTime timeEnd)
         {
-            if (timeEnd.Year == timeStart.Year)
-            {
-                return timeEnd.DayOfYear - timeStart.DayOfYear;
-            } else
-            {
-                TimeSpan duration = timeEnd - timeStart;
-                return (int)duration.TotalDays;
-            }
+            //if (timeEnd.Year == timeStart.Year)
+            //{
+            //    return timeEnd.DayOfYear - timeStart.DayOfYear;
+            //} else
+            //{
+            //    TimeSpan duration = timeEnd - timeStart;
+            //    return (int)duration.TotalDays;
+            //}
+            return (int) getTotalTimeByHour(timeStart, timeEnd) / 24;
         }
         public static string getCurrentDateTimeString()
         {
@@ -273,7 +268,7 @@ namespace ParkingMangement.Utils
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
-        public static bool sendOrderListToServer(DataTable data, bool isCarIn)
+        private static bool sendOrderListToServer(DataTable data, bool isCarIn)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
@@ -285,12 +280,13 @@ namespace ParkingMangement.Utils
             //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
             var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
-            string listId = "(";
-            for (int i = 0; i < dtTable.Rows.Count; i++)
+            string listId = "";
+            long firstId = 0;
+            int count = dtTable.Rows.Count;
+            for (int i = 0; i < count; i++)
             {
                 DataRow dtRow = dtTable.Rows[i];
                 Order order = new Order();
-                order.AreaId = 1;
                 order.ProjectId = Util.getConfigFile().projectId;
                 order.OrderId = dtRow.Field<int>("Identify");
                 order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
@@ -362,17 +358,17 @@ namespace ParkingMangement.Utils
                 order.Created = DateTimeToMillisecond(dateUpdate);
                 order.Updated = DateTimeToMillisecond(dateUpdate);
                 listOrder.Add(order);
-
-                jsonString = JsonConvert.SerializeObject(listOrder);
-                Console.WriteLine(":: " + jsonString);
-
                                 
-                listId += order.OrderId + ",";        
+                listId += order.OrderId + ",";    
             }
             if (listOrder.Count > 0)
             {
                 listId = listId.Remove(listId.Length - 1, 1);
-                listId += ")";
+                listId = "(" + listId + ")";
+                firstId = listOrder[0].OrderId;
+
+                jsonString = JsonConvert.SerializeObject(listOrder);
+                Console.WriteLine(":: " + jsonString);
             } else
             {
                 listId = "";
@@ -386,28 +382,43 @@ namespace ParkingMangement.Utils
                     string result = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
 
-                    if (isCarIn)
+                    if (result.Equals(""))
                     {
-                        WaitSyncCarInDAO.DeleteWhereListId(listId);
-                    }
-                    else
+                        if (isCarIn)
+                        {
+                            WaitSyncCarInDAO.DeleteWhereListId(listId);
+                        }
+                        else
+                        {
+                            WaitSyncCarOutDAO.DeleteWhereListId(listId);
+                        }
+                    } else
                     {
-                        WaitSyncCarOutDAO.DeleteWhereListId(listId);
-                    }
+                        updateSyncOrderMessage(firstId, result, isCarIn);
+                    }               
                 }
                 Console.WriteLine("json_api: " + jsonString);
                 
                 return true;
-                //String responseString = Encoding.UTF8.GetString(responsebytes);
-
-                //webClient.UploadData(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", Encoding.Default.GetBytes(jsonString));
             }
             catch (Exception e)
             {
-                int x = 0;
                 //MessageBox.Show(e.Message);
+                updateSyncOrderMessage(firstId, e.Message, isCarIn);
             }
             return false;
+        }
+
+        private static void updateSyncOrderMessage(long identify, string message, bool isCarIn)
+        {
+            if (isCarIn)
+            {
+                WaitSyncCarInDAO.UpdateMessage(identify, message);
+            }
+            else
+            {
+                WaitSyncCarOutDAO.UpdateMessage(identify, message);
+            }
         }
 
         public static void sendCardListToServer(DataTable data)
@@ -420,8 +431,6 @@ namespace ParkingMangement.Utils
             DataTable dtTable = data;
             List<Card> listCard = new List<Card>();
             WebClient webClient = (new ApiUtil()).getWebClient();
-            //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
             string listId = "(";
             for (int i = 0; i < dtTable.Rows.Count; i++)
@@ -465,11 +474,7 @@ namespace ParkingMangement.Utils
                 card.Created = DateTimeToMillisecond(dateUpdate);
                 card.Updated = DateTimeToMillisecond(dateUpdate);
                 listCard.Add(card);
-
-                jsonString = JsonConvert.SerializeObject(listCard);
-                Console.WriteLine(":: " + jsonString);
-                string index = (i + 1).ToString();
-                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                
                 listId += "'" + card.Code + "',";                
 
                 //if (listCard.Count == 10)
@@ -477,10 +482,13 @@ namespace ParkingMangement.Utils
                 //    break;
                 //}
             }
-            if (listId.Length > 1)
+            if (listCard.Count > 0)
             {
                 listId = listId.Remove(listId.Length - 1, 1);
                 listId += ")";
+
+                jsonString = JsonConvert.SerializeObject(listCard);
+                Console.WriteLine(":: " + jsonString);
             }
             else
             {
@@ -500,10 +508,6 @@ namespace ParkingMangement.Utils
                     }
                 }
                 Console.WriteLine("json_api: " + jsonString);
-                
-                //String responseString = Encoding.UTF8.GetString(responsebytes);
-
-                //webClient.UploadData(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", Encoding.Default.GetBytes(jsonString));
             }
             catch (Exception e)
             {
@@ -522,8 +526,6 @@ namespace ParkingMangement.Utils
             DataTable dtTable = data;
             List<MonthlyCard> listCard = new List<MonthlyCard>();
             WebClient webClient = (new ApiUtil()).getWebClient();
-            //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
             string listId = "(";
             for (int i = 0; i < dtTable.Rows.Count; i++)
@@ -591,11 +593,6 @@ namespace ParkingMangement.Utils
                 monthlyCard.VehicleId = vehicleId;
 
                 listCard.Add(monthlyCard);
-
-                jsonString = JsonConvert.SerializeObject(listCard);
-                Console.WriteLine(":: " + jsonString);
-                string index = (i + 1).ToString();
-                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
                 listId += "'" + monthlyCard.CardCode + "',";
 
                 //if (listCard.Count == 10)
@@ -603,9 +600,19 @@ namespace ParkingMangement.Utils
                 //    break;
                 //}
             }
-            listId = listId.Remove(listId.Length - 1, 1);
-            listId += ")";
 
+            if (listCard.Count > 0)
+            {
+                jsonString = JsonConvert.SerializeObject(listCard);
+                Console.WriteLine(":: " + jsonString);
+
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            } else
+            {
+                listId = "";
+            }
+            
             try
             {
                 //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
@@ -722,7 +729,133 @@ namespace ParkingMangement.Utils
                     Console.WriteLine("result_api: " + result);
                     if (result.Equals(""))
                     {
-                        CardDAO.UpdateIsSync(listId);
+                        PartDAO.UpdateIsSync(listId);
+                    }
+                }
+                Console.WriteLine("json_api: " + jsonString);
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+            }
+        }
+
+        public static void sendEmployeeListToServer(DataTable data)
+        {
+            //return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dtTable = data;
+            List<Emloyee> listEmployee = new List<Emloyee>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            string jsonString = "";
+            string listId = "(";
+            int count = dtTable.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                Emloyee emloyee = new Emloyee();
+                emloyee.ProjectId = Util.getConfigFile().projectId;
+                emloyee.Deleted = dtRow.Field<int>("IsDeleted");
+                emloyee.Code = dtRow.Field<string>("UserID");
+                emloyee.Name = dtRow.Field<string>("NameUser");
+                emloyee.UserName = dtRow.Field<string>("Account");
+                emloyee.Pass = dtRow.Field<string>("Pass");
+                emloyee.Sex = dtRow.Field<int>("SexID") + "";
+                emloyee.Position = dtRow.Field<string>("IDFunct");
+                emloyee.Email = "";
+                emloyee.Tel = "";
+
+                listEmployee.Add(emloyee);
+
+                jsonString = JsonConvert.SerializeObject(listEmployee);
+                Console.WriteLine(":: " + jsonString);
+                string index = (i + 1).ToString();
+                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                listId += "'" + emloyee.Code + "',";
+            }
+            if (listId.Length > 1)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            }
+            else
+            {
+                listId = "";
+            }
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_EMPLOYEE_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        UserDAO.UpdateIsSync(listId);
+                    }
+                }
+                Console.WriteLine("json_api: " + jsonString);
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+            }
+        }
+
+        public static void sendFunctionListToServer(DataTable data)
+        {
+            //return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dtTable = data;
+            List<Function> listFunction = new List<Function>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            string jsonString = "";
+            string listId = "(";
+            for (int i = 0; i < dtTable.Rows.Count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                Function function = new Function();
+                function.ProjectId = Util.getConfigFile().projectId;
+                function.FunctionId = dtRow.Field<string>("FunctionID");
+                function.FunctionName = dtRow.Field<string>("FunctionName");
+                function.FunctionSec = dtRow.Field<string>("FunctionSec");
+
+                function.Deleted = dtRow.Field<int>("IsDeleted");
+                listFunction.Add(function);
+
+                jsonString = JsonConvert.SerializeObject(listFunction);
+                Console.WriteLine(":: " + jsonString);
+                string index = (i + 1).ToString();
+                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                listId += "'" + function.FunctionId + "',";
+            }
+            if (listId.Length > 1)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            }
+            else
+            {
+                listId = "";
+            }
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_FUNCTIONS_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        FunctionalDAO.UpdateIsSync(listId);
                     }
                 }
                 Console.WriteLine("json_api: " + jsonString);
@@ -743,17 +876,10 @@ namespace ParkingMangement.Utils
             {
                 return;
             }
-            DataTable dataIn = CarDAO.GetDataInRecently();
-            DataTable dataOut = CarDAO.GetDataOutRecently();
-            if (Util.sendOrderListToServer(dataIn, true))
-            {
-                //WaitSyncCarInDAO.DeleteAll();
-            }
-
-            if (Util.sendOrderListToServer(dataOut, false))
-            {
-                //WaitSyncCarOutDAO.DeleteAll();
-            }
+            DataTable dataIn = CarDAO.GetDataInRecentlyForSync();
+            DataTable dataOut = CarDAO.GetDataOutRecentlyForSync();
+            sendOrderListToServer(dataIn, true);
+            sendOrderListToServer(dataOut, false);
         }
 
         public static void syncCardListFromServer()
@@ -833,6 +959,68 @@ namespace ParkingMangement.Utils
                 String responseString = webClient.DownloadString(ApiUtil.API_VEHICLE_BATCH_SYNCS);
                 Console.WriteLine(responseString);
                 PartDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncEmployeeListFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_PROJECT_ID, Util.getConfigFile().projectId + "");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_EMPLOYEE_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                UserDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncFunctionListFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_PROJECT_ID, Util.getConfigFile().projectId + "");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_FUNCTIONS_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                FunctionalDAO.syncFromJson(responseString);
             }
             catch (WebException exception)
             {

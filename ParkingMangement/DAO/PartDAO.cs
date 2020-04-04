@@ -23,9 +23,9 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
-        public static void UpdateIsSync(string id)
+        public static void UpdateIsSync(string listId)
         {
-            string sql = "update Part set IsSync = 1 where ID in " + id;
+            string sql = "update Part set IsSync = 1 where ID in " + listId;
             (new Database()).ExcuNonQuery(sql);
         }
 
@@ -143,7 +143,16 @@ namespace ParkingMangement.DAO
                 partDTO.ID = (string)jObject.SelectToken("vehicel_id");
                 partDTO.Name = (string)jObject.SelectToken("name");
                 partDTO.Sign = (string)jObject.SelectToken("code");
-                partDTO.Amount = (int)jObject.SelectToken("monthly_cost");
+                int monthlyCost = 0;
+                try
+                {
+                    Int32.TryParse((string)jObject.SelectToken("monthly_cost"), out monthlyCost);
+                }
+                catch (Exception)
+                {
+
+                }
+                partDTO.Amount = monthlyCost;
                 partDTO.TypeID = (string)jObject.SelectToken("vehicel_type");
                 partDTO.CardTypeID = (string)jObject.SelectToken("card_type");
                 partDTO.IsSync = "1";

@@ -22,17 +22,10 @@ using System.Diagnostics;
 using System.Security;
 using AxAXVLC;
 using Newtonsoft.Json.Linq;
-using AForge;
-using AForge.Imaging;
-using AForge.Math;
-using AForge.Imaging.Filters;
-using AForge.Imaging.Textures;
-using AForge.Video;
-using AForge.Video.DirectShow;
-using AForge.Vision.Motion;
-using ParkingMangement.TextRecognized;
+
 using System.Timers;
 using ReaderB;
+using RTSPcamera;
 
 namespace ParkingMangement.GUI
 {
@@ -55,6 +48,11 @@ namespace ParkingMangement.GUI
         private string cameraUrl2 = cameraUrl;
         private string cameraUrl3 = cameraUrl;
         private string cameraUrl4 = cameraUrl;
+
+        private CameraCapture cameraCapture1;
+        private CameraCapture cameraCapture2;
+        private CameraCapture cameraCapture3;
+        private CameraCapture cameraCapture4;
 
         private string rfidIn = "";
         private string rfidOut = "";
@@ -83,12 +81,6 @@ namespace ParkingMangement.GUI
 
         private int _lastFormSize;
 
-
-        //=======class============
-        clsImagePlate ImagePlate;
-        clsLicensePlate LicensePlate;
-        clsNetwork Network;
-
         public FormNhanVien()
         {
             InitializeComponent();
@@ -112,6 +104,7 @@ namespace ParkingMangement.GUI
             //Network = new clsNetwork();
             //Network.AutoLoadNetworkChar();
             //Network.AutoLoadNetworkNum();
+            oldSize = base.Size;
             mConfig = Util.getConfigFile();
             CurrentUserID = Program.CurrentUserID;
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
@@ -206,18 +199,20 @@ namespace ParkingMangement.GUI
             readConfigFile();
 
             loadInfo();
-            configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2, 
+            loadCameraCapture();
+            configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
                 mConfig.ZoomCamera3, mConfig.ZoomCamera4);
-            loadCamera1VLC();
-            loadCamera2VLC();
-            loadCamera3VLC();
-            loadCamera4VLC();
+            //loadCamera1VLC();
+            //loadCamera2VLC();
+            //loadCamera2VLC();
+            //loadCamera3VLC();
+            //loadCamera4VLC();
 
             getDataFromComReceive();
 
-            oldSize = base.Size;
+            
 
-            CheckForIllegalCrossThreadCalls = false;
+            //CheckForIllegalCrossThreadCalls = false;
             //loadEmguCvCamera1();
             //loadEmguCvCamera2();
             //loadEmguCvCamera3();
@@ -264,7 +259,8 @@ namespace ParkingMangement.GUI
                     if (oldUhfCardId != null)
                     {
                         resetAllData();
-                    } else
+                    }
+                    else
                     {
                         if (!labelDigitInLeft.Focused && !labelDigitInRight.Focused)
                         {
@@ -411,7 +407,8 @@ namespace ParkingMangement.GUI
             if (inputIsLeftSide())
             {
                 labelCardIDLeft.Text = CardDAO.getIdentifyByCardID(cardID) + "";
-            } else
+            }
+            else
             {
                 labelCardIDRight.Text = CardDAO.getIdentifyByCardID(cardID) + "";
             }
@@ -502,7 +499,11 @@ namespace ParkingMangement.GUI
             }
 
             string inputDigit = "";
-            inputDigit = docBienSo();
+            if (!mConfig.readDigitFolder.Equals(""))
+            {
+                inputDigit = docBienSo();
+            }
+
             if (isCarIn())
             {
                 if (KiemTraXeChuaRa(dtLastCar))
@@ -517,8 +518,8 @@ namespace ParkingMangement.GUI
                     }
                 }
 
-                loadImage1ToPictureBox();
-                loadImage2ToPictureBox();
+                //loadImage1ToPictureBox();
+                //loadImage2ToPictureBox();
                 saveImage1ToFile();
                 saveImage2ToFile();
                 if (KiemTraXeChuaRa(dtLastCar))
@@ -532,13 +533,15 @@ namespace ParkingMangement.GUI
                 {
                     insertCarIn(isTicketCard, inputDigit);
                 }
-            } else
+            }
+            else
             {
                 if (KiemTraXeChuaRa(dtLastCar) || KiemTraCapNhatXeRa(dtLastCar))
                 {
                     loadCarInData(dtLastCar);
                     updateCarOut(isTicketCard, dtLastCar, KiemTraCapNhatXeRa(dtLastCar), inputDigit);
-                } else
+                }
+                else
                 {
                     tbRFIDCardID.Focus();
                     labelError.Text = "Thẻ này chưa được quẹt đầu vào";
@@ -572,7 +575,8 @@ namespace ParkingMangement.GUI
             if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
             {
                 updateScreenForCarIn(true);
-            } else
+            }
+            else
             {
                 updateScreenForCarIn(false);
             }
@@ -589,7 +593,8 @@ namespace ParkingMangement.GUI
                     // lan vao - vao hoac ra - ra thi mo ca 2 barie
                     openBarieOutCar();
                     openBarieInCar();
-                } else
+                }
+                else
                 {
                     openBarieInCar();
                 }
@@ -640,7 +645,8 @@ namespace ParkingMangement.GUI
                 {
                     openBarieOutCar();
                 }
-            } else
+            }
+            else
             {
                 // truong hop quet the thuong
                 if (type == TypeDTO.TYPE_CAR)
@@ -703,66 +709,44 @@ namespace ParkingMangement.GUI
             updateScreenForCarIn(isTicketMonthCard);
 
             // send data to server
-            
+
             //sendOrderDataToServer();
         }
 
-        private void sendOrderDataToServer()
-        {
-            if (Program.sCountConnection > Program.MAX_CONNECTION)
-            {
-                return;
-            }
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                return;
-            }           
-            try
-            {                             
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    DataTable dataIn = CarDAO.GetDataInRecently();
-                    DataTable dataOut = CarDAO.GetDataOutRecently();
-                    if (Util.sendOrderListToServer(dataIn, true))
-                    {
-                        WaitSyncCarInDAO.DeleteAll();
-                    }
+        //private void sendOrderDataToServer()
+        //{
+        //    if (Program.sCountConnection > Program.MAX_CONNECTION)
+        //    {
+        //        return;
+        //    }
+        //    if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+        //    {
+        //        return;
+        //    }           
+        //    try
+        //    {                             
+        //        new Thread(() =>
+        //        {
+        //            Thread.CurrentThread.IsBackground = true;
+        //            DataTable dataIn = CarDAO.GetDataInRecently();
+        //            DataTable dataOut = CarDAO.GetDataOutRecently();
+        //            if (Util.sendOrderListToServer(dataIn, true))
+        //            {
+        //                WaitSyncCarInDAO.DeleteAll();
+        //            }
 
-                    if (Util.sendOrderListToServer(dataOut, true))
-                    {
-                        WaitSyncCarOutDAO.DeleteAll();
-                    }
-                }).Start();
-            }
-            catch (Exception)
-            {
+        //            if (Util.sendOrderListToServer(dataOut, true))
+        //            {
+        //                WaitSyncCarOutDAO.DeleteAll();
+        //            }
+        //        }).Start();
+        //    }
+        //    catch (Exception)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
-        private void sendDataInToServer()
-        {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                return;
-            }
-            try
-            {
-                DataTable data = CarDAO.GetDataInRecently();
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    if (Util.sendOrderListToServer(data, true))
-                    {
-                        //WaitSyncCarInDAO.DeleteAll();
-                    }
-                }).Start();
-            } catch (Exception)
-            {
-
-            }
-        }
 
         private void updateCarIn(bool isTicketMonthCard, DataTable dtLastCar, string inputDigit)
         {
@@ -993,20 +977,22 @@ namespace ParkingMangement.GUI
                     if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
                     {
                         carDTO.Cost = 0;
-                    } else
+                    }
+                    else
                     {
                         if (!isUpdateCarOut)
                         {
                             carDTO.Cost = tinhTienGiuXe(dtLastCar);
-                        } else
+                        }
+                        else
                         {
                             labelCostRight.Text = dtLastCar.Rows[0].Field<int>("Cost") + "";
                         }
-                        
+
                     }
 
                     DateTime? expirationDate = TicketMonthDAO.GetExpirationDateByID(cardID);
-                    int totalDaysLeft = (int) ((DateTime)expirationDate - DateTime.Now).TotalDays;
+                    int totalDaysLeft = (int)((DateTime)expirationDate - DateTime.Now).TotalDays;
                     if (expirationDate != null && totalDaysLeft <= 5)
                     {
                         if (totalDaysLeft <= 0)
@@ -1024,7 +1010,8 @@ namespace ParkingMangement.GUI
                                     break;
                             }
                             labelError.Text = "Thẻ tháng đã hết hạn!";
-                        } else
+                        }
+                        else
                         {
                             labelError.Text = "Thẻ tháng còn " + totalDaysLeft + " ngày nữa sẽ hết hạn!";
                         }
@@ -1155,29 +1142,29 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void sendDataOutToServer()
-        {
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                return;
-            }
-            try
-            {
-                DataTable data = CarDAO.GetDataOutRecently();
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    if (Util.sendOrderListToServer(data, false))
-                    {
-                        WaitSyncCarOutDAO.DeleteAll();
-                    }
-                }).Start();
-            }
-            catch (Exception)
-            {
+        //private void sendDataOutToServer()
+        //{
+        //    if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+        //    {
+        //        return;
+        //    }
+        //    try
+        //    {
+        //        DataTable data = CarDAO.GetDataOutRecently();
+        //        new Thread(() =>
+        //        {
+        //            Thread.CurrentThread.IsBackground = true;
+        //            if (Util.sendOrderListToServer(data, false))
+        //            {
+        //                WaitSyncCarOutDAO.DeleteAll();
+        //            }
+        //        }).Start();
+        //    }
+        //    catch (Exception)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         private void loadCarInData(DataTable dtLastCar)
         {
@@ -1300,53 +1287,54 @@ namespace ParkingMangement.GUI
             return false;
         }
 
-        private string getPathFromSnapshot(AxVLCPlugin2 axVLCPlugin)
-        {
-            //return @"E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingManagement\Images\20190807\33_20190807_200936_637008053763543873.jpg";
-            //float reduceSizePercent = 0.5f;
-            int compressedQuality = 25;
+        //private string getPathFromSnapshot(PictureBox pictureBoxCamera)
+        //{
+        //    //return @"E:\WORK\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingManagement\Images\20190807\33_20190807_200936_637008053763543873.jpg";
+        //    //float reduceSizePercent = 0.5f;
+        //    int compressedQuality = 25;
 
-            string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString();
-            Directory.CreateDirectory(path);
-            Util.ShareFolder(path, "Test Share", "This is a Test Share");
-            Directory.SetCurrentDirectory(path);
-            try
-            {
-                axVLCPlugin.video.takeSnapshot();
-            } catch (Exception e)
-            {
+        //    string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString();
+        //    Directory.CreateDirectory(path);
+        //    Util.ShareFolder(path, "Test Share", "This is a Test Share");
+        //    Directory.SetCurrentDirectory(path);
+        //    try
+        //    {
+        //        pictureBoxCamera.video.takeSnapshot();
+        //    }
+        //    catch (Exception e)
+        //    {
 
-            }
-            string originalFileName = Util.NewestFileofDirectory(path);
+        //    }
+        //    string originalFileName = Util.NewestFileofDirectory(path);
 
 
-            //if (isCarIn())
-            //{
-            //Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-            //pictureBox.Image = bmpScreenshot;
-            //zoomImageShowToPictureBox(originalFileName, pictureBox);
-            //}
+        //    //if (isCarIn())
+        //    //{
+        //    //Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
+        //    //pictureBox.Image = bmpScreenshot;
+        //    //zoomImageShowToPictureBox(originalFileName, pictureBox);
+        //    //}
 
-            try
-            {
-                string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
-                FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
-                System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
-                //System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
-                string destImagePath = path + @"\" + compressedFileName;
-                Util.SaveJpeg(destImagePath, img, compressedQuality);
-                img.Dispose();
-                stream.Dispose();
-                File.Delete(originalFileName);
-                return Constant.getCurrentDateString() + @"\" + compressedFileName;
-                //return Constant.getCurrentDateString() + @"\" + originalFileName;
-            }
-            catch (Exception e)
-            {
+        //    try
+        //    {
+        //        string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
+        //        FileStream stream = new FileStream(originalFileName, FileMode.Open, FileAccess.Read);
+        //        System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
+        //        //System.Drawing.Image resizeImage = Util.Resize(img, reduceSizePercent);
+        //        string destImagePath = path + @"\" + compressedFileName;
+        //        Util.SaveJpeg(destImagePath, img, compressedQuality);
+        //        img.Dispose();
+        //        stream.Dispose();
+        //        File.Delete(originalFileName);
+        //        return Constant.getCurrentDateString() + @"\" + compressedFileName;
+        //        //return Constant.getCurrentDateString() + @"\" + originalFileName;
+        //    }
+        //    catch (Exception e)
+        //    {
 
-            }
-            return "";
-        }
+        //    }
+        //    return "";
+        //}
         private string getPathFromSnapshotThumbnail(Bitmap bitmap)
         {
             string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString() + @"\";
@@ -1407,12 +1395,14 @@ namespace ParkingMangement.GUI
                     if (Constant.IS_NAPSHOT_FULL_IMAGE)
                     {
                         pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                    } else
+                    }
+                    else
                     {
                         if (img.Width > 1000)
                         {
                             pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                        } else
+                        }
+                        else
                         {
                             pictureBox.Image = img;
                         }
@@ -1421,7 +1411,8 @@ namespace ParkingMangement.GUI
                     {
                         image.Dispose();
                     }
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     pictureBox.Image = img;
                 }
@@ -1472,256 +1463,259 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void loadCamera1VLC()
+        private void loadCameraCapture()
         {
-            String rtspString = cameraUrl1;
-            var uri = new Uri(rtspString);
-            var convertedURI = uri.AbsoluteUri;
-            //axVLCPlugin1.playlist.add(convertedURI);
-            axVLCPlugin1.playlist.add(rtspString, "1", "--network-caching=100");
-            try
-            {
-                axVLCPlugin1.playlist.play();
-                axVLCPlugin1.BringToFront();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            pictureBoxCamera1.BackgroundImageLayout = ImageLayout.Center;
+            pictureBoxCamera2.BackgroundImageLayout = ImageLayout.Center;
+            pictureBoxCamera3.BackgroundImageLayout = ImageLayout.Center;
+            pictureBoxCamera4.BackgroundImageLayout = ImageLayout.Center;
+            //pictureBoxCamera1.Visible = false;
+            //PictureBox.Visible = false;
+            //pictureBoxCamera3.Visible = false;
+            //pictureBoxCamera4.Visible = false;
+            cameraCapture1 = new CameraCapture(cameraUrl1, pictureBoxCamera1);
+            cameraCapture2 = new CameraCapture(cameraUrl2, pictureBoxCamera2);
+            cameraCapture3 = new CameraCapture(cameraUrl3, pictureBoxCamera3);
+            cameraCapture4 = new CameraCapture(cameraUrl4, pictureBoxCamera4);
+            cameraCapture1.Start();
+            cameraCapture2.Start();
+            cameraCapture3.Start();
+            cameraCapture4.Start();
+            pictureBoxImage1.BringToFront();
+            pictureBoxImage2.BringToFront();
+            pictureBoxImage3.BringToFront();
+            pictureBoxImage4.BringToFront();
         }
+
+        //private void loadCamera1VLC()
+        //{
+        //    String rtspString = cameraUrl1;
+        //    var uri = new Uri(rtspString);
+        //    var convertedURI = uri.AbsoluteUri;
+        //    //pictureBoxCamera1.playlist.add(convertedURI);
+        //    pictureBoxCamera1.playlist.add(rtspString, "1", "--network-caching=100");
+        //    try
+        //    {
+        //        pictureBoxCamera1.playlist.play();
+        //        pictureBoxCamera1.BringToFront();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
         private void saveImage1ToFile()
         {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
+            CameraCapture cameraCapture = cameraCapture1;
             PictureBox pictureBox = pictureBoxImage1;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                axVLCPlugin = axVLCPlugin3;
+                cameraCapture = cameraCapture3;
                 pictureBox = pictureBoxImage3;
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
                 if (inputIsRightSide())
                 {
-                    axVLCPlugin = axVLCPlugin3;
+                    cameraCapture = cameraCapture3;
                     pictureBox = pictureBoxImage3;
                 }
             }
 
             if (isCarIn())
             {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;
-                if (Constant.IS_NAPSHOT_FULL_IMAGE)
-                {
-                    imagePath1 = getPathFromSnapshot(axVLCPlugin);
-                } else
-                {
-                    imagePath1 = getPathFromSnapshotThumbnail(bmpScreenshot);
-                }
+                cameraCapture.CaptureTo(pictureBox);
+                Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+                imagePath1 = getPathFromSnapshotThumbnail(bmpScreenshot);
             }
         }
 
         private void loadImage1ToPictureBox()
         {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
+            PictureBox pictureBoxCamera = pictureBoxCamera1;
             PictureBox pictureBox = pictureBoxImage1;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                axVLCPlugin = axVLCPlugin3;
+                pictureBoxCamera = pictureBoxCamera3;
                 pictureBox = pictureBoxImage3;
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
                 if (inputIsRightSide())
                 {
-                    axVLCPlugin = axVLCPlugin3;
+                    pictureBoxCamera = pictureBoxCamera3;
                     pictureBox = pictureBoxImage3;
                 }
             }
 
             if (isCarIn())
             {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
+                Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
                 pictureBox.Image = bmpScreenshot;
             }
         }
 
-        private void loadCamera2VLC()
-        {
-            String rtspString = cameraUrl2;
-            axVLCPlugin2.playlist.add(rtspString);
-            try
-            {
-                axVLCPlugin2.playlist.play();
-                axVLCPlugin2.BringToFront();
+        //private void loadCamera2VLC()
+        //{
+        //    String rtspString = cameraUrl2;
+        //    PictureBox.playlist.add(rtspString);
+        //    try
+        //    {
+        //        PictureBox.playlist.play();
+        //        PictureBox.BringToFront();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
         private void saveImage2ToFile()
         {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
+            CameraCapture cameraCapture = cameraCapture2;
             PictureBox pictureBox = pictureBoxImage2;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                axVLCPlugin = axVLCPlugin4;
-                pictureBox = pictureBoxImage4;
-            } else if (inOutType == ConfigDTO.TYPE_IN_IN)
-            {
-                if (inputIsRightSide())
-                {
-                    axVLCPlugin = axVLCPlugin4;
-                    pictureBox = pictureBoxImage4;
-                }
-            }
-
-            if (isCarIn())
-            {
-                //imagePath2 = getPathFromSnapshot(axVLCPlugin);
-                if (Constant.IS_NAPSHOT_FULL_IMAGE)
-                {
-                    imagePath2 = getPathFromSnapshot(axVLCPlugin);
-                }
-                else
-                {
-                    Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                    imagePath2 = getPathFromSnapshotThumbnail(bmpScreenshot);
-                }
-            }
-        }
-
-        private void loadImage2ToPictureBox()
-        {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
-            PictureBox pictureBox = pictureBoxImage2;
-            int inOutType = mConfig.inOutType;
-            if (inOutType == ConfigDTO.TYPE_OUT_IN)
-            {
-                axVLCPlugin = axVLCPlugin4;
+                cameraCapture = cameraCapture4;
                 pictureBox = pictureBoxImage4;
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
                 if (inputIsRightSide())
                 {
-                    axVLCPlugin = axVLCPlugin4;
+                    cameraCapture = cameraCapture4;
                     pictureBox = pictureBoxImage4;
                 }
             }
 
             if (isCarIn())
             {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;                
+                cameraCapture.CaptureTo(pictureBox);
+                Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+                imagePath2 = getPathFromSnapshotThumbnail(bmpScreenshot);
             }
         }
 
-        private void loadCamera3VLC()
+        private void loadImage2ToPictureBox()
         {
-            String rtspString = cameraUrl3;
-            axVLCPlugin3.playlist.add(rtspString);
-            try
+            PictureBox pictureBoxCamera = pictureBoxCamera2;
+            PictureBox pictureBox = pictureBoxImage2;
+            int inOutType = mConfig.inOutType;
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                axVLCPlugin3.playlist.play();
-                axVLCPlugin3.BringToFront();
-
+                pictureBoxCamera = pictureBoxCamera4;
+                pictureBox = pictureBoxImage4;
             }
-            catch (Exception ex)
+            else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                MessageBox.Show(ex.ToString());
+                if (inputIsRightSide())
+                {
+                    pictureBoxCamera = pictureBoxCamera4;
+                    pictureBox = pictureBoxImage4;
+                }
+            }
+
+            if (isCarIn())
+            {
+                Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
+                pictureBox.Image = bmpScreenshot;
             }
         }
+
+        //private void loadCamera3VLC()
+        //{
+        //    String rtspString = cameraUrl3;
+        //    pictureBoxCamera3.playlist.add(rtspString);
+        //    try
+        //    {
+        //        pictureBoxCamera3.playlist.play();
+        //        pictureBoxCamera3.BringToFront();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
         private void saveImage3ToFile()
         {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin3;
+            CameraCapture cameraCapture = cameraCapture3;
+            PictureBox pictureBox = pictureBoxImage3;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                axVLCPlugin = axVLCPlugin1;
-            } else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
-            {
-                if (inputIsLeftSide())
-                {
-                    axVLCPlugin = axVLCPlugin1;
-                }
-            }
-            //imagePath3 = getPathFromSnapshot(axVLCPlugin);
-            if (Constant.IS_NAPSHOT_FULL_IMAGE)
-            {
-                imagePath3 = getPathFromSnapshot(axVLCPlugin);
-            }
-            else
-            {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                imagePath3 = getPathFromSnapshotThumbnail(bmpScreenshot);
-            }
-        }
-
-        private void loadCamera4VLC()
-        {
-            String rtspString = cameraUrl4;
-            axVLCPlugin4.playlist.add(rtspString);
-            try
-            {
-                axVLCPlugin4.playlist.play();
-                axVLCPlugin4.BringToFront();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
-
-        private void saveImage4ToFile()
-        {
-            AxVLCPlugin2 axVLCPlugin = axVLCPlugin4;
-            int inOutType = mConfig.inOutType;
-            if (inOutType == ConfigDTO.TYPE_OUT_IN)
-            {
-                axVLCPlugin = axVLCPlugin2;
+                cameraCapture = cameraCapture1;
+                pictureBox = pictureBoxImage1;
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
                 if (inputIsLeftSide())
                 {
-                    axVLCPlugin = axVLCPlugin2;
+                    cameraCapture = cameraCapture1;
+                    pictureBox = pictureBoxImage1;
                 }
             }
-            //imagePath4 = getPathFromSnapshot(axVLCPlugin);
-            if (Constant.IS_NAPSHOT_FULL_IMAGE)
-            {
-                imagePath4 = getPathFromSnapshot(axVLCPlugin);
-            }
-            else
-            {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                imagePath4 = getPathFromSnapshotThumbnail(bmpScreenshot);
-            }
+            Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+            imagePath3 = getPathFromSnapshotThumbnail(bmpScreenshot);
         }
 
-        private Bitmap getBitMapFromCamera(AxVLCPlugin2 axVLCPlugin)
+        //private void loadCamera4VLC()
+        //{
+        //    String rtspString = cameraUrl4;
+        //    pictureBoxCamera4.playlist.add(rtspString);
+        //    try
+        //    {
+        //        pictureBoxCamera4.playlist.play();
+        //        pictureBoxCamera4.BringToFront();
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
+
+        private void saveImage4ToFile()
         {
-            axVLCPlugin.playlist.togglePause();
-            Bitmap bmpScreenshot = new Bitmap(axVLCPlugin.ClientRectangle.Width,
-                axVLCPlugin.ClientRectangle.Height);
+            CameraCapture cameraCapture = cameraCapture4;
+            PictureBox pictureBox = pictureBoxImage4;
+            int inOutType = mConfig.inOutType;
+            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            {
+                cameraCapture = cameraCapture2;
+                pictureBox = pictureBoxImage2;
+            }
+            else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+            {
+                if (inputIsLeftSide())
+                {
+                    cameraCapture = cameraCapture2;
+                    pictureBox = pictureBoxImage2;
+                }
+            }
+            Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+            imagePath4 = getPathFromSnapshotThumbnail(bmpScreenshot);
+        }
+
+        private Bitmap getBitMapFromCamera(PictureBox pictureBoxCamera)
+        {
+            //pictureBoxCamera.playlist.togglePause();
+            Bitmap bmpScreenshot = new Bitmap(pictureBoxCamera.ClientRectangle.Width,
+                pictureBoxCamera.ClientRectangle.Height);
             Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot);
             System.Drawing.Size imgSize = new System.Drawing.Size(
-                axVLCPlugin.ClientRectangle.Width,
-                axVLCPlugin.ClientRectangle.Height);
-            System.Drawing.Point ps = axVLCPlugin.PointToScreen(System.Drawing.Point.Empty);
+                pictureBoxCamera.ClientRectangle.Width,
+                pictureBoxCamera.ClientRectangle.Height);
+            System.Drawing.Point ps = pictureBoxCamera.PointToScreen(System.Drawing.Point.Empty);
             gfxScreenshot.CopyFromScreen(ps.X, ps.Y, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
-            axVLCPlugin.playlist.play();
+            //pictureBoxCamera.playlist.play();
             return bmpScreenshot;
         }
 
@@ -1783,33 +1777,19 @@ namespace ParkingMangement.GUI
 
         public void configVLC(int value1, int value2, int value3, int value4)
         {
-            float zoomValue1 = (float) value1 / 100;
-            float zoomValue2 = (float) value2 / 100;
-            float zoomValue3 = (float) value3 / 100;
-            float zoomValue4 = (float) value4 / 100;
-            //axVLCPlugin1.video.aspectRatio = "209:253";
-            //axVLCPlugin2.video.aspectRatio = "209:253";
-            //axVLCPlugin3.video.aspectRatio = "209:253";
-            //axVLCPlugin4.video.aspectRatio = "209:253";
+            float zoomValue1 = (float)value1 / 100;
+            float zoomValue2 = (float)value2 / 100;
+            float zoomValue3 = (float)value3 / 100;
+            float zoomValue4 = (float)value4 / 100;
+            //pictureBoxCamera1.video.aspectRatio = "209:253";
+            //PictureBox.video.aspectRatio = "209:253";
+            //pictureBoxCamera3.video.aspectRatio = "209:253";
+            //pictureBoxCamera4.video.aspectRatio = "209:253";
 
-            //axVLCPlugin1.video.scale = 0.7f;
-            //axVLCPlugin2.video.scale = 0.7f;
-            //axVLCPlugin3.video.scale = 0.7f;
-            //axVLCPlugin4.video.scale = 0.7f;
-            axVLCPlugin1.video.scale = zoomValue1;
-            axVLCPlugin2.video.scale = zoomValue2;
-            axVLCPlugin3.video.scale = zoomValue3;
-            axVLCPlugin4.video.scale = zoomValue4;
-
-            axVLCPlugin1.Toolbar = false;
-            axVLCPlugin2.Toolbar = false;
-            axVLCPlugin3.Toolbar = false;
-            axVLCPlugin4.Toolbar = false;
-
-            axVLCPlugin1.volume = 0;
-            axVLCPlugin2.volume = 0;
-            axVLCPlugin3.volume = 0;
-            axVLCPlugin4.volume = 0;
+            //pictureBoxCamera1.video.scale = 0.7f;
+            //PictureBox.video.scale = 0.7f;
+            //pictureBoxCamera3.video.scale = 0.7f;
+            //pictureBoxCamera4.video.scale = 0.7f;
         }
 
         private void OnKeyPressed(object sender, RawInputEventArg e)
@@ -1818,7 +1798,8 @@ namespace ParkingMangement.GUI
             if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
             {
                 rfidInput = e.KeyPressEvent.DeviceName;
-            } else
+            }
+            else
             {
                 rfidInput = "";
             }
@@ -1919,11 +1900,12 @@ namespace ParkingMangement.GUI
                 if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
                     return computerDTO.MinCost;
-                } else if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                }
+                else if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
                 {
                     // vào ngày - ra ngày
                     return computerDTO.DayCost;
-                } 
+                }
                 //else if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && Util.getTotalTimeByDay(timeIn, timeOut) <= 1)
                 //{
                 //    // vào đêm - ra đêm
@@ -1932,35 +1914,46 @@ namespace ParkingMangement.GUI
                 //}
                 else if (Util.getTotalTimeByHour(timeIn, timeOut) <= 24)
                 {
-                    // vào ngày - ra đêm hoặc vào đêm - ra ngày trong 1 ngày
-                    if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
+                    //trong 1 ngày
+                    if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)))
                     {
-                        // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
-                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                        // vào đêm - ra đêm
+                        return computerDTO.NightCost;
+                    } else
+                    {
+                        // vào ngày - ra đêm hoặc vào đêm - ra ngày
+                        if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                         {
-                            // thời gian ngày lớn hơn đêm
-                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
+                            // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
+                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                             {
-                                // thời gian ngày nhỏ hơn giới hạn
-                                return computerDTO.DayCost;
+                                // thời gian ngày lớn hơn đêm
+                                if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
+                                {
+                                    // thời gian ngày nhỏ hơn giới hạn
+                                    return computerDTO.DayCost;
+                                }
+                                else
+                                {
+                                    // thời gian ngày lớn hơn giới hạn
+                                    return computerDTO.NightCost;
+                                }
                             }
                             else
                             {
-                                // thời gian ngày lớn hơn giới hạn
+                                // thời gian ngày nhỏ hơn đêm
                                 return computerDTO.NightCost;
                             }
                         }
                         else
                         {
-                            // thời gian ngày nhỏ hơn đêm
-                            return computerDTO.NightCost;
+                            // thời gian trong bãi lớn hơn khoảng giao ngày - đêm
+                            return computerDTO.DayNightCost;
                         }
-                    } else
-                    {
-                        // thời gian trong bãi lớn hơn khoảng giao ngày - đêm
-                          return computerDTO.DayNightCost;
-                    }
-                } else
+
+                    }                    
+                }
+                else
                 {
                     // vào - ra trong nhiều ngày
                     if (isCarInDayOutDay(timeIn, timeOut, computerDTO))
@@ -1970,16 +1963,19 @@ namespace ParkingMangement.GUI
                         {
                             // thời gian ngày nhỏ hơn giới hạn
                             return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
-                        } else
+                        }
+                        else
                         {
                             // thời gian ngày lớn hơn giới hạn
                             return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
                         }
-                    } else if (isCarInNightOutNight(timeIn, timeOut, computerDTO))
+                    }
+                    else if (isCarInNightOutNight(timeIn, timeOut, computerDTO))
                     {
                         // vào đêm - ra đêm
                         return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.NightCost;
-                    } else
+                    }
+                    else
                     {
                         // vào ngày - ra đêm hoặc vào đêm - ra ngày
                         return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
@@ -2006,10 +2002,12 @@ namespace ParkingMangement.GUI
                 if (spentTimeByHour < computerDTO.HourMilestone1)
                 {
                     return computerDTO.CostMilestone1;
-                } else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
+                }
+                else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone1 + computerDTO.HourMilestone2)
                 {
                     return computerDTO.CostMilestone1 + computerDTO.CostMilestone2;
-                } else
+                }
+                else
                 {
                     if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_KHONG_CONG))
                     {
@@ -2070,7 +2068,7 @@ namespace ParkingMangement.GUI
                     }
                     else if (computerDTO.IsAdd.Equals(Constant.TINH_TIEN_LUY_TIEN_CONG_1_MOC))
                     {
-                        int temp1 = ((int) spentTimeByHour - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3;
+                        int temp1 = ((int)spentTimeByHour - computerDTO.HourMilestone1) / computerDTO.CycleMilestone3;
                         //int temp2 = ((int) spentTimeByHour - computerDTO.HourMilestone1) % computerDTO.CycleMilestone3;
                         int cost = computerDTO.CostMilestone1 + temp1 * computerDTO.CostMilestone3;
                         return cost;
@@ -2195,7 +2193,8 @@ namespace ParkingMangement.GUI
                         return computerDTO.CostMilestoneNight3;
                     }
                 }
-            } else
+            }
+            else
             {
                 // lớn hơn mốc 3
                 int cost = 0;
@@ -2236,13 +2235,13 @@ namespace ParkingMangement.GUI
 
         private bool IsCarInDayOutNightOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour < computerDTO.StartHourNight) && 
+            return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour < computerDTO.StartHourNight) &&
                 ((timeOut.Hour >= computerDTO.StartHourNight && timeOut.Date.Day == timeIn.Date.Day) || (timeOut.Hour < computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day == 1));
         }
 
         private bool isCarInNightOutDayOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
-            return (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight) && 
+            return (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight) &&
                 ((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Date.Day - timeIn.Date.Day == 1) || (timeIn.Hour < computerDTO.EndHourNight && timeOut.Date.Day == timeIn.Date.Day));
         }
 
@@ -2250,16 +2249,17 @@ namespace ParkingMangement.GUI
         {
             if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO))
             {
-                return computerDTO.StartHourNight - timeIn.Hour - (double) timeIn.Minute / 60; 
-            } else
+                return computerDTO.StartHourNight - timeIn.Hour - (double)timeIn.Minute / 60;
+            }
+            else
             {
-                return timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.EndHourNight;
+                return timeOut.Hour + (double)timeOut.Minute / 60 - computerDTO.EndHourNight;
             }
         }
 
         private double getTotalHourOfDayWhenOutDay(DateTime timeOut, ComputerDTO computerDTO)
         {
-            double value = timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.EndHourNight;
+            double value = timeOut.Hour + (double)timeOut.Minute / 60 - computerDTO.EndHourNight;
             return value;
         }
 
@@ -2269,21 +2269,22 @@ namespace ParkingMangement.GUI
             {
                 if (timeOut.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24)
                 {
-                    return timeOut.Hour + (double) timeOut.Minute / 60 - computerDTO.StartHourNight;
-                } else
+                    return timeOut.Hour + (double)timeOut.Minute / 60 - computerDTO.StartHourNight;
+                }
+                else
                 {
-                    return timeOut.Hour + (double) timeOut.Minute / 60 + 24 - computerDTO.StartHourNight;
+                    return timeOut.Hour + (double)timeOut.Minute / 60 + 24 - computerDTO.StartHourNight;
                 }
             }
             else
             {
                 if (timeIn.Hour >= computerDTO.StartHourNight && timeIn.Hour < 24)
                 {
-                    return 24 - timeIn.Hour - (double) timeIn.Minute / 60 + computerDTO.EndHourNight;
+                    return 24 - timeIn.Hour - (double)timeIn.Minute / 60 + computerDTO.EndHourNight;
                 }
                 else
                 {
-                    return computerDTO.EndHourNight - timeIn.Hour - (double) timeIn.Minute / 60;
+                    return computerDTO.EndHourNight - timeIn.Hour - (double)timeIn.Minute / 60;
                 }
             }
         }
@@ -2348,7 +2349,8 @@ namespace ParkingMangement.GUI
                 labelDigitInLeft.Text = "";
                 labelDigitOutLeft.Text = "-";
                 labelDigitRegisterLeft.Text = "-";
-            } else
+            }
+            else
             {
                 labelCardIDRight.Text = "-";
                 labelPartNameTypeNameRight.Text = "-";
@@ -2555,33 +2557,6 @@ namespace ParkingMangement.GUI
             System.Environment.Exit(1);
         }
 
-        private void open_bitmap()
-        {
-            try
-            {
-                OpenFileDialog op = new OpenFileDialog();
-                op.InitialDirectory = Application.StartupPath + "\\foreground";
-                op.Filter = ("Image files (*.jpg,*.png,*.tif,*.bmp,*.gif)|*.jpg;*.png;*.tif;*.bmp;*.gif|JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png|TIF files (*.tif)|*.tif|BMP files (*.bmp)|*.bmp|GIF files (*.gif)|*.gif|All files(*.*)|*.*");
-                if (op.ShowDialog() == DialogResult.OK)
-                {
-                    if (op.FileName != null)
-                    {
-                        StreamReader bitmap_file_stream = new StreamReader(op.FileName);
-                        string bmp_file_name = Path.GetFileName(op.FileName);
-                        ImagePlate = new clsImagePlate(new Bitmap(op.FileName));
-
-                        bitmap_file_stream.Close();
-                        pictureBoxImage1.Image = ImagePlate.IMAGE;
-                        DisplayNumberPalate(true);
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                //MessageBox.Show(ex.Message);
-            }
-        }
         private void DisplayNumberPalate(bool isCarIn)
         {
             //try
@@ -2740,11 +2715,11 @@ namespace ParkingMangement.GUI
 
                 //new Thread(() =>
                 //{
-                    //Thread.CurrentThread.IsBackground = true;
-                    //Util.sendCardListToServer(CardDAO.GetAllDataForSync());
-                    //Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
-                    //Util.syncCardListFromServer();
-                    //Util.syncMonthlyCardListFromServer();
+                //Thread.CurrentThread.IsBackground = true;
+                //Util.sendCardListToServer(CardDAO.GetAllDataForSync());
+                //Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
+                //Util.syncCardListFromServer();
+                //Util.syncMonthlyCardListFromServer();
                 //}).Start();
             }
             catch (Exception)
@@ -2876,7 +2851,8 @@ namespace ParkingMangement.GUI
 
             string carSignal = mConfig.signalOpenBarieIn;
             string motorBikeSignal = mConfig.signalOpenBarieInMotorbike;
-            if (!carSignal.Equals(motorBikeSignal)) {
+            if (!carSignal.Equals(motorBikeSignal))
+            {
                 openBarieInMotorbike();
             }
         }
@@ -2966,7 +2942,8 @@ namespace ParkingMangement.GUI
                     portName = mConfig.comLedRight;
                     writeDataToRightLedPort(data, portName);
                 }
-            } else
+            }
+            else
             {
                 // 1 cổng COM
                 portName = mConfig.comLedLeft;
@@ -3010,7 +2987,8 @@ namespace ParkingMangement.GUI
                 port.Write(data);
                 //port.Close();
                 Console.WriteLine(data);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("bug: " + e.Message);
             }
@@ -3104,7 +3082,8 @@ namespace ParkingMangement.GUI
                 portComReceiveIn = new SerialPort(portNameComReceiveIn, 9600, Parity.None, 8, StopBits.One);
                 portComReceiveIn.DataReceived += new SerialDataReceivedEventHandler(portComReceiveIn_DataReceived);
                 portComReceiveIn.Open();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
 
             }
@@ -3231,7 +3210,8 @@ namespace ParkingMangement.GUI
                     //}
                     oldPortNameComReceiveInput = portName;
                 }
-            } catch (Exception)
+            }
+            catch (Exception)
             {
 
             }
@@ -3245,6 +3225,7 @@ namespace ParkingMangement.GUI
         private void FormNhanVien_Shown(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
+            //loadCameraCapture();
         }
 
         private void labelDigitInLeft_KeyDown(object sender, KeyEventArgs e)
@@ -3300,11 +3281,13 @@ namespace ParkingMangement.GUI
                     if (isCarIn)
                     {
                         labelDigitInLeft.Text = plateNumber;
-                    } else
+                    }
+                    else
                     {
                         labelDigitOutLeft.Text = plateNumber;
-                    }                    
-                } else
+                    }
+                }
+                else
                 {
                     if (isCarIn)
                     {
@@ -3367,10 +3350,11 @@ namespace ParkingMangement.GUI
             Bitmap bmpScreenshot = null;
             if (inputIsLeftSide())
             {
-                bmpScreenshot = getBitMapFromCamera(axVLCPlugin2);
-            } else
+                bmpScreenshot = getBitMapFromCamera(pictureBoxCamera2);
+            }
+            else
             {
-                bmpScreenshot = getBitMapFromCamera(axVLCPlugin4);
+                bmpScreenshot = getBitMapFromCamera(pictureBoxCamera4);
             }
             string fileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
             saveBitmapToFile(bmpScreenshot, Constant.getCarNumberImageFolder(), fileName);

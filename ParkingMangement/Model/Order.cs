@@ -9,14 +9,10 @@ namespace ParkingMangement.Model
 {
     class Order
     {
-        [JsonProperty("area_id")]
-        public int AreaId { get; set; }
         [JsonProperty("project_id")]
         public int ProjectId { get; set; }
         [JsonProperty("order_id")]
         public long OrderId { get; set; }
-        //[JsonProperty("card_id")]
-        //public int CardId { get; set; }
         [JsonProperty("card_code")]
         public string CardCode { get; set; }
         [JsonProperty("card_stt")]

@@ -32,7 +32,7 @@ namespace ParkingMangement.GUI
 
         private string[] listFunctionQuanLyNhanSu = { "1", "2" };
         private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
-        private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "7" };
+        private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "23", "7" };
         private string[] listFunctionQuanLyVeThang = { "8", "9", "10", "11", "12" };
         private string[] listFunctionQuanLyHeThong = { "13", "14", "15", "16" };
         private string[] listFunctionQuanLyXe = { "17", "18", "19", "20" };
@@ -1028,6 +1028,10 @@ namespace ParkingMangement.GUI
                 panelChinhSuaLoaiXe.Enabled = false;
                 btnUpdatePart.Text = Constant.sButtonEdit;
             }
+            else if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageKhoaThe"])
+            {
+                searchCardToLock();
+            }
             else if (tabQuanLyThe_LoaiXe.SelectedTab == tabQuanLyThe_LoaiXe.TabPages["tabPageKichHoatThe"])
             {
                 searchLostCard();
@@ -1354,6 +1358,13 @@ namespace ParkingMangement.GUI
 
             }
             dgvCardList.DataSource = data;
+        }
+
+        private void searchCardToLock()
+        {
+            string key = tbLockCardSearch.Text;
+            DataTable data = CardDAO.SearchData(key);            
+            dgvLockCardList.DataSource = data;
         }
 
         private void searchLostCard()
@@ -3189,6 +3200,7 @@ namespace ParkingMangement.GUI
             int countTabQuanLyTheXeLoaiXe = 0;
             countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_THE_XE, tabPageQuanLyTheXe, tabQuanLyThe_LoaiXe);
             countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_QUAN_LY_LOAI_XE, tabPageQuanLyLoaiXe, tabQuanLyThe_LoaiXe);
+            countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KHOA_THE, tabPageKhoaThe, tabQuanLyThe_LoaiXe);
             countTabQuanLyTheXeLoaiXe += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_THE, tabPageKichHoatThe, tabQuanLyThe_LoaiXe);
             if (countTabQuanLyTheXeLoaiXe == 0)
             {
@@ -5155,6 +5167,25 @@ namespace ParkingMangement.GUI
                 MessageBox.Show("Vui lòng chỉ nhập số!");
                 tbPartIdCreate.Text = tbPartIdCreate.Text.Remove(tbPartIdCreate.Text.Length - 1);
             }
+        }
+
+        private void btnSearchCardToLock_Click(object sender, EventArgs e)
+        {
+            searchCardToLock();
+        }
+
+        private void btnLockCard_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvLockCardList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectLockCard"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(checkCell.Value))
+                {
+                    string cardId = Convert.ToString(row.Cells["ColumnLockCardID"].Value);
+                    CardDAO.UpdateIsUsing("0", cardId);
+                }
+            }
+            searchCardToLock();
         }
     }
 }

@@ -9,11 +9,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ParkingMangement</RootNamespace>
     <AssemblyName>ParkingMangement</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -40,61 +41,17 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=1.5.0.0, Culture=neutral, PublicKeyToken=75f8e82c5042a70f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Controls, Version=1.5.0.0, Culture=neutral, PublicKeyToken=19d43f345531bafb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Genetic, Version=1.5.0.0, Culture=neutral, PublicKeyToken=da51dbc1417b0844, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Genetic.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Imaging, Version=1.5.1.0, Culture=neutral, PublicKeyToken=38eb47741dd0492e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Imaging.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.MachineLearning, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a685c9fe7f22607b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.MachineLearning.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Math, Version=1.5.0.0, Culture=neutral, PublicKeyToken=e12ceb15b47eb5cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Math.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.NeuralNet, Version=1.0.2989.5669, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.NeuralNet.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Neuro, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31df34efda00f95d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Neuro.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video, Version=1.5.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.DirectShow, Version=1.5.1.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.DirectShow.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.FFMPEG, Version=2.2.0.0, Culture=neutral, PublicKeyToken=03563089b1be05dd, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.FFMPEG.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.VFW, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a82f807c999637c8, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.VFW.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Vision, Version=1.5.1.0, Culture=neutral, PublicKeyToken=afefe794e0d71fcc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Vision.dll</HintPath>
-    </Reference>
     <Reference Include="AxInterop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\AxInterop.AXVLC.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=4.2.0.3662, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.World.NetStandard.dll</HintPath>
     </Reference>
     <Reference Include="Interop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -122,6 +79,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\RawInput.dll</HintPath>
     </Reference>
+    <Reference Include="RTSPcamera, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\RTSPcamera.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Design" />
@@ -135,6 +96,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ZedGraph.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAO\BlackCarDAO.cs" />
@@ -161,6 +126,7 @@
     <Compile Include="DTO\ComputerDTO.cs" />
     <Compile Include="DTO\ConfigDTO.cs" />
     <Compile Include="DTO\LogDTO.cs" />
+    <Compile Include="DTO\FunctionDTO.cs" />
     <Compile Include="DTO\PartDTO.cs" />
     <Compile Include="DTO\TicketLogDTO.cs" />
     <Compile Include="DTO\TicketMonthDTO.cs" />
@@ -233,16 +199,15 @@
     <Compile Include="GUI\FormZoomCameraSetting.Designer.cs">
       <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Function.cs" />
     <Compile Include="Model\MonthlyCard.cs" />
     <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrdersListBody.cs" />
     <Compile Include="Model\OrdersListResponse.cs" />
     <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\Employee.cs" />
     <Compile Include="Model\Vehicle.cs" />
-    <Compile Include="TextRecognized\clsImagePlate.cs" />
-    <Compile Include="TextRecognized\clsLicensePlate.cs" />
-    <Compile Include="TextRecognized\clsNetwork.cs" />
     <Compile Include="Utils\ApiUtil.cs" />
     <Compile Include="Utils\AutoClosingMessageBox.cs" />
     <Compile Include="Utils\Constant.cs" />

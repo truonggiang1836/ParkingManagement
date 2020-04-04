@@ -68,3 +68,8 @@ D:\GIT\ParkingManagement\ParkingMangement\bin\Debug\ParkingMangement.pdb
 D:\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.exe
 D:\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.pdb
 D:\GIT\ParkingManagement\ParkingMangement\obj\Debug\ParkingMangement.csprojAssemblyReference.cache
+D:\GIT\ParkingManagement\ParkingMangement\bin\Debug\Emgu.CV.UI.xml
+D:\GIT\ParkingManagement\ParkingMangement\bin\Debug\Emgu.CV.World.NetStandard.xml
+D:\GIT\ParkingManagement\ParkingMangement\bin\Debug\RTSPcamera.pdb
+D:\GIT\ParkingManagement\ParkingMangement\bin\Debug\RTSPcamera.xml
+D:\GIT\ParkingManagement\ParkingMangement\bin\Debug\ZedGraph.xml

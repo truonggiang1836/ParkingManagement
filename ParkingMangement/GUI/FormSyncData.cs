@@ -39,9 +39,14 @@ namespace ParkingMangement.GUI
                     //Util.sendCardListToServer(CardDAO.GetAllDataForSync());
                     //Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
                     //Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
+                    //Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
+                    Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
+
                     //Util.syncCardListFromServer();
                     //Util.syncMonthlyCardListFromServer();
-                    Util.syncVehicleListFromServer();
+                    //Util.syncVehicleListFromServer();
+                    //Util.syncEmployeeListFromServer();
+                    //Util.syncFunctionListFromServer();
                 }).Start();
             }
             catch (Exception)
@@ -56,7 +61,7 @@ namespace ParkingMangement.GUI
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 10 * 1000;
             aTimer.Enabled = true;
-            aTimer.Start();            
+            aTimer.Start();   
         }
     }
 }

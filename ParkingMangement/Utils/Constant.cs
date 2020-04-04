@@ -9,7 +9,7 @@ namespace ParkingMangement.Utils
 {
     class Constant
     {
-        public const bool IS_SYNC_DATA_APP = true;
+        public const bool IS_SYNC_DATA_APP = false;
         public const bool IS_NAPSHOT_FULL_IMAGE = false;
         public const int AUTO_CLOSE_MESSAGE_BOX_TIME = 2000;
         public const string BREAK_LINE = "\r\n";
@@ -147,6 +147,7 @@ namespace ParkingMangement.Utils
         public const int NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN = 4;
         public const int NODE_VALUE_QUAN_LY_LOAI_XE = 5;
         public const int NODE_VALUE_QUAN_LY_THE_XE = 6;
+        public const int NODE_VALUE_KHOA_THE = 23;
         public const int NODE_VALUE_KICH_HOAT_THE = 7;
         public const int NODE_VALUE_NHAT_KY_VE_THANG = 8;
         public const int NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG = 9;

@@ -34,5 +34,11 @@ namespace ParkingMangement.DAO
             string sql = "delete from WaitSyncCarOut where Identify in " + id;
             (new Database()).ExcuNonQuery(sql);
         }
+
+        public static bool UpdateMessage(long identify, string message)
+        {
+            string sql = "update WaitSyncCarOut set Message ='" + message + "' where Identify =" + identify;
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
     }
 }

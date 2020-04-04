@@ -123,8 +123,8 @@ namespace ParkingMangement.DAO
 
         public static DataTable SearchData(string key)
         {
-            string sql = "select SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName, CardType.CardTypeName from SmartCard, Part, CardType where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
-                + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') and SmartCard.IsDeleted = 0 order by SmartCard.Identify asc";
+            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from SmartCard, Part, CardType where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
+                + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') and SmartCard.IsUsing = '1' and SmartCard.IsDeleted = 0 order by SmartCard.Identify asc";
             return (new Database()).ExcuQuery(sql);
         }
 

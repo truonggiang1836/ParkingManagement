@@ -26,17 +26,17 @@ namespace ParkingMangement.DAO
         //    " from Car car left join Part on car.IDPart = Part.ID " +
         //    "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
 
-        private static string sqlGetAllDataInForCallAPI = "select car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
+        private static string sqlGetAllDataInForCallAPI = "select top 1 car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
             " from Car car left join Part on car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = car.ID " +
             "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
-            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarIn on car.Identify = WaitSyncCarIn.Identify where '0' = '0'";
+            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarIn on car.Identify = WaitSyncCarIn.Identify where WaitSyncCarIn.Message IS NULL OR WaitSyncCarIn.Message = ''";
 
-        private static string sqlGetAllDataOutForCallAPI = "select car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
+        private static string sqlGetAllDataOutForCallAPI = "select top 1 car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
             " from Car car left join Part on car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = car.ID " +
             "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
-            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarOut on car.Identify = WaitSyncCarOut.Identify where '0' = '0'";
+            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarOut on car.Identify = WaitSyncCarOut.Identify where WaitSyncCarOut.Message IS NULL OR WaitSyncCarOut.Message = ''";
 
         //private static string sqlGetFirstDataForCallAPI = "select top 1 car.*, userA.NameUser as UserIn, " +
         //    "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
@@ -64,14 +64,14 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable GetDataInRecently()
+        public static DataTable GetDataInRecentlyForSync()
         {
             string sql = sqlGetAllDataInForCallAPI + " order by car.Identify asc";
             DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
-        public static DataTable GetDataOutRecently()
+        public static DataTable GetDataOutRecentlyForSync()
         {
             string sql = sqlGetAllDataOutForCallAPI + " order by car.Identify asc";
             DataTable data = (new Database()).ExcuQuery(sql);
