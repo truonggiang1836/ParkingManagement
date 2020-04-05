@@ -199,7 +199,7 @@ namespace ParkingMangement.GUI
             readConfigFile();
 
             loadInfo();
-            loadCameraCapture();
+            //loadCameraCapture();
             configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
                 mConfig.ZoomCamera3, mConfig.ZoomCamera4);
             //loadCamera1VLC();
@@ -1527,7 +1527,10 @@ namespace ParkingMangement.GUI
 
             if (isCarIn())
             {
-                cameraCapture.CaptureTo(pictureBox);
+                if (cameraCapture != null)
+                {
+                    cameraCapture.CaptureTo(pictureBox);
+                }              
                 Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
                 imagePath1 = getPathFromSnapshotThumbnail(bmpScreenshot);
             }
@@ -1596,7 +1599,10 @@ namespace ParkingMangement.GUI
 
             if (isCarIn())
             {
-                cameraCapture.CaptureTo(pictureBox);
+                if (cameraCapture != null)
+                {
+                    cameraCapture.CaptureTo(pictureBox);
+                }
                 Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
                 imagePath2 = getPathFromSnapshotThumbnail(bmpScreenshot);
             }
@@ -1915,7 +1921,8 @@ namespace ParkingMangement.GUI
                 else if (Util.getTotalTimeByHour(timeIn, timeOut) <= 24)
                 {
                     //trong 1 ngày
-                    if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)))
+                    if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)
+                        || (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < computerDTO.EndHourNight)))
                     {
                         // vào đêm - ra đêm
                         return computerDTO.NightCost;
@@ -1950,7 +1957,6 @@ namespace ParkingMangement.GUI
                             // thời gian trong bãi lớn hơn khoảng giao ngày - đêm
                             return computerDTO.DayNightCost;
                         }
-
                     }                    
                 }
                 else
@@ -3225,7 +3231,7 @@ namespace ParkingMangement.GUI
         private void FormNhanVien_Shown(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
-            //loadCameraCapture();
+            loadCameraCapture();
         }
 
         private void labelDigitInLeft_KeyDown(object sender, KeyEventArgs e)
