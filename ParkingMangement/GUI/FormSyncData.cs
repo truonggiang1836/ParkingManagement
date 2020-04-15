@@ -35,11 +35,11 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    //Util.sendOrderDataToServer();
-                    //Util.sendCardListToServer(CardDAO.GetAllDataForSync());
-                    //Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
-                    //Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
-                    //Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
+                    Util.sendOrderDataToServer();
+                    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
+                    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
+                    Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
+                    Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
                     Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
 
                     //Util.syncCardListFromServer();

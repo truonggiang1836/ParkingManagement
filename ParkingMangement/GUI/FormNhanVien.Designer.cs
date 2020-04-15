@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBoxCamera1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxCamera4 = new System.Windows.Forms.PictureBox();
@@ -212,7 +212,7 @@
             this.pictureBoxCamera1.Location = new System.Drawing.Point(4, 2);
             this.pictureBoxCamera1.Name = "pictureBoxCamera1";
             this.pictureBoxCamera1.Size = new System.Drawing.Size(210, 275);
-            this.pictureBoxCamera1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxCamera1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCamera1.TabIndex = 13;
             this.pictureBoxCamera1.TabStop = false;
             // 
@@ -224,7 +224,7 @@
             this.pictureBoxCamera4.Location = new System.Drawing.Point(669, 2);
             this.pictureBoxCamera4.Name = "pictureBoxCamera4";
             this.pictureBoxCamera4.Size = new System.Drawing.Size(210, 275);
-            this.pictureBoxCamera4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxCamera4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCamera4.TabIndex = 12;
             this.pictureBoxCamera4.TabStop = false;
             // 
@@ -235,7 +235,7 @@
             this.pictureBoxCamera3.Location = new System.Drawing.Point(453, 2);
             this.pictureBoxCamera3.Name = "pictureBoxCamera3";
             this.pictureBoxCamera3.Size = new System.Drawing.Size(210, 275);
-            this.pictureBoxCamera3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxCamera3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCamera3.TabIndex = 11;
             this.pictureBoxCamera3.TabStop = false;
             // 
@@ -247,7 +247,7 @@
             this.pictureBoxCamera2.Location = new System.Drawing.Point(221, 2);
             this.pictureBoxCamera2.Name = "pictureBoxCamera2";
             this.pictureBoxCamera2.Size = new System.Drawing.Size(210, 275);
-            this.pictureBoxCamera2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxCamera2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxCamera2.TabIndex = 10;
             this.pictureBoxCamera2.TabStop = false;
             // 
@@ -317,7 +317,7 @@
             // 
             this.labelCardIDHeaderRight.AutoSize = true;
             this.labelCardIDHeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCardIDHeaderRight.Location = new System.Drawing.Point(1022, 44);
+            this.labelCardIDHeaderRight.Location = new System.Drawing.Point(1021, 44);
             this.labelCardIDHeaderRight.Name = "labelCardIDHeaderRight";
             this.labelCardIDHeaderRight.Size = new System.Drawing.Size(44, 12);
             this.labelCardIDHeaderRight.TabIndex = 28;
@@ -427,7 +427,7 @@
             this.labelGetCardRight.BackColor = System.Drawing.Color.Transparent;
             this.labelGetCardRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGetCardRight.ForeColor = System.Drawing.Color.White;
-            this.labelGetCardRight.Location = new System.Drawing.Point(1058, 436);
+            this.labelGetCardRight.Location = new System.Drawing.Point(1057, 436);
             this.labelGetCardRight.Name = "labelGetCardRight";
             this.labelGetCardRight.Size = new System.Drawing.Size(85, 13);
             this.labelGetCardRight.TabIndex = 57;
@@ -503,32 +503,32 @@
             // 
             this.dgvThongKeXeTrongBai.AllowUserToAddRows = false;
             this.dgvThongKeXeTrongBai.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvThongKeXeTrongBai.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKeXeTrongBai.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvThongKeXeTrongBai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongKeXeTrongBai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.DoanhThuPartName,
             this.CountCarSurvive,
             this.CountCarEmpty});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvThongKeXeTrongBai.Location = new System.Drawing.Point(7, 43);
             this.dgvThongKeXeTrongBai.Name = "dgvThongKeXeTrongBai";
             this.dgvThongKeXeTrongBai.ReadOnly = true;
@@ -553,10 +553,10 @@
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "TypeName";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.NullValue = null;
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.NullValue = null;
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle9;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.DoanhThuPartName.MinimumWidth = 6;
@@ -569,8 +569,8 @@
             // CountCarSurvive
             // 
             this.CountCarSurvive.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle10;
             this.CountCarSurvive.HeaderText = "SL trong bãi";
             this.CountCarSurvive.MinimumWidth = 6;
             this.CountCarSurvive.Name = "CountCarSurvive";
@@ -581,8 +581,8 @@
             // 
             this.CountCarEmpty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CountCarEmpty.DataPropertyName = "CountCarEmpty";
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle11;
             this.CountCarEmpty.HeaderText = "SL còn trống";
             this.CountCarEmpty.MinimumWidth = 6;
             this.CountCarEmpty.Name = "CountCarEmpty";
@@ -805,7 +805,7 @@
             this.labelTimeInLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelTimeInLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeInLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeInLeft.Location = new System.Drawing.Point(12, 347);
+            this.labelTimeInLeft.Location = new System.Drawing.Point(12, 346);
             this.labelTimeInLeft.Name = "labelTimeInLeft";
             this.labelTimeInLeft.Size = new System.Drawing.Size(39, 13);
             this.labelTimeInLeft.TabIndex = 118;
@@ -817,7 +817,7 @@
             this.labelDateInLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelDateInLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateInLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelDateInLeft.Location = new System.Drawing.Point(51, 347);
+            this.labelDateInLeft.Location = new System.Drawing.Point(51, 346);
             this.labelDateInLeft.Name = "labelDateInLeft";
             this.labelDateInLeft.Size = new System.Drawing.Size(75, 13);
             this.labelDateInLeft.TabIndex = 117;
@@ -839,7 +839,7 @@
             this.labelTimeOutLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelTimeOutLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeOutLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeOutLeft.Location = new System.Drawing.Point(10, 305);
+            this.labelTimeOutLeft.Location = new System.Drawing.Point(10, 304);
             this.labelTimeOutLeft.Name = "labelTimeOutLeft";
             this.labelTimeOutLeft.Size = new System.Drawing.Size(39, 13);
             this.labelTimeOutLeft.TabIndex = 114;
@@ -851,7 +851,7 @@
             this.labelDateOutLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelDateOutLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateOutLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelDateOutLeft.Location = new System.Drawing.Point(49, 305);
+            this.labelDateOutLeft.Location = new System.Drawing.Point(49, 304);
             this.labelDateOutLeft.Name = "labelDateOutLeft";
             this.labelDateOutLeft.Size = new System.Drawing.Size(75, 13);
             this.labelDateOutLeft.TabIndex = 113;
@@ -863,7 +863,7 @@
             this.labelGetCardLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelGetCardLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGetCardLeft.ForeColor = System.Drawing.Color.White;
-            this.labelGetCardLeft.Location = new System.Drawing.Point(43, 436);
+            this.labelGetCardLeft.Location = new System.Drawing.Point(41, 436);
             this.labelGetCardLeft.Name = "labelGetCardLeft";
             this.labelGetCardLeft.Size = new System.Drawing.Size(85, 13);
             this.labelGetCardLeft.TabIndex = 125;
@@ -1267,7 +1267,7 @@
             // 
             this.labelMoiVao.AutoSize = true;
             this.labelMoiVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMoiVao.Location = new System.Drawing.Point(6, 10);
+            this.labelMoiVao.Location = new System.Drawing.Point(6, 9);
             this.labelMoiVao.Name = "labelMoiVao";
             this.labelMoiVao.Size = new System.Drawing.Size(57, 15);
             this.labelMoiVao.TabIndex = 30;
@@ -1277,7 +1277,7 @@
             // 
             this.labelMoiRa.AutoSize = true;
             this.labelMoiRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMoiRa.Location = new System.Drawing.Point(1088, 10);
+            this.labelMoiRa.Location = new System.Drawing.Point(1088, 9);
             this.labelMoiRa.Name = "labelMoiRa";
             this.labelMoiRa.Size = new System.Drawing.Size(48, 15);
             this.labelMoiRa.TabIndex = 29;
@@ -1289,7 +1289,7 @@
             this.labelXeVao.BackColor = System.Drawing.Color.Transparent;
             this.labelXeVao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXeVao.ForeColor = System.Drawing.Color.Black;
-            this.labelXeVao.Location = new System.Drawing.Point(115, 10);
+            this.labelXeVao.Location = new System.Drawing.Point(115, 9);
             this.labelXeVao.Name = "labelXeVao";
             this.labelXeVao.Size = new System.Drawing.Size(63, 15);
             this.labelXeVao.TabIndex = 15;
@@ -1332,7 +1332,7 @@
             // 
             this.labelVND_HeaderRight.AutoSize = true;
             this.labelVND_HeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 10);
+            this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 9);
             this.labelVND_HeaderRight.Name = "labelVND_HeaderRight";
             this.labelVND_HeaderRight.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderRight.TabIndex = 48;
@@ -1438,10 +1438,10 @@
             this.Controls.Add(this.tbRFIDCardID);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "FormNhanVien";
-            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.FormNhanVien_Activated);
@@ -1449,6 +1449,7 @@
             this.Load += new System.EventHandler(this.FormStaff_Load);
             this.Shown += new System.EventHandler(this.FormNhanVien_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
+            this.Resize += new System.EventHandler(this.FormNhanVien_Resize);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCamera4)).EndInit();

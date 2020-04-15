@@ -15,7 +15,7 @@ namespace ParkingMangement.Model
         public string FunctionName { get; set; }
         [JsonProperty("functionSec")]
         public string FunctionSec { get; set; }
-        [JsonProperty("project_id")]
+        [JsonProperty("projectId")]
         public int ProjectId { get; set; }
         [JsonProperty("deleted")]
         public int Deleted { get; set; }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using ClosedXML.Excel;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParkingMangement.DAO;
 using ParkingMangement.DTO;
@@ -43,9 +44,12 @@ namespace ParkingMangement.GUI
         private int mExportSaleType = EXPORT_SALE_NOT_YET_SEARCH;
         private System.Windows.Forms.Timer timerReadUHFData;
         private Config mConfig;
+        private Size oldSize;
+        private int _lastFormSize;
         public FormQuanLy()
         {
             InitializeComponent();
+            _lastFormSize = GetFormArea(this.Size);
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -1363,7 +1367,7 @@ namespace ParkingMangement.GUI
         private void searchCardToLock()
         {
             string key = tbLockCardSearch.Text;
-            DataTable data = CardDAO.SearchData(key);            
+            DataTable data = CardDAO.SearchUsingCardData(key);            
             dgvLockCardList.DataSource = data;
         }
 
@@ -1401,10 +1405,7 @@ namespace ParkingMangement.GUI
                 cbIsUsingEdit.Checked = false;
             }
             string partName = Convert.ToString(dgvCardList.Rows[Index].Cells["CardPartName"].Value);
-            cbPartNameEdit.Text = partName;
-            string cardTypeName = Convert.ToString(dgvCardList.Rows[Index].Cells["CardTypeName"].Value);
-            cbCardTypeNameCreate.Text = cardTypeName;
-            cbCardTypeNameEdit.Text = cardTypeName;
+            cbPartNameEdit.Text = partName;          
         }
 
         private void tabQuanLy_SelectedIndexChanged(object sender, EventArgs e)
@@ -2731,14 +2732,18 @@ namespace ParkingMangement.GUI
             int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
             switch (expiredTicketMonthTypeID)
             {
+                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                    rbTinhTienNhuVangLai.Checked = true;
+                    break;              
                 case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                default:
                     rbChiCanhBaoHetHan.Checked = true;
                     break;
-                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
-                default:
-                    rbTinhTienNhuVangLai.Checked = true;
-                    break;
             }
+            checkShowHideLockCardDate();
+            int isAutoLockCard = ConfigDAO.GetIsAutoLockCard();
+            cbTuDongKhoaThe.Checked = isAutoLockCard == ConfigDTO.AUTO_LOCK_CARD_YES;
+            tbLockCardDate.Text = ConfigDAO.GetLockCardDate() + "";
         }
 
         private void loadQuyenNhanVien()
@@ -2906,6 +2911,24 @@ namespace ParkingMangement.GUI
             }
 
             configDTO.ParkingName = tbParkingName.Text;
+
+            int isAuToLockCard = ConfigDTO.AUTO_LOCK_CARD_NO;
+            if (cbTuDongKhoaThe.Checked)
+            {
+                isAuToLockCard = ConfigDTO.AUTO_LOCK_CARD_YES;
+            }
+            configDTO.IsAutoLockCard = isAuToLockCard;
+
+            int lockCardDate = 5;
+            if (int.TryParse(tbLockCardDate.Text, out lockCardDate))
+            {
+                if (lockCardDate < 1 || lockCardDate > 31)
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            configDTO.LockCardDate = lockCardDate;
 
             if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
             {
@@ -3317,18 +3340,61 @@ namespace ParkingMangement.GUI
             loadLogList();
         }
 
-        private void exportToExcel(DataGridView dataGridView, Microsoft.Office.Interop.Excel._Worksheet worksheet, int cellRowIndex, int cellColumnIndex)
+        //private void exportToExcel(DataGridView dataGridView, Microsoft.Office.Interop.Excel._Worksheet worksheet, int cellRowIndex, int cellColumnIndex)
+        //{
+        //    int originalCellColumnIndex = cellColumnIndex;
+        //    //Loop through each row and read value from each column. 
+        //    for (int i = 0; i < dataGridView.Columns.Count; i++)
+        //    {
+        //        if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
+        //        {
+        //            worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
+        //            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+        //            setColerForRange(range);
+        //            setAllBorderForRange(range);
+        //            cellColumnIndex++;
+        //        }
+        //    }
+
+        //    cellRowIndex++;
+        //    cellColumnIndex = originalCellColumnIndex;
+        //    for (int i = 0; i < dataGridView.Rows.Count; i++)
+        //    {
+        //        for (int j = 0; j < dataGridView.Columns.Count; j++)
+        //        {
+        //            if (dataGridView.Columns[j].Visible && dataGridView.Columns[j].CellType == typeof(DataGridViewTextBoxCell))
+        //            {
+        //                Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
+        //                worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Rows[i].Cells[j].Value.ToString();
+        //                setLeftBorderForRange(range);
+        //                setRightBorderForRange(range);
+        //                if (i == dataGridView.Rows.Count - 1)
+        //                {
+        //                    setBottomBorderForRange(range);
+        //                }
+        //                cellColumnIndex++;
+        //            }
+        //        }
+        //        cellColumnIndex = 1;
+        //        cellRowIndex++;
+        //    }
+        //}
+
+        private void exportToExcel(DataGridView dataGridView, IXLWorksheet worksheet, int cellRowIndex, int cellColumnIndex, string fileName)
         {
+            worksheet.Columns().AdjustToContents();
+            worksheet.Rows().AdjustToContents();
+
             int originalCellColumnIndex = cellColumnIndex;
             //Loop through each row and read value from each column. 
             for (int i = 0; i < dataGridView.Columns.Count; i++)
             {
                 if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Columns[i].HeaderText;
-                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                    setColerForRange(range);
-                    setAllBorderForRange(range);
+                    worksheet.Cell(cellRowIndex, cellColumnIndex).Value = dataGridView.Columns[i].HeaderText;
+                    IXLCell cell = worksheet.Cell(cellRowIndex, cellColumnIndex);
+                    setColerForRange(cell);
+                    setAllBorderForRange(cell);
                     cellColumnIndex++;
                 }
             }
@@ -3341,54 +3407,47 @@ namespace ParkingMangement.GUI
                 {
                     if (dataGridView.Columns[j].Visible && dataGridView.Columns[j].CellType == typeof(DataGridViewTextBoxCell))
                     {
-                        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)worksheet.Cells[cellRowIndex, cellColumnIndex];
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = dataGridView.Rows[i].Cells[j].Value.ToString();
-                        setLeftBorderForRange(range);
-                        setRightBorderForRange(range);
-                        if (i == dataGridView.Rows.Count - 1)
-                        {
-                            setBottomBorderForRange(range);
-                        }
+                        worksheet.Cell(cellRowIndex, cellColumnIndex).Value = dataGridView.Rows[i].Cells[j].Value.ToString();
+                        IXLCell cell = worksheet.Cell(cellRowIndex, cellColumnIndex);
+                        setAllBorderForRange(cell);
                         cellColumnIndex++;
                     }
                 }
                 cellColumnIndex = 1;
                 cellRowIndex++;
             }
-        }
 
-        private void exportDanhSachXeToExcel()
-        {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
-            try
-            {
-
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách xe ra vào";
-
-                //Loop through each row and read value from each column. 
-                exportToExcel(dgvCarList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
+            //Getting the location and file name of the excel to save from user. 
+            if (fileName != null)
+            {                
                 SaveFileDialog saveDialog = new SaveFileDialog();
                 saveDialog.InitialDirectory = Environment.CurrentDirectory;
                 saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
                 saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_danhsach_xe_ravao_" + Util.getCurrentDateTimeString();
+                saveDialog.FileName = fileName + "_" + Util.getCurrentDateTimeString();
 
                 if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
+                    worksheet.Workbook.SaveAs(saveDialog.FileName);
+                    DialogResult result = MessageBox.Show(Constant.sMessageExportExcelSuccess, "", MessageBoxButtons.OK);
+                    if (result == DialogResult.OK)
+                    {
+                        Process.Start(saveDialog.FileName);
+                    }
                 }
+            }            
+        }
+
+        private void exportDanhSachXeToExcel()
+        {          
+            try
+            {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách xe ra vào");
+
+                //Loop through each row and read value from each column.
+                string fileName = "Export_danhsach_xe_ravao";
+                exportToExcel(dgvCarList, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3396,89 +3455,40 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportDanhSachXeThangToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
-
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách xe tháng";
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách xe tháng");
 
                 //Loop through each row and read value from each column.
-                exportToExcel(dgvCarTicketMonthList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_danhsach_xethang_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
-            }
+                string fileName = "Export_danhsach_xethang";
+                exportToExcel(dgvCarTicketMonthList, worksheet, 1, 1, fileName);            }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportBangChamCongToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
-
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách chấm công";
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách chấm công");
 
                 //Loop through each row and read value from each column.
-                exportToExcel(dgvWorkList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_cham_cong_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_cham_cong";
+                exportToExcel(dgvWorkList, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3486,28 +3496,19 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportDoanhThuTongQuatToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Doanh thu tổng quát";
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Doanh thu tổng quát");
 
-                exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
+                string fileName = "Export_thongke_doanhthu_tongquat";
+                exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1, fileName);
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
@@ -3529,44 +3530,21 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportDoanhSachTheXeToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách thẻ xe");
 
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách thẻ xe";
-
-                exportToExcel(dgvCardStatistic, worksheet, 1, 1);
+                exportToExcel(dgvCardStatistic, worksheet, 1, 1, null);
                 int cellRowIndex = dgvCardStatistic.Rows.Count + 3;
-                exportToExcel(dgvCardList, worksheet, cellRowIndex, 1);
-
-                excel.Columns.AutoFit();
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_danhsach_thexe_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_danhsach_thexe";
+                exportToExcel(dgvCardList, worksheet, cellRowIndex, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3574,43 +3552,19 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportNhatKyVeThangToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Nhật ký vé tháng");
 
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Nhật ký vé tháng";
-
-                exportToExcel(dgvTicketLogList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_nhatky_vethang_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_nhatky_vethang";
+                exportToExcel(dgvTicketLogList, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3618,44 +3572,19 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportDanhSachTheHetHanToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách thẻ hết hạn");
 
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách thẻ hết hạn";
-
-                //Loop through each row and read value from each column. 
-                exportToExcel(dgvRenewTicketMonthList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_danhsach_the_hethan_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_danhsach_the_hethan";
+                exportToExcel(dgvRenewTicketMonthList, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3663,44 +3592,19 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportNhatKyHeThongToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Nhật ký hệ thống");
 
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Nhật ký hệ thống";
-
-                //Loop through each row and read value from each column. 
-                exportToExcel(dgvLogList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_nhatky_hethong_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_nhatky_hethong";
+                exportToExcel(dgvLogList, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3708,45 +3612,68 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
+        //private void exportDoanhThuChiTietToExcel()
+        //{
+        //    // Creating a Excel object. 
+        //    Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+        //    Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+        //    Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+        //    try
+        //    {
+
+        //        worksheet = workbook.ActiveSheet;
+        //        worksheet.Name = "Doanh thu chi tiết";
+
+        //        //Loop through each row and read value from each column. 
+        //        exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1);
+        //        int cellRowIndex = dgvThongKeDoanhThu.Rows.Count + 3;
+        //        exportToExcel(dgvCarList, worksheet, cellRowIndex, 1);
+
+        //        excel.Columns.AutoFit();
+
+        //        //Getting the location and file name of the excel to save from user. 
+        //        SaveFileDialog saveDialog = new SaveFileDialog();
+        //        saveDialog.InitialDirectory = Environment.CurrentDirectory;
+        //        saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+        //        saveDialog.FilterIndex = 2;
+        //        saveDialog.FileName = "Export_thongke_doanhthu_chitiet_" + Util.getCurrentDateTimeString();
+
+        //        if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //        {
+        //            workbook.SaveAs(saveDialog.FileName);
+        //            MessageBox.Show(Constant.sMessageExportExcelSuccess);
+        //            Process.Start(saveDialog.FileName);
+        //        }
+        //    }
+        //    catch (System.Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        excel.Quit();
+        //        workbook = null;
+        //        excel = null;
+        //    }
+        //}
+
         private void exportDoanhThuChiTietToExcel()
         {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
             try
             {
-
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Doanh thu chi tiết";
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Doanh thu chi tiết");
 
                 //Loop through each row and read value from each column. 
-                exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1);
+                exportToExcel(dgvThongKeDoanhThu, worksheet, 1, 1, null);
                 int cellRowIndex = dgvThongKeDoanhThu.Rows.Count + 3;
-                exportToExcel(dgvCarList, worksheet, cellRowIndex, 1);
-
-                excel.Columns.AutoFit();
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_thongke_doanhthu_chitiet_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_thongke_doanhthu_chitiet";
+                exportToExcel(dgvCarList, worksheet, cellRowIndex, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3754,43 +3681,19 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
         private void exportDanhSachTheThangToExcel()
-        {
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
+        {            
             try
             {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách thẻ tháng");
 
-                worksheet = workbook.ActiveSheet;
-                worksheet.Name = "Danh sách thẻ tháng";
-
-                exportToExcel(dgvTicketMonthList, worksheet, 1, 1);
-
-                excel.Columns.AutoFit();
-
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Export_danhsach_thethang_" + Util.getCurrentDateTimeString();
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workbook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageExportExcelSuccess);
-                    Process.Start(saveDialog.FileName);
-                }
+                string fileName = "Export_danhsach_thethang";
+                exportToExcel(dgvTicketMonthList, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -3798,9 +3701,7 @@ namespace ParkingMangement.GUI
             }
             finally
             {
-                excel.Quit();
-                workbook = null;
-                excel = null;
+
             }
         }
 
@@ -3824,18 +3725,29 @@ namespace ParkingMangement.GUI
             range.Borders.get_Item(Microsoft.Office.Interop.Excel.XlBordersIndex.xlEdgeBottom).LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
         }
 
-        private void setAllBorderForRange(Microsoft.Office.Interop.Excel.Range range)
-        {
-            setLeftBorderForRange(range);
-            setRightBorderForRange(range);
-            setTopBorderForRange(range);
-            setBottomBorderForRange(range);
-        }
+        //private void setAllBorderForRange(Microsoft.Office.Interop.Excel.Range range)
+        //{
+        //    setLeftBorderForRange(range);
+        //    setRightBorderForRange(range);
+        //    setTopBorderForRange(range);
+        //    setBottomBorderForRange(range);
+        //}
 
-        private void setColerForRange(Microsoft.Office.Interop.Excel.Range range)
+        private void setAllBorderForRange(IXLCell cell)
         {
-            range.Font.Color = ColorTranslator.ToOle(Color.Blue);
-            range.Font.Bold = true;
+            cell.Style.Border.SetOutsideBorder(XLBorderStyleValues.Thin);
+        }        
+
+        //private void setColerForRange(Microsoft.Office.Interop.Excel.Range range)
+        //{
+        //    range.Font.Color = ColorTranslator.ToOle(Color.Blue);
+        //    range.Font.Bold = true;
+        //}
+
+        private void setColerForRange(IXLCell range)
+        {
+            range.Style.Font.FontColor = XLColor.Blue;
+            range.Style.Font.Bold = true;
         }
 
         private void btnExportDoanhThuTongQuat_Click(object sender, EventArgs e)
@@ -5186,6 +5098,80 @@ namespace ParkingMangement.GUI
                 }
             }
             searchCardToLock();
+        }
+
+        private void rbTuDongKhoaThe_CheckedChanged(object sender, EventArgs e)
+        {
+            checkShowHideLockCardDate();
+        }
+
+        private void checkShowHideLockCardDate()
+        {
+            panelLockCardDate.Visible = cbTuDongKhoaThe.Checked;
+        }
+
+        private void ResizeAll(Control cnt, Size newSize)
+        {
+            int iWidth = newSize.Width - oldSize.Width;
+            cnt.Left += (cnt.Left * iWidth) / oldSize.Width;
+            cnt.Width += (cnt.Width * iWidth) / oldSize.Width;
+
+            int iHeight = newSize.Height - oldSize.Height;
+            cnt.Top += (cnt.Top * iHeight) / oldSize.Height;
+            cnt.Height += (cnt.Height * iHeight) / oldSize.Height;
+            foreach (Control childControl in cnt.Controls)
+            {
+                ResizeAll(childControl, base.Size);
+            }
+        }
+
+        protected override void OnResize(System.EventArgs e)
+        {
+            base.OnResize(e);
+            if (WindowState != FormWindowState.Minimized)
+            {
+                oldSize = base.Size;
+            }
+        }
+
+        private int GetFormArea(Size size)
+        {
+            return size.Width;
+        }
+
+        private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
+        {
+            foreach (Control c in coll)
+            {
+                if (c.HasChildren)
+                {
+                    ResizeFont(c.Controls, scaleFactor);
+                }
+                else
+                {
+                    if (true)
+                    {
+                        // scale font
+                        c.Font = new Font(c.Font.FontFamily, c.Font.Size * scaleFactor, c.Font.Style);
+                    }
+                }
+            }
+        }
+
+        private void FormQuanLy_Resize(object sender, EventArgs e)
+        {
+            if (WindowState != FormWindowState.Minimized)
+            {
+                Control control = (Control)sender;
+                float scaleFactor = (float)GetFormArea(control.Size) / (float)_lastFormSize;
+                ResizeFont(this.Controls, scaleFactor);
+                _lastFormSize = GetFormArea(control.Size);
+
+                foreach (Control cnt in this.Controls)
+                {
+                    ResizeAll(cnt, base.Size);
+                }
+            }          
         }
     }
 }

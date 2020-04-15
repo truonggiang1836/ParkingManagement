@@ -14,6 +14,8 @@ namespace ParkingMangement.DTO
         public const int TYPE_OUT_IN = 4;
         public const int CALCULATION_TICKET_MONTH_NO = 0;
         public const int CALCULATION_TICKET_MONTH_YES = 1;
+        public const int AUTO_LOCK_CARD_NO = 0;
+        public const int AUTO_LOCK_CARD_YES = 1;
 
         private int lostCard;
         private int bikeSpace;
@@ -33,6 +35,8 @@ namespace ParkingMangement.DTO
         private string folderRoot;
         private string parkingName;
         private int calculationTicketMonth = CALCULATION_TICKET_MONTH_NO;
+        private int isAutoLockCard;
+        private int lockCardDate;
 
         public int BikeSpace { get => bikeSpace; set => bikeSpace = value; }
         public int CarSpace { get => carSpace; set => carSpace = value; }
@@ -52,5 +56,7 @@ namespace ParkingMangement.DTO
         public string FolderRoot { get => folderRoot; set => folderRoot = value; }
         public string ParkingName { get => parkingName; set => parkingName = value; }
         public int CalculationTicketMonth { get => calculationTicketMonth; set => calculationTicketMonth = value; }
+        public int IsAutoLockCard { get => isAutoLockCard; set => isAutoLockCard = value; }
+        public int LockCardDate { get => lockCardDate; set => lockCardDate = value; }
     }
 }

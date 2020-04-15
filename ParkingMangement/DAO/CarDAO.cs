@@ -15,6 +15,8 @@ namespace ParkingMangement.DAO
         public static int ALL_TICKET = 0;
         public static int COMMON_TICKET = 1;
         public static int MONTH_TICKET = 2;
+        public static Bitmap sBitmapBikeIcon;
+        public static Bitmap sBitmapCarIcon;
 
         private static string sqlGetAllData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Part.ID as PartID, Part.PartName, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Car.IDTicketMonth, Car.IsLostCard, Part.Sign, Car.Computer, userC.NameUser as Account, " +
@@ -450,21 +452,30 @@ namespace ParkingMangement.DAO
                 data.Columns["CountCarSurvive"].SetOrdinal(1);
                 data.Columns.Add("CountCarEmpty", typeof(string));
                 data.Columns["CountCarEmpty"].SetOrdinal(2);
+
+                if (sBitmapBikeIcon == null)
+                {
+                    sBitmapBikeIcon = new Bitmap(Properties.Resources.ic_bike_icon);
+                }
+                if (sBitmapCarIcon == null)
+                {
+                    sBitmapCarIcon = new Bitmap(Properties.Resources.ic_car_icon);
+                }
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string typeID = data.Rows[row].Field<string>("TypeID");
                     int countCarSurvive = GetCountCarSurvive(typeID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
-                    Bitmap bitmap = new Bitmap(Properties.Resources.ic_bike_icon);
+                    Bitmap bitmap = sBitmapBikeIcon;
                     int countCarEmpty = 0;
                     if (typeID == TypeDTO.TYPE_BIKE)
                     {
-                        bitmap = new Bitmap(Properties.Resources.ic_bike_icon);
+                        bitmap = sBitmapBikeIcon;
                         countCarEmpty = ConfigDAO.GetBikeSpace() - countCarSurvive;
                     }
                     else
                     {
-                        bitmap = new Bitmap(Properties.Resources.ic_car_icon);
+                        bitmap = sBitmapCarIcon;
                         countCarEmpty = ConfigDAO.GetCarSpace() - countCarSurvive;
                     }
                     data.Rows[row].SetField("TypeName", bitmap);
@@ -668,40 +679,29 @@ namespace ParkingMangement.DAO
             return "";
         }
 
-        //public static void Insert(CarDTO carDTO)
-        //{
-        //    string sql = "insert into Car(ID, TimeStart, TimeEnd, Digit, IDIn, IDOut, Cost, IDTicketMonth, IDPart, Images, Images2, Images3," +
-        //        " Images4, IsLostCard, Computer, Account, CostBefore, DateUpdate, DateLostCard) values ('" + carDTO.Id + "', '" + carDTO.TimeStart
-        //        + "', '" + carDTO.TimeEnd + "', '" + carDTO.Digit + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', " + carDTO.Cost + ", '" +
-        //        carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Images3 + "', '" +
-        //        carDTO.Images4 + "', " + carDTO.IsLostCard + ", '" + carDTO.Computer + "', '" + carDTO.Account + "', " +
-        //        carDTO.CostBefore + ", '" + carDTO.DateUpdate + "', '" + carDTO.DateLostCard + "')";
-        //    (new Database()).ExcuNonQuery(sql);
-        //}
-
         public static void Insert(CarDTO carDTO)
         {
-            string sql = "insert into Car(ID, TimeStart, Digit, DigitIn, IDIn, IDOut, IDTicketMonth, IDPart, Images, Images2, Computer, Account, DateUpdate) values ('" + carDTO.Id + "', '" + carDTO.TimeStart + "', '" + carDTO.Digit + "', '" + carDTO.DigitIn
-                + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', '" + carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Computer + "', '" + carDTO.Account + "', '" + carDTO.DateUpdate + "')";
+            string sql = "insert into Car(ID, TimeStart, Digit, DigitIn, IDIn, IDOut, IDTicketMonth, IDPart, Images, Images2, Computer, Account, DateUpdate) values ('" + carDTO.Id + "', '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', '" + carDTO.Digit + "', '" + carDTO.DigitIn
+                + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', '" + carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Computer + "', '" + carDTO.Account + "', '" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "')";
             (new Database()).ExcuNonQuery(sql);
         }
 
         public static void UpdateCarIn(CarDTO carDTO)
         {
-            string sql = "update Car set TimeStart ='" + carDTO.TimeStart + "', IDIn ='" + carDTO.IdIn + "', DigitIn ='" + carDTO.DigitIn + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account +
-                "', DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
+            string sql = "update Car set TimeStart ='" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', IDIn ='" + carDTO.IdIn + "', DigitIn ='" + carDTO.DigitIn + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account +
+                "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
             (new Database()).ExcuNonQuery(sql);
         }
 
         public static void UpdateCarOut(CarDTO carDTO)
         {
-            string sql = "update Car set DigitOut = '" + carDTO.DigitOut + "', TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate + "' where Identify =" + carDTO.Identify;
+            string sql = "update Car set DigitOut = '" + carDTO.DigitOut + "', TimeEnd ='" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
             (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateLostCard(CarDTO carDTO)
         {
-            string sql = "update Car set TimeEnd ='" + carDTO.TimeEnd + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", IsLostCard =" + carDTO.IsLostCard + ", DateUpdate ='" + carDTO.DateUpdate + "', DateLostCard ='" + carDTO.DateLostCard + "' where Identify =" + carDTO.Identify;
+            string sql = "update Car set TimeEnd ='" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", IsLostCard =" + carDTO.IsLostCard + ", DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "', DateLostCard ='" + carDTO.DateLostCard.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
             string cardId = getIdByIdentify(carDTO.Identify);
             if (cardId != null)
             {

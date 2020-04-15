@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using ParkingMangement.DTO;
+using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,7 +27,7 @@ namespace ParkingMangement.DAO
         public static void UpdateIsSync(string id)
         {
             string sql = "update SmartCard set IsSync = 1 where ID in " + id;
-            (new Database()).ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static string GetLastCardIdentify()
@@ -61,7 +62,7 @@ namespace ParkingMangement.DAO
 
         public static bool Insert(CardDTO cardDTO)
         {
-            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, IsSync, IsDeleted, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.IsSync + "', '" + cardDTO.IsDeleted + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
+            string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, IsSync, IsDeleted, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.IsSync + "', '" + cardDTO.IsDeleted + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "')";
             return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
@@ -73,7 +74,7 @@ namespace ParkingMangement.DAO
                 for (int i = 0; i < listCardDTO.Count; i++)
                 {
                     CardDTO cardDTO = listCardDTO[i];
-                    sql += "('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.IsDeleted + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit + "')";
+                    sql += "('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.IsDeleted + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "')";
                     if (i < listCardDTO.Count - 1)
                     {
                         sql += ",";
@@ -87,7 +88,7 @@ namespace ParkingMangement.DAO
         public static string getUpdateSql(CardDTO cartDTO)
         {
             string sql = "update SmartCard set Identify =('" + cartDTO.Identify + "'), IsUsing =('" + cartDTO.IsUsing + "'), IsSync =('" + cartDTO.IsSync + "'), IsDeleted =('" + cartDTO.IsDeleted + "'), Type =('" + cartDTO.Type + "'), DayUnlimit =('"
-                + cartDTO.DayUnlimit + "') where ID ='" + cartDTO.Id + "'";
+                + cartDTO.DayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "') where ID ='" + cartDTO.Id + "'";
             return sql;
         }
 
@@ -109,9 +110,15 @@ namespace ParkingMangement.DAO
             (new Database()).ExcuNonQuery(sql);
         }
 
+        public static void lockExpiredCard()
+        {
+            string sql = "update SmartCard set SmartCard.IsUsing = 0 from SmartCard inner join TicketMonth on SmartCard.ID = TicketMonth.ID"
+                + " where MONTH(TicketMonth.ExpirationDate) < MONTH(getdate()) and SmartCard.IsUsing = 1";
+            (new Database()).ExcuNonQuery(sql);
+        }
         public static void UpdateDayUnlimit(DateTime dayUnlimit, string cardId)
         {
-            string sql = "update SmartCard set DayUnlimit = '" + dayUnlimit + "' where ID = '" + cardId + "'";
+            string sql = "update SmartCard set DayUnlimit = '" + dayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "' where ID = '" + cardId + "'";
             (new Database()).ExcuNonQuery(sql);
         }
 
@@ -123,8 +130,15 @@ namespace ParkingMangement.DAO
 
         public static DataTable SearchData(string key)
         {
-            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from SmartCard, Part, CardType where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
-                + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') and SmartCard.IsUsing = '1' and SmartCard.IsDeleted = 0 order by SmartCard.Identify asc";
+            string sql = "select SmartCard.Identify, SmartCard.ID, SmartCard.IsUsing, Part.PartName from SmartCard, Part, CardType where SmartCard.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and "
+                + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') and SmartCard.IsDeleted = 0 order by SmartCard.Identify asc";
+            return (new Database()).ExcuQuery(sql);
+        }
+
+        public static DataTable SearchUsingCardData(string key)
+        {
+            string sql = "select SmartCard.Identify, SmartCard.ID, Part.PartName from SmartCard, Part where SmartCard.IsUsing = '1' and SmartCard.Type = Part.ID and "
+                + "(SmartCard.Identify like '%" + key + "%' or SmartCard.ID like '%" + key + "%' or Part.PartName like '%" + key + "%') and SmartCard.IsDeleted = 0 order by SmartCard.Identify asc";
             return (new Database()).ExcuQuery(sql);
         }
 

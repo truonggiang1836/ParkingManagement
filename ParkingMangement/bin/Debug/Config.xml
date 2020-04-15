@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <camera_url_1>rtsp://admin:spm888999@192.168.1.111:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_1>
-  <camera_url_2>rtsp://admin:spm888999@192.168.1.109:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_2>
-  <camera_url_3>rtsp://admin:spm888999@192.168.1.110:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_3>
-  <camera_url_4>rtsp://admin:spm888999@192.168.1.108:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_4>
+  <camera_url_1>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_1>
+  <camera_url_2>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_2>
+  <camera_url_3>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_3>
+  <camera_url_4>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_4>
   <rfid_in>\\?\HID#VID_0E6A&amp;PID_030F&amp;MI_00#8&amp;4423aea&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_in>
   <rfid_out>\\?\HID#VID_0E6A&amp;PID_030F&amp;MI_00#8&amp;4423aea&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_out>
   <computer_name>TRUONGGIANG</computer_name>
@@ -12,7 +12,7 @@
   <sql_username>sa</sql_username>
   <sql_password>123456</sql_password>
   <folder_root>ParkingManagement</folder_root>
-  <in_out_type>4</in_out_type>
+  <in_out_type>1</in_out_type>
   <zoom_camera_1>30</zoom_camera_1>
   <zoom_camera_2>30</zoom_camera_2>
   <zoom_camera_3>30</zoom_camera_3>

@@ -22,7 +22,7 @@ namespace ParkingMangement.DAO
 
         public static void Insert(LogDTO logDTO)
         {
-            string sql = "insert into Log(LogTypeID, LogNote, Account, ProcessDate, Computer) values (" + logDTO.LogTypeID + ", '" + logDTO.Note + "', '" + logDTO.Account + "', '" + logDTO.ProcessDate + "', '" + logDTO.Computer + "')";
+            string sql = "insert into Log(LogTypeID, LogNote, Account, ProcessDate, Computer) values (" + logDTO.LogTypeID + ", '" + logDTO.Note + "', '" + logDTO.Account + "', '" + logDTO.ProcessDate.ToString(Constant.sDateTimeFormatForQuery) + "', '" + logDTO.Computer + "')";
             (new Database()).ExcuNonQuery(sql);
         }
 

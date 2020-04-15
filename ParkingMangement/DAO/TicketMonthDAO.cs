@@ -44,15 +44,15 @@ namespace ParkingMangement.DAO
         public static void UpdateIsSync(string id)
         {
             string sql = "update TicketMonth set IsSync = 1 where ID in " + id;
-            (new Database()).ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static string getInsertSql(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "insert into TicketMonth(ID, ProcessDate, Digit, CustomerName, CMND, Company, Email, Phone, Address, CarKind, RegistrationDate, ExpirationDate" +
-                ", ChargesAmount, IDPart, Account, Note, IsSync, IsDeleted) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" +
+                ", ChargesAmount, IDPart, Account, Note, IsSync, IsDeleted) values ('" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.ProcessDate.ToString(Constant.sDateTimeFormatForQuery) + "', '" + ticketMonthDTO.Digit + "', '" +
                 ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" + ticketMonthDTO.Phone + "', '" +
-                ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate +
+                ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate.ToString(Constant.sDateTimeFormatForQuery) + "', '" + ticketMonthDTO.ExpirationDate.ToString(Constant.sDateTimeFormatForQuery) +
                 "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "', '" + ticketMonthDTO.Note + "', '" + ticketMonthDTO.IsSync + "', '" + ticketMonthDTO.IsDeleted + "')";
             return sql;
         }
@@ -71,9 +71,9 @@ namespace ParkingMangement.DAO
 
         public static string getUpdateSql(TicketMonthDTO ticketMonthDTO)
         {
-            string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate + "', Digit ='" + ticketMonthDTO.Digit + "', CustomerName ='"
+            string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate.ToString(Constant.sDateTimeFormatForQuery) + "', Digit ='" + ticketMonthDTO.Digit + "', CustomerName ='"
                 + ticketMonthDTO.CustomerName + "', CMND ='" + ticketMonthDTO.Cmnd + "', Company ='" + ticketMonthDTO.Company + "', Email ='" + ticketMonthDTO.Email + "', Phone = '" + ticketMonthDTO.Phone + "', Address ='" + ticketMonthDTO.Address + "', CarKind ='"
-                + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount 
+                + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount 
                 + "', IsSync =('" + ticketMonthDTO.IsSync + "'), IsDeleted =('" + ticketMonthDTO.IsDeleted + "'), Note ='" + ticketMonthDTO.Note + "' where ID ='" + ticketMonthDTO.Id + "'";
             return sql;
         }
@@ -175,7 +175,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "update TicketMonth set ExpirationDate = '" + expirationDate + "'  where ID ='" + id + "'";
             (new Database()).ExcuNonQuery(sql);
-        }
+        }  
 
         public static DataTable GetAllLostTicketData()
         {

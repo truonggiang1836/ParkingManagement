@@ -108,6 +108,32 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static int GetLockCardDate()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("LockCardDate");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetIsAutoLockCard()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("IsAutoLockCard");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public static string GetParkingName()
         {
             DataTable dt = GetConfig();
@@ -138,7 +164,8 @@ namespace ParkingMangement.DAO
         {
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
-                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth;
+                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth
+                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate;
             return (new Database()).ExcuNonQuery(sql);
         }
 

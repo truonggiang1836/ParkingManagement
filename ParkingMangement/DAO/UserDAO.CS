@@ -27,7 +27,7 @@ namespace ParkingMangement.DAO
         public static void UpdateIsSync(string listId)
         {
             string sql = "update UserCar set IsSync = 1 where UserID in " + listId;
-            (new Database()).ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static DataTable GetID_Name_Function()

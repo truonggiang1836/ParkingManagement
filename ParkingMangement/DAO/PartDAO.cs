@@ -26,7 +26,7 @@ namespace ParkingMangement.DAO
         public static void UpdateIsSync(string listId)
         {
             string sql = "update Part set IsSync = 1 where ID in " + listId;
-            (new Database()).ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static DataTable GetAllTicketCommonData()

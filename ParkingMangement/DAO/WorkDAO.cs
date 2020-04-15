@@ -46,8 +46,8 @@ namespace ParkingMangement.DAO
 
         public static void Insert(WorkDTO workDTO)
         {
-            string sql = "insert into WorkAssign(UserID, TimeStart, TimeEnd, Computer) values ('" + workDTO.UserID + "', '" + workDTO.TimeStart + "', '" +
-                workDTO.TimeEnd + "', '" + workDTO.Computer + "')";
+            string sql = "insert into WorkAssign(UserID, TimeStart, TimeEnd, Computer) values ('" + workDTO.UserID + "', '" + workDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', '" +
+                workDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', '" + workDTO.Computer + "')";
             (new Database()).ExcuNonQuery(sql);
         }
     }

@@ -74,8 +74,6 @@ namespace ParkingMangement.GUI
         private Config mConfig;
 
         private Size oldSize;
-        private const float LARGER_FONT_FACTOR = 1.5f;
-        private const float SMALLER_FONT_FACTOR = 0.8f;
 
         //private bool mIsHasCarInOut = false;
 
@@ -84,6 +82,7 @@ namespace ParkingMangement.GUI
         public FormNhanVien()
         {
             InitializeComponent();
+            _lastFormSize = GetFormArea(this.Size);
             //CvInvoke.UseOpenCL = false;
             Control.CheckForIllegalCrossThreadCalls = false;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
@@ -93,10 +92,7 @@ namespace ParkingMangement.GUI
             //_rawinput.AddMessageFilter();   // Adding a message filter will cause keypresses to be handled
             //Win32.DeviceAudit();            // Writes a file DeviceAudit.txt to the current directory
 
-            _rawinput.KeyPressed += OnKeyPressed;
-
-            //this.Resize += new EventHandler(Form_Resize);
-            _lastFormSize = GetFormArea(this.Size);
+            _rawinput.KeyPressed += OnKeyPressed;   
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
@@ -223,14 +219,6 @@ namespace ParkingMangement.GUI
             //imageBox4.Visible = false;
 
             runPythonServer();
-
-            //new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
-            //    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
-            //}).Start();
-
         }
 
         private void loadInfo()
@@ -442,7 +430,9 @@ namespace ParkingMangement.GUI
                     labelError.Text = Constant.sMessageCardIdNotExist;
                     //AutoClosingMessageBox.Show(Constant.sMessageCardIdNotExist, "", 1000);
                 }
-                dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
+                Invoke(new MethodInvoker(() => {
+                    dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
+                }));
             }
             portNameComReceiveInput = null;
             oldPortNameComReceiveInput = null;
@@ -504,27 +494,30 @@ namespace ParkingMangement.GUI
                 inputDigit = docBienSo();
             }
 
+            bool isKiemTraXeChuaRa = KiemTraXeChuaRa(dtLastCar);
+            bool isKiemTraCapNhatXeVao = KiemTraCapNhatXeVao(dtLastCar);
+            bool isKiemTraCapNhatXeRa = KiemTraCapNhatXeRa(dtLastCar);
             if (isCarIn())
             {
-                if (KiemTraXeChuaRa(dtLastCar))
+                if (isKiemTraXeChuaRa)
                 {
-                    if (!KiemTraCapNhatXeVao(dtLastCar))
+                    if (!isKiemTraCapNhatXeVao)
                     {
+                        labelError.Text = "Thẻ này chưa được quẹt đầu ra";
                         resetPictureBoxImage1();
                         resetPictureBoxImage2();
                         tbRFIDCardID.Focus();
-                        labelError.Text = "Thẻ này chưa được quẹt đầu ra";
                         return false;
                     }
                 }
 
-                //loadImage1ToPictureBox();
-                //loadImage2ToPictureBox();
+                loadImage1ToPictureBox();
+                loadImage2ToPictureBox();
                 saveImage1ToFile();
                 saveImage2ToFile();
-                if (KiemTraXeChuaRa(dtLastCar))
+                if (isKiemTraXeChuaRa)
                 {
-                    if (KiemTraCapNhatXeVao(dtLastCar))
+                    if (isKiemTraCapNhatXeVao)
                     {
                         updateCarIn(isTicketCard, dtLastCar, inputDigit);
                     }
@@ -536,10 +529,10 @@ namespace ParkingMangement.GUI
             }
             else
             {
-                if (KiemTraXeChuaRa(dtLastCar) || KiemTraCapNhatXeRa(dtLastCar))
+                if (isKiemTraXeChuaRa || isKiemTraCapNhatXeRa)
                 {
                     loadCarInData(dtLastCar);
-                    updateCarOut(isTicketCard, dtLastCar, KiemTraCapNhatXeRa(dtLastCar), inputDigit);
+                    updateCarOut(isTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit);
                 }
                 else
                 {
@@ -1365,27 +1358,6 @@ namespace ParkingMangement.GUI
 
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
         {
-            float zoomImageRatio = 0.5f;
-            if (pictureBox == pictureBoxImage1)
-            {
-                zoomImageRatio = (float)mConfig.ZoomCamera1 / 100;
-            }
-            else if (pictureBox == pictureBoxImage2)
-            {
-                zoomImageRatio = (float)mConfig.ZoomCamera2 / 100;
-            }
-            else if (pictureBox == pictureBoxImage3)
-            {
-                zoomImageRatio = (float)mConfig.ZoomCamera3 / 100;
-            }
-            else if (pictureBox == pictureBoxImage4)
-            {
-                zoomImageRatio = (float)mConfig.ZoomCamera4 / 100;
-            }
-            zoomImageRatio = 1 - zoomImageRatio * 1.2f;
-
-            //FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-            //System.Drawing.Image img = System.Drawing.Image.FromStream(stream);
             if (pictureBox != null)
             {
                 System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
@@ -1394,18 +1366,29 @@ namespace ParkingMangement.GUI
                     System.Drawing.Image image = pictureBox.Image;
                     if (Constant.IS_NAPSHOT_FULL_IMAGE)
                     {
+                        float zoomImageRatio = 0.5f;
+                        if (pictureBox == pictureBoxImage1)
+                        {
+                            zoomImageRatio = (float)mConfig.ZoomCamera1 / 100;
+                        }
+                        else if (pictureBox == pictureBoxImage2)
+                        {
+                            zoomImageRatio = (float)mConfig.ZoomCamera2 / 100;
+                        }
+                        else if (pictureBox == pictureBoxImage3)
+                        {
+                            zoomImageRatio = (float)mConfig.ZoomCamera3 / 100;
+                        }
+                        else if (pictureBox == pictureBoxImage4)
+                        {
+                            zoomImageRatio = (float)mConfig.ZoomCamera4 / 100;
+                        }
+                        zoomImageRatio = 1 - zoomImageRatio * 1.2f;
                         pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
                     }
                     else
                     {
-                        if (img.Width > 1000)
-                        {
-                            pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                        }
-                        else
-                        {
-                            pictureBox.Image = img;
-                        }
+                        pictureBox.Image = img;
                     }
                     if (image != null)
                     {
@@ -1414,7 +1397,7 @@ namespace ParkingMangement.GUI
                 }
                 catch (Exception)
                 {
-                    pictureBox.Image = img;
+
                 }
             }
         }
@@ -1469,10 +1452,6 @@ namespace ParkingMangement.GUI
             pictureBoxCamera2.BackgroundImageLayout = ImageLayout.Center;
             pictureBoxCamera3.BackgroundImageLayout = ImageLayout.Center;
             pictureBoxCamera4.BackgroundImageLayout = ImageLayout.Center;
-            //pictureBoxCamera1.Visible = false;
-            //PictureBox.Visible = false;
-            //pictureBoxCamera3.Visible = false;
-            //pictureBoxCamera4.Visible = false;
             cameraCapture1 = new CameraCapture(cameraUrl1, pictureBoxCamera1);
             cameraCapture2 = new CameraCapture(cameraUrl2, pictureBoxCamera2);
             cameraCapture3 = new CameraCapture(cameraUrl3, pictureBoxCamera3);
@@ -1508,30 +1487,27 @@ namespace ParkingMangement.GUI
 
         private void saveImage1ToFile()
         {
-            CameraCapture cameraCapture = cameraCapture1;
+            PictureBox pictureBoxCamera = pictureBoxCamera1;
             PictureBox pictureBox = pictureBoxImage1;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                cameraCapture = cameraCapture3;
+                pictureBoxCamera = pictureBoxCamera3;
                 pictureBox = pictureBoxImage3;
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
                 if (inputIsRightSide())
                 {
-                    cameraCapture = cameraCapture3;
+                    pictureBoxCamera = pictureBoxCamera3;
                     pictureBox = pictureBoxImage3;
                 }
             }
 
             if (isCarIn())
             {
-                if (cameraCapture != null)
-                {
-                    cameraCapture.CaptureTo(pictureBox);
-                }              
-                Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+                Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
+                pictureBox.Image = bmpScreenshot;
                 imagePath1 = getPathFromSnapshotThumbnail(bmpScreenshot);
             }
         }
@@ -1580,30 +1556,27 @@ namespace ParkingMangement.GUI
 
         private void saveImage2ToFile()
         {
-            CameraCapture cameraCapture = cameraCapture2;
+            PictureBox pictureBoxCamera = pictureBoxCamera2;
             PictureBox pictureBox = pictureBoxImage2;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                cameraCapture = cameraCapture4;
+                pictureBoxCamera = pictureBoxCamera4;
                 pictureBox = pictureBoxImage4;
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
                 if (inputIsRightSide())
                 {
-                    cameraCapture = cameraCapture4;
+                    pictureBoxCamera = pictureBoxCamera4;
                     pictureBox = pictureBoxImage4;
                 }
             }
 
             if (isCarIn())
             {
-                if (cameraCapture != null)
-                {
-                    cameraCapture.CaptureTo(pictureBox);
-                }
-                Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+                Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
+                pictureBox.Image = bmpScreenshot;
                 imagePath2 = getPathFromSnapshotThumbnail(bmpScreenshot);
             }
         }
@@ -1652,23 +1625,20 @@ namespace ParkingMangement.GUI
 
         private void saveImage3ToFile()
         {
-            CameraCapture cameraCapture = cameraCapture3;
-            PictureBox pictureBox = pictureBoxImage3;
+            PictureBox pictureBoxCamera = pictureBoxCamera3;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                cameraCapture = cameraCapture1;
-                pictureBox = pictureBoxImage1;
+                pictureBoxCamera = pictureBoxCamera1;
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
                 if (inputIsLeftSide())
                 {
-                    cameraCapture = cameraCapture1;
-                    pictureBox = pictureBoxImage1;
+                    pictureBoxCamera = pictureBoxCamera1;
                 }
             }
-            Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+            Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
             imagePath3 = getPathFromSnapshotThumbnail(bmpScreenshot);
         }
 
@@ -1690,23 +1660,20 @@ namespace ParkingMangement.GUI
 
         private void saveImage4ToFile()
         {
-            CameraCapture cameraCapture = cameraCapture4;
-            PictureBox pictureBox = pictureBoxImage4;
+            PictureBox pictureBoxCamera = pictureBoxCamera4;
             int inOutType = mConfig.inOutType;
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
-                cameraCapture = cameraCapture2;
-                pictureBox = pictureBoxImage2;
+                pictureBoxCamera = pictureBoxCamera2;
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
                 if (inputIsLeftSide())
                 {
-                    cameraCapture = cameraCapture2;
-                    pictureBox = pictureBoxImage2;
+                    pictureBoxCamera = pictureBoxCamera2;
                 }
             }
-            Bitmap bmpScreenshot = new Bitmap(pictureBox.Image);
+            Bitmap bmpScreenshot = getBitMapFromCamera(pictureBoxCamera);
             imagePath4 = getPathFromSnapshotThumbnail(bmpScreenshot);
         }
 
@@ -2468,15 +2435,12 @@ namespace ParkingMangement.GUI
         protected override void OnResize(System.EventArgs e)
         {
             base.OnResize(e);
-            foreach (Control cnt in this.Controls)
-            {
-                ResizeAll(cnt, base.Size);
-            }
-            //Form_Resize();
             oldSize = base.Size;
         }
+
         private void ResizeAll(Control cnt, Size newSize)
         {
+            float scaleFactor = (float) newSize.Width / oldSize.Width;
             int iWidth = newSize.Width - oldSize.Width;
             cnt.Left += (cnt.Left * iWidth) / oldSize.Width;
             cnt.Width += (cnt.Width * iWidth) / oldSize.Width;
@@ -2492,17 +2456,7 @@ namespace ParkingMangement.GUI
 
         private int GetFormArea(Size size)
         {
-            return size.Height * size.Width;
-        }
-
-        private void Form_Resize()
-        {
-
-            var bigger = GetFormArea(this.Size) > _lastFormSize;
-            float scaleFactor = bigger ? LARGER_FONT_FACTOR : SMALLER_FONT_FACTOR;
-
-            ResizeFont(this.Controls, scaleFactor);
-            _lastFormSize = GetFormArea(this.Size);
+            return size.Width;
         }
 
         private void ResizeFont(Control.ControlCollection coll, float scaleFactor)
@@ -2515,11 +2469,10 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    //if (c.GetType().ToString() == "System.Windows.Form.Label")
                     if (true)
                     {
                         // scale font
-                        c.Font = new Font(c.Font.FontFamily.Name, c.Font.Size * scaleFactor);
+                        c.Font = new Font(c.Font.FontFamily, c.Font.Size * scaleFactor, c.Font.Style);
                     }
                 }
             }
@@ -2705,7 +2658,7 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 15 * 1000;
+            aTimer.Interval = 20 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
         }
@@ -3406,6 +3359,19 @@ namespace ParkingMangement.GUI
             this.Close();
             this.Dispose();
             GC.Collect();
+        }
+
+        private void FormNhanVien_Resize(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            float scaleFactor = (float)GetFormArea(control.Size) / (float)_lastFormSize;
+            ResizeFont(this.Controls, scaleFactor);
+            _lastFormSize = GetFormArea(control.Size);
+
+            foreach (Control cnt in this.Controls)
+            {
+                ResizeAll(cnt, base.Size);
+            }
         }
     }
 }

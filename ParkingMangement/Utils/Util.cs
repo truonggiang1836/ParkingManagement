@@ -1333,5 +1333,13 @@ namespace ParkingMangement.Utils
             
         }
 
+        public static void autoLockExpiredCard()
+        {
+            int currentDay = (int)System.DateTime.Now.Day;
+            if (currentDay >= ConfigDAO.GetLockCardDate())
+            {
+                CardDAO.lockExpiredCard();
+            }
+        }
     }
 }

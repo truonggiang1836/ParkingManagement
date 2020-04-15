@@ -43,6 +43,26 @@ namespace ParkingMangement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            initData();
+
+            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
+            
+            if (Constant.IS_SYNC_DATA_APP)
+            {
+                Application.Run(new FormSyncData());
+            } else
+            {
+                Application.Run(new FormLogin());
+            }
+        }
+
+        private static void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            Util.doLogOut();
+        }
+
+        private static void initData()
+        {
             if (!Constant.IS_SYNC_DATA_APP)
             {
                 if (Util.getConfigFile().isUsingUhf.Equals("yes"))
@@ -54,21 +74,7 @@ namespace ParkingMangement
                 }
             }
 
-            Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            
-            if (Constant.IS_SYNC_DATA_APP)
-            {
-                Application.Run(new FormSyncData());
-            } else
-            {
-                Application.Run(new FormLogin());
-            }
-
-        }
-
-        private static void Application_ApplicationExit(object sender, EventArgs e)
-        {
-            Util.doLogOut();
+            //Util.autoLockExpiredCard();
         }
     }
 }

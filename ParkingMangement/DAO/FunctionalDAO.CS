@@ -26,7 +26,7 @@ namespace ParkingMangement.DAO
         public static void UpdateIsSync(string listId)
         {
             string sql = "update Functional set IsSync = 1 where FunctionID in " + listId;
-            (new Database()).ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool InsertNoErrorMessage(FunctionDTO functionDTO)
