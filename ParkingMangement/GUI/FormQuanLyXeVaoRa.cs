@@ -58,7 +58,6 @@ namespace ParkingMangement.GUI
         {
             isXemDanhSachXeTon = false;
             searchCar();
-            //searchCarAPI();
         }
 
         private CarDTO getCarModel()
@@ -118,57 +117,6 @@ namespace ParkingMangement.GUI
                         dgvCarList[col.Index, row.Index].Style.ForeColor = Color.Red;
                     }
                 }
-            }
-        }
-
-        private void searchCarAPI()
-        {
-            CarDTO carDTO = getCarModel();
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            try
-            {
-                if (!carDTO.Id.Equals(""))
-                {
-                    webClient.QueryString.Add(ApiUtil.PARAM_CARD_CODE, carDTO.Id);
-                }
-                if (!carDTO.Digit.Equals(""))
-                {
-                    webClient.QueryString.Add(ApiUtil.PARAM_CAR_NUMBER, carDTO.Digit);
-                }
-                if (!carDTO.Identify.ToString().Equals(""))
-                {
-                    webClient.QueryString.Add(ApiUtil.PARAM_CAR_STT, carDTO.Identify.ToString());
-                }
-                string createdFrom = (carDTO.TimeStart.Millisecond / 1000).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_CREATED_FROM, createdFrom);
-                string createdTo = (carDTO.TimeEnd.Millisecond / 1000).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_CREATED_TO, createdTo);
-                webClient.QueryString.Add(ApiUtil.PARAM_DISABLE, "0");
-                String responseString = webClient.DownloadString(ApiUtil.API_ORDERS_LIST);
-                Console.WriteLine(responseString);
-                OrdersListResponse ordersListResponse = JsonConvert.DeserializeObject<OrdersListResponse>(responseString);
-                var list = ordersListResponse.Body.Data;
-                foreach (CarDTO carItem in list)
-                {
-                    carItem.setDataFromAPIForFields();
-                }
-                var bindingList = new BindingList<CarDTO>(list);
-                var source = new BindingSource(bindingList, null);
-                dgvCarList.DataSource = source;
-            }
-            catch (WebException exception)
-            {
-                string responseText;
-                var responseStream = exception.Response?.GetResponseStream();
-
-                if (responseStream != null)
-                {
-                    using (var reader = new StreamReader(responseStream))
-                    {
-                        responseText = reader.ReadToEnd();
-                    }
-                }
-                searchCar();
             }
         }
 

@@ -191,8 +191,14 @@ namespace ParkingMangement.DAO
 
         public static bool Delete(string id)
         {
-            string sql = "delete from SmartCard where ID = '" + id + "'";
-            //string sql = "update SmartCard set IsDeleted = 1 where ID in " + id;
+            //string sql = "delete from SmartCard where ID = '" + id + "'";
+            string sql = "update SmartCard set IsDeleted = 1 where ID = '" + id + "'";
+            return (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool HardDeleteIfCardBeDeleted(string id)
+        {
+            string sql = "delete from SmartCard where ID = '" + id + "' and IsDeleted = 1";
             return (new Database()).ExcuNonQuery(sql);
         }
 
@@ -267,6 +273,8 @@ namespace ParkingMangement.DAO
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");
+                cardDTO.IsSync = dt.Rows[0].Field<Int32>("IsSync") + "";
+                cardDTO.IsDeleted = dt.Rows[0].Field<Int32>("IsDeleted") + "";
                 if (dt.Rows[0].Field<Object>("DayUnlimit") != null)
                 {
                     cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
@@ -286,6 +294,8 @@ namespace ParkingMangement.DAO
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");
+                cardDTO.IsSync = dt.Rows[0].Field<Int32>("IsSync") + "";
+                cardDTO.IsDeleted = dt.Rows[0].Field<Int32>("IsDeleted") + "";
                 if (dt.Rows[0].Field<Object>("DayUnlimit") != null)
                 {
                     cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");

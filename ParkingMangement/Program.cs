@@ -74,7 +74,7 @@ namespace ParkingMangement
                 }
             }
 
-            //Util.autoLockExpiredCard();
+            Util.autoLockExpiredCard();
         }
     }
 }

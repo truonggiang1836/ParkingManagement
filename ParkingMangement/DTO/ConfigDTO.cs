@@ -37,6 +37,7 @@ namespace ParkingMangement.DTO
         private int calculationTicketMonth = CALCULATION_TICKET_MONTH_NO;
         private int isAutoLockCard;
         private int lockCardDate;
+        private int noticeExpiredDate;
 
         public int BikeSpace { get => bikeSpace; set => bikeSpace = value; }
         public int CarSpace { get => carSpace; set => carSpace = value; }
@@ -58,5 +59,6 @@ namespace ParkingMangement.DTO
         public int CalculationTicketMonth { get => calculationTicketMonth; set => calculationTicketMonth = value; }
         public int IsAutoLockCard { get => isAutoLockCard; set => isAutoLockCard = value; }
         public int LockCardDate { get => lockCardDate; set => lockCardDate = value; }
+        public int NoticeExpiredDate { get => noticeExpiredDate; set => noticeExpiredDate = value; }
     }
 }

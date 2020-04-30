@@ -41,6 +41,7 @@ namespace ParkingMangement.GUI
                     Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
                     Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
                     Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
+                    Util.sendBlackCarListToServer(BlackCarDAO.GetAllData());
 
                     //Util.syncCardListFromServer();
                     //Util.syncMonthlyCardListFromServer();

@@ -26,5 +26,11 @@ namespace ParkingMangement.DAO
             string sql = "delete from BlackCar where Identify =" + identify;
             (new Database()).ExcuNonQuery(sql);
         }
+
+        public static void UpdateIsSync(string listId)
+        {
+            string sql = "update BlackCar set IsSync = 1 where Digit in " + listId;
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
     }
 }

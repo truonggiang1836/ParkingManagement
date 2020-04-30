@@ -866,6 +866,107 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void sendBlackCarListToServer(DataTable data)
+        {
+            //return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dtTable = data;
+            List<BlackCar> listBlackCar = new List<BlackCar>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            string jsonString = "";
+            string listId = "(";
+            for (int i = 0; i < dtTable.Rows.Count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                BlackCar blackCar = new BlackCar();
+                blackCar.Deleted = dtRow.Field<int>("IsDeleted");
+                blackCar.Digit = dtRow.Field<string>("Digit");
+                listBlackCar.Add(blackCar);
+
+                jsonString = JsonConvert.SerializeObject(listBlackCar);
+                Console.WriteLine(":: " + jsonString);
+                string index = (i + 1).ToString();
+                param.Add(ApiUtil.PARAM_DATA + index, jsonString);
+                listId += "'" + blackCar.Digit + "',";
+            }
+            if (listId.Length > 1)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            }
+            else
+            {
+                listId = "";
+            }
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_BLACK_CAR_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        BlackCarDAO.UpdateIsSync(listId);
+                    }
+                }
+                Console.WriteLine("json_api: " + jsonString);
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+            }
+        }
+
+        public static void sendConfigToServer()
+        {
+            //return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            List<DisplayConfig> listDisplayConfig = new List<DisplayConfig>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            string jsonString = "";
+            DisplayConfig displayConfig = new DisplayConfig();
+            displayConfig.ProjectId = Util.getConfigFile().projectId;
+            displayConfig.Id = 1;
+            displayConfig.LostCard = ConfigDAO.GetLostCard();
+            displayConfig.BikeSpace = ConfigDAO.GetBikeSpace();
+            displayConfig.CarSpace = ConfigDAO.GetCarSpace();
+            displayConfig.TicketLimitDay = ConfigDAO.GetTicketMonthLimit();
+            displayConfig.NightLimit = ConfigDAO.GetNightLimit();
+            displayConfig.ParkingTypeId = ConfigDAO.GetParkingTypeID();
+            displayConfig.ExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+            displayConfig.ParkingName = ConfigDAO.GetParkingName();
+            displayConfig.CalculationTicketMonth = ConfigDAO.GetCalculationTicketMonth();
+            displayConfig.IsAutoLockCard = ConfigDAO.GetIsAutoLockCard();
+            displayConfig.LockCardDate = ConfigDAO.GetLockCardDate();
+
+            listDisplayConfig.Add(displayConfig);
+
+            jsonString = JsonConvert.SerializeObject(listDisplayConfig);
+            Console.WriteLine(":: " + jsonString);
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_CONFIG_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+                }
+                Console.WriteLine("json_api: " + jsonString);
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+            }
+        }
+
         public static void sendOrderDataToServer()
         {
             //if (Program.sCountConnection > Program.MAX_CONNECTION)
@@ -1336,7 +1437,8 @@ namespace ParkingMangement.Utils
         public static void autoLockExpiredCard()
         {
             int currentDay = (int)System.DateTime.Now.Day;
-            if (currentDay >= ConfigDAO.GetLockCardDate())
+            DateTime startTimeForAutoLock = new DateTime(2020, 5, 31);
+            if (currentDay >= ConfigDAO.GetLockCardDate() && DateTime.Now.CompareTo(startTimeForAutoLock) > 0)
             {
                 CardDAO.lockExpiredCard();
             }

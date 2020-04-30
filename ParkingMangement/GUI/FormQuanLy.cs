@@ -34,7 +34,7 @@ namespace ParkingMangement.GUI
         private string[] listFunctionQuanLyNhanSu = { "1", "2" };
         private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
         private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "23", "7" };
-        private string[] listFunctionQuanLyVeThang = { "8", "9", "10", "11", "12" };
+        private string[] listFunctionQuanLyVeThang = { "8", "9", "10", "11", "24", "12" };
         private string[] listFunctionQuanLyHeThong = { "13", "14", "15", "16" };
         private string[] listFunctionQuanLyXe = { "17", "18", "19", "20" };
 
@@ -1202,10 +1202,14 @@ namespace ParkingMangement.GUI
             try
             {
                 string cardIdentify = tbCardIdentifyCreate.Text.Trim();
-                if (CardDAO.GetCardModelByIdentify(cardIdentify) != null)
+                CardDTO cardDTO = CardDAO.GetCardModelByIdentify(cardIdentify);
+                if (cardDTO != null)
                 {
-                    labelKetQuaTaoThe.Text = Constant.sMessageCardIdentifyExisted;
-                    return false;
+                    if (cardDTO.IsDeleted == "0")
+                    {
+                        labelKetQuaTaoThe.Text = Constant.sMessageCardIdentifyExisted;
+                        return false;
+                    }              
                 }
             }
             catch (Exception e)
@@ -1243,12 +1247,13 @@ namespace ParkingMangement.GUI
             //cardDTO.SystemId = createCardAPI(cardDTO);
             cardDTO.SystemId = cardDTO.Id;
 
-            DataTable dt = CardDAO.GetCardByID(cardDTO.Id);
-            if (dt != null && dt.Rows.Count > 0)
+            CardDTO checkCardDTO = CardDAO.GetCardModelByID(cardDTO.Id);
+            if (checkCardDTO != null && checkCardDTO.IsDeleted == "0")
             {
                 labelKetQuaTaoThe.Text = Constant.sMessageCardIdExisted;
                 return;
             }
+            CardDAO.HardDeleteIfCardBeDeleted(cardDTO.Id);
             if (CardDAO.Insert(cardDTO))
             {
                 loadCardList();
@@ -1705,6 +1710,7 @@ namespace ParkingMangement.GUI
                 CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
             }
 
+            TicketMonthDAO.HardDeleteIfCardBeDeleted(ticketMonthDTO.Id);
             TicketMonthDAO.Insert(ticketMonthDTO);
             clearInputTicketMonthInfo();
             loadTicketMonthData();
@@ -1789,8 +1795,8 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
                 return false;
             }
-            DataTable dtCard = CardDAO.GetCardByID(tbTicketMonthIDCreate.Text);
-            if (dtCard == null || dtCard.Rows.Count == 0)
+            CardDTO cardDTO = CardDAO.GetCardModelByID(tbTicketMonthIDCreate.Text);
+            if (cardDTO == null || (cardDTO != null && cardDTO.IsDeleted == "1"))
             {
                 MessageBox.Show(Constant.sMessageCardIdNotExist);
                 return false;
@@ -1935,6 +1941,12 @@ namespace ParkingMangement.GUI
             dgvActiveTicketMonthList.DataSource = TicketMonthDAO.searchActiveTicketData(key);
         }
 
+        private void searchBlockTicketMonth()
+        {
+            string key = tbBlockTicketMonthKeyWordSearch.Text;
+            dgvBlockTicketMonthList.DataSource = TicketMonthDAO.searchBlockTicketData(key);
+        }
+
         private void deleteTicketMonth()
         {
             foreach (DataGridViewRow row in dgvTicketMonthList.Rows)
@@ -1947,12 +1959,12 @@ namespace ParkingMangement.GUI
                     addDeleteTicketMonthToLog(row.Index);
                     if (TicketMonthDAO.Delete(id))
                     {
+                        CardDAO.Delete(id);
                         CarDAO.DeleteCarNotOut(id);
-                        dgvTicketMonthList.Rows.RemoveAt(row.Index);
                     }
                 }
             }
-            //loadTicketMonthData();
+            loadTicketMonthData();
         }
 
         private void addDeleteTicketMonthToLog(int Index)
@@ -2098,6 +2110,11 @@ namespace ParkingMangement.GUI
         }
 
         void Delete_TicketMonth_Click(Object sender, System.EventArgs e, int currentRow)
+        {
+            checkForDeleteTicketMonth();
+        }
+
+        private void checkForDeleteTicketMonth()
         {
             if (!isChosenTicketMonth())
             {
@@ -2691,6 +2708,7 @@ namespace ParkingMangement.GUI
         private void btnLuuCauHinhHienThi_Click(object sender, EventArgs e)
         {
             saveCauHinhHienThi();
+            Util.sendConfigToServer();
         }
 
         private void loadCauHinhHienThiData()
@@ -2744,6 +2762,7 @@ namespace ParkingMangement.GUI
             int isAutoLockCard = ConfigDAO.GetIsAutoLockCard();
             cbTuDongKhoaThe.Checked = isAutoLockCard == ConfigDTO.AUTO_LOCK_CARD_YES;
             tbLockCardDate.Text = ConfigDAO.GetLockCardDate() + "";
+            tbNoticeExpiredDate.Text = ConfigDAO.GetNoticeExpiredDate() + "";
         }
 
         private void loadQuyenNhanVien()
@@ -2922,13 +2941,24 @@ namespace ParkingMangement.GUI
             int lockCardDate = 5;
             if (int.TryParse(tbLockCardDate.Text, out lockCardDate))
             {
-                if (lockCardDate < 1 || lockCardDate > 31)
+                if (lockCardDate < 1 || lockCardDate > 28)
                 {
                     MessageBox.Show(Constant.sMessageInvalidError);
                     return;
                 }
             }
             configDTO.LockCardDate = lockCardDate;
+
+            int noticeExpiredDate = 25;
+            if (int.TryParse(tbNoticeExpiredDate.Text, out noticeExpiredDate))
+            {
+                if (noticeExpiredDate < 1 || noticeExpiredDate > 28)
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            configDTO.NoticeExpiredDate = noticeExpiredDate;
 
             if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
             {
@@ -3200,6 +3230,10 @@ namespace ParkingMangement.GUI
         private void checkShowHideAllTabPage()
         {
             string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+            if (functionID.Equals(Constant.FUNCTION_ID_ADMIN))
+            {
+                return;
+            }
             string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionID).Split(',');
 
             int countTabQuanLyNhanSu = 0;
@@ -3235,6 +3269,7 @@ namespace ParkingMangement.GUI
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG, tabPageTaoMoiVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_GIA_HAN_VE_THANG, tabPageGiaHanVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_MAT_THE_THANG, tabPageMatVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KHOA_VE_THANG, tabPageKhoaVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_VE_THANG, tabPageKichHoatVeThang, tabQuanLyVeThang);
             if (countTabQuanLyVeThang == 0)
             {
@@ -3616,6 +3651,46 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void exportDanhSachKhoaTheThangToExcel()
+        {
+            try
+            {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách khóa thẻ tháng");
+
+                string fileName = "Export_danhsach_khoa_thethang";
+                exportToExcel(dgvBlockTicketMonthList, worksheet, 1, 1, fileName);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void exportDanhSachKichHoatTheThangToExcel()
+        {
+            try
+            {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách kích hoạt thẻ tháng");
+
+                string fileName = "Export_danhsach_kichhoat_thethang";
+                exportToExcel(dgvActiveTicketMonthList, worksheet, 1, 1, fileName);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+        }
+
         //private void exportDoanhThuChiTietToExcel()
         //{
         //    // Creating a Excel object. 
@@ -3856,6 +3931,11 @@ namespace ParkingMangement.GUI
 
         void Delete_Card_Click(Object sender, System.EventArgs e, int currentRow)
         {
+            checkForDeleteCard();
+        }
+
+        private void checkForDeleteCard()
+        {
             if (!isChosenCard())
             {
                 MessageBox.Show(Constant.sMessageNoChooseDataError);
@@ -3893,8 +3973,6 @@ namespace ParkingMangement.GUI
                         LogUtil.addLogXoaThe(identify, cardId);
                         TicketMonthDAO.Delete(cardId);
                         CarDAO.DeleteCarNotOut(cardId);
-
-                        dgvCardList.Rows.RemoveAt(row.Index);
                     }
                 }
                 //if (Convert.ToBoolean(checkCell.Value) == true)
@@ -3903,7 +3981,7 @@ namespace ParkingMangement.GUI
                 //    CardDAO.Delete(cardId);
                 //}
             }
-            //loadCardList();
+            searchCard();
             loadCardStatistic();
         }
 
@@ -3939,8 +4017,9 @@ namespace ParkingMangement.GUI
 
         private void deleteCar()
         {
-            foreach (DataGridViewRow row in dgvCarList.Rows)
+            for (int i = dgvCarList.Rows.Count - 1; i >= 0 ; i--)
             {
+                DataGridViewRow row = dgvCarList.Rows[i];
                 DataGridViewCheckBoxCell checkCell = row.Cells["SelectCar"] as DataGridViewCheckBoxCell;
                 object value = checkCell.Value;
                 if (value != null && (Boolean)value)
@@ -3953,7 +4032,7 @@ namespace ParkingMangement.GUI
                     }
                     if (CarDAO.DeleteCar(identify +""))
                     {
-                        dgvCarList.Rows.RemoveAt(row.Index);
+                        dgvCarList.Rows.RemoveAt(i);
                     }
                 }
             }
@@ -4250,6 +4329,19 @@ namespace ParkingMangement.GUI
             foreach (DataGridViewRow row in dgvActiveTicketMonthList.Rows)
             {
                 bool isChoose = Convert.ToBoolean(row.Cells["SelectActiveTicketMonth"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool isChosenBlockTicketMonthData()
+        {
+            foreach (DataGridViewRow row in dgvBlockTicketMonthList.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["SelectBlockTicketMonth"].Value);
                 if (isChoose)
                 {
                     return true;
@@ -5163,15 +5255,132 @@ namespace ParkingMangement.GUI
             if (WindowState != FormWindowState.Minimized)
             {
                 Control control = (Control)sender;
-                float scaleFactor = (float)GetFormArea(control.Size) / (float)_lastFormSize;
-                ResizeFont(this.Controls, scaleFactor);
-                _lastFormSize = GetFormArea(control.Size);
-
-                foreach (Control cnt in this.Controls)
+                if (_lastFormSize != 0)
                 {
-                    ResizeAll(cnt, base.Size);
+                    float scaleFactor = (float)GetFormArea(control.Size) / (float)_lastFormSize;
+                    //ResizeFont(this.Controls, scaleFactor);
+
+                    foreach (Control cnt in this.Controls)
+                    {
+                        //ResizeAll(cnt, base.Size);
+                    }
                 }
-            }          
+                _lastFormSize = GetFormArea(control.Size);
+            }
+        }
+
+        private void btnBlockTicketMonthSearch_Click(object sender, EventArgs e)
+        {
+            searchBlockTicketMonth();
+        }
+
+        private void btnBlockTicketMonth_Click(object sender, EventArgs e)
+        {
+            if (!isChosenBlockTicketMonthData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            foreach (DataGridViewRow row in dgvBlockTicketMonthList.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["SelectBlockTicketMonth"] as DataGridViewCheckBoxCell;
+                if (Convert.ToBoolean(checkCell.Value))
+                {
+                    string cardId = Convert.ToString(row.Cells["ColumnBlockTicketCardID"].Value);
+                    CardDAO.UpdateIsUsing("0", cardId);               
+                }
+            }
+            searchBlockTicketMonth();
+        }
+
+        private void dgvBlockTicketMonthList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvBlockTicketMonthList, "STT_BlockTicketMonthList");
+        }
+
+        private void btnExportDanhSachKhoaTheThang_Click(object sender, EventArgs e)
+        {
+            exportDanhSachKhoaTheThangToExcel();
+        }
+
+        private void btnExportDanhSachKichHoatTheThang_Click(object sender, EventArgs e)
+        {
+            exportDanhSachKichHoatTheThangToExcel();
+        }
+
+        private void btnNearExpiredTicketMonthSelectAll_Click(object sender, EventArgs e)
+        {
+            if ((string) btnNearExpiredTicketMonthSelectAll.Tag == "")
+            {
+                foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+                {
+                    row.Cells["RenewIsChosen"].Value = true;
+                }
+                btnNearExpiredTicketMonthSelectAll.Tag = "select";
+                btnNearExpiredTicketMonthSelectAll.Text = "BỎ CHỌN";
+            } else
+            {
+                foreach (DataGridViewRow row in dgvRenewTicketMonthList.Rows)
+                {
+                    row.Cells["RenewIsChosen"].Value = false;
+                }
+                btnNearExpiredTicketMonthSelectAll.Tag = "";
+                btnNearExpiredTicketMonthSelectAll.Text = "CHỌN TẤT CẢ";
+            }   
+        }
+
+        private void btnCardSelectAll_Click(object sender, EventArgs e)
+        {
+            if ((string)btnCardSelectAll.Tag == "")
+            {
+                foreach (DataGridViewRow row in dgvCardList.Rows)
+                {
+                    row.Cells["SelectCard"].Value = true;
+                }
+                btnCardSelectAll.Tag = "select";
+                btnCardSelectAll.Text = "BỎ CHỌN";
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvCardList.Rows)
+                {
+                    row.Cells["SelectCard"].Value = false;
+                }
+                btnCardSelectAll.Tag = "";
+                btnCardSelectAll.Text = "CHỌN TẤT CẢ";
+            }
+        }
+
+        private void btnCardDelete_Click(object sender, EventArgs e)
+        {
+            checkForDeleteCard();
+        }
+
+        private void btnTicketMonthSelectAll_Click(object sender, EventArgs e)
+        {
+            if ((string)btnTicketMonthSelectAll.Tag == "")
+            {
+                foreach (DataGridViewRow row in dgvTicketMonthList.Rows)
+                {
+                    row.Cells["SelectTicketMonth"].Value = true;
+                }
+                btnTicketMonthSelectAll.Tag = "select";
+                btnTicketMonthSelectAll.Text = "BỎ CHỌN";
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvTicketMonthList.Rows)
+                {
+                    row.Cells["SelectTicketMonth"].Value = false;
+                }
+                btnTicketMonthSelectAll.Tag = "";
+                btnTicketMonthSelectAll.Text = "CHỌN TẤT CẢ";
+            }
+        }
+
+        private void btnTicketMonthDelete_Click(object sender, EventArgs e)
+        {
+            checkForDeleteTicketMonth();
         }
     }
 }

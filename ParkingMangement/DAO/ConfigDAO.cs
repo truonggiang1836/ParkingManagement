@@ -121,6 +121,19 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static int GetNoticeExpiredDate()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("NoticeExpiredDate");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
         public static int GetIsAutoLockCard()
         {
             DataTable dt = GetConfig();
@@ -165,15 +178,7 @@ namespace ParkingMangement.DAO
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth
-                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate;
-            return (new Database()).ExcuNonQuery(sql);
-        }
-
-        public static bool UpdateCauHinhKetNoi(ConfigDTO configDTO)
-        {
-            string sql = "update Config set Camera1 = '" + configDTO.Camera1 + "', Camera2 = '" + configDTO.Camera2 +
-                "', Camera3 = '" + configDTO.Camera3 + "', Camera4 = '" + configDTO.Camera4 + "', RFID1 = '" + configDTO.Rfid1 +
-                "', RFID2 = '" + configDTO.Rfid2 + "'";
+                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate;
             return (new Database()).ExcuNonQuery(sql);
         }
     }

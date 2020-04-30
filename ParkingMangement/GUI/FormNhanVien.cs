@@ -991,18 +991,22 @@ namespace ParkingMangement.GUI
                         if (totalDaysLeft <= 0)
                         {
                             // vé tháng hết hạn
-                            int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
-                            switch (expiredTicketMonthTypeID)
+                            int currentDay = (int)System.DateTime.Now.Day;
+                            if (currentDay >= ConfigDAO.GetNoticeExpiredDate())
                             {
-                                case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
-                                    break;
-                                case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
-                                default:
-                                    carDTO.Cost = tinhTienGiuXe(dtLastCar);
-                                    isTicketMonthCard = false;
-                                    break;
+                                int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+                                switch (expiredTicketMonthTypeID)
+                                {
+                                    case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                                        break;
+                                    case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                                    default:
+                                        carDTO.Cost = tinhTienGiuXe(dtLastCar);
+                                        isTicketMonthCard = false;
+                                        break;
+                                }
+                                labelError.Text = "Thẻ tháng đã hết hạn!";
                             }
-                            labelError.Text = "Thẻ tháng đã hết hạn!";
                         }
                         else
                         {
@@ -1452,14 +1456,17 @@ namespace ParkingMangement.GUI
             pictureBoxCamera2.BackgroundImageLayout = ImageLayout.Center;
             pictureBoxCamera3.BackgroundImageLayout = ImageLayout.Center;
             pictureBoxCamera4.BackgroundImageLayout = ImageLayout.Center;
-            cameraCapture1 = new CameraCapture(cameraUrl1, pictureBoxCamera1);
-            cameraCapture2 = new CameraCapture(cameraUrl2, pictureBoxCamera2);
-            cameraCapture3 = new CameraCapture(cameraUrl3, pictureBoxCamera3);
-            cameraCapture4 = new CameraCapture(cameraUrl4, pictureBoxCamera4);
-            cameraCapture1.Start();
-            cameraCapture2.Start();
-            cameraCapture3.Start();
-            cameraCapture4.Start();
+            if (!cameraUrl1.Equals(""))
+            {
+                cameraCapture1 = new CameraCapture(cameraUrl1, pictureBoxCamera1);
+                cameraCapture2 = new CameraCapture(cameraUrl2, pictureBoxCamera2);
+                cameraCapture3 = new CameraCapture(cameraUrl3, pictureBoxCamera3);
+                cameraCapture4 = new CameraCapture(cameraUrl4, pictureBoxCamera4);
+                cameraCapture1.Start();
+                cameraCapture2.Start();
+                cameraCapture3.Start();
+                cameraCapture4.Start();
+            }            
             pictureBoxImage1.BringToFront();
             pictureBoxImage2.BringToFront();
             pictureBoxImage3.BringToFront();
@@ -1859,8 +1866,7 @@ namespace ParkingMangement.GUI
         private int tinhGiaTienTheoCongVan(DataTable dtLastCar)
         {
             string partID = CardDAO.getPartIDByCardID(cardID);
-            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);
-            double limit = (double)computerDTO.Limit / 60; // (hour)
+            ComputerDTO computerDTO = ComputerDAO.GetDataByPartIDAndParkingTypeID(partID, Constant.LOAI_GIU_XE_THEO_CONG_VAN);         
             if (dtLastCar != null)
             {
                 DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
@@ -1873,89 +1879,74 @@ namespace ParkingMangement.GUI
                 if (spentTimeByMinute <= computerDTO.MinMinute)
                 {
                     return computerDTO.MinCost;
-                }
-                else if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+                } else
                 {
-                    // vào ngày - ra ngày
-                    return computerDTO.DayCost;
+                    return getCostTinhTienCongVan(timeIn, timeOut, computerDTO);
                 }
-                //else if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)) && Util.getTotalTimeByDay(timeIn, timeOut) <= 1)
-                //{
-                //    // vào đêm - ra đêm
-                //    return computerDTO.NightCost;
-                //    //} else if (IsCarInDayOutNightOneDate(timeIn, timeOut, computerDTO) || isCarInNightOutDayOneDate(timeIn, timeOut, computerDTO))
-                //}
-                else if (Util.getTotalTimeByHour(timeIn, timeOut) <= 24)
+
+            }
+            return 0;
+        }
+
+        private int getCostTinhTienCongVan(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        {
+            double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
+            double limit = (double)computerDTO.Limit / 60; // (hour)
+
+            if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
+            {
+                // vào ngày - ra ngày
+                return computerDTO.DayCost;
+            }
+            else if (spentTimeByHour <= 24)
+            {
+                //trong 1 ngày
+                if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)
+                    || (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < computerDTO.EndHourNight)))
                 {
-                    //trong 1 ngày
-                    if (((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < 24) || (timeIn.Hour >= 0 && timeOut.Hour < computerDTO.EndHourNight)
-                        || (timeIn.Hour >= computerDTO.StartHourNight && timeOut.Hour < computerDTO.EndHourNight)))
+                    // vào đêm - ra đêm
+                    return computerDTO.NightCost;
+                }
+                else
+                {
+                    // vào ngày - ra đêm hoặc vào đêm - ra ngày
+                    if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
-                        // vào đêm - ra đêm
-                        return computerDTO.NightCost;
-                    } else
-                    {
-                        // vào ngày - ra đêm hoặc vào đêm - ra ngày
-                        if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
+                        // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
+                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                         {
-                            // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
-                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                            // thời gian ngày lớn hơn đêm
+                            if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
                             {
-                                // thời gian ngày lớn hơn đêm
-                                if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
-                                {
-                                    // thời gian ngày nhỏ hơn giới hạn
-                                    return computerDTO.DayCost;
-                                }
-                                else
-                                {
-                                    // thời gian ngày lớn hơn giới hạn
-                                    return computerDTO.NightCost;
-                                }
+                                // thời gian ngày nhỏ hơn giới hạn
+                                return computerDTO.DayCost;
                             }
                             else
                             {
-                                // thời gian ngày nhỏ hơn đêm
+                                // thời gian ngày lớn hơn giới hạn
                                 return computerDTO.NightCost;
                             }
                         }
                         else
                         {
-                            // thời gian trong bãi lớn hơn khoảng giao ngày - đêm
-                            return computerDTO.DayNightCost;
+                            // thời gian ngày nhỏ hơn đêm
+                            return computerDTO.NightCost;
                         }
-                    }                    
-                }
-                else
-                {
-                    // vào - ra trong nhiều ngày
-                    if (isCarInDayOutDay(timeIn, timeOut, computerDTO))
-                    {
-                        // vào ngày - ra ngày
-                        if (getTotalHourOfDayWhenOutDay(timeOut, computerDTO) <= limit)
-                        {
-                            // thời gian ngày nhỏ hơn giới hạn
-                            return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
-                        }
-                        else
-                        {
-                            // thời gian ngày lớn hơn giới hạn
-                            return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.DayCost;
-                        }
-                    }
-                    else if (isCarInNightOutNight(timeIn, timeOut, computerDTO))
-                    {
-                        // vào đêm - ra đêm
-                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost + computerDTO.NightCost;
                     }
                     else
                     {
-                        // vào ngày - ra đêm hoặc vào đêm - ra ngày
-                        return soLuotQuaNgay(timeIn, timeOut, computerDTO) * computerDTO.DayNightCost;
+                        // thời gian trong bãi lớn hơn khoảng giao ngày - đêm
+                        return computerDTO.DayNightCost;
                     }
                 }
             }
-            return 0;
+            else
+            {
+                int temp1 = ((int)spentTimeByHour) / 24;
+                DateTime newTimeIn = timeIn.AddHours(temp1 * 24);
+                int costMilestoneRemain = getCostTinhTienCongVan(newTimeIn, timeOut, computerDTO);
+                return costMilestoneRemain + temp1 * computerDTO.DayNightCost;
+            }
         }
 
         private int tinhGiaTienLuyTien(DataTable dtLastCar)

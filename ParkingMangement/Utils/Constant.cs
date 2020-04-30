@@ -153,6 +153,7 @@ namespace ParkingMangement.Utils
         public const int NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG = 9;
         public const int NODE_VALUE_GIA_HAN_VE_THANG = 10;
         public const int NODE_VALUE_MAT_THE_THANG = 11;
+        public const int NODE_VALUE_KHOA_VE_THANG = 24;
         public const int NODE_VALUE_KICH_HOAT_VE_THANG = 12;
         public const int NODE_VALUE_CAU_HINH_CO_BAN = 13;
         public const int NODE_VALUE_QUAN_LY_TIEN_THU = 14;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <camera_url_1>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_1>
+  <camera_url_1 />
   <camera_url_2>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_2>
   <camera_url_3>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_3>
   <camera_url_4>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_4>

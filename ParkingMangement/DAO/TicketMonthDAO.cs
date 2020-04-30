@@ -25,7 +25,10 @@ namespace ParkingMangement.DAO
             "TicketMonth, Part, UserCar, SmartCard where TicketMonth.ID = SmartCard.ID and TicketMonth.IDPart = Part.ID and TicketMonth.ID = SmartCard.ID and TicketMonth.IsDeleted = '0'";
 
         private static string sqlGetAllActiveTicketData = "select SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Company, TicketMonth.Address, " +
-            "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate, SmartCard.DayUnlimit from TicketMonth, SmartCard where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IsDeleted = '0'";
+            "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from TicketMonth, SmartCard where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '0' and TicketMonth.IsDeleted = '0'";
+
+        private static string sqlGetAllBlockTicketData = "select SmartCard.Identify, TicketMonth.ID, TicketMonth.Digit, TicketMonth.CustomerName, TicketMonth.Company, TicketMonth.Address, " +
+            "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from TicketMonth, SmartCard where TicketMonth.ID = SmartCard.ID and SmartCard.IsUsing = '1' and TicketMonth.IsDeleted = '0'";
 
         private static string sqlOrderByIdentify = " order by SmartCard.Identify asc";
         private static string sqlOrderByExpirationDate = " order by TicketMonth.ExpirationDate asc";    
@@ -92,9 +95,15 @@ namespace ParkingMangement.DAO
 
         public static bool Delete(string id)
         {
-            string sql = "delete from TicketMonth where ID ='" + id + "'";
+            //string sql = "delete from TicketMonth where ID ='" + id + "'";
+            string sql = "update TicketMonth set IsDeleted = 1 where ID ='" + id + "'";
             return (new Database()).ExcuNonQuery(sql);
-            //string sql = "update TicketMonth set IsSync = 1 where ID in " + id;
+        }
+
+        public static bool HardDeleteIfCardBeDeleted(string id)
+        {
+            string sql = "delete from TicketMonth where ID ='" + id + "' and IsDeleted = 1";
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static DataTable searchData(string key)
@@ -219,6 +228,23 @@ namespace ParkingMangement.DAO
         public static DataTable searchActiveTicketData(string key)
         {
             string sql = sqlGetAllActiveTicketData;
+            if (!string.IsNullOrEmpty(key))
+            {
+                sql += " and (SmartCard.Identify like '%" + key + "%' or TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
+                    + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.CMND like '%" + key + "%' or TicketMonth.Email like '%"
+                    + key + "%' or TicketMonth.Company like '%" + key + "%' or TicketMonth.Address like '%" + key + "%' or TicketMonth.CarKind like '%"
+                    + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
+            }
+            sql += sqlOrderByIdentify;
+            DataTable data = (new Database()).ExcuQuery(sql);
+
+            addDaysRemainingToTicketData(data);
+            return data;
+        }
+
+        public static DataTable searchBlockTicketData(string key)
+        {
+            string sql = sqlGetAllBlockTicketData;
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (SmartCard.Identify like '%" + key + "%' or TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key

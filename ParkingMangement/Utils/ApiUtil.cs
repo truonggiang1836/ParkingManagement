@@ -51,6 +51,8 @@ namespace ParkingMangement.Utils
         public static string API_EMPLOYEE_BATCH_SYNCS = BASE_URL + "employee/batchsyncs";
         public static string API_FUNCTIONS_BATCH_INSERT = BASE_URL + "functions/batchinsert";
         public static string API_FUNCTIONS_BATCH_SYNCS = BASE_URL + "functions/batchsyncs";
+        public static string API_CONFIG_BATCH_INSERT = BASE_URL + "config/batchinsert";
+        public static string API_BLACK_CAR_BATCH_INSERT = BASE_URL + "back-car/batchinsert";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 

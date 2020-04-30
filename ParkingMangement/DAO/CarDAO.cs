@@ -18,8 +18,8 @@ namespace ParkingMangement.DAO
         public static Bitmap sBitmapBikeIcon;
         public static Bitmap sBitmapCarIcon;
 
-        private static string sqlGetAllData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Part.ID as PartID, Part.PartName, userA.NameUser as UserIn, " +
-            "userB.NameUser as UserOut, Car.IDTicketMonth, Car.IsLostCard, Part.Sign, Car.Computer, userC.NameUser as Account, " +
+        private static string sqlGetAllData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.DigitIn, Car.DigitOut, Car.Digit, Part.ID as PartID, Part.PartName, Car.TimeStart, Car.TimeEnd, Car.Cost, userA.NameUser as UserIn, " +
+            "userB.NameUser as UserOut, Car.IDTicketMonth, Car.IsLostCard, Car.Computer, userC.NameUser as Account, " +
             "Car.DateUpdate, Car.Images, Car.Images2, Car.Images3, Car.Images4 from Car left join Part on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID " +
             "left join UserCar userA on Car.IDIn = userA.UserID left join UserCar userB on Car.IDOut = userB.UserID left join UserCar userC on Car.Account = userC.UserID where '0' = '0'";
 
@@ -123,7 +123,7 @@ namespace ParkingMangement.DAO
             }
             if (!string.IsNullOrEmpty(carDTO.Digit))
             {
-                sql += " and Car.Digit like '%" + carDTO.Digit + "%'";
+                sql += " and Car.Digit like '%" + carDTO.Digit + "%' or Car.DigitIn like '%" + carDTO.Digit + "%' or Car.DigitOut like '%" + carDTO.Digit + "%'";
             }
             if (!string.IsNullOrEmpty(carDTO.Id))
             {
