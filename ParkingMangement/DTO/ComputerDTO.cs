@@ -36,6 +36,7 @@ namespace ParkingMangement.DTO
         private int minMinute = 0;
         private int minCost = 0;
         private int limit = 0;
+        private int isSync = 0;
 
         public int Identify { get => identify; set => identify = value; }
         public string PartID { get => partID; set => partID = value; }
@@ -65,6 +66,7 @@ namespace ParkingMangement.DTO
         public int CostMilestoneNight2 { get => costMilestoneNight2; set => costMilestoneNight2 = value; }
         public int CostMilestoneNight3 { get => costMilestoneNight3; set => costMilestoneNight3 = value; }
         public int CostMilestoneNight4 { get => costMilestoneNight4; set => costMilestoneNight4 = value; }
+        public int IsSync { get => isSync; set => isSync = value; }
 
         public object Clone()
         {

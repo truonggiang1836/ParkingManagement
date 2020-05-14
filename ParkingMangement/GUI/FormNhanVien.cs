@@ -469,9 +469,11 @@ namespace ParkingMangement.GUI
                 labelCustomerNameLeft.Text = "-";
 
                 labelPartNameTypeNameLeft.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
+
                 if (isTicketCard)
                 {
                     labelCustomerNameLeft.Text = TicketMonthDAO.GetCustomerNameByID(cardID);
+                    labelDigitRegisterLeft.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
             }
             else
@@ -482,10 +484,22 @@ namespace ParkingMangement.GUI
                 labelCustomerNameRight.Text = "-";
 
                 labelPartNameTypeNameRight.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
+
                 if (isTicketCard)
                 {
                     labelCustomerNameRight.Text = TicketMonthDAO.GetCustomerNameByID(cardID);
+                    labelDigitRegisterRight.Text = TicketMonthDAO.GetDigitByID(cardID);
                 }
+            }
+
+            if (!CardDAO.isUsingByCardID(cardID))
+            {
+                if (!isCarIn())
+                {
+                    loadCarInData(dtLastCar);
+                }
+                MessageBox.Show(Constant.sMessageCardIsLost);
+                return false;
             }
 
             string inputDigit = "";

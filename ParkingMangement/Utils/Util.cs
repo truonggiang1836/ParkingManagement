@@ -922,6 +922,86 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void sendPriceConfigListToServer(DataTable data)
+        {
+            //return;
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            DataTable dtTable = data;
+            List<PriceConfig> listPriceConfig = new List<PriceConfig>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            string jsonString = "";
+            string listId = "(";
+            for (int i = 0; i < dtTable.Rows.Count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                PriceConfig priceConfig = new PriceConfig();
+                priceConfig.Code = dtRow.Field<int>("Identify") + "";
+                priceConfig.IdPart = dtRow.Field<string>("IDPart");
+                priceConfig.ParkingTypeID = dtRow.Field<int>("ParkingTypeID");
+                priceConfig.DayCost = dtRow.Field<int>("DayCost");
+                priceConfig.NightCost = dtRow.Field<int>("NightCost");
+                priceConfig.DayNightCost = dtRow.Field<int>("DayNightCost");
+                priceConfig.IntervalBetweenDayNight = dtRow.Field<int>("IntervalBetweenDayNight");
+                priceConfig.StartHourNight = dtRow.Field<int>("StartHourNight");
+                priceConfig.EndHourNight = dtRow.Field<int>("EndHourNight");
+                priceConfig.HourMilestone1 = dtRow.Field<int>("HourMilestone1");
+                priceConfig.HourMilestone2 = dtRow.Field<int>("HourMilestone2");
+                priceConfig.HourMilestone3 = dtRow.Field<int>("HourMilestone3");
+                priceConfig.CostMilestone1 = dtRow.Field<int>("CostMilestone1");
+                priceConfig.CostMilestone2 = dtRow.Field<int>("CostMilestone2");
+                priceConfig.CostMilestone3 = dtRow.Field<int>("CostMilestone3");
+                priceConfig.CostMilestone4 = dtRow.Field<int>("CostMilestone4");
+                priceConfig.CostMilestoneNight1 = dtRow.Field<int>("CostMilestoneNight1");
+                priceConfig.CostMilestoneNight2 = dtRow.Field<int>("CostMilestoneNight2");
+                priceConfig.CostMilestoneNight3 = dtRow.Field<int>("CostMilestoneNight3");
+                priceConfig.CostMilestoneNight4 = dtRow.Field<int>("CostMilestoneNight4");
+                priceConfig.CycleMilestone3 = dtRow.Field<int>("CycleMilestone3");
+                priceConfig.IsAdd = dtRow.Field<string>("IsAdd");
+                priceConfig.CycleTicketMonth = dtRow.Field<int>("CycleTicketMonth");
+                priceConfig.CostTicketMonth = dtRow.Field<int>("CostTicketMonth");
+                priceConfig.MinMinute = dtRow.Field<int>("MinMinute");
+                priceConfig.MinCost = dtRow.Field<int>("MinCost");
+                priceConfig.Limit = dtRow.Field<int>("Limit");
+                priceConfig.ProjectId = Util.getConfigFile().projectId;
+                listPriceConfig.Add(priceConfig);
+
+                jsonString = JsonConvert.SerializeObject(listPriceConfig);
+                Console.WriteLine(":: " + jsonString);
+                string index = (i + 1).ToString();
+                listId += "'" + priceConfig.Code + "',";
+            }
+            if (listId.Length > 1)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId += ")";
+            }
+            else
+            {
+                listId = "";
+            }
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_PRICE_CONFIG_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+                    if (result.Equals(""))
+                    {
+                        ComputerDAO.UpdateIsSync(listId);
+                    }
+                }
+                Console.WriteLine("json_api: " + jsonString);
+            }
+            catch (Exception e)
+            {
+                int x = 0;
+            }
+        }
+
         public static void sendConfigToServer()
         {
             //return;
@@ -1122,6 +1202,93 @@ namespace ParkingMangement.Utils
                 String responseString = webClient.DownloadString(ApiUtil.API_FUNCTIONS_BATCH_SYNCS);
                 Console.WriteLine(responseString);
                 FunctionalDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncBlackCarListFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_BLACK_CAR_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                BlackCarDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncDisplayConfigFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_CONFIG_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                ConfigDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncPriceConfigFromServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_PRICE_CONFIG_BATCH_SYNCS);
+                Console.WriteLine(responseString);
+                ComputerDAO.syncFromJson(responseString);
             }
             catch (WebException exception)
             {

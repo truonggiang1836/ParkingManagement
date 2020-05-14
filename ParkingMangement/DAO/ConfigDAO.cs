@@ -1,4 +1,5 @@
-﻿using ParkingMangement.DTO;
+﻿using Newtonsoft.Json.Linq;
+using ParkingMangement.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -173,13 +174,47 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
+        public static string getUpdateSql(ConfigDTO configDTO)
         {
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth
                 + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate;
+            return sql;
+        }
+
+        public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
+        {
+            string sql = getUpdateSql(configDTO);
             return (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateNoErrorMessage(ConfigDTO configDTO)
+        {
+            string sql = getUpdateSql(configDTO);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
+        public static void syncFromJson(string json)
+        {
+            JArray jArray = JArray.Parse(json);
+            foreach (JObject jObject in jArray)
+            {
+                ConfigDTO configDTO = new ConfigDTO();
+                configDTO.LostCard = (int)jObject.SelectToken("lostCard");
+                configDTO.BikeSpace = (int)jObject.SelectToken("bikeSpace");
+                configDTO.CarSpace = (int)jObject.SelectToken("carSpace");
+                configDTO.TicketLimitDay = (int)jObject.SelectToken("ticketLimitDay");
+                configDTO.NightLimit = (int)jObject.SelectToken("nightLimit");
+                configDTO.ParkingTypeId = (int)jObject.SelectToken("parkingTypeId");
+                configDTO.ExpiredTicketMonthTypeID = (int)jObject.SelectToken("expiredTicketMonthTypeID");
+                configDTO.ParkingName = (string)jObject.SelectToken("parkingName");
+                configDTO.CalculationTicketMonth = (int)jObject.SelectToken("calculationTicketMonth");
+                configDTO.IsAutoLockCard = (int)jObject.SelectToken("isAutoLockCard");
+                configDTO.LockCardDate = (int)jObject.SelectToken("lockCardDate");
+
+                UpdateNoErrorMessage(configDTO);
+            }
         }
     }
 }

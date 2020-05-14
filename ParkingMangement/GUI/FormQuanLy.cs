@@ -4030,13 +4030,10 @@ namespace ParkingMangement.GUI
                         MessageBox.Show("Không thể xóa xe đã ra khỏi bãi!");
                         return;
                     }
-                    if (CarDAO.DeleteCar(identify +""))
-                    {
-                        dgvCarList.Rows.RemoveAt(i);
-                    }
+                    CarDAO.DeleteCar(identify + "");
                 }
             }
-            //loadCarList();
+            loadCarList();
         }
 
         private void showConfirmDeleteAllCard()
@@ -5258,11 +5255,11 @@ namespace ParkingMangement.GUI
                 if (_lastFormSize != 0)
                 {
                     float scaleFactor = (float)GetFormArea(control.Size) / (float)_lastFormSize;
-                    //ResizeFont(this.Controls, scaleFactor);
+                    ResizeFont(this.Controls, scaleFactor);                   
 
                     foreach (Control cnt in this.Controls)
                     {
-                        //ResizeAll(cnt, base.Size);
+                        ResizeAll(cnt, base.Size);
                     }
                 }
                 _lastFormSize = GetFormArea(control.Size);

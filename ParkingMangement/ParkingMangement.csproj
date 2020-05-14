@@ -146,6 +146,7 @@
     <Compile Include="DTO\CardTypeDTO.cs" />
     <Compile Include="DTO\ComputerDTO.cs" />
     <Compile Include="DTO\ConfigDTO.cs" />
+    <Compile Include="DTO\BlackCarDTO.cs" />
     <Compile Include="DTO\LogDTO.cs" />
     <Compile Include="DTO\FunctionDTO.cs" />
     <Compile Include="DTO\PartDTO.cs" />

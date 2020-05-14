@@ -42,12 +42,15 @@ namespace ParkingMangement.GUI
                     Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
                     Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
                     Util.sendBlackCarListToServer(BlackCarDAO.GetAllData());
+                    Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
 
                     //Util.syncCardListFromServer();
                     //Util.syncMonthlyCardListFromServer();
                     //Util.syncVehicleListFromServer();
                     //Util.syncEmployeeListFromServer();
                     //Util.syncFunctionListFromServer();
+                    //Util.syncBlackCarListFromServer();
+                    //Util.syncPriceConfigFromServer();
                 }).Start();
             }
             catch (Exception)

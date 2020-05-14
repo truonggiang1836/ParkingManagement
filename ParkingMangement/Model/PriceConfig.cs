@@ -46,6 +46,51 @@ namespace ParkingMangement.Model
         [JsonProperty("costTicketMonth")]
         public int CostTicketMonth { get; set; }
 
+        [JsonProperty("cycleMilestone3")]
+        public int CycleMilestone3 { get; set; }
+
+        [JsonProperty("cycleTicketMonth")]
+        public int CycleTicketMonth { get; set; }
+
+        [JsonProperty("dayCost")]
+        public int DayCost { get; set; }
+
+        [JsonProperty("dayNightCost")]
+        public int DayNightCost { get; set; }
+
+        [JsonProperty("endHourNight")]
+        public int EndHourNight { get; set; }
+
+        [JsonProperty("hourMilestone1")]
+        public int HourMilestone1 { get; set; }
+
+        [JsonProperty("hourMilestone2")]
+        public int HourMilestone2 { get; set; }
+
+        [JsonProperty("hourMilestone3")]
+        public int HourMilestone3 { get; set; }
+
+        [JsonProperty("intervalBetweenDayNight")]
+        public int IntervalBetweenDayNight { get; set; }
+
+        [JsonProperty("isAdd")]
+        public string IsAdd { get; set; }
+
+        [JsonProperty("limit")]
+        public int Limit { get; set; }
+
+        [JsonProperty("minCost")]
+        public int MinCost { get; set; }
+
+        [JsonProperty("minMinute")]
+        public int MinMinute { get; set; }
+
+        [JsonProperty("nightCost")]
+        public int NightCost { get; set; }
+
+        [JsonProperty("startHourNight")]
+        public int StartHourNight { get; set; }
+
         [JsonProperty("projectId")]
         public int ProjectId { get; set; }
     }
