@@ -20,7 +20,7 @@ namespace ParkingMangement.DAO
         public static void Insert(int carIdentify)
         {
             string sql = "insert into WaitSyncCarIn(Identify) values (" + carIdentify + ")";
-            (new Database()).ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void DeleteAll()

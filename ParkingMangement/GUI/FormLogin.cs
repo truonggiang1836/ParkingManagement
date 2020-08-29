@@ -28,8 +28,7 @@ namespace ParkingMangement
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            initView();
-            copyFile();     
+            initView();    
         }
 
         private void initView()
@@ -50,6 +49,18 @@ namespace ParkingMangement
             tbPassword.Text = Constant.sHintTextPassword;
             tbPassword.GotFocus += new EventHandler(RemoveHintTextPassword);
             tbPassword.LostFocus += new EventHandler(AddHintTextPassword);
+
+
+            if (!Constant.IS_SYNC_DATA_APP)
+            {
+                if (ConfigDAO.GetIsAutoLockCard() == 1)
+                {
+                    if (DateTime.Now > new DateTime(2020, 8, 31))
+                    {
+                        Util.autoLockExpiredCard();
+                    }                  
+                }
+            }
         }
 
         private void login()
@@ -224,13 +235,6 @@ namespace ParkingMangement
         {
             if (string.IsNullOrWhiteSpace(tbPassword.Text))
                 tbPassword.Text = Constant.sHintTextPassword;
-        }
-
-        private void copyFile()
-        {
-            //string localPath = Application.StartupPath + @"\Images\" + "636666552009185502.jpg";
-            //string sharedPath = Constant.getSharedImageFolder() + "636666552009185502.jpg";
-            //File.Copy(localPath, sharedPath);
         }
 
         private void FormLogin_KeyDown(object sender, KeyEventArgs e)

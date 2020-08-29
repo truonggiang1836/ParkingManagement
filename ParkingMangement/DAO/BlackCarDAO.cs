@@ -17,6 +17,12 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
+        public static DataTable GetAllDataForSync()
+        {
+            string sql = "select * from BlackCar where IsSync = 0";
+            return (new Database()).ExcuQuery(sql);
+        }
+
         public static void Insert(string blackCarDigit)
         {
             string sql = "insert into BlackCar(Digit) values ('" + blackCarDigit + "')";

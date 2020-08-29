@@ -33,13 +33,6 @@ namespace ParkingMangement
         [STAThread]
         static void Main()
         {
-            string pcName = Environment.MachineName;
-            if (Util.getConfigFile() != null && pcName.Equals(Util.getConfigFile().computerName))
-            {
-                isHostMachine = true;
-                //Util.ShareFolder(Constant.LOCAL_ROOT_FOLDER, Constant.FOLDER_NAME_PARKING_MANAGEMENT, "");
-            }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -68,13 +61,13 @@ namespace ParkingMangement
                 if (Util.getConfigFile().isUsingUhf.Equals("yes"))
                 {
                     uhfInReader = new UHFReader();
-                    uhfInReader.openComPort(Util.getConfigFile().comReceiveIn);
+                    uhfInReader.openComPort(Util.getConfigFile().comReceiveIn, true);
                     uhfOutReader = new UHFReader();
-                    uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut);
+                    uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut, true);
                 }
             }
-
-            Util.autoLockExpiredCard();
+            
+            //Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
         }
     }
 }

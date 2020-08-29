@@ -115,6 +115,28 @@ namespace ParkingMangement
             }
             return dt;
         }
+
+        public DataTable ExcuQueryNoErrorMessage(string sql)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                OpenConnection();
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = command;
+                adapter.Fill(dt);
+                CloseConnection();
+            }
+            catch (Exception Ex)
+            {
+
+            }
+            return dt;
+        }
+
         public bool ExcuNonQuery(string sql)
         {
             try

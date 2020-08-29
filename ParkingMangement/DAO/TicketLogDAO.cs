@@ -11,11 +11,12 @@ namespace ParkingMangement.DAO
 {
     class TicketLogDAO
     {
-        private static string sqlGetAllData = "select DISTINCT TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
+        private static string sqlGetAllData = "select TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
                 ", TicketLog.TicketMonthID, TicketLog.Digit, TicketLog.CustomerName, TicketLog.CMND, TicketLog.Email, " +
                 "TicketLog.Address, TicketLog.CarKind, Part.PartName, TicketLog.RegistrationDate, TicketLog.ExpirationDate from" +
-                " TicketLog, LogType, Part, UserCar, SmartCard where TicketLog.IDPart = Part.ID and TicketLog.LogTypeID = LogType.LogTypeID and UserCar.UserID = TicketLog.Account and TicketLog.TicketMonthID = SmartCard.ID";
-        private static string sqlOrderByIdentify = " order by TicketLog.Identify asc";
+                " TicketLog left join LogType on TicketLog.LogTypeID = LogType.LogTypeID left join Part on TicketLog.IDPart = Part.ID" +
+            " left join UserCar on UserCar.UserID = TicketLog.Account left join SmartCard on TicketLog.TicketMonthID = SmartCard.ID where 0 = 0 ";
+        private static string sqlOrderByIdentify = " order by TicketLog.Identify desc";
 
         public static DataTable GetAllData()
         {
@@ -23,10 +24,10 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
-        public static DataTable searchData(string key, string ticketLogID, string partID, DateTime registrationDate, DateTime expirationDate)
+        public static DataTable searchData(string key, string ticketLogID, string partID, DateTime startDate, DateTime endDate)
         {
             string sql = sqlGetAllData;
-            sql += " and TicketLog.RegistrationDate >= '" + registrationDate.ToString(Constant.sDateTimeFormatForQuery) + "' and TicketLog.ExpirationDate <= '" + expirationDate.ToString(Constant.sDateTimeFormatForQuery) + "'";
+            sql += " and TicketLog.ProcessDate between '" + startDate.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endDate.ToString(Constant.sDateTimeFormatForQuery) + "'";
             if (!string.IsNullOrEmpty(key))
             {
                 sql += " and (UserCar.NameUser like '%" + key + "%' or SmartCard.Identify like '%" + key + "%' or TicketLog.TicketMonthID like '%" + key + "%' or TicketLog.Digit like '%" + key
@@ -48,9 +49,9 @@ namespace ParkingMangement.DAO
         {
             TicketMonthDTO ticketMonthDTO = ticketLogDTO.TicketMonthDTO;
             string sql = "insert into TicketLog(LogTypeID, TicketMonthID, TicketMonthIdentify, ProcessDate, Digit, CustomerName, CMND, Company, Email, Address, CarKind, RegistrationDate, ExpirationDate" +
-                ", ChargesAmount, IDPart, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.CardIdentify + "', '" + ticketMonthDTO.ProcessDate + "', '" + ticketMonthDTO.Digit + "', '" +
-                ticketMonthDTO.CustomerName + "', '" + ticketMonthDTO.Cmnd + "', '" + ticketMonthDTO.Company + "', '" + ticketMonthDTO.Email + "', '" +
-                ticketMonthDTO.Address + "', '" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate + "', '" + ticketMonthDTO.ExpirationDate +
+                ", ChargesAmount, IDPart, Account) values (" + ticketLogDTO.LogTypeID + ", '" + ticketMonthDTO.Id + "', '" + ticketMonthDTO.CardIdentify + "', '" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', N'" + ticketMonthDTO.Digit + "', N'" +
+                ticketMonthDTO.CustomerName + "', N'" + ticketMonthDTO.Cmnd + "', N'" + ticketMonthDTO.Company + "', N'" + ticketMonthDTO.Email + "', N'" +
+                ticketMonthDTO.Address + "', N'" + ticketMonthDTO.CarKind + "', '" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', '" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) +
                 "', '" + ticketMonthDTO.ChargesAmount + "', '" + ticketMonthDTO.IdPart + "', '" + ticketMonthDTO.Account + "')";
             (new Database()).ExcuNonQuery(sql);
         }

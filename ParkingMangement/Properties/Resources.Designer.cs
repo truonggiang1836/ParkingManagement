@@ -63,6 +63,16 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_background_button {
+            get {
+                object obj = ResourceManager.GetObject("ic_background_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_background_get_card {
             get {
                 object obj = ResourceManager.GetObject("ic_background_get_card", resourceCulture);
@@ -183,6 +193,16 @@ namespace ParkingMangement.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ic_black_logo {
+            get {
+                object obj = ResourceManager.GetObject("ic_black_logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ic_bottom_background {
             get {
                 object obj = ResourceManager.GetObject("ic_bottom_background", resourceCulture);
@@ -286,6 +306,16 @@ namespace ParkingMangement.Properties {
         internal static System.Drawing.Bitmap ic_print_bill {
             get {
                 object obj = ResourceManager.GetObject("ic_print_bill", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_print_logo {
+            get {
+                object obj = ResourceManager.GetObject("ic_print_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

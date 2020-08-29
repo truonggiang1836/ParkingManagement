@@ -32,13 +32,25 @@ namespace ParkingMangement.DAO
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
             " from Car car left join Part on car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = car.ID " +
             "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
-            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarIn on car.Identify = WaitSyncCarIn.Identify where WaitSyncCarIn.Message IS NULL OR WaitSyncCarIn.Message = ''";
+            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarIn on car.Identify = WaitSyncCarIn.Identify where 0 = 0 ";
 
         private static string sqlGetAllDataOutForCallAPI = "select top 1 car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
             "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
             " from Car car left join Part on car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = car.ID " +
             "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
-            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarOut on car.Identify = WaitSyncCarOut.Identify where WaitSyncCarOut.Message IS NULL OR WaitSyncCarOut.Message = ''";
+            "left join UserCar userC on car.Account = userC.UserID join WaitSyncCarOut on car.Identify = WaitSyncCarOut.Identify where 0 = 0 ";
+
+        private static string sqlGetAllDataForCallAPI = "select top 50 car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
+            "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
+            " from Car car left join Part on car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = car.ID " +
+            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
+            "left join UserCar userC on car.Account = userC.UserID where IsSync = 0";
+
+        private static string sqlGetAllOldDataForCallAPI = "select top 50 car.*, SmartCard.Identify as SmartCardIdentify, userA.NameUser as UserIn, " +
+            "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
+            " from Car car left join Part on car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = car.ID " +
+            "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID " +
+            "left join UserCar userC on car.Account = userC.UserID where IsSync = 0";
 
         //private static string sqlGetFirstDataForCallAPI = "select top 1 car.*, userA.NameUser as UserIn, " +
         //    "userB.NameUser as UserOut, Part.PartName, Part.Sign, userC.NameUser as Account " +
@@ -46,8 +58,8 @@ namespace ParkingMangement.DAO
         //    "left join UserCar userA on car.IDIn = userA.UserID left join UserCar userB on car.IDOut = userB.UserID left join UserCar userC on car.Account = userC.UserID where '0' = '0'";
 
         private static string sqlGetAllTicketMonthData = "select Car.Identify, SmartCard.Identify as SmartCardIdentify, Car.ID, Car.TimeStart, Car.TimeEnd, " +
-            "Car.Digit, Part.PartName, TicketMonth.Company, Car.Cost, TicketMonth.CustomerName from Car, Part, TicketMonth, SmartCard " +
-            "where Car.IDPart = Part.ID and TicketMonth.ID = Car.IDTicketMonth and SmartCard.ID = Car.ID";
+            "Car.Digit, Part.PartName, TicketMonth.Company, TicketMonth.Address, Car.Cost, TicketMonth.CustomerName from Car left join Part on Car.IDPart = Part.ID" +
+            " inner join TicketMonth on TicketMonth.ID = Car.IDTicketMonth inner join SmartCard on SmartCard.ID = Car.ID where 0 = 0";
 
         private static string sqlGetDataForCashManagement = "select Car.ID, Car.TimeStart, Car.TimeEnd, Car.Digit, Car.Cost, Car.CostBefore, " +
             "Car.IsLostCard, Car.Computer, UserCar.NameUser from Car left join UserCar on Car.Account = UserCar.UserID where 0 = 0";
@@ -66,16 +78,35 @@ namespace ParkingMangement.DAO
             return data;
         }
 
+        public static DataTable GetAllDataForSync()
+        {
+            string sql = sqlGetAllDataForCallAPI;
+            return (new Database()).ExcuQueryNoErrorMessage(sql);
+        }
+
+        public static void UpdateIsSync(string listIdentify)
+        {
+            string sql = "update Car set IsSync = 1 where Identify in " + listIdentify;
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
         public static DataTable GetDataInRecentlyForSync()
         {
             string sql = sqlGetAllDataInForCallAPI + " order by car.Identify asc";
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQueryNoErrorMessage(sql);
             return data;
         }
 
         public static DataTable GetDataOutRecentlyForSync()
         {
             string sql = sqlGetAllDataOutForCallAPI + " order by car.Identify asc";
+            DataTable data = (new Database()).ExcuQueryNoErrorMessage(sql);
+            return data;
+        }
+
+        public static DataTable GetDataForSync()
+        {
+            string sql = sqlGetAllOldDataForCallAPI + " order by car.Identify asc";
             DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
@@ -111,32 +142,36 @@ namespace ParkingMangement.DAO
         public static string sqlSearchData(CarDTO carDTO)
         {
             string sql = sqlGetAllData;
-            sql += " and (((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "') and Car.IDOut = '')"
+            if (carDTO != null)
+            {
+                sql += " and (((Car.TimeStart between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "') and Car.IDOut = '')"
                 + " or (Car.TimeEnd between '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "'))";
-            if (!string.IsNullOrEmpty(carDTO.IdPart))
-            {
-                sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
+                if (!string.IsNullOrEmpty(carDTO.IdPart))
+                {
+                    sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
+                }
+                if (carDTO.CardIdentify != -1)
+                {
+                    sql += " and SmartCard.Identify like '%" + carDTO.CardIdentify + "%'";
+                }
+                if (!string.IsNullOrEmpty(carDTO.Digit))
+                {
+                    sql += " and Car.Digit like '%" + carDTO.Digit + "%' or Car.DigitIn like '%" + carDTO.Digit + "%' or Car.DigitOut like '%" + carDTO.Digit + "%'";
+                }
+                if (!string.IsNullOrEmpty(carDTO.Id))
+                {
+                    sql += " and SmartCard.ID like '%" + carDTO.Id + "%'";
+                }
+                if (!string.IsNullOrEmpty(carDTO.IdIn))
+                {
+                    sql += " and Car.IDIn like '" + carDTO.IdIn + "'";
+                }
+                if (!string.IsNullOrEmpty(carDTO.IdOut))
+                {
+                    sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
+                }
             }
-            if (carDTO.CardIdentify != -1)
-            {
-                sql += " and SmartCard.Identify like '%" + carDTO.CardIdentify + "%'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.Digit))
-            {
-                sql += " and Car.Digit like '%" + carDTO.Digit + "%' or Car.DigitIn like '%" + carDTO.Digit + "%' or Car.DigitOut like '%" + carDTO.Digit + "%'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.Id))
-            {
-                sql += " and SmartCard.ID like '%" + carDTO.Id + "%'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.IdIn))
-            {
-                sql += " and Car.IDIn like '" + carDTO.IdIn + "'";
-            }
-            if (!string.IsNullOrEmpty(carDTO.IdOut))
-            {
-                sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
-            }
+            
             return sql;
         }
 
@@ -405,6 +440,7 @@ namespace ParkingMangement.DAO
                     long countCarSurvive = GetCountCarSurviveByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                     long countCost = GetCountCostByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
+                    countCost += GetCountTicketMonthCostByTypeAndDate(startTime, endTime, partID);
                     data.Rows[row].SetField("SumCost", countCost);
                     countAllCarIn += countCarIn;
                     countAllCarOut += countCarOut;
@@ -478,6 +514,10 @@ namespace ParkingMangement.DAO
                         bitmap = sBitmapCarIcon;
                         countCarEmpty = ConfigDAO.GetCarSpace() - countCarSurvive;
                     }
+                    if (countCarEmpty < 0)
+                    {
+                        countCarEmpty = 0;
+                    }
                     data.Rows[row].SetField("TypeName", bitmap);
                     data.Rows[row].SetField("CountCarEmpty", countCarEmpty);
                 }
@@ -531,6 +571,25 @@ namespace ParkingMangement.DAO
             if (userID != null)
             {
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
+            }
+
+            return (new Database()).ExcuValueQuery(sql);
+        }
+
+        public static long GetCountTicketMonthCostByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID)
+        {
+            string sql = "select sum(cast(ReceiptLogDetail.Cost as bigint)) as SumCost from ReceiptLogDetail join Part on ReceiptLogDetail.PartID = Part.ID";
+            sql += sqlQueryTicketMonth;
+            
+            if (partID != null)
+            {
+                sql += " and ReceiptLogDetail.PartID = '" + partID + "'";
+            }
+            if (startTime != null && endTime != null)
+            {
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " and ReceiptLogDetail.PrintDate between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'";
             }
 
             return (new Database()).ExcuValueQuery(sql);

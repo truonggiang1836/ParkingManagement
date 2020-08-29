@@ -25,7 +25,9 @@ namespace ParkingMangement.GUI
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-            syncData();
+            Hide();
+            syncOrderData();
+            syncCardData();         
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -36,21 +38,7 @@ namespace ParkingMangement.GUI
                 {
                     Thread.CurrentThread.IsBackground = true;
                     Util.sendOrderDataToServer();
-                    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
-                    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
-                    Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
-                    Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
-                    Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
-                    Util.sendBlackCarListToServer(BlackCarDAO.GetAllData());
-                    Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
-
-                    //Util.syncCardListFromServer();
-                    //Util.syncMonthlyCardListFromServer();
-                    //Util.syncVehicleListFromServer();
-                    //Util.syncEmployeeListFromServer();
-                    //Util.syncFunctionListFromServer();
-                    //Util.syncBlackCarListFromServer();
-                    //Util.syncPriceConfigFromServer();
+                    //Util.sendOldOrderListToServer(CarDAO.GetAllDataForSync());
                 }).Start();
             }
             catch (Exception)
@@ -59,13 +47,52 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void syncData()
+        private void OnTimedEventCardData(object source, ElapsedEventArgs e)
+        {
+            doSyncOtherData();
+        }
+
+        private void doSyncOtherData()
+        {
+            try
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
+                    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
+                    Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
+                    Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
+                    Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
+                    Util.sendBlackCarListToServer(BlackCarDAO.GetAllDataForSync());
+                    Util.sendConfigToServer();
+                    Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
+                }).Start();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void syncOrderData()
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 10 * 1000;
+            aTimer.Interval = 20 * 1000;
             aTimer.Enabled = true;
-            aTimer.Start();   
+            aTimer.Start();
+        }
+
+        private void syncCardData()
+        {
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventCardData);
+            aTimer.Interval = 2 * 60 * 1000;
+            aTimer.Enabled = true;
+            aTimer.Start();
+
+            doSyncOtherData();
         }
     }
 }

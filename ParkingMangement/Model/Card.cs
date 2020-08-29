@@ -25,6 +25,8 @@ namespace ParkingMangement.Model
         public long Updated { get; set; }
         [JsonProperty("disable")]
         public int Disable { get; set; }
+        [JsonProperty("deleted")]
+        public int Deleted { get; set; }
         //[JsonProperty("id")]
         //public int Id { get; set; }
         [JsonProperty("monthly_card_id")]

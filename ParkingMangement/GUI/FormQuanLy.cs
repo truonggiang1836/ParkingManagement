@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -46,6 +47,10 @@ namespace ParkingMangement.GUI
         private Config mConfig;
         private Size oldSize;
         private int _lastFormSize;
+        private UHFReader mUHFReader;
+        private PrintDocument printDocument1 = new PrintDocument();
+        private Bitmap memoryImage;
+        private int mPrintReceiptCost = 0;
         public FormQuanLy()
         {
             InitializeComponent();
@@ -68,6 +73,8 @@ namespace ParkingMangement.GUI
             loadUserInfoTab();
             checkShowHideAllTabPage();
             labelKetQuaTaoThe.Text = "";
+
+            mUHFReader = new UHFReader();
             if (mConfig.isUsingUhf.Equals("yes"))
             {
                 initUhfTimer();
@@ -1127,23 +1134,26 @@ namespace ParkingMangement.GUI
         private void loadCardStatistic()
         {
             DataTable data = CardDAO.GetDataGroupByType();
+            int notUsingCardCount = CardDAO.GetNotUsingCardCount();
+            int usingCardCount = CardDAO.GetUsingCardCount();
+            int total = notUsingCardCount + usingCardCount;
 
             DataRow rowAllCard = data.NewRow();
             rowAllCard.SetField("PartName", "Tổng thẻ");
             rowAllCard.SetField("IsUsing", "Dùng & Không");
-            rowAllCard.SetField("SumCard", CardDAO.GetCardCount());
+            rowAllCard.SetField("SumCard", total);
             data.Rows.InsertAt(rowAllCard, 0);
 
             DataRow rowNotUsingCard = data.NewRow();
             rowNotUsingCard.SetField("PartName", "Tổng thẻ không dùng");
             rowNotUsingCard.SetField("IsUsing", Constant.sLabelCardNotUsing);
-            rowNotUsingCard.SetField("SumCard", CardDAO.GetNotUsingCardCount());
+            rowNotUsingCard.SetField("SumCard", notUsingCardCount);
             data.Rows.InsertAt(rowNotUsingCard, 1);
 
             DataRow rowUsingCard = data.NewRow();
             rowUsingCard.SetField("PartName", "Tổng thẻ đang dùng");
             rowUsingCard.SetField("IsUsing", Constant.sLabelCardUsing);
-            rowUsingCard.SetField("SumCard", CardDAO.GetUsingCardCount());
+            rowUsingCard.SetField("SumCard", usingCardCount);
             data.Rows.InsertAt(rowUsingCard, 2);
 
             dgvCardStatistic.DataSource = data;
@@ -1556,11 +1566,7 @@ namespace ParkingMangement.GUI
                 int daysRemaining = 0;
                 if (int.TryParse(tbRenewTicketMonthDaysRemainingSearch.Text, out daysRemaining))
                 {
-                    //if (daysRemaining < 0)
-                    //{
-                    //    MessageBox.Show(Constant.sMessageInvalidError);
-                    //    return;
-                    //}
+
                 }
                 else
                 {
@@ -1658,18 +1664,21 @@ namespace ParkingMangement.GUI
                 loadRenewTicketMonthData();
                 setFormatDateForDateTimePicker(dtRenewDate);
                 setFormatDateForDateTimePicker(dtRenewExpirationDate);
-                dtRenewExpirationDate.Value = DateTime.Now.AddMonths(1);
+                dtRenewExpirationDate.Value = Util.getLastDateOfCurrentMonth();
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageMatVeThang"])
             {
                 searchLostTicketMonth();
+            }
+            else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKhoaVeThang"])
+            {
+                searchBlockTicketMonth();
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
             {
                 searchActiveTicketMonth();
             }
         }
-
         private void addTicketLog(int logTypeID, TicketMonthDTO ticketMonthDTO)
         {
             TicketLogDTO ticketLogDTO = new TicketLogDTO(logTypeID, ticketMonthDTO);
@@ -1741,8 +1750,8 @@ namespace ParkingMangement.GUI
             ticketMonthDTO.IdPart = oldCardDTO.Type;
 
             ticketMonthDTO.Account = Program.CurrentUserID;
-            ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value.Date;
-            ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateEdit.Value.Date;
+            ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value;
+            ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateEdit.Value;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountEdit.Text;
             ticketMonthDTO.Status = 0;
             ticketMonthDTO.DayUnlimit = DateTime.Now;
@@ -1779,7 +1788,7 @@ namespace ParkingMangement.GUI
             cbTicketMonthPartCreate.SelectedIndex = 0;
 
             dateTimePickerTicketMonthRegistrationDateCreate.Value = DateTime.Now;
-            dateTimePickerTicketMonthExpirationDateCreate.Value = DateTime.Now.AddMonths(1);
+            dateTimePickerTicketMonthExpirationDateCreate.Value = DateTime.Now;
             tbTicketMonthChargesAmountCreate.Text = "";
         }
 
@@ -1877,6 +1886,8 @@ namespace ParkingMangement.GUI
                 DateTime expirationDate = Convert.ToDateTime(dgvTicketMonthList.Rows[Index].Cells["ExpirationDate"].Value);
                 dateTimePickerTicketMonthExpirationDateEdit.Value = expirationDate;
             }
+            string isUsing = Convert.ToString(dgvTicketMonthList.Rows[Index].Cells["TicketMonthIsUsing"].Value);
+            tbTicketMonthIsUsing.Text = isUsing;
         }
 
         private void loadTicketLogTypeData()
@@ -1938,13 +1949,49 @@ namespace ParkingMangement.GUI
         private void searchActiveTicketMonth()
         {
             string key = tbActiveTicketMonthKeyWordSearch.Text;
-            dgvActiveTicketMonthList.DataSource = TicketMonthDAO.searchActiveTicketData(key);
+                       
+            if (!string.IsNullOrWhiteSpace(tbAciveTicketMonthDaysRemainingSearch.Text))
+            {
+                int daysRemaining = 0;
+                if (int.TryParse(tbAciveTicketMonthDaysRemainingSearch.Text, out daysRemaining))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+                dgvActiveTicketMonthList.DataSource = TicketMonthDAO.searchActiveTicketData(key, daysRemaining);
+            }
+            else
+            {
+                dgvActiveTicketMonthList.DataSource = TicketMonthDAO.searchActiveTicketData(key, null);
+            }
         }
 
         private void searchBlockTicketMonth()
         {
             string key = tbBlockTicketMonthKeyWordSearch.Text;
-            dgvBlockTicketMonthList.DataSource = TicketMonthDAO.searchBlockTicketData(key);
+
+            if (!string.IsNullOrWhiteSpace(tbAciveTicketMonthDaysRemainingSearch.Text))
+            {
+                int daysRemaining = 0;
+                if (int.TryParse(tbBlockTicketMonthDaysRemainingSearch.Text, out daysRemaining))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+                dgvBlockTicketMonthList.DataSource = TicketMonthDAO.searchBlockTicketData(key, daysRemaining);
+            }
+            else
+            {
+                dgvBlockTicketMonthList.DataSource = TicketMonthDAO.searchBlockTicketData(key, null);
+            }
         }
 
         private void deleteTicketMonth()
@@ -2188,7 +2235,7 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageTicketMonthIdNullError);
                 return false;
             }
-            DataTable dtCard = CardDAO.GetCardByID(ticketMonthID);
+            DataTable dtCard = CardDAO.GetNotDeletedCardByID(ticketMonthID);
             if (dtCard == null || dtCard.Rows.Count == 0)
             {
                 MessageBox.Show(Constant.sMessageCardIdNotExist);
@@ -2589,6 +2636,33 @@ namespace ParkingMangement.GUI
             return false;
         }
 
+        private bool isChosenReceiptData()
+        {
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
+                if (isChoose)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private int getCountReceiptIsChosen()
+        {
+            int count = 0;
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
+                if (isChoose)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
         private void btnRenewByExpirationDate_Click(object sender, EventArgs e)
         {
             if (!isChosenRenewTicketMonthData())
@@ -2708,7 +2782,11 @@ namespace ParkingMangement.GUI
         private void btnLuuCauHinhHienThi_Click(object sender, EventArgs e)
         {
             saveCauHinhHienThi();
-            Util.sendConfigToServer();
+            new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    Util.sendConfigToServer();
+                }).Start();
         }
 
         private void loadCauHinhHienThiData()
@@ -2832,7 +2910,7 @@ namespace ParkingMangement.GUI
             configDTO.CalculationTicketMonth = calculationTicketMonth;
             configDTO.ExpiredTicketMonthTypeID = expiredTicketMonthTypeID;
 
-            int lostCard = -1;
+            int lostCard;
             if (int.TryParse(tbLostCard.Text, out lostCard))
             {
                 if (lostCard >= 0)
@@ -3249,6 +3327,7 @@ namespace ParkingMangement.GUI
             countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienTheoCongVan, tabQuanLyDoanhThu);
             countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTinhTienLuyTien, tabQuanLyDoanhThu);
             countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTongHop, tabQuanLyDoanhThu);
+            countTabQuanLyDoanhThu += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN, tabPageCongThucTongHop2, tabQuanLyDoanhThu);
             if (countTabQuanLyDoanhThu == 0)
             {
                 tabQuanLy.TabPages.Remove(tabPageQuanLyDoanhThu);
@@ -4030,10 +4109,13 @@ namespace ParkingMangement.GUI
                         MessageBox.Show("Không thể xóa xe đã ra khỏi bãi!");
                         return;
                     }
-                    CarDAO.DeleteCar(identify + "");
+                    if (CarDAO.DeleteCar(identify +""))
+                    {
+                        dgvCarList.Rows.RemoveAt(i);
+                    }
                 }
             }
-            loadCarList();
+            //loadCarList();
         }
 
         private void showConfirmDeleteAllCard()
@@ -4105,9 +4187,15 @@ namespace ParkingMangement.GUI
         {
             string partID = Convert.ToString(dgvPartList.Rows[currentRow].Cells["PartID"].Value);
             string partName = PartDAO.GetPartNameByPartID(partID);
-            PartDAO.Delete(partID);
-            loadPartList();
-            LogUtil.addLogXoaLoaiXe(partID, partName);
+            if (CardDAO.GetCardCountByPartId(partID) == 0)
+            {
+                PartDAO.Delete(partID);
+                loadPartList();
+                LogUtil.addLogXoaLoaiXe(partID, partName);
+            } else
+            {
+                MessageBox.Show("Không thể xóa vì loại xe này đang được sử dụng cho thông tin thẻ!");
+            }
         }
 
         private void btnExportDanhSachVeThang_Click(object sender, EventArgs e)
@@ -4946,10 +5034,10 @@ namespace ParkingMangement.GUI
         {
             try
             {
-                int frmcomportindexIn = UHFReader.getComportIndex(mConfig.comReceiveIn);
-                int frmcomportindexOut = UHFReader.getComportIndex(mConfig.comReceiveOut);
-                string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
-                string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
+                int frmcomportindexIn = mUHFReader.getComportIndex(mConfig.comReceiveIn);
+                int frmcomportindexOut = mUHFReader.getComportIndex(mConfig.comReceiveOut);
+                string uhfInCardId = mUHFReader.GetUHFData(frmcomportindexIn);
+                string uhfOutCardId = mUHFReader.GetUHFData(frmcomportindexOut);
                 //string uhfInCardId = null;
 
                 //byte[] ScanModeData = new byte[40960];
@@ -5158,15 +5246,15 @@ namespace ParkingMangement.GUI
 
         private void tbPartIdCreate_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-        }
-
-        private void tbPartIdCreate_TextChanged(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(tbPartIdCreate.Text, "[^0-9]"))
+            if (!Char.IsDigit(e.KeyChar))
             {
-                MessageBox.Show("Vui lòng chỉ nhập số!");
-                tbPartIdCreate.Text = tbPartIdCreate.Text.Remove(tbPartIdCreate.Text.Length - 1);
+                if (e.KeyChar != Convert.ToChar(Keys.Back)
+                    && e.KeyChar != Convert.ToChar(Keys.Delete)
+                    && e.KeyChar != Convert.ToChar(Keys.Enter))
+                {
+                    MessageBox.Show("Vui lòng chỉ nhập số!");
+                    e.Handled = true;
+                }
             }
         }
 
@@ -5255,11 +5343,11 @@ namespace ParkingMangement.GUI
                 if (_lastFormSize != 0)
                 {
                     float scaleFactor = (float)GetFormArea(control.Size) / (float)_lastFormSize;
-                    ResizeFont(this.Controls, scaleFactor);                   
+                    //ResizeFont(this.Controls, scaleFactor);
 
                     foreach (Control cnt in this.Controls)
                     {
-                        ResizeAll(cnt, base.Size);
+                        //ResizeAll(cnt, base.Size);
                     }
                 }
                 _lastFormSize = GetFormArea(control.Size);
@@ -5378,6 +5466,744 @@ namespace ParkingMangement.GUI
         private void btnTicketMonthDelete_Click(object sender, EventArgs e)
         {
             checkForDeleteTicketMonth();
+        }
+
+        private void btSelectAllAciveTicketMonth_Click(object sender, EventArgs e)
+        {
+            if ((string)btSelectAllAciveTicketMonth.Tag == "")
+            {
+                foreach (DataGridViewRow row in dgvActiveTicketMonthList.Rows)
+                {
+                    row.Cells["SelectActiveTicketMonth"].Value = true;
+                }
+                btSelectAllAciveTicketMonth.Tag = "select";
+                btSelectAllAciveTicketMonth.Text = "BỎ CHỌN";
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvActiveTicketMonthList.Rows)
+                {
+                    row.Cells["SelectActiveTicketMonth"].Value = false;
+                }
+                btSelectAllAciveTicketMonth.Tag = "";
+                btSelectAllAciveTicketMonth.Text = "CHỌN TẤT CẢ";
+            }
+        }
+
+        private void btSelectAllBlockTicketMonth_Click(object sender, EventArgs e)
+        {
+            if ((string)btSelectAllBlockTicketMonth.Tag == "")
+            {
+                foreach (DataGridViewRow row in dgvBlockTicketMonthList.Rows)
+                {
+                    row.Cells["SelectBlockTicketMonth"].Value = true;
+                }
+                btSelectAllBlockTicketMonth.Tag = "select";
+                btSelectAllBlockTicketMonth.Text = "BỎ CHỌN";
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvBlockTicketMonthList.Rows)
+                {
+                    row.Cells["SelectBlockTicketMonth"].Value = false;
+                }
+                btSelectAllBlockTicketMonth.Tag = "";
+                btSelectAllBlockTicketMonth.Text = "CHỌN TẤT CẢ";
+            }
+        }
+
+        private void tbPrintReceiptKeyWordSearch_TextChanged(object sender, EventArgs e)
+        {
+            searchPrintReceiptData();
+        }
+
+        private void searchPrintReceiptData()
+        {
+            mPrintReceiptCost = 0;
+            tbPrintReceiptCost.Text = "";
+            string key = tbPrintReceiptKeyWordSearch.Text;
+            dgvPrintReceipt.DataSource = TicketMonthDAO.searchPrintReceiptData(key);
+        }
+
+        private void btnPrintReceipt_Click(object sender, EventArgs e)
+        {
+            string title = "PHIẾU THU TIỀN MẶT";
+            int receiptType = ReceiptTypeDTO.TYPE_PHIEU_THU_TIEN_MAT;
+            if (mPrintReceiptCost < 0)
+            {
+                title = "PHIẾU CHI TIỀN MẶT";
+                receiptType = ReceiptTypeDTO.TYPE_PHIEU_CHI_TIEN_MAT;
+            }
+            openPrintReceiptForm(title, receiptType);
+        }
+
+        private void openPrintReceiptForm(string title, int receiptType)
+        {
+            if (!isChosenReceiptData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            else if (getCountReceiptIsChosen() > 6)
+            {
+                MessageBox.Show(Constant.sMessageMaxTicketMonthToPrint);
+                return;
+            }
+            renewPrintReceiptList();
+            FormInPhieuThu formInPhieuThu = new FormInPhieuThu();
+            formInPhieuThu.receiptType = receiptType;
+            formInPhieuThu.customerName = tbPrintReceiptCustomerName.Text;
+            formInPhieuThu.address = tbPrintReceiptAddress.Text;
+            formInPhieuThu.reason = tbPrintReceiptReason.Text;
+            formInPhieuThu.cost = mPrintReceiptCost;
+            formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
+            formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
+            formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
+
+            DataTable data = new DataTable();
+            data.Columns.Add("Identify", typeof(System.String));
+            data.Columns.Add("Digit", typeof(System.String));
+            data.Columns.Add("PartName", typeof(System.String));
+            data.Columns.Add("CustomerName", typeof(System.String));
+            data.Columns.Add("Cost", typeof(System.Int32));
+            data.Columns.Add("PrintCost", typeof(System.Int32));
+            data.Columns.Add("NewExpirationDate", typeof(System.DateTime));
+            data.Columns.Add("ID", typeof(System.String));
+            data.Columns.Add("IDPart", typeof(System.String));
+            data.Columns.Add("Company", typeof(System.String));
+            data.Columns.Add("Address", typeof(System.String));
+
+            for (int i = 0; i < dgvPrintReceipt.Rows.Count; i++)
+            {
+                if (Convert.ToBoolean(dgvPrintReceipt.Rows[i].Cells["ReceiptIsChosen"].Value) == true)
+                {
+                    DataRow row = data.NewRow();
+                    row.SetField("Identify", dgvPrintReceipt.Rows[i].Cells["ReceiptIdentify"].Value);
+                    row.SetField("Digit", dgvPrintReceipt.Rows[i].Cells["ReceiptDigit"].Value);
+                    row.SetField("PartName", dgvPrintReceipt.Rows[i].Cells["ReceiptPartName"].Value);
+                    row.SetField("IDPart", dgvPrintReceipt.Rows[i].Cells["ReceiptIDPart"].Value);
+                    row.SetField("CustomerName", dgvPrintReceipt.Rows[i].Cells["ReceiptCustomerName"].Value);
+                    row.SetField("Cost", dgvPrintReceipt.Rows[i].Cells["ReceiptCost"].Value);
+                    int printCode = Convert.ToInt32(dgvPrintReceipt.Rows[i].Cells["ReceiptCost"].Value);
+                    if (printCode < 0)
+                    {
+                        printCode = -printCode;
+                    }
+                    row.SetField("PrintCost", printCode);
+                    row.SetField("NewExpirationDate", dgvPrintReceipt.Rows[i].Cells["ReceiptNewExpirationDate"].Value);
+                    row.SetField("ID", dgvPrintReceipt.Rows[i].Cells["ReceiptTicketMonthID"].Value);
+                    row.SetField("Company", dgvPrintReceipt.Rows[i].Cells["ReceiptCompany"].Value);
+                    row.SetField("Address", dgvPrintReceipt.Rows[i].Cells["ReceiptAddress"].Value);
+                    data.Rows.Add(row);
+                }
+            }
+            formInPhieuThu.data = data;
+            formInPhieuThu.title = title;
+
+            formInPhieuThu.ShowDialog();
+        }
+
+        private void renewPrintReceiptList()
+        {           
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
+                string id = Convert.ToString(row.Cells["ReceiptTicketMonthID"].Value);
+                DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
+
+                if (isChoose)
+                {
+                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, id);
+                }
+            }
+        }
+
+        private void printDocument1_PrintPage(System.Object sender,
+               System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(memoryImage, 0, 0);
+        }
+
+        private void dgvPrintReceipt_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvPrintReceipt, "STT_ReceiptTicketMonthList");            
+        }
+
+        DateTimePicker oDateTimePicker;
+        private void dgvPrintReceipt_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int Index = e.RowIndex;
+            int Count = dgvPrintReceipt.Rows.Count;
+            if (Index < Count)
+            {
+                loadPrintReceiptInfoFromDataGridViewRow(Index);
+            }
+
+            if (e.RowIndex < 0) return;
+
+            if (oDateTimePicker != null)
+            {
+                oDateTimePicker.Visible = false;
+            }
+            string currentColumnName = dgvPrintReceipt.Columns[e.ColumnIndex].Name;
+            if (currentColumnName == "ReceiptNewExpirationDate")
+            {
+                //Initialized a new DateTimePicker Control  
+                oDateTimePicker = new DateTimePicker();
+
+                //Adding DateTimePicker control into DataGridView   
+                dgvPrintReceipt.Controls.Add(oDateTimePicker);
+
+                // Setting the format (i.e. 2014-10-10)  
+                oDateTimePicker.Format = DateTimePickerFormat.Short;
+
+                // It returns the retangular area that represents the Display area for a cell  
+                Rectangle oRectangle = dgvPrintReceipt.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+                //Setting area for DateTimePicker Control  
+                oDateTimePicker.Size = new Size(oRectangle.Width, oRectangle.Height);
+
+                // Setting Location  
+                oDateTimePicker.Location = new Point(oRectangle.X, oRectangle.Y);
+
+                // An event attached to dateTimePicker Control which is fired when DateTimeControl is closed  
+                oDateTimePicker.CloseUp += new EventHandler(oDateTimePicker_CloseUp);
+
+                // An event attached to dateTimePicker Control which is fired when any date is selected  
+                oDateTimePicker.TextChanged += new EventHandler(dateTimePicker_OnTextChange);
+
+                // Now make it visible  
+                oDateTimePicker.Visible = true;
+            }
+        }
+
+        private void dateTimePicker_OnTextChange(object sender, EventArgs e)
+        {
+            // Saving the 'Selected Date on Calendar' into DataGridView current cell  
+            dgvPrintReceipt.CurrentCell.Value = oDateTimePicker.Text.ToString();
+        }
+
+        void oDateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            // Hiding the control after use   
+            oDateTimePicker.Visible = false;
+        }
+
+        private void dgvPrintReceipt_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            string currentColumnName = dgvPrintReceipt.Columns[e.ColumnIndex].Name;
+            if (currentColumnName == "ReceiptNewExpirationDate" || currentColumnName == "ReceiptIsChosen")
+            {
+                calculatePrintReceipCost();
+            }
+        }
+
+        private void dgvPrintReceipt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvPrintReceipt.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void calculatePrintReceipCost()
+        {
+            int total = 0;
+            string reason = "";
+            if (cbCostExtendCard.Checked || cbCostCreateCard.Checked || cbCostDeposit.Checked)
+            {
+                foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+                {
+                    DataGridViewCheckBoxCell checkCell = row.Cells["ReceiptIsChosen"] as DataGridViewCheckBoxCell;
+                    object value = checkCell.Value;
+                    if (value != null && (Boolean)value)
+                    {
+                        int payCost = 0;
+                        if (cbCostExtendCard.Checked)
+                        {
+                            payCost += getCostExtendCard(row);                          
+                        }
+
+                        if (cbCostCreateCard.Checked)
+                        {
+                            if (rbAddCostCreateCard.Checked)
+                            {
+                                payCost += ConfigDAO.GetLostCard();
+                            }
+                            if (rbRemoveCostCreateCard.Checked)
+                            {
+                                payCost -= ConfigDAO.GetLostCard();
+                            }
+                        }
+
+                        if (cbCostDeposit.Checked)
+                        {
+                            int monthlyCost = 0;                         
+                            try
+                            {
+                                monthlyCost = Convert.ToInt32(row.Cells["ReceiptChargesAmount"].Value);
+                            }
+                            catch (Exception)
+                            {
+
+                            }                          
+                            if (rbAddCostDeposit.Checked)
+                            {
+                                payCost += monthlyCost;
+                            }
+                            if (rbRemoveCostDeposit.Checked)
+                            {
+                                payCost -= monthlyCost;
+                            }
+                        }
+                        row.Cells["ReceiptCost"].Value = payCost;
+                        total += payCost;
+                    }
+                    else if (value != null && !(Boolean)value)
+                    {
+                        row.Cells["ReceiptCost"].Value = 0;
+                    }
+                }
+              
+                if (cbCostExtendCard.Checked)
+                {
+                    reason += "Phí gia hạn";
+                }
+                if (cbCostCreateCard.Checked)
+                {
+                    if (!reason.Equals(""))
+                    {
+                        reason += " + ";
+                    }
+                    reason += "Phí làm thẻ";
+                }
+                if (cbCostDeposit.Checked)
+                {
+                    if (!reason.Equals(""))
+                    {
+                        reason += " + ";
+                    }
+                    reason += "Phí cọc";
+                }                
+            }
+            mPrintReceiptCost = total;
+            tbPrintReceiptCost.Text = Util.formatNumberAsMoney(total);
+            tbPrintReceiptReason.Text = reason;
+        }
+
+        private int getCostExtendCard(DataGridViewRow row)
+        {
+            DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptExpirationDate"].Value);
+            DateTime newExpirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
+            int monthlyCost = 0;
+            int payCost = 0;
+            try
+            {
+                monthlyCost = Convert.ToInt32(row.Cells["ReceiptChargesAmount"].Value);
+            }
+            catch (Exception)
+            {
+
+            }
+
+            int monthCount = Util.MonthDifference(newExpirationDate, expirationDate);
+            int pastRemainDays = Util.getDaysInMonth(expirationDate) - expirationDate.Day;
+
+            payCost += monthlyCost * pastRemainDays / 30;
+            if (Util.getDaysInMonth(newExpirationDate) == newExpirationDate.Day)
+            {
+                payCost += monthlyCost * monthCount;
+            }
+            else
+            {
+                int futureRemainDays = newExpirationDate.Day;
+                payCost += monthlyCost * (monthCount - 1) + monthlyCost * futureRemainDays / 30;
+            }
+            return payCost;
+        }
+
+        private void loadDataPrintReceipt()
+        {
+            tbPrintReceiptCustomerName.Text = ConfigDAO.GetParkingName();            
+        }
+
+        private void configReceiptHistory()
+        {
+            dtReceiptLogBook.Value = DateTime.Now;
+            dgv_ReceiptHistory.AutoGenerateColumns = false;
+            
+            Util.setRowNumber(dgv_ReceiptHistory, "STT_ReceiptLog");
+
+            DataTable dt = ReceiptTypeDAO.GetAllData();
+            DataRow dr = dt.NewRow();
+            dr["ReceiptTypeName"] = "Tất cả";
+            dt.Rows.InsertAt(dr, 0);
+            cbReceiptLogType.DataSource = dt;
+            cbReceiptLogType.DisplayMember = "ReceiptTypeName";
+            cbReceiptLogType.ValueMember = "ReceiptTypeID";
+        }
+
+        private string getReasonForReceipt()
+        {
+            string reason = "";
+            if (isChosenReceiptData())
+            {
+                reason += "Thu phí xe tháng";
+            }
+            if (cbCostCreateCard.Checked)
+            {
+                if (!reason.Equals(""))
+                {
+                    reason += " + ";
+                }
+                if (rbAddCostCreateCard.Checked)
+                {
+                    reason += "Thu phí làm thẻ";
+                }
+                if (rbRemoveCostCreateCard.Checked)
+                {
+                    reason += "Trả phí làm thẻ";
+                }
+            }
+
+            if (cbCostDeposit.Checked)
+            {
+                if (!reason.Equals(""))
+                {
+                    reason += " + ";
+                }
+                if (rbAddCostDeposit.Checked)
+                {
+                    reason += "Thu phí cọc thẻ";
+                }
+                if (rbRemoveCostDeposit.Checked)
+                {
+                    reason += "Trả phí cọc thẻ";
+                }
+            }
+            return reason;
+        }
+
+        private void tbPrintReceiptCost_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadPrintReceiptInfoFromDataGridViewRow(int Index)
+        {
+            if (Index < 0)
+            {
+                return;
+            }
+            string customerName = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptCustomerName"].Value) + " - " + ConfigDAO.GetParkingName();
+            tbPrintReceiptCustomerName.Text = customerName;
+            string address = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptAddress"].Value);
+            string company = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptCompany"].Value);
+            if (!company.Equals(""))
+            {
+                tbPrintReceiptAddress.Text = company;
+            } else
+            {
+                tbPrintReceiptAddress.Text = address;
+            }
+        }
+
+        private void cbCostCreateCard_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxCostCreateCard.Visible = cbCostCreateCard.Checked;
+            calculatePrintReceipCost();
+        }
+
+        private void cbCostDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxCostDeposit.Visible = cbCostDeposit.Checked;
+            calculatePrintReceipCost();         
+        }
+
+        private void btnPrintTransferCost_Click(object sender, EventArgs e)
+        {
+            openPrintReceiptForm("PHIẾU CHUYỂN KHOẢN", ReceiptTypeDTO.TYPE_PHIEU_CHUYEN_KHOAN);
+        }
+
+        private void rbAddCostDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            calculatePrintReceipCost();
+        }
+
+        private void rbRemoveCostDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            calculatePrintReceipCost();
+        }
+
+        private void rbAddCostCreateCard_CheckedChanged(object sender, EventArgs e)
+        {
+            calculatePrintReceipCost();
+        }
+
+        private void rbRemoveCostCreateCard_CheckedChanged(object sender, EventArgs e)
+        {
+            calculatePrintReceipCost();
+        }
+
+        private void cbCostExtendCard_CheckedChanged(object sender, EventArgs e)
+        {           
+            if (cbCostExtendCard.Checked)
+            {
+                dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = true;
+            } else
+            {
+                dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = false;
+            }
+            calculatePrintReceipCost();
+        }
+
+        private int mReceiptHistoryHeight = 0;
+        private void dgv_ReceiptHistory_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            int total = 0;
+            foreach (DataGridViewRow row in dgv_ReceiptHistory.Rows)
+            {
+                total += Convert.ToInt32(row.Cells["ReceiptLog_Cost"].Value.ToString());
+            }
+            tbReceiptLogTotalCost.Text = Util.formatNumberAsMoney(total);
+
+            var height = 30;
+            foreach (DataGridViewRow dr in dgv_ReceiptHistory.Rows)
+            {
+                height += dr.Height;
+            }
+
+            if (mReceiptHistoryHeight == 0)
+            {
+                mReceiptHistoryHeight = dgv_ReceiptHistory.Height;
+            }
+            if (height < mReceiptHistoryHeight)
+            {
+                dgv_ReceiptHistory.Height = height;
+
+            } else
+            {
+                dgv_ReceiptHistory.Height = mReceiptHistoryHeight;
+            }
+            Util.setRowNumber(dgv_ReceiptHistory, "STT_ReceiptLog");
+        }
+
+        private ReceiptLogDTO getReceptLogModelForSearch()
+        {
+            ReceiptLogDTO receiptLogDTO = new ReceiptLogDTO();
+            if (cbReceiptLogPrintDate.Checked)
+            {
+                DateTime startDate = dtReceiptLogStartDate.Value;
+                DateTime startTime = dtReceiptLogStartTime.Value;
+                startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, startTime.Hour, startTime.Minute, 0);
+                receiptLogDTO.TimeStart = startDate;
+                DateTime endDate = dtReceiptLogEndDate.Value;
+                DateTime endTime = dtReceiptLogEndTime.Value;
+                endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endTime.Hour, endTime.Minute, 59);
+                receiptLogDTO.TimeEnd = endDate;
+            }
+
+            if (cbReceiptLogBook.Checked)
+            {
+                receiptLogDTO.ReceiptBook = dtReceiptLogBook.Value;
+            }
+
+            if (cbReceiptLogType.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)cbReceiptLogType.SelectedItem).Row;
+                receiptLogDTO.ReceiptType = Convert.ToInt32(dataRow["ReceiptTypeID"]);
+            }
+
+            receiptLogDTO.CustomerName = tbReceiptLogCustomerName.Text;
+            if (!tbReceiptLogNumber.Text.Equals(""))
+            {
+                receiptLogDTO.ReceiptNumber = Int32.Parse(tbReceiptLogNumber.Text);
+            }            
+            receiptLogDTO.Address = tbReceiptLogAddress.Text;
+            receiptLogDTO.IsCostCreateCard = cbReceiptLogCostCreateCard.Checked ? 1 : 0;
+            receiptLogDTO.IsCostExtendCard = cbReceiptLogCostExtendCard.Checked ? 1 : 0;
+            receiptLogDTO.IsCostDepositCard = cbReceiptLogCostDeposit.Checked ? 1 : 0;
+
+            return receiptLogDTO;
+        }
+
+        private ReceiptLogDetailDTO getReceptLogDetailModelForSearch()
+        {
+            ReceiptLogDetailDTO receiptLogDetailDTO = new ReceiptLogDetailDTO();
+            if (cbReceiptLogDetailPrintDate.Checked)
+            {
+                DateTime startDate = dtReceiptLogDetailStartDate.Value;
+                DateTime startTime = dtReceiptLogDetailStartTime.Value;
+                startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, startTime.Hour, startTime.Minute, 0);
+                receiptLogDetailDTO.TimeStart = startDate;
+                DateTime endDate = dtReceiptLogDetailEndDate.Value;
+                DateTime endTime = dtReceiptLogDetailEndTime.Value;
+                endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endTime.Hour, endTime.Minute, 59);
+                receiptLogDetailDTO.TimeEnd = endDate;
+            }
+
+            if (cbReceiptLogDetailBook.Checked)
+            {
+                receiptLogDetailDTO.ReceiptBook = dtReceiptLogDetailBook.Value;
+            }
+
+            if (cbReceiptLogDetailVehicle.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)cbReceiptLogDetailVehicle.SelectedItem).Row;
+                receiptLogDetailDTO.PartID = Convert.ToString(dataRow["ID"]);
+            }
+
+            receiptLogDetailDTO.CustomerName = tbReceiptLogDetailCustomerName.Text;
+            receiptLogDetailDTO.Address = tbReceiptLogDetailAddress.Text;
+            receiptLogDetailDTO.Company = tbReceiptLogDetailCompany.Text;
+
+            receiptLogDetailDTO.CardIdentify = tbReceiptLogDetailCardIdentify.Text;
+            receiptLogDetailDTO.CardID = tbReceiptLogDetailCardID.Text;
+            receiptLogDetailDTO.Digit = tbReceiptLogDetailDigit.Text;
+
+            receiptLogDetailDTO.IsCostCreateCard = cbReceiptLogDetailCostCreateCard.Checked ? 1 : 0;
+            receiptLogDetailDTO.IsCostExtendCard = cbReceiptLogDetailCostExtendCard.Checked ? 1 : 0;
+            receiptLogDetailDTO.IsCostDepositCard = cbReceiptLogDetailCostDeposit.Checked ? 1 : 0;
+
+            return receiptLogDetailDTO;
+        }
+
+        private void btnReceiptLogSearch_Click(object sender, EventArgs e)
+        {
+            ReceiptLogDTO receiptLogDTO = getReceptLogModelForSearch();
+
+            DataTable data = ReceiptLogDAO.searchAllData(receiptLogDTO);
+            dgv_ReceiptHistory.DataSource = data;
+        }
+
+        private void exportDanhSachPhieuThuChiToExcel()
+        {
+            try
+            {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách phiếu thu - chi");
+
+                string fileName = "Export_danhsach_phieu_thu_chi";
+                exportToExcel(dgv_ReceiptHistory, worksheet, 1, 1, fileName);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void exportDanhSachChiTietPhieuThuChiToExcel()
+        {
+            try
+            {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Chi tiết phiếu thu - chi");
+
+                string fileName = "Export_chitiet_phieu_thu_chi";
+                exportToExcel(dgvReceiptLogDetail, worksheet, 1, 1, fileName);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void btnReceiptLogExportExcel_Click(object sender, EventArgs e)
+        {
+            exportDanhSachPhieuThuChiToExcel();
+        }
+
+        private void tabQuanLyPhieuThuChi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabQuanLyPhieuThuChi.SelectedTab == tabQuanLyPhieuThuChi.TabPages["tabPageChiTietPhieuThuChi"])
+            {
+                //loadDataReceiptLogDetail();
+                dgvReceiptLogDetail.AutoGenerateColumns = false;
+                loadPartDataWithFieldAllToComboBox(cbReceiptLogDetailVehicle);
+                dtReceiptLogDetailBook.Value = DateTime.Now;
+            } else if (tabQuanLyPhieuThuChi.SelectedTab == tabQuanLyPhieuThuChi.TabPages["tabPageInPhieuThu"])
+            {
+                loadDataPrintReceipt();
+            }
+            else if (tabQuanLyPhieuThuChi.SelectedTab == tabQuanLyPhieuThuChi.TabPages["tabPageLichSuPhieuThuChi"])
+            {
+                configReceiptHistory();
+                dgv_ReceiptHistory.AutoGenerateColumns = false;
+            }
+    }
+
+        private void loadDataReceiptLogDetail()
+        {
+            dgvReceiptLogDetail.AutoGenerateColumns = false;
+            if (dgvReceiptLogDetail.Rows.Count == 0)
+            {
+                DataTable data = ReceiptLogDetailDAO.GetAllData();
+                dgvReceiptLogDetail.DataSource = data;
+            }           
+        }
+
+        private int mReceiptLogDetailHeight = 0;
+        private void dgvReceiptLogDetail_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvReceiptLogDetail, "ReceiptLogDetailSTT");
+            int total = 0;
+            foreach (DataGridViewRow row in dgvReceiptLogDetail.Rows)
+            {
+                total += Convert.ToInt32(row.Cells["ReceiptLogDetailCost"].Value.ToString());
+            }
+            tbReceiptLogDetailTotalCost.Text = Util.formatNumberAsMoney(total);
+
+            var height = 42;
+            foreach (DataGridViewRow dr in dgvReceiptLogDetail.Rows)
+            {
+                height += dr.Height;
+            }
+
+            if (mReceiptLogDetailHeight == 0)
+            {
+                mReceiptLogDetailHeight = dgvReceiptLogDetail.Height;
+            }
+            if (height < mReceiptLogDetailHeight)
+            {
+                dgvReceiptLogDetail.Height = height;
+
+            }
+            else
+            {
+                dgvReceiptLogDetail.Height = mReceiptLogDetailHeight;
+            }
+        }
+
+        private void btnReceiptLogDetailSearch_Click(object sender, EventArgs e)
+        {
+            ReceiptLogDetailDTO receiptLogDetailDTO = getReceptLogDetailModelForSearch();
+
+            DataTable data = ReceiptLogDetailDAO.searchAllData(receiptLogDetailDTO);
+            dgvReceiptLogDetail.DataSource = data;
+        }
+
+        private void btnReceiptLogDetailExportExcel_Click(object sender, EventArgs e)
+        {
+            exportDanhSachChiTietPhieuThuChiToExcel();
+        }
+
+        private void dgv_ReceiptHistory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgv_ReceiptHistory.Columns["ReceiptLog_Detail"].Index && e.RowIndex >= 0)
+            {
+                int receiptLogID = Convert.ToInt32(dgv_ReceiptHistory.Rows[e.RowIndex].Cells["ReceiptLogID"].Value);
+                ReceiptLogDetailDTO receiptLogDetailDTO = new ReceiptLogDetailDTO();
+                receiptLogDetailDTO.ReceiptLogID = receiptLogID;
+
+                DataTable data = ReceiptLogDetailDAO.searchAllData(receiptLogDetailDTO);
+                dgvReceiptLogDetail.DataSource = data;
+                tabQuanLyPhieuThuChi.SelectedTab = tabQuanLyPhieuThuChi.TabPages["tabPageChiTietPhieuThuChi"];
+            }
         }
     }
 }

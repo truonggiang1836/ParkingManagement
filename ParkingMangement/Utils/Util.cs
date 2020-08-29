@@ -162,10 +162,10 @@ namespace ParkingMangement.Utils
             return string.Format("{0:#,000}", number);
         }
 
-        public static int getMillisecondBetweenTwoDate(DateTime oldDate, DateTime newDate)
+        public static double getMillisecondBetweenTwoDate(DateTime oldDate, DateTime newDate)
         {
             TimeSpan span = newDate - oldDate;
-            int ms = (int)span.TotalMilliseconds;
+            double ms = span.TotalMilliseconds;
             return ms;
         }
 
@@ -268,6 +268,83 @@ namespace ParkingMangement.Utils
             throw new Exception("No network adapters with an IPv4 address in the system!");
         }
 
+        private static Order getOrderFromData(DataRow dtRow)
+        {
+            Order order = new Order();
+            order.ProjectId = Util.getConfigFile().projectId;
+            order.OrderId = dtRow.Field<int>("Identify");
+            order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
+            order.CardCode = dtRow.Field<string>("ID");
+            DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
+            //checkinDatetime = checkinDatetime.AddHours(11);
+            //order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
+            order.CheckinTime = DateTimeToMillisecond(checkinDatetime);
+            if (dtRow.Field<DateTime?>("TimeEnd") != null)
+            {
+                DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+                //checkoutDatetime = checkoutDatetime.AddHours(11);
+                //order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
+                order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime);
+            }
+            if (dtRow["Digit"] != DBNull.Value)
+            {
+                order.CarNumber = dtRow.Field<string>("Digit");
+            }
+            if (dtRow["DigitIn"] != DBNull.Value)
+            {
+                order.CarNumberIn = dtRow.Field<string>("DigitIn");
+            }
+            if (dtRow["DigitOut"] != DBNull.Value)
+            {
+                order.CarNumberOut = dtRow.Field<string>("DigitOut");
+            }
+
+            int adminCheckinId = 0;
+            Int32.TryParse(dtRow.Field<string>("IDIn"), out adminCheckinId);
+            order.AdminCheckinId = adminCheckinId;
+
+            order.AdminCheckinName = dtRow.Field<string>("UserIn");
+            int adminCheckoutId = 0;
+            if (dtRow["IDOut"] != DBNull.Value)
+            {
+                Int32.TryParse(dtRow.Field<string>("IDOut"), out adminCheckoutId);
+            }
+            order.AdminCheckoutId = adminCheckoutId;
+
+            order.AdminCheckoutName = dtRow.Field<string>("UserOut");
+
+            int monthlyCardId = 0;
+            if (dtRow["IDTicketMonth"] != DBNull.Value)
+            {
+                Int32.TryParse(dtRow.Field<string>("IDTicketMonth"), out monthlyCardId);
+            }
+            order.MonthlyCardId = monthlyCardId;
+
+
+            int vehicleId = 0;
+            try
+            {
+                Int32.TryParse(dtRow.Field<string>("IDPart"), out vehicleId);
+            }
+            catch (Exception)
+            {
+
+            }
+            order.VehicleId = vehicleId;
+
+            order.VehicleName = dtRow.Field<string>("PartName");
+            order.VehicleCode = dtRow.Field<string>("Sign");
+            order.IsCardLost = dtRow.Field<int>("IsLostCard");
+            order.TotalPrice = dtRow.Field<int>("Cost");
+            order.PcName = dtRow.Field<string>("Computer");
+            order.Account = dtRow.Field<string>("Account");
+            DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
+            //dateUpdate = checkinDatetime.AddHours(11);
+            order.Created = DateTimeToMillisecond(dateUpdate);
+            order.Updated = DateTimeToMillisecond(dateUpdate);
+            return order;
+        }
+
         private static bool sendOrderListToServer(DataTable data, bool isCarIn)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
@@ -277,8 +354,6 @@ namespace ParkingMangement.Utils
             DataTable dtTable = data;
             List<Order> listOrder = new List<Order>();
             WebClient webClient = (new ApiUtil()).getWebClient();
-            //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var param = new System.Collections.Specialized.NameValueCollection();
             string jsonString = "";
             string listId = "";
             long firstId = 0;
@@ -286,77 +361,7 @@ namespace ParkingMangement.Utils
             for (int i = 0; i < count; i++)
             {
                 DataRow dtRow = dtTable.Rows[i];
-                Order order = new Order();
-                order.ProjectId = Util.getConfigFile().projectId;
-                order.OrderId = dtRow.Field<int>("Identify");
-                order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
-                order.CardCode = dtRow.Field<string>("ID");
-                DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
-                //checkinDatetime = checkinDatetime.AddHours(11);
-                //order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
-                order.CheckinTime = DateTimeToMillisecond(checkinDatetime);
-                if (dtRow.Field<DateTime?>("TimeEnd") != null)
-                {
-                    DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
-                    //checkoutDatetime = checkoutDatetime.AddHours(11);
-                    //order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
-                    order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime);
-                }
-                if (dtRow["Digit"] != DBNull.Value)
-                {
-                    order.CarNumber = dtRow.Field<string>("Digit");
-                }
-                if (dtRow["DigitIn"] != DBNull.Value)
-                {
-                    order.CarNumberIn = dtRow.Field<string>("DigitIn");
-                }
-                if (dtRow["DigitOut"] != DBNull.Value)
-                {
-                    order.CarNumberOut = dtRow.Field<string>("DigitOut");
-                }
-
-                int adminCheckinId = 0;
-                Int32.TryParse(dtRow.Field<string>("IDIn"), out adminCheckinId);
-                order.AdminCheckinId = adminCheckinId;
-
-                order.AdminCheckinName = dtRow.Field<string>("UserIn");
-                int adminCheckoutId = 0;
-                if (dtRow["IDOut"] != DBNull.Value)
-                {
-                    Int32.TryParse(dtRow.Field<string>("IDOut"), out adminCheckoutId);
-                }
-                order.AdminCheckoutId = adminCheckoutId;
-
-                order.AdminCheckoutName = dtRow.Field<string>("UserOut");
-
-                int monthlyCardId = 0;
-                if (dtRow["IDTicketMonth"] != DBNull.Value)
-                {
-                    Int32.TryParse(dtRow.Field<string>("IDTicketMonth"), out monthlyCardId);
-                }
-                order.MonthlyCardId = monthlyCardId;
-
-
-                int vehicleId = 0;
-                try
-                {
-                    Int32.TryParse(dtRow.Field<string>("IDPart"), out vehicleId);
-                } catch (Exception)
-                {
-
-                }
-                order.VehicleId = vehicleId;
-
-                order.VehicleName = dtRow.Field<string>("PartName");
-                order.VehicleCode = dtRow.Field<string>("Sign");
-                order.IsCardLost = dtRow.Field<int>("IsLostCard");
-                order.TotalPrice = dtRow.Field<int>("Cost");
-                order.PcName = dtRow.Field<string>("Computer");
-                order.Account = dtRow.Field<string>("Account");
-                DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
-                //dateUpdate = checkinDatetime.AddHours(11);
-                order.Created = DateTimeToMillisecond(dateUpdate);
-                order.Updated = DateTimeToMillisecond(dateUpdate);
+                Order order = getOrderFromData(dtRow);
                 listOrder.Add(order);
                                 
                 listId += order.OrderId + ",";    
@@ -376,7 +381,6 @@ namespace ParkingMangement.Utils
 
             try
             {
-                //byte[] responsebytes = webClient.UploadValues(ApiUtil.API_ORDERS_BATCH_INSERT, "POST", param);
                 if (!jsonString.Equals(""))
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
@@ -403,8 +407,63 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                //MessageBox.Show(e.Message);
                 updateSyncOrderMessage(firstId, e.Message, isCarIn);
+            }
+            return false;
+        }
+
+        public static bool sendOldOrderListToServer(DataTable data)
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return false;
+            }
+            DataTable dtTable = data;
+            List<Order> listOrder = new List<Order>();
+            WebClient webClient = (new ApiUtil()).getWebClient();
+            string jsonString = "";
+            string listId = "";
+            int count = dtTable.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                Order order = getOrderFromData(dtRow);
+                listOrder.Add(order);
+
+                listId += order.OrderId + ",";
+            }
+            if (listOrder.Count > 0)
+            {
+                listId = listId.Remove(listId.Length - 1, 1);
+                listId = "(" + listId + ")";
+
+                jsonString = JsonConvert.SerializeObject(listOrder);
+                Console.WriteLine(":: " + jsonString);
+            }
+            else
+            {
+                listId = "";
+            }
+
+            try
+            {
+                if (!jsonString.Equals(""))
+                {
+                    string result = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
+                    Console.WriteLine("result_api: " + result);
+
+                    if (result.Equals(""))
+                    {
+                        CarDAO.UpdateIsSync(listId);
+                    }                   
+                }
+                Console.WriteLine("json_api: " + jsonString);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+
             }
             return false;
         }
@@ -454,10 +513,12 @@ namespace ParkingMangement.Utils
                 if (dtRow.Field<string>("IsUsing").Equals("1"))
                 {
                     card.Disable = 0;
-                } else
+                }
+                else
                 {
                     card.Disable = 1;
                 }
+                card.Deleted = dtRow.Field<int>("IsDeleted");
                 int vehicleId = 0;
                 try
                 {
@@ -511,8 +572,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
-                MessageBox.Show(e.Message);
+                
             }
         }
 
@@ -549,8 +609,9 @@ namespace ParkingMangement.Utils
                 monthlyCard.Company = dtRow.Field<string>("Company");
                 monthlyCard.CompanyId = 1;
                 monthlyCard.CustomerName = dtRow.Field<string>("CustomerName");
-                monthlyCard.Disable = 0;
+                monthlyCard.Deleted = dtRow.Field<int>("IsDeleted");
                 monthlyCard.Email = dtRow.Field<string>("Email");
+
 
                 monthlyCard.Created = DateTimeToMillisecond(DateTime.Now);
                 monthlyCard.Updated = DateTimeToMillisecond(DateTime.Now);
@@ -632,8 +693,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
-                //MessageBox.Show(e.Message);
+
             }
         }
 
@@ -736,7 +796,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
+
             }
         }
 
@@ -802,7 +862,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
+
             }
         }
 
@@ -862,7 +922,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
+
             }
         }
 
@@ -918,7 +978,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
+
             }
         }
 
@@ -998,7 +1058,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
+
             }
         }
 
@@ -1043,7 +1103,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception e)
             {
-                int x = 0;
+
             }
         }
 
@@ -1413,7 +1473,7 @@ namespace ParkingMangement.Utils
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message, "error!");
+
             }
         }
 
@@ -1604,11 +1664,213 @@ namespace ParkingMangement.Utils
         public static void autoLockExpiredCard()
         {
             int currentDay = (int)System.DateTime.Now.Day;
-            DateTime startTimeForAutoLock = new DateTime(2020, 5, 31);
-            if (currentDay >= ConfigDAO.GetLockCardDate() && DateTime.Now.CompareTo(startTimeForAutoLock) > 0)
+            int lockCardDate = ConfigDAO.GetLockCardDate();
+            if (currentDay >= lockCardDate && currentDay - 5 <= lockCardDate)
             {
                 CardDAO.lockExpiredCard();
             }
+        }
+
+        public static int MonthDifference(this DateTime lValue, DateTime rValue)
+        {
+            return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+        }
+
+        public static DateTime getLastDateOfCurrentMonth()
+        {
+            DateTime now = DateTime.Now;
+            DateTime startDate = new DateTime(now.Year, now.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            return endDate;
+        }
+
+        public static DateTime getLastDateOfCurrentMonth(DateTime date)
+        {
+            DateTime startDate = new DateTime(date.Year, date.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            return endDate;
+        }
+
+        public static DateTime getFirstDateOfCurrentMonth(DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, 1);
+        }
+
+        public static int getDaysInMonth(DateTime date)
+        {
+            return DateTime.DaysInMonth(date.Year, date.Month);
+        }
+
+        private static string Chu(string gNumber)
+        {
+            string result = "";
+            switch (gNumber)
+            {
+                case "0":
+                    result = "không";
+                    break;
+                case "1":
+                    result = "một";
+                    break;
+                case "2":
+                    result = "hai";
+                    break;
+                case "3":
+                    result = "ba";
+                    break;
+                case "4":
+                    result = "bốn";
+                    break;
+                case "5":
+                    result = "năm";
+                    break;
+                case "6":
+                    result = "sáu";
+                    break;
+                case "7":
+                    result = "bảy";
+                    break;
+                case "8":
+                    result = "tám";
+                    break;
+                case "9":
+                    result = "chín";
+                    break;
+            }
+            return result;
+        }
+
+        private static string Donvi(string so)
+        {
+            string Kdonvi = "";
+
+            if (so.Equals("1"))
+                Kdonvi = "";
+            if (so.Equals("2"))
+                Kdonvi = "nghìn";
+            if (so.Equals("3"))
+                Kdonvi = "triệu";
+            if (so.Equals("4"))
+                Kdonvi = "tỷ";
+            if (so.Equals("5"))
+                Kdonvi = "nghìn tỷ";
+            if (so.Equals("6"))
+                Kdonvi = "triệu tỷ";
+            if (so.Equals("7"))
+                Kdonvi = "tỷ tỷ";
+
+            return Kdonvi;
+        }
+
+        private static string Tach(string tach3)
+        {
+            string Ktach = "";
+            if (tach3.Equals("000"))
+                return "";
+            if (tach3.Length == 3)
+            {
+                string tr = tach3.Trim().Substring(0, 1).ToString().Trim();
+                string ch = tach3.Trim().Substring(1, 1).ToString().Trim();
+                string dv = tach3.Trim().Substring(2, 1).ToString().Trim();
+                if (tr.Equals("0") && ch.Equals("0"))
+                    Ktach = " không trăm lẻ " + Chu(dv.ToString().Trim()) + " ";
+                if (!tr.Equals("0") && ch.Equals("0") && dv.Equals("0"))
+                    Ktach = Chu(tr.ToString().Trim()).Trim() + " trăm ";
+                if (!tr.Equals("0") && ch.Equals("0") && !dv.Equals("0"))
+                    Ktach = Chu(tr.ToString().Trim()).Trim() + " trăm lẻ " + Chu(dv.Trim()).Trim() + " ";
+                if (tr.Equals("0") && Convert.ToInt32(ch) > 1 && Convert.ToInt32(dv) > 0 && !dv.Equals("5"))
+                    Ktach = " không trăm " + Chu(ch.Trim()).Trim() + " mươi " + Chu(dv.Trim()).Trim() + " ";
+                if (tr.Equals("0") && Convert.ToInt32(ch) > 1 && dv.Equals("0"))
+                    Ktach = " không trăm " + Chu(ch.Trim()).Trim() + " mươi ";
+                if (tr.Equals("0") && Convert.ToInt32(ch) > 1 && dv.Equals("5"))
+                    Ktach = " không trăm " + Chu(ch.Trim()).Trim() + " mươi lăm ";
+                if (tr.Equals("0") && ch.Equals("1") && Convert.ToInt32(dv) > 0 && !dv.Equals("5"))
+                    Ktach = " không trăm mười " + Chu(dv.Trim()).Trim() + " ";
+                if (tr.Equals("0") && ch.Equals("1") && dv.Equals("0"))
+                    Ktach = " không trăm mười ";
+                if (tr.Equals("0") && ch.Equals("1") && dv.Equals("5"))
+                    Ktach = " không trăm mười lăm ";
+                if (Convert.ToInt32(tr) > 0 && Convert.ToInt32(ch) > 1 && Convert.ToInt32(dv) > 0 && !dv.Equals("5"))
+                    Ktach = Chu(tr.Trim()).Trim() + " trăm " + Chu(ch.Trim()).Trim() + " mươi " + Chu(dv.Trim()).Trim() + " ";
+                if (Convert.ToInt32(tr) > 0 && Convert.ToInt32(ch) > 1 && dv.Equals("0"))
+                    Ktach = Chu(tr.Trim()).Trim() + " trăm " + Chu(ch.Trim()).Trim() + " mươi ";
+                if (Convert.ToInt32(tr) > 0 && Convert.ToInt32(ch) > 1 && dv.Equals("5"))
+                    Ktach = Chu(tr.Trim()).Trim() + " trăm " + Chu(ch.Trim()).Trim() + " mươi lăm ";
+                if (Convert.ToInt32(tr) > 0 && ch.Equals("1") && Convert.ToInt32(dv) > 0 && !dv.Equals("5"))
+                    Ktach = Chu(tr.Trim()).Trim() + " trăm mười " + Chu(dv.Trim()).Trim() + " ";
+
+                if (Convert.ToInt32(tr) > 0 && ch.Equals("1") && dv.Equals("0"))
+                    Ktach = Chu(tr.Trim()).Trim() + " trăm mười ";
+                if (Convert.ToInt32(tr) > 0 && ch.Equals("1") && dv.Equals("5"))
+                    Ktach = Chu(tr.Trim()).Trim() + " trăm mười lăm ";
+            }
+
+            return Ktach;
+        }
+
+        public static string So_sang_chu(double gNum)
+        {
+            if (gNum == 0)
+                return "Không đồng";
+
+            string lso_chu = "";
+            string tach_mod = "";
+            string tach_conlai = "";
+            double Num = Math.Round(gNum, 0);
+            string gN = Convert.ToString(Num);
+            int m = Convert.ToInt32(gN.Length / 3);
+            int mod = gN.Length - m * 3;
+            string dau = "[+]";
+
+            // Dau [+ , - ]
+            if (gNum < 0)
+                dau = "[-]";
+            dau = "";
+
+            // Tach hang lon nhat
+            if (mod.Equals(1))
+                tach_mod = "00" + Convert.ToString(Num.ToString().Trim().Substring(0, 1)).Trim();
+            if (mod.Equals(2))
+                tach_mod = "0" + Convert.ToString(Num.ToString().Trim().Substring(0, 2)).Trim();
+            if (mod.Equals(0))
+                tach_mod = "000";
+            // Tach hang con lai sau mod :
+            if (Num.ToString().Length > 2)
+                tach_conlai = Convert.ToString(Num.ToString().Trim().Substring(mod, Num.ToString().Length - mod)).Trim();
+
+            ///don vi hang mod
+            int im = m + 1;
+            if (mod > 0)
+                lso_chu = Tach(tach_mod).ToString().Trim() + " " + Donvi(im.ToString().Trim());
+            /// Tach 3 trong tach_conlai
+
+            int i = m;
+            int _m = m;
+            int j = 1;
+            string tach3 = "";
+            string tach3_ = "";
+
+            while (i > 0)
+            {
+                tach3 = tach_conlai.Trim().Substring(0, 3).Trim();
+                tach3_ = tach3;
+                lso_chu = lso_chu.Trim() + " " + Tach(tach3.Trim()).Trim();
+                m = _m + 1 - j;
+                if (!tach3_.Equals("000"))
+                    lso_chu = lso_chu.Trim() + " " + Donvi(m.ToString().Trim()).Trim();
+                tach_conlai = tach_conlai.Trim().Substring(3, tach_conlai.Trim().Length - 3);
+
+                i = i - 1;
+                j = j + 1;
+            }
+            if (lso_chu.Trim().Substring(0, 1).Equals("k"))
+                lso_chu = lso_chu.Trim().Substring(10, lso_chu.Trim().Length - 10).Trim();
+            if (lso_chu.Trim().Substring(0, 1).Equals("l"))
+                lso_chu = lso_chu.Trim().Substring(2, lso_chu.Trim().Length - 2).Trim();
+            if (lso_chu.Trim().Length > 0)
+                lso_chu = dau.Trim() + " " + lso_chu.Trim().Substring(0, 1).Trim().ToUpper() + lso_chu.Trim().Substring(1, lso_chu.Trim().Length - 1).Trim() + " đồng chẵn.";
+
+            return lso_chu.ToString().Trim();
         }
     }
 }

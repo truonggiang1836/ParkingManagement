@@ -108,7 +108,7 @@ namespace ParkingMangement.Model
         public string signalCloseBarieOutMotorbike { get; set; } = "";
 
         [XmlElement(ElementName = "uhf_query_time")]
-        public int uhfQueryTime { get; set; }
+        public double uhfQueryTime { get; set; }
 
         [XmlElement(ElementName = "is_using_uhf")]
         public string isUsingUhf { get; set; } = "false";

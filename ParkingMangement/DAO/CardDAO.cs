@@ -113,7 +113,7 @@ namespace ParkingMangement.DAO
         public static void lockExpiredCard()
         {
             string sql = "update SmartCard set SmartCard.IsUsing = 0 from SmartCard inner join TicketMonth on SmartCard.ID = TicketMonth.ID"
-                + " where MONTH(TicketMonth.ExpirationDate) < MONTH(getdate()) and SmartCard.IsUsing = 1";
+                + " where DATEDIFF(MONTH, TicketMonth.ExpirationDate, getdate()) >= 2 and SmartCard.IsUsing = 1";
             (new Database()).ExcuNonQuery(sql);
         }
         public static void UpdateDayUnlimit(DateTime dayUnlimit, string cardId)
@@ -162,14 +162,9 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static int GetCardCount()
-        {
-            return GetAllData().Rows.Count;
-        }
-
         public static int GetUsingCardCount()
         {
-            string sql = "select ID from SmartCard where SmartCard.IsUsing = '1' and SmartCard.IsDeleted = 0";
+            string sql = "select SmartCard.ID from SmartCard, Part where SmartCard.Type = Part.ID and SmartCard.IsUsing = '1' and SmartCard.IsDeleted = 0";
             DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null)
             {
@@ -180,7 +175,7 @@ namespace ParkingMangement.DAO
 
         public static int GetNotUsingCardCount()
         {
-            string sql = "select ID from SmartCard where SmartCard.IsUsing = '0' and SmartCard.IsDeleted = 0";
+            string sql = "select SmartCard.ID from SmartCard, Part where SmartCard.Type = Part.ID and SmartCard.IsUsing = '0' and SmartCard.IsDeleted = 0";
             DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null)
             {
@@ -257,6 +252,18 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
+        public static int GetCardCountByPartId(string partId)
+        {
+            string sql = "select * from SmartCard where Type = '" + partId + "'";
+            return (new Database()).ExcuQuery(sql).Rows.Count;
+        }
+
+        public static DataTable GetNotDeletedCardByID(string id)
+        {
+            string sql = "select * from SmartCard where ID = '" + id + "' and IsDeleted = 0";
+            return (new Database()).ExcuQuery(sql);
+        }
+
         public static DataTable GetCardByIdentify(string identify)
         {
             string sql = "select * from SmartCard where Identify = '" + identify + "'";
@@ -269,6 +276,28 @@ namespace ParkingMangement.DAO
             DataTable dt = GetCardByID(id);
             if (dt != null && dt.Rows.Count > 0)
             {
+                cardDTO.Identify = dt.Rows[0].Field<string>("Identify");
+                cardDTO.Id = dt.Rows[0].Field<string>("Id");
+                cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
+                cardDTO.Type = dt.Rows[0].Field<string>("Type");
+                cardDTO.IsSync = dt.Rows[0].Field<Int32>("IsSync") + "";
+                cardDTO.IsDeleted = dt.Rows[0].Field<Int32>("IsDeleted") + "";
+                if (dt.Rows[0].Field<Object>("DayUnlimit") != null)
+                {
+                    cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
+                }
+                return cardDTO;
+            }
+            return null;
+        }
+
+        public static CardDTO GetNotDeletedCardModelByID(string id)
+        {
+            CardDTO cardDTO = null;
+            DataTable dt = GetNotDeletedCardByID(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                cardDTO = new CardDTO();
                 cardDTO.Identify = dt.Rows[0].Field<string>("Identify");
                 cardDTO.Id = dt.Rows[0].Field<string>("Id");
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");

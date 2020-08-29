@@ -21,6 +21,7 @@ namespace ParkingMangement.GUI
     {
         private bool isXemDanhSachXeTon = false;
         private Timer timerReadUHFData;
+        private UHFReader mUHFReader;
         public FormQuanLyXeVaoRa()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace ParkingMangement.GUI
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
             loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
 
+            mUHFReader = new UHFReader();
             if (Util.getConfigFile().isUsingUhf.Equals("yes"))
             {
                 initUhfTimer();
@@ -57,6 +59,7 @@ namespace ParkingMangement.GUI
         private void btnSearchCar_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = false;
+            dgvCarList.Columns["STT_CarList"].Visible = false;
             searchCar();
         }
 
@@ -207,6 +210,7 @@ namespace ParkingMangement.GUI
         private void btnXemDanhSachXeTon_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = true;
+            dgvCarList.Columns["STT_CarList"].Visible = true;
             searchXeTon();
         }
 
@@ -269,6 +273,7 @@ namespace ParkingMangement.GUI
         private void btnExportDanhSachXe_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = false;
+            dgvCarList.Columns["STT_CarList"].Visible = true;
             searchMatThe();
         }
 
@@ -303,10 +308,10 @@ namespace ParkingMangement.GUI
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
         {
-            int frmcomportindexIn = UHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
-            int frmcomportindexOut = UHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
-            string uhfInCardId = UHFReader.GetUHFData(frmcomportindexIn);
-            string uhfOutCardId = UHFReader.GetUHFData(frmcomportindexOut);
+            int frmcomportindexIn = mUHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+            int frmcomportindexOut = mUHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
+            string uhfInCardId = mUHFReader.GetUHFData(frmcomportindexIn);
+            string uhfOutCardId = mUHFReader.GetUHFData(frmcomportindexOut);
             string uhfCardId = uhfInCardId;
             if (uhfCardId == null)
             {

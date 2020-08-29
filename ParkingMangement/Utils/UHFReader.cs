@@ -11,6 +11,7 @@ using System.Reflection;
 using ReaderB;
 using System.IO.Ports;
 using System.IO;
+using ParkingMangement.Model;
 
 namespace ParkingMangement.Utils
 {
@@ -46,12 +47,12 @@ namespace ParkingMangement.Utils
             fCmdRet = StaticClassReaderB.SetWorkMode(ref fComAdr, Parameter, frmcomportindex);
         }
 
-        public static int getComportIndex(string portName)
+        public int getComportIndex(string portName)
         {
             return Convert.ToInt32(portName.Substring(3, portName.Length - 3));
         }
 
-        public void openComPort(string portName)
+        public void openComPort(string portName, bool isShowError)
         {
             frmcomportindex = Convert.ToInt32(portName.Substring(3, portName.Length - 3));
             StaticClassReaderB.CloseSpecComPort(frmcomportindex);
@@ -86,7 +87,11 @@ namespace ParkingMangement.Utils
                         if ((fCmdRet == 0x35) || (fCmdRet == 0x30))
                         {
                             ComOpen = false;
-                            MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+                            if (isShowError)
+                            {
+                                MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+                            }
+                           
                             StaticClassReaderB.CloseSpecComPort(frmcomportindex);
                             return;
                         }
@@ -105,12 +110,24 @@ namespace ParkingMangement.Utils
                 ComOpen = true;
             }
             if ((fOpenComIndex == -1) && (openresult == 0x30))
-                MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+            {
+                if (isShowError)
+                {
+                    MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+                }
+                StaticClassReaderB.CloseSpecComPort(frmcomportindex);
+            }
 
             setParameter();
         }
 
-        public static string GetUHFData(int frmcomportindex)
+        public void closeComPort(string portName)
+        {
+            frmcomportindex = Convert.ToInt32(portName.Substring(3, portName.Length - 3));
+            StaticClassReaderB.CloseSpecComPort(frmcomportindex);
+        }
+
+        public string GetUHFData(int frmcomportindex)
         {
             byte[] ScanModeData = new byte[40960];
             int ValidDatalength, i;
@@ -137,7 +154,7 @@ namespace ParkingMangement.Utils
             return null;
         }
 
-        public static string ByteArrayToHexString(byte[] data)
+        public string ByteArrayToHexString(byte[] data)
         {
             StringBuilder sb = new StringBuilder(data.Length * 3);
             foreach (byte b in data)

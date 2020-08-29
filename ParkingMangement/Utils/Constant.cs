@@ -78,6 +78,7 @@ namespace ParkingMangement.Utils
         public static string sMessageRenewPlusDateInvalidError = "Số ngày gia hạn không hợp lệ";
         public static string sMessageCardTypeIsNotTicketMonth = "Loại thẻ này không dành cho xe tháng";
         public static string sMessageDigitExisted = "Biển số đã tồn tại";
+        public static string sMessageMaxTicketMonthToPrint = "Chỉ được chọn tối đa 6 thẻ tháng";
 
         // Config
         public static string FOLDER_NAME_IMAGES = "Images";
@@ -171,10 +172,12 @@ namespace ParkingMangement.Utils
 
         public static String sDateTimeFormatForQuery = "yyyy-MM-dd HH:mm:ss";
         public static String sDateTimeFormatForAPI = "yyyy-MM-dd HH:mm";
+        public static String sDateTimeFormatForScreen = "dd-MM-yyyy HH:mm:ss";
 
         public static string getSharedImageFolder()
         {
             string path = @"\\" + Util.getConfigFile().computerName + @"\" + Util.getConfigFile().folderRoot + @"\" + FOLDER_NAME_IMAGES + @"\";
+            //path = @"D:\\PHAN MEM BAI XE\\HINH ANH\\ParkingManagement\Images";
             return path;
         }
 

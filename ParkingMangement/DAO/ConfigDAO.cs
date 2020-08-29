@@ -27,7 +27,7 @@ namespace ParkingMangement.DAO
             }
             else
             {
-                return -1;
+                return 0;
             }
         }
 

@@ -34,7 +34,10 @@ namespace ParkingMangement.Utils
 
         //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         //public static string BASE_URL = "http://api.spmgroup.vn/public/";
-        public static string BASE_URL = "http://api.spmgroup.vn:8080/parking-apis/";
+        //public static string BASE_URL = "http://api.spmgroup.vn:8080/parking-apis/";
+        //public static string BASE_URL = "http://13.59.183.208:8080/parking-apis/";
+        public static string BASE_URL = "http://sync.spmgroup.vn/parking-apis/";
+
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
         public static string API_CHECKIN = BASE_URL + "cards/checkin";

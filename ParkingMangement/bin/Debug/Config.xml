@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <camera_url_1 />
-  <camera_url_2>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_2>
-  <camera_url_3>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_3>
-  <camera_url_4>http://mirrors.standaloneinstaller.com/video-sample/Panasonic_HDC_TM_700_P_50i.mp4</camera_url_4>
-  <rfid_in>\\?\HID#VID_0E6A&amp;PID_030F&amp;MI_00#8&amp;4423aea&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_in>
-  <rfid_out>\\?\HID#VID_0E6A&amp;PID_030F&amp;MI_00#8&amp;4423aea&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_out>
+  <camera_url_1>https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4</camera_url_1>
+  <camera_url_2>https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4</camera_url_2>
+  <camera_url_3>https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4</camera_url_3>
+  <camera_url_4>https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4</camera_url_4>
+  <rfid_in>\\?\HID#VID_0E6A&amp;PID_0305#6&amp;19a36c90&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_in>
+  <rfid_out>\\?\HID#VID_0E6A&amp;PID_0305#6&amp;27adf4e6&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_out>
   <computer_name>TRUONGGIANG</computer_name>
   <sql_datasource>TRUONGGIANG</sql_datasource>
   <sql_port>1433</sql_port>
   <sql_username>sa</sql_username>
   <sql_password>123456</sql_password>
   <folder_root>ParkingManagement</folder_root>
-  <in_out_type>4</in_out_type>
-  <zoom_camera_1>30</zoom_camera_1>
-  <zoom_camera_2>30</zoom_camera_2>
-  <zoom_camera_3>30</zoom_camera_3>
-  <zoom_camera_4>30</zoom_camera_4>
-  <com_receive_in>COM4</com_receive_in>
+  <in_out_type>3</in_out_type>
+  <zoom_camera_1>100</zoom_camera_1>
+  <zoom_camera_2>100</zoom_camera_2>
+  <zoom_camera_3>100</zoom_camera_3>
+  <zoom_camera_4>100</zoom_camera_4>
+  <com_receive_in>COM9</com_receive_in>
   <com_receive_out>COM5</com_receive_out>
   <com_send>COM3</com_send>
-  <com_led_left>COM7</com_led_left>
+  <com_led_left />
   <com_led_right />
-  <com_lost_available>COM22</com_lost_available>
-  <signal_open_barie_in>@barie_open&amp;</signal_open_barie_in>
-  <signal_close_barie_in>@barie_close&amp;</signal_close_barie_in>
-  <signal_open_barie_out>@barie3_open&amp;</signal_open_barie_out>
-  <signal_close_barie_out>@barie3_close&amp;</signal_close_barie_out>
+  <com_lost_available>COM55</com_lost_available>
+  <signal_open_barie_in>@barie2_close&amp;</signal_open_barie_in>
+  <signal_close_barie_in>@barie2_open&amp;</signal_close_barie_in>
+  <signal_open_barie_out>@barie_open&amp;</signal_open_barie_out>
+  <signal_close_barie_out>@barie_close&amp;</signal_close_barie_out>
   <signal_open_barie_in_motorbike />
   <signal_close_barie_in_motorbike />
   <signal_open_barie_out_motorbike />
   <signal_close_barie_out_motorbike />
-  <uhf_query_time>1</uhf_query_time>
+  <uhf_query_time>0.5</uhf_query_time>
   <is_using_uhf>no</is_using_uhf>
-  <read_digit_folder />
+  <read_digit_folder>D:\DOC BIEN SO XE\</read_digit_folder>
   <project_id>2</project_id>
 </xml>

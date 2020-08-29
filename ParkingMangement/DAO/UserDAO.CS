@@ -39,14 +39,14 @@ namespace ParkingMangement.DAO
 
         public static string getInsertSql(UserDTO userDTO)
         {
-            string sql = "insert into UserCar(UserID, Account, Pass, NameUser, SexID, IDFunct, RememberMe, IsSync, IsDeleted) values ('" + userDTO.Id + "', '" + userDTO.Account + "', '" +
-                userDTO.Password + "', '" + userDTO.Name + "', " + userDTO.SexId + ", '" + userDTO.FunctionId + "', " + 0 + ", " + userDTO.IsSync + ", " + userDTO.IsDeleted + ")";
+            string sql = "insert into UserCar(UserID, Account, Pass, NameUser, SexID, IDFunct, RememberMe, IsSync, IsDeleted) values ('" + userDTO.Id + "', N'" + userDTO.Account + "', N'" +
+                userDTO.Password + "', N'" + userDTO.Name + "', " + userDTO.SexId + ", '" + userDTO.FunctionId + "', " + 0 + ", " + userDTO.IsSync + ", " + userDTO.IsDeleted + ")";
             return sql;
         }
 
         public static string getUpdateSql(UserDTO userDTO)
         {
-            string sql = "update UserCar set Account ='" + userDTO.Account + "', Pass ='" + userDTO.Password + "', NameUser ='" + userDTO.Name + "', SexID ="
+            string sql = "update UserCar set Account =N'" + userDTO.Account + "', Pass =N'" + userDTO.Password + "', NameUser =N'" + userDTO.Name + "', SexID ="
                 + userDTO.SexId + ", IDFunct ='" + userDTO.FunctionId + "', IsSync =" + userDTO.IsSync + ", IsDeleted =" + userDTO.IsDeleted + " where UserID ='" + userDTO.Id + "'";
             return sql;
         }
@@ -77,7 +77,7 @@ namespace ParkingMangement.DAO
 
         public static bool UpdatePassword(string password, string account)
         {
-            string sql = "update UserCar set Pass ='" + password + "' where Account ='" + account + "'";
+            string sql = "update UserCar set Pass =N'" + password + "' where Account =N'" + account + "'";
             return (new Database()).ExcuNonQuery(sql);
         }
 

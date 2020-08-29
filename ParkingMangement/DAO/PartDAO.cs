@@ -92,14 +92,14 @@ namespace ParkingMangement.DAO
 
         public static string getInsertSql(PartDTO partDTO)
         {
-            string sql = "insert into Part(ID, PartName, Sign, Amount, TypeID, CardTypeID, IsSync, IsDeleted) values ('" + partDTO.ID + "', '" + partDTO.Name + "', '" +
+            string sql = "insert into Part(ID, PartName, Sign, Amount, TypeID, CardTypeID, IsSync, IsDeleted) values (N'" + partDTO.ID + "', N'" + partDTO.Name + "', N'" +
                 partDTO.Sign + "', " + partDTO.Amount + ", '" + partDTO.TypeID + "', '" + partDTO.CardTypeID + "', " + partDTO.IsSync + ", " + partDTO.IsDeleted + ")";
             return sql;
         }
 
         public static string getUpdateSql(PartDTO partDTO)
         {
-            string sql = "update Part set PartName =('" + partDTO.Name + "'), Sign =('" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), TypeID =('" + 
+            string sql = "update Part set PartName =(N'" + partDTO.Name + "'), Sign =(N'" + partDTO.Sign + "'), Amount =(" + partDTO.Amount + "), TypeID =('" + 
                 partDTO.TypeID + "'), CardTypeID =('" + partDTO.CardTypeID + "'), IsSync =(" + partDTO.IsSync + "), IsDeleted =(" + partDTO.IsDeleted + ") where ID = '" + partDTO.ID + "'";
             return sql;
         }
