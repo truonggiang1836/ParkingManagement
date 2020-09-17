@@ -150,7 +150,7 @@ namespace ParkingMangement.DAO
                 {
                     sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
                 }
-                if (carDTO.CardIdentify != -1)
+                if (carDTO.CardIdentify != "")
                 {
                     sql += " and SmartCard.Identify like '%" + carDTO.CardIdentify + "%'";
                 }
@@ -183,7 +183,7 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Car.IDPart like '" + carDTO.IdPart + "'";
             }
-            if (carDTO.CardIdentify != -1)
+            if (carDTO.CardIdentify != "")
             {
                 sql += " and SmartCard.Identify like '%" + carDTO.CardIdentify + "%'";
             }
@@ -770,12 +770,22 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
-        public static void UpdateDigit(string id, String digit, String image1, String image2)
+        public static void UpdateDigitIn(string id, String digit)
         {
             int identify = GetLastIdentifyByID(id);
             if (identify != 0)
             {
-                string sql = "update Car set DigitIn ='" + digit + "', Images ='" + image1 + "', Images2 ='" + image2 + "' where Identify =" + identify;
+                string sql = "update Car set DigitIn ='" + digit + "' where Identify =" + identify;
+                (new Database()).ExcuNonQuery(sql);
+            }
+        }
+
+        public static void UpdateDigitOut(string id, String digit)
+        {
+            int identify = GetLastIdentifyByID(id);
+            if (identify != 0)
+            {
+                string sql = "update Car set DigitOut ='" + digit + "' where Identify =" + identify;
                 (new Database()).ExcuNonQuery(sql);
             }
         }

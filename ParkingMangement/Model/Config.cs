@@ -12,88 +12,88 @@ namespace ParkingMangement.Model
     public class Config
     {
         [XmlElement(ElementName = "camera_url_1")]
-        public string cameraUrl1 { get; set; }
+        public string cameraUrl1 { get; set; } = "";
 
         [XmlElement(ElementName = "camera_url_2")]
-        public string cameraUrl2 { get; set; }
+        public string cameraUrl2 { get; set; } = "";
 
         [XmlElement(ElementName = "camera_url_3")]
-        public string cameraUrl3 { get; set; }
+        public string cameraUrl3 { get; set; } = "";
 
         [XmlElement(ElementName = "camera_url_4")]
-        public string cameraUrl4 { get; set; }
+        public string cameraUrl4 { get; set; } = "";
 
         [XmlElement(ElementName = "rfid_in")]
-        public string rfidIn { get; set; }
+        public string rfidIn { get; set; } = "";
 
         [XmlElement(ElementName = "rfid_out")]
-        public string rfidOut { get; set; }
+        public string rfidOut { get; set; } = "";
 
         [XmlElement(ElementName = "computer_name")]
-        public string computerName { get; set; }
+        public string computerName { get; set; } = "";
 
         [XmlElement(ElementName = "sql_datasource")]
-        public string sqlDataSource { get; set; }
+        public string sqlDataSource { get; set; } = "";
 
         [XmlElement(ElementName = "sql_port")]
-        public string sqlPort { get; set; }
+        public string sqlPort { get; set; } = "";
 
         [XmlElement(ElementName = "sql_username")]
-        public string sqlUsername { get; set; }
+        public string sqlUsername { get; set; } = "";
 
         [XmlElement(ElementName = "sql_password")]
-        public string sqlPassword { get; set; }
+        public string sqlPassword { get; set; } = "";
 
         [XmlElement(ElementName = "folder_root")]
-        public string folderRoot { get; set; }
+        public string folderRoot { get; set; } = "";
 
         [XmlElement(ElementName = "last_saved_order")]
-        public string lastSavedOrder { get; set; }
+        public string lastSavedOrder { get; set; } = "";
 
         [XmlElement(ElementName = "in_out_type")]
-        public int inOutType { get; set; }
+        public int inOutType { get; set; } = 1;
 
         [XmlElement(ElementName = "zoom_camera_1")]
-        public int ZoomCamera1 { get; set; }
+        public int ZoomCamera1 { get; set; } = 30;
 
         [XmlElement(ElementName = "zoom_camera_2")]
-        public int ZoomCamera2 { get; set; }
+        public int ZoomCamera2 { get; set; } = 30;
 
         [XmlElement(ElementName = "zoom_camera_3")]
-        public int ZoomCamera3 { get; set; }
+        public int ZoomCamera3 { get; set; } = 30;
 
         [XmlElement(ElementName = "zoom_camera_4")]
-        public int ZoomCamera4 { get; set; }
+        public int ZoomCamera4 { get; set; } = 30;
 
         [XmlElement(ElementName = "com_receive_in")]
-        public string comReceiveIn { get; set; }
+        public string comReceiveIn { get; set; } = "";
 
         [XmlElement(ElementName = "com_receive_out")]
-        public string comReceiveOut { get; set; }
+        public string comReceiveOut { get; set; } = "";
 
         [XmlElement(ElementName = "com_send")]
-        public string comSend { get; set; }
+        public string comSend { get; set; } = "";
 
         [XmlElement(ElementName = "com_led_left")]
-        public string comLedLeft { get; set; }
+        public string comLedLeft { get; set; } = "";
 
         [XmlElement(ElementName = "com_led_right")]
-        public string comLedRight { get; set; }
+        public string comLedRight { get; set; } = "";
 
         [XmlElement(ElementName = "com_lost_available")]
-        public string comLostAvailable { get; set; }
+        public string comLostAvailable { get; set; } = "";
 
         [XmlElement(ElementName = "signal_open_barie_in")]
-        public string signalOpenBarieIn { get; set; }
+        public string signalOpenBarieIn { get; set; } = "";
 
         [XmlElement(ElementName = "signal_close_barie_in")]
-        public string signalCloseBarieIn { get; set; }
+        public string signalCloseBarieIn { get; set; } = "";
 
         [XmlElement(ElementName = "signal_open_barie_out")]
-        public string signalOpenBarieOut { get; set; }
+        public string signalOpenBarieOut { get; set; } = "";
 
         [XmlElement(ElementName = "signal_close_barie_out")]
-        public string signalCloseBarieOut { get; set; }
+        public string signalCloseBarieOut { get; set; } = "";
 
         [XmlElement(ElementName = "signal_open_barie_in_motorbike")]
         public string signalOpenBarieInMotorbike { get; set; } = "";
@@ -108,7 +108,7 @@ namespace ParkingMangement.Model
         public string signalCloseBarieOutMotorbike { get; set; } = "";
 
         [XmlElement(ElementName = "uhf_query_time")]
-        public double uhfQueryTime { get; set; }
+        public double uhfQueryTime { get; set; } = 1;
 
         [XmlElement(ElementName = "is_using_uhf")]
         public string isUsingUhf { get; set; } = "false";
@@ -117,6 +117,12 @@ namespace ParkingMangement.Model
         public string readDigitFolder { get; set; } = "";
       
         [XmlElement(ElementName = "project_id")]
-        public int projectId { get; set; }
+        public int projectId { get; set; } = 0;
+        [XmlElement(ElementName = "python_folder")]
+        public string pythonFolder { get; set; } = "";
+        [XmlElement(ElementName = "python_run_file")]
+        public string pythonRunFile { get; set; } = "";
+        [XmlElement(ElementName = "python_server_url")]
+        public string pythonServerUrl { get; set; } = "";
     }
 }

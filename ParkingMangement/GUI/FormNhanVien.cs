@@ -43,7 +43,7 @@ namespace ParkingMangement.GUI
         public string CurrentUserID;
         const bool CaptureOnlyInForeground = true;
         private string cardID = "0";
-        private string oldUhfCardId = null;
+        
         private DateTime oldUhfCardTime;
         private string rfidInput = "";
         private string portNameComReceiveInput = null;
@@ -61,9 +61,6 @@ namespace ParkingMangement.GUI
         private string portNameComReceiveIn = "";
         private string portNameComReceiveOut = "";
 
-        private SerialPort portComReceiveIn;
-        private SerialPort portComReceiveOut;
-
         private string imagePath1;
         private string imagePath2;
         private string imagePath3;
@@ -74,8 +71,11 @@ namespace ParkingMangement.GUI
         SerialPort leftLedPort;
         SerialPort rightLedPort;
         SerialPort lostAvailablePort;
+        SerialPort leftUhfPort;
+        SerialPort rightUhfPort;
 
         private Config mConfig;
+        private bool mIsReadingCard = false;
 
         private DataTable mListCarSurvive;
         private BindingSource mBindingSource;
@@ -206,6 +206,7 @@ namespace ParkingMangement.GUI
             mUHFReader = new UHFReader();
             if (mConfig.isUsingUhf.Equals("yes"))
             {
+                // OLD UHF READER
                 initUhfTimer();
             }
 
@@ -221,7 +222,7 @@ namespace ParkingMangement.GUI
             loadCamera3VLC();
             loadCamera4VLC();
 
-            getDataFromComReceive();
+            getDataFromUhfReader();
 
             oldSize = base.Size;
 
@@ -272,7 +273,10 @@ namespace ParkingMangement.GUI
                     //{
                     //    resetData();
                     //}
-                    if (oldUhfCardId != null)
+                    //Program.closeUhfReader();
+                    //Program.initUhfReader();
+
+                    if (Program.oldUhfCardId != null)
                     {
                         resetAllData();
                     }
@@ -471,6 +475,7 @@ namespace ParkingMangement.GUI
         private void readCardEvent()
         {
             //deleteOldImages();
+            mIsReadingCard = true;
             Program.isHasCarInOut = true;
             if (!cardID.Equals(""))
             {
@@ -570,10 +575,10 @@ namespace ParkingMangement.GUI
             }
 
             string inputDigit = "";
-            if (!mConfig.readDigitFolder.Equals(""))
-            {
-                inputDigit = docBienSo();
-            }
+            //if (!mConfig.readDigitFolder.Equals(""))
+            //{
+            //    inputDigit = docBienSo();
+            //}
 
             bool isKiemTraXeChuaRa = KiemTraXeChuaRa(dtLastCar);
             bool isKiemTraCapNhatXeVao = KiemTraCapNhatXeVao(dtLastCar);
@@ -638,11 +643,29 @@ namespace ParkingMangement.GUI
             }
 
             bool isUhfCard = false;
-            if (oldUhfCardId != null && !oldUhfCardId.Equals(""))
+            if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
             {
                 isUhfCard = true;
             }
             checkForOpenBarie(dtLastCar, isUhfCard);
+
+            if (!mConfig.readDigitFolder.Equals(""))
+            {
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    inputDigit = docBienSo();
+                    if (isCarIn())
+                    {
+                        CarDAO.UpdateDigitIn(cardID, inputDigit);
+                    }
+                    else
+                    {
+                        CarDAO.UpdateDigitOut(cardID, inputDigit);
+                    }
+                }).Start();                            
+            }
+            mIsReadingCard = false;
             return true;
         }
 
@@ -653,7 +676,7 @@ namespace ParkingMangement.GUI
             {
                 //saveImage1ToFile();
                 //saveImage2ToFile();
-                CarDAO.UpdateDigit(cardID, digit, imagePath1, imagePath2);
+                CarDAO.UpdateDigitIn(cardID, digit);
                 labelDigitInRight.Text = "";
                 //pictureBoxImage1.Image = Properties.Resources.ic_logo;
                 //pictureBoxImage2.Image = Properties.Resources.ic_logo;
@@ -672,6 +695,11 @@ namespace ParkingMangement.GUI
 
         private void checkForOpenBarieIn(bool isUhfCard)
         {
+            if (mConfig.signalOpenBarieIn.Equals("") && mConfig.signalOpenBarieInMotorbike.Equals(""))
+            {
+                return;
+            }
+
             string type = CardDAO.GetTypeByID(cardID);
             if (isUhfCard)
             {
@@ -718,6 +746,11 @@ namespace ParkingMangement.GUI
 
         private void checkForOpenBarieOut(bool isUhfCard)
         {
+            if (mConfig.signalOpenBarieOut.Equals("") && mConfig.signalOpenBarieOutMotorbike.Equals(""))
+            {
+                return;
+            }
+
             string type = CardDAO.GetTypeByID(cardID);
             if (isUhfCard)
             {
@@ -2250,7 +2283,7 @@ namespace ParkingMangement.GUI
 
         private void resetDataOneSide(bool isResetImage)
         {
-            oldUhfCardId = null;
+            Program.oldUhfCardId = "";
             labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
@@ -2294,7 +2327,7 @@ namespace ParkingMangement.GUI
 
         private void resetAllData()
         {
-            oldUhfCardId = null;
+            //Program.oldUhfCardId = "";
             labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
@@ -2359,14 +2392,19 @@ namespace ParkingMangement.GUI
             {
                 case Keys.Enter:
                 case Keys.Space:
+                    //if (mIsReadingCard)
+                    //{
+                    //    return;
+                    //}
+
+                    Program.oldUhfCardId = "";
                     labelError.Text = "";
                     cardID = tbRFIDCardID.Text.Trim();
                     tbRFIDCardID.Text = "";
                     if (!cardID.Equals(""))
                     {
                         readCardEvent();
-                    }
-                    oldUhfCardId = null;
+                    }               
                     break;
             }
         }
@@ -2830,6 +2868,7 @@ namespace ParkingMangement.GUI
             }
             FormInOutSetting.saveInOutTypeToConfig(newInOutType);
             updateCauHinhHienThiXeRaVao();
+            Program.oldUhfCardId = "";
         }
 
         private void openBarieInCar()
@@ -2950,6 +2989,43 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void readDataFromLeftUhfPort(string data, string portName)
+        {
+            if (portName.Equals(""))
+            {
+                return;
+            }
+            try
+            {
+                if (leftUhfPort == null || !leftUhfPort.IsOpen)
+                {
+                    leftUhfPort = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                }
+
+                leftUhfPort.DataReceived += leftUhfPort_OnReceiveData;
+
+                if (!leftUhfPort.IsOpen)
+                {
+                    leftUhfPort.Open();
+                }
+
+                Console.WriteLine(data);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("bug: " + e.Message);
+            }
+        }
+
+        private void leftUhfPort_OnReceiveData(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort spL = (SerialPort)sender;
+            byte[] buf = new byte[spL.BytesToRead];
+            Console.WriteLine("DATA RECEIVED!");
+            cardID = spL.ReadExisting();
+            readCardEvent();
+        }
+
         //SerialPort port;
         SerialPort port;
         private void writeDataToPort(string data, string portName)
@@ -3064,47 +3140,104 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void getDataFromComReceive()
+        private void getDataFromUhfReader()
         {
-            try
+            if (Program.portComLeftUhf != null && Program.portComLeftUhf.IsOpen)
             {
-                portComReceiveIn = new SerialPort(portNameComReceiveIn, 9600, Parity.None, 8, StopBits.One);
-                portComReceiveIn.DataReceived += new SerialDataReceivedEventHandler(portComReceiveIn_DataReceived);
-                portComReceiveIn.Open();
-            } catch (Exception e)
-            {
-
+                Program.portComLeftUhf.DataReceived += new SerialDataReceivedEventHandler(portComReceiveIn_DataReceived);
             }
-            try
-            {
-                portComReceiveOut = new SerialPort(portNameComReceiveOut, 57600, Parity.None, 8, StopBits.One);
-                portComReceiveOut.DataReceived += new SerialDataReceivedEventHandler(portComReceiveOut_DataReceived);
-                portComReceiveOut.Open();
-            }
-            catch (Exception e)
-            {
 
+            if (Program.portComRightUhf != null && Program.portComRightUhf.IsOpen)
+            {
+                Program.portComRightUhf.DataReceived += new SerialDataReceivedEventHandler(portComReceiveOut_DataReceived);
             }
         }
 
         private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //portNameComReceiveInput = portNameComReceiveIn;
-            //cardID = portComReceiveIn.ReadExisting();
-            //if (!cardID.Equals(""))
-            //{
-            //    readCardEvent();
-            //}
+            portNameComReceiveInput = portNameComReceiveIn;
+            //Program.newUhfCardId = Util.ReadUhfData(Program.portComLeftUhf);
+            if (!Program.newUhfCardId.Equals(""))
+            {
+                combineUhfCardId();
+            }       
         }
 
         private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            //portNameComReceiveInput = portNameComReceiveOut;
-            //cardID = portComReceiveOut.ReadExisting();
-            //if (!cardID.Equals(""))
+            portNameComReceiveInput = portNameComReceiveOut;
+            //Program.newUhfCardId = Util.ReadUhfData(Program.portComRightUhf);
+            if (!Program.newUhfCardId.Equals(""))
+            {
+                combineUhfCardId();
+            }
+        }
+
+        private void combineUhfCardId()
+        {
+            // noi chuoi ma UHF
+            //if (Program.newUhfCardId.Length == 20 && !Program.oldUhfCardId.Equals(""))
             //{
-            //    readCardEvent();
+            //    Program.newUhfCardId = Program.oldUhfCardId + " " + Program.newUhfCardId;
+            //    Console.WriteLine("Combine UHF: " + Program.newUhfCardId);
             //}
+            if (Program.newUhfCardId.Length == 53)
+            {
+                handleUhfData();
+            }
+            Program.oldUhfCardId = Program.newUhfCardId;
+        }
+
+        private void handleUhfData()
+        {
+            try
+            {
+                //OLD UHF READER
+                //int frmcomportindexIn = mUHFReader.getComportIndex(mConfig.comReceiveIn);
+                //int frmcomportindexOut = mUHFReader.getComportIndex(mConfig.comReceiveOut);
+                //uhfInCardId = mUHFReader.GetUHFData(frmcomportindexIn);
+                //string newUhfCardId = null;
+                //string portName = null;
+                //if (uhfInCardId != null)
+                //{
+                //    portName = portNameComReceiveIn;
+                //    newUhfCardId = uhfInCardId;
+                //}
+                //else
+                //{
+                //    string uhfOutCardId = mUHFReader.GetUHFData(frmcomportindexOut);
+                //    if (uhfOutCardId != null)
+                //    {
+                //        portName = portNameComReceiveOut;
+                //        newUhfCardId = uhfOutCardId;
+                //    }
+                //}
+
+                labelError.Text = Program.newUhfCardId;
+                Console.WriteLine("UHF: " + Program.newUhfCardId);
+                if (Program.newUhfCardId != null)
+                {                                
+                    double spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
+                    oldUhfCardTime = DateTime.Now;
+                    int distant = 3 * 60 * 1000; // 3'
+                    if (!Program.newUhfCardId.Equals(Program.oldUhfCardId) || spentTime > distant)
+                    {                       
+                        //labelError.Text = newUhfCardId;
+                        cardID = Program.newUhfCardId;
+                        //portNameComReceiveInput = portName;
+
+                        readCardEvent();
+                        timerReadUHFData.Stop();
+                        timerReadUHFData.Start();
+                    }
+
+                    oldPortNameComReceiveInput = portNameComReceiveInput;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private bool inputIsRightSide()
@@ -3135,75 +3268,14 @@ namespace ParkingMangement.GUI
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
         {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            if (ActiveForm == this)
-            {
-                timerReadUHFData.Enabled = false;
-                handleUhfData();
-                timerReadUHFData.Enabled = true;
-            }
-        }
-
-        private void handleUhfData()
-        {
-            try
-            {
-                int frmcomportindexIn = mUHFReader.getComportIndex(mConfig.comReceiveIn);
-                int frmcomportindexOut = mUHFReader.getComportIndex(mConfig.comReceiveOut);
-                string uhfInCardId = mUHFReader.GetUHFData(frmcomportindexIn);
-                string newUhfCardId = null;
-                string portName = null;
-                if (uhfInCardId != null)
-                {
-                    portName = portNameComReceiveIn;
-                    newUhfCardId = uhfInCardId;
-                }
-                else
-                {
-                    string uhfOutCardId = mUHFReader.GetUHFData(frmcomportindexOut);
-                    if (uhfOutCardId != null)
-                    {
-                        portName = portNameComReceiveOut;
-                        newUhfCardId = uhfOutCardId;
-                    }
-                }
-
-                if (newUhfCardId != null)
-                {
-                    double spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
-                    oldUhfCardTime = DateTime.Now;
-                    int distant = 3 * 60 * 1000; // 3'
-                    if (!newUhfCardId.Equals(oldUhfCardId) || spentTime > distant)
-                    {
-                        oldUhfCardId = newUhfCardId;
-                        //labelError.Text = newUhfCardId;
-                        cardID = newUhfCardId;
-                        portNameComReceiveInput = portName;
-
-                        readCardEvent();
-                        timerReadUHFData.Stop();
-                        timerReadUHFData.Start();
-                    }
-
-
-                    //if (portNameComReceiveInput != null && portNameComReceiveInput.Equals(oldPortNameComReceiveInput))
-                    //{
-                    //    if (isCarIn())
-                    //    {
-                    //        openBarieIn();
-                    //    }
-                    //    else
-                    //    {
-                    //        openBarieOut();
-                    //    }
-                    //}
-                    oldPortNameComReceiveInput = portName;
-                }
-            } catch (Exception)
-            {
-
-            }
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
+            //if (ActiveForm == this)
+            //{
+            //    timerReadUHFData.Enabled = false;
+            //    handleUhfData();
+            //    timerReadUHFData.Enabled = true;
+            //}
         }
 
         private void initUhfTimer()
@@ -3257,11 +3329,11 @@ namespace ParkingMangement.GUI
             WebClient webClient = (new ApiUtil()).getWebClient();
             try
             {
-                string url = @"http://127.0.0.1:8000/getPlateNumber/" + fileName;
+                string pythonServerUrl = Util.getConfigFile().pythonServerUrl;
+                //string url = @"http://127.0.0.1:8000/getPlateNumber?imagepath=" + fileName;
+                string url = pythonServerUrl + "?imagepath=" + fileName;
                 String responseString = webClient.DownloadString(url);
-                Console.WriteLine(responseString);
-                JObject jObject = JObject.Parse(responseString);
-                string plateNumber = (string)jObject["plateNumber"];
+                string plateNumber = responseString;
                 if (plateNumber.Equals(""))
                 {
                     plateNumber = "-";
@@ -3370,9 +3442,15 @@ namespace ParkingMangement.GUI
                 //}
             }
             string fileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
-            saveBitmapToFile(bmpScreenshot, Constant.getCarNumberImageFolder(), fileName);
+            string filePath = mConfig.readDigitFolder + fileName;
+            saveBitmapToFile(bmpScreenshot, mConfig.readDigitFolder, fileName);
             bmpScreenshot.Dispose();
-            return uploadCarNumberImage(fileName, inputIsLeftSide(), isCarIn());
+            string digit = uploadCarNumberImage(filePath, inputIsLeftSide(), isCarIn());
+            if (!digit.Equals("khong bien so"))
+            {
+                File.Delete(filePath);
+            }
+            return digit;
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
@@ -3387,8 +3465,9 @@ namespace ParkingMangement.GUI
                 process.Kill();
             }
 
-            string directory = @"E:\WORK\GIT\DOC BIEN SO XE\GIT\license_plate_recognition\";
-            directory = mConfig.readDigitFolder + @"license_plate_recognition\";
+            //string directory = @"E:\WORK\GIT\DOC BIEN SO XE\GIT\license_plate_recognition\";
+            //directory = @"D:\\DOC BIEN SO XE\Detect number plate\";
+            string directory = Util.getConfigFile().pythonFolder;
             if (Directory.Exists(directory))
             {
                 System.Environment.CurrentDirectory = directory;
@@ -3397,7 +3476,8 @@ namespace ParkingMangement.GUI
                 myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.FileName = "cmd.exe";
-                myProcess.StartInfo.Arguments = "/c " + "python manage.py runserver";
+                //myProcess.StartInfo.Arguments = "/c " + "python release_v3.py runserver";
+                myProcess.StartInfo.Arguments = "/c " + "python " + Util.getConfigFile().pythonRunFile + " runserver";
                 myProcess.EnableRaisingEvents = true;
                 myProcess.Start();
             }

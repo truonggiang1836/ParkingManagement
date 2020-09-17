@@ -92,7 +92,7 @@ namespace ParkingMangement.GUI
             carDTO.TimeEnd = endDate;
             try
             {
-                carDTO.CardIdentify = Convert.ToInt32(tbCarIdentifySearch.Text);
+                carDTO.CardIdentify = tbCarIdentifySearch.Text;
             }
             catch (Exception e)
             {

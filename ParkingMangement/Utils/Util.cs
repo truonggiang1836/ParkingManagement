@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.IO.Ports;
 using System.Management;
 using System.Net;
 using System.Net.Sockets;
@@ -386,7 +387,7 @@ namespace ParkingMangement.Utils
                     string result = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
 
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         if (isCarIn)
                         {
@@ -452,7 +453,7 @@ namespace ParkingMangement.Utils
                     string result = webClient.UploadString(new Uri(ApiUtil.API_ORDERS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
 
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         CarDAO.UpdateIsSync(listId);
                     }                   
@@ -518,7 +519,11 @@ namespace ParkingMangement.Utils
                 {
                     card.Disable = 1;
                 }
-                card.Deleted = dtRow.Field<int>("IsDeleted");
+                if (dtRow.Field<int>("IsDeleted") == 1)
+                {
+                    card.Deleted = 1;
+                }
+                
                 int vehicleId = 0;
                 try
                 {
@@ -563,7 +568,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_CARDS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         CardDAO.UpdateIsSync(listId);
                     }
@@ -609,7 +614,11 @@ namespace ParkingMangement.Utils
                 monthlyCard.Company = dtRow.Field<string>("Company");
                 monthlyCard.CompanyId = 1;
                 monthlyCard.CustomerName = dtRow.Field<string>("CustomerName");
-                monthlyCard.Deleted = dtRow.Field<int>("IsDeleted");
+                if (dtRow.Field<int>("IsDeleted") == 1)
+                {
+                    monthlyCard.Deleted = 1;
+                }
+                    
                 monthlyCard.Email = dtRow.Field<string>("Email");
 
 
@@ -681,7 +690,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_MONTHLY_CARDS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         TicketMonthDAO.UpdateIsSync(listId);
                     }
@@ -748,7 +757,10 @@ namespace ParkingMangement.Utils
                 }
                 vehicle.CardType = cardType;
 
-                vehicle.Deleted = dtRow.Field<int>("IsDeleted");
+                if (dtRow.Field<int>("IsDeleted") == 1)
+                {
+                    vehicle.Deleted = 1;
+                }
                 vehicle.Name = dtRow.Field<string>("PartName");
                 vehicle.Code = dtRow.Field<string>("Sign");
 
@@ -787,7 +799,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_VEHICLE_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         PartDAO.UpdateIsSync(listId);
                     }
@@ -819,7 +831,10 @@ namespace ParkingMangement.Utils
                 DataRow dtRow = dtTable.Rows[i];
                 Emloyee emloyee = new Emloyee();
                 emloyee.ProjectId = Util.getConfigFile().projectId;
-                emloyee.Deleted = dtRow.Field<int>("IsDeleted");
+                if (dtRow.Field<int>("IsDeleted") == 1)
+                {
+                    emloyee.Deleted = 1;
+                }
                 emloyee.Code = dtRow.Field<string>("UserID");
                 emloyee.Name = dtRow.Field<string>("NameUser");
                 emloyee.UserName = dtRow.Field<string>("Account");
@@ -853,7 +868,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_EMPLOYEE_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         UserDAO.UpdateIsSync(listId);
                     }
@@ -888,7 +903,10 @@ namespace ParkingMangement.Utils
                 function.FunctionName = dtRow.Field<string>("FunctionName");
                 function.FunctionSec = dtRow.Field<string>("FunctionSec");
 
-                function.Deleted = dtRow.Field<int>("IsDeleted");
+                if (dtRow.Field<int>("IsDeleted") == 1)
+                {
+                    function.Deleted = 1;
+                }
                 listFunction.Add(function);
 
                 jsonString = JsonConvert.SerializeObject(listFunction);
@@ -913,7 +931,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_FUNCTIONS_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         FunctionalDAO.UpdateIsSync(listId);
                     }
@@ -943,7 +961,10 @@ namespace ParkingMangement.Utils
             {
                 DataRow dtRow = dtTable.Rows[i];
                 BlackCar blackCar = new BlackCar();
-                blackCar.Deleted = dtRow.Field<int>("IsDeleted");
+                if (dtRow.Field<int>("IsDeleted") == 1)
+                {
+                    blackCar.Deleted = 1;
+                }
                 blackCar.Digit = dtRow.Field<string>("Digit");
                 listBlackCar.Add(blackCar);
 
@@ -969,7 +990,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_BLACK_CAR_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         BlackCarDAO.UpdateIsSync(listId);
                     }
@@ -1049,7 +1070,7 @@ namespace ParkingMangement.Utils
                 {
                     string result = webClient.UploadString(new Uri(ApiUtil.API_PRICE_CONFIG_BATCH_INSERT), "POST", jsonString);
                     Console.WriteLine("result_api: " + result);
-                    if (result.Equals(""))
+                    if (result.Equals("") || result.Equals("success"))
                     {
                         ComputerDAO.UpdateIsSync(listId);
                     }
@@ -1699,6 +1720,11 @@ namespace ParkingMangement.Utils
         public static int getDaysInMonth(DateTime date)
         {
             return DateTime.DaysInMonth(date.Year, date.Month);
+        }
+
+        public static string ReadUhfData(SerialPort serial)
+        {
+            return serial.ReadExisting().Trim().ToUpper();
         }
 
         private static string Chu(string gNumber)

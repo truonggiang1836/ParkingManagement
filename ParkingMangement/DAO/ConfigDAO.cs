@@ -189,6 +189,12 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
+        public static bool UpdateXeTon(ConfigDTO configDTO)
+        {
+            string sql = "update Config set BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace;
+            return (new Database()).ExcuNonQuery(sql);
+        }
+
         public static bool UpdateNoErrorMessage(ConfigDTO configDTO)
         {
             string sql = getUpdateSql(configDTO);

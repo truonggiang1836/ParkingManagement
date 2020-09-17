@@ -91,7 +91,7 @@
             System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Tra cứu vào ra");
             System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Tra cứu vào ra vé tháng");
             System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Xem hộp đen");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Quản lý xe vào ra", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Quản lý xe ra vào", new System.Windows.Forms.TreeNode[] {
             treeNode24,
             treeNode25,
             treeNode26,
@@ -458,6 +458,13 @@
             this.tbPartSignEdit = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.dgvPartList = new System.Windows.Forms.DataGridView();
+            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardTypeName_CreatePart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Limit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageKhoaThe = new System.Windows.Forms.TabPage();
             this.panel18 = new System.Windows.Forms.Panel();
             this.dgvLockCardList = new System.Windows.Forms.DataGridView();
@@ -1035,8 +1042,9 @@
             this.ReceiptCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel37 = new System.Windows.Forms.Panel();
-            this.cbCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbCostDeposit = new System.Windows.Forms.CheckBox();
+            this.cbCostExtendCard = new System.Windows.Forms.CheckBox();
+            this.cbVAT = new System.Windows.Forms.CheckBox();
             this.groupBoxCostDeposit = new System.Windows.Forms.GroupBox();
             this.rbRemoveCostDeposit = new System.Windows.Forms.RadioButton();
             this.rbAddCostDeposit = new System.Windows.Forms.RadioButton();
@@ -1149,13 +1157,7 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
-            this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardTypeName_CreatePart = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sign = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Limit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancedReceipt = new System.Windows.Forms.Button();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -5228,6 +5230,70 @@
             this.dgvPartList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPartList_CellClick);
             this.dgvPartList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvPartList_MouseClick);
             // 
+            // PartID
+            // 
+            this.PartID.DataPropertyName = "ID";
+            this.PartID.HeaderText = "Mã loại xe";
+            this.PartID.MinimumWidth = 6;
+            this.PartID.Name = "PartID";
+            this.PartID.ReadOnly = true;
+            this.PartID.Width = 125;
+            // 
+            // PartName
+            // 
+            this.PartName.DataPropertyName = "PartName";
+            this.PartName.HeaderText = "Tên loại xe";
+            this.PartName.MinimumWidth = 6;
+            this.PartName.Name = "PartName";
+            this.PartName.ReadOnly = true;
+            this.PartName.Width = 140;
+            // 
+            // TypeName
+            // 
+            this.TypeName.DataPropertyName = "TypeName";
+            this.TypeName.HeaderText = "Nhóm xe";
+            this.TypeName.MinimumWidth = 6;
+            this.TypeName.Name = "TypeName";
+            this.TypeName.ReadOnly = true;
+            this.TypeName.Width = 110;
+            // 
+            // CardTypeName_CreatePart
+            // 
+            this.CardTypeName_CreatePart.DataPropertyName = "CardTypeName";
+            this.CardTypeName_CreatePart.HeaderText = "Loại vé";
+            this.CardTypeName_CreatePart.MinimumWidth = 6;
+            this.CardTypeName_CreatePart.Name = "CardTypeName_CreatePart";
+            this.CardTypeName_CreatePart.ReadOnly = true;
+            this.CardTypeName_CreatePart.Width = 110;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Tiền thu";
+            this.Amount.MinimumWidth = 6;
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            this.Amount.Width = 90;
+            // 
+            // Sign
+            // 
+            this.Sign.DataPropertyName = "Sign";
+            this.Sign.HeaderText = "Ký hiệu";
+            this.Sign.MinimumWidth = 6;
+            this.Sign.Name = "Sign";
+            this.Sign.ReadOnly = true;
+            this.Sign.Width = 80;
+            // 
+            // Limit
+            // 
+            this.Limit.DataPropertyName = "Limit";
+            this.Limit.HeaderText = "Hạn mức";
+            this.Limit.MinimumWidth = 6;
+            this.Limit.Name = "Limit";
+            this.Limit.ReadOnly = true;
+            this.Limit.Visible = false;
+            this.Limit.Width = 120;
+            // 
             // tabPageKhoaThe
             // 
             this.tabPageKhoaThe.Controls.Add(this.panel18);
@@ -6507,6 +6573,7 @@
             // 
             // dateTimePickerTicketMonthExpirationDateCreate
             // 
+            this.dateTimePickerTicketMonthExpirationDateCreate.Enabled = false;
             this.dateTimePickerTicketMonthExpirationDateCreate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthExpirationDateCreate.Location = new System.Drawing.Point(115, 373);
             this.dateTimePickerTicketMonthExpirationDateCreate.Name = "dateTimePickerTicketMonthExpirationDateCreate";
@@ -6525,6 +6592,7 @@
             // 
             // dateTimePickerTicketMonthRegistrationDateCreate
             // 
+            this.dateTimePickerTicketMonthRegistrationDateCreate.Enabled = false;
             this.dateTimePickerTicketMonthRegistrationDateCreate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthRegistrationDateCreate.Location = new System.Drawing.Point(115, 345);
             this.dateTimePickerTicketMonthRegistrationDateCreate.Name = "dateTimePickerTicketMonthRegistrationDateCreate";
@@ -6853,6 +6921,7 @@
             // 
             // dateTimePickerTicketMonthExpirationDateEdit
             // 
+            this.dateTimePickerTicketMonthExpirationDateEdit.Enabled = false;
             this.dateTimePickerTicketMonthExpirationDateEdit.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthExpirationDateEdit.Location = new System.Drawing.Point(115, 346);
             this.dateTimePickerTicketMonthExpirationDateEdit.Name = "dateTimePickerTicketMonthExpirationDateEdit";
@@ -6871,6 +6940,7 @@
             // 
             // dateTimePickerTicketMonthRegistrationDateEdit
             // 
+            this.dateTimePickerTicketMonthRegistrationDateEdit.Enabled = false;
             this.dateTimePickerTicketMonthRegistrationDateEdit.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthRegistrationDateEdit.Location = new System.Drawing.Point(115, 318);
             this.dateTimePickerTicketMonthRegistrationDateEdit.Name = "dateTimePickerTicketMonthRegistrationDateEdit";
@@ -7311,6 +7381,7 @@
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(342, 162);
             this.panel27.TabIndex = 3;
+            this.panel27.Visible = false;
             // 
             // btnRenewByPlusDate
             // 
@@ -9496,7 +9567,7 @@
             treeNode27.Name = "NodeName20";
             treeNode27.Text = "Xem hộp đen";
             treeNode28.Name = "NodeQuanLyXe";
-            treeNode28.Text = "Quản lý xe vào ra";
+            treeNode28.Text = "Quản lý xe ra vào";
             treeNode29.Name = "NodeName21";
             treeNode29.Text = "Lưu mất thẻ";
             treeNode30.Name = "NodeName22";
@@ -10723,6 +10794,7 @@
             // 
             this.Column62.DataPropertyName = "Address";
             this.Column62.HeaderText = "Địa chỉ";
+            this.Column62.MinimumWidth = 6;
             this.Column62.Name = "Column62";
             this.Column62.ReadOnly = true;
             this.Column62.Width = 130;
@@ -10939,6 +11011,7 @@
             // tabPageInPhieuThuChi
             // 
             this.tabPageInPhieuThuChi.BackColor = System.Drawing.Color.White;
+            this.tabPageInPhieuThuChi.Controls.Add(this.btnCancedReceipt);
             this.tabPageInPhieuThuChi.Controls.Add(this.btnPrintReceipt);
             this.tabPageInPhieuThuChi.Controls.Add(this.btnPrintTransferCost);
             this.tabPageInPhieuThuChi.Controls.Add(this.panelPrintReceipt);
@@ -10958,7 +11031,7 @@
             this.btnPrintReceipt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrintReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintReceipt.ForeColor = System.Drawing.Color.White;
-            this.btnPrintReceipt.Location = new System.Drawing.Point(646, 551);
+            this.btnPrintReceipt.Location = new System.Drawing.Point(587, 551);
             this.btnPrintReceipt.Name = "btnPrintReceipt";
             this.btnPrintReceipt.Size = new System.Drawing.Size(198, 36);
             this.btnPrintReceipt.TabIndex = 33;
@@ -10969,7 +11042,7 @@
             // btnPrintTransferCost
             // 
             this.btnPrintTransferCost.ForeColor = System.Drawing.Color.Black;
-            this.btnPrintTransferCost.Location = new System.Drawing.Point(882, 551);
+            this.btnPrintTransferCost.Location = new System.Drawing.Point(823, 551);
             this.btnPrintTransferCost.Name = "btnPrintTransferCost";
             this.btnPrintTransferCost.Size = new System.Drawing.Size(198, 36);
             this.btnPrintTransferCost.TabIndex = 32;
@@ -11183,7 +11256,7 @@
             dataGridViewCellStyle28.Format = "N0";
             dataGridViewCellStyle28.NullValue = null;
             this.ReceiptCost.DefaultCellStyle = dataGridViewCellStyle28;
-            this.ReceiptCost.HeaderText = "Tiền thu";
+            this.ReceiptCost.HeaderText = "Số tiền";
             this.ReceiptCost.MinimumWidth = 6;
             this.ReceiptCost.Name = "ReceiptCost";
             this.ReceiptCost.ReadOnly = true;
@@ -11201,8 +11274,9 @@
             // panel37
             // 
             this.panel37.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel37.Controls.Add(this.cbCostExtendCard);
             this.panel37.Controls.Add(this.cbCostDeposit);
+            this.panel37.Controls.Add(this.cbCostExtendCard);
+            this.panel37.Controls.Add(this.cbVAT);
             this.panel37.Controls.Add(this.groupBoxCostDeposit);
             this.panel37.Controls.Add(this.cbCostCreateCard);
             this.panel37.Controls.Add(this.groupBoxCostCreateCard);
@@ -11223,6 +11297,17 @@
             this.panel37.Size = new System.Drawing.Size(1084, 216);
             this.panel37.TabIndex = 7;
             // 
+            // cbCostDeposit
+            // 
+            this.cbCostDeposit.AutoSize = true;
+            this.cbCostDeposit.Location = new System.Drawing.Point(895, 75);
+            this.cbCostDeposit.Name = "cbCostDeposit";
+            this.cbCostDeposit.Size = new System.Drawing.Size(71, 20);
+            this.cbCostDeposit.TabIndex = 50;
+            this.cbCostDeposit.Text = "Phí cọc";
+            this.cbCostDeposit.UseVisualStyleBackColor = true;
+            this.cbCostDeposit.CheckedChanged += new System.EventHandler(this.cbCostDeposit_CheckedChanged);
+            // 
             // cbCostExtendCard
             // 
             this.cbCostExtendCard.AutoSize = true;
@@ -11234,16 +11319,16 @@
             this.cbCostExtendCard.UseVisualStyleBackColor = true;
             this.cbCostExtendCard.CheckedChanged += new System.EventHandler(this.cbCostExtendCard_CheckedChanged);
             // 
-            // cbCostDeposit
+            // cbVAT
             // 
-            this.cbCostDeposit.AutoSize = true;
-            this.cbCostDeposit.Location = new System.Drawing.Point(898, 77);
-            this.cbCostDeposit.Name = "cbCostDeposit";
-            this.cbCostDeposit.Size = new System.Drawing.Size(71, 20);
-            this.cbCostDeposit.TabIndex = 48;
-            this.cbCostDeposit.Text = "Phí cọc";
-            this.cbCostDeposit.UseVisualStyleBackColor = true;
-            this.cbCostDeposit.CheckedChanged += new System.EventHandler(this.cbCostDeposit_CheckedChanged);
+            this.cbVAT.AutoSize = true;
+            this.cbVAT.Location = new System.Drawing.Point(895, 50);
+            this.cbVAT.Name = "cbVAT";
+            this.cbVAT.Size = new System.Drawing.Size(83, 20);
+            this.cbVAT.TabIndex = 48;
+            this.cbVAT.Text = "VAT 10%";
+            this.cbVAT.UseVisualStyleBackColor = true;
+            this.cbVAT.CheckedChanged += new System.EventHandler(this.cbVAT_CheckedChanged);
             // 
             // groupBoxCostDeposit
             // 
@@ -11854,6 +11939,7 @@
             this.ReceiptLog_Detail.DefaultCellStyle = dataGridViewCellStyle31;
             this.ReceiptLog_Detail.FillWeight = 80F;
             this.ReceiptLog_Detail.HeaderText = "Chi tiết";
+            this.ReceiptLog_Detail.MinimumWidth = 6;
             this.ReceiptLog_Detail.Name = "ReceiptLog_Detail";
             this.ReceiptLog_Detail.ReadOnly = true;
             this.ReceiptLog_Detail.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
@@ -11865,9 +11951,11 @@
             // 
             this.ReceiptLogID.DataPropertyName = "ID";
             this.ReceiptLogID.HeaderText = "ReceiptLogID";
+            this.ReceiptLogID.MinimumWidth = 6;
             this.ReceiptLogID.Name = "ReceiptLogID";
             this.ReceiptLogID.ReadOnly = true;
             this.ReceiptLogID.Visible = false;
+            this.ReceiptLogID.Width = 125;
             // 
             // panel38
             // 
@@ -12410,68 +12498,16 @@
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(135, 22);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
             // 
-            // PartID
+            // btnCancedReceipt
             // 
-            this.PartID.DataPropertyName = "ID";
-            this.PartID.HeaderText = "Mã loại xe";
-            this.PartID.MinimumWidth = 6;
-            this.PartID.Name = "PartID";
-            this.PartID.ReadOnly = true;
-            // 
-            // PartName
-            // 
-            this.PartName.DataPropertyName = "PartName";
-            this.PartName.HeaderText = "Tên loại xe";
-            this.PartName.MinimumWidth = 6;
-            this.PartName.Name = "PartName";
-            this.PartName.ReadOnly = true;
-            this.PartName.Width = 140;
-            // 
-            // TypeName
-            // 
-            this.TypeName.DataPropertyName = "TypeName";
-            this.TypeName.HeaderText = "Nhóm xe";
-            this.TypeName.MinimumWidth = 6;
-            this.TypeName.Name = "TypeName";
-            this.TypeName.ReadOnly = true;
-            this.TypeName.Width = 110;
-            // 
-            // CardTypeName_CreatePart
-            // 
-            this.CardTypeName_CreatePart.DataPropertyName = "CardTypeName";
-            this.CardTypeName_CreatePart.HeaderText = "Loại vé";
-            this.CardTypeName_CreatePart.MinimumWidth = 6;
-            this.CardTypeName_CreatePart.Name = "CardTypeName_CreatePart";
-            this.CardTypeName_CreatePart.ReadOnly = true;
-            this.CardTypeName_CreatePart.Width = 110;
-            // 
-            // Amount
-            // 
-            this.Amount.DataPropertyName = "Amount";
-            this.Amount.HeaderText = "Tiền thu";
-            this.Amount.MinimumWidth = 6;
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            this.Amount.Width = 90;
-            // 
-            // Sign
-            // 
-            this.Sign.DataPropertyName = "Sign";
-            this.Sign.HeaderText = "Ký hiệu";
-            this.Sign.MinimumWidth = 6;
-            this.Sign.Name = "Sign";
-            this.Sign.ReadOnly = true;
-            this.Sign.Width = 80;
-            // 
-            // Limit
-            // 
-            this.Limit.DataPropertyName = "Limit";
-            this.Limit.HeaderText = "Hạn mức";
-            this.Limit.MinimumWidth = 6;
-            this.Limit.Name = "Limit";
-            this.Limit.ReadOnly = true;
-            this.Limit.Visible = false;
-            this.Limit.Width = 120;
+            this.btnCancedReceipt.ForeColor = System.Drawing.Color.Black;
+            this.btnCancedReceipt.Location = new System.Drawing.Point(1056, 552);
+            this.btnCancedReceipt.Name = "btnCancedReceipt";
+            this.btnCancedReceipt.Size = new System.Drawing.Size(60, 36);
+            this.btnCancedReceipt.TabIndex = 34;
+            this.btnCancedReceipt.Text = "HỦY";
+            this.btnCancedReceipt.UseVisualStyleBackColor = true;
+            this.btnCancedReceipt.Click += new System.EventHandler(this.btnCancedReceipt_Click);
             // 
             // FormQuanLy
             // 
@@ -12479,7 +12515,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1170, 678);
+            this.ClientSize = new System.Drawing.Size(1155, 678);
             this.Controls.Add(this.tabQuanLy);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -13695,7 +13731,7 @@
         private System.Windows.Forms.DataGridView dgvPrintReceipt;
         private System.Windows.Forms.Panel panel37;
         private System.Windows.Forms.CheckBox cbCostExtendCard;
-        private System.Windows.Forms.CheckBox cbCostDeposit;
+        private System.Windows.Forms.CheckBox cbVAT;
         private System.Windows.Forms.GroupBox groupBoxCostDeposit;
         private System.Windows.Forms.RadioButton rbRemoveCostDeposit;
         private System.Windows.Forms.RadioButton rbAddCostDeposit;
@@ -13745,24 +13781,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptLogDetailExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptLogDetailPrintDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptLogDetailReason;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ReceiptIsChosen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT_ReceiptTicketMonthList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIdentify;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptTicketMonthID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptDigit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptPartName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIDPart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCompany;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptExpirationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNewExpirationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptChargesAmount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
         private System.Windows.Forms.DataGridViewTextBoxColumn TicketLogIdentify;
         private System.Windows.Forms.DataGridViewTextBoxColumn LogTypeName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProcessDate;
@@ -13797,5 +13815,25 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sign;
         private System.Windows.Forms.DataGridViewTextBoxColumn Limit;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ReceiptIsChosen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_ReceiptTicketMonthList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIdentify;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptTicketMonthID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptDigit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptPartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIDPart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCompany;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNewExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptChargesAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
+        private System.Windows.Forms.CheckBox cbCostDeposit;
+        private System.Windows.Forms.Button btnCancedReceipt;
     }
 }

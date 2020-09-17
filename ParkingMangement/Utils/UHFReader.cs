@@ -52,79 +52,118 @@ namespace ParkingMangement.Utils
             return Convert.ToInt32(portName.Substring(3, portName.Length - 3));
         }
 
+        //public void openComPort(string portName, bool isShowError)
+        //{
+        //    frmcomportindex = Convert.ToInt32(portName.Substring(3, portName.Length - 3));
+        //    StaticClassReaderB.CloseSpecComPort(frmcomportindex);
+
+        //    int fOpenComIndex = -1;
+        //    byte fBaud = 5;
+        //    int port = 0;
+        //    int openresult, i;
+        //    openresult = 30;
+        //    string temp;
+        //    byte fComAdr = Convert.ToByte("FF", 16); // $FF;
+        //    try
+        //    {
+        //        temp = portName;
+        //        temp = temp.Trim();
+        //        port = Convert.ToInt32(temp.Substring(3, temp.Length - 3));
+        //        for (i = 6; i >= 0; i--)
+        //        {
+        //            fBaud = Convert.ToByte(i);
+        //            if (fBaud == 3)
+        //                continue;
+        //            openresult = StaticClassReaderB.OpenComPort(port, ref fComAdr, fBaud, ref frmcomportindex);
+        //            fOpenComIndex = frmcomportindex;
+        //            if (openresult == 0x35)
+        //            {
+        //                //MessageBox.Show("COM Opened", "Information");
+        //                return;
+        //            }
+        //            if (openresult == 0)
+        //            {
+        //                ComOpen = true;
+        //                if ((fCmdRet == 0x35) || (fCmdRet == 0x30))
+        //                {
+        //                    ComOpen = false;
+        //                    if (isShowError)
+        //                    {
+        //                        MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+        //                    }
+                           
+        //                    StaticClassReaderB.CloseSpecComPort(frmcomportindex);
+        //                    return;
+        //                }
+        //                break;
+        //            }
+
+        //        }
+        //    }
+        //    finally
+        //    {
+                
+        //    }
+
+        //    if ((fOpenComIndex != -1) & (openresult != 0X35) & (openresult != 0X30))
+        //    {
+        //        ComOpen = true;
+        //    }
+        //    if ((fOpenComIndex == -1) && (openresult == 0x30))
+        //    {
+        //        if (isShowError)
+        //        {
+        //            MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+        //        }
+        //        StaticClassReaderB.CloseSpecComPort(frmcomportindex);
+        //    }
+
+        //    setParameter();
+        //}
+
+        SerialPort port;
         public void openComPort(string portName, bool isShowError)
         {
-            frmcomportindex = Convert.ToInt32(portName.Substring(3, portName.Length - 3));
-            StaticClassReaderB.CloseSpecComPort(frmcomportindex);
 
-            int fOpenComIndex = -1;
-            byte fBaud = 5;
-            int port = 0;
-            int openresult, i;
-            openresult = 30;
-            string temp;
-            byte fComAdr = Convert.ToByte("FF", 16); // $FF;
+            if (portName.Equals(""))
+            {
+                return;
+            }
             try
             {
-                temp = portName;
-                temp = temp.Trim();
-                port = Convert.ToInt32(temp.Substring(3, temp.Length - 3));
-                for (i = 6; i >= 0; i--)
+                if (port == null || !port.IsOpen)
                 {
-                    fBaud = Convert.ToByte(i);
-                    if (fBaud == 3)
-                        continue;
-                    openresult = StaticClassReaderB.OpenComPort(port, ref fComAdr, fBaud, ref frmcomportindex);
-                    fOpenComIndex = frmcomportindex;
-                    if (openresult == 0x35)
-                    {
-                        //MessageBox.Show("COM Opened", "Information");
-                        return;
-                    }
-                    if (openresult == 0)
-                    {
-                        ComOpen = true;
-                        if ((fCmdRet == 0x35) || (fCmdRet == 0x30))
-                        {
-                            ComOpen = false;
-                            if (isShowError)
-                            {
-                                MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
-                            }
-                           
-                            StaticClassReaderB.CloseSpecComPort(frmcomportindex);
-                            return;
-                        }
-                        break;
-                    }
+                    port = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
+                }
 
+                if (!port.IsOpen)
+                {
+                    port.Open();
                 }
             }
-            finally
+            catch (Exception e)
             {
-                
+                MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
             }
-
-            if ((fOpenComIndex != -1) & (openresult != 0X35) & (openresult != 0X30))
-            {
-                ComOpen = true;
-            }
-            if ((fOpenComIndex == -1) && (openresult == 0x30))
-            {
-                if (isShowError)
-                {
-                    MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
-                }
-                StaticClassReaderB.CloseSpecComPort(frmcomportindex);
-            }
-
-            setParameter();
         }
 
         public void closeComPort(string portName)
         {
             frmcomportindex = Convert.ToInt32(portName.Substring(3, portName.Length - 3));
             StaticClassReaderB.CloseSpecComPort(frmcomportindex);
+        }
+
+        private static void UHF_Port_OnReceiveData(object sender,
+                                   SerialDataReceivedEventArgs e)
+        {
+            SerialPort spL = (SerialPort)sender;
+            byte[] buf = new byte[spL.BytesToRead];
+            spL.Read(buf, 0, buf.Length);
+            foreach (Byte b in buf)
+            {
+                Console.Write(b.ToString());
+            }
+            Console.WriteLine();
         }
 
         public string GetUHFData(int frmcomportindex)

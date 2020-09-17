@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -55,6 +56,7 @@ namespace ParkingMangement.GUI
         {
             InitializeComponent();
             _lastFormSize = GetFormArea(this.Size);
+          
         }
 
         private void FormQuanLy_Load(object sender, EventArgs e)
@@ -74,11 +76,19 @@ namespace ParkingMangement.GUI
             checkShowHideAllTabPage();
             labelKetQuaTaoThe.Text = "";
 
-            mUHFReader = new UHFReader();
-            if (mConfig.isUsingUhf.Equals("yes"))
-            {
-                initUhfTimer();
-            }
+            //mUHFReader = new UHFReader();
+            //if (mConfig.isUsingUhf.Equals("yes"))
+            //{
+            //    initUhfTimer();
+            //}
+            getDataFromUhfReader();
+
+            tbCardIDCreate.GotFocus += textBox_Enter;
+        }
+
+        void textBox_Enter(object sender, EventArgs e)
+        {
+            focusedTextbox = (TextBox)sender;
         }
 
         private void FormQuanLy_KeyDown(object sender, KeyEventArgs e)
@@ -998,6 +1008,7 @@ namespace ParkingMangement.GUI
             partDTO.TypeID = Convert.ToString(typeNameDataRow["TypeID"]);
             DataRow cardTypeNameDataRow = ((DataRowView)cbCardTypeNameEdit.SelectedItem).Row;
             partDTO.CardTypeID = Convert.ToString(cardTypeNameDataRow["CardTypeID"]);
+            partDTO.IsSync = "0";
 
             PartDAO.Update(partDTO);
             loadPartList();
@@ -1258,7 +1269,7 @@ namespace ParkingMangement.GUI
             cardDTO.SystemId = cardDTO.Id;
 
             CardDTO checkCardDTO = CardDAO.GetCardModelByID(cardDTO.Id);
-            if (checkCardDTO != null && checkCardDTO.IsDeleted == "0")
+            if (checkCardDTO != null)
             {
                 labelKetQuaTaoThe.Text = Constant.sMessageCardIdExisted;
                 return;
@@ -1353,6 +1364,7 @@ namespace ParkingMangement.GUI
                 isUsing = "1";
             }
             cardDTO.IsUsing = isUsing;
+            cardDTO.IsSync = "0";
             cardDTO.DayUnlimit = DateTime.Now;
 
             CardDAO.Update(cardDTO);
@@ -1467,7 +1479,7 @@ namespace ParkingMangement.GUI
                 loadTicketMonthData();
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
                 setFormatDateForDateTimePicker(dtTicketLogExpirationDateSearch);
-                dtTicketLogExpirationDateSearch.Value = DateTime.Now.AddMonths(1);
+                dtTicketLogRegistrationDateSearch.Value = DateTime.Now.AddMonths(-1);
             }
             else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
             {
@@ -1536,7 +1548,6 @@ namespace ParkingMangement.GUI
 
         private void loadTabPageTicketLog()
         {
-            loadTicketLogData();
             loadTicketLogTypeData();
             loadPartDataWithFieldAllToComboBox(cbPartNameTicketLogSearch);
         }
@@ -1720,11 +1731,15 @@ namespace ParkingMangement.GUI
             }
 
             TicketMonthDAO.HardDeleteIfCardBeDeleted(ticketMonthDTO.Id);
-            TicketMonthDAO.Insert(ticketMonthDTO);
-            clearInputTicketMonthInfo();
-            loadTicketMonthData();
+            if (TicketMonthDAO.Insert(ticketMonthDTO))
+            {
+                clearInputTicketMonthInfo();
+                loadTicketMonthData();
 
-            addTicketLog(Constant.LOG_TYPE_CREATE_TICKET_MONTH, ticketMonthDTO);
+                addTicketLog(Constant.LOG_TYPE_CREATE_TICKET_MONTH, ticketMonthDTO);
+                MessageBox.Show("Tạo thẻ thành công!");
+            }
+            
         }
 
         private void updateTicketMonth()
@@ -1765,10 +1780,13 @@ namespace ParkingMangement.GUI
             else
             {
                 CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
-                TicketMonthDAO.Update(ticketMonthDTO);
-                loadTicketMonthData();
+                if (TicketMonthDAO.Update(ticketMonthDTO))
+                {
+                    loadTicketMonthData();
 
-                addTicketLog(Constant.LOG_TYPE_UPDATE_TICKET_MONTH, ticketMonthDTO);
+                    addTicketLog(Constant.LOG_TYPE_UPDATE_TICKET_MONTH, ticketMonthDTO);
+                    MessageBox.Show("Cập nhật thẻ thành công!");
+                }
             }
         }
 
@@ -1805,7 +1823,7 @@ namespace ParkingMangement.GUI
                 return false;
             }
             CardDTO cardDTO = CardDAO.GetCardModelByID(tbTicketMonthIDCreate.Text);
-            if (cardDTO == null || (cardDTO != null && cardDTO.IsDeleted == "1"))
+            if (cardDTO == null)
             {
                 MessageBox.Show(Constant.sMessageCardIdNotExist);
                 return false;
@@ -2002,12 +2020,14 @@ namespace ParkingMangement.GUI
                 object value = checkCell.Value;
                 if (value != null && (Boolean)value)
                 {
-                    string id = Convert.ToString(row.Cells["TicketMonthID"].Value);
+                    string cardId = Convert.ToString(row.Cells["TicketMonthID"].Value);
                     addDeleteTicketMonthToLog(row.Index);
-                    if (TicketMonthDAO.Delete(id))
+                    if (TicketMonthDAO.Delete(cardId))
                     {
-                        CardDAO.Delete(id);
-                        CarDAO.DeleteCarNotOut(id);
+                        string cardIdentify = CardDAO.getIdentifyByCardID(cardId);
+                        LogUtil.addLogXoaThe(cardIdentify, cardId);
+                        CardDAO.Delete(cardId);
+                        CarDAO.DeleteCarNotOut(cardId);
                     }
                 }
             }
@@ -2580,47 +2600,7 @@ namespace ParkingMangement.GUI
                 return;
             }
 
-
-            int ticketLimitDay = -1;
-            if (int.TryParse(tbTicketLimitDay.Text, out ticketLimitDay))
-            {
-                if (ticketLimitDay >= 0)
-                {
-                    configDTO.TicketLimitDay = ticketLimitDay;
-                }
-                else
-                {
-                    MessageBox.Show(Constant.sMessageInvalidError);
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show(Constant.sMessageInvalidError);
-                return;
-            }
-
-
-            int nightLimit = -1;
-            if (int.TryParse(tbNightLimit.Text, out nightLimit))
-            {
-                if (nightLimit >= 0)
-                {
-                    configDTO.NightLimit = nightLimit;
-                }
-                else
-                {
-                    MessageBox.Show(Constant.sMessageInvalidError);
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show(Constant.sMessageInvalidError);
-                return;
-            }
-
-            ConfigDAO.UpdateCauHinhHienThi(configDTO);
+            ConfigDAO.UpdateXeTon(configDTO);
         }
 
         private bool isChosenRenewTicketMonthData()
@@ -4859,6 +4839,67 @@ namespace ParkingMangement.GUI
             app.Quit();
         }
 
+        private void UpdateDanhSachTheThangFromExcel(String path)
+        {
+            System.Data.DataTable dt = null;
+            object rowIndex = 1;
+            dt = new System.Data.DataTable();
+            DataRow row;
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
+                Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+            int temp = 1;
+            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+            {
+                String columnName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2);
+                dt.Columns.Add(columnName);
+                temp++;
+            }
+            rowIndex = Convert.ToInt32(rowIndex) + 2;
+            int columnCount = temp;
+            temp = 1;
+
+            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+            {
+                try
+                {
+                    row = dt.NewRow();
+                    for (int i = 1; i < columnCount; i++)
+                    {
+                        if (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2 != null)
+                        {
+                            row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                        }
+                        else
+                        {
+                            row[i - 1] = "";
+                        }
+                    }
+
+                    string digit = row.Field<String>("Digit");
+                    string expirationDateString = row.Field<String>("ExpirationDate");
+                    DateTime expirationDate = DateTime.FromOADate(double.Parse(expirationDateString));
+                    string chargesAmount = row.Field<String>("ChargesAmount");
+
+                    TicketMonthDAO.Update(digit, expirationDate, chargesAmount);
+
+                    dt.Rows.Add(row);
+                }
+                catch (Exception ex)
+                {
+                    workSheet.Cells[rowIndex, columnCount + 1] = ex.Message;
+                }
+                rowIndex = Convert.ToInt32(rowIndex) + 1;
+                temp = 1;
+            }
+
+            MessageBox.Show(Constant.sMessageImportExcelSuccess);
+
+            workBook.Close();
+            app.Quit();
+        }
+
         private string getErrorMessageImportTheThang(TicketMonthDTO ticketMonthDTO, CardDTO cardDTO)
         {
             if (string.IsNullOrWhiteSpace(ticketMonthDTO.CardIdentify))
@@ -4929,6 +4970,7 @@ namespace ParkingMangement.GUI
             {
                 string path = openFileDialog.FileName;
                 ImportDanhSachTheThangFromExcel(path);
+                //UpdateDanhSachTheThangFromExcel(path);
             }
         }
 
@@ -5028,6 +5070,110 @@ namespace ParkingMangement.GUI
         {
             FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage4.Image);
             f.Show();
+        }
+
+        private void getDataFromUhfReader()
+        {
+            if (Program.portComLeftUhf != null && Program.portComLeftUhf.IsOpen)
+            {
+                Program.portComLeftUhf.DataReceived += portComReceiveIn_DataReceived;
+            }
+
+            if (Program.portComRightUhf != null && Program.portComRightUhf.IsOpen)
+            {
+                Program.portComRightUhf.DataReceived += portComReceiveOut_DataReceived;
+            }
+        }
+
+        private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                if (Program.newUhfCardId.Length == 53)
+                {
+                    handleReceiveUhfData(Program.newUhfCardId);
+                }              
+            }));
+            Program.oldUhfCardId = Program.newUhfCardId;
+        }
+
+        private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                if (Program.newUhfCardId.Length == 53)
+                {
+                    handleReceiveUhfData(Program.newUhfCardId);
+                }
+            }));
+            Program.oldUhfCardId = Program.newUhfCardId;
+        }
+
+        private TextBox focusedTextbox = null;
+        public void handleReceiveUhfData(string uhfCardId)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                if (uhfCardId != null && !uhfCardId.Equals(""))
+                {
+                    if (tbCardSearch.Focused)
+                    {
+                        focusedTextbox = tbCardSearch;
+                    }
+                    if (tbCardIDCreate.Focused)
+                    {
+                        focusedTextbox = tbCardIDCreate;
+                    }
+                    if (tbTicketMonthIDCreate.Focused)
+                    {
+                        focusedTextbox = tbTicketMonthIDCreate;
+                    }
+                    if (tbTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbTicketMonthKeyWordSearch;
+                    }
+                    if (tbRenewTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbRenewTicketMonthKeyWordSearch;
+                    }
+                    if (tbLostTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbLostTicketMonthKeyWordSearch;
+                    }
+                    if (tbLostTicketMonthID.Focused)
+                    {
+                        focusedTextbox = tbLostTicketMonthID;
+                    }
+                    if (tbActiveTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbActiveTicketMonthKeyWordSearch;
+                    }
+                    if (tbCarIDSearch.Focused)
+                    {
+                        focusedTextbox = tbCarIDSearch;
+                    }
+                    if (tbLostCardSearch.Focused)
+                    {
+                        focusedTextbox = tbLostCardSearch;
+                    }
+                    if (tbTicketLogKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbTicketLogKeyWordSearch;
+                    }
+                    if (focusedTextbox != null)
+                    {
+                        focusedTextbox.Text = uhfCardId;
+                        if (focusedTextbox == tbCardIDCreate)
+                        {
+                            if (!tbCardIDCreate.Text.Equals(null))
+                            {
+                                checkAndCreateCard();
+                            }
+                        }
+                    }
+                }
+            }));
+            
         }
 
         private void timerReadUHFData_Tick(object sender, EventArgs e)
@@ -5200,7 +5346,7 @@ namespace ParkingMangement.GUI
             }
             try
             {
-                carDTO.CardIdentify = Convert.ToInt32(tbCardIdentifySearchCar.Text);
+                carDTO.CardIdentify = tbCardIdentifySearchCar.Text;
             }
             catch (Exception e)
             {
@@ -5559,6 +5705,7 @@ namespace ParkingMangement.GUI
             formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
             formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
             formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
+            formInPhieuThu.isVAT = cbVAT.Checked;
 
             DataTable data = new DataTable();
             data.Columns.Add("Identify", typeof(System.String));
@@ -5567,6 +5714,7 @@ namespace ParkingMangement.GUI
             data.Columns.Add("CustomerName", typeof(System.String));
             data.Columns.Add("Cost", typeof(System.Int32));
             data.Columns.Add("PrintCost", typeof(System.Int32));
+            data.Columns.Add("ExpirationDate", typeof(System.DateTime));
             data.Columns.Add("NewExpirationDate", typeof(System.DateTime));
             data.Columns.Add("ID", typeof(System.String));
             data.Columns.Add("IDPart", typeof(System.String));
@@ -5590,6 +5738,7 @@ namespace ParkingMangement.GUI
                         printCode = -printCode;
                     }
                     row.SetField("PrintCost", printCode);
+                    row.SetField("ExpirationDate", dgvPrintReceipt.Rows[i].Cells["ReceiptExpirationDate"].Value);
                     row.SetField("NewExpirationDate", dgvPrintReceipt.Rows[i].Cells["ReceiptNewExpirationDate"].Value);
                     row.SetField("ID", dgvPrintReceipt.Rows[i].Cells["ReceiptTicketMonthID"].Value);
                     row.SetField("Company", dgvPrintReceipt.Rows[i].Cells["ReceiptCompany"].Value);
@@ -5707,7 +5856,7 @@ namespace ParkingMangement.GUI
         {
             int total = 0;
             string reason = "";
-            if (cbCostExtendCard.Checked || cbCostCreateCard.Checked || cbCostDeposit.Checked)
+            if (cbCostExtendCard.Checked || cbCostCreateCard.Checked || cbCostDeposit.Checked || cbVAT.Checked)
             {
                 foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
                 {
@@ -5718,7 +5867,12 @@ namespace ParkingMangement.GUI
                         int payCost = 0;
                         if (cbCostExtendCard.Checked)
                         {
-                            payCost += getCostExtendCard(row);                          
+                            int extendCardCost = getCostExtendCard(row);
+                            if (cbVAT.Checked)
+                            {
+                                extendCardCost += (int)(extendCardCost * 0.1);
+                            }
+                            payCost += extendCardCost;
                         }
 
                         if (cbCostCreateCard.Checked)
@@ -5735,7 +5889,7 @@ namespace ParkingMangement.GUI
 
                         if (cbCostDeposit.Checked)
                         {
-                            int monthlyCost = 0;                         
+                            int monthlyCost = 0;
                             try
                             {
                                 monthlyCost = Convert.ToInt32(row.Cells["ReceiptChargesAmount"].Value);
@@ -5752,7 +5906,8 @@ namespace ParkingMangement.GUI
                             {
                                 payCost -= monthlyCost;
                             }
-                        }
+                        }                       
+
                         row.Cells["ReceiptCost"].Value = payCost;
                         total += payCost;
                     }
@@ -5761,7 +5916,6 @@ namespace ParkingMangement.GUI
                         row.Cells["ReceiptCost"].Value = 0;
                     }
                 }
-              
                 if (cbCostExtendCard.Checked)
                 {
                     reason += "Phí gia hạn";
@@ -5801,6 +5955,12 @@ namespace ParkingMangement.GUI
             catch (Exception)
             {
 
+            }
+
+            int dayCount = Util.getTotalTimeByDay(expirationDate, newExpirationDate);
+            if (dayCount == 0)
+            {
+                return 0;
             }
 
             int monthCount = Util.MonthDifference(newExpirationDate, expirationDate);
@@ -5911,10 +6071,9 @@ namespace ParkingMangement.GUI
             calculatePrintReceipCost();
         }
 
-        private void cbCostDeposit_CheckedChanged(object sender, EventArgs e)
+        private void cbVAT_CheckedChanged(object sender, EventArgs e)
         {
-            groupBoxCostDeposit.Visible = cbCostDeposit.Checked;
-            calculatePrintReceipCost();         
+            calculatePrintReceipCost();
         }
 
         private void btnPrintTransferCost_Click(object sender, EventArgs e)
@@ -5939,6 +6098,12 @@ namespace ParkingMangement.GUI
 
         private void rbRemoveCostCreateCard_CheckedChanged(object sender, EventArgs e)
         {
+            calculatePrintReceipCost();
+        }
+
+        private void cbCostDeposit_CheckedChanged(object sender, EventArgs e)
+        {
+            groupBoxCostDeposit.Visible = cbCostDeposit.Checked;
             calculatePrintReceipCost();
         }
 
@@ -6204,6 +6369,18 @@ namespace ParkingMangement.GUI
                 dgvReceiptLogDetail.DataSource = data;
                 tabQuanLyPhieuThuChi.SelectedTab = tabQuanLyPhieuThuChi.TabPages["tabPageChiTietPhieuThuChi"];
             }
+        }
+
+        private void btnCancedReceipt_Click(object sender, EventArgs e)
+        {
+            tbPrintReceiptKeyWordSearch.Text = "";
+            tbPrintReceiptCustomerName.Text = "";
+            tbPrintReceiptAddress.Text = "";
+            tbPrintReceiptReason.Text = "";
+            cbCostExtendCard.Checked = false;
+            cbCostDeposit.Checked = false;
+            cbCostCreateCard.Checked = false;
+            cbVAT.Checked = false;
         }
     }
 }

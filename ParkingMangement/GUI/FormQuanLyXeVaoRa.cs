@@ -38,11 +38,11 @@ namespace ParkingMangement.GUI
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
             loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
 
-            mUHFReader = new UHFReader();
-            if (Util.getConfigFile().isUsingUhf.Equals("yes"))
-            {
-                initUhfTimer();
-            }
+            //mUHFReader = new UHFReader();
+            //if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            //{
+            //    initUhfTimer();
+            //}
         }
 
         private void loadPartDataWithFieldAllToComboBox(ComboBox cb)
@@ -81,7 +81,7 @@ namespace ParkingMangement.GUI
             carDTO.TimeEnd = endDate;
             try
             {
-                carDTO.CardIdentify = Convert.ToInt32(tbCarIdentifySearch.Text);
+                carDTO.CardIdentify = tbCarIdentifySearch.Text;
             }
             catch (Exception e)
             {

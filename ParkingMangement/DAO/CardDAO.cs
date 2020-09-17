@@ -106,25 +106,25 @@ namespace ParkingMangement.DAO
 
         public static void UpdateIsUsing(string isUsing, string cardId)
         {
-            string sql = "update SmartCard set IsUsing = '" + isUsing + "' where ID = '" + cardId + "'";
+            string sql = "update SmartCard set IsUsing = '" + isUsing + "', IsSync = 0 where ID = '" + cardId + "'";
             (new Database()).ExcuNonQuery(sql);
         }
 
         public static void lockExpiredCard()
         {
-            string sql = "update SmartCard set SmartCard.IsUsing = 0 from SmartCard inner join TicketMonth on SmartCard.ID = TicketMonth.ID"
+            string sql = "update SmartCard set SmartCard.IsUsing = 0, SmartCard.IsSync = 0 from SmartCard inner join TicketMonth on SmartCard.ID = TicketMonth.ID"
                 + " where DATEDIFF(MONTH, TicketMonth.ExpirationDate, getdate()) >= 2 and SmartCard.IsUsing = 1";
             (new Database()).ExcuNonQuery(sql);
         }
         public static void UpdateDayUnlimit(DateTime dayUnlimit, string cardId)
         {
-            string sql = "update SmartCard set DayUnlimit = '" + dayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "' where ID = '" + cardId + "'";
+            string sql = "update SmartCard set DayUnlimit = '" + dayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "', SmartCard.IsSync = 0 where ID = '" + cardId + "'";
             (new Database()).ExcuNonQuery(sql);
         }
 
         public static void UpdateIdentify(string identify, string cardId)
         {
-            string sql = "update SmartCard set Identify = '" + identify + "' where ID = '" + cardId + "'";
+            string sql = "update SmartCard set Identify = '" + identify + "', SmartCard.IsSync = 0 where ID = '" + cardId + "'";
             (new Database()).ExcuNonQuery(sql);
         }
 
@@ -187,7 +187,7 @@ namespace ParkingMangement.DAO
         public static bool Delete(string id)
         {
             //string sql = "delete from SmartCard where ID = '" + id + "'";
-            string sql = "update SmartCard set IsDeleted = 1 where ID = '" + id + "'";
+            string sql = "update SmartCard set IsDeleted = 1, IsSync = 0 where ID = '" + id + "'";
             return (new Database()).ExcuNonQuery(sql);
         }
 
@@ -225,7 +225,7 @@ namespace ParkingMangement.DAO
 
         public static string getIdentifyByCardID(string cardID)
         {
-            string sql = "select Identify from SmartCard where ID = '" + cardID + "'";
+            string sql = "select Identify from SmartCard where ID = '" + cardID + "' and SmartCard.IsDeleted = 0";
             DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -236,7 +236,7 @@ namespace ParkingMangement.DAO
 
         public static bool isUsingByCardID(string cardID)
         {
-            string sql = "select IsUsing from SmartCard where ID = '" + cardID + "'";
+            string sql = "select IsUsing from SmartCard where ID = '" + cardID + "' and SmartCard.IsDeleted = 0";
             DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -248,13 +248,13 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetCardByID(string id)
         {
-            string sql = "select * from SmartCard where ID = '" + id + "'";
+            string sql = "select * from SmartCard where ID = '" + id + "' and SmartCard.IsDeleted = 0";
             return (new Database()).ExcuQuery(sql);
         }
 
         public static int GetCardCountByPartId(string partId)
         {
-            string sql = "select * from SmartCard where Type = '" + partId + "'";
+            string sql = "select * from SmartCard where Type = '" + partId + "' and SmartCard.IsDeleted = 0";
             return (new Database()).ExcuQuery(sql).Rows.Count;
         }
 
@@ -266,7 +266,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetCardByIdentify(string identify)
         {
-            string sql = "select * from SmartCard where Identify = '" + identify + "'";
+            string sql = "select * from SmartCard where Identify = '" + identify + "' and SmartCard.IsDeleted = 0";
             return (new Database()).ExcuQuery(sql);
         }
 

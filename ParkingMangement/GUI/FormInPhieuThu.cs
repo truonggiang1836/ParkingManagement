@@ -23,6 +23,7 @@ namespace ParkingMangement.GUI
         public string address = "";
         public string reason = "";
         public int cost = 0;
+        public bool isVAT = false;
         public int receiptType = ReceiptTypeDTO.TYPE_PHIEU_THU_TIEN_MAT;
         private int mReceiptNumber = 1;
 
@@ -92,6 +93,7 @@ namespace ParkingMangement.GUI
             dgvPrintReceipt.Columns["ReceiptPartName"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPrintReceipt.Columns["ReceiptCustomerName"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPrintReceipt.Columns["ReceiptPrintCost"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvPrintReceipt.Columns["ReceiptExpirationDate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             dgvPrintReceipt.Columns["STT_ReceiptTicketMonthList"].HeaderCell.Style.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold);
@@ -100,6 +102,7 @@ namespace ParkingMangement.GUI
             dgvPrintReceipt.Columns["ReceiptPartName"].HeaderCell.Style.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold);
             dgvPrintReceipt.Columns["ReceiptCustomerName"].HeaderCell.Style.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold);
             dgvPrintReceipt.Columns["ReceiptPrintCost"].HeaderCell.Style.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold);
+            dgvPrintReceipt.Columns["ReceiptExpirationDate"].HeaderCell.Style.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold);
             dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].HeaderCell.Style.Font = new Font("Times New Roman", 9.75F, FontStyle.Bold);
 
 
@@ -108,16 +111,22 @@ namespace ParkingMangement.GUI
 
 
             tbCurrentDate.Text = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+            string costText = "";
             if (cost >= 0)
             {
-                tbCost.Text = Util.formatNumberAsMoney(cost);
+                costText = Util.formatNumberAsMoney(cost);
                 tbCostString.Text = Util.So_sang_chu(cost);
+                tbReceiverName.Text = "Người nộp tiền";
             } else
             {
-                tbCost.Text = Util.formatNumberAsMoney(-cost);
+                costText = Util.formatNumberAsMoney(-cost);
                 tbCostString.Text = Util.So_sang_chu(-cost);
+                tbReceiverName.Text = "Người nhận tiền";
             }
-            
+            tbIncludeVAT.Visible = isVAT;
+            tbCost.Text = costText;
+
+
             tbBookNo.Text = DateTime.Now.ToString("MM'/'yy");
             if (data.Rows.Count > 0)
             {

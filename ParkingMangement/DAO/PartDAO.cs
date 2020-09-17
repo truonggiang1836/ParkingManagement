@@ -13,13 +13,13 @@ namespace ParkingMangement.DAO
     {
         public static DataTable GetAllData()
         {
-            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID order by Part.ID asc";
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and IsDeleted = 0 order by Part.ID asc";
             return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetAllDataForSync()
         {
-            string sql = "select * from Part where IsSync = 0";
+            string sql = "select * from Part where IsDeleted = 0";
             return (new Database()).ExcuQuery(sql);
         }
 
@@ -31,7 +31,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllTicketCommonData()
         {
-            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1'";
+            string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1' and IsDeleted = 0";
             return (new Database()).ExcuQuery(sql);
         }
 
@@ -42,17 +42,6 @@ namespace ParkingMangement.DAO
             if (data != null && data.Rows.Count > 0)
             {
                 return data.Rows[0].Field<string>("PartName");
-            }
-            return "";
-        }
-
-        public static string GetSignByPartID(string id)
-        {
-            string sql = "select Sign from Part where ID = '" + id + "'";
-            DataTable data = (new Database()).ExcuQuery(sql);
-            if (data != null && data.Rows.Count > 0)
-            {
-                return data.Rows[0].Field<string>("Sign");
             }
             return "";
         }
@@ -130,7 +119,8 @@ namespace ParkingMangement.DAO
 
         public static void Delete(string partID)
         {
-            string sql = "delete from Part where ID = '" + partID + "'";
+            //string sql = "delete from Part where ID = '" + partID + "'";
+            string sql = "update Part set IsDeleted = 1, IsSync = 0 where ID = '" + partID + "'";
             (new Database()).ExcuNonQuery(sql);
         }
 

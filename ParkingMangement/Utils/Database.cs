@@ -159,7 +159,7 @@ namespace ParkingMangement
             }
             catch (SqlException Ex)
             {
-                if (Ex.ErrorCode == -2147467259)
+                if (Ex.ErrorCode == -2147467259 || Ex.Message.Contains("Violation of PRIMARY KEY constrain"))
                 {
                     //This code happens ONLY when trying to add duplicated values to the primary key in the database, 
                     // in this case just do nothing and continue loading the other no duplicated values
