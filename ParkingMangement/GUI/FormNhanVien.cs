@@ -75,7 +75,6 @@ namespace ParkingMangement.GUI
         SerialPort rightUhfPort;
 
         private Config mConfig;
-        private bool mIsReadingCard = false;
 
         private DataTable mListCarSurvive;
         private BindingSource mBindingSource;
@@ -475,7 +474,6 @@ namespace ParkingMangement.GUI
         private void readCardEvent()
         {
             //deleteOldImages();
-            mIsReadingCard = true;
             Program.isHasCarInOut = true;
             if (!cardID.Equals(""))
             {
@@ -496,14 +494,16 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    labelError.Text = Constant.sMessageCardIdNotExist;
-                    //AutoClosingMessageBox.Show(Constant.sMessageCardIdNotExist, "", 1000);
+                    if (cardID.Length == 8 || cardID.Length == 10 || cardID.Length == 18)
+                    {
+                        labelError.Text = Constant.sMessageCardIdNotExist;
+                    }                    
                 }
                 mListCarSurvive = CarDAO.GetListCarSurvive();
-                mBindingSource.DataSource = mListCarSurvive;
-                //Invoke(new MethodInvoker(() => {
-                //    dgvThongKeXeTrongBai.DataSource = CarDAO.GetListCarSurvive();
-                //}));
+                Invoke(new MethodInvoker(() =>
+                {
+                    dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
+                }));
             }
             portNameComReceiveInput = null;
             oldPortNameComReceiveInput = null;
@@ -665,7 +665,6 @@ namespace ParkingMangement.GUI
                     }
                 }).Start();                            
             }
-            mIsReadingCard = false;
             return true;
         }
 
@@ -2391,20 +2390,15 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                case Keys.Space:
-                    //if (mIsReadingCard)
-                    //{
-                    //    return;
-                    //}
-
                     Program.oldUhfCardId = "";
                     labelError.Text = "";
                     cardID = tbRFIDCardID.Text.Trim();
-                    tbRFIDCardID.Text = "";
+                    tbRFIDCardID.Text = "";                  
+                  
                     if (!cardID.Equals(""))
                     {
                         readCardEvent();
-                    }               
+                    }
                     break;
             }
         }
@@ -2687,8 +2681,7 @@ namespace ParkingMangement.GUI
         {
             mBindingSource = new BindingSource();
             mListCarSurvive = CarDAO.GetListCarSurvive();
-            mBindingSource.DataSource = mListCarSurvive;
-            dgvThongKeXeTrongBai.DataSource = mBindingSource;
+            dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 30 * 1000;

@@ -5658,7 +5658,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void tbPrintReceiptKeyWordSearch_TextChanged(object sender, EventArgs e)
+        private void tbPrintReceiptKeyWordSearch_TextChangedAsync(object sender, EventArgs e)
         {
             searchPrintReceiptData();
         }
@@ -5957,7 +5957,7 @@ namespace ParkingMangement.GUI
 
             }
 
-            int dayCount = Util.getTotalTimeByDay(expirationDate, newExpirationDate);
+            int dayCount = (newExpirationDate.Date - expirationDate.Date).Days;
             if (dayCount == 0)
             {
                 return 0;

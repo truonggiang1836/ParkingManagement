@@ -11519,7 +11519,7 @@
             this.tbPrintReceiptKeyWordSearch.Name = "tbPrintReceiptKeyWordSearch";
             this.tbPrintReceiptKeyWordSearch.Size = new System.Drawing.Size(413, 22);
             this.tbPrintReceiptKeyWordSearch.TabIndex = 2;
-            this.tbPrintReceiptKeyWordSearch.TextChanged += new System.EventHandler(this.tbPrintReceiptKeyWordSearch_TextChanged);
+            this.tbPrintReceiptKeyWordSearch.TextChanged += new System.EventHandler(this.tbPrintReceiptKeyWordSearch_TextChangedAsync);
             // 
             // tabPageLichSuPhieuThuChi
             // 

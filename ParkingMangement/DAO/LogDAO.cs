@@ -17,13 +17,13 @@ namespace ParkingMangement.DAO
         {
             string sql = sqlGetAllData;
             sql += sqlOrderByIdentify;
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static void Insert(LogDTO logDTO)
         {
             string sql = "insert into Log(LogTypeID, LogNote, Account, ProcessDate, Computer) values (" + logDTO.LogTypeID + ", '" + logDTO.Note + "', '" + logDTO.Account + "', '" + logDTO.ProcessDate.ToString(Constant.sDateTimeFormatForQuery) + "', '" + logDTO.Computer + "')";
-            (new Database()).ExcuNonQuery(sql);
+            Database.ExcuNonQuery(sql);
         }
 
         public static DataTable SearchData(string key, string logTypeID, DateTime startTime, DateTime endTime)
@@ -39,7 +39,7 @@ namespace ParkingMangement.DAO
             }
             sql += " and Log.ProcessDate >= '" + startTime.ToString(Constant.sDateTimeFormatForQuery) + "' and Log.ProcessDate <= '" + endTime.ToString(Constant.sDateTimeFormatForQuery) + "'";
             sql += sqlOrderByIdentify;
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
     }
 }

@@ -17,19 +17,19 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllData()
         {
-            return (new Database()).ExcuQuery(sqlGetAllData);
+            return Database.ExcuQuery(sqlGetAllData);
         }
 
         public static DataTable GetDataByReceiptType(int receiptType)
         {
             string sql = "select * from ReceiptLog where ReceiptType = " + receiptType + sqlOrderByIdDesc;
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static int GetLastReceiptNumberByReceiptType(int receiptType)
         {
             string sql = "select * from ReceiptLog where ReceiptType = " + receiptType + sqlOrderByIdDesc;
-            DataTable dt = (new Database()).ExcuQuery(sql);
+            DataTable dt = Database.ExcuQuery(sql);
 
             if (dt != null & dt.Rows.Count > 0)
             {
@@ -57,7 +57,7 @@ namespace ParkingMangement.DAO
         public static Int64? GetLastReceiptLogID()
         {
             string sql = "select ReceiptLog.ID from ReceiptLog" + sqlOrderByIdDesc;
-            DataTable dt = (new Database()).ExcuQuery(sql);
+            DataTable dt = Database.ExcuQuery(sql);
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<Int64>("ID");
@@ -75,7 +75,7 @@ namespace ParkingMangement.DAO
                 receiptLogDTO.Cost + ", " + receiptLogDTO.ReceiptNumber + ", '" + receiptLogDTO.PrintDate.ToString(Constant.sDateTimeFormatForQuery) + "', " +
                 receiptLogDTO.IsCostExtendCard + ", " + receiptLogDTO.IsCostCreateCard + ", " + receiptLogDTO.IsCostDepositCard + ")";
 
-            return (new Database()).ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static string sqlSearchData(ReceiptLogDTO receiptLogDTO)
@@ -132,7 +132,7 @@ namespace ParkingMangement.DAO
             string sql = sqlSearchData(receiptLogDTO);
             sql += sqlOrderByIdDesc;
 
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = Database.ExcuQuery(sql);
             return data;
         }
     }

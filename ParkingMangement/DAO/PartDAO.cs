@@ -14,31 +14,31 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and IsDeleted = 0 order by Part.ID asc";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetAllDataForSync()
         {
             string sql = "select * from Part where IsDeleted = 0";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static void UpdateIsSync(string listId)
         {
             string sql = "update Part set IsSync = 1 where ID in " + listId;
-            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static DataTable GetAllTicketCommonData()
         {
             string sql = "select Part.ID, Part.PartName, Part.Sign, Part.Amount, Type.TypeName, CardType.CardTypeName from Part, Type, CardType where Part.TypeID = Type.TypeID and Part.CardTypeID = CardType.CardTypeID and Part.CardTypeID = '1' and IsDeleted = 0";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static string GetPartNameByPartID(string id)
         {
             string sql = "select PartName from Part where ID = '" + id + "'";
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = Database.ExcuQuery(sql);
             if (data != null && data.Rows.Count > 0)
             {
                 return data.Rows[0].Field<string>("PartName");
@@ -49,7 +49,7 @@ namespace ParkingMangement.DAO
         public static string GetCardTypeByID(string id)
         {
             string sql = "select CardTypeID from Part where ID = '" + id + "'";
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
                 return data.Rows[0].Field<string>("CardTypeID");
@@ -60,7 +60,7 @@ namespace ParkingMangement.DAO
         public static string GetTypeByID(string id)
         {
             string sql = "select TypeID from Part where ID = '" + id + "'";
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
                 return data.Rows[0].Field<string>("TypeID");
@@ -71,7 +71,7 @@ namespace ParkingMangement.DAO
         public static int GetAmountByPartID(string id)
         {
             string sql = "select Amount from Part where ID = '" + id + "'";
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = Database.ExcuQuery(sql);
             if (data != null)
             {
                 return data.Rows[0].Field<int>("Amount");
@@ -96,32 +96,32 @@ namespace ParkingMangement.DAO
         public static void Insert(PartDTO partDTO)
         {
             string sql = getInsertSql(partDTO);
-            (new Database()).ExcuNonQuery(sql);
+            Database.ExcuNonQuery(sql);
         }
 
         public static void Update(PartDTO partDTO)
         {
             string sql = getUpdateSql(partDTO);
-            (new Database()).ExcuNonQuery(sql);
+            Database.ExcuNonQuery(sql);
         }
 
         public static bool InsertNoErrorMessage(PartDTO partDTO)
         {
             string sql = getInsertSql(partDTO);
-            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool UpdateNoErrorMessage(PartDTO partDTO)
         {
             string sql = getUpdateSql(partDTO);
-            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void Delete(string partID)
         {
             //string sql = "delete from Part where ID = '" + partID + "'";
             string sql = "update Part set IsDeleted = 1, IsSync = 0 where ID = '" + partID + "'";
-            (new Database()).ExcuNonQuery(sql);
+            Database.ExcuNonQuery(sql);
         }
 
         public static void syncFromJson(string json)

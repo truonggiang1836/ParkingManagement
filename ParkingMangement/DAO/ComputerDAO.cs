@@ -14,7 +14,7 @@ namespace ParkingMangement.DAO
         public static ComputerDTO GetDataByPartIDAndParkingTypeID(string partID, int parkingTypeID)
         {
             string sql = "select * from Computer where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
-            DataTable dt = (new Database()).ExcuQuery(sql);
+            DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 ComputerDTO computerDTO = new ComputerDTO();
@@ -53,13 +53,13 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllDataForSync()
         {
             string sql = "select * from Computer where IsSync = 0";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static bool IsHasData(string partID, int parkingTypeID)
         {
             string sql = "select * from Computer where IDPart = '" + partID + "' and ParkingTypeID = " + parkingTypeID;
-            DataTable dt = (new Database()).ExcuQuery(sql);
+            DataTable dt = Database.ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 return true;
@@ -83,13 +83,13 @@ namespace ParkingMangement.DAO
         public static bool Update(ComputerDTO computerDTO)
         {
             string sql = getUpdateSql(computerDTO); 
-            return (new Database()).ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static bool UpdateNoErrorMessage(ComputerDTO computerDTO)
         {
             string sql = getUpdateSql(computerDTO);
-            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static string getInsertSql(ComputerDTO computerDTO)
@@ -109,19 +109,19 @@ namespace ParkingMangement.DAO
         public static bool Insert(ComputerDTO computerDTO)
         {
             string sql = getInsertSql(computerDTO);
-            return (new Database()).ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static bool InsertNoErrorMessage(ComputerDTO computerDTO)
         {
             string sql = getInsertSql(computerDTO);
-            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void UpdateIsSync(string listId)
         {
             string sql = "update Computer set IsSync = 1 where Identify in " + listId;
-            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void syncFromJson(string json)

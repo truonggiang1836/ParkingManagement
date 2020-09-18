@@ -101,6 +101,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ParkingManagement\ParkingMangement\bin\Debug\ClosedXML.dll</HintPath>
     </Reference>
+    <Reference Include="Emgu.CV.UI, Version=4.2.0.3662, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.World.NetStandard.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -275,6 +283,7 @@
     <Compile Include="TextRecognized\clsNetwork.cs" />
     <Compile Include="Utils\ApiUtil.cs" />
     <Compile Include="Utils\AutoClosingMessageBox.cs" />
+    <Compile Include="Utils\CameraCapture.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="GUI\FormLogin.cs">

@@ -14,19 +14,19 @@ namespace ParkingMangement.DAO
         static public DataTable GetAllData()
         {
             string sql = "select * from Functional";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static DataTable GetAllDataForSync()
         {
             string sql = "select * from Functional where IsSync = 0";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static void UpdateIsSync(string listId)
         {
             string sql = "update Functional set IsSync = 1 where FunctionID in " + listId;
-            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool InsertNoErrorMessage(FunctionDTO functionDTO)
@@ -34,32 +34,32 @@ namespace ParkingMangement.DAO
             string sql = "insert into Function(FunctionID, FunctionName, FunctionSec, IsSync, IsDeleted) values ('" + functionDTO.ID + "', '" + functionDTO.Name + "', '" +
                 functionDTO.Sec + "', " + functionDTO.IsSync + ", " + functionDTO.IsDeleted + ")";
 
-            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool UpdateNoErrorMessage(FunctionDTO functionDTO)
         {
             string sql = "update Function set FunctionName =('" + functionDTO.Name + "'), FunctionSec =('" + functionDTO.Sec + "'), IsSync =(" + functionDTO.IsSync + "), IsDeleted =(" + functionDTO.IsDeleted + ") where FunctionID = '" + functionDTO.ID + "'";
 
-            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return Database.ExcuNonQueryNoErrorMessage(sql);
         }
 
         static public DataTable GetAllDataWithoutAdmin()
         {
             string sql = "select * from Functional where FunctionID <> 'Ad'";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static bool UpdateFunctionSec(string functionSec, string functionID)
         {
             string sql = "update Functional set FunctionSec ='" + functionSec + "' where FunctionID ='" + functionID + "'";
-            return (new Database()).ExcuNonQuery(sql);
+            return Database.ExcuNonQuery(sql);
         }
 
         public static DataTable GetFunctionByID(string functionID)
         {
             string sql = "select * from Functional where FunctionID = '" + functionID + "'";
-            return (new Database()).ExcuQuery(sql);
+            return Database.ExcuQuery(sql);
         }
 
         public static string GetFunctionSecByID(string functionID)
