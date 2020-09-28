@@ -1939,6 +1939,8 @@ namespace ParkingMangement.GUI
             tbTicketLogCustomerName.Text = customerName;
             string cmnd = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["CMND_Log"].Value);
             tbTicketLogCMND.Text = cmnd;
+            string company = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["CompanyName_Log"].Value);
+            tbTicketLogCompany.Text = company;
             string email = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["Email_Log"].Value);
             tbTicketLogEmail.Text = email;
             string address = Convert.ToString(dgvTicketLogList.Rows[Index].Cells["Address_Log"].Value);
@@ -2024,9 +2026,9 @@ namespace ParkingMangement.GUI
                     addDeleteTicketMonthToLog(row.Index);
                     if (TicketMonthDAO.Delete(cardId))
                     {
-                        string cardIdentify = CardDAO.getIdentifyByCardID(cardId);
-                        LogUtil.addLogXoaThe(cardIdentify, cardId);
-                        CardDAO.Delete(cardId);
+                        //string cardIdentify = CardDAO.getIdentifyByCardID(cardId);
+                        //LogUtil.addLogXoaThe(cardIdentify, cardId);
+                        //CardDAO.Delete(cardId);
                         CarDAO.DeleteCarNotOut(cardId);
                     }
                 }
@@ -4086,8 +4088,8 @@ namespace ParkingMangement.GUI
                     int identify = Convert.ToInt32(row.Cells["CarLogIdentify"].Value);
                     if (CarDAO.isCarOutByIdentify(identify))
                     {
-                        MessageBox.Show("Không thể xóa xe đã ra khỏi bãi!");
-                        return;
+                        //MessageBox.Show("Không thể xóa xe đã ra khỏi bãi!");
+                        //return;
                     }
                     if (CarDAO.DeleteCar(identify +""))
                     {
@@ -5695,7 +5697,6 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageMaxTicketMonthToPrint);
                 return;
             }
-            renewPrintReceiptList();
             FormInPhieuThu formInPhieuThu = new FormInPhieuThu();
             formInPhieuThu.receiptType = receiptType;
             formInPhieuThu.customerName = tbPrintReceiptCustomerName.Text;
@@ -5750,21 +5751,6 @@ namespace ParkingMangement.GUI
             formInPhieuThu.title = title;
 
             formInPhieuThu.ShowDialog();
-        }
-
-        private void renewPrintReceiptList()
-        {           
-            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
-            {
-                bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
-                string id = Convert.ToString(row.Cells["ReceiptTicketMonthID"].Value);
-                DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
-
-                if (isChoose)
-                {
-                    TicketMonthDAO.updateTicketByExpirationDate(expirationDate, id);
-                }
-            }
         }
 
         private void printDocument1_PrintPage(System.Object sender,
@@ -5855,14 +5841,27 @@ namespace ParkingMangement.GUI
         private void calculatePrintReceipCost()
         {
             int total = 0;
-            string reason = "";
-            if (cbCostExtendCard.Checked || cbCostCreateCard.Checked || cbCostDeposit.Checked || cbVAT.Checked)
+            string reason = "";   
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
             {
-                foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+                DataGridViewCheckBoxCell checkCell = row.Cells["ReceiptIsChosen"] as DataGridViewCheckBoxCell;
+                object value = checkCell.Value;
+
+                row.Cells["ReceiptCost"].Value = 0;
+
+                foreach (DataGridViewColumn col in dgvPrintReceipt.Columns)
                 {
-                    DataGridViewCheckBoxCell checkCell = row.Cells["ReceiptIsChosen"] as DataGridViewCheckBoxCell;
-                    object value = checkCell.Value;
-                    if (value != null && (Boolean)value)
+                    dgvPrintReceipt[col.Index, row.Index].Style.ForeColor = Color.Black;
+                }
+
+                if (value != null && (Boolean)value)
+                {
+                    foreach (DataGridViewColumn col in dgvPrintReceipt.Columns)
+                    {
+                        dgvPrintReceipt[col.Index, row.Index].Style.ForeColor = Color.Blue;
+                    }
+
+                    if (cbCostExtendCard.Checked || cbCostCreateCard.Checked || cbCostDeposit.Checked || cbVAT.Checked)
                     {
                         int payCost = 0;
                         if (cbCostExtendCard.Checked)
@@ -5897,7 +5896,7 @@ namespace ParkingMangement.GUI
                             catch (Exception)
                             {
 
-                            }                          
+                            }
                             if (rbAddCostDeposit.Checked)
                             {
                                 payCost += monthlyCost;
@@ -5906,36 +5905,39 @@ namespace ParkingMangement.GUI
                             {
                                 payCost -= monthlyCost;
                             }
-                        }                       
+                        }
 
+                        payCost = Util.roundUpVND(payCost);
                         row.Cells["ReceiptCost"].Value = payCost;
                         total += payCost;
                     }
-                    else if (value != null && !(Boolean)value)
-                    {
-                        row.Cells["ReceiptCost"].Value = 0;
-                    }
                 }
-                if (cbCostExtendCard.Checked)
+            }
+            if (cbCostExtendCard.Checked)
+            {
+                reason += "Phí gia hạn";
+            }
+            if (cbCostCreateCard.Checked)
+            {
+                if (!reason.Equals(""))
                 {
-                    reason += "Phí gia hạn";
+                    reason += " + ";
                 }
-                if (cbCostCreateCard.Checked)
+                if (rbAddCostCreateCard.Checked)
                 {
-                    if (!reason.Equals(""))
-                    {
-                        reason += " + ";
-                    }
                     reason += "Phí làm thẻ";
-                }
-                if (cbCostDeposit.Checked)
+                } else
                 {
-                    if (!reason.Equals(""))
-                    {
-                        reason += " + ";
-                    }
-                    reason += "Phí cọc";
-                }                
+                    reason += "Phí hoàn trả thẻ thẻ";
+                }
+            }
+            if (cbCostDeposit.Checked)
+            {
+                if (!reason.Equals(""))
+                {
+                    reason += " + ";
+                }
+                reason += "Phí cọc";
             }
             mPrintReceiptCost = total;
             tbPrintReceiptCost.Text = Util.formatNumberAsMoney(total);
@@ -5981,7 +5983,7 @@ namespace ParkingMangement.GUI
 
         private void loadDataPrintReceipt()
         {
-            tbPrintReceiptCustomerName.Text = ConfigDAO.GetParkingName();            
+            tbPrintReceiptCustomerName.Text = ConfigDAO.GetParkingName();
         }
 
         private void configReceiptHistory()

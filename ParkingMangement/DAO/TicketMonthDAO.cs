@@ -33,7 +33,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = sqlGetAllData + sqlOrderByIdentify;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             for (int row = 0; row < data.Rows.Count; row++)
             {
@@ -52,13 +52,13 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllDataForSync()
         {
             string sql = "select top 50 * from TicketMonth where IsSync = 0 order by TicketMonth.Identify asc";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static void UpdateIsSync(string id)
         {
             string sql = "update TicketMonth set IsSync = 1 where ID in " + id;
-            Database.ExcuNonQueryNoErrorMessage(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static string getInsertSql(TicketMonthDTO ticketMonthDTO)
@@ -74,13 +74,13 @@ namespace ParkingMangement.DAO
         public static bool Insert(TicketMonthDTO ticketMonthDTO)
         {
             string sql = getInsertSql(ticketMonthDTO); 
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool InsertNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
             string sql = getInsertSql(ticketMonthDTO); 
-            return Database.ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static string getUpdateSql(TicketMonthDTO ticketMonthDTO)
@@ -95,34 +95,34 @@ namespace ParkingMangement.DAO
         public static bool Update(TicketMonthDTO ticketMonthDTO)
         {
             string sql = getUpdateSql(ticketMonthDTO);
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool Update(string digit, DateTime? expirationDate, string chargesAmount)
         {
             string sql = "update TicketMonth set ExpirationDate ='" + expirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ChargesAmount ='" + chargesAmount
                 + "' where Digit ='" + digit + "'";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
 
         public static void UpdateNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
             string sql = getUpdateSql(ticketMonthDTO);
-            Database.ExcuNonQueryNoErrorMessage(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }        
 
         public static bool Delete(string id)
         {
             //string sql = "delete from TicketMonth where ID ='" + id + "'";
             string sql = "update TicketMonth set IsDeleted = 1, IsSync = 0 where ID ='" + id + "'";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool HardDeleteIfCardBeDeleted(string id)
         {
             string sql = "delete from TicketMonth where ID ='" + id + "' and IsDeleted = 1";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static DataTable searchData(string key)
@@ -136,7 +136,7 @@ namespace ParkingMangement.DAO
                     + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or Part.PartName like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
             }
             sql += sqlOrderByIdentify;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             for (int row = 0; row < data.Rows.Count; row++)
             {
@@ -156,7 +156,7 @@ namespace ParkingMangement.DAO
         {
             string sql = sqlGetAllNearExpiredTicketData;
             sql += sqlOrderByExpirationDate;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             data.Columns.Add("DaysRemaining", typeof(System.Int32));
             for (int row = 0; row < data.Rows.Count; row++)
@@ -196,7 +196,7 @@ namespace ParkingMangement.DAO
                     + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or Part.PartName like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
             }
             sql += sqlOrderByExpirationDate;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             DateTime currentDate = DateTime.Now;
             data.Columns.Add("DaysRemaining", typeof(System.Int32));
@@ -233,7 +233,7 @@ namespace ParkingMangement.DAO
                     + " or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.Company like '%" + key + "%' or TicketMonth.Address like '%" + key + "%' or TicketMonth.Phone = '" + key + "')";
             }
             sql += sqlOrderByExpirationDate;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             data.Columns.Add("NewExpirationDate", typeof(System.DateTime));
             data.Columns.Add("Cost", typeof(System.Int32));            
@@ -257,7 +257,7 @@ namespace ParkingMangement.DAO
         public static void updateTicketByExpirationDate(DateTime expirationDate, string id)
         {
             string sql = "update TicketMonth set ExpirationDate = '" + expirationDate.ToString(Constant.sDateTimeFormatForQuery) + "', TicketMonth.IsSync = 0 where ID ='" + id + "'";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
             int monthCount = Util.MonthDifference(DateTime.Now, expirationDate);
             if (monthCount <= 1)
             {
@@ -269,7 +269,7 @@ namespace ParkingMangement.DAO
         {
             string sql = sqlGetAllLostTicketData;
             sql += sqlOrderByIdentify;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             addDaysRemainingToTicketData(data);
             return data;
@@ -298,7 +298,7 @@ namespace ParkingMangement.DAO
                     + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or Part.PartName like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
             }
             sql += sqlOrderByIdentify;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             addDaysRemainingToTicketData(data);
             return data;
@@ -315,7 +315,7 @@ namespace ParkingMangement.DAO
                     + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
             }
             sql += sqlOrderByIdentify;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             addDaysRemainingToTicketData(data);
 
@@ -344,7 +344,7 @@ namespace ParkingMangement.DAO
                     + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
             }
             sql += sqlOrderByIdentify;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
 
             addDaysRemainingToTicketData(data);
 
@@ -365,19 +365,19 @@ namespace ParkingMangement.DAO
         public static bool updateTicketByID(string id, int identify)
         {
             string sql = "update TicketMonth set ID = '" + id + "', TicketMonth.IsSync = 0 where Identify = " + identify;
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static DataTable GetDataByID(string id)
         {
             string sql = "select * from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static TicketMonthDTO GetDTODataByID(string id)
         {
             string sql = "select * from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             TicketMonthDTO ticketMonthDTO = null;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -412,13 +412,13 @@ namespace ParkingMangement.DAO
         public static DataTable GetDataByDigit(string digit)
         {
             string sql = "select * from TicketMonth where Digit = '" + digit + "' and TicketMonth.IsDeleted = '0'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetDataByIdentify(string cardIdentify)
         {
             string sql = "select * from TicketMonth inner join SmartCard on TicketMonth.ID = SmartCard.ID where SmartCard.Identify = '" + cardIdentify + "' and TicketMonth.IsDeleted = '0'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static string GetDigitByID(string id)

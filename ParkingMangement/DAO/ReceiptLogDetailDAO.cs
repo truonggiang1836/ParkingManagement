@@ -18,7 +18,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllData()
         {
-            return Database.ExcuQuery(sqlGetAllData);
+            return (new Database()).ExcuQuery(sqlGetAllData);
         }
 
         public static bool Insert(ReceiptLogDetailDTO receiptLogDetailDTO)
@@ -29,7 +29,7 @@ namespace ParkingMangement.DAO
                 receiptLogDetailDTO.ExpirationDate.ToString(Constant.sDateTimeFormatForQuery) + "','" + receiptLogDetailDTO.PrintDate.ToString(Constant.sDateTimeFormatForQuery) +
                 "', N'" + receiptLogDetailDTO.Company + "', N'" + receiptLogDetailDTO.Address + "')";
 
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static string sqlSearchData(ReceiptLogDetailDTO receiptLogDetailDTO)
@@ -105,7 +105,7 @@ namespace ParkingMangement.DAO
             string sql = sqlSearchData(receiptLogDetailDTO);
             sql += sqlOrderByIdDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
     }

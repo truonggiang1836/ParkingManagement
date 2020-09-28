@@ -47,7 +47,7 @@ namespace ParkingMangement.GUI
         private DateTime oldUhfCardTime;
         private string rfidInput = "";
         private string portNameComReceiveInput = null;
-        private string oldPortNameComReceiveInput = "";
+        private string oldPortNameComReceiveInput = null;
 
         //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
         const string cameraUrl = @"rtsp://184.72.239.149/vod/mp4:BigBuckBunny_175k.mov";
@@ -79,6 +79,8 @@ namespace ParkingMangement.GUI
         private DataTable mListCarSurvive;
         private BindingSource mBindingSource;
         private UHFReader mUHFReader;
+        private int mNoticeExpiredDate;
+        private int parkingTypeID;
 
         private Size oldSize;
         private const float LARGER_FONT_FACTOR = 1.5f;
@@ -110,6 +112,11 @@ namespace ParkingMangement.GUI
 
             //this.Resize += new EventHandler(Form_Resize);
             _lastFormSize = GetFormArea(this.Size);
+
+            mConfig = Util.getConfigFile();
+            parkingTypeID = ConfigDAO.GetParkingTypeID();
+            mNoticeExpiredDate = ConfigDAO.GetNoticeExpiredDate();
+            CurrentUserID = Program.CurrentUserID;
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
@@ -117,8 +124,6 @@ namespace ParkingMangement.GUI
             //Network = new clsNetwork();
             //Network.AutoLoadNetworkChar();
             //Network.AutoLoadNetworkNum();
-            mConfig = Util.getConfigFile();
-            CurrentUserID = Program.CurrentUserID;
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
             this.ActiveControl = tbRFIDCardID;
             pictureBoxDigitIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
@@ -275,7 +280,7 @@ namespace ParkingMangement.GUI
                     //Program.closeUhfReader();
                     //Program.initUhfReader();
 
-                    if (Program.oldUhfCardId != null)
+                    if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
                     {
                         resetAllData();
                     }
@@ -473,6 +478,7 @@ namespace ParkingMangement.GUI
 
         private void readCardEvent()
         {
+            isShowExpiredMessage = false;
             //deleteOldImages();
             Program.isHasCarInOut = true;
             if (!cardID.Equals(""))
@@ -497,6 +503,7 @@ namespace ParkingMangement.GUI
                     if (cardID.Length == 8 || cardID.Length == 10 || cardID.Length == 18)
                     {
                         labelError.Text = Constant.sMessageCardIdNotExist;
+                        Util.playAudio(Constant.notused);
                     }                    
                 }
                 mListCarSurvive = CarDAO.GetListCarSurvive();
@@ -570,7 +577,8 @@ namespace ParkingMangement.GUI
                 {
                     loadCarInData(dtLastCar);
                 }
-                MessageBox.Show(Constant.sMessageCardIsLost);
+                Util.playAudio(Constant.locked);
+                MessageBox.Show(Constant.sMessageCardIsLost);              
                 return false;
             }
 
@@ -596,6 +604,7 @@ namespace ParkingMangement.GUI
                         return false;
                     }
                 }
+                checkExpiredTicket(dtTicketCard, isTicketCard);
 
                 loadImage1ToPictureBox();
                 loadImage2ToPictureBox();
@@ -616,6 +625,8 @@ namespace ParkingMangement.GUI
             {
                 if (isKiemTraXeChuaRa || isKiemTraCapNhatXeRa)
                 {
+                    checkExpiredTicket(dtTicketCard, isTicketCard);
+
                     loadCarInData(dtLastCar);
                     updateCarOut(dtTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit);
                 } else
@@ -623,22 +634,6 @@ namespace ParkingMangement.GUI
                     tbRFIDCardID.Focus();
                     labelError.Text = "Thẻ này chưa được quẹt đầu vào";
                     return false;
-                }
-            }
-
-            if (isTicketCard)
-            {
-                DateTime? expirationDate = dtTicketCard.ExpirationDate;
-                int totalDaysLeft = (int)((DateTime)expirationDate - DateTime.Now).TotalDays;
-                int noticeExpiredDate = ConfigDAO.GetNoticeExpiredDate();
-                if (expirationDate != null && totalDaysLeft < 0)
-                {
-                    // vé tháng hết hạn
-                    int currentDay = (int)System.DateTime.Now.Day;
-                    if (currentDay >= noticeExpiredDate || -(totalDaysLeft) >= noticeExpiredDate)
-                    {
-                        labelError.Text = "Thẻ tháng đã hết hạn!";
-                    }
                 }
             }
 
@@ -666,6 +661,47 @@ namespace ParkingMangement.GUI
                 }).Start();                            
             }
             return true;
+        }
+
+        private bool isShowExpiredMessage = false;
+        private void checkExpiredTicket(TicketMonthDTO dtTicketCard, bool isTicketCard)
+        {
+            if (isTicketCard)
+            {
+                DateTime? expirationDate = dtTicketCard.ExpirationDate;
+                int totalDaysLeft = (int)((DateTime)expirationDate - DateTime.Now).TotalDays;
+                if (expirationDate != null)
+                {
+                    if (totalDaysLeft < 0)
+                    {
+                        // vé tháng hết hạn
+                        isShowExpiredMessage = false;
+                        int currentDay = (int)System.DateTime.Now.Day;
+                        if (currentDay >= mNoticeExpiredDate || -(totalDaysLeft) >= mNoticeExpiredDate)
+                        {
+                            isShowExpiredMessage = true;                    
+                        } else if (mConfig.isUseCostDeposit.Equals("no"))
+                        {
+                            isShowExpiredMessage = true;
+                        }
+
+                        if (isShowExpiredMessage)
+                        {
+                            labelError.Text = Constant.sMessageExpiredCard;
+                            Util.playAudio(Constant.expired);
+                        }
+                    } else if (totalDaysLeft <= expirationDate.Value.Day - mNoticeExpiredDate)
+                    {
+                        // vé tháng sắp hết hạn
+                        if (mConfig.isUseCostDeposit.Equals("no"))
+                        {
+                            isShowExpiredMessage = true;
+                            labelError.Text = Constant.sMessageNearExpiredCard;
+                            Util.playAudio(Constant.tobeexpired);
+                        }
+                    }
+                }
+            }
         }
 
         private void updateDigitCarIn(string digit)
@@ -824,6 +860,12 @@ namespace ParkingMangement.GUI
             //insertCarInAPI(cardID);
             CarDAO.Insert(carDTO);
             updateScreenForCarIn(isTicketMonthCard);
+
+            // play audio
+            if (!isShowExpiredMessage)
+            {
+                Util.playAudio(Constant.goIn);
+            }
 
             // send data to server
             WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
@@ -1120,6 +1162,12 @@ namespace ParkingMangement.GUI
                     carDTO.DateUpdate = DateTime.Now;
 
                     CarDAO.UpdateCarOut(carDTO);
+
+                    // play audio
+                    if (isTicketMonthCard && !isShowExpiredMessage)
+                    {
+                        Util.playAudio(Constant.goOut);
+                    }
 
                     // send data to server
                     WaitSyncCarOutDAO.Insert(identify);
@@ -1825,8 +1873,7 @@ namespace ParkingMangement.GUI
         }
 
         private int tinhTienGiuXe(DataTable dtLastCar)
-        {
-            int parkingTypeID = ConfigDAO.GetParkingTypeID();
+        {          
             switch (parkingTypeID)
             {
                 case Constant.LOAI_GIU_XE_MIEN_PHI:
@@ -2375,11 +2422,6 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void pictureBoxChangeLane_Click(object sender, EventArgs e)
-        {
-            openInOutSetting();
-        }
-
         private void pictureBoxGetCard_Click(object sender, EventArgs e)
         {
             openFormQuanLyXeRaVao();
@@ -2684,16 +2726,7 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 30 * 1000;
-            aTimer.Enabled = true;
-            aTimer.Start();
-        }
-
-        private void resetUhfByTimer()
-        {
-            System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventResetUhf);
-            aTimer.Interval = 1 * 60 * 60 * 1000; // 1h
+            aTimer.Interval = 60 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
         }
@@ -2717,24 +2750,6 @@ namespace ParkingMangement.GUI
             {
 
             } 
-        }
-
-        private void OnTimedEventResetUhf(object source, ElapsedEventArgs e)
-        {
-            new Thread(() =>
-            {
-                Thread.CurrentThread.IsBackground = true;
-                if (Util.getConfigFile().isUsingUhf.Equals("yes"))
-                {
-                    mUHFReader.closeComPort(Util.getConfigFile().comReceiveIn);
-                    mUHFReader.closeComPort(Util.getConfigFile().comReceiveOut);
-                    Thread.Sleep(2000);
-
-                    mUHFReader = new UHFReader();
-                    mUHFReader.openComPort(Util.getConfigFile().comReceiveIn, false);
-                    mUHFReader.openComPort(Util.getConfigFile().comReceiveOut, false);
-                }
-            }).Start();
         }
 
         private void updateXeRaVaoTimer()
@@ -3206,7 +3221,7 @@ namespace ParkingMangement.GUI
                 //    }
                 //}
 
-                labelError.Text = Program.newUhfCardId;
+                //labelError.Text = Program.newUhfCardId;
                 Console.WriteLine("UHF: " + Program.newUhfCardId);
                 if (Program.newUhfCardId != null)
                 {                                
@@ -3235,7 +3250,7 @@ namespace ParkingMangement.GUI
 
         private bool inputIsRightSide()
         {          
-            if (portNameComReceiveInput != null)
+            if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes"))
             {
                 bool result = portNameComReceiveInput.Equals(portNameComReceiveOut);
                 return result;
@@ -3486,6 +3501,16 @@ namespace ParkingMangement.GUI
             this.Close();
             this.Dispose();
             GC.Collect();
+        }
+
+        private void pictureBoxChangeLaneLeft_Click(object sender, EventArgs e)
+        {
+            changeInOutSetting(true);
+        }
+
+        private void pictureBoxChangeLaneRight_Click(object sender, EventArgs e)
+        {
+            changeInOutSetting(false);
         }
     }
 }

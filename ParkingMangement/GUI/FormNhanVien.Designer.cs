@@ -209,7 +209,7 @@
             this.axVLCPlugin4.Location = new System.Drawing.Point(669, 4);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin4.TabIndex = 17;
             // 
             // axVLCPlugin3
@@ -218,7 +218,7 @@
             this.axVLCPlugin3.Location = new System.Drawing.Point(453, 4);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin3.TabIndex = 16;
             // 
             // axVLCPlugin2
@@ -227,7 +227,7 @@
             this.axVLCPlugin2.Location = new System.Drawing.Point(221, 4);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin2.TabIndex = 15;
             // 
             // axVLCPlugin1
@@ -236,7 +236,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(4, 3);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin1.TabIndex = 14;
             // 
             // pictureBoxImage1
@@ -905,7 +905,7 @@
             this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox21.TabIndex = 123;
             this.pictureBox21.TabStop = false;
-            this.pictureBox21.Click += new System.EventHandler(this.pictureBoxChangeLane_Click);
+            this.pictureBox21.Click += new System.EventHandler(this.pictureBoxChangeLaneLeft_Click);
             // 
             // pictureBoxBarieLeft
             // 
@@ -1058,7 +1058,7 @@
             this.pictureBoxChangeLane.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxChangeLane.TabIndex = 53;
             this.pictureBoxChangeLane.TabStop = false;
-            this.pictureBoxChangeLane.Click += new System.EventHandler(this.pictureBoxChangeLane_Click);
+            this.pictureBoxChangeLane.Click += new System.EventHandler(this.pictureBoxChangeLaneRight_Click);
             // 
             // pictureBox18
             // 

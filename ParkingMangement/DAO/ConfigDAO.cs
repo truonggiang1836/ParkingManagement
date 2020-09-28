@@ -15,7 +15,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetConfig()
         {
             string sql = "select * from Config";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static int GetLostCard()
@@ -186,19 +186,19 @@ namespace ParkingMangement.DAO
         public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
             string sql = getUpdateSql(configDTO);
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateXeTon(ConfigDTO configDTO)
         {
             string sql = "update Config set BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace;
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateNoErrorMessage(ConfigDTO configDTO)
         {
             string sql = getUpdateSql(configDTO);
-            return Database.ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void syncFromJson(string json)

@@ -30,9 +30,6 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -115,6 +112,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -526,21 +526,6 @@
             this.label85 = new System.Windows.Forms.Label();
             this.tbTicketLogProcessType = new System.Windows.Forms.TextBox();
             this.dgvTicketLogList = new System.Windows.Forms.DataGridView();
-            this.TicketLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LogTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProcessDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameUser_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TicketMonthIdentify_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TicketMonthID_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Digit_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegistrationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExpirationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMND_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarKind_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel20 = new System.Windows.Forms.Panel();
             this.btnExportNhatKyVeThang = new System.Windows.Forms.Button();
             this.btnShowAllTicketLog = new System.Windows.Forms.Button();
@@ -1019,6 +1004,7 @@
             this.tabPageQuanLyPhieuThuChi = new System.Windows.Forms.TabPage();
             this.tabQuanLyPhieuThuChi = new System.Windows.Forms.TabControl();
             this.tabPageInPhieuThuChi = new System.Windows.Forms.TabPage();
+            this.btnCancedReceipt = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.btnPrintTransferCost = new System.Windows.Forms.Button();
             this.panelPrintReceipt = new System.Windows.Forms.Panel();
@@ -1071,7 +1057,6 @@
             this.cbReceiptLogPrintDate = new System.Windows.Forms.CheckBox();
             this.label245 = new System.Windows.Forms.Label();
             this.label244 = new System.Windows.Forms.Label();
-            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1140,7 +1125,6 @@
             this.cbReceiptLogDetailPrintDate = new System.Windows.Forms.CheckBox();
             this.label243 = new System.Windows.Forms.Label();
             this.label246 = new System.Windows.Forms.Label();
-            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogDetailCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogDetailCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1157,7 +1141,26 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
-            this.btnCancedReceipt = new System.Windows.Forms.Button();
+            this.TicketLogIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LogTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProcessDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameUser_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TicketMonthIdentify_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TicketMonthID_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Digit_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegistrationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExpirationDate_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CompanyName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMND_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartName_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CarKind_Log = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
+            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
+            this.label241 = new System.Windows.Forms.Label();
+            this.tbTicketLogCompany = new System.Windows.Forms.TextBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -5632,6 +5635,8 @@
             // 
             // panel22
             // 
+            this.panel22.Controls.Add(this.label241);
+            this.panel22.Controls.Add(this.tbTicketLogCompany);
             this.panel22.Controls.Add(this.label93);
             this.panel22.Controls.Add(this.tbTicketLogExpirationDate);
             this.panel22.Controls.Add(this.label94);
@@ -5667,7 +5672,7 @@
             // 
             this.label93.AutoSize = true;
             this.label93.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label93.Location = new System.Drawing.Point(368, 188);
+            this.label93.Location = new System.Drawing.Point(378, 222);
             this.label93.Name = "label93";
             this.label93.Size = new System.Drawing.Size(87, 16);
             this.label93.TabIndex = 29;
@@ -5675,7 +5680,7 @@
             // 
             // tbTicketLogExpirationDate
             // 
-            this.tbTicketLogExpirationDate.Location = new System.Drawing.Point(460, 185);
+            this.tbTicketLogExpirationDate.Location = new System.Drawing.Point(481, 219);
             this.tbTicketLogExpirationDate.Name = "tbTicketLogExpirationDate";
             this.tbTicketLogExpirationDate.ReadOnly = true;
             this.tbTicketLogExpirationDate.Size = new System.Drawing.Size(252, 22);
@@ -5685,7 +5690,7 @@
             // 
             this.label94.AutoSize = true;
             this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(368, 154);
+            this.label94.Location = new System.Drawing.Point(378, 188);
             this.label94.Name = "label94";
             this.label94.Size = new System.Drawing.Size(61, 16);
             this.label94.TabIndex = 27;
@@ -5693,7 +5698,7 @@
             // 
             // tbTicketLogRegistrationDate
             // 
-            this.tbTicketLogRegistrationDate.Location = new System.Drawing.Point(460, 151);
+            this.tbTicketLogRegistrationDate.Location = new System.Drawing.Point(481, 185);
             this.tbTicketLogRegistrationDate.Name = "tbTicketLogRegistrationDate";
             this.tbTicketLogRegistrationDate.ReadOnly = true;
             this.tbTicketLogRegistrationDate.Size = new System.Drawing.Size(252, 22);
@@ -5703,7 +5708,7 @@
             // 
             this.label95.AutoSize = true;
             this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label95.Location = new System.Drawing.Point(368, 120);
+            this.label95.Location = new System.Drawing.Point(378, 154);
             this.label95.Name = "label95";
             this.label95.Size = new System.Drawing.Size(51, 16);
             this.label95.TabIndex = 25;
@@ -5711,7 +5716,7 @@
             // 
             // tbTicketLogPartName
             // 
-            this.tbTicketLogPartName.Location = new System.Drawing.Point(460, 117);
+            this.tbTicketLogPartName.Location = new System.Drawing.Point(481, 151);
             this.tbTicketLogPartName.Name = "tbTicketLogPartName";
             this.tbTicketLogPartName.ReadOnly = true;
             this.tbTicketLogPartName.Size = new System.Drawing.Size(252, 22);
@@ -5721,7 +5726,7 @@
             // 
             this.label96.AutoSize = true;
             this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label96.Location = new System.Drawing.Point(368, 86);
+            this.label96.Location = new System.Drawing.Point(378, 120);
             this.label96.Name = "label96";
             this.label96.Size = new System.Drawing.Size(53, 16);
             this.label96.TabIndex = 23;
@@ -5729,7 +5734,7 @@
             // 
             // tbTicketLogCarKind
             // 
-            this.tbTicketLogCarKind.Location = new System.Drawing.Point(460, 83);
+            this.tbTicketLogCarKind.Location = new System.Drawing.Point(481, 117);
             this.tbTicketLogCarKind.Name = "tbTicketLogCarKind";
             this.tbTicketLogCarKind.ReadOnly = true;
             this.tbTicketLogCarKind.Size = new System.Drawing.Size(252, 22);
@@ -5739,7 +5744,7 @@
             // 
             this.label97.AutoSize = true;
             this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label97.Location = new System.Drawing.Point(368, 52);
+            this.label97.Location = new System.Drawing.Point(378, 86);
             this.label97.Name = "label97";
             this.label97.Size = new System.Drawing.Size(48, 16);
             this.label97.TabIndex = 21;
@@ -5747,7 +5752,7 @@
             // 
             // tbTicketLogAddress
             // 
-            this.tbTicketLogAddress.Location = new System.Drawing.Point(460, 49);
+            this.tbTicketLogAddress.Location = new System.Drawing.Point(481, 83);
             this.tbTicketLogAddress.Name = "tbTicketLogAddress";
             this.tbTicketLogAddress.ReadOnly = true;
             this.tbTicketLogAddress.Size = new System.Drawing.Size(252, 22);
@@ -5757,7 +5762,7 @@
             // 
             this.label98.AutoSize = true;
             this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label98.Location = new System.Drawing.Point(368, 18);
+            this.label98.Location = new System.Drawing.Point(378, 52);
             this.label98.Name = "label98";
             this.label98.Size = new System.Drawing.Size(42, 16);
             this.label98.TabIndex = 19;
@@ -5765,7 +5770,7 @@
             // 
             // tbTicketLogEmail
             // 
-            this.tbTicketLogEmail.Location = new System.Drawing.Point(460, 15);
+            this.tbTicketLogEmail.Location = new System.Drawing.Point(481, 49);
             this.tbTicketLogEmail.Name = "tbTicketLogEmail";
             this.tbTicketLogEmail.ReadOnly = true;
             this.tbTicketLogEmail.Size = new System.Drawing.Size(252, 22);
@@ -5912,6 +5917,7 @@
             this.RegistrationDate_Log,
             this.ExpirationDate_Log,
             this.CustomerName_Log,
+            this.CompanyName_Log,
             this.Address_Log,
             this.Email_Log,
             this.CMND_Log,
@@ -5925,146 +5931,6 @@
             this.dgvTicketLogList.TabIndex = 1;
             this.dgvTicketLogList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTicketLogList_CellClick);
             this.dgvTicketLogList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvTicketLogList_DataBindingComplete);
-            // 
-            // TicketLogIdentify
-            // 
-            this.TicketLogIdentify.HeaderText = "STT";
-            this.TicketLogIdentify.MinimumWidth = 6;
-            this.TicketLogIdentify.Name = "TicketLogIdentify";
-            this.TicketLogIdentify.ReadOnly = true;
-            this.TicketLogIdentify.Width = 70;
-            // 
-            // LogTypeName
-            // 
-            this.LogTypeName.DataPropertyName = "LogTypeName";
-            this.LogTypeName.HeaderText = "Loại XL";
-            this.LogTypeName.MinimumWidth = 6;
-            this.LogTypeName.Name = "LogTypeName";
-            this.LogTypeName.ReadOnly = true;
-            this.LogTypeName.Width = 200;
-            // 
-            // ProcessDate
-            // 
-            this.ProcessDate.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle3.Format = "dd-MM-yyyy HH:mm:ss";
-            this.ProcessDate.DefaultCellStyle = dataGridViewCellStyle3;
-            this.ProcessDate.HeaderText = "Ngày XL";
-            this.ProcessDate.MinimumWidth = 6;
-            this.ProcessDate.Name = "ProcessDate";
-            this.ProcessDate.ReadOnly = true;
-            this.ProcessDate.Width = 150;
-            // 
-            // NameUser_Log
-            // 
-            this.NameUser_Log.DataPropertyName = "NameUser";
-            this.NameUser_Log.HeaderText = "Người XL";
-            this.NameUser_Log.MinimumWidth = 6;
-            this.NameUser_Log.Name = "NameUser_Log";
-            this.NameUser_Log.ReadOnly = true;
-            this.NameUser_Log.Width = 125;
-            // 
-            // TicketMonthIdentify_Log
-            // 
-            this.TicketMonthIdentify_Log.DataPropertyName = "Identify";
-            this.TicketMonthIdentify_Log.HeaderText = "Số thẻ";
-            this.TicketMonthIdentify_Log.MinimumWidth = 6;
-            this.TicketMonthIdentify_Log.Name = "TicketMonthIdentify_Log";
-            this.TicketMonthIdentify_Log.ReadOnly = true;
-            this.TicketMonthIdentify_Log.Width = 125;
-            // 
-            // TicketMonthID_Log
-            // 
-            this.TicketMonthID_Log.DataPropertyName = "TicketMonthID";
-            this.TicketMonthID_Log.HeaderText = "Mã chíp";
-            this.TicketMonthID_Log.MinimumWidth = 6;
-            this.TicketMonthID_Log.Name = "TicketMonthID_Log";
-            this.TicketMonthID_Log.ReadOnly = true;
-            this.TicketMonthID_Log.Width = 125;
-            // 
-            // Digit_Log
-            // 
-            this.Digit_Log.DataPropertyName = "Digit";
-            this.Digit_Log.HeaderText = "Biển số";
-            this.Digit_Log.MinimumWidth = 6;
-            this.Digit_Log.Name = "Digit_Log";
-            this.Digit_Log.ReadOnly = true;
-            this.Digit_Log.Width = 125;
-            // 
-            // RegistrationDate_Log
-            // 
-            this.RegistrationDate_Log.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle4.Format = "dd-MM-yyyy";
-            this.RegistrationDate_Log.DefaultCellStyle = dataGridViewCellStyle4;
-            this.RegistrationDate_Log.HeaderText = "Ngày ĐK";
-            this.RegistrationDate_Log.MinimumWidth = 6;
-            this.RegistrationDate_Log.Name = "RegistrationDate_Log";
-            this.RegistrationDate_Log.ReadOnly = true;
-            this.RegistrationDate_Log.Width = 125;
-            // 
-            // ExpirationDate_Log
-            // 
-            this.ExpirationDate_Log.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle5.Format = "dd-MM-yyyy";
-            this.ExpirationDate_Log.DefaultCellStyle = dataGridViewCellStyle5;
-            this.ExpirationDate_Log.HeaderText = "Ngày hết hạn";
-            this.ExpirationDate_Log.MinimumWidth = 6;
-            this.ExpirationDate_Log.Name = "ExpirationDate_Log";
-            this.ExpirationDate_Log.ReadOnly = true;
-            this.ExpirationDate_Log.Width = 125;
-            // 
-            // CustomerName_Log
-            // 
-            this.CustomerName_Log.DataPropertyName = "CustomerName";
-            this.CustomerName_Log.HeaderText = "Tên KH";
-            this.CustomerName_Log.MinimumWidth = 6;
-            this.CustomerName_Log.Name = "CustomerName_Log";
-            this.CustomerName_Log.ReadOnly = true;
-            this.CustomerName_Log.Width = 125;
-            // 
-            // Address_Log
-            // 
-            this.Address_Log.DataPropertyName = "Address";
-            this.Address_Log.HeaderText = "Địa chỉ";
-            this.Address_Log.MinimumWidth = 6;
-            this.Address_Log.Name = "Address_Log";
-            this.Address_Log.ReadOnly = true;
-            this.Address_Log.Width = 125;
-            // 
-            // Email_Log
-            // 
-            this.Email_Log.DataPropertyName = "Email";
-            this.Email_Log.HeaderText = "Email";
-            this.Email_Log.MinimumWidth = 6;
-            this.Email_Log.Name = "Email_Log";
-            this.Email_Log.ReadOnly = true;
-            this.Email_Log.Width = 150;
-            // 
-            // CMND_Log
-            // 
-            this.CMND_Log.DataPropertyName = "CMND";
-            this.CMND_Log.HeaderText = "CMND";
-            this.CMND_Log.MinimumWidth = 6;
-            this.CMND_Log.Name = "CMND_Log";
-            this.CMND_Log.ReadOnly = true;
-            this.CMND_Log.Width = 125;
-            // 
-            // PartName_Log
-            // 
-            this.PartName_Log.DataPropertyName = "PartName";
-            this.PartName_Log.HeaderText = "Loại xe";
-            this.PartName_Log.MinimumWidth = 6;
-            this.PartName_Log.Name = "PartName_Log";
-            this.PartName_Log.ReadOnly = true;
-            this.PartName_Log.Width = 130;
-            // 
-            // CarKind_Log
-            // 
-            this.CarKind_Log.DataPropertyName = "CarKind";
-            this.CarKind_Log.HeaderText = "Hiệu xe";
-            this.CarKind_Log.MinimumWidth = 6;
-            this.CarKind_Log.Name = "CarKind_Log";
-            this.CarKind_Log.ReadOnly = true;
-            this.CarKind_Log.Width = 125;
             // 
             // panel20
             // 
@@ -11022,6 +10888,17 @@
             this.tabPageInPhieuThuChi.TabIndex = 0;
             this.tabPageInPhieuThuChi.Text = "In phiếu thu / chi";
             // 
+            // btnCancedReceipt
+            // 
+            this.btnCancedReceipt.ForeColor = System.Drawing.Color.Black;
+            this.btnCancedReceipt.Location = new System.Drawing.Point(1056, 552);
+            this.btnCancedReceipt.Name = "btnCancedReceipt";
+            this.btnCancedReceipt.Size = new System.Drawing.Size(60, 36);
+            this.btnCancedReceipt.TabIndex = 34;
+            this.btnCancedReceipt.Text = "HỦY";
+            this.btnCancedReceipt.UseVisualStyleBackColor = true;
+            this.btnCancedReceipt.Click += new System.EventHandler(this.btnCancedReceipt_Click);
+            // 
             // btnPrintReceipt
             // 
             this.btnPrintReceipt.BackColor = System.Drawing.Color.Transparent;
@@ -11609,16 +11486,6 @@
             this.label244.Size = new System.Drawing.Size(24, 16);
             this.label244.TabIndex = 49;
             this.label244.Text = "Từ";
-            // 
-            // dtReceiptLogBook
-            // 
-            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogBook.Location = new System.Drawing.Point(685, 13);
-            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
-            this.dtReceiptLogBook.Size = new System.Drawing.Size(86, 22);
-            this.dtReceiptLogBook.TabIndex = 48;
-            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
             // 
             // groupBox11
             // 
@@ -12341,16 +12208,6 @@
             this.label246.TabIndex = 49;
             this.label246.Text = "Từ";
             // 
-            // dtReceiptLogDetailBook
-            // 
-            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(779, 42);
-            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
-            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(86, 22);
-            this.dtReceiptLogDetailBook.TabIndex = 48;
-            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
-            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.cbReceiptLogDetailCostExtendCard);
@@ -12498,16 +12355,190 @@
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(135, 22);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
             // 
-            // btnCancedReceipt
+            // TicketLogIdentify
             // 
-            this.btnCancedReceipt.ForeColor = System.Drawing.Color.Black;
-            this.btnCancedReceipt.Location = new System.Drawing.Point(1056, 552);
-            this.btnCancedReceipt.Name = "btnCancedReceipt";
-            this.btnCancedReceipt.Size = new System.Drawing.Size(60, 36);
-            this.btnCancedReceipt.TabIndex = 34;
-            this.btnCancedReceipt.Text = "HỦY";
-            this.btnCancedReceipt.UseVisualStyleBackColor = true;
-            this.btnCancedReceipt.Click += new System.EventHandler(this.btnCancedReceipt_Click);
+            this.TicketLogIdentify.HeaderText = "STT";
+            this.TicketLogIdentify.MinimumWidth = 6;
+            this.TicketLogIdentify.Name = "TicketLogIdentify";
+            this.TicketLogIdentify.ReadOnly = true;
+            this.TicketLogIdentify.Width = 70;
+            // 
+            // LogTypeName
+            // 
+            this.LogTypeName.DataPropertyName = "LogTypeName";
+            this.LogTypeName.HeaderText = "Loại XL";
+            this.LogTypeName.MinimumWidth = 6;
+            this.LogTypeName.Name = "LogTypeName";
+            this.LogTypeName.ReadOnly = true;
+            this.LogTypeName.Width = 200;
+            // 
+            // ProcessDate
+            // 
+            this.ProcessDate.DataPropertyName = "ProcessDate";
+            dataGridViewCellStyle3.Format = "dd-MM-yyyy HH:mm:ss";
+            this.ProcessDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ProcessDate.HeaderText = "Ngày XL";
+            this.ProcessDate.MinimumWidth = 6;
+            this.ProcessDate.Name = "ProcessDate";
+            this.ProcessDate.ReadOnly = true;
+            this.ProcessDate.Width = 150;
+            // 
+            // NameUser_Log
+            // 
+            this.NameUser_Log.DataPropertyName = "NameUser";
+            this.NameUser_Log.HeaderText = "Người XL";
+            this.NameUser_Log.MinimumWidth = 6;
+            this.NameUser_Log.Name = "NameUser_Log";
+            this.NameUser_Log.ReadOnly = true;
+            this.NameUser_Log.Width = 125;
+            // 
+            // TicketMonthIdentify_Log
+            // 
+            this.TicketMonthIdentify_Log.DataPropertyName = "Identify";
+            this.TicketMonthIdentify_Log.HeaderText = "Số thẻ";
+            this.TicketMonthIdentify_Log.MinimumWidth = 6;
+            this.TicketMonthIdentify_Log.Name = "TicketMonthIdentify_Log";
+            this.TicketMonthIdentify_Log.ReadOnly = true;
+            this.TicketMonthIdentify_Log.Width = 125;
+            // 
+            // TicketMonthID_Log
+            // 
+            this.TicketMonthID_Log.DataPropertyName = "TicketMonthID";
+            this.TicketMonthID_Log.HeaderText = "Mã chíp";
+            this.TicketMonthID_Log.MinimumWidth = 6;
+            this.TicketMonthID_Log.Name = "TicketMonthID_Log";
+            this.TicketMonthID_Log.ReadOnly = true;
+            this.TicketMonthID_Log.Width = 125;
+            // 
+            // Digit_Log
+            // 
+            this.Digit_Log.DataPropertyName = "Digit";
+            this.Digit_Log.HeaderText = "Biển số";
+            this.Digit_Log.MinimumWidth = 6;
+            this.Digit_Log.Name = "Digit_Log";
+            this.Digit_Log.ReadOnly = true;
+            this.Digit_Log.Width = 125;
+            // 
+            // RegistrationDate_Log
+            // 
+            this.RegistrationDate_Log.DataPropertyName = "RegistrationDate";
+            dataGridViewCellStyle4.Format = "dd-MM-yyyy";
+            this.RegistrationDate_Log.DefaultCellStyle = dataGridViewCellStyle4;
+            this.RegistrationDate_Log.HeaderText = "Ngày ĐK";
+            this.RegistrationDate_Log.MinimumWidth = 6;
+            this.RegistrationDate_Log.Name = "RegistrationDate_Log";
+            this.RegistrationDate_Log.ReadOnly = true;
+            this.RegistrationDate_Log.Width = 125;
+            // 
+            // ExpirationDate_Log
+            // 
+            this.ExpirationDate_Log.DataPropertyName = "ExpirationDate";
+            dataGridViewCellStyle5.Format = "dd-MM-yyyy";
+            this.ExpirationDate_Log.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ExpirationDate_Log.HeaderText = "Ngày hết hạn";
+            this.ExpirationDate_Log.MinimumWidth = 6;
+            this.ExpirationDate_Log.Name = "ExpirationDate_Log";
+            this.ExpirationDate_Log.ReadOnly = true;
+            this.ExpirationDate_Log.Width = 125;
+            // 
+            // CustomerName_Log
+            // 
+            this.CustomerName_Log.DataPropertyName = "CustomerName";
+            this.CustomerName_Log.HeaderText = "Tên KH";
+            this.CustomerName_Log.MinimumWidth = 6;
+            this.CustomerName_Log.Name = "CustomerName_Log";
+            this.CustomerName_Log.ReadOnly = true;
+            this.CustomerName_Log.Width = 125;
+            // 
+            // CompanyName_Log
+            // 
+            this.CompanyName_Log.DataPropertyName = "Company";
+            this.CompanyName_Log.HeaderText = "Công ty/Căn hộ";
+            this.CompanyName_Log.Name = "CompanyName_Log";
+            this.CompanyName_Log.ReadOnly = true;
+            // 
+            // Address_Log
+            // 
+            this.Address_Log.DataPropertyName = "Address";
+            this.Address_Log.HeaderText = "Địa chỉ";
+            this.Address_Log.MinimumWidth = 6;
+            this.Address_Log.Name = "Address_Log";
+            this.Address_Log.ReadOnly = true;
+            this.Address_Log.Width = 125;
+            // 
+            // Email_Log
+            // 
+            this.Email_Log.DataPropertyName = "Email";
+            this.Email_Log.HeaderText = "Email";
+            this.Email_Log.MinimumWidth = 6;
+            this.Email_Log.Name = "Email_Log";
+            this.Email_Log.ReadOnly = true;
+            this.Email_Log.Width = 150;
+            // 
+            // CMND_Log
+            // 
+            this.CMND_Log.DataPropertyName = "CMND";
+            this.CMND_Log.HeaderText = "CMND";
+            this.CMND_Log.MinimumWidth = 6;
+            this.CMND_Log.Name = "CMND_Log";
+            this.CMND_Log.ReadOnly = true;
+            this.CMND_Log.Width = 125;
+            // 
+            // PartName_Log
+            // 
+            this.PartName_Log.DataPropertyName = "PartName";
+            this.PartName_Log.HeaderText = "Loại xe";
+            this.PartName_Log.MinimumWidth = 6;
+            this.PartName_Log.Name = "PartName_Log";
+            this.PartName_Log.ReadOnly = true;
+            this.PartName_Log.Width = 130;
+            // 
+            // CarKind_Log
+            // 
+            this.CarKind_Log.DataPropertyName = "CarKind";
+            this.CarKind_Log.HeaderText = "Hiệu xe";
+            this.CarKind_Log.MinimumWidth = 6;
+            this.CarKind_Log.Name = "CarKind_Log";
+            this.CarKind_Log.ReadOnly = true;
+            this.CarKind_Log.Width = 125;
+            // 
+            // dtReceiptLogBook
+            // 
+            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogBook.Location = new System.Drawing.Point(685, 13);
+            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
+            this.dtReceiptLogBook.Size = new System.Drawing.Size(86, 22);
+            this.dtReceiptLogBook.TabIndex = 48;
+            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            // 
+            // dtReceiptLogDetailBook
+            // 
+            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(779, 42);
+            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
+            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(86, 22);
+            this.dtReceiptLogDetailBook.TabIndex = 48;
+            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            // 
+            // label241
+            // 
+            this.label241.AutoSize = true;
+            this.label241.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label241.Location = new System.Drawing.Point(378, 18);
+            this.label241.Name = "label241";
+            this.label241.Size = new System.Drawing.Size(99, 16);
+            this.label241.TabIndex = 31;
+            this.label241.Text = "Công ty/Căn hộ";
+            // 
+            // tbTicketLogCompany
+            // 
+            this.tbTicketLogCompany.Location = new System.Drawing.Point(481, 15);
+            this.tbTicketLogCompany.Name = "tbTicketLogCompany";
+            this.tbTicketLogCompany.ReadOnly = true;
+            this.tbTicketLogCompany.Size = new System.Drawing.Size(252, 22);
+            this.tbTicketLogCompany.TabIndex = 30;
             // 
             // FormQuanLy
             // 
@@ -13781,21 +13812,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptLogDetailExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptLogDetailPrintDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptLogDetailReason;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TicketLogIdentify;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LogTypeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProcessDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NameUser_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TicketMonthIdentify_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TicketMonthID_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Digit_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RegistrationDate_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Email_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CMND_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartName_Log;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarKind_Log;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_CarTicketMonthList;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column38;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column39;
@@ -13835,5 +13851,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
         private System.Windows.Forms.CheckBox cbCostDeposit;
         private System.Windows.Forms.Button btnCancedReceipt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TicketLogIdentify;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LogTypeName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProcessDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameUser_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TicketMonthIdentify_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TicketMonthID_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Digit_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegistrationDate_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExpirationDate_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CompanyName_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CMND_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartName_Log;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CarKind_Log;
+        private System.Windows.Forms.Label label241;
+        private System.Windows.Forms.TextBox tbTicketLogCompany;
     }
 }

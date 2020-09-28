@@ -111,7 +111,7 @@ namespace ParkingMangement.Model
         public double uhfQueryTime { get; set; } = 1;
 
         [XmlElement(ElementName = "is_using_uhf")]
-        public string isUsingUhf { get; set; } = "false";
+        public string isUsingUhf { get; set; } = "no";
 
         [XmlElement(ElementName = "read_digit_folder")]
         public string readDigitFolder { get; set; } = "";
@@ -124,5 +124,7 @@ namespace ParkingMangement.Model
         public string pythonRunFile { get; set; } = "";
         [XmlElement(ElementName = "python_server_url")]
         public string pythonServerUrl { get; set; } = "";
+        [XmlElement(ElementName = "is_use_cost_deposit")]
+        public string isUseCostDeposit { get; set; } = "yes";
     }
 }

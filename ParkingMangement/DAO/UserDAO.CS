@@ -15,26 +15,26 @@ namespace ParkingMangement.DAO
         {
             string sql = "select UserCar.UserID, UserCar.Account, UserCar.Pass, UserCar.NameUser, Sex.SexName, Functional.FunctionName from UserCar, Functional, Sex " +
                 "where Functional.FunctionID = UserCar.IDFunct and Sex.SexID = UserCar.SexID order by UserCar.UserID asc";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetAllDataForSync()
         {
             string sql = "select * from UserCar where IsSync = 0";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static void UpdateIsSync(string listId)
         {
             string sql = "update UserCar set IsSync = 1 where UserID in " + listId;
-            Database.ExcuNonQueryNoErrorMessage(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static DataTable GetID_Name_Function()
         {
             string sql = "select UserCar.UserID, UserCar.NameUser, Functional.FunctionName from UserCar, Functional " +
                 "where Functional.FunctionID = UserCar.IDFunct";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static string getInsertSql(UserDTO userDTO)
@@ -54,49 +54,49 @@ namespace ParkingMangement.DAO
         public static void Insert(UserDTO userDTO)
         {
             string sql = getInsertSql(userDTO);
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static void Update(UserDTO userDTO)
         {
             string sql = getUpdateSql(userDTO);
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool InsertNoErrorMessage(UserDTO userDTO)
         {
             string sql = getInsertSql(userDTO);
-            return Database.ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool UpdateNoErrorMessage(UserDTO userDTO)
         {
             string sql = getUpdateSql(userDTO);
-            return Database.ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool UpdatePassword(string password, string account)
         {
             string sql = "update UserCar set Pass =N'" + password + "' where Account =N'" + account + "'";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateRememberMe(int isRemember, string account)
         {
             string sql = "update UserCar set RememberMe =" + isRemember + " where Account ='" + account + "'";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static DataTable GetUserByAccount(string account)
         {
             string sql = "select * from UserCar where UserCar.Account = '" + account + "'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetUserByID(string id)
         {
             string sql = "select * from UserCar where UserCar.UserID = '" + id + "'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static UserDTO GetUserModelByID(string id)
@@ -182,7 +182,7 @@ namespace ParkingMangement.DAO
         public static void Delete(string userID)
         {
             string sql = "delete from UserCar where UserID = '" + userID + "'";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static void syncFromJson(string json)

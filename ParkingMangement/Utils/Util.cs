@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using AxAXVLC;
+using Newtonsoft.Json;
 using ParkingMangement.DAO;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
@@ -1686,9 +1687,15 @@ namespace ParkingMangement.Utils
         {
             int currentDay = (int)System.DateTime.Now.Day;
             int lockCardDate = ConfigDAO.GetLockCardDate();
-            if (currentDay >= lockCardDate && currentDay - 5 <= lockCardDate)
+            if (currentDay >= lockCardDate)
             {
-                CardDAO.lockExpiredCard();
+                if (Util.getConfigFile().isUseCostDeposit.Equals("no"))
+                {
+                    CardDAO.lockExpiredCardNoDeposit();
+                } else
+                {
+                    CardDAO.lockExpiredCardWithDeposit();
+                }              
             }
         }
 
@@ -1722,9 +1729,29 @@ namespace ParkingMangement.Utils
             return DateTime.DaysInMonth(date.Year, date.Month);
         }
 
+        public static int roundUpVND(int cost)
+        {
+            int result = ((int) (cost / 1000)) * 1000;
+            if (cost % 1000 >= 500)
+            {
+                result += 1000;
+            }
+            return result;
+        }
+
         public static string ReadUhfData(SerialPort serial)
         {
             return serial.ReadExisting().Trim().ToUpper();
+        }
+
+        public static void playAudio(string audioName)
+        {
+            string url = Application.StartupPath + "\\audio\\" + audioName;
+            if (File.Exists(url))
+            {
+                System.Media.SoundPlayer player = new System.Media.SoundPlayer(url);
+                player.Play();
+            }
         }
 
         private static string Chu(string gNumber)

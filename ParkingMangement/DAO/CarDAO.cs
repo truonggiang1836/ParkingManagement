@@ -74,68 +74,68 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = sqlGetAllData + sqlOrderTimeStartDesc;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
         public static DataTable GetAllDataForSync()
         {
             string sql = sqlGetAllDataForCallAPI;
-            return Database.ExcuQueryNoErrorMessage(sql);
+            return (new Database()).ExcuQueryNoErrorMessage(sql);
         }
 
         public static void UpdateIsSync(string listIdentify)
         {
             string sql = "update Car set IsSync = 1 where Identify in " + listIdentify;
-            Database.ExcuNonQueryNoErrorMessage(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static DataTable GetDataInRecentlyForSync()
         {
             string sql = sqlGetAllDataInForCallAPI + " order by car.Identify asc";
-            DataTable data = Database.ExcuQueryNoErrorMessage(sql);
+            DataTable data = (new Database()).ExcuQueryNoErrorMessage(sql);
             return data;
         }
 
         public static DataTable GetDataOutRecentlyForSync()
         {
             string sql = sqlGetAllDataOutForCallAPI + " order by car.Identify asc";
-            DataTable data = Database.ExcuQueryNoErrorMessage(sql);
+            DataTable data = (new Database()).ExcuQueryNoErrorMessage(sql);
             return data;
         }
 
         public static DataTable GetDataForSync()
         {
             string sql = sqlGetAllOldDataForCallAPI + " order by car.Identify asc";
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
         //public static DataTable GetDataByIdentifyForAPI(int identify)
         //{
         //    string sql = sqlGetAllDataForCallAPI + " and car.Identify = " + identify;
-        //    DataTable data = Database.ExcuQuery(sql);
+        //    DataTable data = (new Database()).ExcuQuery(sql);
         //    return data;
         //}
 
         //public static DataTable GetLastDataByIdForAPI(string id)
         //{
         //    string sql = sqlGetFirstDataForCallAPI + " and car.ID = '" + id + "' order by car.Identify desc";
-        //    DataTable data = Database.ExcuQuery(sql);
+        //    DataTable data = (new Database()).ExcuQuery(sql);
         //    return data;
         //}
 
         public static DataTable GetAllDataForCashManagement()
         {
             string sql = sqlGetDataForCashManagement + sqlOrderTimeStartDesc;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
         public static DataTable GetAllTicketMonthData()
         {
             string sql = sqlGetAllTicketMonthData + sqlQueryTicketMonth + sqlOrderByIdentifyDesc;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -211,7 +211,7 @@ namespace ParkingMangement.DAO
             string sql = sqlSearchData(carDTO);
             sql += sqlOrderTimeStartDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -231,7 +231,7 @@ namespace ParkingMangement.DAO
             }
             sql += sqlOrderTimeStartDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -252,7 +252,7 @@ namespace ParkingMangement.DAO
             }
             sql += sqlOrderByIdentifyDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -273,7 +273,7 @@ namespace ParkingMangement.DAO
             }
             sql += sqlOrderByIdentifyDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -282,7 +282,7 @@ namespace ParkingMangement.DAO
             string sql = sqlSearchData(carDTO);
             sql += sqlQueryXeTon + sqlOrderTimeStartDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -291,7 +291,7 @@ namespace ParkingMangement.DAO
             string sql = sqlSearchData(carDTO);
             sql += sqlQueryMatThe + sqlOrderTimeStartDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -310,7 +310,7 @@ namespace ParkingMangement.DAO
             }
             sql += sqlOrderByIdentifyDesc;
 
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
@@ -318,7 +318,7 @@ namespace ParkingMangement.DAO
         {
             string base64 = "";
             string sql = "update Car set Images =('" + base64 + "') where Identify = 1";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static DataTable GetTotalCost(DateTime? startTime, DateTime? endTime, string userID, int ticketType)
@@ -415,7 +415,7 @@ namespace ParkingMangement.DAO
             long countAllCarOut = 0;
             long countAllCarSurvive = 0;
             long sumCost = 0;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             if (data != null)
             {
                 data.Columns.Add("PartName", typeof(string));
@@ -477,9 +477,9 @@ namespace ParkingMangement.DAO
         public static DataTable GetListCarSurvive()
         {
             string groupBySql = " group by Part.TypeID";
-            string sql = "select Part.TypeID from Part, Car inner join SmartCard on SmartCard.ID = Car.ID where Car.IDPart = Part.ID";
+            string sql = "select Part.TypeID from Part inner join Car on Car.IDPart = Part.ID where 0 = 0";
             sql += groupBySql;
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             if (data != null)
             {
                 data.Columns.Add("TypeName", typeof(Bitmap));
@@ -543,7 +543,7 @@ namespace ParkingMangement.DAO
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static long GetCountCostByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
@@ -573,7 +573,7 @@ namespace ParkingMangement.DAO
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static long GetCountTicketMonthCostByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID)
@@ -592,7 +592,7 @@ namespace ParkingMangement.DAO
                 sql += " and ReceiptLogDetail.PrintDate between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static long GetCountCarInByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
@@ -622,7 +622,7 @@ namespace ParkingMangement.DAO
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static long GetCountCarOutByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
@@ -652,7 +652,7 @@ namespace ParkingMangement.DAO
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static long GetCountCarSurviveByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool isTicketMonth, string userID)
@@ -685,51 +685,51 @@ namespace ParkingMangement.DAO
                 sql += " and (Car.IDIn = '" + userID + "' or Car.IDOut = '" + userID + "')";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static int GetCountCarSurvive(string typeID)
         {
-            string sql = "select count(DISTINCT(Car.ID)) from Part, Car inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID ";
+            string sql = "select count(DISTINCT(Car.ID)) from Part inner join Car on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' ";
             if (typeID != null)
             {
                 sql += " and Part.TypeID = '" + typeID + "'";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static int GetCountCarSurvive(string typeID, bool isTicketMonth)
         {
-            string sql = "select count(DISTINCT(Car.ID)) from Part, Car inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketCommon;
+            string sql = "select count(DISTINCT(Car.ID)) from Part inner join Car on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' " + sqlQueryTicketCommon;
             if (isTicketMonth)
             {
-                sql = "select count(DISTINCT(Car.ID)) from Part, Car inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' and Car.IDPart = Part.ID " + sqlQueryTicketMonth;
+                sql = "select count(DISTINCT(Car.ID)) from Part inner join Car on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' " + sqlQueryTicketMonth;
             }
             if (typeID != null)
             {
                 sql += " and Part.TypeID = '" + typeID + "'";
             }
 
-            return Database.ExcuValueQuery(sql);
+            return (new Database()).ExcuValueQuery(sql);
         }
 
         public static DataTable GetCarByIdentify(int identify)
         {
             string sql = "select * from Car where Identify = " + identify + sqlOrderByIdentifyDesc;
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetLastCarByID(string id)
         {
             string sql = "select top 1 * from Car where ID = '" + id + "'" + sqlOrderByIdentifyDesc;
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static string GetLastCardID()
         {
             string sql = "select ID from Car order by Identify desc";
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 string cardId = dt.Rows[0].Field<string>("ID");
@@ -742,20 +742,20 @@ namespace ParkingMangement.DAO
         {
             string sql = "insert into Car(ID, TimeStart, Digit, DigitIn, IDIn, IDOut, IDTicketMonth, IDPart, Images, Images2, Computer, Account, DateUpdate) values ('" + carDTO.Id + "', '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', '" + carDTO.Digit + "', '" + carDTO.DigitIn
                 + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', '" + carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Computer + "', '" + carDTO.Account + "', '" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "')";
-            Database.ExcuNonQuery(sql);
+            StaticDatabase.ExcuNonQuery(sql);
         }
 
         public static void UpdateCarIn(CarDTO carDTO)
         {
             string sql = "update Car set TimeStart ='" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', IDIn ='" + carDTO.IdIn + "', DigitIn ='" + carDTO.DigitIn + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account +
                 "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
-            Database.ExcuNonQuery(sql);
+            StaticDatabase.ExcuNonQuery(sql);
         }
 
         public static void UpdateCarOut(CarDTO carDTO)
         {
             string sql = "update Car set DigitOut = '" + carDTO.DigitOut + "', TimeEnd ='" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
-            Database.ExcuNonQuery(sql);
+            StaticDatabase.ExcuNonQuery(sql);
         }
 
         public static bool UpdateLostCard(CarDTO carDTO)
@@ -767,7 +767,7 @@ namespace ParkingMangement.DAO
                 CardDAO.UpdateIsUsing("0", cardId);
                 CardDAO.UpdateDayUnlimit(carDTO.DateLostCard, cardId);
             }
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static void UpdateDigitIn(string id, String digit)
@@ -776,7 +776,7 @@ namespace ParkingMangement.DAO
             if (identify != 0)
             {
                 string sql = "update Car set DigitIn ='" + digit + "' where Identify =" + identify;
-                Database.ExcuNonQuery(sql);
+                (new Database()).ExcuNonQuery(sql);
             }
         }
 
@@ -786,44 +786,44 @@ namespace ParkingMangement.DAO
             if (identify != 0)
             {
                 string sql = "update Car set DigitOut ='" + digit + "' where Identify =" + identify;
-                Database.ExcuNonQuery(sql);
+                (new Database()).ExcuNonQuery(sql);
             }
         }
 
         public static bool DeleteLostCard(string cardId)
         {
             string sql = "delete from Car where ID = '" + cardId + "' and IsLostCard > 0";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool DeleteCarNotOut(string cardId)
         {
             string sql = "delete from Car where ID = '" + cardId + "' and IDOut = ''";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool DeleteCar(string identify)
         {
             string sql = "delete from Car where Identify = " + identify; ;
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool isCarIn(string id)
         {
             string sql = "select count(Car.ID) from Car where ID = '" + id + "'" + " and IDOut != ''";
-            return Database.ExcuValueQuery(sql) == 0;
+            return (new Database()).ExcuValueQuery(sql) == 0;
         }
 
         public static bool isCarOutByIdentify(int identify)
         {
             string sql = "select count(Car.ID) from Car where Identify = " + identify + " and IDOut != ''";
-            return Database.ExcuValueQuery(sql) > 0;
+            return (new Database()).ExcuValueQuery(sql) > 0;
         }
 
         public static string getIdByIdentify(int identify)
         {
             string sql = "select ID from Car where Identify = " + identify + " order by Identify desc";
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 string id = dt.Rows[0].Field<string>("ID");
@@ -835,7 +835,7 @@ namespace ParkingMangement.DAO
         public static string GetDigitByID(string id)
         {
             string sql = "select Digit from Car where ID = '" + id + "'" + " order by Identify desc";
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("Digit");
@@ -849,7 +849,7 @@ namespace ParkingMangement.DAO
         public static int GetLastIdentifyByID(string id)
         {
             string sql = "select Identify from Car where ID = '" + id + "'" + " order by Identify desc";
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 int identify = dt.Rows[0].Field<int>("Identify");
@@ -861,7 +861,7 @@ namespace ParkingMangement.DAO
         public static int GetLastIdentify()
         {
             string sql = "select Identify from Car order by Identify desc";
-            DataTable dt = Database.ExcuQuery(sql);
+            DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
                 int identify = dt.Rows[0].Field<int>("Identify");

@@ -67,6 +67,14 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.dgvPrintReceipt = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tbIncludeVAT = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.tbCostString = new System.Windows.Forms.TextBox();
+            this.tbCost = new System.Windows.Forms.TextBox();
+            this.btnCancelReceippt = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.ReceiptIsChosen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.STT_ReceiptTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiptIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -85,13 +93,6 @@
             this.ReceiptExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiptNewExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.tbCostString = new System.Windows.Forms.TextBox();
-            this.tbCost = new System.Windows.Forms.TextBox();
-            this.btnCancelReceippt = new System.Windows.Forms.Button();
-            this.tbIncludeVAT = new System.Windows.Forms.TextBox();
             this.panelPrintReceipt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -101,9 +102,9 @@
             // 
             // btnPrintReceipt
             // 
-            this.btnPrintReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintReceipt.ForeColor = System.Drawing.Color.Black;
-            this.btnPrintReceipt.Location = new System.Drawing.Point(674, 571);
+            this.btnPrintReceipt.Location = new System.Drawing.Point(609, 571);
             this.btnPrintReceipt.Name = "btnPrintReceipt";
             this.btnPrintReceipt.Size = new System.Drawing.Size(52, 36);
             this.btnPrintReceipt.TabIndex = 29;
@@ -467,6 +468,105 @@
             this.dgvPrintReceipt.TabIndex = 89;
             this.dgvPrintReceipt.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPrintReceipt_DataBindingComplete);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tbIncludeVAT);
+            this.panel1.Controls.Add(this.textBox11);
+            this.panel1.Controls.Add(this.textBox12);
+            this.panel1.Controls.Add(this.tbCostString);
+            this.panel1.Controls.Add(this.tbCost);
+            this.panel1.Location = new System.Drawing.Point(3, 178);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(745, 46);
+            this.panel1.TabIndex = 93;
+            // 
+            // tbIncludeVAT
+            // 
+            this.tbIncludeVAT.BackColor = System.Drawing.Color.White;
+            this.tbIncludeVAT.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbIncludeVAT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbIncludeVAT.Location = new System.Drawing.Point(535, 3);
+            this.tbIncludeVAT.Multiline = true;
+            this.tbIncludeVAT.Name = "tbIncludeVAT";
+            this.tbIncludeVAT.ReadOnly = true;
+            this.tbIncludeVAT.Size = new System.Drawing.Size(195, 18);
+            this.tbIncludeVAT.TabIndex = 65;
+            this.tbIncludeVAT.Text = "(Đã bao gồm VAT)";
+            // 
+            // textBox11
+            // 
+            this.textBox11.BackColor = System.Drawing.Color.White;
+            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox11.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox11.Location = new System.Drawing.Point(324, 4);
+            this.textBox11.Multiline = true;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(78, 18);
+            this.textBox11.TabIndex = 55;
+            this.textBox11.Text = "Tổng số tiền:";
+            // 
+            // textBox12
+            // 
+            this.textBox12.BackColor = System.Drawing.Color.White;
+            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox12.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox12.Location = new System.Drawing.Point(5, 24);
+            this.textBox12.Multiline = true;
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(60, 18);
+            this.textBox12.TabIndex = 58;
+            this.textBox12.Text = "Bằng chữ:";
+            // 
+            // tbCostString
+            // 
+            this.tbCostString.BackColor = System.Drawing.Color.White;
+            this.tbCostString.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbCostString.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCostString.Location = new System.Drawing.Point(68, 24);
+            this.tbCostString.Multiline = true;
+            this.tbCostString.Name = "tbCostString";
+            this.tbCostString.Size = new System.Drawing.Size(663, 18);
+            this.tbCostString.TabIndex = 64;
+            this.tbCostString.Text = "-";
+            // 
+            // tbCost
+            // 
+            this.tbCost.BackColor = System.Drawing.Color.White;
+            this.tbCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbCost.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCost.Location = new System.Drawing.Point(409, 3);
+            this.tbCost.Multiline = true;
+            this.tbCost.Name = "tbCost";
+            this.tbCost.ReadOnly = true;
+            this.tbCost.Size = new System.Drawing.Size(120, 18);
+            this.tbCost.TabIndex = 61;
+            this.tbCost.Text = "-";
+            this.tbCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnCancelReceippt
+            // 
+            this.btnCancelReceippt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelReceippt.ForeColor = System.Drawing.Color.Black;
+            this.btnCancelReceippt.Location = new System.Drawing.Point(736, 571);
+            this.btnCancelReceippt.Name = "btnCancelReceippt";
+            this.btnCancelReceippt.Size = new System.Drawing.Size(52, 36);
+            this.btnCancelReceippt.TabIndex = 31;
+            this.btnCancelReceippt.Text = "HỦY";
+            this.btnCancelReceippt.UseVisualStyleBackColor = true;
+            this.btnCancelReceippt.Click += new System.EventHandler(this.btnCancelReceippt_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.Black;
+            this.btnSave.Location = new System.Drawing.Point(673, 571);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(54, 36);
+            this.btnSave.TabIndex = 32;
+            this.btnSave.Text = "LƯU";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
             // ReceiptIsChosen
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -668,98 +768,12 @@
             this.dataGridViewTextBoxColumn50.Visible = false;
             this.dataGridViewTextBoxColumn50.Width = 120;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.tbIncludeVAT);
-            this.panel1.Controls.Add(this.textBox11);
-            this.panel1.Controls.Add(this.textBox12);
-            this.panel1.Controls.Add(this.tbCostString);
-            this.panel1.Controls.Add(this.tbCost);
-            this.panel1.Location = new System.Drawing.Point(3, 178);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(745, 46);
-            this.panel1.TabIndex = 93;
-            // 
-            // textBox11
-            // 
-            this.textBox11.BackColor = System.Drawing.Color.White;
-            this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox11.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox11.Location = new System.Drawing.Point(324, 4);
-            this.textBox11.Multiline = true;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(78, 18);
-            this.textBox11.TabIndex = 55;
-            this.textBox11.Text = "Tổng số tiền:";
-            // 
-            // textBox12
-            // 
-            this.textBox12.BackColor = System.Drawing.Color.White;
-            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox12.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox12.Location = new System.Drawing.Point(5, 24);
-            this.textBox12.Multiline = true;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(60, 18);
-            this.textBox12.TabIndex = 58;
-            this.textBox12.Text = "Bằng chữ:";
-            // 
-            // tbCostString
-            // 
-            this.tbCostString.BackColor = System.Drawing.Color.White;
-            this.tbCostString.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbCostString.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCostString.Location = new System.Drawing.Point(68, 24);
-            this.tbCostString.Multiline = true;
-            this.tbCostString.Name = "tbCostString";
-            this.tbCostString.Size = new System.Drawing.Size(663, 18);
-            this.tbCostString.TabIndex = 64;
-            this.tbCostString.Text = "-";
-            // 
-            // tbCost
-            // 
-            this.tbCost.BackColor = System.Drawing.Color.White;
-            this.tbCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbCost.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCost.Location = new System.Drawing.Point(409, 3);
-            this.tbCost.Multiline = true;
-            this.tbCost.Name = "tbCost";
-            this.tbCost.ReadOnly = true;
-            this.tbCost.Size = new System.Drawing.Size(120, 18);
-            this.tbCost.TabIndex = 61;
-            this.tbCost.Text = "-";
-            this.tbCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // btnCancelReceippt
-            // 
-            this.btnCancelReceippt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelReceippt.ForeColor = System.Drawing.Color.Black;
-            this.btnCancelReceippt.Location = new System.Drawing.Point(736, 571);
-            this.btnCancelReceippt.Name = "btnCancelReceippt";
-            this.btnCancelReceippt.Size = new System.Drawing.Size(52, 36);
-            this.btnCancelReceippt.TabIndex = 31;
-            this.btnCancelReceippt.Text = "HỦY";
-            this.btnCancelReceippt.UseVisualStyleBackColor = true;
-            this.btnCancelReceippt.Click += new System.EventHandler(this.btnCancelReceippt_Click);
-            // 
-            // tbIncludeVAT
-            // 
-            this.tbIncludeVAT.BackColor = System.Drawing.Color.White;
-            this.tbIncludeVAT.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbIncludeVAT.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbIncludeVAT.Location = new System.Drawing.Point(535, 3);
-            this.tbIncludeVAT.Multiline = true;
-            this.tbIncludeVAT.Name = "tbIncludeVAT";
-            this.tbIncludeVAT.ReadOnly = true;
-            this.tbIncludeVAT.Size = new System.Drawing.Size(195, 18);
-            this.tbIncludeVAT.TabIndex = 65;
-            this.tbIncludeVAT.Text = "(Đã bao gồm VAT)";
-            // 
             // FormInPhieuThu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(797, 615);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancelReceippt);
             this.Controls.Add(this.btnPrintReceipt);
             this.Controls.Add(this.panelPrintReceipt);
@@ -811,6 +825,8 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbIncludeVAT;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ReceiptIsChosen;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT_ReceiptTicketMonthList;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIdentify;
@@ -829,6 +845,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNewExpirationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
-        private System.Windows.Forms.TextBox tbIncludeVAT;
     }
 }

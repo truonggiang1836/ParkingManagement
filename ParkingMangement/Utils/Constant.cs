@@ -60,7 +60,7 @@ namespace ParkingMangement.Utils
         public static string sMessageConfirmSaveLostCard = "Bạn có muốn lưu mất thẻ?";
         public static string sMessageCardIdNullError = "Mã thẻ chíp không được để trống";
         public static string sMessageCardIdNotExist = "Thẻ chưa được thêm vào hệ thống";
-        public static string sMessageCardIsLost = "THẺ ĐÃ HỦY";
+        public static string sMessageCardIsLost = "THẺ ĐÃ BỊ KHÓA";
         public static string sLabelCardUsing = "Dùng";
         public static string sLabelCardNotUsing = "Không dùng";
         public static string sMessageCardIdentifyExisted = "Số thẻ đã tồn tại";
@@ -79,6 +79,16 @@ namespace ParkingMangement.Utils
         public static string sMessageCardTypeIsNotTicketMonth = "Loại thẻ này không dành cho xe tháng";
         public static string sMessageDigitExisted = "Biển số đã tồn tại";
         public static string sMessageMaxTicketMonthToPrint = "Chỉ được chọn tối đa 6 thẻ tháng";
+        public static string sMessageExpiredCard = "Thẻ tháng đã hết hạn!";
+        public static string sMessageNearExpiredCard = "Thẻ tháng sắp hết hạn!";
+
+        // File name
+        public static string tobeexpired = "tobeexpired.wav";
+        public static string expired = "expired.wav";
+        public static string notused = "notused.wav";
+        public static string locked = "locked.wav";
+        public static string goIn = "in.wav";
+        public static string goOut = "out.wav";
 
         // Config
         public static string FOLDER_NAME_IMAGES = "Images";

@@ -14,45 +14,45 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = "select * from BlackCar order by Identify asc";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetAllDataForSync()
         {
             string sql = "select * from BlackCar where IsSync = 0";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static void Insert(string blackCarDigit)
         {
             string sql = "insert into BlackCar(Digit) values ('" + blackCarDigit + "')";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool InsertNoErrorMessage(BlackCarDTO blackCarDTO)
         {
             string sql = "insert into BlackCar(Digit, IsSync, IsDeleted) values ('" + blackCarDTO.Digit + "', " + blackCarDTO.IsSync + ", " + blackCarDTO.IsDeleted + ")";
 
-            return Database.ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool UpdateNoErrorMessage(BlackCarDTO blackCarDTO)
         {
             string sql = "update BlackCar set IsSync =(" + blackCarDTO.IsSync + "), IsDeleted =(" + blackCarDTO.IsDeleted + ") where Digit = '" + blackCarDTO.Digit + "'";
 
-            return Database.ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void Delete(int identify)
         {
             string sql = "delete from BlackCar where Identify =" + identify;
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static void UpdateIsSync(string listId)
         {
             string sql = "update BlackCar set IsSync = 1 where Digit in " + listId;
-            Database.ExcuNonQueryNoErrorMessage(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void syncFromJson(string json)

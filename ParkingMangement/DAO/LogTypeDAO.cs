@@ -12,13 +12,13 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = "select * from LogType";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetTicketLog()
         {
             string sql = "select * from LogType where IsTicketLog = '1'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
     }
 }

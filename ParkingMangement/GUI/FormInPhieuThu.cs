@@ -56,15 +56,38 @@ namespace ParkingMangement.GUI
             {
                 if (!isUpdatedDB)
                 {
-                    renewPrintReceiptList();
-                    saveToReceiptLog();
-                    if (isCostExtendCard)
-                    {
-                        MessageBox.Show("Đã gia hạn thành công!");
-                    }
+                    saveReceiptAction();
                 }
                 printDocument1.Print();
                 isUpdatedDB = true;
+            }
+        }
+
+        private void saveReceiptAction()
+        {         
+            saveToReceiptLog();
+            if (isCostExtendCard)
+            {
+                renewPrintReceiptList();
+                MessageBox.Show("Đã gia hạn thành công!");
+            }
+            if (isCostCreateCard && cost < 0)
+            {
+                deleteCard();
+            }
+        }
+
+        private void deleteCard()
+        {
+            var confirmResult = MessageBox.Show("Bạn có muốn xóa thẻ khỏi hệ thống không?", "Tự động xóa thẻ khỏi hệ thống!!", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+                {
+                    string id = Convert.ToString(row.Cells["ReceiptTicketMonthID"].Value);
+                    TicketMonthDAO.Delete(id);
+                    CarDAO.DeleteCarNotOut(id);
+                }
             }
         }
 
@@ -109,6 +132,15 @@ namespace ParkingMangement.GUI
             dgvPrintReceipt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgvPrintReceipt.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
+            if (isCostExtendCard)
+            {
+                dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = true;
+            }
+            else
+            {
+                dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = false;
+            }
+
 
             tbCurrentDate.Text = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
             string costText = "";
@@ -146,6 +178,14 @@ namespace ParkingMangement.GUI
                 }
             }
             tbNumber.Text = mReceiptNumber + "";
+
+            //if (receiptType == ReceiptTypeDTO.TYPE_PHIEU_CHUYEN_KHOAN)
+            //{
+            //    btnSave.Visible = true;
+            //} else
+            //{
+            //    btnSave.Visible = false;
+            //}
         }
 
         private void btnCancelReceippt_Click(object sender, EventArgs e)
@@ -217,6 +257,11 @@ namespace ParkingMangement.GUI
                     ReceiptLogDetailDAO.Insert(receiptLogDetailDTO);
                 }
             }            
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            saveReceiptAction();
         }
     }
 }
