@@ -142,6 +142,9 @@
             this.labelVND_HeaderRight = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
+            this.rbLeftSide = new System.Windows.Forms.RadioButton();
+            this.rbRightSide = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -198,6 +201,7 @@
             this.panel1.Controls.Add(this.pictureBoxImage4);
             this.panel1.Controls.Add(this.pictureBoxImage3);
             this.panel1.Controls.Add(this.pictureBoxImage2);
+            this.panel1.Controls.Add(this.pictureBox23);
             this.panel1.Location = new System.Drawing.Point(133, 41);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(883, 561);
@@ -209,7 +213,7 @@
             this.axVLCPlugin4.Location = new System.Drawing.Point(669, 4);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 274);
             this.axVLCPlugin4.TabIndex = 17;
             // 
             // axVLCPlugin3
@@ -218,7 +222,7 @@
             this.axVLCPlugin3.Location = new System.Drawing.Point(453, 4);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 274);
             this.axVLCPlugin3.TabIndex = 16;
             // 
             // axVLCPlugin2
@@ -227,7 +231,7 @@
             this.axVLCPlugin2.Location = new System.Drawing.Point(221, 4);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 274);
             this.axVLCPlugin2.TabIndex = 15;
             // 
             // axVLCPlugin1
@@ -236,7 +240,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(4, 3);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 274);
             this.axVLCPlugin1.TabIndex = 14;
             // 
             // pictureBoxImage1
@@ -575,10 +579,10 @@
             // 
             this.labelComputer.AutoSize = true;
             this.labelComputer.BackColor = System.Drawing.Color.Transparent;
-            this.labelComputer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelComputer.Location = new System.Drawing.Point(6, 43);
+            this.labelComputer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelComputer.Location = new System.Drawing.Point(6, 24);
             this.labelComputer.Name = "labelComputer";
-            this.labelComputer.Size = new System.Drawing.Size(51, 15);
+            this.labelComputer.Size = new System.Drawing.Size(46, 15);
             this.labelComputer.TabIndex = 59;
             this.labelComputer.Text = "ADMIN";
             // 
@@ -587,7 +591,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 23);
+            this.label1.Location = new System.Drawing.Point(6, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 57;
@@ -855,6 +859,9 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Controls.Add(this.label2);
+            this.panel5.Controls.Add(this.rbRightSide);
+            this.panel5.Controls.Add(this.rbLeftSide);
             this.panel5.Controls.Add(this.labelNhanVien);
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.labelComputer);
@@ -868,10 +875,10 @@
             // 
             this.labelNhanVien.AutoSize = true;
             this.labelNhanVien.BackColor = System.Drawing.Color.Transparent;
-            this.labelNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNhanVien.Location = new System.Drawing.Point(7, 94);
+            this.labelNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNhanVien.Location = new System.Drawing.Point(7, 66);
             this.labelNhanVien.Name = "labelNhanVien";
-            this.labelNhanVien.Size = new System.Drawing.Size(51, 15);
+            this.labelNhanVien.Size = new System.Drawing.Size(46, 15);
             this.labelNhanVien.TabIndex = 61;
             this.labelNhanVien.Text = "ADMIN";
             // 
@@ -880,7 +887,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(7, 74);
+            this.label3.Location = new System.Drawing.Point(7, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 60;
@@ -931,7 +938,7 @@
             // pictureBox23
             // 
             this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
-            this.pictureBox23.Location = new System.Drawing.Point(78, 370);
+            this.pictureBox23.Location = new System.Drawing.Point(-86, 484);
             this.pictureBox23.Name = "pictureBox23";
             this.pictureBox23.Size = new System.Drawing.Size(46, 24);
             this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1296,7 +1303,7 @@
             this.labelVND_HeaderLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderLeft.Location = new System.Drawing.Point(329, 9);
             this.labelVND_HeaderLeft.Name = "labelVND_HeaderLeft";
-            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(39, 16);
+            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(41, 16);
             this.labelVND_HeaderLeft.TabIndex = 72;
             this.labelVND_HeaderLeft.Text = "VNĐ";
             // 
@@ -1317,7 +1324,7 @@
             this.labelVND_HeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 10);
             this.labelVND_HeaderRight.Name = "labelVND_HeaderRight";
-            this.labelVND_HeaderRight.Size = new System.Drawing.Size(39, 16);
+            this.labelVND_HeaderRight.Size = new System.Drawing.Size(41, 16);
             this.labelVND_HeaderRight.TabIndex = 48;
             this.labelVND_HeaderRight.Text = "VNĐ";
             // 
@@ -1344,6 +1351,44 @@
             this.labelError.Text = "Thẻ chưa được thêm vào hệ thống";
             this.labelError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // rbLeftSide
+            // 
+            this.rbLeftSide.AutoSize = true;
+            this.rbLeftSide.BackColor = System.Drawing.Color.White;
+            this.rbLeftSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbLeftSide.Location = new System.Drawing.Point(8, 111);
+            this.rbLeftSide.Name = "rbLeftSide";
+            this.rbLeftSide.Size = new System.Drawing.Size(43, 17);
+            this.rbLeftSide.TabIndex = 62;
+            this.rbLeftSide.Text = "Trái";
+            this.rbLeftSide.UseVisualStyleBackColor = false;
+            this.rbLeftSide.CheckedChanged += new System.EventHandler(this.rbLeftSide_CheckedChanged);
+            // 
+            // rbRightSide
+            // 
+            this.rbRightSide.AutoSize = true;
+            this.rbRightSide.Checked = true;
+            this.rbRightSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbRightSide.Location = new System.Drawing.Point(60, 111);
+            this.rbRightSide.Name = "rbRightSide";
+            this.rbRightSide.Size = new System.Drawing.Size(46, 17);
+            this.rbRightSide.TabIndex = 63;
+            this.rbRightSide.TabStop = true;
+            this.rbRightSide.Text = "Phải";
+            this.rbRightSide.UseVisualStyleBackColor = true;
+            this.rbRightSide.CheckedChanged += new System.EventHandler(this.rbRightSide_CheckedChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 64;
+            this.label2.Text = "Làn quẹt thẻ:";
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1358,7 +1403,6 @@
             this.Controls.Add(this.labelCardIDLeft);
             this.Controls.Add(this.pictureBoxBarieLeft);
             this.Controls.Add(this.pictureBox17);
-            this.Controls.Add(this.pictureBox23);
             this.Controls.Add(this.labelCardIDHeaderLeft);
             this.Controls.Add(this.pictureBox24);
             this.Controls.Add(this.labelPartNameTypeNameHeaderRight);
@@ -1593,5 +1637,8 @@
         private System.Windows.Forms.Label labelCostLeft;
         private System.Windows.Forms.Label labelNhanVien;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton rbRightSide;
+        private System.Windows.Forms.RadioButton rbLeftSide;
+        private System.Windows.Forms.Label label2;
     }
 }

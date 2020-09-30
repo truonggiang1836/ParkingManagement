@@ -5829,6 +5829,9 @@ namespace ParkingMangement.GUI
             string currentColumnName = dgvPrintReceipt.Columns[e.ColumnIndex].Name;
             if (currentColumnName == "ReceiptNewExpirationDate" || currentColumnName == "ReceiptIsChosen")
             {
+                if (currentColumnName == "ReceiptIsChosen") {
+                    calculateNewExpiratedDate();
+                }
                 calculatePrintReceipCost();
             }
         }
@@ -6383,6 +6386,32 @@ namespace ParkingMangement.GUI
             cbCostDeposit.Checked = false;
             cbCostCreateCard.Checked = false;
             cbVAT.Checked = false;
+        }
+
+        private void numericMonthExtendCount_ValueChanged(object sender, EventArgs e)
+        {
+            calculateNewExpiratedDate();
+        }
+        private void calculateNewExpiratedDate()
+        {
+            int monthCount = Int32.Parse(numericMonthExtendCount.Value.ToString());
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
+                if (isChoose)
+                {
+                    DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptExpirationDate"].Value);
+                    if (monthCount > 0)
+                    {
+                        DateTime newTempExpirationDate = expirationDate.AddMonths(monthCount);
+                        row.Cells["ReceiptNewExpirationDate"].Value = Util.getLastDateOfCurrentMonth(newTempExpirationDate);
+                    }
+                    else
+                    {
+                        row.Cells["ReceiptNewExpirationDate"].Value = Util.getLastDateOfCurrentMonth(expirationDate);
+                    }
+                }
+            }
         }
     }
 }

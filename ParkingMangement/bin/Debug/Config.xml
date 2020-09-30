@@ -13,7 +13,7 @@
   <sql_password>123456</sql_password>
   <folder_root>ParkingManagement</folder_root>
   <last_saved_order />
-  <in_out_type>1</in_out_type>
+  <in_out_type>3</in_out_type>
   <zoom_camera_1>30</zoom_camera_1>
   <zoom_camera_2>30</zoom_camera_2>
   <zoom_camera_3>30</zoom_camera_3>

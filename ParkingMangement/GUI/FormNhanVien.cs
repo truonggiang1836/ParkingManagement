@@ -300,6 +300,14 @@ namespace ParkingMangement.GUI
                     }
                     tbRFIDCardID.Focus();
                     break;
+                case Keys.Q:
+                    rbLeftSide.Checked = true;
+                    tbRFIDCardID.Focus();
+                    break;
+                case Keys.W:
+                    rbRightSide.Checked = true;
+                    tbRFIDCardID.Focus();
+                    break;
                 case Keys.F1:
                 //case Keys.ControlKey:
                     changeInOutSetting(true);
@@ -3164,7 +3172,7 @@ namespace ParkingMangement.GUI
         private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             portNameComReceiveInput = portNameComReceiveIn;
-            //Program.newUhfCardId = Util.ReadUhfData(Program.portComLeftUhf);
+            Program.newUhfCardId = Util.ReadUhfData(Program.portComLeftUhf);
             if (!Program.newUhfCardId.Equals(""))
             {
                 combineUhfCardId();
@@ -3174,7 +3182,7 @@ namespace ParkingMangement.GUI
         private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             portNameComReceiveInput = portNameComReceiveOut;
-            //Program.newUhfCardId = Util.ReadUhfData(Program.portComRightUhf);
+            Program.newUhfCardId = Util.ReadUhfData(Program.portComRightUhf);
             if (!Program.newUhfCardId.Equals(""))
             {
                 combineUhfCardId();
@@ -3249,16 +3257,27 @@ namespace ParkingMangement.GUI
         }
 
         private bool inputIsRightSide()
-        {          
+        {
+
             if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes"))
             {
                 bool result = portNameComReceiveInput.Equals(portNameComReceiveOut);
                 return result;
             }
-            else
+            else if (!rfidInput.Equals("Global keyboard"))
             {
                 bool result = rfidInput.Equals(rfidOut);
                 return result;
+            }
+            else
+            {
+                if (rbRightSide.Checked)
+                {
+                    return true;
+                } else
+                {
+                    return false;
+                }
             }
         }
 
@@ -3322,12 +3341,14 @@ namespace ParkingMangement.GUI
 
         private void pictureBoxBarieLeft_Click(object sender, EventArgs e)
         {
+            tbRFIDCardID.Focus();
             openBarieInCar();
             AutoClosingMessageBox.Show("Barie đã mở", "", 500);
         }
 
         private void pictureBoxBarieRight_Click(object sender, EventArgs e)
         {
+            tbRFIDCardID.Focus();
             openBarieOutCar();
             AutoClosingMessageBox.Show("Barie đã mở", "", 500);
         }
@@ -3505,12 +3526,24 @@ namespace ParkingMangement.GUI
 
         private void pictureBoxChangeLaneLeft_Click(object sender, EventArgs e)
         {
+            tbRFIDCardID.Focus();
             changeInOutSetting(true);
         }
 
         private void pictureBoxChangeLaneRight_Click(object sender, EventArgs e)
         {
+            tbRFIDCardID.Focus();
             changeInOutSetting(false);
+        }
+
+        private void rbLeftSide_CheckedChanged(object sender, EventArgs e)
+        {
+            tbRFIDCardID.Focus();
+        }
+
+        private void rbRightSide_CheckedChanged(object sender, EventArgs e)
+        {
+            tbRFIDCardID.Focus();
         }
     }
 }
