@@ -17,7 +17,8 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllData()
         {
-            return (new Database()).ExcuQuery(sqlGetAllData);
+            string sql = sqlGetAllData + sqlOrderByIdDesc;
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetDataByReceiptType(int receiptType)

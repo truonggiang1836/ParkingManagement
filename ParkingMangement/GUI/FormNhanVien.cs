@@ -1929,11 +1929,19 @@ namespace ParkingMangement.GUI
         {
             double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
             double limit = (double)computerDTO.Limit / 60; // (hour)
+            int dayCost = computerDTO.DayCost;
+            if (mConfig.computerName.Equals("ADMIN-BACHKHOA"))
+            {
+                if (timeIn.Date.DayOfWeek == DayOfWeek.Sunday || timeOut.Date.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    dayCost = computerDTO.NightCost;
+                }
+            }        
 
             if (timeIn.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight && timeIn.DayOfYear == timeOut.DayOfYear)
             {
                 // vào ngày - ra ngày
-                return computerDTO.DayCost;
+                return dayCost;
             }
             else if (spentTimeByHour <= 24)
             {
@@ -1965,7 +1973,7 @@ namespace ParkingMangement.GUI
                             if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
                             {
                                 // thời gian ngày nhỏ hơn giới hạn
-                                return computerDTO.DayCost;
+                                return dayCost;
                             }
                             else
                             {
@@ -2244,13 +2252,13 @@ namespace ParkingMangement.GUI
         private bool IsCarInDayOutNightOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             return (timeIn.Hour >= computerDTO.EndHourNight && timeIn.Hour < computerDTO.StartHourNight) && 
-                ((timeOut.Hour >= computerDTO.StartHourNight && timeOut.Date.Day == timeIn.Date.Day) || (timeOut.Hour < computerDTO.EndHourNight && timeOut.Date.Day - timeIn.Date.Day == 1));
+                ((timeOut.Hour >= computerDTO.StartHourNight && timeOut.Date.Day == timeIn.Date.Day) || (timeOut.Hour < computerDTO.EndHourNight && Util.getTotalTimeByHour(timeIn, timeOut) < 24));
         }
 
         private bool isCarInNightOutDayOneDate(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
             return (timeOut.Hour >= computerDTO.EndHourNight && timeOut.Hour < computerDTO.StartHourNight) && 
-                ((timeIn.Hour >= computerDTO.StartHourNight && timeOut.Date.Day - timeIn.Date.Day == 1) || (timeIn.Hour < computerDTO.EndHourNight && timeOut.Date.Day == timeIn.Date.Day));
+                ((timeIn.Hour >= computerDTO.StartHourNight && Util.getTotalTimeByHour(timeIn, timeOut) < 24) || (timeIn.Hour < computerDTO.EndHourNight && timeOut.Date.Day == timeIn.Date.Day));
         }
 
         private double getTotalHourOfDay(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
@@ -3264,7 +3272,7 @@ namespace ParkingMangement.GUI
                 bool result = portNameComReceiveInput.Equals(portNameComReceiveOut);
                 return result;
             }
-            else if (!rfidInput.Equals("Global keyboard"))
+            else if (!rfidInput.Equals("Global Keyboard"))
             {
                 bool result = rfidInput.Equals(rfidOut);
                 return result;

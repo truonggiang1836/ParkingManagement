@@ -13,7 +13,7 @@
   <sql_password>123456</sql_password>
   <folder_root>ParkingManagement</folder_root>
   <last_saved_order />
-  <in_out_type>3</in_out_type>
+  <in_out_type>2</in_out_type>
   <zoom_camera_1>30</zoom_camera_1>
   <zoom_camera_2>30</zoom_camera_2>
   <zoom_camera_3>30</zoom_camera_3>
@@ -39,5 +39,5 @@
   <python_folder />
   <python_run_file />
   <python_server_url />
-  <is_use_cost_deposit>no</is_use_cost_deposit>
+  <is_use_cost_deposit>yes</is_use_cost_deposit>
 </xml>

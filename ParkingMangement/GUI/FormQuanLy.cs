@@ -5953,9 +5953,10 @@ namespace ParkingMangement.GUI
             DateTime newExpirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
             int monthlyCost = 0;
             int payCost = 0;
+            string monthlyCostString = row.Cells["ReceiptChargesAmount"].Value.ToString().Replace(".", "").Replace(",", "");
             try
             {
-                monthlyCost = Convert.ToInt32(row.Cells["ReceiptChargesAmount"].Value);
+                monthlyCost = Convert.ToInt32(monthlyCostString);
             }
             catch (Exception)
             {

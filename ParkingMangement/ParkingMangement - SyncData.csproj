@@ -473,6 +473,7 @@
     <None Include="resources\ic_black_logo.png" />
     <None Include="resources\ic_print_logo.jpg" />
     <None Include="resources\ic_background_button.png" />
+    <None Include="resources\ic_print_logo_transparent.png" />
     <Content Include="TextTemplate.ico" />
     <None Include="resources\ic_background_get_card_short.png" />
     <None Include="resources\ic_logo_small.png" />
