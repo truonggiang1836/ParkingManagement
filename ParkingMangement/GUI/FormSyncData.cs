@@ -37,7 +37,7 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    Util.sendOrderDataToServer();
+                    //Util.sendOrderDataToServer();
                     //Util.sendOldOrderListToServer(CarDAO.GetAllDataForSync());
                 }).Start();
             }
@@ -59,14 +59,16 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
-                    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
-                    Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
-                    Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
-                    Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
-                    Util.sendBlackCarListToServer(BlackCarDAO.GetAllDataForSync());
-                    Util.sendConfigToServer();
-                    Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
+                    //Util.sendCardListToServer(CardDAO.GetAllDataForSync());
+                    //Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
+                    //Util.sendVehicleListToServer(PartDAO.GetAllDataForSync());
+                    //Util.sendEmployeeListToServer(UserDAO.GetAllDataForSync());
+                    //Util.sendFunctionListToServer(FunctionalDAO.GetAllDataForSync());
+                    //Util.sendBlackCarListToServer(BlackCarDAO.GetAllDataForSync());
+                    //Util.sendConfigToServer();
+                    //Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
+
+                    Util.syncMonthlyCardListFromSPMServer();
                 }).Start();
             }
             catch (Exception)
@@ -88,7 +90,7 @@ namespace ParkingMangement.GUI
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventCardData);
-            aTimer.Interval = 2 * 60 * 1000;
+            aTimer.Interval = 10 * 60 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
 

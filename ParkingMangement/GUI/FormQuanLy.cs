@@ -398,18 +398,24 @@ namespace ParkingMangement.GUI
 
         private void loadSaleReportData()
         {
-            DataTable data = CarDAO.GetTotalCost(null, null, null, CarDAO.ALL_TICKET);
+            DataTable data = CarDAO.GetTotalCost(null, null, null, null, CarDAO.ALL_TICKET);
             dgvThongKeDoanhThu.DataSource = data;
         }
 
         private void searchSaleReport()
         {
-            string userID = null;
+            string userInID = null;
+            string userOutID = null;
             int ticketType = CarDAO.ALL_TICKET;
-            if (cbNhanVienReport.SelectedIndex > 0)
+            if (cbNhanVienVaoReport.SelectedIndex > 0)
             {
-                DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
-                userID = Convert.ToString(dataRow["UserID"]);
+                DataRow dataRow = ((DataRowView)cbNhanVienVaoReport.SelectedItem).Row;
+                userInID = Convert.ToString(dataRow["UserID"]);
+            }
+            if (cbNhanVienRaReport.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)cbNhanVienRaReport.SelectedItem).Row;
+                userOutID = Convert.ToString(dataRow["UserID"]);
             }
 
             DateTime startDateReport = DateTime.Now;
@@ -443,7 +449,7 @@ namespace ParkingMangement.GUI
             {
                 ticketType = CarDAO.MONTH_TICKET;
             }
-            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userID, ticketType);
+            dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userInID, userOutID, ticketType);
         }
 
         private void btnAllSaleReport_Click(object sender, EventArgs e)
@@ -1445,7 +1451,8 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dtStartDateSaleReport);
                 setFormatDateForDateTimePicker(dtEndDateSaleReport);
 
-                loadUserDataToComboBox(cbNhanVienReport);
+                loadUserDataToComboBox(cbNhanVienVaoReport);
+                loadUserDataToComboBox(cbNhanVienRaReport);
 
                 //loadSaleReportData();
             }
@@ -1730,6 +1737,7 @@ namespace ParkingMangement.GUI
                 CardDAO.UpdateIdentify(cardIdentify, ticketMonthDTO.Id);
             }
 
+            CardDAO.UpdateIsUsing("1", ticketMonthDTO.Id);
             TicketMonthDAO.HardDeleteIfCardBeDeleted(ticketMonthDTO.Id);
             if (TicketMonthDAO.Insert(ticketMonthDTO))
             {
@@ -1826,11 +1834,6 @@ namespace ParkingMangement.GUI
             if (cardDTO == null)
             {
                 MessageBox.Show(Constant.sMessageCardIdNotExist);
-                return false;
-            }
-            if (!CardDAO.isUsingByCardID(tbTicketMonthIDCreate.Text))
-            {
-                MessageBox.Show(Constant.sMessageCardIsLost);
                 return false;
             }
             if (string.IsNullOrWhiteSpace(tbTicketMonthDigitCreate.Text))
@@ -2401,23 +2404,23 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void searchCarByCondition(DateTime startDate, DateTime endDate, string userId, int ticketType)
+        private void searchCarByCondition(DateTime startDate, DateTime endDate, string userInId, string userOutId, int ticketType)
         {
             CarDTO carDTO = new CarDTO();
             carDTO.TimeStart = startDate;
             carDTO.TimeEnd = endDate;
 
-            DataTable data = CarDAO.searchAllData(carDTO, userId, ticketType);
+            DataTable data = CarDAO.searchAllData(carDTO, userInId, userOutId, ticketType);
             dgvCarList.DataSource = data;
         }
 
-        private void searchCarByConditionThongKeDoanhThu(DateTime startDate, DateTime endDate, string userId, int ticketType)
+        private void searchCarByConditionThongKeDoanhThu(DateTime startDate, DateTime endDate, string userInId, string userOutId, int ticketType)
         {
             CarDTO carDTO = new CarDTO();
             carDTO.TimeStart = startDate;
             carDTO.TimeEnd = endDate;
 
-            DataTable data = CarDAO.searchAllDataThongKeDoanhThu(carDTO, userId, ticketType);
+            DataTable data = CarDAO.searchAllDataThongKeDoanhThu(carDTO, userInId, userOutId, ticketType);
             dgvCarList.DataSource = data;
         }
 
@@ -3907,12 +3910,19 @@ namespace ParkingMangement.GUI
             }
             else if (mExportSaleType == EXPORT_SALE_SEARCH_CONDITION)
             {
-                string userID = null;
+                string userInID = null;
+                string userOutID = null;
                 int ticketType = CarDAO.ALL_TICKET;
-                if (cbNhanVienReport.SelectedIndex > 0)
+                if (cbNhanVienVaoReport.SelectedIndex > 0)
                 {
-                    DataRow dataRow = ((DataRowView)cbNhanVienReport.SelectedItem).Row;
-                    userID = Convert.ToString(dataRow["UserID"]);
+                    DataRow dataRow = ((DataRowView)cbNhanVienVaoReport.SelectedItem).Row;
+                    userInID = Convert.ToString(dataRow["UserID"]);
+                }
+
+                if (cbNhanVienRaReport.SelectedIndex > 0)
+                {
+                    DataRow dataRow = ((DataRowView)cbNhanVienRaReport.SelectedItem).Row;
+                    userOutID = Convert.ToString(dataRow["UserID"]);
                 }
 
                 DateTime startDateReport = DateTime.Now;
@@ -3946,7 +3956,7 @@ namespace ParkingMangement.GUI
                 {
                     ticketType = CarDAO.MONTH_TICKET;
                 }
-                searchCarByConditionThongKeDoanhThu(startDateReport, endDateReport, userID, ticketType);
+                searchCarByConditionThongKeDoanhThu(startDateReport, endDateReport, userInID, userOutID, ticketType);
                 exportDoanhThuChiTietToExcel();
             }
             else
@@ -5704,6 +5714,7 @@ namespace ParkingMangement.GUI
             formInPhieuThu.reason = tbPrintReceiptReason.Text;
             formInPhieuThu.cost = mPrintReceiptCost;
             formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
+            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked;
             formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
             formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
             formInPhieuThu.isVAT = cbVAT.Checked;

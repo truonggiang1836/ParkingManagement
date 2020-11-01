@@ -3,6 +3,7 @@ using ParkingMangement.DTO;
 using ParkingMangement.Utils;
 using System;
 using System.Data;
+using System.Threading;
 
 namespace ParkingMangement.DAO
 {
@@ -87,8 +88,16 @@ namespace ParkingMangement.DAO
         {
             string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', Digit =N'" + ticketMonthDTO.Digit + "', CustomerName =N'"
                 + ticketMonthDTO.CustomerName + "', CMND =N'" + ticketMonthDTO.Cmnd + "', Company =N'" + ticketMonthDTO.Company + "', Email =N'" + ticketMonthDTO.Email + "', Phone = N'" + ticketMonthDTO.Phone + "', Address =N'" + ticketMonthDTO.Address + "', CarKind =N'"
-                + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount ='" + ticketMonthDTO.ChargesAmount 
+                + ticketMonthDTO.CarKind + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount 
                 + "', IsSync =('" + ticketMonthDTO.IsSync + "'), IsDeleted =('" + ticketMonthDTO.IsDeleted + "'), Note =N'" + ticketMonthDTO.Note + "' where ID ='" + ticketMonthDTO.Id + "'";
+            return sql;
+        }
+
+        public static string getUpdateSyncSPMSql(TicketMonthDTO ticketMonthDTO)
+        {
+            string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', Digit =N'" + ticketMonthDTO.Digit + "', CustomerName =N'"
+                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart + "', IsSync ='" 
+                + ticketMonthDTO.IsSync + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "' where ID ='" + ticketMonthDTO.Id + "'";
             return sql;
         }
 
@@ -106,9 +115,9 @@ namespace ParkingMangement.DAO
         }
 
 
-        public static void UpdateNoErrorMessage(TicketMonthDTO ticketMonthDTO)
+        public static void UpdateSyncSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
-            string sql = getUpdateSql(ticketMonthDTO);
+            string sql = getUpdateSyncSPMSql(ticketMonthDTO);
             (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }        
 
@@ -506,15 +515,91 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.IsDeleted = (bool)jObject.SelectToken("deleted") ? "1" : "0";
                 ticketMonthDTO.IsSync = "1";
 
-                InsertOrUpdate(ticketMonthDTO);
+                InsertOrUpdateNoErrorMessage(ticketMonthDTO);
             }
         }
 
-        public static void InsertOrUpdate(TicketMonthDTO ticketMonthDTO)
+        public static void syncFromSPMJson(string json)
+        {
+            JObject jParentObject = JObject.Parse(json);
+            JArray jArray = (JArray)jParentObject.GetValue("data");
+            int index = 0;
+            foreach (JObject jObject in jArray)
+            {
+                string id = jObject.GetValue("maThe").ToString();
+                string soThe = jObject.GetValue("soThe").ToString();
+                TicketMonthDTO ticketMonthDTO = GetDTODataByID(id);
+                if (ticketMonthDTO == null)
+                {
+                    ticketMonthDTO = new TicketMonthDTO();
+                }
+                ticketMonthDTO.Account = Program.CurrentUserID;
+                ticketMonthDTO.Digit = jObject.GetValue("bienSo").ToString();
+                ticketMonthDTO.Company = jObject.GetValue("soPhong").ToString();
+                ticketMonthDTO.CustomerName = jObject.GetValue("chuXe").ToString();
+                try
+                {
+                    ticketMonthDTO.RegistrationDate = DateTime.Parse(jObject.GetValue("ngayBatDau").ToString());
+                    ticketMonthDTO.ExpirationDate = DateTime.Parse(jObject.GetValue("ngayHetHan").ToString());
+                } catch
+                {
+                    Exception e;
+                }
+                ticketMonthDTO.ProcessDate = DateTime.Now;
+                ticketMonthDTO.DayUnlimit = DateTime.Now;
+                ticketMonthDTO.Id = id;
+               
+                string sign = jObject.GetValue("loaiThe").ToString();
+                DataTable data = PartDAO.GetPartIDAndAmountBySign(sign);
+                string partId = "";
+                if (data != null && data.Rows.Count > 0)
+                {
+                    partId = data.Rows[0].Field<string>("ID");
+                    int amount = data.Rows[0].Field<Int32>("Amount");
+                    ticketMonthDTO.IdPart = partId;
+                    ticketMonthDTO.ChargesAmount = amount.ToString();
+                }
+                ticketMonthDTO.IsSync = "1";
+
+                InsertOrUpdateNoErrorMessage(ticketMonthDTO);
+
+
+                CardDTO cardDTO = new CardDTO();
+                cardDTO.SystemId = id;
+                cardDTO.Id = id;
+                cardDTO.IsUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa")? "0" : "1";
+                cardDTO.IsDeleted = "0";
+                cardDTO.Identify = soThe;
+                cardDTO.Type = partId;
+                cardDTO.DayUnlimit = DateTime.Now;
+                cardDTO.IsSync = "1";
+
+                CardDAO.InsertOrUpdate(cardDTO);
+
+                //Util.setSyncDoneMonthlyCardListToSPMServer(soThe);
+                //break;
+
+                Console.WriteLine("Sync API doing: " + index);
+
+                index++;
+
+                if (index % 100 == 0)
+                {
+                    Thread.Sleep(3000);
+                }
+            }
+            Console.WriteLine("Sync API done!");
+        }
+
+        public static void InsertOrUpdateNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
             if (!InsertNoErrorMessage(ticketMonthDTO))
             {
-                UpdateNoErrorMessage(ticketMonthDTO);
+                UpdateSyncSPMNoErrorMessage(ticketMonthDTO);
+                Console.WriteLine("Update Sync API");
+            } else
+            {
+                Console.WriteLine("Insert Sync API");
             }
         }
     }

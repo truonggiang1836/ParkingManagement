@@ -49,7 +49,7 @@ namespace ParkingMangement
 
             try
             {
-                if (mySqlConnection.State == ConnectionState.Closed)
+                if (mySqlConnection.State != ConnectionState.Open)
                 {
                     mySqlConnection.Open();
                 }
@@ -67,30 +67,37 @@ namespace ParkingMangement
             Program.sCountConnection--;
 
             // Đóng kết nối.
-            if (mySqlConnection.State == ConnectionState.Open)
+            if (mySqlConnection.State != ConnectionState.Closed)
             {
                 mySqlConnection.Close();
             }
             // Tiêu hủy đối tượng, giải phóng tài nguyên.
-            mySqlConnection.Dispose();
+            //mySqlConnection.Dispose();
         }
 
         public int ExcuValueQuery(string sql)
         {
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 DataTable dt = new DataTable();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
+                mySqlConnection.Open();
                 int value = Convert.ToInt32(command.ExecuteScalar());
-                CloseConnection();
                 return value;
             }
             catch (Exception e)
             {
                 return 0;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
         }
 
@@ -99,19 +106,26 @@ namespace ParkingMangement
             DataTable dt = new DataTable();
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
+                mySqlConnection.Open();
                 adapter.Fill(dt);
-                CloseConnection();
             }
             catch (Exception Ex)
             {
                 //MessageBox.Show(Constant.sMessageCommonError);
                 MessageBox.Show(Ex.Message + "_sql: " + sql);
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
             return dt;
         }
@@ -121,18 +135,25 @@ namespace ParkingMangement
             DataTable dt = new DataTable();
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
+                mySqlConnection.Open();
                 adapter.Fill(dt);
-                CloseConnection();
             }
             catch (Exception Ex)
             {
 
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
             return dt;
         }
@@ -142,10 +163,11 @@ namespace ParkingMangement
             try
             {
                 int result = 0;
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
+                mySqlConnection.Open();
                 result = command.ExecuteNonQuery();
                 CloseConnection();
                 if (result > 0)
@@ -171,18 +193,25 @@ namespace ParkingMangement
                 }
                 return false;
             }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
+            }
         }
 
         public bool ExcuNonQueryNoErrorMessage(string sql)
         {
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
+                mySqlConnection.Open();
                 int result = command.ExecuteNonQuery();
-                CloseConnection();
                 if (result > 0)
                 {
                     return true;
@@ -195,6 +224,13 @@ namespace ParkingMangement
             catch (SqlException Ex)
             {
                 return false;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
         }
     }

@@ -1183,7 +1183,6 @@ namespace ParkingMangement.Utils
                 return;
             }
             WebClient webClient = (new ApiUtil()).getWebClient();
-            var param = new System.Collections.Specialized.NameValueCollection();
 
             webClient.QueryString.Add(ApiUtil.PARAM_PROJECT_ID, Util.getConfigFile().projectId + "");
             try
@@ -1191,6 +1190,67 @@ namespace ParkingMangement.Utils
                 String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_BATCH_SYNCS);
                 Console.WriteLine(responseString);
                 TicketMonthDAO.syncFromJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncMonthlyCardListFromSPMServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_KEY, ApiUtil.PARAM_KEY_VALUE);
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SYNCS_SPM);
+                Console.WriteLine(responseString);
+                TicketMonthDAO.syncFromSPMJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void setSyncDoneMonthlyCardListToSPMServer(string soThe)
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_KEY, "0919669444");
+            webClient.QueryString.Add(ApiUtil.PARAM_CARD_NUMBER, soThe);
+            webClient.QueryString.Add(ApiUtil.PARAM_STATUS, "null");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SET_SYNC_DONE_SPM);
+                Console.WriteLine(responseString);
             }
             catch (WebException exception)
             {
@@ -1687,15 +1747,16 @@ namespace ParkingMangement.Utils
         {
             int currentDay = (int)System.DateTime.Now.Day;
             int lockCardDate = ConfigDAO.GetLockCardDate();
-            if (currentDay >= lockCardDate)
+            if (Util.getConfigFile().isUseCostDeposit.Equals("no"))
             {
-                if (Util.getConfigFile().isUseCostDeposit.Equals("no"))
-                {
-                    CardDAO.lockExpiredCardNoDeposit();
-                } else
+                CardDAO.lockExpiredCardNoDeposit(lockCardDate);
+            }
+            else
+            {
+                if (currentDay >= lockCardDate)
                 {
                     CardDAO.lockExpiredCardWithDeposit();
-                }              
+                }                
             }
         }
 

@@ -31,12 +31,16 @@ namespace ParkingMangement.Utils
         public static string PARAM_DISABLE = "disable";
         public static string PARAM_DATA = "ordersDtos";
         public static string PARAM_PROJECT_ID = "projectId";
+        public static string PARAM_KEY = "key";
+        public static string PARAM_KEY_VALUE = "0919669444";
+        public static string PARAM_CARD_NUMBER = "cardnumber";
+        public static string PARAM_STATUS = "status";     
 
         //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
         //public static string BASE_URL = "http://api.spmgroup.vn/public/";
         //public static string BASE_URL = "http://api.spmgroup.vn:8080/parking-apis/";
         //public static string BASE_URL = "http://13.59.183.208:8080/parking-apis/";
-        public static string BASE_URL = "http://sync.spmgroup.vn/parking-apis/";
+        public static string BASE_URL = "https://spmpayment.vn/api/";
 
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
@@ -60,6 +64,9 @@ namespace ParkingMangement.Utils
         public static string API_BLACK_CAR_BATCH_SYNCS = BASE_URL + "back-car/batchsyncs";
         public static string API_PRICE_CONFIG_BATCH_INSERT = BASE_URL + "price-config/batchinsert";
         public static string API_PRICE_CONFIG_BATCH_SYNCS = BASE_URL + "price-config/batchsyncs";
+
+        public static string API_MONTHLY_CARDS_SYNCS_SPM = BASE_URL + "get_v2.php";
+        public static string API_MONTHLY_CARDS_SET_SYNC_DONE_SPM = BASE_URL + "set_v2.php";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 

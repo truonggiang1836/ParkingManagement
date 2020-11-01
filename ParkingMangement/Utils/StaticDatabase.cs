@@ -45,7 +45,7 @@ namespace ParkingMangement
 
             try
             {
-                if (mySqlConnection.State == ConnectionState.Closed)
+                if (mySqlConnection.State != ConnectionState.Open)
                 {
                     mySqlConnection.Open();
                 }
@@ -61,7 +61,7 @@ namespace ParkingMangement
         public static void CloseConnection()
         {
             // Đóng kết nối.
-            if (mySqlConnection.State == ConnectionState.Open)
+            if (mySqlConnection.State != ConnectionState.Closed)
             {
                 mySqlConnection.Close();
             }
@@ -82,19 +82,25 @@ namespace ParkingMangement
         {
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
+                mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
                 int value = Convert.ToInt32(command.ExecuteScalar());
                 mySqlTransaction.Commit();
-                CloseConnection();
                 return value;
             }
             catch (Exception e)
             {
                 mySqlTransaction.Rollback();
-                CloseConnection();
                 return 0;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
         }
 
@@ -103,21 +109,27 @@ namespace ParkingMangement
             DataTable dt = new DataTable();
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
+                mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
                 mySqlTransaction.Commit();
-                CloseConnection();
             }
             catch (Exception Ex)
             {
                 mySqlTransaction.Rollback();
-                CloseConnection();
                 //MessageBox.Show(Constant.sMessageCommonError);
                 MessageBox.Show(Ex.Message + "_sql: " + sql);
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
             return dt;
         }
@@ -127,21 +139,27 @@ namespace ParkingMangement
             DataTable dt = new DataTable();
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
+                mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
                 mySqlTransaction.Commit();
-                CloseConnection();
             }
             catch (Exception Ex)
             {
                 mySqlTransaction.Rollback();
-                CloseConnection();
                 //MessageBox.Show(Constant.sMessageCommonError);
                 //MessageBox.Show(Ex.Message + "_sql: " + sql);
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
             return dt;
         }
@@ -151,12 +169,12 @@ namespace ParkingMangement
             try
             {
                 int result = 0;
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
+                mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
-                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);               
                 result = command.ExecuteNonQuery();
                 mySqlTransaction.Commit();
-                CloseConnection();
                 if (result > 0)
                 {
                     return true;
@@ -179,8 +197,14 @@ namespace ParkingMangement
                     MessageBox.Show(Ex.Message + "_sql: " + sql);
                 }
                 mySqlTransaction.Rollback();
-                CloseConnection();
                 return false;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
         }
 
@@ -188,12 +212,12 @@ namespace ParkingMangement
         {
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
+                mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
                 int result = command.ExecuteNonQuery();
                 mySqlTransaction.Commit();
-                CloseConnection();
                 if (result > 0)
                 {
                     return true;
@@ -206,8 +230,14 @@ namespace ParkingMangement
             catch (SqlException Ex)
             {
                 mySqlTransaction.Rollback();
-                CloseConnection();
                 return false;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
         }
     }

@@ -29,6 +29,7 @@ namespace ParkingMangement.GUI
 
         public bool isCostExtendCard = false;
         public bool isCostCreateCard = false;
+        public bool isRemoveCostCreateCard = false;
         public bool isCostDepositCard = false;
         public bool isUpdatedDB = false;
         public DataTable data;
@@ -71,7 +72,7 @@ namespace ParkingMangement.GUI
                 renewPrintReceiptList();
                 MessageBox.Show("Đã gia hạn thành công!");
             }
-            if (isCostCreateCard && cost < 0)
+            if (isRemoveCostCreateCard)
             {
                 deleteCard();
             }
