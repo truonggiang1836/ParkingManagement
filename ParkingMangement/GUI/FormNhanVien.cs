@@ -33,6 +33,7 @@ using AForge.Vision.Motion;
 using ParkingMangement.TextRecognized;
 using System.Timers;
 using ReaderB;
+using System.Collections;
 
 namespace ParkingMangement.GUI
 {
@@ -529,8 +530,13 @@ namespace ParkingMangement.GUI
             //labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
-        private void checkForOpenBarie(DataTable dtLastCar, bool isUhfCard)
+        private void checkForOpenBarie(DataTable dtLastCar)
         {
+            bool isUhfCard = false;
+            if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
+            {
+                isUhfCard = true;
+            }
             string cardType = CardDAO.GetCardTypeByID(cardID);
             if (!inputIsRightSide())
             {
@@ -618,6 +624,7 @@ namespace ParkingMangement.GUI
                 loadImage2ToPictureBox();
                 saveImage1ToFile();
                 saveImage2ToFile();
+               
                 if (isKiemTraXeChuaRa)
                 {
                     if (isKiemTraCapNhatXeVao)
@@ -634,7 +641,6 @@ namespace ParkingMangement.GUI
                 if (isKiemTraXeChuaRa || isKiemTraCapNhatXeRa)
                 {
                     checkExpiredTicket(dtTicketCard, isTicketCard);
-
                     loadCarInData(dtLastCar);
                     updateCarOut(dtTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit);
                 } else
@@ -644,13 +650,10 @@ namespace ParkingMangement.GUI
                     return false;
                 }
             }
-
-            bool isUhfCard = false;
-            if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
+            new Thread(() =>
             {
-                isUhfCard = true;
-            }
-            checkForOpenBarie(dtLastCar, isUhfCard);
+                checkForOpenBarie(dtLastCar);
+            }).Start();           
 
             if (!mConfig.readDigitFolder.Equals(""))
             {
@@ -1169,20 +1172,39 @@ namespace ParkingMangement.GUI
                     carDTO.Account = Program.CurrentUserID;
                     carDTO.DateUpdate = DateTime.Now;
 
-                    CarDAO.UpdateCarOut(carDTO);
+                    CarDAO.UpdateCarOut(carDTO);               
+
+                    // send data to server
+                    WaitSyncCarOutDAO.Insert(identify);
+                    //sendOrderDataToServer();
 
                     // play audio
                     if (isTicketMonthCard && !isShowExpiredMessage)
                     {
                         Util.playAudio(Constant.goOut);
                     }
-
-                    // send data to server
-                    WaitSyncCarOutDAO.Insert(identify);
-                    //sendOrderDataToServer();
+                    if (!isTicketMonthCard)
+                    {
+                        new Thread(() =>
+                        {
+                            playCostToAudio(carDTO.Cost.ToString());
+                            Thread.Sleep(500);
+                            Util.playAudio(Constant.goOut);
+                        }).Start();                        
+                    }
                 }
             }
-        }       
+        }
+        
+        private void playCostToAudio(string cost)
+        {
+            ArrayList numberList = Util.ChuyenSo(cost);
+            foreach (string item in numberList)
+            {
+                Util.playAudio(item);
+                Thread.Sleep(800);
+            }
+        }
 
         private void loadCarInData(DataTable dtLastCar)
         {

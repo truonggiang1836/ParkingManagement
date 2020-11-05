@@ -4,6 +4,7 @@ using ParkingMangement.DAO;
 using ParkingMangement.DTO;
 using ParkingMangement.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -1985,6 +1986,133 @@ namespace ParkingMangement.Utils
                 lso_chu = dau.Trim() + " " + lso_chu.Trim().Substring(0, 1).Trim().ToUpper() + lso_chu.Trim().Substring(1, lso_chu.Trim().Length - 1).Trim() + " đồng chẵn.";
 
             return lso_chu.ToString().Trim();
+        }
+
+
+        public static ArrayList ChuyenSo(string number)
+        {
+            string[] dv = { "", Constant.ten, Constant.hundred, Constant.thousand, Constant.million, Constant.million /* tỉ */};
+            string[] cs = {Constant.number0, Constant.number1, Constant.number2, Constant.number3, Constant.number4,
+                Constant.number5, Constant.number6, Constant.number7, Constant.number8, Constant.number9 };
+            ArrayList doc = new ArrayList();
+            int i, j, k, n, len, found, ddv, rd;
+
+            len = number.Length;
+            number += "ss";
+            found = 0;
+            ddv = 0;
+            rd = 0;
+
+            i = 0;
+            while (i < len)
+            {
+                //So chu so o hang dang duyet
+                n = (len - i + 2) % 3 + 1;
+
+                //Kiem tra so 0
+                found = 0;
+                for (j = 0; j < n; j++)
+                {
+                    if (number[i + j] != '0')
+                    {
+                        found = 1;
+                        break;
+                    }
+                }
+
+                //Duyet n chu so
+                if (found == 1)
+                {
+                    rd = 1;
+                    for (j = 0; j < n; j++)
+                    {
+                        ddv = 1;
+                        switch (number[i + j])
+                        {
+                            case '0':
+                                if (n - j == 3) doc.Add(cs[0]);
+                                if (n - j == 2)
+                                {
+                                    if (number[i + j + 1] != '0') doc.Add(Constant.unitonly);
+                                    ddv = 0;
+                                }
+                                break;
+                            case '1':
+                                if (n - j == 3) doc.Add(cs[1]);
+                                if (n - j == 2)
+                                {
+                                    doc.Add(Constant.xteen);
+                                    ddv = 0;
+                                }
+                                if (n - j == 1)
+                                {
+                                    if (i + j == 0) k = 0;
+                                    else k = i + j - 1;
+
+                                    if (number[k] != '1' && number[k] != '0')
+                                        doc.Add(Constant.number1); // mốt
+                                    else
+                                        doc.Add(cs[1]);
+                                }
+                                break;
+                            case '5':
+                                if (i + j == len - 1)
+                                    doc.Add(Constant.fivealt);
+                                else
+                                    doc.Add(cs[5]);
+                                break;
+                            default:
+                                doc.Add(cs[(int)number[i + j] - 48]);
+                                break;
+                        }
+
+                        //Doc don vi nho
+                        if (ddv == 1)
+                        {
+                            doc.Add(dv[n - j - 1]);
+                        }
+                    }
+                }
+
+
+                //Doc don vi lon
+                if (len - i - n > 0)
+                {
+                    if ((len - i - n) % 9 == 0)
+                    {
+                        if (rd == 1)
+                            for (k = 0; k < (len - i - n) / 9; k++)
+                                doc.Add(Constant.million); // "tỉ"
+                        rd = 0;
+                    }
+                    else
+                        if (found != 0) doc.Add(dv[((len - i - n + 1) % 9) / 3 + 2]);
+                }
+
+                i += n;
+            }
+
+            if (len == 1)
+                if (number[0] == '0' || number[0] == '5') 
+                {
+                    doc = new ArrayList();
+                    doc.Add(cs[(int)number[0] - 48]);
+                }
+            foreach (String item in doc)
+            {
+                if (item == "")
+                {
+
+                }
+            }
+            while (doc.Contains(""))
+            {
+                doc.Remove("");
+            }
+
+            doc.Add(Constant.currency);
+
+            return doc;
         }
     }
 }

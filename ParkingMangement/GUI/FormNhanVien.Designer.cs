@@ -45,6 +45,7 @@
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
             this.tbRFIDCardID = new System.Windows.Forms.TextBox();
             this.labelCardIDHeaderRight = new System.Windows.Forms.Label();
@@ -98,13 +99,15 @@
             this.labelDateOutLeft = new System.Windows.Forms.Label();
             this.labelGetCardLeft = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.rbRightSide = new System.Windows.Forms.RadioButton();
+            this.rbLeftSide = new System.Windows.Forms.RadioButton();
             this.labelNhanVien = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox25 = new System.Windows.Forms.PictureBox();
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
             this.pictureBoxBarieLeft = new System.Windows.Forms.PictureBox();
             this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.pictureBox24 = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
@@ -142,9 +145,7 @@
             this.labelVND_HeaderRight = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
-            this.rbLeftSide = new System.Windows.Forms.RadioButton();
-            this.rbRightSide = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -154,6 +155,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeXeTrongBai)).BeginInit();
             this.panel5.SuspendLayout();
@@ -161,7 +163,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBarieLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
@@ -189,6 +190,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -213,7 +215,7 @@
             this.axVLCPlugin4.Location = new System.Drawing.Point(669, 4);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin4.TabIndex = 17;
             // 
             // axVLCPlugin3
@@ -222,7 +224,7 @@
             this.axVLCPlugin3.Location = new System.Drawing.Point(453, 4);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin3.TabIndex = 16;
             // 
             // axVLCPlugin2
@@ -231,7 +233,7 @@
             this.axVLCPlugin2.Location = new System.Drawing.Point(221, 4);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin2.TabIndex = 15;
             // 
             // axVLCPlugin1
@@ -240,7 +242,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(4, 3);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(210, 275);
             this.axVLCPlugin1.TabIndex = 14;
             // 
             // pictureBoxImage1
@@ -291,6 +293,16 @@
             this.pictureBoxImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage2.TabIndex = 3;
             this.pictureBoxImage2.TabStop = false;
+            // 
+            // pictureBox23
+            // 
+            this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
+            this.pictureBox23.Location = new System.Drawing.Point(-86, 484);
+            this.pictureBox23.Name = "pictureBox23";
+            this.pictureBox23.Size = new System.Drawing.Size(46, 24);
+            this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox23.TabIndex = 121;
+            this.pictureBox23.TabStop = false;
             // 
             // timerCurrentTime
             // 
@@ -871,6 +883,44 @@
             this.panel5.Size = new System.Drawing.Size(116, 134);
             this.panel5.TabIndex = 126;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.TabIndex = 64;
+            this.label2.Text = "Làn quẹt thẻ:";
+            // 
+            // rbRightSide
+            // 
+            this.rbRightSide.AutoSize = true;
+            this.rbRightSide.Checked = true;
+            this.rbRightSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbRightSide.Location = new System.Drawing.Point(60, 111);
+            this.rbRightSide.Name = "rbRightSide";
+            this.rbRightSide.Size = new System.Drawing.Size(46, 17);
+            this.rbRightSide.TabIndex = 63;
+            this.rbRightSide.TabStop = true;
+            this.rbRightSide.Text = "Phải";
+            this.rbRightSide.UseVisualStyleBackColor = true;
+            this.rbRightSide.CheckedChanged += new System.EventHandler(this.rbRightSide_CheckedChanged);
+            // 
+            // rbLeftSide
+            // 
+            this.rbLeftSide.AutoSize = true;
+            this.rbLeftSide.BackColor = System.Drawing.Color.White;
+            this.rbLeftSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbLeftSide.Location = new System.Drawing.Point(8, 111);
+            this.rbLeftSide.Name = "rbLeftSide";
+            this.rbLeftSide.Size = new System.Drawing.Size(43, 17);
+            this.rbLeftSide.TabIndex = 62;
+            this.rbLeftSide.Text = "Trái";
+            this.rbLeftSide.UseVisualStyleBackColor = false;
+            this.rbLeftSide.CheckedChanged += new System.EventHandler(this.rbLeftSide_CheckedChanged);
+            // 
             // labelNhanVien
             // 
             this.labelNhanVien.AutoSize = true;
@@ -934,16 +984,6 @@
             this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox17.TabIndex = 103;
             this.pictureBox17.TabStop = false;
-            // 
-            // pictureBox23
-            // 
-            this.pictureBox23.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox23.Image")));
-            this.pictureBox23.Location = new System.Drawing.Point(-86, 484);
-            this.pictureBox23.Name = "pictureBox23";
-            this.pictureBox23.Size = new System.Drawing.Size(46, 24);
-            this.pictureBox23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox23.TabIndex = 121;
-            this.pictureBox23.TabStop = false;
             // 
             // pictureBox24
             // 
@@ -1303,7 +1343,7 @@
             this.labelVND_HeaderLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderLeft.Location = new System.Drawing.Point(329, 9);
             this.labelVND_HeaderLeft.Name = "labelVND_HeaderLeft";
-            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(41, 16);
+            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderLeft.TabIndex = 72;
             this.labelVND_HeaderLeft.Text = "VNĐ";
             // 
@@ -1324,7 +1364,7 @@
             this.labelVND_HeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 10);
             this.labelVND_HeaderRight.Name = "labelVND_HeaderRight";
-            this.labelVND_HeaderRight.Size = new System.Drawing.Size(41, 16);
+            this.labelVND_HeaderRight.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderRight.TabIndex = 48;
             this.labelVND_HeaderRight.Text = "VNĐ";
             // 
@@ -1351,43 +1391,15 @@
             this.labelError.Text = "Thẻ chưa được thêm vào hệ thống";
             this.labelError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // rbLeftSide
+            // pictureBox10
             // 
-            this.rbLeftSide.AutoSize = true;
-            this.rbLeftSide.BackColor = System.Drawing.Color.White;
-            this.rbLeftSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbLeftSide.Location = new System.Drawing.Point(8, 111);
-            this.rbLeftSide.Name = "rbLeftSide";
-            this.rbLeftSide.Size = new System.Drawing.Size(43, 17);
-            this.rbLeftSide.TabIndex = 62;
-            this.rbLeftSide.Text = "Trái";
-            this.rbLeftSide.UseVisualStyleBackColor = false;
-            this.rbLeftSide.CheckedChanged += new System.EventHandler(this.rbLeftSide_CheckedChanged);
-            // 
-            // rbRightSide
-            // 
-            this.rbRightSide.AutoSize = true;
-            this.rbRightSide.Checked = true;
-            this.rbRightSide.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbRightSide.Location = new System.Drawing.Point(60, 111);
-            this.rbRightSide.Name = "rbRightSide";
-            this.rbRightSide.Size = new System.Drawing.Size(46, 17);
-            this.rbRightSide.TabIndex = 63;
-            this.rbRightSide.TabStop = true;
-            this.rbRightSide.Text = "Phải";
-            this.rbRightSide.UseVisualStyleBackColor = true;
-            this.rbRightSide.CheckedChanged += new System.EventHandler(this.rbRightSide_CheckedChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(6, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
-            this.label2.TabIndex = 64;
-            this.label2.Text = "Làn quẹt thẻ:";
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(78, 370);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(46, 24);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox10.TabIndex = 127;
+            this.pictureBox10.TabStop = false;
             // 
             // FormNhanVien
             // 
@@ -1395,6 +1407,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightYellow;
             this.ClientSize = new System.Drawing.Size(1144, 658);
+            this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.labelGetCardLeft);
@@ -1485,6 +1498,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeXeTrongBai)).EndInit();
@@ -1494,7 +1508,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBarieLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
@@ -1524,6 +1537,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1640,5 +1654,6 @@
         private System.Windows.Forms.RadioButton rbRightSide;
         private System.Windows.Forms.RadioButton rbLeftSide;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox10;
     }
 }

@@ -90,6 +90,25 @@ namespace ParkingMangement.Utils
         public static string goIn = "in.wav";
         public static string goOut = "out.wav";
 
+        public static string number0 = "0.wav";
+        public static string number1 = "1.wav";
+        public static string number2 = "2.wav";
+        public static string number3 = "3.wav";
+        public static string number4 = "4.wav";
+        public static string number5 = "5.wav";
+        public static string number6 = "6.wav";
+        public static string number7 = "7.wav";
+        public static string number8 = "8.wav";
+        public static string number9 = "9.wav";
+        public static string ten = "ten.wav";
+        public static string hundred = "hundred.wav";
+        public static string thousand = "thousand.wav";
+        public static string million = "million.wav";
+        public static string xteen = "xteen.wav";
+        public static string unitonly = "unitonly.wav";
+        public static string fivealt = "fivealt.wav";
+        public static string currency = "currency.wav";
+
         // Config
         public static string FOLDER_NAME_IMAGES = "Images";
         public static string FOLDER_NAME_CAR_NUMBER = "HinhBienSo";
