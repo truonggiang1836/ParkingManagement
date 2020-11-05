@@ -3,15 +3,18 @@ using ParkingMangement.DTO;
 using ParkingMangement.GUI;
 using ParkingMangement.Utils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,8 +30,7 @@ namespace ParkingMangement
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            initView();
-            copyFile();
+            initView();    
         }
 
         private void initView()
@@ -49,6 +51,18 @@ namespace ParkingMangement
             tbPassword.Text = Constant.sHintTextPassword;
             tbPassword.GotFocus += new EventHandler(RemoveHintTextPassword);
             tbPassword.LostFocus += new EventHandler(AddHintTextPassword);
+
+
+            if (!Constant.IS_SYNC_DATA_APP)
+            {
+                if (ConfigDAO.GetIsAutoLockCard() == 1)
+                {
+                    if (DateTime.Now > new DateTime(2020, 8, 31))
+                    {
+                        Util.autoLockExpiredCard();
+                    }                  
+                }
+            }
         }
 
         private void login()
@@ -103,8 +117,14 @@ namespace ParkingMangement
             this.Hide();
             Program.StartWorkTime = DateTime.Now;
             Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
-            Form f = new FormQuanLy();
-            if (data.Rows[0].Field<string>("IDFunct") == Constant.FUNCTION_ID_NHAN_VIEN)
+            runSyncDataProcess();
+
+            Form f = null;
+            if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
+            {
+                f = new FormQuanLy();
+                ((FormQuanLy)f).formNhanVien = this.formNhanVien;
+            } else
             {
                 f = new FormNhanVien();
             }
@@ -114,17 +134,34 @@ namespace ParkingMangement
                 if (f.GetType() == typeof(FormQuanLy))
                 {
                     f.FormClosing += new FormClosingEventHandler(FormQuanLy_FormClosing);
-                } else
+                }
+                else
                 {
                     formNhanVien.Hide();
                     Util.doLogOut();
                     f.FormClosing += new FormClosingEventHandler(FormNhanVien_FormClosing);
                 }
+                f.Show();
+            }
+            else
+            {
+                f.ShowDialog();
             }
 
-            f.Show();
-            
             LogUtil.addLoginLog();
+        }
+
+        private void runSyncDataProcess()
+        {         
+            Process[] pname = Process.GetProcessesByName("ParkingMangement_SyncData");
+            if (pname.Length == 0)
+            {
+                string filePath = Application.StartupPath + "\\ParkingMangement_SyncData.exe";
+                if (File.Exists(filePath))
+                {
+                    Process.Start(filePath);
+                }                
+            }
         }
 
         void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
@@ -202,11 +239,25 @@ namespace ParkingMangement
                 tbPassword.Text = Constant.sHintTextPassword;
         }
 
-        private void copyFile()
+        private void FormLogin_KeyDown(object sender, KeyEventArgs e)
         {
-            //string localPath = Application.StartupPath + @"\Images\" + "636666552009185502.jpg";
-            //string sharedPath = Constant.getSharedImageFolder() + "636666552009185502.jpg";
-            //File.Copy(localPath, sharedPath);
+            
+        }
+
+        private void tbAccount_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !tbAccount.Text.Equals(null))
+            {
+                DataTable dt = UserDAO.GetUserByID(tbAccount.Text);
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    loginDone(dt);
+                }
+                else
+                {
+                    labelError.Text = "Thông tin không chính xác";
+                }
+            }
         }
     }
 }

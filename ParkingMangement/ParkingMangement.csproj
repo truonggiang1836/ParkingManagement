@@ -9,14 +9,15 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ParkingMangement</RootNamespace>
     <AssemblyName>ParkingMangement</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -39,61 +41,29 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AForge, Version=1.5.0.0, Culture=neutral, PublicKeyToken=75f8e82c5042a70f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Controls, Version=1.5.0.0, Culture=neutral, PublicKeyToken=19d43f345531bafb, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Controls.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Genetic, Version=1.5.0.0, Culture=neutral, PublicKeyToken=da51dbc1417b0844, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Genetic.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Imaging, Version=1.5.1.0, Culture=neutral, PublicKeyToken=38eb47741dd0492e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Imaging.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.MachineLearning, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a685c9fe7f22607b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.MachineLearning.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Math, Version=1.5.0.0, Culture=neutral, PublicKeyToken=e12ceb15b47eb5cc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Math.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.NeuralNet, Version=1.0.2989.5669, Culture=neutral">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.NeuralNet.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Neuro, Version=1.5.0.0, Culture=neutral, PublicKeyToken=31df34efda00f95d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Neuro.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video, Version=1.5.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.DirectShow, Version=1.5.1.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.DirectShow.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.FFMPEG, Version=2.2.0.0, Culture=neutral, PublicKeyToken=03563089b1be05dd, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.FFMPEG.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Video.VFW, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a82f807c999637c8, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Video.VFW.dll</HintPath>
-    </Reference>
-    <Reference Include="AForge.Vision, Version=1.5.1.0, Culture=neutral, PublicKeyToken=afefe794e0d71fcc, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\AForge.Vision.dll</HintPath>
-    </Reference>
     <Reference Include="AxInterop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\AxInterop.AXVLC.dll</HintPath>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.94.2\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.UI, Version=4.2.0.3662, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Emgu.CV.World.NetStandard, Version=1.0.0.0, Culture=neutral, PublicKeyToken=7281126722ab4438, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Emgu.CV.World.NetStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
     </Reference>
     <Reference Include="Interop.AXVLC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -110,20 +80,32 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PKUHFReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PKUHFReader.dll</HintPath>
     </Reference>
     <Reference Include="RawInput, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\RawInput.dll</HintPath>
     </Reference>
+    <Reference Include="RTSPcamera, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\RTSPcamera.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -134,17 +116,10 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Vlc.DotNet.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Core.2.2.1\lib\net45\Vlc.DotNet.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Vlc.DotNet.Core.Interops, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Core.Interops.2.2.1\lib\net45\Vlc.DotNet.Core.Interops.dll</HintPath>
-    </Reference>
-    <Reference Include="Vlc.DotNet.Forms, Version=2.2.1.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=MSIL">
-      <HintPath>..\packages\Vlc.DotNet.Forms.2.2.1\lib\net45\Vlc.DotNet.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="WebEye.Controls.WinForms.StreamPlayerControl, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebEye.Controls.WinForms.StreamPlayerControl.1.0.5\lib\net20\WebEye.Controls.WinForms.StreamPlayerControl.dll</HintPath>
+    <Reference Include="WindowsBase" />
+    <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -172,17 +147,30 @@
     <Compile Include="DTO\ComputerDTO.cs" />
     <Compile Include="DTO\ConfigDTO.cs" />
     <Compile Include="DTO\LogDTO.cs" />
+    <Compile Include="DTO\FunctionDTO.cs" />
     <Compile Include="DTO\PartDTO.cs" />
     <Compile Include="DTO\TicketLogDTO.cs" />
     <Compile Include="DTO\TicketMonthDTO.cs" />
     <Compile Include="DTO\TypeDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="DTO\WorkDTO.cs" />
+    <Compile Include="GUI\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Form2.designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormChangePassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormChangePassword.Designer.cs">
       <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\FormImageDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormImageDetail.Designer.cs">
+      <DependentUpon>FormImageDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\FormInOutSetting.cs">
       <SubType>Form</SubType>
@@ -220,20 +208,32 @@
     <Compile Include="GUI\FormQuanLyXeVaoRa.designer.cs">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FormSyncData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormSyncData.Designer.cs">
+      <DependentUpon>FormSyncData.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormZoomCameraSetting.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\FormZoomCameraSetting.Designer.cs">
       <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\PriceConfig.cs" />
+    <Compile Include="Model\DisplayConfig.cs" />
+    <Compile Include="Model\BlackCar.cs" />
+    <Compile Include="Model\Function.cs" />
+    <Compile Include="Model\MonthlyCard.cs" />
+    <Compile Include="Model\Card.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrdersListBody.cs" />
     <Compile Include="Model\OrdersListResponse.cs" />
     <Compile Include="Model\Config.cs" />
-    <Compile Include="TextRecognized\clsImagePlate.cs" />
-    <Compile Include="TextRecognized\clsLicensePlate.cs" />
-    <Compile Include="TextRecognized\clsNetwork.cs" />
+    <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\Vehicle.cs" />
     <Compile Include="Utils\ApiUtil.cs" />
+    <Compile Include="Utils\AutoClosingMessageBox.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="GUI\FormLogin.cs">
@@ -251,9 +251,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\LogUtil.cs" />
+    <Compile Include="Utils\UHFReader.cs" />
     <Compile Include="Utils\Util.cs" />
+    <EmbeddedResource Include="GUI\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormChangePassword.resx">
       <DependentUpon>FormChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormImageDetail.resx">
+      <DependentUpon>FormImageDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormInOutSetting.resx">
       <DependentUpon>FormInOutSetting.cs</DependentUpon>
@@ -272,12 +279,16 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLy.resx">
       <DependentUpon>FormQuanLy.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormNhanVien.resx">
       <DependentUpon>FormNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLyXeVaoRa.resx">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormSyncData.resx">
+      <DependentUpon>FormSyncData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormZoomCameraSetting.resx">
       <DependentUpon>FormZoomCameraSetting.cs</DependentUpon>
@@ -401,6 +412,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="resources\ic_background_get_card_short.png" />
+    <None Include="resources\ic_logo_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AXVLC">
+      <Guid>{DF2BBE39-40A8-433B-A279-073F48DA94B6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <camera_url_1>rtsp://admin:spm888999@192.168.1.109:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_1>
+  <camera_url_2>rtsp://admin:spm888999@192.168.1.111:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_2>
+  <camera_url_3>rtsp://admin:spm888999@192.168.1.110:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_3>
+  <camera_url_4>rtsp://admin:spm888999@192.168.1.108:554/cam/realmonitor?channel=1&amp;subtype=0&amp;unicast=true</camera_url_4>
+  <rfid_in>\\?\HID#VID_0E6A&amp;PID_0305#7&amp;328724b7&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_in>
+  <rfid_out>\\?\HID#VID_0E6A&amp;PID_0305#7&amp;1be7344d&amp;0&amp;0000#{884b96c3-56ef-11d1-bc8c-00a0c91405dd}</rfid_out>
+  <computer_name>ADMIN-CHARM</computer_name>
+  <sql_datasource>ADMIN-CHARM</sql_datasource>
+  <sql_port>1433</sql_port>
+  <sql_username>sa</sql_username>
+  <sql_password>123456</sql_password>
+  <folder_root>ParkingManagement</folder_root>
+  <in_out_type>3</in_out_type>
+  <zoom_camera_1>25</zoom_camera_1>
+  <zoom_camera_2>25</zoom_camera_2>
+  <zoom_camera_3>30</zoom_camera_3>
+  <zoom_camera_4>30</zoom_camera_4>
+  <com_receive_in>&lt;![CDATA[COM8]]&gt;</com_receive_in>
+  <com_receive_out>&lt;![CDATA[COM9]]&gt;</com_receive_out>
+  <com_send>&lt;![CDATA[COM11]]&gt;</com_send>
+</xml>

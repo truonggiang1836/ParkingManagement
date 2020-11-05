@@ -29,16 +29,44 @@ namespace ParkingMangement.Utils
         public static string PARAM_PAGE = "page";
         public static string PARAM_LIMIT = "limit";
         public static string PARAM_DISABLE = "disable";
-        public static string PARAM_DATA = "data";
+        public static string PARAM_DATA = "ordersDtos";
+        public static string PARAM_PROJECT_ID = "projectId";
+        public static string PARAM_KEY = "key";
+        public static string PARAM_KEY_VALUE = "0919669444";
+        public static string PARAM_CARD_NUMBER = "cardnumber";
+        public static string PARAM_STATUS = "status";     
 
         //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
-        public static string BASE_URL = "http://api.spmgroup.vn/public/";
+        //public static string BASE_URL = "http://api.spmgroup.vn/public/";
+        //public static string BASE_URL = "http://api.spmgroup.vn:8080/parking-apis/";
+        //public static string BASE_URL = "http://13.59.183.208:8080/parking-apis/";
+        public static string BASE_URL = "https://spmpayment.vn/api/";
+
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
         public static string API_CHECKIN = BASE_URL + "cards/checkin";
         public static string API_CHECKOUT = BASE_URL + "cards/checkout";
         public static string API_ORDERS_LIST = BASE_URL + "orders/list";
         public static string API_ORDERS_BATCH_INSERT = BASE_URL + "orders/batchinsert";
+        public static string API_CARDS_BATCH_INSERT = BASE_URL + "cards/batchinsert";
+        public static string API_CARDS_BATCH_SYNCS = BASE_URL + "cards/batchsyncs";
+        public static string API_MONTHLY_CARDS_BATCH_INSERT = BASE_URL + "monthlycards/batchinsert";
+        public static string API_MONTHLY_CARDS_BATCH_SYNCS = BASE_URL + "monthlycards/batchsyncs";
+        public static string API_VEHICLE_BATCH_INSERT = BASE_URL + "vehicle/batchinsert";
+        public static string API_VEHICLE_BATCH_SYNCS = BASE_URL + "vehicle/batchsyncs";
+        public static string API_EMPLOYEE_BATCH_INSERT = BASE_URL + "employee/batchinsert";
+        public static string API_EMPLOYEE_BATCH_SYNCS = BASE_URL + "employee/batchsyncs";
+        public static string API_FUNCTIONS_BATCH_INSERT = BASE_URL + "functions/batchinsert";
+        public static string API_FUNCTIONS_BATCH_SYNCS = BASE_URL + "functions/batchsyncs";
+        public static string API_CONFIG_BATCH_INSERT = BASE_URL + "config/batchinsert";
+        public static string API_CONFIG_BATCH_SYNCS = BASE_URL + "config/batchsyncs";
+        public static string API_BLACK_CAR_BATCH_INSERT = BASE_URL + "back-car/batchinsert";
+        public static string API_BLACK_CAR_BATCH_SYNCS = BASE_URL + "back-car/batchsyncs";
+        public static string API_PRICE_CONFIG_BATCH_INSERT = BASE_URL + "price-config/batchinsert";
+        public static string API_PRICE_CONFIG_BATCH_SYNCS = BASE_URL + "price-config/batchsyncs";
+
+        public static string API_MONTHLY_CARDS_SYNCS_SPM = BASE_URL + "get_v2.php";
+        public static string API_MONTHLY_CARDS_SET_SYNC_DONE_SPM = BASE_URL + "set_v2.php";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -53,20 +81,23 @@ namespace ParkingMangement.Utils
             {
                 WebClient webClient = new WebClient();
                 webClient.Encoding = Encoding.UTF8;
-                if (!Program.CurrentUserID.Equals(""))
-                {
-                    webClient.Headers.Set(HEADER_USER_ID, Program.CurrentUserID);
-                }
-                if (!Program.CurrentToken.Equals(""))
-                {
-                    webClient.Headers.Set(HEADER_AUTHORIZATION, Program.CurrentToken);
-                }
+                //webClient.Headers["Content-Type"] = "raw";
+                webClient.Headers.Set("Content-Type", "application/json");
+                //webClient.Headers[HttpRequestHeader.ContentType] = "application/json";
+                //if (!Program.CurrentUserID.Equals(""))
+                //{
+                //    webClient.Headers.Set(HEADER_USER_ID, Program.CurrentUserID);
+                //}
+                //if (!Program.CurrentToken.Equals(""))
+                //{
+                //    webClient.Headers.Set(HEADER_AUTHORIZATION, Program.CurrentToken);
+                //}
 
-                long currentSecond = CurrentTimeMillis() / 1000;
-                string apiAuthDate = currentSecond.ToString();
-                webClient.QueryString.Add(PARAM_API_AUTH_DATE, apiAuthDate);
-                string apiAuthKey = CreateMD5(SECRET_KEY + apiAuthDate);
-                webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
+                //long currentSecond = CurrentTimeMillis() / 1000;
+                //string apiAuthDate = currentSecond.ToString();
+                //webClient.QueryString.Add(PARAM_API_AUTH_DATE, apiAuthDate);
+                //string apiAuthKey = CreateMD5(SECRET_KEY + apiAuthDate);
+                //webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
                 return webClient;
             }
             catch (Exception e)

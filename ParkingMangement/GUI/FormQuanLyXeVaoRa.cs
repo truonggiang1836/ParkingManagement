@@ -20,6 +20,8 @@ namespace ParkingMangement.GUI
     public partial class FormQuanLyXeVaoRa : Form
     {
         private bool isXemDanhSachXeTon = false;
+        private Timer timerReadUHFData;
+        private UHFReader mUHFReader;
         public FormQuanLyXeVaoRa()
         {
             InitializeComponent();
@@ -34,18 +36,41 @@ namespace ParkingMangement.GUI
             FormQuanLy.setFormatTimeForDateTimePicker(dateTimePickerCarTimeOut);
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateIn);
             FormQuanLy.setFormatDateForDateTimePicker(dateTimePickerCarDateOut);
+            loadPartDataWithFieldAllToComboBox(comboBoxTruyVanLoaiXe);
+
+            //mUHFReader = new UHFReader();
+            //if (Util.getConfigFile().isUsingUhf.Equals("yes"))
+            //{
+            //    initUhfTimer();
+            //}
+        }
+
+        private void loadPartDataWithFieldAllToComboBox(ComboBox cb)
+        {
+            DataTable dt = PartDAO.GetAllData();
+            DataRow dr = dt.NewRow();
+            dr["PartName"] = "Tất cả";
+            dt.Rows.InsertAt(dr, 0);
+            cb.DataSource = dt;
+            cb.DisplayMember = "PartName";
+            cb.ValueMember = "ID";
         }
 
         private void btnSearchCar_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = false;
+            dgvCarList.Columns["STT_CarList"].Visible = false;
             searchCar();
-            //searchCarAPI();
         }
 
         private CarDTO getCarModel()
         {
             CarDTO carDTO = new CarDTO();
+            if (comboBoxTruyVanLoaiXe.SelectedIndex > 0)
+            {
+                DataRow dataRow = ((DataRowView)comboBoxTruyVanLoaiXe.SelectedItem).Row;
+                carDTO.IdPart = Convert.ToString(dataRow["ID"]);
+            }
             DateTime startDate = dateTimePickerCarDateIn.Value;
             DateTime startTime = dateTimePickerCarTimeIn.Value;
             startDate = new DateTime(startDate.Year, startDate.Month, startDate.Day, startTime.Hour, startTime.Minute, 0);
@@ -56,7 +81,7 @@ namespace ParkingMangement.GUI
             carDTO.TimeEnd = endDate;
             try
             {
-                carDTO.CardIdentify = Convert.ToInt32(tbCarIdentifySearch.Text);
+                carDTO.CardIdentify = tbCarIdentifySearch.Text;
             }
             catch (Exception e)
             {
@@ -95,57 +120,6 @@ namespace ParkingMangement.GUI
                         dgvCarList[col.Index, row.Index].Style.ForeColor = Color.Red;
                     }
                 }
-            }
-        }
-
-        private void searchCarAPI()
-        {
-            CarDTO carDTO = getCarModel();
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            try
-            {
-                if (!carDTO.Id.Equals(""))
-                {
-                    webClient.QueryString.Add(ApiUtil.PARAM_CARD_CODE, carDTO.Id);
-                }
-                if (!carDTO.Digit.Equals(""))
-                {
-                    webClient.QueryString.Add(ApiUtil.PARAM_CAR_NUMBER, carDTO.Digit);
-                }
-                if (!carDTO.Identify.ToString().Equals(""))
-                {
-                    webClient.QueryString.Add(ApiUtil.PARAM_CAR_STT, carDTO.Identify.ToString());
-                }
-                string createdFrom = (carDTO.TimeStart.Millisecond / 1000).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_CREATED_FROM, createdFrom);
-                string createdTo = (carDTO.TimeEnd.Millisecond / 1000).ToString();
-                webClient.QueryString.Add(ApiUtil.PARAM_CREATED_TO, createdTo);
-                webClient.QueryString.Add(ApiUtil.PARAM_DISABLE, "0");
-                String responseString = webClient.DownloadString(ApiUtil.API_ORDERS_LIST);
-                Console.WriteLine(responseString);
-                OrdersListResponse ordersListResponse = JsonConvert.DeserializeObject<OrdersListResponse>(responseString);
-                var list = ordersListResponse.Body.Data;
-                foreach (CarDTO carItem in list)
-                {
-                    carItem.setDataFromAPIForFields();
-                }
-                var bindingList = new BindingList<CarDTO>(list);
-                var source = new BindingSource(bindingList, null);
-                dgvCarList.DataSource = source;
-            }
-            catch (WebException exception)
-            {
-                string responseText;
-                var responseStream = exception.Response?.GetResponseStream();
-
-                if (responseStream != null)
-                {
-                    using (var reader = new StreamReader(responseStream))
-                    {
-                        responseText = reader.ReadToEnd();
-                    }
-                }
-                searchCar();
             }
         }
 
@@ -192,8 +166,8 @@ namespace ParkingMangement.GUI
             }
 
             pictureBoxCarLogImage1.Image = null;
-            pictureBoxCarLogImage2.Image = null;
             pictureBoxCarLogImage3.Image = null;
+            pictureBoxCarLogImage2.Image = null;
             pictureBoxCarLogImage4.Image = null;
             string image1 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages"].Value);
             if (!string.IsNullOrEmpty(image1))
@@ -210,7 +184,7 @@ namespace ParkingMangement.GUI
                 string filePath = Constant.getSharedImageFolder() + image2;
                 if (File.Exists(filePath))
                 {
-                    pictureBoxCarLogImage2.Image = Image.FromFile(filePath);
+                    pictureBoxCarLogImage3.Image = Image.FromFile(filePath);
                 }
             }
             string image3 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages3"].Value);
@@ -219,7 +193,7 @@ namespace ParkingMangement.GUI
                 string filePath = Constant.getSharedImageFolder() + image3;
                 if (File.Exists(filePath))
                 {
-                    pictureBoxCarLogImage3.Image = Image.FromFile(filePath);
+                    pictureBoxCarLogImage2.Image = Image.FromFile(filePath);
                 }
             }
             string image4 = Convert.ToString(dgvCarList.Rows[Index].Cells["CarLogImages4"].Value);
@@ -236,6 +210,7 @@ namespace ParkingMangement.GUI
         private void btnXemDanhSachXeTon_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = true;
+            dgvCarList.Columns["STT_CarList"].Visible = true;
             searchXeTon();
         }
 
@@ -298,12 +273,84 @@ namespace ParkingMangement.GUI
         private void btnExportDanhSachXe_Click(object sender, EventArgs e)
         {
             isXemDanhSachXeTon = false;
+            dgvCarList.Columns["STT_CarList"].Visible = true;
             searchMatThe();
         }
 
         private void dgvCarList_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             Util.setRowNumber(dgvCarList, "STT_CarList");
+        }
+
+        private void pictureBoxCarLogImage1_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage1.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage2_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage2.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage3_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage3.Image);
+            f.Show();
+        }
+
+        private void pictureBoxCarLogImage4_Click(object sender, EventArgs e)
+        {
+            FormImageDetail f = new FormImageDetail(pictureBoxCarLogImage4.Image);
+            f.Show();
+        }
+
+        private void timerReadUHFData_Tick(object sender, EventArgs e)
+        {
+            int frmcomportindexIn = mUHFReader.getComportIndex(Util.getConfigFile().comReceiveIn);
+            int frmcomportindexOut = mUHFReader.getComportIndex(Util.getConfigFile().comReceiveOut);
+            string uhfInCardId = mUHFReader.GetUHFData(frmcomportindexIn);
+            string uhfOutCardId = mUHFReader.GetUHFData(frmcomportindexOut);
+            string uhfCardId = uhfInCardId;
+            if (uhfCardId == null)
+            {
+                uhfCardId = uhfOutCardId;
+            }
+
+            if (uhfCardId != null)
+            {
+                TextBox focusedTextbox = null;
+                if (tbCarIDSearch.Focused)
+                {
+                    focusedTextbox = tbCarIDSearch;
+                }
+                if (focusedTextbox != null)
+                {
+                    focusedTextbox.Text = uhfCardId;
+                }
+            }
+        }
+
+        private void initUhfTimer()
+        {
+            timerReadUHFData = new Timer();
+            timerReadUHFData.Enabled = true;
+            timerReadUHFData.Tick += new System.EventHandler(this.timerReadUHFData_Tick);
+        }
+
+        private void FormQuanLyXeVaoRa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            int count = 0;
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i].Visible == true)//will not count hidden forms
+                    count++;
+            }
+            if (count == 1)
+            {
+                Application.Exit();
+            }
         }
     }
 }

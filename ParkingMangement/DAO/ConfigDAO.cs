@@ -1,4 +1,5 @@
-﻿using ParkingMangement.DTO;
+﻿using Newtonsoft.Json.Linq;
+using ParkingMangement.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,26 +15,26 @@ namespace ParkingMangement.DAO
         public static DataTable GetConfig()
         {
             string sql = "select * from Config";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static int GetLostCard()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("LostCard");
             }
             else
             {
-                return -1;
+                return 0;
             }
         }
 
         public static int GetBikeSpace()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("BikeSpace");
             }
@@ -46,7 +47,7 @@ namespace ParkingMangement.DAO
         public static int GetCarSpace()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("CarSpace");
             }
@@ -59,7 +60,7 @@ namespace ParkingMangement.DAO
         public static int GetTicketMonthLimit()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("TicketLimitDay");
             }
@@ -72,7 +73,7 @@ namespace ParkingMangement.DAO
         public static int GetNightLimit()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("NightLimit");
             }
@@ -85,100 +86,9 @@ namespace ParkingMangement.DAO
         public static int GetParkingTypeID()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("ParkingTypeID");
-            }
-            else
-            {
-                return -1;
-            }
-        }
-
-        public static string GetCamera1()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<string>("Camera1");
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static string GetCamera2()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<string>("Camera2");
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static string GetCamera3()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<string>("Camera3");
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static string GetCamera4()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<string>("Camera4");
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static string GetRFID1()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<string>("RFID1");
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static string GetRFID2()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<string>("RFID2");
-            }
-            else
-            {
-                return "";
-            }
-        }
-
-        public static int GetInOutType()
-        {
-            DataTable dt = GetConfig();
-            if (dt != null)
-            {
-                return dt.Rows[0].Field<int>("InOutType");
             }
             else
             {
@@ -189,7 +99,7 @@ namespace ParkingMangement.DAO
         public static int GetExpiredTicketMonthTypeID()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("ExpiredTicketMonthTypeID");
             }
@@ -199,36 +109,49 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static string GetIpHost()
+        public static int GetLockCardDate()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
-                return dt.Rows[0].Field<string>("IpHost");
+                return dt.Rows[0].Field<int>("LockCardDate");
             }
             else
             {
-                return "";
+                return -1;
             }
         }
 
-        public static string GetFolderRoot()
+        public static int GetNoticeExpiredDate()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
-                return dt.Rows[0].Field<string>("FolderRoot");
+                return dt.Rows[0].Field<int>("NoticeExpiredDate");
             }
             else
             {
-                return "";
+                return -1;
+            }
+        }
+
+        public static int GetIsAutoLockCard()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("IsAutoLockCard");
+            }
+            else
+            {
+                return -1;
             }
         }
 
         public static string GetParkingName()
         {
             DataTable dt = GetConfig();
-            if (dt != null)
+            if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("ParkingName");
             }
@@ -238,26 +161,66 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
+        public static int GetCalculationTicketMonth()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("CalculationTicketMonth");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static string getUpdateSql(ConfigDTO configDTO)
         {
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
-                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "'";
-            return Database.ExcuNonQuery(sql);
+                + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth
+                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate;
+            return sql;
         }
 
-        public static bool UpdateCauHinhKetNoi(ConfigDTO configDTO)
+        public static bool UpdateCauHinhHienThi(ConfigDTO configDTO)
         {
-            string sql = "update Config set Camera1 = '" + configDTO.Camera1 + "', Camera2 = '" + configDTO.Camera2 +
-                "', Camera3 = '" + configDTO.Camera3 + "', Camera4 = '" + configDTO.Camera4 + "', RFID1 = '" + configDTO.Rfid1 +
-                "', RFID2 = '" + configDTO.Rfid2 + "'";
-            return Database.ExcuNonQuery(sql);
+            string sql = getUpdateSql(configDTO);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
-        public static bool SetInOutType(int inOutType)
+        public static bool UpdateXeTon(ConfigDTO configDTO)
         {
-            string sql = "update Config set InOutType = " + inOutType;
-            return Database.ExcuNonQuery(sql);
+            string sql = "update Config set BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace;
+            return (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateNoErrorMessage(ConfigDTO configDTO)
+        {
+            string sql = getUpdateSql(configDTO);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
+        public static void syncFromJson(string json)
+        {
+            JArray jArray = JArray.Parse(json);
+            foreach (JObject jObject in jArray)
+            {
+                ConfigDTO configDTO = new ConfigDTO();
+                configDTO.LostCard = (int)jObject.SelectToken("lostCard");
+                configDTO.BikeSpace = (int)jObject.SelectToken("bikeSpace");
+                configDTO.CarSpace = (int)jObject.SelectToken("carSpace");
+                configDTO.TicketLimitDay = (int)jObject.SelectToken("ticketLimitDay");
+                configDTO.NightLimit = (int)jObject.SelectToken("nightLimit");
+                configDTO.ParkingTypeId = (int)jObject.SelectToken("parkingTypeId");
+                configDTO.ExpiredTicketMonthTypeID = (int)jObject.SelectToken("expiredTicketMonthTypeID");
+                configDTO.ParkingName = (string)jObject.SelectToken("parkingName");
+                configDTO.CalculationTicketMonth = (int)jObject.SelectToken("calculationTicketMonth");
+                configDTO.IsAutoLockCard = (int)jObject.SelectToken("isAutoLockCard");
+                configDTO.LockCardDate = (int)jObject.SelectToken("lockCardDate");
+
+                UpdateNoErrorMessage(configDTO);
+            }
         }
     }
 }

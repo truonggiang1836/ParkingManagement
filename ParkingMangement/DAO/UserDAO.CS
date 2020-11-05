@@ -1,4 +1,5 @@
-﻿using ParkingMangement.DTO;
+﻿using Newtonsoft.Json.Linq;
+using ParkingMangement.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,52 +15,88 @@ namespace ParkingMangement.DAO
         {
             string sql = "select UserCar.UserID, UserCar.Account, UserCar.Pass, UserCar.NameUser, Sex.SexName, Functional.FunctionName from UserCar, Functional, Sex " +
                 "where Functional.FunctionID = UserCar.IDFunct and Sex.SexID = UserCar.SexID order by UserCar.UserID asc";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
+        }
+
+        public static DataTable GetAllDataForSync()
+        {
+            string sql = "select * from UserCar where IsSync = 0";
+            return (new Database()).ExcuQuery(sql);
+        }
+
+        public static void UpdateIsSync(string listId)
+        {
+            string sql = "update UserCar set IsSync = 1 where UserID in " + listId;
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static DataTable GetID_Name_Function()
         {
             string sql = "select UserCar.UserID, UserCar.NameUser, Functional.FunctionName from UserCar, Functional " +
                 "where Functional.FunctionID = UserCar.IDFunct";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
+        }
+
+        public static string getInsertSql(UserDTO userDTO)
+        {
+            string sql = "insert into UserCar(UserID, Account, Pass, NameUser, SexID, IDFunct, RememberMe, IsSync, IsDeleted) values ('" + userDTO.Id + "', N'" + userDTO.Account + "', N'" +
+                userDTO.Password + "', N'" + userDTO.Name + "', " + userDTO.SexId + ", '" + userDTO.FunctionId + "', " + 0 + ", " + userDTO.IsSync + ", " + userDTO.IsDeleted + ")";
+            return sql;
+        }
+
+        public static string getUpdateSql(UserDTO userDTO)
+        {
+            string sql = "update UserCar set Account =N'" + userDTO.Account + "', Pass =N'" + userDTO.Password + "', NameUser =N'" + userDTO.Name + "', SexID ="
+                + userDTO.SexId + ", IDFunct ='" + userDTO.FunctionId + "', IsSync =" + userDTO.IsSync + ", IsDeleted =" + userDTO.IsDeleted + " where UserID ='" + userDTO.Id + "'";
+            return sql;
         }
 
         public static void Insert(UserDTO userDTO)
         {
-            string sql = "insert into UserCar(UserID, Account, Pass, NameUser, SexID, IDFunct, RememberMe) values ('" + userDTO.Id + "', '" + userDTO.Account + "', '" + 
-                userDTO.Password + "', '" + userDTO.Name + "', " + userDTO.SexId + ", '" + userDTO.FunctionId + "', " + 0 + ")";
-            Database.ExcuNonQuery(sql);
+            string sql = getInsertSql(userDTO);
+            (new Database()).ExcuNonQuery(sql);
         }
 
         public static void Update(UserDTO userDTO)
         {
-            string sql = "update UserCar set Account ='" + userDTO.Account + "', Pass ='" + userDTO.Password + "', NameUser ='" + userDTO.Name + "', SexID ="
-                + userDTO.SexId + ", IDFunct ='" + userDTO.FunctionId + "' where UserID ='" + userDTO.Id + "'";
-            Database.ExcuNonQuery(sql);
+            string sql = getUpdateSql(userDTO);
+            (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool InsertNoErrorMessage(UserDTO userDTO)
+        {
+            string sql = getInsertSql(userDTO);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
+        public static bool UpdateNoErrorMessage(UserDTO userDTO)
+        {
+            string sql = getUpdateSql(userDTO);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool UpdatePassword(string password, string account)
         {
-            string sql = "update UserCar set Pass ='" + password + "' where Account ='" + account + "'";
-            return Database.ExcuNonQuery(sql);
+            string sql = "update UserCar set Pass =N'" + password + "' where Account =N'" + account + "'";
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateRememberMe(int isRemember, string account)
         {
             string sql = "update UserCar set RememberMe =" + isRemember + " where Account ='" + account + "'";
-            return Database.ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static DataTable GetUserByAccount(string account)
         {
             string sql = "select * from UserCar where UserCar.Account = '" + account + "'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static DataTable GetUserByID(string id)
         {
             string sql = "select * from UserCar where UserCar.UserID = '" + id + "'";
-            return Database.ExcuQuery(sql);
+            return (new Database()).ExcuQuery(sql);
         }
 
         public static UserDTO GetUserModelByID(string id)
@@ -145,7 +182,44 @@ namespace ParkingMangement.DAO
         public static void Delete(string userID)
         {
             string sql = "delete from UserCar where UserID = '" + userID + "'";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static void syncFromJson(string json)
+        {
+            JArray jArray = JArray.Parse(json);
+            foreach (JObject jObject in jArray)
+            {
+                UserDTO userDTO = new UserDTO();
+                userDTO.Id = (string)jObject.SelectToken("employee_code");
+                userDTO.Account = (string)jObject.SelectToken("user_name");
+                userDTO.Password = (string)jObject.SelectToken("pass");
+                userDTO.Name = (string)jObject.SelectToken("name");              
+                int sexID = 1;
+                try
+                {
+                    Int32.TryParse((string)jObject.SelectToken("sex"), out sexID);
+                }
+                catch (Exception)
+                {
+
+                }
+                userDTO.SexId = sexID;
+                userDTO.FunctionId = (string)jObject.SelectToken("position");
+
+                userDTO.IsSync = "1";
+                userDTO.IsDeleted = (bool)jObject.SelectToken("deleted") ? "1" : "0";
+
+                InsertOrUpdate(userDTO);
+            }
+        }
+
+        public static void InsertOrUpdate(UserDTO userDTO)
+        {
+            if (!InsertNoErrorMessage(userDTO))
+            {
+                UpdateNoErrorMessage(userDTO);
+            }
         }
     }
 }

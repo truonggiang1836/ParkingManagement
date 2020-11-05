@@ -1,0 +1,87 @@
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\avcodec-57.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\avdevice-57.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\avfilter-6.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\avformat-57.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\avutil-55.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\postproc-54.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\swresample-2.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\swscale-4.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\Accord.dll.config
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\ParkingMangement.exe.config
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\ParkingMangement.exe
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\ParkingMangement.pdb
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\Newtonsoft.Json.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\Newtonsoft.Json.pdb
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\bin\Debug\Newtonsoft.Json.xml
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\Interop.AXVLC.dll
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csproj.ResolveComReference.cache
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormSyncData.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.Form2.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormChangePassword.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormImageDetail.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormInOutSetting.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.FormLogin.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormLoginByCard.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormLogout.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormLogOutByCard.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLy.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormNhanVien.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLyXeVaoRa.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormZoomCameraSetting.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.Properties.Resources.resources
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csproj.GenerateResource.cache
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csproj.CopyComplete
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.exe
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement.pdb
+D:\GIT\ParkingManagement - SyncData\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csprojAssemblyReference.cache
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\Newtonsoft.Json.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\avcodec-57.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\avdevice-57.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\avfilter-6.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\avformat-57.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\avutil-55.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\postproc-54.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\swresample-2.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\swscale-4.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\Accord.dll.config
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ParkingMangement.exe.config
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ParkingMangement.exe
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ParkingMangement.pdb
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ClosedXML.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\DocumentFormat.OpenXml.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ExcelNumberFormat.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\FastMember.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ClosedXML.pdb
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ClosedXML.xml
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\Newtonsoft.Json.pdb
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\Newtonsoft.Json.xml
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\DocumentFormat.OpenXml.xml
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\ExcelNumberFormat.xml
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\Interop.AXVLC.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csproj.ResolveComReference.cache
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormSyncData.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormChangePassword.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormImageDetail.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormInOutSetting.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.FormLogin.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormLoginByCard.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormLogout.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormLogOutByCard.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLy.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormNhanVien.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLyXeVaoRa.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormZoomCameraSetting.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.Properties.Resources.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csproj.GenerateResource.cache
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csproj.CopyComplete
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.exe
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.pdb
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormQuanLyXeTon.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormTraCuuTheThang.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormInPhieuThu.resources
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\RawInput.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\Interop.WMPLib.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\AxInterop.WMPLib.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\Interop.WMPLib.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\AxInterop.WMPLib.dll
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csprojAssemblyReference.cache

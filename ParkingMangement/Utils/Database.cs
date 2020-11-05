@@ -19,10 +19,10 @@ namespace ParkingMangement
         //protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb;Mode=Share Deny None";
 
         //static OleDbConnection connection;
-        static SqlConnection mySqlConnection;
+        private SqlConnection mySqlConnection;
         //static Config config;
 
-        public static SqlConnection GetDBConnection()
+        public SqlConnection GetDBConnection()
         {
             string datasource = Util.getConfigFile().sqlDataSource + @"," + Util.getConfigFile().sqlPort;
             string database = "ParkingManagement";
@@ -31,7 +31,7 @@ namespace ParkingMangement
 
             return GetDBConnection(datasource, database, username, password);
         }
-        public static SqlConnection GetDBConnection(string datasource, string database, string username, string password)
+        public SqlConnection GetDBConnection(string datasource, string database, string username, string password)
         {
             // Connection String.
             string connString = @"Data Source=" + datasource + ";Initial Catalog="
@@ -41,84 +41,133 @@ namespace ParkingMangement
             return conn;
         }
 
-        public static void OpenConnection()
+        public void OpenConnection()
         {
-            Console.WriteLine("Getting Connection ...");
+            Program.sCountConnection++;
+
             mySqlConnection = GetDBConnection();
 
             try
             {
-                Console.WriteLine("Openning Connection ...");
-
-                if (mySqlConnection.State == ConnectionState.Closed)
+                if (mySqlConnection.State != ConnectionState.Open)
                 {
                     mySqlConnection.Open();
                 }
-
-                Console.WriteLine("Connection successful!");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+
             }
 
             Console.Read();
         }
 
-        public static void CloseConnection()
+        public void CloseConnection()
         {
+            Program.sCountConnection--;
+
             // Đóng kết nối.
-            if (mySqlConnection.State == ConnectionState.Open)
+            if (mySqlConnection.State != ConnectionState.Closed)
             {
                 mySqlConnection.Close();
             }
             // Tiêu hủy đối tượng, giải phóng tài nguyên.
-            mySqlConnection.Dispose();
+            //mySqlConnection.Dispose();
         }
 
-        public static int ExcuValueQuery(string sql)
+        public int ExcuValueQuery(string sql)
         {
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 DataTable dt = new DataTable();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
-                return Convert.ToInt32(command.ExecuteScalar());
+                mySqlConnection.Open();
+                int value = Convert.ToInt32(command.ExecuteScalar());
+                return value;
             }
             catch (Exception e)
             {
                 return 0;
             }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
+            }
         }
 
-        public static DataTable ExcuQuery(string sql)
+        public DataTable ExcuQuery(string sql)
         {
             DataTable dt = new DataTable();
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
+                mySqlConnection.Open();
                 adapter.Fill(dt);
-                CloseConnection();
-            } catch (Exception Ex)
+            }
+            catch (Exception Ex)
             {
                 //MessageBox.Show(Constant.sMessageCommonError);
                 MessageBox.Show(Ex.Message + "_sql: " + sql);
             }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
+            }
             return dt;
         }
-        public static bool ExcuNonQuery(string sql)
+
+        public DataTable ExcuQueryNoErrorMessage(string sql)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                mySqlConnection = GetDBConnection();
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = command;
+                mySqlConnection.Open();
+                adapter.Fill(dt);
+            }
+            catch (Exception Ex)
+            {
+
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
+            }
+            return dt;
+        }
+
+        public bool ExcuNonQuery(string sql)
         {
             try
             {
                 int result = 0;
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
+                mySqlConnection.Open();
                 result = command.ExecuteNonQuery();
                 CloseConnection();
                 if (result > 0)
@@ -137,23 +186,32 @@ namespace ParkingMangement
                     //This code happens ONLY when trying to add duplicated values to the primary key in the database, 
                     // in this case just do nothing and continue loading the other no duplicated values
                     MessageBox.Show(Constant.sMessageDuplicateDataError);
-                } else
+                }
+                else
                 {
                     MessageBox.Show(Ex.Message + "_sql: " + sql);
                 }
                 return false;
             }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
+            }
         }
 
-        public static bool ExcuNonQueryNoErrorMessage(string sql)
+        public bool ExcuNonQueryNoErrorMessage(string sql)
         {
             try
             {
-                OpenConnection();
+                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
                 command.CommandText = sql;
+                mySqlConnection.Open();
                 int result = command.ExecuteNonQuery();
-                CloseConnection();
                 if (result > 0)
                 {
                     return true;
@@ -166,6 +224,13 @@ namespace ParkingMangement
             catch (SqlException Ex)
             {
                 return false;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Dispose();
+                }
             }
         }
     }

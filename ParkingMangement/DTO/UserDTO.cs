@@ -33,6 +33,8 @@ namespace ParkingMangement.DTO
         private string functionId;
         private int sexId;
         private string token;
+        private string isSync = "0";
+        private string isDeleted = "0";
 
         public string Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
@@ -41,5 +43,7 @@ namespace ParkingMangement.DTO
         public string FunctionId { get => functionId; set => functionId = value; }
         public int SexId { get => sexId; set => sexId = value; }
         public string Token { get => token; set => token = value; }
+        public string IsDeleted { get => isDeleted; set => isDeleted = value; }
+        public string IsSync { get => isSync; set => isSync = value; }
     }
 }

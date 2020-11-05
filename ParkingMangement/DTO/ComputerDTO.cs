@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingMangement.DTO
 {
-    class ComputerDTO
+    class ComputerDTO : ICloneable
     {
         private int identify;
         private string partID;
@@ -20,15 +20,23 @@ namespace ParkingMangement.DTO
         private int hourMilestone1 = 0;
         private int hourMilestone2 = 0;
         private int hourMilestone3 = 0;
+        private int hourMilestone4 = 0;
         private int costMilestone1 = 0;
         private int costMilestone2 = 0;
         private int costMilestone3 = 0;
+        private int costMilestone4 = 0;
+        private int costMilestoneNight1 = 0;
+        private int costMilestoneNight2 = 0;
+        private int costMilestoneNight3 = 0;
+        private int costMilestoneNight4 = 0;
         private int cycleMilestone3 = 1;
         private string isAdd = "";
         private int cycleTicketMonth = 0;
         private int costTicketMonth = 0;
         private int minMinute = 0;
         private int minCost = 0;
+        private int limit = 0;
+        private int isSync = 0;
 
         public int Identify { get => identify; set => identify = value; }
         public string PartID { get => partID; set => partID = value; }
@@ -51,5 +59,19 @@ namespace ParkingMangement.DTO
         public int CostTicketMonth { get => costTicketMonth; set => costTicketMonth = value; }
         public int MinMinute { get => minMinute; set => minMinute = value; }
         public int MinCost { get => minCost; set => minCost = value; }
+        public int Limit { get => limit; set => limit = value; }
+        public int HourMilestone4 { get => hourMilestone4; set => hourMilestone4 = value; }
+        public int CostMilestone4 { get => costMilestone4; set => costMilestone4 = value; }
+        public int CostMilestoneNight1 { get => costMilestoneNight1; set => costMilestoneNight1 = value; }
+        public int CostMilestoneNight2 { get => costMilestoneNight2; set => costMilestoneNight2 = value; }
+        public int CostMilestoneNight3 { get => costMilestoneNight3; set => costMilestoneNight3 = value; }
+        public int CostMilestoneNight4 { get => costMilestoneNight4; set => costMilestoneNight4 = value; }
+        public int IsSync { get => isSync; set => isSync = value; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+            throw new NotImplementedException();
+        }
     }
 }

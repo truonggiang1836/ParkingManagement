@@ -13,20 +13,32 @@ namespace ParkingMangement.DAO
         public static DataTable GetAllData()
         {
             string sql = "select * from WaitSyncCarIn";
-            DataTable data = Database.ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQuery(sql);
             return data;
         }
 
         public static void Insert(int carIdentify)
         {
             string sql = "insert into WaitSyncCarIn(Identify) values (" + carIdentify + ")";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void DeleteAll()
         {
             string sql = "delete from WaitSyncCarIn";
-            Database.ExcuNonQuery(sql);
+            (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static void DeleteWhereListId(string id)
+        {
+            string sql = "delete from WaitSyncCarIn where Identify in " + id;
+            (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateMessage(long identify, string message)
+        {
+            string sql = "update WaitSyncCarIn set Message ='" + message + "' where Identify =" + identify;
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
     }
 }

@@ -70,12 +70,12 @@ namespace ParkingMangement.GUI
             }
             if (saveInOutTypeToConfig(inOutType))
             {
-                MessageBox.Show(Constant.sMessageUpdateSuccess);
+                //MessageBox.Show(Constant.sMessageUpdateSuccess);
                 this.Close();
             }
         }
 
-        private static bool saveInOutTypeToConfig(int inOutType)
+        public static bool saveInOutTypeToConfig(int inOutType)
         {
             try
             {
