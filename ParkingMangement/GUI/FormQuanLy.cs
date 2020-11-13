@@ -5672,7 +5672,7 @@ namespace ParkingMangement.GUI
 
         private void tbPrintReceiptKeyWordSearch_TextChangedAsync(object sender, EventArgs e)
         {
-            searchPrintReceiptData();
+            
         }
 
         private void searchPrintReceiptData()
@@ -5714,11 +5714,48 @@ namespace ParkingMangement.GUI
             formInPhieuThu.reason = tbPrintReceiptReason.Text;
             formInPhieuThu.cost = mPrintReceiptCost;
             formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
-            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked;
+            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked && cbCostCreateCard.Checked;
             formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
             formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
             formInPhieuThu.isVAT = cbVAT.Checked;
+       
+            formInPhieuThu.data = creatDataForPrintReceipt();
+            formInPhieuThu.title = title;
 
+            formInPhieuThu.ShowDialog();
+        }
+
+        private void openFeeNoticeForm()
+        {
+            if (!isChosenReceiptData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            else if (getCountReceiptIsChosen() > 10)
+            {
+                MessageBox.Show(Constant.sMessageMaxTicketMonthToPrintFeeNotice);
+                return;
+            }
+            FormThongBaoPhi formInPhieuThu = new FormThongBaoPhi();
+            formInPhieuThu.customerName = tbPrintReceiptCustomerName.Text;
+            formInPhieuThu.address = tbPrintReceiptAddress.Text;
+            formInPhieuThu.reason = tbPrintReceiptReason.Text;
+            formInPhieuThu.cost = mPrintReceiptCost;
+            formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
+            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked && cbCostCreateCard.Checked;
+            formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
+            formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
+            formInPhieuThu.isVAT = cbVAT.Checked;
+            formInPhieuThu.monthCount = int.Parse(numericMonthExtendCount.Value.ToString());
+
+            formInPhieuThu.data = creatDataForPrintReceipt();
+
+            formInPhieuThu.ShowDialog();
+        }
+
+        private DataTable creatDataForPrintReceipt()
+        {
             DataTable data = new DataTable();
             data.Columns.Add("Identify", typeof(System.String));
             data.Columns.Add("Digit", typeof(System.String));
@@ -5758,10 +5795,7 @@ namespace ParkingMangement.GUI
                     data.Rows.Add(row);
                 }
             }
-            formInPhieuThu.data = data;
-            formInPhieuThu.title = title;
-
-            formInPhieuThu.ShowDialog();
+            return data;
         }
 
         private void printDocument1_PrintPage(System.Object sender,
@@ -5903,9 +5937,10 @@ namespace ParkingMangement.GUI
                         if (cbCostDeposit.Checked)
                         {
                             int monthlyCost = 0;
+                            string monthlyCostString = row.Cells["ReceiptChargesAmount"].Value.ToString().Replace(".", "").Replace(",", "");
                             try
                             {
-                                monthlyCost = Convert.ToInt32(row.Cells["ReceiptChargesAmount"].Value);
+                                monthlyCost = Convert.ToInt32(monthlyCostString);
                             }
                             catch (Exception)
                             {
@@ -6424,6 +6459,16 @@ namespace ParkingMangement.GUI
                     }
                 }
             }
+        }
+
+        private void btnSearchCardPrintReceipt_Click(object sender, EventArgs e)
+        {
+            searchPrintReceiptData();
+        }
+
+        private void btnPrintFeeNotice_Click(object sender, EventArgs e)
+        {
+            openFeeNoticeForm();
         }
     }
 }

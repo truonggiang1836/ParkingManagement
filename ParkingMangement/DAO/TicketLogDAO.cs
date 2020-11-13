@@ -40,7 +40,7 @@ namespace ParkingMangement.DAO
             }
             if (!string.IsNullOrEmpty(partID))
             {
-                sql += " and Part.PartID like '" + partID + "'";
+                sql += " and Part.ID like '" + partID + "'";
             }
             return (new Database()).ExcuQuery(sql);
         }

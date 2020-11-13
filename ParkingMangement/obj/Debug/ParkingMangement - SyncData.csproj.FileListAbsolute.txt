@@ -85,3 +85,4 @@ D:\GIT\ParkingManagement - old camera\ParkingMangement\bin\Debug\AxInterop.WMPLi
 D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\Interop.WMPLib.dll
 D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\AxInterop.WMPLib.dll
 D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement - SyncData.csprojAssemblyReference.cache
+D:\GIT\ParkingManagement - old camera\ParkingMangement\obj\Debug\ParkingMangement.GUI.FormThongBaoPhi.resources
