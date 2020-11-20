@@ -391,6 +391,19 @@ namespace ParkingMangement.DAO
                 }
                 dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
+                long countAllCar = 0;
+                if (commonData.Rows.Count > 0)
+                {
+                    long countCarCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["CountCar"].ToString());
+                    countAllCar += countCarCommonData;
+                }
+                if (ticketData.Rows.Count > 0)
+                {
+                    long countCarTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCar"].ToString());
+                    countAllCar += countCarTicketData;
+                }
+                dataRow.SetField("CountCar", countAllCar);
+
                 long sumCost = 0;
                 if (commonData.Rows.Count > 0)
                 {
@@ -422,6 +435,7 @@ namespace ParkingMangement.DAO
             long countAllCarIn = 0;
             long countAllCarOut = 0;
             long countAllCarSurvive = 0;
+            long countAllCar = 0;
             long sumCost = 0;
             DataTable data = (new Database()).ExcuQuery(sql);
             if (data != null)
@@ -434,8 +448,10 @@ namespace ParkingMangement.DAO
                 data.Columns["CountCarOut"].SetOrdinal(2);
                 data.Columns.Add("CountCarSurvive", typeof(long));
                 data.Columns["CountCarSurvive"].SetOrdinal(3);
+                data.Columns.Add("CountCar", typeof(long));
+                data.Columns["CountCar"].SetOrdinal(4);
                 data.Columns.Add("SumCost", typeof(long));
-                data.Columns["SumCost"].SetOrdinal(4);
+                data.Columns["SumCost"].SetOrdinal(5);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     string partID = data.Rows[row].Field<string>("IDPart");
@@ -447,12 +463,15 @@ namespace ParkingMangement.DAO
                     data.Rows[row].SetField("CountCarOut", countCarOut);
                     long countCarSurvive = GetCountCarSurviveByTypeAndDate(startTime, endTime, partID, isTicketMonth, userInID, userOutID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
+                    long countCar = GetCountTicketMonthCarByTypeAndDate(startTime, endTime, partID);
+                    data.Rows[row].SetField("CountCar", countCar);
                     long countCost = GetCountCostByTypeAndDate(startTime, endTime, partID, isTicketMonth, userInID, userOutID);
                     countCost += GetCountTicketMonthCostByTypeAndDate(startTime, endTime, partID);
                     data.Rows[row].SetField("SumCost", countCost);
                     countAllCarIn += countCarIn;
                     countAllCarOut += countCarOut;
                     countAllCarSurvive += countCarSurvive;
+                    countAllCar += countCar;
                     long cost = long.Parse(data.Rows[row]["SumCost"].ToString());
                     sumCost += cost;
                 }
@@ -474,6 +493,7 @@ namespace ParkingMangement.DAO
             dataRow.SetField("CountCarIn", countAllCarIn);
             dataRow.SetField("CountCarOut", countAllCarOut);
             dataRow.SetField("CountCarSurvive", countAllCarSurvive);
+            dataRow.SetField("CountCar", countAllCar);
 
             //string sumCostString = Util.formatNumberAsMoney(sumCost);
             dataRow.SetField("SumCost", sumCost);
@@ -593,6 +613,25 @@ namespace ParkingMangement.DAO
             string sql = "select sum(cast(ReceiptLogDetail.Cost as bigint)) as SumCost from ReceiptLogDetail join Part on ReceiptLogDetail.PartID = Part.ID";
             sql += sqlQueryTicketMonth;
             
+            if (partID != null)
+            {
+                sql += " and ReceiptLogDetail.PartID = '" + partID + "'";
+            }
+            if (startTime != null && endTime != null)
+            {
+                DateTime startTime1 = startTime ?? DateTime.Now;
+                DateTime endTime1 = endTime ?? DateTime.Now;
+                sql += " and ReceiptLogDetail.PrintDate between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'";
+            }
+
+            return (new Database()).ExcuValueQuery(sql);
+        }
+
+        public static long GetCountTicketMonthCarByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID)
+        {
+            string sql = "select COUNT(DISTINCT ReceiptLogDetail.CardID) as CountCar from ReceiptLogDetail join Part on ReceiptLogDetail.PartID = Part.ID";
+            sql += sqlQueryTicketMonth;
+
             if (partID != null)
             {
                 sql += " and ReceiptLogDetail.PartID = '" + partID + "'";

@@ -114,6 +114,11 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
+        public static bool Update(string digit, string phone)
+        {
+            string sql = "update TicketMonth set TicketMonth.Phone = '" + phone + "' where Digit ='" + digit + "' and TicketMonth.Phone = ''";
+            return (new Database()).ExcuNonQuery(sql);
+        }
 
         public static void UpdateSyncSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
@@ -373,6 +378,8 @@ namespace ParkingMangement.DAO
 
         public static bool updateTicketByID(string id, int identify)
         {
+            HardDeleteIfCardBeDeleted(id);
+
             string sql = "update TicketMonth set ID = '" + id + "', TicketMonth.IsSync = 0 where Identify = " + identify;
             return (new Database()).ExcuNonQuery(sql);
         }
@@ -576,7 +583,7 @@ namespace ParkingMangement.DAO
 
                 CardDAO.InsertOrUpdate(cardDTO);
 
-                //Util.setSyncDoneMonthlyCardListToSPMServer(soThe);
+                Util.setSyncDoneMonthlyCardListToSPMServer(soThe);
                 //break;
 
                 Console.WriteLine("Sync API doing: " + index);

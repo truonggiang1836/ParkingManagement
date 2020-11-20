@@ -254,6 +254,12 @@
     <Compile Include="GUI\FormQuanLyXeVaoRa.designer.cs">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\FormThongBaoPhi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\FormThongBaoPhi.Designer.cs">
+      <DependentUpon>FormThongBaoPhi.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\FormTraCuuTheThang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -344,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormQuanLyXeVaoRa.resx">
       <DependentUpon>FormQuanLyXeVaoRa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\FormThongBaoPhi.resx">
+      <DependentUpon>FormThongBaoPhi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormTraCuuTheThang.resx">
       <DependentUpon>FormTraCuuTheThang.cs</DependentUpon>

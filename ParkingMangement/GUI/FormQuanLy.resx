@@ -180,6 +180,9 @@
   <metadata name="dataGridViewTextBoxColumn7.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="Column63.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="DoanhThuSumCost.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -534,6 +537,18 @@
   <metadata name="Column46.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="tbNoticeFeeContent.Text" xml:space="preserve">
+    <value>Quý Ông/Bà vui lòng mang theo giấy báo này đến Ban Quản lý Bãi Xe (tại tầng hầm B1) để thanh toán tiền mặt hoặc
+chuyển khoản theo thông tin tài khoản:
+Tên tài khoản: Đinh Đức Liệu
+Số tài khoản: 0071001316385 tại NH Vietcombank Hồ Chí Minh
+Nội dung: Chung cư- Tầng- Căn hộ- Phí gửi xe tháng…./2020
+Thời hạn thanh toán: Trước ngày 20 hàng tháng.
+Nợ cũ (nếu có) là phần Nợ phí (các) tháng trước chưa thanh toán cập nhật đến ngày cuối cùng của tháng trước.
+Nếu đã thanh toán, vui lòng bỏ qua thông báo này. Mọi thắc mắc, Quý ông/ bà vui lòng liên hệ theo số điện thoại
+(028)22 109 199- hoặc 0908223617 (Ms Khánh)
+Trân trọng</value>
+  </data>
   <metadata name="dataGridViewTextBoxColumn37.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>

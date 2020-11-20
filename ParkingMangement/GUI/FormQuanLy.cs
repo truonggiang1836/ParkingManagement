@@ -2767,11 +2767,11 @@ namespace ParkingMangement.GUI
         private void btnLuuCauHinhHienThi_Click(object sender, EventArgs e)
         {
             saveCauHinhHienThi();
-            new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    Util.sendConfigToServer();
-                }).Start();
+            //new Thread(() =>
+            //    {
+            //        Thread.CurrentThread.IsBackground = true;
+            //        Util.sendConfigToServer();
+            //    }).Start();
         }
 
         private void loadCauHinhHienThiData()
@@ -2807,6 +2807,7 @@ namespace ParkingMangement.GUI
             tbCarSpace2.Text = ConfigDAO.GetCarSpace().ToString();
             tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
+            tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
 
             loadQuyenNhanVien();
 
@@ -3022,6 +3023,8 @@ namespace ParkingMangement.GUI
                 }
             }
             configDTO.NoticeExpiredDate = noticeExpiredDate;
+
+            configDTO.NoticeFeeContent = tbNoticeFeeContent.Text;
 
             if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
             {
@@ -4890,11 +4893,9 @@ namespace ParkingMangement.GUI
                     }
 
                     string digit = row.Field<String>("Digit");
-                    string expirationDateString = row.Field<String>("ExpirationDate");
-                    DateTime expirationDate = DateTime.FromOADate(double.Parse(expirationDateString));
-                    string chargesAmount = row.Field<String>("ChargesAmount");
+                    string phone = row.Field<String>("Phone");
 
-                    TicketMonthDAO.Update(digit, expirationDate, chargesAmount);
+                    TicketMonthDAO.Update(digit, phone);
 
                     dt.Rows.Add(row);
                 }
@@ -4981,8 +4982,8 @@ namespace ParkingMangement.GUI
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string path = openFileDialog.FileName;
-                ImportDanhSachTheThangFromExcel(path);
-                //UpdateDanhSachTheThangFromExcel(path);
+                //ImportDanhSachTheThangFromExcel(path);
+                UpdateDanhSachTheThangFromExcel(path);
             }
         }
 
@@ -5106,7 +5107,6 @@ namespace ParkingMangement.GUI
                     handleReceiveUhfData(Program.newUhfCardId);
                 }              
             }));
-            Program.oldUhfCardId = Program.newUhfCardId;
         }
 
         private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -5118,7 +5118,6 @@ namespace ParkingMangement.GUI
                     handleReceiveUhfData(Program.newUhfCardId);
                 }
             }));
-            Program.oldUhfCardId = Program.newUhfCardId;
         }
 
         private TextBox focusedTextbox = null;
@@ -5672,7 +5671,7 @@ namespace ParkingMangement.GUI
 
         private void tbPrintReceiptKeyWordSearch_TextChangedAsync(object sender, EventArgs e)
         {
-            searchPrintReceiptData();
+            
         }
 
         private void searchPrintReceiptData()
@@ -5714,11 +5713,48 @@ namespace ParkingMangement.GUI
             formInPhieuThu.reason = tbPrintReceiptReason.Text;
             formInPhieuThu.cost = mPrintReceiptCost;
             formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
-            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked;
+            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked && cbCostCreateCard.Checked;
             formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
             formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
             formInPhieuThu.isVAT = cbVAT.Checked;
+       
+            formInPhieuThu.data = creatDataForPrintReceipt();
+            formInPhieuThu.title = title;
 
+            formInPhieuThu.ShowDialog();
+        }
+
+        private void openFeeNoticeForm()
+        {
+            if (!isChosenReceiptData())
+            {
+                MessageBox.Show(Constant.sMessageNoChooseDataError);
+                return;
+            }
+            else if (getCountReceiptIsChosen() > 10)
+            {
+                MessageBox.Show(Constant.sMessageMaxTicketMonthToPrintFeeNotice);
+                return;
+            }
+            FormThongBaoPhi formInPhieuThu = new FormThongBaoPhi();
+            formInPhieuThu.customerName = tbPrintReceiptCustomerName.Text;
+            formInPhieuThu.address = tbPrintReceiptAddress.Text;
+            formInPhieuThu.reason = tbPrintReceiptReason.Text;
+            formInPhieuThu.cost = mPrintReceiptCost;
+            formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
+            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked && cbCostCreateCard.Checked;
+            formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
+            formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
+            formInPhieuThu.isVAT = cbVAT.Checked;
+            formInPhieuThu.monthCount = int.Parse(numericMonthExtendCount.Value.ToString());
+
+            formInPhieuThu.data = creatDataForPrintReceipt();
+
+            formInPhieuThu.ShowDialog();
+        }
+
+        private DataTable creatDataForPrintReceipt()
+        {
             DataTable data = new DataTable();
             data.Columns.Add("Identify", typeof(System.String));
             data.Columns.Add("Digit", typeof(System.String));
@@ -5758,10 +5794,7 @@ namespace ParkingMangement.GUI
                     data.Rows.Add(row);
                 }
             }
-            formInPhieuThu.data = data;
-            formInPhieuThu.title = title;
-
-            formInPhieuThu.ShowDialog();
+            return data;
         }
 
         private void printDocument1_PrintPage(System.Object sender,
@@ -5903,9 +5936,10 @@ namespace ParkingMangement.GUI
                         if (cbCostDeposit.Checked)
                         {
                             int monthlyCost = 0;
+                            string monthlyCostString = row.Cells["ReceiptChargesAmount"].Value.ToString().Replace(".", "").Replace(",", "");
                             try
                             {
-                                monthlyCost = Convert.ToInt32(row.Cells["ReceiptChargesAmount"].Value);
+                                monthlyCost = Convert.ToInt32(monthlyCostString);
                             }
                             catch (Exception)
                             {
@@ -6424,6 +6458,16 @@ namespace ParkingMangement.GUI
                     }
                 }
             }
+        }
+
+        private void btnSearchCardPrintReceipt_Click(object sender, EventArgs e)
+        {
+            searchPrintReceiptData();
+        }
+
+        private void btnPrintFeeNotice_Click(object sender, EventArgs e)
+        {
+            openFeeNoticeForm();
         }
     }
 }

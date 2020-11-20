@@ -79,6 +79,7 @@ namespace ParkingMangement.Utils
         public static string sMessageCardTypeIsNotTicketMonth = "Loại thẻ này không dành cho xe tháng";
         public static string sMessageDigitExisted = "Biển số đã tồn tại";
         public static string sMessageMaxTicketMonthToPrint = "Chỉ được chọn tối đa 6 thẻ tháng";
+        public static string sMessageMaxTicketMonthToPrintFeeNotice = "Chỉ được chọn tối đa 10 thẻ tháng";
         public static string sMessageExpiredCard = "Thẻ tháng đã hết hạn!";
         public static string sMessageNearExpiredCard = "Thẻ tháng sắp hết hạn!";
 

@@ -27,6 +27,7 @@ namespace ParkingMangement
         public static UHFReader uhfOutReader;
 
         public static string oldUhfCardId = "";
+        public static string firstUhfCardId = "";
         public static string newUhfCardId = "";
 
         public static SerialPort portComLeftUhf;
@@ -181,21 +182,28 @@ namespace ParkingMangement
         private static void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Program.newUhfCardId = Util.ReadUhfData(Program.portComLeftUhf);
+            Console.WriteLine("UHF: " + Program.newUhfCardId);
             combineUhfCardId();
         }
 
         private static void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             Program.newUhfCardId = Util.ReadUhfData(Program.portComRightUhf);
+            Console.WriteLine("UHF: " + Program.newUhfCardId);
             combineUhfCardId();
         }
 
         private static void combineUhfCardId()
         {
             // noi chuoi ma UHF
-            if (Program.newUhfCardId.Length == 20 && !Program.oldUhfCardId.Equals(""))
+            if (Program.newUhfCardId.Length == 32)
             {
-                Program.newUhfCardId = Program.oldUhfCardId + " " + Program.newUhfCardId;
+                Program.firstUhfCardId = Program.newUhfCardId;
+            }
+
+            if (Program.newUhfCardId.Length == 20)
+            {
+                Program.newUhfCardId = Program.firstUhfCardId + " " + Program.newUhfCardId;
                 Console.WriteLine("Combine UHF: " + Program.newUhfCardId);
             }
         }
