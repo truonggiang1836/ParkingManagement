@@ -39,6 +39,7 @@ namespace ParkingMangement.DTO
         private int lockCardDate;
         private int noticeExpiredDate;
         private int depositCost;
+        private string noticeFeeContent;
 
         public int BikeSpace { get => bikeSpace; set => bikeSpace = value; }
         public int CarSpace { get => carSpace; set => carSpace = value; }
@@ -62,5 +63,6 @@ namespace ParkingMangement.DTO
         public int LockCardDate { get => lockCardDate; set => lockCardDate = value; }
         public int NoticeExpiredDate { get => noticeExpiredDate; set => noticeExpiredDate = value; }
         public int DepositCost { get => depositCost; set => depositCost = value; }
+        public string NoticeFeeContent { get => noticeFeeContent; set => noticeFeeContent = value; }
     }
 }

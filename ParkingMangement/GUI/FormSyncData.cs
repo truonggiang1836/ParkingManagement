@@ -90,7 +90,7 @@ namespace ParkingMangement.GUI
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventCardData);
-            aTimer.Interval = 10 * 60 * 1000;
+            aTimer.Interval = 5 * 60 * 1000; //5'
             aTimer.Enabled = true;
             aTimer.Start();
 

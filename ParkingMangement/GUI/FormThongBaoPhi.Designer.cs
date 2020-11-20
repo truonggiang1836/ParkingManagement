@@ -40,6 +40,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormThongBaoPhi));
             this.btnCancelReceippt = new System.Windows.Forms.Button();
             this.STT_ReceiptTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiptIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,21 +67,11 @@
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.panelPrintReceipt = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.tbTitle = new System.Windows.Forms.TextBox();
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.tbMonthYear = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.textBox17 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tbCustomerName = new System.Windows.Forms.TextBox();
             this.tbAddress = new System.Windows.Forms.TextBox();
@@ -92,6 +83,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbNoticeFeeContent = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrintReceipt)).BeginInit();
             this.panelPrintReceipt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -391,7 +383,7 @@
             dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Transparent;
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvPrintReceipt.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dgvPrintReceipt.Size = new System.Drawing.Size(727, 217);
+            this.dgvPrintReceipt.Size = new System.Drawing.Size(727, 167);
             this.dgvPrintReceipt.TabIndex = 89;
             this.dgvPrintReceipt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrintReceipt_CellContentClick);
             this.dgvPrintReceipt.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPrintReceipt_DataBindingComplete);
@@ -411,22 +403,13 @@
             // panelPrintReceipt
             // 
             this.panelPrintReceipt.BackColor = System.Drawing.Color.White;
+            this.panelPrintReceipt.Controls.Add(this.textBox19);
+            this.panelPrintReceipt.Controls.Add(this.tbNoticeFeeContent);
             this.panelPrintReceipt.Controls.Add(this.textBox2);
-            this.panelPrintReceipt.Controls.Add(this.textBox16);
-            this.panelPrintReceipt.Controls.Add(this.textBox10);
-            this.panelPrintReceipt.Controls.Add(this.textBox6);
             this.panelPrintReceipt.Controls.Add(this.tbTitle);
             this.panelPrintReceipt.Controls.Add(this.textBox22);
             this.panelPrintReceipt.Controls.Add(this.tbMonthYear);
             this.panelPrintReceipt.Controls.Add(this.textBox20);
-            this.panelPrintReceipt.Controls.Add(this.textBox19);
-            this.panelPrintReceipt.Controls.Add(this.textBox18);
-            this.panelPrintReceipt.Controls.Add(this.textBox17);
-            this.panelPrintReceipt.Controls.Add(this.textBox15);
-            this.panelPrintReceipt.Controls.Add(this.textBox13);
-            this.panelPrintReceipt.Controls.Add(this.textBox14);
-            this.panelPrintReceipt.Controls.Add(this.textBox7);
-            this.panelPrintReceipt.Controls.Add(this.textBox3);
             this.panelPrintReceipt.Controls.Add(this.textBox1);
             this.panelPrintReceipt.Controls.Add(this.tbCustomerName);
             this.panelPrintReceipt.Controls.Add(this.tbAddress);
@@ -456,44 +439,6 @@
             this.textBox2.TabIndex = 106;
             this.textBox2.Text = "Công ty CP Dịch Vụ Quản Lý Bất Động Sản Sài Gòn";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // textBox16
-            // 
-            this.textBox16.BackColor = System.Drawing.Color.White;
-            this.textBox16.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox16.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox16.Location = new System.Drawing.Point(18, 488);
-            this.textBox16.Multiline = true;
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(76, 18);
-            this.textBox16.TabIndex = 101;
-            this.textBox16.Text = "Số tài khoản:";
-            // 
-            // textBox10
-            // 
-            this.textBox10.BackColor = System.Drawing.Color.White;
-            this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox10.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox10.Location = new System.Drawing.Point(18, 466);
-            this.textBox10.Multiline = true;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(76, 18);
-            this.textBox10.TabIndex = 97;
-            this.textBox10.Text = "Số tài khoản:";
-            this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
-            // 
-            // textBox6
-            // 
-            this.textBox6.BackColor = System.Drawing.Color.White;
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(18, 446);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(82, 18);
-            this.textBox6.TabIndex = 95;
-            this.textBox6.Text = "Tên tài khoản:";
-            this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
             // tbTitle
             // 
@@ -553,97 +498,12 @@
             this.textBox19.BackColor = System.Drawing.Color.White;
             this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox19.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox19.Location = new System.Drawing.Point(653, 531);
+            this.textBox19.Location = new System.Drawing.Point(639, 529);
             this.textBox19.Multiline = true;
             this.textBox19.Name = "textBox19";
             this.textBox19.Size = new System.Drawing.Size(123, 18);
             this.textBox19.TabIndex = 105;
             this.textBox19.Text = "Ban Quản Lý Bãi Xe";
-            // 
-            // textBox18
-            // 
-            this.textBox18.BackColor = System.Drawing.Color.White;
-            this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox18.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox18.Location = new System.Drawing.Point(18, 531);
-            this.textBox18.Multiline = true;
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(70, 18);
-            this.textBox18.TabIndex = 104;
-            this.textBox18.Text = "Trân trọng";
-            // 
-            // textBox17
-            // 
-            this.textBox17.BackColor = System.Drawing.Color.White;
-            this.textBox17.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox17.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox17.Location = new System.Drawing.Point(18, 510);
-            this.textBox17.Multiline = true;
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(425, 18);
-            this.textBox17.TabIndex = 103;
-            this.textBox17.Text = "Thời hạn thanh toán: Trong vòng 10 ngày kể từ khi phát thông báo phí";
-            // 
-            // textBox15
-            // 
-            this.textBox15.BackColor = System.Drawing.Color.White;
-            this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox15.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox15.Location = new System.Drawing.Point(102, 488);
-            this.textBox15.Multiline = true;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(654, 18);
-            this.textBox15.TabIndex = 102;
-            this.textBox15.Text = "Chung cư - Tháp - Tầng - Căn hộ - Phí gửi xe tháng....";
-            // 
-            // textBox13
-            // 
-            this.textBox13.BackColor = System.Drawing.Color.White;
-            this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox13.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox13.Location = new System.Drawing.Point(282, 466);
-            this.textBox13.Multiline = true;
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(216, 18);
-            this.textBox13.TabIndex = 100;
-            this.textBox13.Text = "NH MB BANK - CN ĐÔNG SÀI GÒN";
-            // 
-            // textBox14
-            // 
-            this.textBox14.BackColor = System.Drawing.Color.White;
-            this.textBox14.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox14.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox14.Location = new System.Drawing.Point(263, 466);
-            this.textBox14.Multiline = true;
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(18, 18);
-            this.textBox14.TabIndex = 99;
-            this.textBox14.Text = "tại";
-            // 
-            // textBox7
-            // 
-            this.textBox7.BackColor = System.Drawing.Color.White;
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox7.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(103, 466);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(104, 18);
-            this.textBox7.TabIndex = 98;
-            this.textBox7.Text = "280 111 9888 999";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.White;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(106, 446);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(312, 18);
-            this.textBox3.TabIndex = 96;
-            this.textBox3.Text = "Công ty CP Dịch Vụ Quản Lý Bất Động Sản Sài Gòn";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox1
             // 
@@ -761,7 +621,7 @@
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(15, 174);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(751, 253);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(751, 200);
             this.flowLayoutPanel1.TabIndex = 92;
             // 
             // panel1
@@ -769,10 +629,20 @@
             this.panel1.Controls.Add(this.tbIncludeVAT);
             this.panel1.Controls.Add(this.textBox11);
             this.panel1.Controls.Add(this.tbCost);
-            this.panel1.Location = new System.Drawing.Point(3, 223);
+            this.panel1.Location = new System.Drawing.Point(3, 173);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(745, 24);
             this.panel1.TabIndex = 93;
+            // 
+            // tbNoticeFeeContent
+            // 
+            this.tbNoticeFeeContent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNoticeFeeContent.Location = new System.Drawing.Point(15, 380);
+            this.tbNoticeFeeContent.Multiline = true;
+            this.tbNoticeFeeContent.Name = "tbNoticeFeeContent";
+            this.tbNoticeFeeContent.Size = new System.Drawing.Size(751, 169);
+            this.tbNoticeFeeContent.TabIndex = 111;
+            this.tbNoticeFeeContent.Text = resources.GetString("tbNoticeFeeContent.Text");
             // 
             // FormThongBaoPhi
             // 
@@ -833,21 +703,12 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox22;
         private System.Windows.Forms.TextBox tbMonthYear;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox17;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.TextBox tbTitle;
+        private System.Windows.Forms.TextBox tbNoticeFeeContent;
     }
 }

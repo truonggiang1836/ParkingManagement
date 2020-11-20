@@ -79,6 +79,8 @@ namespace ParkingMangement.GUI
 
             tbCurrentDate.Text = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
             tbMonthYear.Text = DateTime.Now.AddMonths(monthCount).Month + "/" + DateTime.Now.AddMonths(monthCount).Year;
+            tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
+
             string costText = "";
             if (cost >= 0)
             {

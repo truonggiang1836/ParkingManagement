@@ -2767,11 +2767,11 @@ namespace ParkingMangement.GUI
         private void btnLuuCauHinhHienThi_Click(object sender, EventArgs e)
         {
             saveCauHinhHienThi();
-            new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    Util.sendConfigToServer();
-                }).Start();
+            //new Thread(() =>
+            //    {
+            //        Thread.CurrentThread.IsBackground = true;
+            //        Util.sendConfigToServer();
+            //    }).Start();
         }
 
         private void loadCauHinhHienThiData()
@@ -2807,6 +2807,7 @@ namespace ParkingMangement.GUI
             tbCarSpace2.Text = ConfigDAO.GetCarSpace().ToString();
             tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
+            tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
 
             loadQuyenNhanVien();
 
@@ -3022,6 +3023,8 @@ namespace ParkingMangement.GUI
                 }
             }
             configDTO.NoticeExpiredDate = noticeExpiredDate;
+
+            configDTO.NoticeFeeContent = tbNoticeFeeContent.Text;
 
             if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
             {
@@ -4890,11 +4893,9 @@ namespace ParkingMangement.GUI
                     }
 
                     string digit = row.Field<String>("Digit");
-                    string expirationDateString = row.Field<String>("ExpirationDate");
-                    DateTime expirationDate = DateTime.FromOADate(double.Parse(expirationDateString));
-                    string chargesAmount = row.Field<String>("ChargesAmount");
+                    string phone = row.Field<String>("Phone");
 
-                    TicketMonthDAO.Update(digit, expirationDate, chargesAmount);
+                    TicketMonthDAO.Update(digit, phone);
 
                     dt.Rows.Add(row);
                 }
@@ -4981,8 +4982,8 @@ namespace ParkingMangement.GUI
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string path = openFileDialog.FileName;
-                ImportDanhSachTheThangFromExcel(path);
-                //UpdateDanhSachTheThangFromExcel(path);
+                //ImportDanhSachTheThangFromExcel(path);
+                UpdateDanhSachTheThangFromExcel(path);
             }
         }
 
@@ -5106,7 +5107,6 @@ namespace ParkingMangement.GUI
                     handleReceiveUhfData(Program.newUhfCardId);
                 }              
             }));
-            Program.oldUhfCardId = Program.newUhfCardId;
         }
 
         private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -5118,7 +5118,6 @@ namespace ParkingMangement.GUI
                     handleReceiveUhfData(Program.newUhfCardId);
                 }
             }));
-            Program.oldUhfCardId = Program.newUhfCardId;
         }
 
         private TextBox focusedTextbox = null;

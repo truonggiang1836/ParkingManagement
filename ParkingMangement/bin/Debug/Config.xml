@@ -18,8 +18,8 @@
   <zoom_camera_2>30</zoom_camera_2>
   <zoom_camera_3>30</zoom_camera_3>
   <zoom_camera_4>30</zoom_camera_4>
-  <com_receive_in>COM7</com_receive_in>
-  <com_receive_out>COM8</com_receive_out>
+  <com_receive_in>COM8</com_receive_in>
+  <com_receive_out>COM7</com_receive_out>
   <com_send>COM3</com_send>
   <com_led_left />
   <com_led_right />
@@ -33,7 +33,7 @@
   <signal_open_barie_out_motorbike />
   <signal_close_barie_out_motorbike />
   <uhf_query_time>1</uhf_query_time>
-  <is_using_uhf>no</is_using_uhf>
+  <is_using_uhf>yes</is_using_uhf>
   <read_digit_folder />
   <project_id>2</project_id>
   <python_folder />

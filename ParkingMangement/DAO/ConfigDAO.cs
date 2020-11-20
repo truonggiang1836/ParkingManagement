@@ -161,6 +161,19 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static string GetNoticeFeeContent()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<string>("NoticeFeeContent");
+            }
+            else
+            {
+                return "";
+            }
+        }
+
         public static int GetCalculationTicketMonth()
         {
             DataTable dt = GetConfig();
@@ -179,7 +192,8 @@ namespace ParkingMangement.DAO
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth
-                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate;
+                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate 
+                + ", NoticeFeeContent = N'" + configDTO.NoticeFeeContent + "'";
             return sql;
         }
 
@@ -192,6 +206,12 @@ namespace ParkingMangement.DAO
         public static bool UpdateXeTon(ConfigDTO configDTO)
         {
             string sql = "update Config set BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace;
+            return (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateNoticeFeeContent(string noticeFeeContent)
+        {
+            string sql = "update Config set NoticeFeeContent =" + noticeFeeContent;
             return (new Database()).ExcuNonQuery(sql);
         }
 

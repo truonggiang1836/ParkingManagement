@@ -82,6 +82,7 @@ namespace ParkingMangement.GUI
         private UHFReader mUHFReader;
         private int mNoticeExpiredDate;
         private int parkingTypeID;
+        private bool isUhfCard = false;
 
         private Size oldSize;
         private const float LARGER_FONT_FACTOR = 1.5f;
@@ -509,7 +510,7 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    if (cardID.Length == 8 || cardID.Length == 10 || cardID.Length == 18)
+                    if (cardID.Length == 8 || cardID.Length == 10 || cardID.Length == 18 || cardID.Length == 53)
                     {
                         labelError.Text = Constant.sMessageCardIdNotExist;
                         Util.playAudio(Constant.notused);
@@ -532,12 +533,11 @@ namespace ParkingMangement.GUI
 
         private void checkForOpenBarie(DataTable dtLastCar)
         {
-            bool isUhfCard = false;
-            if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
+            if (cardID.Length == 53)
             {
                 isUhfCard = true;
             }
-            string cardType = CardDAO.GetCardTypeByID(cardID);
+
             if (!inputIsRightSide())
             {
                 checkForOpenBarieIn(isUhfCard);
@@ -546,6 +546,7 @@ namespace ParkingMangement.GUI
             {
                 checkForOpenBarieOut(isUhfCard);
             }
+            isUhfCard = false;
         }
 
         private bool checkForSaveToDBAsync(CardDTO dtCommonCard, TicketMonthDTO dtTicketCard)
@@ -585,15 +586,16 @@ namespace ParkingMangement.GUI
                 }
             }
 
+            bool isLockedCard = false;
             if (!dtCommonCard.IsUsing.Equals("1"))
             {
-                if (!isCarIn())
-                {
-                    loadCarInData(dtLastCar);
-                }
+                isLockedCard = true;
                 Util.playAudio(Constant.locked);
-                MessageBox.Show(Constant.sMessageCardIsLost);              
-                return false;
+                MessageBox.Show(Constant.sMessageCardIsLost);
+                if (isCarIn())
+                {
+                    return false;
+                }               
             }
 
             string inputDigit = "";
@@ -618,7 +620,10 @@ namespace ParkingMangement.GUI
                         return false;
                     }
                 }
-                checkExpiredTicket(dtTicketCard, isTicketCard);
+                if (!isLockedCard)
+                {
+                    checkExpiredTicket(dtTicketCard, isTicketCard);
+                }
 
                 loadImage1ToPictureBox();
                 loadImage2ToPictureBox();
@@ -640,7 +645,10 @@ namespace ParkingMangement.GUI
             {
                 if (isKiemTraXeChuaRa || isKiemTraCapNhatXeRa)
                 {
-                    checkExpiredTicket(dtTicketCard, isTicketCard);
+                    if (!isLockedCard)
+                    {
+                        checkExpiredTicket(dtTicketCard, isTicketCard);
+                    }
                     loadCarInData(dtLastCar);
                     updateCarOut(dtTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit);
                 } else
@@ -651,7 +659,7 @@ namespace ParkingMangement.GUI
                 }
             }
             new Thread(() =>
-            {
+            {               
                 checkForOpenBarie(dtLastCar);
             }).Start();           
 
@@ -2411,7 +2419,7 @@ namespace ParkingMangement.GUI
 
         private void resetAllData()
         {
-            //Program.oldUhfCardId = "";
+            Program.oldUhfCardId = "";
             labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
@@ -3202,24 +3210,24 @@ namespace ParkingMangement.GUI
         private void portComReceiveIn_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             portNameComReceiveInput = portNameComReceiveIn;
-            Program.newUhfCardId = Util.ReadUhfData(Program.portComLeftUhf);
+            //Program.newUhfCardId = Util.ReadUhfData(Program.portComLeftUhf);
             if (!Program.newUhfCardId.Equals(""))
             {
-                combineUhfCardId();
+                checkForReadUhfCard();
             }       
         }
 
         private void portComReceiveOut_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             portNameComReceiveInput = portNameComReceiveOut;
-            Program.newUhfCardId = Util.ReadUhfData(Program.portComRightUhf);
+            //Program.newUhfCardId = Util.ReadUhfData(Program.portComRightUhf);
             if (!Program.newUhfCardId.Equals(""))
             {
-                combineUhfCardId();
+                checkForReadUhfCard();
             }
         }
 
-        private void combineUhfCardId()
+        private void checkForReadUhfCard()
         {
             // noi chuoi ma UHF
             //if (Program.newUhfCardId.Length == 20 && !Program.oldUhfCardId.Equals(""))
@@ -3227,11 +3235,16 @@ namespace ParkingMangement.GUI
             //    Program.newUhfCardId = Program.oldUhfCardId + " " + Program.newUhfCardId;
             //    Console.WriteLine("Combine UHF: " + Program.newUhfCardId);
             //}
+            if (ActiveForm != this)
+            {
+                return;
+            }
+
             if (Program.newUhfCardId.Length == 53)
             {
                 handleUhfData();
+                Program.oldUhfCardId = Program.newUhfCardId;
             }
-            Program.oldUhfCardId = Program.newUhfCardId;
         }
 
         private void handleUhfData()
@@ -3260,13 +3273,14 @@ namespace ParkingMangement.GUI
                 //}
 
                 //labelError.Text = Program.newUhfCardId;
+              
                 Console.WriteLine("UHF: " + Program.newUhfCardId);
                 if (Program.newUhfCardId != null)
                 {                                
                     double spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
                     oldUhfCardTime = DateTime.Now;
-                    int distant = 3 * 60 * 1000; // 3'
-                    if (!Program.newUhfCardId.Equals(Program.oldUhfCardId) || spentTime > distant)
+                    int distant = 15 * 1000; // 15s
+                    if (!Program.newUhfCardId.Equals(Program.oldUhfCardId) || spentTime > distant )
                     {                       
                         //labelError.Text = newUhfCardId;
                         cardID = Program.newUhfCardId;
