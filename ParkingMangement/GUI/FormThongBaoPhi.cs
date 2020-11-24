@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,9 +30,6 @@ namespace ParkingMangement.GUI
         private int mReceiptNumber = 1;     
 
         public bool isCostExtendCard = false;
-        public bool isCostCreateCard = false;
-        public bool isRemoveCostCreateCard = false;
-        public bool isCostDepositCard = false;
         public bool isUpdatedDB = false;
         public DataTable data;
         public FormThongBaoPhi()
@@ -78,8 +76,20 @@ namespace ParkingMangement.GUI
 
 
             tbCurrentDate.Text = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
-            tbMonthYear.Text = DateTime.Now.AddMonths(monthCount).Month + "/" + DateTime.Now.AddMonths(monthCount).Year;
-            tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
+            tbMonthYear.Text = DateTime.Now.Month + "/" + DateTime.Now.Year;
+            tbUpdateDay.Text = "(cập nhật đến " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + ")";
+
+            WebBrowser wb = new WebBrowser();
+            wb.Navigate("about:blank");
+            wb.Document.Write(ConfigDAO.GetNoticeFeeContent());
+            wb.Document.ExecCommand("SelectAll", false, null);
+            wb.Document.ExecCommand("Copy", false, null);
+
+            richTextBoxNoticeFeeContent.SelectAll();
+            richTextBoxNoticeFeeContent.Paste();
+
+
+            //richTextBoxNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
 
             string costText = "";
             if (cost >= 0)
@@ -208,6 +218,11 @@ namespace ParkingMangement.GUI
         }
 
         private void tbMonthYear_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBoxNoticeFeeContent_TextChanged(object sender, EventArgs e)
         {
 
         }

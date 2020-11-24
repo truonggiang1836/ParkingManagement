@@ -659,8 +659,8 @@ namespace ParkingMangement.GUI
                 }
             }
             new Thread(() =>
-            {               
-                checkForOpenBarie(dtLastCar);
+            {
+                checkForOpenBarie(dtLastCar);              
             }).Start();           
 
             if (!mConfig.readDigitFolder.Equals(""))
@@ -682,38 +682,46 @@ namespace ParkingMangement.GUI
             return true;
         }
 
-        private bool isShowExpiredMessage = false;
+        bool isShowExpiredMessage = false;
         private void checkExpiredTicket(TicketMonthDTO dtTicketCard, bool isTicketCard)
         {
             if (isTicketCard)
             {
                 DateTime? expirationDate = dtTicketCard.ExpirationDate;
-                int totalDaysLeft = (int)((DateTime)expirationDate - DateTime.Now).TotalDays;
+                double totalDaysLeft = ((DateTime)expirationDate - DateTime.Now).TotalDays;
                 if (expirationDate != null)
                 {
                     if (totalDaysLeft < 0)
                     {
-                        // vé tháng hết hạn
-                        isShowExpiredMessage = false;
+                        bool isExpired = false;
                         int currentDay = (int)System.DateTime.Now.Day;
-                        if (currentDay >= mNoticeExpiredDate || -(totalDaysLeft) >= mNoticeExpiredDate)
+                        if (mConfig.isUseCostDeposit.Equals("no"))
                         {
-                            isShowExpiredMessage = true;                    
-                        } else if (mConfig.isUseCostDeposit.Equals("no"))
+                            // vé tháng đã hết hạn không cọc
+                            isExpired = true;
+                        } else if (currentDay >= mNoticeExpiredDate || -(totalDaysLeft) >= mNoticeExpiredDate)
                         {
+                            // vé tháng sắp hết hạn có cọc
                             isShowExpiredMessage = true;
+                            labelError.Text = Constant.sMessageNearExpiredCard;
+                            Util.playAudio(Constant.tobeexpired);
+                        } else
+                        {
+                            // vé tháng đã hết hạn có cọc
+                            isExpired = true;
                         }
 
-                        if (isShowExpiredMessage)
+                        if (isExpired)
                         {
+                            isShowExpiredMessage = true;
                             labelError.Text = Constant.sMessageExpiredCard;
                             Util.playAudio(Constant.expired);
                         }
-                    } else if (totalDaysLeft <= expirationDate.Value.Day - mNoticeExpiredDate)
-                    {
-                        // vé tháng sắp hết hạn
+                    } else if (totalDaysLeft <= 30 - mNoticeExpiredDate)
+                    {                      
                         if (mConfig.isUseCostDeposit.Equals("no"))
                         {
+                            // vé tháng sắp hết hạn không cọc
                             isShowExpiredMessage = true;
                             labelError.Text = Constant.sMessageNearExpiredCard;
                             Util.playAudio(Constant.tobeexpired);
@@ -2772,9 +2780,9 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 60 * 1000;
+            aTimer.Interval = 10 * 1000;
             aTimer.Enabled = true;
-            aTimer.Start();
+            aTimer.Start();           
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -2832,7 +2840,8 @@ namespace ParkingMangement.GUI
             {
                 countBikeEmpty = 0;
             }
-            string dataBike = "@xemay_" + countBikeEmpty.ToString("D" + 4) + "&" + "\r\n";
+            //string dataBike = "@xemay_" + countBikeEmpty.ToString("D" + 4) + "&" + "\r\n";
+            string dataBike = "@xemay_" + countBikeEmpty.ToString() + "&";
             writeDataToLostAvailablePort(dataBike, portName);
 
             Thread.Sleep(1000);
@@ -2841,7 +2850,8 @@ namespace ParkingMangement.GUI
             {
                 countCarEmpty = 0;
             }
-            string dataCar = "@oto_" + countCarEmpty.ToString("D" + 4) + "&" + "\r\n";
+            //string dataCar = "@oto_" + countCarEmpty.ToString("D" + 4) + "&" + "\r\n";
+            string dataCar = "@oto_" + countCarEmpty.ToString() + "&";
             writeDataToLostAvailablePort(dataCar, portName);
         }
 
@@ -3303,7 +3313,7 @@ namespace ParkingMangement.GUI
         private bool inputIsRightSide()
         {
 
-            if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes"))
+            if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes") && (cardID.Length == 53))
             {
                 bool result = portNameComReceiveInput.Equals(portNameComReceiveOut);
                 return result;
@@ -3318,10 +3328,13 @@ namespace ParkingMangement.GUI
                 if (rbRightSide.Checked)
                 {
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
+                //bool result = rfidInput.Equals(rfidOut);
+                //return result;
             }
         }
 

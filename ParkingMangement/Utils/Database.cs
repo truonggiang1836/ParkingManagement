@@ -233,5 +233,11 @@ namespace ParkingMangement
                 }
             }
         }
+
+        static public DataTable UpdateDB()
+        {
+            string sql = "ALTER TABLE Config ADD NoticeFeeContent nvarchar(MAX);";
+            return (new Database()).ExcuQuery(sql);
+        }
     }
 }

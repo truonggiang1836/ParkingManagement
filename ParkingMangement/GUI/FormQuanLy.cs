@@ -5731,7 +5731,7 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageNoChooseDataError);
                 return;
             }
-            else if (getCountReceiptIsChosen() > 10)
+            else if (getCountReceiptIsChosen() > 6)
             {
                 MessageBox.Show(Constant.sMessageMaxTicketMonthToPrintFeeNotice);
                 return;
@@ -5741,10 +5741,7 @@ namespace ParkingMangement.GUI
             formInPhieuThu.address = tbPrintReceiptAddress.Text;
             formInPhieuThu.reason = tbPrintReceiptReason.Text;
             formInPhieuThu.cost = mPrintReceiptCost;
-            formInPhieuThu.isCostCreateCard = cbCostCreateCard.Checked;
-            formInPhieuThu.isRemoveCostCreateCard = rbRemoveCostCreateCard.Checked && cbCostCreateCard.Checked;
-            formInPhieuThu.isCostDepositCard = cbCostDeposit.Checked;
-            formInPhieuThu.isCostExtendCard = cbCostExtendCard.Checked;
+            formInPhieuThu.isCostExtendCard = true;
             formInPhieuThu.isVAT = cbVAT.Checked;
             formInPhieuThu.monthCount = int.Parse(numericMonthExtendCount.Value.ToString());
 
@@ -5990,6 +5987,55 @@ namespace ParkingMangement.GUI
             mPrintReceiptCost = total;
             tbPrintReceiptCost.Text = Util.formatNumberAsMoney(total);
             tbPrintReceiptReason.Text = reason;
+        }
+
+        private void calculateNoticeCost()
+        {
+            dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = true;
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+            {
+                bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
+                if (isChoose)
+                {                   
+                    row.Cells["ReceiptNewExpirationDate"].Value = Util.getLastDateOfCurrentMonth();
+                }
+            }
+
+            int total = 0;
+            foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
+            {
+                DataGridViewCheckBoxCell checkCell = row.Cells["ReceiptIsChosen"] as DataGridViewCheckBoxCell;
+                object value = checkCell.Value;
+
+                row.Cells["ReceiptCost"].Value = 0;
+
+                foreach (DataGridViewColumn col in dgvPrintReceipt.Columns)
+                {
+                    dgvPrintReceipt[col.Index, row.Index].Style.ForeColor = Color.Black;
+                }
+
+                if (value != null && (Boolean)value)
+                {
+                    foreach (DataGridViewColumn col in dgvPrintReceipt.Columns)
+                    {
+                        dgvPrintReceipt[col.Index, row.Index].Style.ForeColor = Color.Blue;
+                    }
+
+                    int payCost = 0;
+                    int extendCardCost = getCostExtendCard(row);
+                    if (cbVAT.Checked)
+                    {
+                        extendCardCost += (int)(extendCardCost * 0.1);
+                    }
+                    payCost += extendCardCost;
+                    payCost = Util.roundUpVND(payCost);
+                    row.Cells["ReceiptCost"].Value = payCost;
+                    total += payCost;
+                }
+            }
+            
+            mPrintReceiptCost = total;
+            tbPrintReceiptCost.Text = Util.formatNumberAsMoney(total);
         }
 
         private int getCostExtendCard(DataGridViewRow row)
@@ -6467,6 +6513,7 @@ namespace ParkingMangement.GUI
 
         private void btnPrintFeeNotice_Click(object sender, EventArgs e)
         {
+            calculateNoticeCost();
             openFeeNoticeForm();
         }
     }
