@@ -34,6 +34,7 @@ using ParkingMangement.TextRecognized;
 using System.Timers;
 using ReaderB;
 using System.Collections;
+using CameraViewer;
 
 namespace ParkingMangement.GUI
 {
@@ -91,6 +92,9 @@ namespace ParkingMangement.GUI
         //private bool mIsHasCarInOut = false;
 
         private int _lastFormSize;
+
+        private Configuration config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+        private RunningPool runningPool = new RunningPool();
 
 
         //=======class============
@@ -254,6 +258,26 @@ namespace ParkingMangement.GUI
             //    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
             //}).Start();
 
+
+
+            config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
+            // load cameras tree
+            config.LoadCameras();
+            openMyCamera();
+        }
+
+        private void openMyCamera()
+        {
+            string fullName = "G2";
+
+            // get camera
+            Camera camera = config.GetCameraByName(fullName);
+
+            // add camera to running pool
+            if (runningPool.Add(camera))
+            {
+                cameraWindow1.Camera = camera;
+            }
         }
 
         private void loadInfo()
@@ -3601,6 +3625,11 @@ namespace ParkingMangement.GUI
         private void rbRightSide_CheckedChanged(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
+        }
+
+        private void axVLCPlugin1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

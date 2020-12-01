@@ -148,8 +148,15 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="videosource, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\videosource.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\CameraWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DAO\BlackCarDAO.cs" />
     <Compile Include="DAO\CarDAO.cs" />
     <Compile Include="DAO\CardDAO.cs" />
@@ -287,9 +294,20 @@
     <Compile Include="TextRecognized\clsImagePlate.cs" />
     <Compile Include="TextRecognized\clsLicensePlate.cs" />
     <Compile Include="TextRecognized\clsNetwork.cs" />
+    <Compile Include="Tools\Camera.cs" />
+    <Compile Include="Tools\CameraCollection.cs" />
+    <Compile Include="Tools\FinalizationPool.cs" />
+    <Compile Include="Tools\Group.cs" />
+    <Compile Include="Tools\GroupCollection.cs" />
+    <Compile Include="Tools\RunningPool.cs" />
+    <Compile Include="Tools\VideoProvider.cs" />
+    <Compile Include="Tools\VideoProviderCollection.cs" />
+    <Compile Include="Tools\View.cs" />
+    <Compile Include="Tools\ViewCollection.cs" />
     <Compile Include="Utils\ApiUtil.cs" />
     <Compile Include="Utils\AutoClosingMessageBox.cs" />
     <Compile Include="Utils\CameraCapture.cs" />
+    <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\Database.cs" />
     <Compile Include="GUI\FormLogin.cs">
@@ -311,6 +329,9 @@
     <Compile Include="Utils\StaticDatabase.cs" />
     <Compile Include="Utils\UHFReader.cs" />
     <Compile Include="Utils\Util.cs" />
+    <EmbeddedResource Include="Controls\CameraWindow.resx">
+      <DependentUpon>CameraWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\FormInPhieuThu.resx">
       <DependentUpon>FormInPhieuThu.cs</DependentUpon>
     </EmbeddedResource>
