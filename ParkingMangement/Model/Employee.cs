@@ -22,7 +22,7 @@ namespace ParkingMangement.Model
         [JsonProperty("position")]
         public string Position { get; set; }
         [JsonProperty("project_id")]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
         [JsonProperty("deleted")]
         public int Deleted { get; set; }
         [JsonProperty("email")]

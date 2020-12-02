@@ -35,6 +35,6 @@ namespace ParkingMangement.Model
         [JsonProperty("lockCardDate")]
         public int LockCardDate { get; set; }
         [JsonProperty("projectId")]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
     }
 }

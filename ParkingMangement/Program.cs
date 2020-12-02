@@ -55,7 +55,7 @@ namespace ParkingMangement
             {
                 Application.Run(new FormLogin());
             }
-            Database.UpdateDB();
+            //Database.UpdateDB();
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)

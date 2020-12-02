@@ -92,6 +92,6 @@ namespace ParkingMangement.Model
         public int StartHourNight { get; set; }
 
         [JsonProperty("projectId")]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
     }
 }
