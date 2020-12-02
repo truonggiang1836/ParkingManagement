@@ -117,7 +117,7 @@ namespace ParkingMangement.Model
         public string readDigitFolder { get; set; } = "";
       
         [XmlElement(ElementName = "project_id")]
-        public int projectId { get; set; } = 0;
+        public string projectId { get; set; } = "";
         [XmlElement(ElementName = "python_folder")]
         public string pythonFolder { get; set; } = "";
         [XmlElement(ElementName = "python_run_file")]

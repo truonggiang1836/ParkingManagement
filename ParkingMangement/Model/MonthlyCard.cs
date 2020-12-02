@@ -12,7 +12,7 @@ namespace ParkingMangement.Model
         [JsonProperty("area_id")]
         public int AreaId { get; set; }
         [JsonProperty("project_id")]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
         [JsonProperty("admin_id")]
         public int AdminId { get; set; }
         [JsonProperty("address")]

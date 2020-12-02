@@ -562,10 +562,10 @@ namespace ParkingMangement.DAO
                 if (data != null && data.Rows.Count > 0)
                 {
                     partId = data.Rows[0].Field<string>("ID");
-                    int amount = data.Rows[0].Field<Int32>("Amount");
-                    ticketMonthDTO.IdPart = partId;
-                    ticketMonthDTO.ChargesAmount = amount.ToString();
+                    ticketMonthDTO.IdPart = partId;                   
                 }
+                ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();
+                ticketMonthDTO.Phone = jObject.GetValue("dienThoai").ToString();
                 ticketMonthDTO.IsSync = "1";
 
                 InsertOrUpdateNoErrorMessage(ticketMonthDTO);

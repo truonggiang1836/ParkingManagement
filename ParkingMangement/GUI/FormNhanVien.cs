@@ -669,14 +669,14 @@ namespace ParkingMangement.GUI
                 {
                     Thread.CurrentThread.IsBackground = true;
                     inputDigit = docBienSo();
-                    if (isCarIn())
-                    {
-                        CarDAO.UpdateDigitIn(cardID, inputDigit);
-                    }
-                    else
-                    {
-                        CarDAO.UpdateDigitOut(cardID, inputDigit);
-                    }
+                    //if (isCarIn())
+                    //{
+                    //    CarDAO.UpdateDigitIn(cardID, inputDigit);
+                    //}
+                    //else
+                    //{
+                    //    CarDAO.UpdateDigitOut(cardID, inputDigit);
+                    //}
                 }).Start();                            
             }
             return true;
@@ -699,17 +699,21 @@ namespace ParkingMangement.GUI
                         {
                             // vé tháng đã hết hạn không cọc
                             isExpired = true;
-                        } else if (currentDay >= mNoticeExpiredDate || -(totalDaysLeft) >= mNoticeExpiredDate)
-                        {
-                            // vé tháng sắp hết hạn có cọc
-                            isShowExpiredMessage = true;
-                            labelError.Text = Constant.sMessageNearExpiredCard;
-                            Util.playAudio(Constant.tobeexpired);
                         } else
                         {
-                            // vé tháng đã hết hạn có cọc
-                            isExpired = true;
-                        }
+                            if (-totalDaysLeft >= mNoticeExpiredDate && -totalDaysLeft <= 31)
+                            {
+                                // vé tháng sắp hết hạn có cọc
+                                isShowExpiredMessage = true;
+                                labelError.Text = Constant.sMessageNearExpiredCard;
+                                Util.playAudio(Constant.tobeexpired);
+                            }
+                            else if (-totalDaysLeft > 31)
+                            {
+                                // vé tháng đã hết hạn có cọc
+                                isExpired = true;
+                            }
+                        }                      
 
                         if (isExpired)
                         {
@@ -867,6 +871,10 @@ namespace ParkingMangement.GUI
             carDTO.TimeStart = DateTime.Now;
             carDTO.IdIn = Program.CurrentUserID;
             string partID = dtCommonCard.Type;
+            if (dtTicketCard != null)
+            {
+                partID = dtTicketCard.IdPart;
+            }
             carDTO.IdPart = partID;
             carDTO.Images = imagePath1;
             carDTO.Images2 = imagePath2;
@@ -1422,10 +1430,10 @@ namespace ParkingMangement.GUI
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
         {      
             if (pictureBox != null)
-            {
-                System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
+            {               
                 try
                 {
+                    System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
                     System.Drawing.Image image = pictureBox.Image;
                     if (Constant.IS_NAPSHOT_FULL_IMAGE)
                     {
@@ -2487,6 +2495,7 @@ namespace ParkingMangement.GUI
             {
                 case Keys.Enter:
                     Program.oldUhfCardId = "";
+                    //Program.newUhfCardId = "";
                     labelError.Text = "";
                     cardID = tbRFIDCardID.Text.Trim();
                     tbRFIDCardID.Text = "";                  

@@ -10,7 +10,7 @@ namespace ParkingMangement.Model
     class Order
     {
         [JsonProperty("project_id")]
-        public int ProjectId { get; set; }
+        public string ProjectId { get; set; }
         [JsonProperty("order_id")]
         public long OrderId { get; set; }
         [JsonProperty("card_code")]

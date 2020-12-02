@@ -1214,8 +1214,6 @@ namespace ParkingMangement.Utils
                 return;
             }
             WebClient webClient = (new ApiUtil()).getWebClient();
-
-            webClient.QueryString.Add(ApiUtil.PARAM_KEY, ApiUtil.PARAM_KEY_VALUE);
             try
             {
                 String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SYNCS_SPM);
@@ -1245,7 +1243,6 @@ namespace ParkingMangement.Utils
             }
             WebClient webClient = (new ApiUtil()).getWebClient();
 
-            webClient.QueryString.Add(ApiUtil.PARAM_KEY, "0919669444");
             webClient.QueryString.Add(ApiUtil.PARAM_CARD_NUMBER, soThe);
             webClient.QueryString.Add(ApiUtil.PARAM_STATUS, "null");
             try

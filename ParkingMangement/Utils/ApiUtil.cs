@@ -98,6 +98,8 @@ namespace ParkingMangement.Utils
                 //webClient.QueryString.Add(PARAM_API_AUTH_DATE, apiAuthDate);
                 //string apiAuthKey = CreateMD5(SECRET_KEY + apiAuthDate);
                 //webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
+
+                webClient.QueryString.Add(ApiUtil.PARAM_KEY, Util.getConfigFile().projectId);
                 return webClient;
             }
             catch (Exception e)
