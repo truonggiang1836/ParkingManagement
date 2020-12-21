@@ -1676,6 +1676,15 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateCreate);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateEdit);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateEdit);
+
+                string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+                if (functionID.Equals(Constant.FUNCTION_ID_ADMIN))
+                {
+                    dateTimePickerTicketMonthRegistrationDateCreate.Enabled = true;
+                    dateTimePickerTicketMonthRegistrationDateEdit.Enabled = true;
+                    dateTimePickerTicketMonthExpirationDateCreate.Enabled = true;
+                    dateTimePickerTicketMonthExpirationDateEdit.Enabled = true;
+                }
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
             {

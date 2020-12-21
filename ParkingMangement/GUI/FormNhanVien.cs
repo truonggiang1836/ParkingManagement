@@ -270,7 +270,6 @@ namespace ParkingMangement.GUI
                 case Keys.Escape:
                     resetForm();
                     break;
-                case Keys.Enter:
                 case Keys.Space:
                     //if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
                     //{
@@ -290,14 +289,7 @@ namespace ParkingMangement.GUI
                     {
                         if (!labelDigitInLeft.Focused && !labelDigitInRight.Focused)
                         {
-                            if (!tbRFIDCardID.Text.Equals(""))
-                            {
-                                resetDataOneSide(false);
-                            }
-                            else
-                            {
-                                resetAllData();
-                            }
+                            resetAllData();
                         }
                     }
                     tbRFIDCardID.Focus();
@@ -669,14 +661,14 @@ namespace ParkingMangement.GUI
                 {
                     Thread.CurrentThread.IsBackground = true;
                     inputDigit = docBienSo();
-                    //if (isCarIn())
-                    //{
-                    //    CarDAO.UpdateDigitIn(cardID, inputDigit);
-                    //}
-                    //else
-                    //{
-                    //    CarDAO.UpdateDigitOut(cardID, inputDigit);
-                    //}
+                    if (isCarIn())
+                    {
+                        CarDAO.UpdateDigitIn(cardID, inputDigit);
+                    }
+                    else
+                    {
+                        CarDAO.UpdateDigitOut(cardID, inputDigit);
+                    }
                 }).Start();                            
             }
             return true;
@@ -2497,8 +2489,9 @@ namespace ParkingMangement.GUI
                     //Program.oldUhfCardId = "";
                     Program.newUhfCardId = "";
                     labelError.Text = "";
+                    resetDataOneSide(false);
                     cardID = tbRFIDCardID.Text.Trim();
-                    tbRFIDCardID.Text = "";                  
+                    tbRFIDCardID.Text = "";
                   
                     if (!cardID.Equals(""))
                     {

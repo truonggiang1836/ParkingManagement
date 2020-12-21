@@ -25,9 +25,19 @@ namespace ParkingMangement.GUI
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+            this.Visible = false;
             Hide();
-            syncOrderData();
-            syncCardData();         
+
+            //syncOrderData();
+            syncCardData();
+        }
+
+        protected override void OnLoad(EventArgs e)
+        {
+            Visible = false; // Hide form window.
+            ShowInTaskbar = false; // Remove from taskbar.
+            Opacity = 0;
+            base.OnLoad(e);
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -37,7 +47,7 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    //Util.sendOrderDataToServer();
+                    Util.sendOrderDataToServer();
                     //Util.sendOldOrderListToServer(CarDAO.GetAllDataForSync());
                 }).Start();
             }

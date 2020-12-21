@@ -102,7 +102,10 @@ namespace ParkingMangement
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+                    if (!Constant.IS_SYNC_DATA_APP)
+                    {
+                        MessageBox.Show("Không thể kết nối với đầu đọc tầm xa! Vui lòng tắt hết cửa sổ phần mềm rồi mở lại!");
+                    }                  
                 }
             }
 
