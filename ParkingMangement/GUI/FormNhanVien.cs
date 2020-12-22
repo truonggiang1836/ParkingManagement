@@ -323,7 +323,6 @@ namespace ParkingMangement.GUI
                 case Keys.Escape:
                     resetForm();
                     break;
-                case Keys.Enter:
                 case Keys.Space:
                     //if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
                     //{
@@ -334,7 +333,7 @@ namespace ParkingMangement.GUI
                     //}
                     //Program.closeUhfReader();
                     //Program.initUhfReader();
-
+                    //oldUhfCardTime = DateTime.Now;
                     if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
                     {
                         resetAllData();
@@ -343,14 +342,7 @@ namespace ParkingMangement.GUI
                     {
                         if (!labelDigitInLeft.Focused && !labelDigitInRight.Focused)
                         {
-                            if (!tbRFIDCardID.Text.Equals(""))
-                            {
-                                resetDataOneSide(false);
-                            }
-                            else
-                            {
-                                resetAllData();
-                            }
+                            resetAllData();
                         }
                     }
                     tbRFIDCardID.Focus();
@@ -722,14 +714,14 @@ namespace ParkingMangement.GUI
                 {
                     Thread.CurrentThread.IsBackground = true;
                     inputDigit = docBienSo();
-                    //if (isCarIn())
-                    //{
-                    //    CarDAO.UpdateDigitIn(cardID, inputDigit);
-                    //}
-                    //else
-                    //{
-                    //    CarDAO.UpdateDigitOut(cardID, inputDigit);
-                    //}
+                    if (isCarIn())
+                    {
+                        CarDAO.UpdateDigitIn(cardID, inputDigit);
+                    }
+                    else
+                    {
+                        CarDAO.UpdateDigitOut(cardID, inputDigit);
+                    }
                 }).Start();                            
             }
             return true;
@@ -2444,7 +2436,7 @@ namespace ParkingMangement.GUI
 
         private void resetDataOneSide(bool isResetImage)
         {
-            Program.oldUhfCardId = "";
+            //Program.oldUhfCardId = "";
             labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
@@ -2488,7 +2480,7 @@ namespace ParkingMangement.GUI
 
         private void resetAllData()
         {
-            Program.oldUhfCardId = "";
+            //Program.oldUhfCardId = "";
             labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
@@ -2547,11 +2539,12 @@ namespace ParkingMangement.GUI
             switch (e.KeyCode)
             {
                 case Keys.Enter:
-                    Program.oldUhfCardId = "";
-                    //Program.newUhfCardId = "";
+                    //Program.oldUhfCardId = "";
+                    Program.newUhfCardId = "";
                     labelError.Text = "";
+                    resetDataOneSide(false);
                     cardID = tbRFIDCardID.Text.Trim();
-                    tbRFIDCardID.Text = "";                  
+                    tbRFIDCardID.Text = "";
                   
                     if (!cardID.Equals(""))
                     {
@@ -2994,7 +2987,7 @@ namespace ParkingMangement.GUI
             }
             FormInOutSetting.saveInOutTypeToConfig(newInOutType);
             updateCauHinhHienThiXeRaVao();
-            Program.oldUhfCardId = "";
+            //Program.oldUhfCardId = "";
         }
 
         private void openBarieInCar()
@@ -3351,8 +3344,8 @@ namespace ParkingMangement.GUI
                 {                                
                     double spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
                     oldUhfCardTime = DateTime.Now;
-                    int distant = 15 * 1000; // 15s
-                    if (!Program.newUhfCardId.Equals(Program.oldUhfCardId) || spentTime > distant )
+                    int distant = 1 * 60 * 1000; // 60s
+                    if (!Program.newUhfCardId.Equals(Program.oldUhfCardId) || spentTime > distant)
                     {                       
                         //labelError.Text = newUhfCardId;
                         cardID = Program.newUhfCardId;

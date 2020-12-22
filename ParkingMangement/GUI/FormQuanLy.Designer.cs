@@ -217,14 +217,6 @@
             this.rbOneDateSaleReport = new System.Windows.Forms.RadioButton();
             this.dtDateSaleReport = new System.Windows.Forms.DateTimePicker();
             this.dgvThongKeDoanhThu = new System.Windows.Forms.DataGridView();
-            this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuSumCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageCongThucTinhTienTheoCongVan = new System.Windows.Forms.TabPage();
             this.panel31 = new System.Windows.Forms.Panel();
             this.btnChinhSuaTinhTienCongVan = new System.Windows.Forms.Button();
@@ -1085,6 +1077,7 @@
             this.cbReceiptLogPrintDate = new System.Windows.Forms.CheckBox();
             this.label245 = new System.Windows.Forms.Label();
             this.label244 = new System.Windows.Forms.Label();
+            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1153,6 +1146,7 @@
             this.cbReceiptLogDetailPrintDate = new System.Windows.Forms.CheckBox();
             this.label243 = new System.Windows.Forms.Label();
             this.label246 = new System.Windows.Forms.Label();
+            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogDetailCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogDetailCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1169,8 +1163,14 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
-            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
+            this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuSumCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -2441,80 +2441,6 @@
             this.dgvThongKeDoanhThu.RowHeadersWidth = 51;
             this.dgvThongKeDoanhThu.Size = new System.Drawing.Size(741, 455);
             this.dgvThongKeDoanhThu.TabIndex = 1;
-            // 
-            // DoanhThuPartName
-            // 
-            this.DoanhThuPartName.DataPropertyName = "PartName";
-            this.DoanhThuPartName.HeaderText = "LOẠI XE";
-            this.DoanhThuPartName.MinimumWidth = 6;
-            this.DoanhThuPartName.Name = "DoanhThuPartName";
-            this.DoanhThuPartName.ReadOnly = true;
-            this.DoanhThuPartName.Width = 150;
-            // 
-            // DoanhThuCountCarIn
-            // 
-            this.DoanhThuCountCarIn.DataPropertyName = "CountCarIn";
-            this.DoanhThuCountCarIn.HeaderText = "LƯỢT VÀO";
-            this.DoanhThuCountCarIn.MinimumWidth = 6;
-            this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
-            this.DoanhThuCountCarIn.ReadOnly = true;
-            this.DoanhThuCountCarIn.Width = 105;
-            // 
-            // DoanhThuCountCarOut
-            // 
-            this.DoanhThuCountCarOut.DataPropertyName = "CountCarOut";
-            this.DoanhThuCountCarOut.HeaderText = "LƯỢT RA";
-            this.DoanhThuCountCarOut.MinimumWidth = 6;
-            this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
-            this.DoanhThuCountCarOut.ReadOnly = true;
-            this.DoanhThuCountCarOut.Width = 105;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "CountCarSurvive";
-            this.dataGridViewTextBoxColumn7.HeaderText = "XE TỒN";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 105;
-            // 
-            // Column63
-            // 
-            this.Column63.DataPropertyName = "CountCar";
-            this.Column63.HeaderText = "SỐ XE";
-            this.Column63.MinimumWidth = 6;
-            this.Column63.Name = "Column63";
-            this.Column63.ReadOnly = true;
-            this.Column63.Width = 125;
-            // 
-            // DoanhThuSumCost
-            // 
-            this.DoanhThuSumCost.DataPropertyName = "SumCost";
-            this.DoanhThuSumCost.HeaderText = "TIỀN THU";
-            this.DoanhThuSumCost.MinimumWidth = 6;
-            this.DoanhThuSumCost.Name = "DoanhThuSumCost";
-            this.DoanhThuSumCost.ReadOnly = true;
-            this.DoanhThuSumCost.Width = 120;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "IDPart";
-            this.Column9.HeaderText = "Column9";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Visible = false;
-            this.Column9.Width = 125;
-            // 
-            // Column52
-            // 
-            this.Column52.DataPropertyName = "CardTypeID";
-            this.Column52.HeaderText = "Column52";
-            this.Column52.MinimumWidth = 6;
-            this.Column52.Name = "Column52";
-            this.Column52.ReadOnly = true;
-            this.Column52.Visible = false;
-            this.Column52.Width = 125;
             // 
             // tabPageCongThucTinhTienTheoCongVan
             // 
@@ -11784,6 +11710,16 @@
             this.label244.TabIndex = 49;
             this.label244.Text = "Từ";
             // 
+            // dtReceiptLogBook
+            // 
+            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogBook.Location = new System.Drawing.Point(685, 13);
+            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
+            this.dtReceiptLogBook.Size = new System.Drawing.Size(86, 22);
+            this.dtReceiptLogBook.TabIndex = 48;
+            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.cbReceiptLogCostExtendCard);
@@ -12505,6 +12441,16 @@
             this.label246.TabIndex = 49;
             this.label246.Text = "Từ";
             // 
+            // dtReceiptLogDetailBook
+            // 
+            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(779, 42);
+            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
+            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(86, 22);
+            this.dtReceiptLogDetailBook.TabIndex = 48;
+            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.cbReceiptLogDetailCostExtendCard);
@@ -12652,25 +12598,76 @@
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(135, 22);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
             // 
-            // dtReceiptLogBook
+            // DoanhThuPartName
             // 
-            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogBook.Location = new System.Drawing.Point(685, 13);
-            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
-            this.dtReceiptLogBook.Size = new System.Drawing.Size(86, 22);
-            this.dtReceiptLogBook.TabIndex = 48;
-            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            this.DoanhThuPartName.DataPropertyName = "PartName";
+            this.DoanhThuPartName.HeaderText = "LOẠI XE";
+            this.DoanhThuPartName.MinimumWidth = 6;
+            this.DoanhThuPartName.Name = "DoanhThuPartName";
+            this.DoanhThuPartName.ReadOnly = true;
+            this.DoanhThuPartName.Width = 150;
             // 
-            // dtReceiptLogDetailBook
+            // DoanhThuCountCarIn
             // 
-            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(779, 42);
-            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
-            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(86, 22);
-            this.dtReceiptLogDetailBook.TabIndex = 48;
-            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            this.DoanhThuCountCarIn.DataPropertyName = "CountCarIn";
+            this.DoanhThuCountCarIn.HeaderText = "LƯỢT VÀO";
+            this.DoanhThuCountCarIn.MinimumWidth = 6;
+            this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
+            this.DoanhThuCountCarIn.ReadOnly = true;
+            // 
+            // DoanhThuCountCarOut
+            // 
+            this.DoanhThuCountCarOut.DataPropertyName = "CountCarOut";
+            this.DoanhThuCountCarOut.HeaderText = "LƯỢT RA";
+            this.DoanhThuCountCarOut.MinimumWidth = 6;
+            this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
+            this.DoanhThuCountCarOut.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "CountCarSurvive";
+            this.dataGridViewTextBoxColumn7.HeaderText = "XE TỒN";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // Column63
+            // 
+            this.Column63.DataPropertyName = "CountCar";
+            this.Column63.HeaderText = "XE THÁNG ĐÃ THU";
+            this.Column63.MinimumWidth = 6;
+            this.Column63.Name = "Column63";
+            this.Column63.ReadOnly = true;
+            this.Column63.Width = 120;
+            // 
+            // DoanhThuSumCost
+            // 
+            this.DoanhThuSumCost.DataPropertyName = "SumCost";
+            this.DoanhThuSumCost.HeaderText = "TIỀN THU";
+            this.DoanhThuSumCost.MinimumWidth = 6;
+            this.DoanhThuSumCost.Name = "DoanhThuSumCost";
+            this.DoanhThuSumCost.ReadOnly = true;
+            this.DoanhThuSumCost.Width = 120;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "IDPart";
+            this.Column9.HeaderText = "Column9";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Visible = false;
+            this.Column9.Width = 125;
+            // 
+            // Column52
+            // 
+            this.Column52.DataPropertyName = "CardTypeID";
+            this.Column52.HeaderText = "Column52";
+            this.Column52.MinimumWidth = 6;
+            this.Column52.Name = "Column52";
+            this.Column52.ReadOnly = true;
+            this.Column52.Visible = false;
+            this.Column52.Width = 125;
             // 
             // FormQuanLy
             // 
@@ -14002,6 +13999,11 @@
         private System.Windows.Forms.Label label254;
         private System.Windows.Forms.Label label255;
         private System.Windows.Forms.ComboBox cbNhanVienRaReport;
+        private System.Windows.Forms.Button btnSearchCardPrintReceipt;
+        private System.Windows.Forms.Button btnPrintFeeNotice;
+        private System.Windows.Forms.GroupBox groupBox16;
+        private System.Windows.Forms.Label label256;
+        private System.Windows.Forms.TextBox tbNoticeFeeContent;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuPartName;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarIn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuCountCarOut;
@@ -14010,10 +14012,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuSumCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column52;
-        private System.Windows.Forms.Button btnSearchCardPrintReceipt;
-        private System.Windows.Forms.Button btnPrintFeeNotice;
-        private System.Windows.Forms.GroupBox groupBox16;
-        private System.Windows.Forms.Label label256;
-        private System.Windows.Forms.TextBox tbNoticeFeeContent;
     }
 }

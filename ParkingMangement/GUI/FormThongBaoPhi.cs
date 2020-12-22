@@ -79,15 +79,8 @@ namespace ParkingMangement.GUI
             tbMonthYear.Text = DateTime.Now.Month + "/" + DateTime.Now.Year;
             tbUpdateDay.Text = "(cập nhật đến " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + ")";
 
-            WebBrowser wb = new WebBrowser();
-            wb.Navigate("about:blank");
-            wb.Document.Write(ConfigDAO.GetNoticeFeeContent());
-            wb.Document.ExecCommand("SelectAll", false, null);
-            wb.Document.ExecCommand("Copy", false, null);
-
-            richTextBoxNoticeFeeContent.SelectAll();
-            richTextBoxNoticeFeeContent.Paste();
-
+            webBrowser1.Navigate("about:blank");
+            webBrowser1.DocumentText = ConfigDAO.GetNoticeFeeContent();
 
             //richTextBoxNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
 
@@ -170,7 +163,16 @@ namespace ParkingMangement.GUI
             dgvPrintReceipt.Height = height;
 
             Util.setRowNumber(dgvPrintReceipt, "STT_ReceiptTicketMonthList");
-        }    
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            webBrowser1.Document.ExecCommand("SelectAll", false, null);
+            webBrowser1.Document.ExecCommand("Copy", false, null);
+
+            richTextBoxNoticeFeeContent.SelectAll();
+            richTextBoxNoticeFeeContent.Paste();
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -223,6 +225,11 @@ namespace ParkingMangement.GUI
         }
 
         private void richTextBoxNoticeFeeContent_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void webBrowser1_DocumentCompleted_1(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
 
         }
