@@ -90,7 +90,7 @@ namespace CameraViewer
             Pen pen = new Pen( Color.Black, 1 );
 
             // draw rectangle
-            g.DrawRectangle( pen, rc.X, rc.Y, rc.Width - 1, rc.Height - 1 );
+            g.DrawRectangle( pen, rc.X, rc.Y, rc.Height * rc.Height / rc.Width - 1, rc.Height - 1 );
 
             if ( camera != null )
             {
@@ -99,7 +99,7 @@ namespace CameraViewer
                 // draw frame
                 if ( camera.LastFrame != null )
                 {
-                    g.DrawImage( camera.LastFrame, rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2 );
+                    g.DrawImage( camera.LastFrame, rc.X + 1, rc.Y + 1, rc.Height * rc.Height / rc.Width - 2, rc.Height - 2 );
                     firstFrame = false;
                 }
                 else

@@ -225,12 +225,12 @@ namespace ParkingMangement.GUI
             readConfigFile();
 
             loadInfo();
-            configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2, 
-                mConfig.ZoomCamera3, mConfig.ZoomCamera4);
-            loadCamera1VLC();
-            loadCamera2VLC();
-            loadCamera3VLC();
-            loadCamera4VLC();
+            //configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2, 
+            //    mConfig.ZoomCamera3, mConfig.ZoomCamera4);
+            //loadCamera1VLC();
+            //loadCamera2VLC();
+            //loadCamera3VLC();
+            //loadCamera4VLC();
 
             getDataFromUhfReader();
 
@@ -263,20 +263,49 @@ namespace ParkingMangement.GUI
             config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
             // load cameras tree
             config.LoadCameras();
-            openMyCamera();
+            openCameraWindow();
         }
 
-        private void openMyCamera()
+        private void openCameraWindow()
         {
-            string fullName = "G2";
-
+            string name1 = "cam1";
             // get camera
-            Camera camera = config.GetCameraByName(fullName);
+            Camera camera1 = config.GetCameraByName(name1);
 
             // add camera to running pool
-            if (runningPool.Add(camera))
+            if (runningPool.Add(camera1))
             {
-                cameraWindow1.Camera = camera;
+                cameraWindow1.Camera = camera1;
+            }
+
+            string name2 = "cam2";
+            // get camera
+            Camera camera2 = config.GetCameraByName(name2);
+
+            // add camera to running pool
+            if (runningPool.Add(camera2))
+            {
+                cameraWindow2.Camera = camera2;
+            }
+
+            string name3 = "cam3";
+            // get camera
+            Camera camera3 = config.GetCameraByName(name3);
+
+            // add camera to running pool
+            if (runningPool.Add(camera3))
+            {
+                cameraWindow3.Camera = camera3;
+            }
+
+            string name4 = "cam4";
+            // get camera
+            Camera camera4 = config.GetCameraByName(name4);
+
+            // add camera to running pool
+            if (runningPool.Add(camera4))
+            {
+                cameraWindow4.Camera = camera4;
             }
         }
 

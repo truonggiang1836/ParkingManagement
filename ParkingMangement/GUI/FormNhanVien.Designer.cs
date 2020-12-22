@@ -29,14 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cameraWindow2 = new CameraViewer.CameraWindow();
+            this.cameraWindow1 = new CameraViewer.CameraWindow();
+            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
             this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
@@ -142,12 +148,13 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.cameraWindow1 = new CameraViewer.CameraWindow();
-            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
-            this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
-            this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
-            this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
+            this.cameraWindow3 = new CameraViewer.CameraWindow();
+            this.cameraWindow4 = new CameraViewer.CameraWindow();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
@@ -188,14 +195,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cameraWindow2);
+            this.panel1.Controls.Add(this.cameraWindow4);
+            this.panel1.Controls.Add(this.cameraWindow3);
             this.panel1.Controls.Add(this.cameraWindow1);
             this.panel1.Controls.Add(this.axVLCPlugin4);
             this.panel1.Controls.Add(this.axVLCPlugin3);
@@ -210,6 +216,65 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(883, 561);
             this.panel1.TabIndex = 0;
+            // 
+            // cameraWindow2
+            // 
+            this.cameraWindow2.Camera = null;
+            this.cameraWindow2.Location = new System.Drawing.Point(221, 4);
+            this.cameraWindow2.Name = "cameraWindow2";
+            this.cameraWindow2.Size = new System.Drawing.Size(209, 274);
+            this.cameraWindow2.TabIndex = 123;
+            this.cameraWindow2.Text = "cameraWindow2";
+            // 
+            // cameraWindow1
+            // 
+            this.cameraWindow1.Camera = null;
+            this.cameraWindow1.Location = new System.Drawing.Point(4, 4);
+            this.cameraWindow1.Name = "cameraWindow1";
+            this.cameraWindow1.Size = new System.Drawing.Size(209, 274);
+            this.cameraWindow1.TabIndex = 122;
+            this.cameraWindow1.Text = "cameraWindow1";
+            // 
+            // axVLCPlugin4
+            // 
+            this.axVLCPlugin4.Enabled = true;
+            this.axVLCPlugin4.Location = new System.Drawing.Point(669, 4);
+            this.axVLCPlugin4.Name = "axVLCPlugin4";
+            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
+            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin4.TabIndex = 17;
+            this.axVLCPlugin4.Visible = false;
+            // 
+            // axVLCPlugin3
+            // 
+            this.axVLCPlugin3.Enabled = true;
+            this.axVLCPlugin3.Location = new System.Drawing.Point(453, 4);
+            this.axVLCPlugin3.Name = "axVLCPlugin3";
+            this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
+            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin3.TabIndex = 16;
+            this.axVLCPlugin3.Visible = false;
+            // 
+            // axVLCPlugin2
+            // 
+            this.axVLCPlugin2.Enabled = true;
+            this.axVLCPlugin2.Location = new System.Drawing.Point(221, 4);
+            this.axVLCPlugin2.Name = "axVLCPlugin2";
+            this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
+            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin2.TabIndex = 15;
+            this.axVLCPlugin2.Visible = false;
+            // 
+            // axVLCPlugin1
+            // 
+            this.axVLCPlugin1.Enabled = true;
+            this.axVLCPlugin1.Location = new System.Drawing.Point(4, 3);
+            this.axVLCPlugin1.Name = "axVLCPlugin1";
+            this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
+            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 274);
+            this.axVLCPlugin1.TabIndex = 14;
+            this.axVLCPlugin1.Visible = false;
+            this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
             // 
             // pictureBoxImage1
             // 
@@ -473,32 +538,32 @@
             // 
             this.dgvThongKeXeTrongBai.AllowUserToAddRows = false;
             this.dgvThongKeXeTrongBai.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvThongKeXeTrongBai.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKeXeTrongBai.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvThongKeXeTrongBai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongKeXeTrongBai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.DoanhThuPartName,
             this.CountCarSurvive,
             this.CountCarEmpty});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvThongKeXeTrongBai.Location = new System.Drawing.Point(7, 43);
             this.dgvThongKeXeTrongBai.Name = "dgvThongKeXeTrongBai";
             this.dgvThongKeXeTrongBai.RowHeadersVisible = false;
@@ -517,15 +582,14 @@
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
-            this.Column1.Width = 6;
             // 
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "TypeName";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.NullValue = null;
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle3;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.DoanhThuPartName.MinimumWidth = 6;
@@ -537,8 +601,8 @@
             // CountCarSurvive
             // 
             this.CountCarSurvive.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle4;
             this.CountCarSurvive.HeaderText = "SL trong bãi";
             this.CountCarSurvive.MinimumWidth = 6;
             this.CountCarSurvive.Name = "CountCarSurvive";
@@ -548,8 +612,8 @@
             // 
             this.CountCarEmpty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CountCarEmpty.DataPropertyName = "CountCarEmpty";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle5;
             this.CountCarEmpty.HeaderText = "SL còn trống";
             this.CountCarEmpty.MinimumWidth = 6;
             this.CountCarEmpty.Name = "CountCarEmpty";
@@ -1310,7 +1374,7 @@
             this.labelVND_HeaderLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderLeft.Location = new System.Drawing.Point(329, 9);
             this.labelVND_HeaderLeft.Name = "labelVND_HeaderLeft";
-            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(41, 16);
+            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderLeft.TabIndex = 72;
             this.labelVND_HeaderLeft.Text = "VNĐ";
             // 
@@ -1331,7 +1395,7 @@
             this.labelVND_HeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 10);
             this.labelVND_HeaderRight.Name = "labelVND_HeaderRight";
-            this.labelVND_HeaderRight.Size = new System.Drawing.Size(41, 16);
+            this.labelVND_HeaderRight.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderRight.TabIndex = 48;
             this.labelVND_HeaderRight.Text = "VNĐ";
             // 
@@ -1368,51 +1432,23 @@
             this.pictureBox10.TabIndex = 127;
             this.pictureBox10.TabStop = false;
             // 
-            // cameraWindow1
+            // cameraWindow3
             // 
-            this.cameraWindow1.Camera = null;
-            this.cameraWindow1.Location = new System.Drawing.Point(4, 284);
-            this.cameraWindow1.Name = "cameraWindow1";
-            this.cameraWindow1.Size = new System.Drawing.Size(209, 274);
-            this.cameraWindow1.TabIndex = 122;
-            this.cameraWindow1.Text = "cameraWindow1";
+            this.cameraWindow3.Camera = null;
+            this.cameraWindow3.Location = new System.Drawing.Point(453, 4);
+            this.cameraWindow3.Name = "cameraWindow3";
+            this.cameraWindow3.Size = new System.Drawing.Size(209, 274);
+            this.cameraWindow3.TabIndex = 124;
+            this.cameraWindow3.Text = "cameraWindow3";
             // 
-            // axVLCPlugin4
+            // cameraWindow4
             // 
-            this.axVLCPlugin4.Enabled = true;
-            this.axVLCPlugin4.Location = new System.Drawing.Point(669, 4);
-            this.axVLCPlugin4.Name = "axVLCPlugin4";
-            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(209, 274);
-            this.axVLCPlugin4.TabIndex = 17;
-            // 
-            // axVLCPlugin3
-            // 
-            this.axVLCPlugin3.Enabled = true;
-            this.axVLCPlugin3.Location = new System.Drawing.Point(453, 4);
-            this.axVLCPlugin3.Name = "axVLCPlugin3";
-            this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(209, 274);
-            this.axVLCPlugin3.TabIndex = 16;
-            // 
-            // axVLCPlugin2
-            // 
-            this.axVLCPlugin2.Enabled = true;
-            this.axVLCPlugin2.Location = new System.Drawing.Point(221, 4);
-            this.axVLCPlugin2.Name = "axVLCPlugin2";
-            this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(209, 274);
-            this.axVLCPlugin2.TabIndex = 15;
-            // 
-            // axVLCPlugin1
-            // 
-            this.axVLCPlugin1.Enabled = true;
-            this.axVLCPlugin1.Location = new System.Drawing.Point(4, 3);
-            this.axVLCPlugin1.Name = "axVLCPlugin1";
-            this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(209, 274);
-            this.axVLCPlugin1.TabIndex = 14;
-            this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
+            this.cameraWindow4.Camera = null;
+            this.cameraWindow4.Location = new System.Drawing.Point(669, 4);
+            this.cameraWindow4.Name = "cameraWindow4";
+            this.cameraWindow4.Size = new System.Drawing.Size(209, 274);
+            this.cameraWindow4.TabIndex = 125;
+            this.cameraWindow4.Text = "cameraWindow4";
             // 
             // FormNhanVien
             // 
@@ -1503,6 +1539,10 @@
             this.Shown += new System.EventHandler(this.FormNhanVien_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
@@ -1547,10 +1587,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1669,5 +1705,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox10;
         private CameraViewer.CameraWindow cameraWindow1;
+        private CameraViewer.CameraWindow cameraWindow2;
+        private CameraViewer.CameraWindow cameraWindow4;
+        private CameraViewer.CameraWindow cameraWindow3;
     }
 }
