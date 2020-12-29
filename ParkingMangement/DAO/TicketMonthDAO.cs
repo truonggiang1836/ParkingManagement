@@ -96,8 +96,8 @@ namespace ParkingMangement.DAO
         public static string getUpdateSyncSPMSql(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', Digit =N'" + ticketMonthDTO.Digit + "', CustomerName =N'"
-                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart + "', IsSync ='" 
-                + ticketMonthDTO.IsSync + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "', Phone =N'" + ticketMonthDTO.Phone + "' where ID ='" + ticketMonthDTO.Id + "'";
+                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart 
+                + "', IsSync ='" + ticketMonthDTO.IsSync + "', IsDeleted ='" + ticketMonthDTO.IsDeleted + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "', Phone =N'" + ticketMonthDTO.Phone + "' where ID ='" + ticketMonthDTO.Id + "'";
             return sql;
         }
 
@@ -576,6 +576,7 @@ namespace ParkingMangement.DAO
                     }
                     ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();
                     ticketMonthDTO.Phone = jObject.GetValue("dienThoai").ToString();
+                    ticketMonthDTO.IsDeleted = "0";
                     ticketMonthDTO.IsSync = "1";
 
                     InsertOrUpdateNoErrorMessage(ticketMonthDTO);
