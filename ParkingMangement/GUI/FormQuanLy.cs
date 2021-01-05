@@ -1482,6 +1482,8 @@ namespace ParkingMangement.GUI
             }
             else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
+                loadPartDataToComboBox(cbTicketMonthPartCreate);
+                loadPartDataToComboBox(cbTicketMonthPartEdit);
                 loadTabPageTicketLog();
                 loadTicketMonthData();
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
@@ -1669,8 +1671,7 @@ namespace ParkingMangement.GUI
                 panelChinhSuaVeThang.Enabled = false;
                 btnTicketMonthEdit.Text = Constant.sButtonEdit;
                 loadTicketMonthData();
-                loadPartDataToComboBox(cbTicketMonthPartCreate);
-                loadPartDataToComboBox(cbTicketMonthPartEdit);
+               
                 clearInputTicketMonthInfo();
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateCreate);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateCreate);
@@ -4991,8 +4992,8 @@ namespace ParkingMangement.GUI
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string path = openFileDialog.FileName;
-                //ImportDanhSachTheThangFromExcel(path);
-                UpdateDanhSachTheThangFromExcel(path);
+                ImportDanhSachTheThangFromExcel(path);
+                //UpdateDanhSachTheThangFromExcel(path);
             }
         }
 

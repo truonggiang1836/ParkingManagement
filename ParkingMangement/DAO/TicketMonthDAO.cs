@@ -489,10 +489,12 @@ namespace ParkingMangement.DAO
             ticketMonthDTO.Address = dataRow.Field<String>("Address");
             ticketMonthDTO.CarKind = dataRow.Field<String>("CarKind");
             String registrationDateString = dataRow.Field<String>("RegistrationDate");
-            DateTime registrationDate = DateTime.FromOADate(double.Parse(registrationDateString));
+            DateTime registrationDate = DateTime.ParseExact(registrationDateString, "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
             ticketMonthDTO.RegistrationDate = registrationDate;
             String expirationDateString = dataRow.Field<String>("ExpirationDate");
-            DateTime expirationDate = DateTime.FromOADate(double.Parse(expirationDateString));
+            DateTime expirationDate = DateTime.ParseExact(expirationDateString, "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
             ticketMonthDTO.ExpirationDate = expirationDate;
             ticketMonthDTO.ChargesAmount = dataRow.Field<String>("ChargesAmount");
 
