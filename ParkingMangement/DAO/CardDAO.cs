@@ -62,6 +62,8 @@ namespace ParkingMangement.DAO
 
         public static bool Insert(CardDTO cardDTO)
         {
+            HardDeleteIfCardBeDeleted(cardDTO.Id);
+
             string sql = "insert into SmartCard(SystemID, Identify, ID, IsUsing, IsSync, IsDeleted, Type, DayUnlimit) values ('" + cardDTO.SystemId + "', '" + cardDTO.Identify + "','" + cardDTO.Id + "', '" + cardDTO.IsUsing + "', '" + cardDTO.IsSync + "', '" + cardDTO.IsDeleted + "', '" + cardDTO.Type + "', '" + cardDTO.DayUnlimit.ToString(Constant.sDateTimeFormatForQuery) + "')";
             return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }

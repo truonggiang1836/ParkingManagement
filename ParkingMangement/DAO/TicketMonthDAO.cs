@@ -74,6 +74,8 @@ namespace ParkingMangement.DAO
 
         public static bool Insert(TicketMonthDTO ticketMonthDTO)
         {
+            HardDeleteIfCardBeDeleted(ticketMonthDTO.Id);
+
             string sql = getInsertSql(ticketMonthDTO); 
             return (new Database()).ExcuNonQuery(sql);
         }
