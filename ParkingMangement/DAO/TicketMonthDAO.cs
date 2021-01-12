@@ -549,43 +549,48 @@ namespace ParkingMangement.DAO
                     partId = data.Rows[0].Field<string>("ID");
                 }
 
-                if (!bienSo.Equals(""))
+                TicketMonthDTO ticketMonthDTO = GetDTODataByID(id);
+                if (ticketMonthDTO == null)
                 {
-                    TicketMonthDTO ticketMonthDTO = GetDTODataByID(id);
-                    if (ticketMonthDTO == null)
-                    {
-                        ticketMonthDTO = new TicketMonthDTO();
-                    }
-                    ticketMonthDTO.Account = Program.CurrentUserID;
-                    ticketMonthDTO.Digit = bienSo;
-                    ticketMonthDTO.Company = jObject.GetValue("soPhong").ToString();
-                    ticketMonthDTO.CustomerName = jObject.GetValue("chuXe").ToString();
-                    try
-                    {
-                        ticketMonthDTO.RegistrationDate = DateTime.Parse(jObject.GetValue("ngayBatDau").ToString());
-                        ticketMonthDTO.ExpirationDate = DateTime.Parse(jObject.GetValue("ngayHetHan").ToString());
-                    }
-                    catch
-                    {
-                        Exception e;
-                    }
-                    ticketMonthDTO.ProcessDate = DateTime.Now;
-                    ticketMonthDTO.DayUnlimit = DateTime.Now;
-                    ticketMonthDTO.Id = id;
+                    ticketMonthDTO = new TicketMonthDTO();
+                }
+                ticketMonthDTO.Account = Program.CurrentUserID;
+                ticketMonthDTO.Digit = bienSo;
+                ticketMonthDTO.Company = jObject.GetValue("soPhong").ToString();
+                ticketMonthDTO.CustomerName = jObject.GetValue("chuXe").ToString();
+                try
+                {
+                    ticketMonthDTO.RegistrationDate = DateTime.Parse(jObject.GetValue("ngayBatDau").ToString());
+                    ticketMonthDTO.ExpirationDate = DateTime.Parse(jObject.GetValue("ngayHetHan").ToString());
+                }
+                catch
+                {
+                    Exception e;
+                }
+                ticketMonthDTO.ProcessDate = DateTime.Now;
+                ticketMonthDTO.DayUnlimit = DateTime.Now;
+                ticketMonthDTO.Id = id;
 
-                    if (!partId.Equals(""))
-                    {
-                        partId = data.Rows[0].Field<string>("ID");
-                        ticketMonthDTO.IdPart = partId;
-                    }
-                    ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();
-                    ticketMonthDTO.Phone = jObject.GetValue("dienThoai").ToString();
-                    ticketMonthDTO.IsDeleted = "0";
-                    ticketMonthDTO.IsSync = "1";
+                if (!partId.Equals(""))
+                {
+                    partId = data.Rows[0].Field<string>("ID");
+                    ticketMonthDTO.IdPart = partId;
+                }
+                ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();
+                ticketMonthDTO.Phone = jObject.GetValue("dienThoai").ToString();
+                ticketMonthDTO.IsDeleted = "0";
+                ticketMonthDTO.IsSync = "1";
 
+                if (ticketMonthDTO.CustomerName.Equals("") && ticketMonthDTO.Digit.Equals("")
+                    && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals("")
+                    && ticketMonthDTO.ChargesAmount.Equals("0"))
+                {
+                    Delete(ticketMonthDTO.Id);
+                }
+                else
+                {
                     InsertOrUpdateNoErrorMessage(ticketMonthDTO);
-                }              
-
+                }
 
                 CardDTO cardDTO = new CardDTO();
                 cardDTO.SystemId = id;
