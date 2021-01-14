@@ -1280,7 +1280,7 @@ namespace ParkingMangement.GUI
                 labelKetQuaTaoThe.Text = Constant.sMessageCardIdExisted;
                 return;
             }
-            CardDAO.HardDeleteIfCardBeDeleted(cardDTO.Id);
+            
             if (CardDAO.Insert(cardDTO))
             {
                 loadCardList();
@@ -1482,6 +1482,8 @@ namespace ParkingMangement.GUI
             }
             else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyVeThang"])
             {
+                loadPartDataToComboBox(cbTicketMonthPartCreate);
+                loadPartDataToComboBox(cbTicketMonthPartEdit);
                 loadTabPageTicketLog();
                 loadTicketMonthData();
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
@@ -1669,8 +1671,7 @@ namespace ParkingMangement.GUI
                 panelChinhSuaVeThang.Enabled = false;
                 btnTicketMonthEdit.Text = Constant.sButtonEdit;
                 loadTicketMonthData();
-                loadPartDataToComboBox(cbTicketMonthPartCreate);
-                loadPartDataToComboBox(cbTicketMonthPartEdit);
+               
                 clearInputTicketMonthInfo();
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateCreate);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateCreate);
@@ -1747,7 +1748,7 @@ namespace ParkingMangement.GUI
             }
 
             CardDAO.UpdateIsUsing("1", ticketMonthDTO.Id);
-            TicketMonthDAO.HardDeleteIfCardBeDeleted(ticketMonthDTO.Id);
+            
             if (TicketMonthDAO.Insert(ticketMonthDTO))
             {
                 clearInputTicketMonthInfo();
@@ -3501,9 +3502,9 @@ namespace ParkingMangement.GUI
             for (int i = 0; i < dataGridView.Columns.Count; i++)
             {
                 if (dataGridView.Columns[i].Visible && dataGridView.Columns[i].CellType == typeof(DataGridViewTextBoxCell))
-                {
-                    worksheet.Cell(cellRowIndex, cellColumnIndex).Value = dataGridView.Columns[i].HeaderText;
+                {                   
                     IXLCell cell = worksheet.Cell(cellRowIndex, cellColumnIndex);
+                    cell.Value = dataGridView.Columns[i].HeaderText;
                     setColerForRange(cell);
                     setAllBorderForRange(cell);
                     cellColumnIndex++;
@@ -3517,9 +3518,10 @@ namespace ParkingMangement.GUI
                 for (int j = 0; j < dataGridView.Columns.Count; j++)
                 {
                     if (dataGridView.Columns[j].Visible && dataGridView.Columns[j].CellType == typeof(DataGridViewTextBoxCell))
-                    {
-                        worksheet.Cell(cellRowIndex, cellColumnIndex).Value = dataGridView.Rows[i].Cells[j].Value.ToString();
+                    {                                              
                         IXLCell cell = worksheet.Cell(cellRowIndex, cellColumnIndex);
+                        cell.Style.NumberFormat.Format = "@";
+                        cell.Value = dataGridView.Rows[i].Cells[j].Value.ToString();
                         setAllBorderForRange(cell);
                         cellColumnIndex++;
                     }
@@ -4685,72 +4687,71 @@ namespace ParkingMangement.GUI
         public DataTable ImportDanhSachTheFromExcel(String path)
         {
             System.Data.DataTable dt = null;
+            int rowIndex = 1;
+            dt = new System.Data.DataTable();
+            DataRow row;
+            XLWorkbook workBook = new XLWorkbook(path);
+            IXLWorksheet workSheet = workBook.Worksheet(1);
+            
+            
+            int temp = 1;
+            while (workSheet.Cell(rowIndex, temp).Value.ToString() != "")
+            {
+                dt.Columns.Add(Convert.ToString(workSheet.Cell(rowIndex, temp).Value));
+                temp++;
+            }
+            rowIndex = Convert.ToInt32(rowIndex) + 2;
+            int columnCount = temp;
             try
             {
-                object rowIndex = 1;
-                dt = new System.Data.DataTable();
-                DataRow row;
-                Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-                Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
-                    Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-                Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
-                int temp = 1;
-                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
-                {
-                    dt.Columns.Add(Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2));
-                     temp++;
-                }
-                rowIndex = Convert.ToInt32(rowIndex) + 2;
-                int columnCount = temp;
                 temp = 1;
-                while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+                while (workSheet.Cell(rowIndex, temp).Value.ToString() != "")
                 {
                     row = dt.NewRow();
                     for (int i = 1; i < columnCount; i++)
                     {
-                        row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                        row[i - 1] = Convert.ToString(workSheet.Cell(rowIndex, i).Value);
                     }
 
                     CardDTO cardDTO = CardDAO.getCardFromDataRow(row);
-                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[rowIndex];
+                    IXLRow range = workSheet.Row(rowIndex);
 
                     if (CardDAO.GetCardModelByIdentify(cardDTO.Identify) != null)
                     {
-                        range.Font.Color = ColorTranslator.ToOle(Color.Red);
-                        workSheet.Cells[rowIndex, columnCount + 1] = Constant.sMessageCardIdentifyExisted;
+                        range.Style.Fill.SetBackgroundColor(XLColor.Red);
+                        workSheet.Cell(rowIndex, columnCount).Value = Constant.sMessageCardIdentifyExisted;
                     }
                     else if (!CardDAO.Insert(cardDTO))
                     {
-                        range.Font.Color = ColorTranslator.ToOle(Color.Red);
-                        workSheet.Cells[rowIndex, columnCount + 1] = Constant.sMessageCardIdExisted;
-                    } else
+                        range.Style.Fill.SetBackgroundColor(XLColor.Red);
+                        workSheet.Cell(rowIndex, columnCount).Value = Constant.sMessageCardIdExisted;
+                    }
+                    else
                     {
-                        range.Font.Color = ColorTranslator.ToOle(Color.Green);
+                        range.Style.Fill.SetBackgroundColor(XLColor.Green);
+                        workSheet.Cell(rowIndex, columnCount).Value = "OK";
                     }
                     dt.Rows.Add(row);
                     rowIndex = Convert.ToInt32(rowIndex) + 1;
                     temp = 1;
-                }
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.InitialDirectory = Environment.CurrentDirectory;
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
-                saveDialog.FilterIndex = 2;
-                saveDialog.FileName = "Ketqua_" + app.ActiveWorkbook.Name;
-
-                if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    workBook.SaveAs(saveDialog.FileName);
-                    MessageBox.Show(Constant.sMessageImportExcelSuccess);
-                    loadCardList();
-                    Process.Start(saveDialog.FileName);
-                }
-
-                workBook.Close();
-                app.Quit();
-            }
-            catch (Exception ex)
+                }             
+            } catch (Exception ex)
             {
-                //lblError.Text = ex.Message;
+                workSheet.Cell(rowIndex, columnCount).Value = ex.Message;
+            }
+
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.InitialDirectory = Environment.CurrentDirectory;
+            saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveDialog.FilterIndex = 2;
+            saveDialog.FileName = "Ketqua_" + Path.GetFileName(path);
+
+            if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                workBook.SaveAs(saveDialog.FileName);
+                MessageBox.Show(Constant.sMessageImportExcelSuccess);
+                loadCardList();
+                Process.Start(saveDialog.FileName);
             }
             return dt;
         }
@@ -4758,39 +4759,30 @@ namespace ParkingMangement.GUI
         private void ImportDanhSachTheThangFromExcel(String path)
         {
             System.Data.DataTable dt = null;
-            object rowIndex = 1;
+            int rowIndex = 1;
             dt = new System.Data.DataTable();
             DataRow row;
-            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Open(path, 0, true, 5, "", "", true,
-                Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            Microsoft.Office.Interop.Excel.Worksheet workSheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.ActiveSheet;
+            XLWorkbook workBook = new XLWorkbook(path);
+            IXLWorksheet workSheet = workBook.Worksheet(1);
             int temp = 1;
-            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+            while (workSheet.Cell(rowIndex, temp).Value.ToString() != "")
             {
-                String columnName = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2);
-                dt.Columns.Add(columnName);
+                dt.Columns.Add(Convert.ToString(workSheet.Cell(rowIndex, temp).Value));
                 temp++;
             }
             rowIndex = Convert.ToInt32(rowIndex) + 2;
             int columnCount = temp;
             temp = 1;
-            bool isHasData1 = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null);
-            bool isHasData2 = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 1]).Value2 != null);
-            bool isHasData3 = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 2]).Value2 != null);
-            bool isHasData = (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null) ||
-                (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 1]).Value2 != null) ||
-                (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp + 2]).Value2 != null);
-            while (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, temp]).Value2 != null)
+            while (workSheet.Cell(rowIndex, temp).Value.ToString() != "")
             {
                 try
                 {
                     row = dt.NewRow();
                     for (int i = 1; i < columnCount; i++)
                     {
-                        if (((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2 != null)
+                        if (workSheet.Cell(rowIndex, i).Value.ToString() != "")
                         {
-                            row[i - 1] = Convert.ToString(((Microsoft.Office.Interop.Excel.Range)workSheet.Cells[rowIndex, i]).Value2);
+                            row[i - 1] = Convert.ToString(workSheet.Cell(rowIndex, i).Value);
                         }
                         else
                         {
@@ -4809,18 +4801,17 @@ namespace ParkingMangement.GUI
                         ticketMonthDTO.IdPart = cardDTO.Type;
                     }
 
-                    Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)workSheet.Rows[rowIndex];
-                    range.Font.Color = ColorTranslator.ToOle(Color.Red);
+                    IXLRow range = workSheet.Row(rowIndex);
 
                     string errorMessage = getErrorMessageImportTheThang(ticketMonthDTO, cardDTO);
                     //string errorMessage = null;
                     if (errorMessage != null)
                     {
-                        workSheet.Cells[rowIndex, columnCount + 1] = errorMessage;
+                        workSheet.Cell(rowIndex, columnCount).Value = errorMessage;
+                        range.Style.Fill.SetBackgroundColor(XLColor.Red);
                     }
                     else
                     {
-                        range.Font.Color = ColorTranslator.ToOle(Color.Green);
                         if (!cardDTO.Identify.Equals(ticketMonthDTO.CardIdentify))
                         {
                             CardDAO.UpdateIdentify(ticketMonthDTO.CardIdentify, ticketMonthDTO.Id);
@@ -4828,28 +4819,30 @@ namespace ParkingMangement.GUI
                         if (TicketMonthDAO.Insert(ticketMonthDTO))
                         {
                             addTicketLog(Constant.LOG_TYPE_CREATE_TICKET_MONTH, ticketMonthDTO);
+                            range.Style.Fill.SetBackgroundColor(XLColor.Green);
+                            workSheet.Cell(rowIndex, columnCount).Value = "OK";
                         }
                         else
                         {
-                            workSheet.Cells[rowIndex, columnCount + 1] = Constant.sMessageCardIdExisted;
+                            workSheet.Cell(rowIndex, columnCount).Value = Constant.sMessageCardIdExisted;
+                            range.Style.Fill.SetBackgroundColor(XLColor.Red);
                         }
                     }
-
                     dt.Rows.Add(row);
+                    rowIndex = Convert.ToInt32(rowIndex) + 1;
+                    temp = 1;
                 }
                 catch (Exception ex)
                 {
-                    workSheet.Cells[rowIndex, columnCount + 1] = ex.Message;
+                    workSheet.Cell(rowIndex, columnCount).Value = ex.Message;
                 }
-                rowIndex = Convert.ToInt32(rowIndex) + 1;
-                temp = 1;
             }
        
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.InitialDirectory = Environment.CurrentDirectory;
             saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
             saveDialog.FilterIndex = 2;
-            saveDialog.FileName = "Ketqua_" + app.ActiveWorkbook.Name;
+            saveDialog.FileName = "Ketqua_" + Path.GetFileName(path);
 
             if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
@@ -4858,9 +4851,6 @@ namespace ParkingMangement.GUI
                 loadTicketMonthData();
                 Process.Start(saveDialog.FileName);
             }
-
-            workBook.Close();
-            app.Quit();
         }
 
         private void UpdateDanhSachTheThangFromExcel(String path)
@@ -4991,8 +4981,8 @@ namespace ParkingMangement.GUI
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string path = openFileDialog.FileName;
-                //ImportDanhSachTheThangFromExcel(path);
-                UpdateDanhSachTheThangFromExcel(path);
+                ImportDanhSachTheThangFromExcel(path);
+                //UpdateDanhSachTheThangFromExcel(path);
             }
         }
 

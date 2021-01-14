@@ -737,7 +737,7 @@ namespace ParkingMangement.GUI
             if (isTicketCard)
             {
                 DateTime? expirationDate = dtTicketCard.ExpirationDate;
-                double totalDaysLeft = ((DateTime)expirationDate - DateTime.Now).TotalDays;
+                double totalDaysLeft = ((DateTime)expirationDate - DateTime.Today).TotalDays;
                 if (expirationDate != null)
                 {
                     if (totalDaysLeft < 0)
@@ -1409,7 +1409,7 @@ namespace ParkingMangement.GUI
 
             string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString();
             Directory.CreateDirectory(path);
-            Util.ShareFolder(path, "Test Share", "This is a Test Share");
+            //Util.ShareFolder(path, "Test Share", "This is a Test Share");
             Directory.SetCurrentDirectory(path);
             try
             {

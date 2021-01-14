@@ -74,6 +74,8 @@ namespace ParkingMangement.DAO
 
         public static bool Insert(TicketMonthDTO ticketMonthDTO)
         {
+            HardDeleteIfCardBeDeleted(ticketMonthDTO.Id);
+
             string sql = getInsertSql(ticketMonthDTO); 
             return (new Database()).ExcuNonQuery(sql);
         }
@@ -96,8 +98,8 @@ namespace ParkingMangement.DAO
         public static string getUpdateSyncSPMSql(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', Digit =N'" + ticketMonthDTO.Digit + "', CustomerName =N'"
-                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart + "', IsSync ='" 
-                + ticketMonthDTO.IsSync + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "', Phone =N'" + ticketMonthDTO.Phone + "' where ID ='" + ticketMonthDTO.Id + "'";
+                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart 
+                + "', IsSync ='" + ticketMonthDTO.IsSync + "', IsDeleted ='" + ticketMonthDTO.IsDeleted + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "', Phone =N'" + ticketMonthDTO.Phone + "' where ID ='" + ticketMonthDTO.Id + "'";
             return sql;
         }
 
@@ -489,10 +491,12 @@ namespace ParkingMangement.DAO
             ticketMonthDTO.Address = dataRow.Field<String>("Address");
             ticketMonthDTO.CarKind = dataRow.Field<String>("CarKind");
             String registrationDateString = dataRow.Field<String>("RegistrationDate");
-            DateTime registrationDate = DateTime.FromOADate(double.Parse(registrationDateString));
+            DateTime registrationDate = DateTime.ParseExact(registrationDateString, "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
             ticketMonthDTO.RegistrationDate = registrationDate;
             String expirationDateString = dataRow.Field<String>("ExpirationDate");
-            DateTime expirationDate = DateTime.FromOADate(double.Parse(expirationDateString));
+            DateTime expirationDate = DateTime.ParseExact(expirationDateString, "yyyy-MM-dd",
+                                       System.Globalization.CultureInfo.InvariantCulture);
             ticketMonthDTO.ExpirationDate = expirationDate;
             ticketMonthDTO.ChargesAmount = dataRow.Field<String>("ChargesAmount");
 
@@ -536,6 +540,7 @@ namespace ParkingMangement.DAO
                 string id = jObject.GetValue("maThe").ToString();
                 string soThe = jObject.GetValue("soThe").ToString();
                 string bienSo = jObject.GetValue("bienSo").ToString();
+                string isUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa") ? "0" : "1";
 
                 string sign = jObject.GetValue("loaiThe").ToString();
                 DataTable data = PartDAO.GetPartIDAndAmountBySign(sign);
@@ -545,47 +550,53 @@ namespace ParkingMangement.DAO
                     partId = data.Rows[0].Field<string>("ID");
                 }
 
-                if (!bienSo.Equals(""))
+                TicketMonthDTO ticketMonthDTO = GetDTODataByID(id);
+                if (ticketMonthDTO == null)
                 {
-                    TicketMonthDTO ticketMonthDTO = GetDTODataByID(id);
-                    if (ticketMonthDTO == null)
-                    {
-                        ticketMonthDTO = new TicketMonthDTO();
-                    }
-                    ticketMonthDTO.Account = Program.CurrentUserID;
-                    ticketMonthDTO.Digit = bienSo;
-                    ticketMonthDTO.Company = jObject.GetValue("soPhong").ToString();
-                    ticketMonthDTO.CustomerName = jObject.GetValue("chuXe").ToString();
-                    try
-                    {
-                        ticketMonthDTO.RegistrationDate = DateTime.Parse(jObject.GetValue("ngayBatDau").ToString());
-                        ticketMonthDTO.ExpirationDate = DateTime.Parse(jObject.GetValue("ngayHetHan").ToString());
-                    }
-                    catch
-                    {
-                        Exception e;
-                    }
-                    ticketMonthDTO.ProcessDate = DateTime.Now;
-                    ticketMonthDTO.DayUnlimit = DateTime.Now;
-                    ticketMonthDTO.Id = id;
+                    ticketMonthDTO = new TicketMonthDTO();
+                }
+                ticketMonthDTO.Account = Program.CurrentUserID;
+                ticketMonthDTO.Digit = bienSo;
+                ticketMonthDTO.Company = jObject.GetValue("soPhong").ToString();
+                ticketMonthDTO.CustomerName = jObject.GetValue("chuXe").ToString();
+                try
+                {
+                    ticketMonthDTO.RegistrationDate = DateTime.Parse(jObject.GetValue("ngayBatDau").ToString());
+                    ticketMonthDTO.ExpirationDate = DateTime.Parse(jObject.GetValue("ngayHetHan").ToString());
+                }
+                catch
+                {
+                    Exception e;
+                }
+                ticketMonthDTO.ProcessDate = DateTime.Now;
+                ticketMonthDTO.DayUnlimit = DateTime.Now;
+                ticketMonthDTO.Id = id;
 
-                    if (!partId.Equals(""))
-                    {
-                        partId = data.Rows[0].Field<string>("ID");
-                        ticketMonthDTO.IdPart = partId;
-                    }
-                    ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();
-                    ticketMonthDTO.Phone = jObject.GetValue("dienThoai").ToString();
-                    ticketMonthDTO.IsSync = "1";
+                if (!partId.Equals(""))
+                {
+                    partId = data.Rows[0].Field<string>("ID");
+                    ticketMonthDTO.IdPart = partId;
+                }
+                ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();
+                ticketMonthDTO.Phone = jObject.GetValue("dienThoai").ToString();
+                ticketMonthDTO.IsDeleted = "0";
+                ticketMonthDTO.IsSync = "1";
 
+                if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
+                    && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals("")
+                    && ticketMonthDTO.ChargesAmount.Equals("0") && isUsing.Equals("0"))
+                {
+                    Delete(ticketMonthDTO.Id);
+                }
+                else if (!bienSo.Equals(""))
+                {
                     InsertOrUpdateNoErrorMessage(ticketMonthDTO);
-                }              
-
+                }
 
                 CardDTO cardDTO = new CardDTO();
                 cardDTO.SystemId = id;
                 cardDTO.Id = id;
-                cardDTO.IsUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa")? "0" : "1";
+                cardDTO.IsUsing = isUsing;
                 cardDTO.IsDeleted = "0";
                 cardDTO.Identify = soThe;
                 cardDTO.Type = partId;
