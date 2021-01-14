@@ -540,6 +540,7 @@ namespace ParkingMangement.DAO
                 string id = jObject.GetValue("maThe").ToString();
                 string soThe = jObject.GetValue("soThe").ToString();
                 string bienSo = jObject.GetValue("bienSo").ToString();
+                string isUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa") ? "0" : "1";
 
                 string sign = jObject.GetValue("loaiThe").ToString();
                 DataTable data = PartDAO.GetPartIDAndAmountBySign(sign);
@@ -581,13 +582,13 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.IsDeleted = "0";
                 ticketMonthDTO.IsSync = "1";
 
-                if (ticketMonthDTO.CustomerName.Equals("") && ticketMonthDTO.Digit.Equals("")
+                if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
                     && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals("")
-                    && ticketMonthDTO.ChargesAmount.Equals("0"))
+                    && ticketMonthDTO.ChargesAmount.Equals("0") && isUsing.Equals("0"))
                 {
                     Delete(ticketMonthDTO.Id);
                 }
-                else
+                else if (!bienSo.Equals(""))
                 {
                     InsertOrUpdateNoErrorMessage(ticketMonthDTO);
                 }
@@ -595,7 +596,7 @@ namespace ParkingMangement.DAO
                 CardDTO cardDTO = new CardDTO();
                 cardDTO.SystemId = id;
                 cardDTO.Id = id;
-                cardDTO.IsUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa")? "0" : "1";
+                cardDTO.IsUsing = isUsing;
                 cardDTO.IsDeleted = "0";
                 cardDTO.Identify = soThe;
                 cardDTO.Type = partId;
