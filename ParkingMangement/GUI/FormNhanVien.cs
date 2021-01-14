@@ -263,7 +263,11 @@ namespace ParkingMangement.GUI
             config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
             // load cameras tree
             config.LoadCameras();
-            openCameraWindow();
+            
+            new Thread(() =>
+            {
+                openCameraWindow();
+            }).Start();
         }
 
         private void openCameraWindow()
