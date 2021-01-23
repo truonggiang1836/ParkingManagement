@@ -1602,6 +1602,36 @@ namespace ParkingMangement.GUI
             setColorForRenewTicketMonthList();
         }
 
+        private async Task searchDebtReportTicketMonthDataAsync()
+        {
+            progressBarDebtReport.Show();
+
+            string key = tbDebtReportKeyWordSearch.Text;
+            if (!string.IsNullOrWhiteSpace(tbDebtReportDaysRemainingSearch.Text))
+            {
+                int daysRemaining = 0;
+                if (int.TryParse(tbDebtReportDaysRemainingSearch.Text, out daysRemaining))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+                var data = await TicketMonthDAO.SearchDebtReportTicketData(key, daysRemaining);
+                dgvDebtReport.DataSource = data;
+            }
+            else
+            {
+                var data = await TicketMonthDAO.SearchDebtReportTicketData(key, null);
+                dgvDebtReport.DataSource = data;
+            }
+            setColorForDebtReportTicketMonthList();
+
+            progressBarDebtReport.Hide();
+        }
+
         private void setColorForRenewTicketMonthList()
         {
             dgvRenewTicketMonthList.DefaultCellStyle.ForeColor = Color.Black;
@@ -1613,6 +1643,22 @@ namespace ParkingMangement.GUI
                     foreach (DataGridViewColumn col in dgvRenewTicketMonthList.Columns)
                     {
                         dgvRenewTicketMonthList[col.Index, row.Index].Style.ForeColor = Color.Red;
+                    }
+                }
+            }
+        }
+
+        private void setColorForDebtReportTicketMonthList()
+        {
+            dgvDebtReport.DefaultCellStyle.ForeColor = Color.Black;
+            foreach (DataGridViewRow row in dgvDebtReport.Rows)
+            {
+                int daysRemaining = Convert.ToInt32(dgvDebtReport.Rows[row.Index].Cells["DebtDaysRemaining"].Value);
+                if (daysRemaining <= 0)
+                {
+                    foreach (DataGridViewColumn col in dgvDebtReport.Columns)
+                    {
+                        dgvDebtReport[col.Index, row.Index].Style.ForeColor = Color.Red;
                     }
                 }
             }
@@ -1653,13 +1699,6 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void loadRenewTicketMonthData()
-        {
-            DataTable data = TicketMonthDAO.GetAllNearExpiredTicketData(DateTime.Now);
-            dgvRenewTicketMonthList.DataSource = data;
-            setColorForRenewTicketMonthList();
-        }
-
         private void tabQuanLyVeThang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageXemNhatKyVeThang"])
@@ -1689,7 +1728,7 @@ namespace ParkingMangement.GUI
             }
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageGiaHanVeThang"])
             {
-                loadRenewTicketMonthData();
+                searchNearExpiredTicketMonthData();
                 setFormatDateForDateTimePicker(dtRenewDate);
                 setFormatDateForDateTimePicker(dtRenewExpirationDate);
                 dtRenewExpirationDate.Value = Util.getLastDateOfCurrentMonth();
@@ -1705,6 +1744,10 @@ namespace ParkingMangement.GUI
             else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageKichHoatVeThang"])
             {
                 searchActiveTicketMonth();
+            }
+            else if (tabQuanLyVeThang.SelectedTab == tabQuanLyVeThang.TabPages["tabPageBaoCaoCongNo"])
+            {
+                searchDebtReportTicketMonthDataAsync();
             }
         }
         private void addTicketLog(int logTypeID, TicketMonthDTO ticketMonthDTO)
@@ -2675,7 +2718,7 @@ namespace ParkingMangement.GUI
                     TicketMonthDAO.updateTicketByExpirationDate(expirationDate, id);
                 }
             }
-            loadRenewTicketMonthData();
+            searchNearExpiredTicketMonthData();
         }
 
         private void btnRenewByPlusDate_Click(object sender, EventArgs e)
@@ -2710,7 +2753,7 @@ namespace ParkingMangement.GUI
                     TicketMonthDAO.updateTicketByExpirationDate(expirationDate, id);
                 }
             }
-            loadRenewTicketMonthData();
+            searchNearExpiredTicketMonthData();
         }
 
         private void btnSaveLostCard_Click(object sender, EventArgs e)
@@ -3758,6 +3801,26 @@ namespace ParkingMangement.GUI
 
                 string fileName = "Export_danhsach_kichhoat_thethang";
                 exportToExcel(dgvActiveTicketMonthList, worksheet, 1, 1, fileName);
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
+        }
+
+        private void exportDanhSachBaoCaoCongNoToExcel()
+        {
+            try
+            {
+                XLWorkbook workbook = new XLWorkbook();
+                IXLWorksheet worksheet = workbook.Worksheets.Add("Danh sách công nợ");
+
+                string fileName = "Export_danhsach_congno";
+                exportToExcel(dgvDebtReport, worksheet, 1, 1, fileName);
             }
             catch (System.Exception ex)
             {
@@ -5909,7 +5972,10 @@ namespace ParkingMangement.GUI
                         int payCost = 0;
                         if (cbCostExtendCard.Checked)
                         {
-                            int extendCardCost = getCostExtendCard(row);
+                            DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptExpirationDate"].Value);
+                            DateTime newExpirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
+                            string monthlyCostString = row.Cells["ReceiptChargesAmount"].Value.ToString().Replace(".", "").Replace(",", "");
+                            int extendCardCost = Util.getCostExtendCard(expirationDate, newExpirationDate, monthlyCostString);
                             if (cbVAT.Checked)
                             {
                                 extendCardCost += (int)(extendCardCost * 0.1);
@@ -6021,7 +6087,10 @@ namespace ParkingMangement.GUI
                     }
 
                     int payCost = 0;
-                    int extendCardCost = getCostExtendCard(row);
+                    DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptExpirationDate"].Value);
+                    DateTime newExpirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
+                    string monthlyCostString = row.Cells["ReceiptChargesAmount"].Value.ToString().Replace(".", "").Replace(",", "");
+                    int extendCardCost = Util.getCostExtendCard(expirationDate, newExpirationDate, monthlyCostString);
                     if (cbVAT.Checked)
                     {
                         extendCardCost += (int)(extendCardCost * 0.1);
@@ -6035,45 +6104,7 @@ namespace ParkingMangement.GUI
             
             mPrintReceiptCost = total;
             tbPrintReceiptCost.Text = Util.formatNumberAsMoney(total);
-        }
-
-        private int getCostExtendCard(DataGridViewRow row)
-        {
-            DateTime expirationDate = Convert.ToDateTime(row.Cells["ReceiptExpirationDate"].Value);
-            DateTime newExpirationDate = Convert.ToDateTime(row.Cells["ReceiptNewExpirationDate"].Value);
-            int monthlyCost = 0;
-            int payCost = 0;
-            string monthlyCostString = row.Cells["ReceiptChargesAmount"].Value.ToString().Replace(".", "").Replace(",", "");
-            try
-            {
-                monthlyCost = Convert.ToInt32(monthlyCostString);
-            }
-            catch (Exception)
-            {
-
-            }
-
-            int dayCount = (newExpirationDate.Date - expirationDate.Date).Days;
-            if (dayCount == 0)
-            {
-                return 0;
-            }
-
-            int monthCount = Util.MonthDifference(newExpirationDate, expirationDate);
-            int pastRemainDays = Util.getDaysInMonth(expirationDate) - expirationDate.Day;
-
-            payCost += monthlyCost * pastRemainDays / 30;
-            if (Util.getDaysInMonth(newExpirationDate) == newExpirationDate.Day)
-            {
-                payCost += monthlyCost * monthCount;
-            }
-            else
-            {
-                int futureRemainDays = newExpirationDate.Day;
-                payCost += monthlyCost * (monthCount - 1) + monthlyCost * futureRemainDays / 30;
-            }
-            return payCost;
-        }
+        }    
 
         private void loadDataPrintReceipt()
         {
@@ -6514,6 +6545,21 @@ namespace ParkingMangement.GUI
         {
             calculateNoticeCost();
             openFeeNoticeForm();
+        }
+
+        private void dgvDebtReport_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Util.setRowNumber(dgvDebtReport, "STT_DebtReportTicketMonthList");
+        }
+
+        private void btnSearchDebtReport_Click(object sender, EventArgs e)
+        {
+            searchDebtReportTicketMonthDataAsync();
+        }
+
+        private void btnExportDebtReport_Click(object sender, EventArgs e)
+        {
+            exportDanhSachBaoCaoCongNoToExcel();
         }
     }
 }
