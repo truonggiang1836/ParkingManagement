@@ -272,7 +272,7 @@ namespace ParkingMangement.GUI
             //    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
             //    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
             //}).Start();
-            readPegasusReaderCOM();
+            //readPegasusReaderCOM();
         }
 
         private void loadInfo()

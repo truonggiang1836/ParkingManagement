@@ -162,7 +162,11 @@ namespace ParkingMangement.Utils
 
         public static string formatNumberAsMoney(long number)
         {
-            return string.Format("{0:#,000}", number);
+            if (number != 0)
+            {
+                return string.Format("{0:#,000}", number);
+            }
+            return "0";
         }
 
         public static double getMillisecondBetweenTwoDate(DateTime oldDate, DateTime newDate)

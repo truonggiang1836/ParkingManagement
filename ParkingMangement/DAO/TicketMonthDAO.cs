@@ -224,8 +224,8 @@ namespace ParkingMangement.DAO
                 data = (new Database()).ExcuQuery(sql);
 
                 DateTime currentDate = DateTime.Now;
-                data.Columns.Add("PreviousCharge", typeof(System.Int32));
-                data.Columns.Add("CurrentCharge", typeof(System.Int32));
+                data.Columns.Add("PreviousCharge", typeof(string));
+                data.Columns.Add("CurrentCharge", typeof(string));
                 data.Columns.Add("DaysRemaining", typeof(System.Int32));
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
@@ -258,8 +258,8 @@ namespace ParkingMangement.DAO
                         currentCharge = monthlyCost;
                     }
 
-                    data.Rows[row].SetField("PreviousCharge", previousCharge);
-                    data.Rows[row].SetField("CurrentCharge", currentCharge);
+                    data.Rows[row].SetField("PreviousCharge", Util.formatNumberAsMoney(previousCharge));
+                    data.Rows[row].SetField("CurrentCharge", Util.formatNumberAsMoney(currentCharge));
 
                     int daysRemainingInDB = (expirationDate.Date - currentDate.Date).Days;
                     data.Rows[row].SetField("DaysRemaining", daysRemainingInDB);
