@@ -1192,9 +1192,9 @@
             this.DebtPreviousCharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DebtCurrentCharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DebtDaysRemaining = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn46 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DebtExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn54 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -8477,9 +8477,9 @@
             this.DebtPreviousCharge,
             this.DebtCurrentCharge,
             this.DebtDaysRemaining,
-            this.dataGridViewTextBoxColumn40,
             this.dataGridViewTextBoxColumn46,
             this.DebtExpirationDate,
+            this.dataGridViewTextBoxColumn40,
             this.dataGridViewTextBoxColumn53,
             this.dataGridViewTextBoxColumn54,
             this.dataGridViewTextBoxColumn57,
@@ -12896,15 +12896,6 @@
             this.DebtDaysRemaining.ReadOnly = true;
             this.DebtDaysRemaining.Width = 90;
             // 
-            // dataGridViewTextBoxColumn40
-            // 
-            this.dataGridViewTextBoxColumn40.DataPropertyName = "ID";
-            this.dataGridViewTextBoxColumn40.HeaderText = "Mã chíp";
-            this.dataGridViewTextBoxColumn40.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
-            this.dataGridViewTextBoxColumn40.ReadOnly = true;
-            this.dataGridViewTextBoxColumn40.Width = 125;
-            // 
             // dataGridViewTextBoxColumn46
             // 
             this.dataGridViewTextBoxColumn46.DataPropertyName = "RegistrationDate";
@@ -12926,6 +12917,15 @@
             this.DebtExpirationDate.Name = "DebtExpirationDate";
             this.DebtExpirationDate.ReadOnly = true;
             this.DebtExpirationDate.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn40
+            // 
+            this.dataGridViewTextBoxColumn40.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn40.HeaderText = "Mã chíp";
+            this.dataGridViewTextBoxColumn40.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
+            this.dataGridViewTextBoxColumn40.ReadOnly = true;
+            this.dataGridViewTextBoxColumn40.Width = 125;
             // 
             // dataGridViewTextBoxColumn53
             // 
@@ -14337,9 +14337,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DebtPreviousCharge;
         private System.Windows.Forms.DataGridViewTextBoxColumn DebtCurrentCharge;
         private System.Windows.Forms.DataGridViewTextBoxColumn DebtDaysRemaining;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn46;
         private System.Windows.Forms.DataGridViewTextBoxColumn DebtExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn53;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn54;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;

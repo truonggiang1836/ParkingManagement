@@ -5839,12 +5839,12 @@ namespace ParkingMangement.GUI
                     row.SetField("IDPart", dgvPrintReceipt.Rows[i].Cells["ReceiptIDPart"].Value);
                     row.SetField("CustomerName", dgvPrintReceipt.Rows[i].Cells["ReceiptCustomerName"].Value);
                     row.SetField("Cost", dgvPrintReceipt.Rows[i].Cells["ReceiptCost"].Value);
-                    int printCode = Convert.ToInt32(dgvPrintReceipt.Rows[i].Cells["ReceiptCost"].Value);
-                    if (printCode < 0)
+                    int printCost = Convert.ToInt32(dgvPrintReceipt.Rows[i].Cells["ReceiptCost"].Value);
+                    if (printCost < 0)
                     {
-                        printCode = -printCode;
+                        printCost = -printCost;
                     }
-                    row.SetField("PrintCost", printCode);
+                    row.SetField("PrintCost", printCost);
                     row.SetField("ExpirationDate", dgvPrintReceipt.Rows[i].Cells["ReceiptExpirationDate"].Value);
                     row.SetField("NewExpirationDate", dgvPrintReceipt.Rows[i].Cells["ReceiptNewExpirationDate"].Value);
                     row.SetField("ID", dgvPrintReceipt.Rows[i].Cells["ReceiptTicketMonthID"].Value);
@@ -6056,13 +6056,14 @@ namespace ParkingMangement.GUI
 
         private void calculateNoticeCost()
         {
+            int monthCount = Int32.Parse(numericMonthExtendCount.Value.ToString());
             dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = true;
             foreach (DataGridViewRow row in dgvPrintReceipt.Rows)
             {
                 bool isChoose = Convert.ToBoolean(row.Cells["ReceiptIsChosen"].Value);
                 if (isChoose)
                 {                   
-                    row.Cells["ReceiptNewExpirationDate"].Value = Util.getLastDateOfCurrentMonth();
+                    row.Cells["ReceiptNewExpirationDate"].Value = Util.getLastDateOfCurrentMonth(DateTime.Now.AddMonths(monthCount - 1));
                 }
             }
 
