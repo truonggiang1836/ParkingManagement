@@ -4,6 +4,7 @@ using ParkingMangement.Model;
 using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -47,15 +48,17 @@ namespace ParkingMangement
             initUhfReader();
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-            
+
+            doTimerAutoLockCard();
+            //Database.UpdateDB();
+
             if (Constant.IS_SYNC_DATA_APP)
             {
                 Application.Run(new FormSyncData());
             } else
             {
-                Application.Run(new FormLogin());
+                Application.Run(new FormLogin());              
             }
-            //Database.UpdateDB();
         }
 
         private static void Application_ApplicationExit(object sender, EventArgs e)
@@ -209,6 +212,33 @@ namespace ParkingMangement
             {
                 Program.newUhfCardId = Program.firstUhfCardId + " " + Program.newUhfCardId;
                 Console.WriteLine("Combine UHF: " + Program.newUhfCardId);
+            }
+        }
+
+        private static void doTimerAutoLockCard()
+        {
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventAutoLockCard);
+            aTimer.Interval = 1 * 60 * 60 * 1000; //1h
+            aTimer.Enabled = true;
+            aTimer.Start();
+
+            checkForAutoLockCard();
+        }
+
+        private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
+        {
+            checkForAutoLockCard();
+        }
+
+        private static void checkForAutoLockCard()
+        {
+            if (!Constant.IS_SYNC_DATA_APP)
+            {
+                if (ConfigDAO.GetIsAutoLockCard() == 1)
+                {
+                    Util.autoLockExpiredCard();
+                }
             }
         }
     }

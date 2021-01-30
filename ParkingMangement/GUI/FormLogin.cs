@@ -51,18 +51,6 @@ namespace ParkingMangement
             tbPassword.Text = Constant.sHintTextPassword;
             tbPassword.GotFocus += new EventHandler(RemoveHintTextPassword);
             tbPassword.LostFocus += new EventHandler(AddHintTextPassword);
-
-
-            if (!Constant.IS_SYNC_DATA_APP)
-            {
-                if (ConfigDAO.GetIsAutoLockCard() == 1)
-                {
-                    if (DateTime.Now > new DateTime(2020, 8, 31))
-                    {
-                        Util.autoLockExpiredCard();
-                    }                  
-                }
-            }
         }
 
         private void login()
