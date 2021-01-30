@@ -121,6 +121,25 @@ namespace ParkingMangement.GUI
             CurrentUserID = Program.CurrentUserID;
         }
 
+        SerialPort mySerialPort;
+        public void readPegasusReaderCOM()
+        {
+            mySerialPort = new SerialPort("COM7", 9600, Parity.None, 8, StopBits.One);
+            mySerialPort.ReadTimeout = 500;
+            mySerialPort.Open();
+
+            mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+        }
+
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadLine();
+            Console.WriteLine(data);
+            cardID = data.Trim();
+            readCardEvent();
+        }
+
         private void FormStaff_Load(object sender, EventArgs e)
         {
             //Network = new clsNetwork();
@@ -253,7 +272,7 @@ namespace ParkingMangement.GUI
             //    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
             //    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
             //}).Start();
-
+            readPegasusReaderCOM();
         }
 
         private void loadInfo()
