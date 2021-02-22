@@ -1,4 +1,5 @@
-﻿using ClosedXML.Excel;
+﻿using CameraViewer;
+using ClosedXML.Excel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ParkingMangement.DAO;
@@ -4250,10 +4251,10 @@ namespace ParkingMangement.GUI
                 if (File.Exists(filePath))
                 {
                     Config config = mConfig;
-                    config.cameraUrl1 = Constant.sEncodeStart + tb_camera_url_1.Text + Constant.sEncodeEnd;
-                    config.cameraUrl2 = Constant.sEncodeStart + tb_camera_url_2.Text + Constant.sEncodeEnd;
-                    config.cameraUrl3 = Constant.sEncodeStart + tb_camera_url_3.Text + Constant.sEncodeEnd;
-                    config.cameraUrl4 = Constant.sEncodeStart + tb_camera_url_4.Text + Constant.sEncodeEnd;
+                    config.cameraUrl1 = tb_camera_url_1.Text;
+                    config.cameraUrl2 = tb_camera_url_2.Text;
+                    config.cameraUrl3 = tb_camera_url_3.Text;
+                    config.cameraUrl4 = tb_camera_url_4.Text;
                     config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
                     config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
                     config.computerName = Constant.sEncodeStart + tb_ip_host.Text + Constant.sEncodeEnd;
@@ -4273,6 +4274,13 @@ namespace ParkingMangement.GUI
                     TextWriter txtWriter = new StreamWriter(filePath);
                     xs.Serialize(txtWriter, config);
                     txtWriter.Close();
+
+                    Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                    configuration.SaveUrlCamera("cam1", config.cameraUrl1);
+                    configuration.SaveUrlCamera("cam2", config.cameraUrl2);
+                    configuration.SaveUrlCamera("cam3", config.cameraUrl3);
+                    configuration.SaveUrlCamera("cam4", config.cameraUrl4);
+
                     this.ActiveControl = null;
                     MessageBox.Show(Constant.sMessageUpdateSuccess);
                 }

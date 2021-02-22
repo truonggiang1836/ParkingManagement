@@ -441,6 +441,38 @@ namespace CameraViewer
 			}
 		}
 
+		public void SaveUrlCamera(string name, string url)
+		{
+			XmlDocument doc = new XmlDocument();
+			doc.Load(camerasFile);
+			var nodes = doc.SelectSingleNode("Cameras").SelectNodes("Camera");
+
+			foreach (XmlElement n in nodes)
+			{
+				if (n.GetAttribute("name") == name)
+				{
+					n.SetAttribute("url", url);
+				}
+			}
+			doc.Save(camerasFile);
+		}
+
+		public void SaveZoomCamera(string name, float zoom)
+		{
+			XmlDocument doc = new XmlDocument();
+			doc.Load(camerasFile);
+			var nodes = doc.SelectSingleNode("Cameras").SelectNodes("Camera");
+
+			foreach (XmlElement n in nodes)
+			{
+				if (n.GetAttribute("name") == name)
+				{
+					n.SetAttribute("zoom", zoom.ToString());
+				}
+			}
+			doc.Save(camerasFile);
+		}
+
 		// Load cameras collection from file
 		public void LoadCameras()
 		{
@@ -526,6 +558,7 @@ namespace CameraViewer
 				Camera camera = new Camera(reader.GetAttribute("name"));
 
 				camera.ID			= int.Parse(reader.GetAttribute("id"));
+				camera.ZoomFactor	= float.Parse(reader.GetAttribute("zoom"));
 				camera.Description	= reader.GetAttribute("desc");
 				camera.Parent		= parent;
 				camera.Provider		= providers.GetProviderByName(reader.GetAttribute("provider"));

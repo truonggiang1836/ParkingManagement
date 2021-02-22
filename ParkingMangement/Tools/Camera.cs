@@ -26,6 +26,7 @@ namespace CameraViewer
         private Bitmap lastFrame = null;
 
         private int width = -1, height = -1;
+        private float zoomFactor = 1f;
 
         //
         public event EventHandler NewFrame;
@@ -41,6 +42,12 @@ namespace CameraViewer
         {
             get { return name; }
             set { name = value; }
+        }
+        // Zoom property
+        public float ZoomFactor
+        {
+            get { return zoomFactor; }
+            set { zoomFactor = value; }
         }
         // Description property
         public string Description

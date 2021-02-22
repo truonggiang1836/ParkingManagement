@@ -97,9 +97,40 @@ namespace CameraViewer
                 camera.Lock();
 
                 // draw frame
+                //if (camera.LastFrame != null)
+                //{
+                //    g.DrawImage(camera.LastFrame, rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
+                //    firstFrame = false;
+                //}
+                //else
+                //{
+                //    // Create font and brush
+                //    Font drawFont = new Font("Arial", 12);
+                //    SolidBrush drawBrush = new SolidBrush(Color.White);
+
+                //    g.DrawString("Connecting ...", drawFont, drawBrush, new PointF(5, 5));
+
+                //    drawBrush.Dispose();
+                //    drawFont.Dispose();
+                //}
                 if (camera.LastFrame != null)
                 {
-                    g.DrawImage(camera.LastFrame, rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
+                    Bitmap lastFrame = camera.LastFrame;
+
+                    if (camera.ZoomFactor == 1.0f)
+                    {
+                        g.DrawImage(lastFrame, rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
+                    }
+                    else
+                    {
+                        double scaleFactor = Math.Sqrt(Camera.ZoomFactor);
+                        int xGap = (lastFrame.Width - (int)(lastFrame.Width / scaleFactor)) / 2;
+                        int yGap = (lastFrame.Height - (int)(lastFrame.Height / scaleFactor)) / 2;
+
+                        g.DrawImage(lastFrame, new Rectangle(rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2),
+                                                new Rectangle(xGap, yGap, lastFrame.Width - xGap * 2, lastFrame.Height - yGap * 2),
+                                                GraphicsUnit.Pixel);
+                    }
                     firstFrame = false;
                 }
                 else

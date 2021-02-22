@@ -310,7 +310,7 @@ namespace ParkingMangement.GUI
             if (runningPool.Add(camera4))
             {
                 cameraWindow4.Camera = camera4;
-            }
+            }           
         }
 
         private void loadInfo()
