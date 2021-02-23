@@ -270,7 +270,7 @@ namespace ParkingMangement.GUI
             }).Start();
         }
 
-        private void openCameraWindow()
+        public void openCameraWindow()
         {
             string name1 = "cam1";
             // get camera

@@ -1,4 +1,5 @@
-﻿using ParkingMangement.Model;
+﻿using CameraViewer;
+using ParkingMangement.Model;
 using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace ParkingMangement.GUI
 
         private void FormZoomCameraSetting_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i <= 100; i = i + 5)
+            for (int i = 1; i <= 25; i = i + 1)
             {
                 int value = i;
                 listZoomValue.Add(value);
@@ -34,10 +35,12 @@ namespace ParkingMangement.GUI
                 cbZoomValue3.Items.Add(value);
                 cbZoomValue4.Items.Add(value);
             }
-            cbZoomValue1.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera1);
-            cbZoomValue2.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera2);
-            cbZoomValue3.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera3);
-            cbZoomValue4.SelectedIndex = listZoomValue.IndexOf(Util.getConfigFile().ZoomCamera4);
+
+            Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+            cbZoomValue1.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam1"));
+            cbZoomValue2.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam2"));
+            cbZoomValue3.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam3"));
+            cbZoomValue4.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam4"));
         }
 
         private void btnNo_Click(object sender, EventArgs e)
@@ -54,7 +57,7 @@ namespace ParkingMangement.GUI
                 int value3 = listZoomValue[cbZoomValue3.SelectedIndex];
                 int value4 = listZoomValue[cbZoomValue4.SelectedIndex];
                 saveZoomCameraValueToConfig(value1, value2, value3, value4);
-                formNhanVien.configVLC(value1, value2, value3, value4);
+                this.Close();
             }
         }
 
@@ -75,6 +78,13 @@ namespace ParkingMangement.GUI
                     TextWriter txtWriter = new StreamWriter(filePath);
                     xs.Serialize(txtWriter, config);
                     txtWriter.Close();
+
+                    Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                    configuration.SaveZoomCamera("cam1", value1);
+                    configuration.SaveZoomCamera("cam2", value2);
+                    configuration.SaveZoomCamera("cam3", value3);
+                    configuration.SaveZoomCamera("cam4", value4);
+
                     return true;
                 }
             }

@@ -473,6 +473,38 @@ namespace CameraViewer
 			doc.Save(camerasFile);
 		}
 
+		public string GetUrlCamera(string name)
+		{
+			XmlDocument doc = new XmlDocument();
+			doc.Load(camerasFile);
+			var nodes = doc.SelectSingleNode("Cameras").SelectNodes("Camera");
+
+			foreach (XmlElement n in nodes)
+			{
+				if (n.GetAttribute("name") == name)
+				{
+					return n.GetAttribute("url");
+				}
+			}
+			return "";
+		}
+
+		public int GetZoomCamera(string name)
+		{
+			XmlDocument doc = new XmlDocument();
+			doc.Load(camerasFile);
+			var nodes = doc.SelectSingleNode("Cameras").SelectNodes("Camera");
+
+			foreach (XmlElement n in nodes)
+			{
+				if (n.GetAttribute("name") == name)
+				{
+					return int.Parse(n.GetAttribute("zoom"));
+				}
+			}
+			return 1;
+		}
+
 		// Load cameras collection from file
 		public void LoadCameras()
 		{

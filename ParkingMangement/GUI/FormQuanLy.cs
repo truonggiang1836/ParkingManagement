@@ -4307,11 +4307,13 @@ namespace ParkingMangement.GUI
         {
             try
             {
+                Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));             
+                tb_camera_url_1.Text = configuration.GetUrlCamera("cam1");
+                tb_camera_url_2.Text = configuration.GetUrlCamera("cam2");
+                tb_camera_url_3.Text = configuration.GetUrlCamera("cam3");
+                tb_camera_url_4.Text = configuration.GetUrlCamera("cam4");
+
                 Config config = mConfig;
-                tb_camera_url_1.Text = config.cameraUrl1;
-                tb_camera_url_2.Text = config.cameraUrl2;
-                tb_camera_url_3.Text = config.cameraUrl3;
-                tb_camera_url_4.Text = config.cameraUrl4;
                 tb_rfid_1.Text = config.rfidIn;
                 tb_rfid_2.Text = config.rfidOut;
                 tb_com_receive_in.Text = config.comReceiveIn;
