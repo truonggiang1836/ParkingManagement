@@ -4,6 +4,7 @@ using ParkingMangement.Utils;
 using System;
 using System.Data;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ParkingMangement.DAO
 {
@@ -30,7 +31,7 @@ namespace ParkingMangement.DAO
             "TicketMonth.RegistrationDate, TicketMonth.ExpirationDate from TicketMonth inner join SmartCard on TicketMonth.ID = SmartCard.ID where SmartCard.IsUsing = '1' and TicketMonth.IsDeleted = '0'";
 
         private static string sqlOrderByIdentify = " order by SmartCard.Identify asc";
-        private static string sqlOrderByExpirationDate = " order by TicketMonth.ExpirationDate asc";    
+        private static string sqlOrderByExpirationDate = " order by TicketMonth.ExpirationDate asc"; 
         public static DataTable GetAllData()
         {
             string sql = sqlGetAllData + sqlOrderByIdentify;
@@ -168,39 +169,6 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public static DataTable GetAllNearExpiredTicketData(DateTime currentDate)
-        {
-            string sql = sqlGetAllNearExpiredTicketData;
-            sql += sqlOrderByExpirationDate;
-            DataTable data = (new Database()).ExcuQuery(sql);
-
-            data.Columns.Add("DaysRemaining", typeof(System.Int32));
-            for (int row = 0; row < data.Rows.Count; row++)
-            {
-                DateTime expirationDate = data.Rows[row].Field<DateTime>("ExpirationDate");
-                int daysRemaining = (expirationDate.Date - currentDate.Date).Days;
-                //if (daysRemaining >= 0)
-                //{
-                //    data.Rows[row].SetField("DaysRemaining", daysRemaining);
-                //}
-                //else
-                //{
-                //    data.Rows[row].Delete();
-                //}
-                data.Rows[row].SetField("DaysRemaining", daysRemaining);
-
-                if (data.Rows[row].Field<string>("IsUsing") == "1")
-                {
-                    data.Rows[row].SetField("IsUsing", Constant.sLabelCardUsing);
-                }
-                else
-                {
-                    data.Rows[row].SetField("IsUsing", Constant.sLabelCardNotUsing);
-                }
-            }
-            return data;
-        }
-
         public static DataTable searchNearExpiredTicketData(string key, int? daysRemaining)
         {
             string sql = sqlGetAllNearExpiredTicketData;
@@ -237,6 +205,81 @@ namespace ParkingMangement.DAO
                     data.Rows[row].Delete();
                 }
             }
+            return data;
+        }
+
+        public async static Task<DataTable> SearchDebtReportTicketData(string key, int? daysRemaining)
+        {
+            DataTable data = new DataTable();
+            await Task.Run(() => {
+                string sql = sqlGetAllNearExpiredTicketData;
+                if (!string.IsNullOrEmpty(key))
+                {
+                    sql += " and (SmartCard.Identify like '%" + key + "%' or TicketMonth.ID like '%" + key + "%' or TicketMonth.Digit like '%" + key
+                        + "%' or TicketMonth.CustomerName like '%" + key + "%' or TicketMonth.CMND like '%" + key + "%' or TicketMonth.Email like '%"
+                        + key + "%' or TicketMonth.Company like '%" + key + "%' or TicketMonth.Address like '%" + key + "%' or TicketMonth.CarKind like '%"
+                        + key + "%' or TicketMonth.ChargesAmount like '%" + key + "%' or Part.PartName like '%" + key + "%' or TicketMonth.Phone like '%" + key + "%')";
+                }
+                sql += sqlOrderByExpirationDate;
+                data = (new Database()).ExcuQuery(sql);
+
+                DateTime currentDate = DateTime.Now;
+                data.Columns.Add("PreviousCharge", typeof(string));
+                data.Columns.Add("CurrentCharge", typeof(string));
+                data.Columns.Add("DaysRemaining", typeof(System.Int32));
+                for (int row = 0; row < data.Rows.Count; row++)
+                {
+                    DateTime expirationDate = data.Rows[row].Field<DateTime>("ExpirationDate");
+                    string chargesAmount = data.Rows[row].Field<string>("ChargesAmount");
+
+                    DateTime newExpirationDate = Util.getLastDateOfCurrentMonth();
+                    string monthlyCostString = chargesAmount.Replace(".", "").Replace(",", "");
+
+                    int monthlyCost = 0;
+                    try
+                    {
+                        monthlyCost = Convert.ToInt32(monthlyCostString);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    int extendCardCost = Util.getCostExtendCard(expirationDate, newExpirationDate, monthlyCostString);
+                    extendCardCost = Util.roundUpVND(extendCardCost);
+                    if (extendCardCost < 0)
+                    {
+                        extendCardCost = 0;
+                    }
+                    int previousCharge = 0;
+                    int currentCharge = extendCardCost;
+                    if (extendCardCost > monthlyCost)
+                    {
+                        previousCharge = extendCardCost - monthlyCost;
+                        currentCharge = monthlyCost;
+                    }
+
+                    data.Rows[row].SetField("PreviousCharge", Util.formatNumberAsMoney(previousCharge));
+                    data.Rows[row].SetField("CurrentCharge", Util.formatNumberAsMoney(currentCharge));
+
+                    int daysRemainingInDB = (expirationDate.Date - currentDate.Date).Days;
+                    data.Rows[row].SetField("DaysRemaining", daysRemainingInDB);
+
+                    if (data.Rows[row].Field<string>("IsUsing") == "1")
+                    {
+                        data.Rows[row].SetField("IsUsing", Constant.sLabelCardUsing);
+                    }
+                    else
+                    {
+                        data.Rows[row].SetField("IsUsing", Constant.sLabelCardNotUsing);
+                    }
+
+                    if (daysRemaining != null && daysRemaining.GetValueOrDefault() < daysRemainingInDB)
+                    {
+                        data.Rows[row].Delete();
+                    }
+                }
+            });
+
             return data;
         }
 

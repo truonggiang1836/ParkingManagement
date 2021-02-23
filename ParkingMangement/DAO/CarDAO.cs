@@ -407,15 +407,15 @@ namespace ParkingMangement.DAO
                 long sumCost = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long sumCostCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString());
+                    long sumCostCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""));
                     sumCost += sumCostCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long sumCostTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString());
+                    long sumCostTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""));
                     sumCost += sumCostTicketData;
                 }
-                dataRow.SetField("SumCost", sumCost);
+                dataRow.SetField("SumCost", Util.formatNumberAsMoney(sumCost));
                 data.Rows.Add(dataRow);
             }
 
@@ -450,7 +450,7 @@ namespace ParkingMangement.DAO
                 data.Columns["CountCarSurvive"].SetOrdinal(3);
                 data.Columns.Add("CountCar", typeof(long));
                 data.Columns["CountCar"].SetOrdinal(4);
-                data.Columns.Add("SumCost", typeof(long));
+                data.Columns.Add("SumCost", typeof(string));
                 data.Columns["SumCost"].SetOrdinal(5);
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
@@ -467,13 +467,12 @@ namespace ParkingMangement.DAO
                     data.Rows[row].SetField("CountCar", countCar);
                     long countCost = GetCountCostByTypeAndDate(startTime, endTime, partID, isTicketMonth, userInID, userOutID);
                     countCost += GetCountTicketMonthCostByTypeAndDate(startTime, endTime, partID);
-                    data.Rows[row].SetField("SumCost", countCost);
+                    data.Rows[row].SetField("SumCost", Util.formatNumberAsMoney(countCost));
                     countAllCarIn += countCarIn;
                     countAllCarOut += countCarOut;
                     countAllCarSurvive += countCarSurvive;
                     countAllCar += countCar;
-                    long cost = long.Parse(data.Rows[row]["SumCost"].ToString());
-                    sumCost += cost;
+                    sumCost += countCost;
                 }
             }
 
@@ -495,8 +494,7 @@ namespace ParkingMangement.DAO
             dataRow.SetField("CountCarSurvive", countAllCarSurvive);
             dataRow.SetField("CountCar", countAllCar);
 
-            //string sumCostString = Util.formatNumberAsMoney(sumCost);
-            dataRow.SetField("SumCost", sumCost);
+            dataRow.SetField("SumCost", Util.formatNumberAsMoney(sumCost));
             data.Rows.Add(dataRow);
 
             return data;

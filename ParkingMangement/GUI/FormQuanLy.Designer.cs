@@ -45,8 +45,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormQuanLy));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Thông tin nhân sự");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Dò bảng chấm công");
             System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Quản lý nhân sự", new System.Windows.Forms.TreeNode[] {
@@ -99,8 +99,6 @@
             treeNode27});
             System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Lưu mất thẻ");
             System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Xem báo cáo F7");
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -115,6 +113,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabQuanLy = new System.Windows.Forms.TabControl();
             this.tabPageQuanLyNhanSu = new System.Windows.Forms.TabPage();
             this.tabQuanLyNhanSu = new System.Windows.Forms.TabControl();
@@ -217,6 +219,14 @@
             this.rbOneDateSaleReport = new System.Windows.Forms.RadioButton();
             this.dtDateSaleReport = new System.Windows.Forms.DateTimePicker();
             this.dgvThongKeDoanhThu = new System.Windows.Forms.DataGridView();
+            this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DoanhThuSumCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageCongThucTinhTienTheoCongVan = new System.Windows.Forms.TabPage();
             this.panel31 = new System.Windows.Forms.Panel();
             this.btnChinhSuaTinhTienCongVan = new System.Windows.Forms.Button();
@@ -762,6 +772,16 @@
             this.btnActiveTicketMonthSearch = new System.Windows.Forms.Button();
             this.label110 = new System.Windows.Forms.Label();
             this.tbActiveTicketMonthKeyWordSearch = new System.Windows.Forms.TextBox();
+            this.tabPageBaoCaoCongNo = new System.Windows.Forms.TabPage();
+            this.dgvDebtReport = new System.Windows.Forms.DataGridView();
+            this.panel43 = new System.Windows.Forms.Panel();
+            this.label257 = new System.Windows.Forms.Label();
+            this.tbDebtReportDaysRemainingSearch = new System.Windows.Forms.TextBox();
+            this.btnExportDebtReport = new System.Windows.Forms.Button();
+            this.btnSearchDebtReport = new System.Windows.Forms.Button();
+            this.label258 = new System.Windows.Forms.Label();
+            this.label259 = new System.Windows.Forms.Label();
+            this.tbDebtReportKeyWordSearch = new System.Windows.Forms.TextBox();
             this.tabPageQuanLyHeThong = new System.Windows.Forms.TabPage();
             this.tabQuanLyHeThong = new System.Windows.Forms.TabControl();
             this.tabPageCauHinhCoBan = new System.Windows.Forms.TabPage();
@@ -1077,7 +1097,6 @@
             this.cbReceiptLogPrintDate = new System.Windows.Forms.CheckBox();
             this.label245 = new System.Windows.Forms.Label();
             this.label244 = new System.Windows.Forms.Label();
-            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1146,7 +1165,6 @@
             this.cbReceiptLogDetailPrintDate = new System.Windows.Forms.CheckBox();
             this.label243 = new System.Windows.Forms.Label();
             this.label246 = new System.Windows.Forms.Label();
-            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogDetailCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogDetailCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1163,14 +1181,25 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
-            this.DoanhThuPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuCountCarIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuCountCarOut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column63 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DoanhThuSumCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
+            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
+            this.progressBarDebtReport = new System.Windows.Forms.ProgressBar();
+            this.STT_DebtReportTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn52 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn55 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn56 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DebtPreviousCharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DebtCurrentCharge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DebtDaysRemaining = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn46 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DebtExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn53 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn54 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn57 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DebtChargesAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn59 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -1308,6 +1337,9 @@
             this.tabPageKichHoatVeThang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvActiveTicketMonthList)).BeginInit();
             this.panel5.SuspendLayout();
+            this.tabPageBaoCaoCongNo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDebtReport)).BeginInit();
+            this.panel43.SuspendLayout();
             this.tabPageQuanLyHeThong.SuspendLayout();
             this.tabQuanLyHeThong.SuspendLayout();
             this.tabPageCauHinhCoBan.SuspendLayout();
@@ -2441,6 +2473,77 @@
             this.dgvThongKeDoanhThu.RowHeadersWidth = 51;
             this.dgvThongKeDoanhThu.Size = new System.Drawing.Size(741, 455);
             this.dgvThongKeDoanhThu.TabIndex = 1;
+            // 
+            // DoanhThuPartName
+            // 
+            this.DoanhThuPartName.DataPropertyName = "PartName";
+            this.DoanhThuPartName.HeaderText = "LOẠI XE";
+            this.DoanhThuPartName.MinimumWidth = 6;
+            this.DoanhThuPartName.Name = "DoanhThuPartName";
+            this.DoanhThuPartName.ReadOnly = true;
+            this.DoanhThuPartName.Width = 150;
+            // 
+            // DoanhThuCountCarIn
+            // 
+            this.DoanhThuCountCarIn.DataPropertyName = "CountCarIn";
+            this.DoanhThuCountCarIn.HeaderText = "LƯỢT VÀO";
+            this.DoanhThuCountCarIn.MinimumWidth = 6;
+            this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
+            this.DoanhThuCountCarIn.ReadOnly = true;
+            // 
+            // DoanhThuCountCarOut
+            // 
+            this.DoanhThuCountCarOut.DataPropertyName = "CountCarOut";
+            this.DoanhThuCountCarOut.HeaderText = "LƯỢT RA";
+            this.DoanhThuCountCarOut.MinimumWidth = 6;
+            this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
+            this.DoanhThuCountCarOut.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "CountCarSurvive";
+            this.dataGridViewTextBoxColumn7.HeaderText = "XE TỒN";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // Column63
+            // 
+            this.Column63.DataPropertyName = "CountCar";
+            this.Column63.HeaderText = "XE THÁNG ĐÃ THU";
+            this.Column63.MinimumWidth = 6;
+            this.Column63.Name = "Column63";
+            this.Column63.ReadOnly = true;
+            this.Column63.Width = 120;
+            // 
+            // DoanhThuSumCost
+            // 
+            this.DoanhThuSumCost.DataPropertyName = "SumCost";
+            this.DoanhThuSumCost.HeaderText = "TIỀN THU";
+            this.DoanhThuSumCost.MinimumWidth = 6;
+            this.DoanhThuSumCost.Name = "DoanhThuSumCost";
+            this.DoanhThuSumCost.ReadOnly = true;
+            this.DoanhThuSumCost.Width = 120;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "IDPart";
+            this.Column9.HeaderText = "Column9";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Visible = false;
+            this.Column9.Width = 125;
+            // 
+            // Column52
+            // 
+            this.Column52.DataPropertyName = "CardTypeID";
+            this.Column52.HeaderText = "Column52";
+            this.Column52.MinimumWidth = 6;
+            this.Column52.Name = "Column52";
+            this.Column52.ReadOnly = true;
+            this.Column52.Visible = false;
+            this.Column52.Width = 125;
             // 
             // tabPageCongThucTinhTienTheoCongVan
             // 
@@ -5584,6 +5687,7 @@
             this.tabQuanLyVeThang.Controls.Add(this.tabPageMatVeThang);
             this.tabQuanLyVeThang.Controls.Add(this.tabPageKhoaVeThang);
             this.tabQuanLyVeThang.Controls.Add(this.tabPageKichHoatVeThang);
+            this.tabQuanLyVeThang.Controls.Add(this.tabPageBaoCaoCongNo);
             this.tabQuanLyVeThang.Location = new System.Drawing.Point(3, 3);
             this.tabQuanLyVeThang.Name = "tabQuanLyVeThang";
             this.tabQuanLyVeThang.SelectedIndex = 0;
@@ -8347,6 +8451,128 @@
             this.tbActiveTicketMonthKeyWordSearch.Size = new System.Drawing.Size(200, 22);
             this.tbActiveTicketMonthKeyWordSearch.TabIndex = 2;
             // 
+            // tabPageBaoCaoCongNo
+            // 
+            this.tabPageBaoCaoCongNo.Controls.Add(this.progressBarDebtReport);
+            this.tabPageBaoCaoCongNo.Controls.Add(this.dgvDebtReport);
+            this.tabPageBaoCaoCongNo.Controls.Add(this.panel43);
+            this.tabPageBaoCaoCongNo.Location = new System.Drawing.Point(4, 25);
+            this.tabPageBaoCaoCongNo.Name = "tabPageBaoCaoCongNo";
+            this.tabPageBaoCaoCongNo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBaoCaoCongNo.Size = new System.Drawing.Size(1156, 617);
+            this.tabPageBaoCaoCongNo.TabIndex = 6;
+            this.tabPageBaoCaoCongNo.Text = "Báo cáo công nợ";
+            this.tabPageBaoCaoCongNo.UseVisualStyleBackColor = true;
+            // 
+            // dgvDebtReport
+            // 
+            this.dgvDebtReport.AllowUserToAddRows = false;
+            this.dgvDebtReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDebtReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT_DebtReportTicketMonthList,
+            this.dataGridViewTextBoxColumn38,
+            this.dataGridViewTextBoxColumn52,
+            this.dataGridViewTextBoxColumn55,
+            this.dataGridViewTextBoxColumn56,
+            this.DebtPreviousCharge,
+            this.DebtCurrentCharge,
+            this.DebtDaysRemaining,
+            this.dataGridViewTextBoxColumn46,
+            this.DebtExpirationDate,
+            this.dataGridViewTextBoxColumn40,
+            this.dataGridViewTextBoxColumn53,
+            this.dataGridViewTextBoxColumn54,
+            this.dataGridViewTextBoxColumn57,
+            this.DebtChargesAmount,
+            this.dataGridViewTextBoxColumn59});
+            this.dgvDebtReport.Location = new System.Drawing.Point(6, 191);
+            this.dgvDebtReport.Name = "dgvDebtReport";
+            this.dgvDebtReport.RowHeadersWidth = 51;
+            this.dgvDebtReport.Size = new System.Drawing.Size(1144, 412);
+            this.dgvDebtReport.TabIndex = 7;
+            this.dgvDebtReport.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvDebtReport_DataBindingComplete);
+            // 
+            // panel43
+            // 
+            this.panel43.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel43.Controls.Add(this.label257);
+            this.panel43.Controls.Add(this.tbDebtReportDaysRemainingSearch);
+            this.panel43.Controls.Add(this.btnExportDebtReport);
+            this.panel43.Controls.Add(this.btnSearchDebtReport);
+            this.panel43.Controls.Add(this.label258);
+            this.panel43.Controls.Add(this.label259);
+            this.panel43.Controls.Add(this.tbDebtReportKeyWordSearch);
+            this.panel43.Location = new System.Drawing.Point(451, 16);
+            this.panel43.Name = "panel43";
+            this.panel43.Size = new System.Drawing.Size(342, 162);
+            this.panel43.TabIndex = 6;
+            // 
+            // label257
+            // 
+            this.label257.AutoSize = true;
+            this.label257.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label257.Location = new System.Drawing.Point(14, 42);
+            this.label257.Name = "label257";
+            this.label257.Size = new System.Drawing.Size(324, 16);
+            this.label257.TabIndex = 29;
+            this.label257.Text = "(Tìm theo mã chíp, địa chỉ, biển số, tên khách hàng, ...)";
+            // 
+            // tbDebtReportDaysRemainingSearch
+            // 
+            this.tbDebtReportDaysRemainingSearch.Location = new System.Drawing.Point(153, 71);
+            this.tbDebtReportDaysRemainingSearch.Name = "tbDebtReportDaysRemainingSearch";
+            this.tbDebtReportDaysRemainingSearch.Size = new System.Drawing.Size(165, 22);
+            this.tbDebtReportDaysRemainingSearch.TabIndex = 28;
+            // 
+            // btnExportDebtReport
+            // 
+            this.btnExportDebtReport.ForeColor = System.Drawing.Color.Blue;
+            this.btnExportDebtReport.Location = new System.Drawing.Point(186, 109);
+            this.btnExportDebtReport.Name = "btnExportDebtReport";
+            this.btnExportDebtReport.Size = new System.Drawing.Size(97, 36);
+            this.btnExportDebtReport.TabIndex = 27;
+            this.btnExportDebtReport.Text = "XUẤT EXCEL";
+            this.btnExportDebtReport.UseVisualStyleBackColor = true;
+            this.btnExportDebtReport.Click += new System.EventHandler(this.btnExportDebtReport_Click);
+            // 
+            // btnSearchDebtReport
+            // 
+            this.btnSearchDebtReport.ForeColor = System.Drawing.Color.Blue;
+            this.btnSearchDebtReport.Location = new System.Drawing.Point(61, 109);
+            this.btnSearchDebtReport.Name = "btnSearchDebtReport";
+            this.btnSearchDebtReport.Size = new System.Drawing.Size(72, 36);
+            this.btnSearchDebtReport.TabIndex = 26;
+            this.btnSearchDebtReport.Text = "TÌM THẺ";
+            this.btnSearchDebtReport.UseVisualStyleBackColor = true;
+            this.btnSearchDebtReport.Click += new System.EventHandler(this.btnSearchDebtReport_Click);
+            // 
+            // label258
+            // 
+            this.label258.AutoSize = true;
+            this.label258.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label258.Location = new System.Drawing.Point(14, 74);
+            this.label258.Name = "label258";
+            this.label258.Size = new System.Drawing.Size(130, 16);
+            this.label258.TabIndex = 11;
+            this.label258.Text = "Số ngày sắp hết hạn";
+            // 
+            // label259
+            // 
+            this.label259.AutoSize = true;
+            this.label259.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label259.Location = new System.Drawing.Point(14, 18);
+            this.label259.Name = "label259";
+            this.label259.Size = new System.Drawing.Size(63, 16);
+            this.label259.TabIndex = 3;
+            this.label259.Text = "Thông tin";
+            // 
+            // tbDebtReportKeyWordSearch
+            // 
+            this.tbDebtReportKeyWordSearch.Location = new System.Drawing.Point(153, 15);
+            this.tbDebtReportKeyWordSearch.Name = "tbDebtReportKeyWordSearch";
+            this.tbDebtReportKeyWordSearch.Size = new System.Drawing.Size(165, 22);
+            this.tbDebtReportKeyWordSearch.TabIndex = 2;
+            // 
             // tabPageQuanLyHeThong
             // 
             this.tabPageQuanLyHeThong.Controls.Add(this.tabQuanLyHeThong);
@@ -9269,8 +9495,8 @@
             // dataGridViewTextBoxColumn41
             // 
             this.dataGridViewTextBoxColumn41.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle17.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle19.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn41.DefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridViewTextBoxColumn41.HeaderText = "Thời gian vào";
             this.dataGridViewTextBoxColumn41.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn41.Name = "dataGridViewTextBoxColumn41";
@@ -9280,8 +9506,8 @@
             // dataGridViewTextBoxColumn42
             // 
             this.dataGridViewTextBoxColumn42.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle18.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle20.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn42.DefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridViewTextBoxColumn42.HeaderText = "Thời gian ra";
             this.dataGridViewTextBoxColumn42.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn42.Name = "dataGridViewTextBoxColumn42";
@@ -9797,8 +10023,8 @@
             // CommonLogProcessDate
             // 
             this.CommonLogProcessDate.DataPropertyName = "ProcessDate";
-            dataGridViewCellStyle19.Format = "dd-MM-yyyy HH:mm:ss";
-            this.CommonLogProcessDate.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle21.Format = "dd-MM-yyyy HH:mm:ss";
+            this.CommonLogProcessDate.DefaultCellStyle = dataGridViewCellStyle21;
             this.CommonLogProcessDate.HeaderText = "Ngày XL";
             this.CommonLogProcessDate.MinimumWidth = 6;
             this.CommonLogProcessDate.Name = "CommonLogProcessDate";
@@ -10317,8 +10543,8 @@
             // Column25
             // 
             this.Column25.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle20.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column25.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle22.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column25.DefaultCellStyle = dataGridViewCellStyle22;
             this.Column25.HeaderText = "Thời gian vào";
             this.Column25.MinimumWidth = 6;
             this.Column25.Name = "Column25";
@@ -10327,8 +10553,8 @@
             // Column26
             // 
             this.Column26.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle21.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column26.DefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle23.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column26.DefaultCellStyle = dataGridViewCellStyle23;
             this.Column26.HeaderText = "Thời gian ra";
             this.Column26.MinimumWidth = 6;
             this.Column26.Name = "Column26";
@@ -10400,8 +10626,8 @@
             // Column34
             // 
             this.Column34.DataPropertyName = "DateUpdate";
-            dataGridViewCellStyle22.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column34.DefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle24.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column34.DefaultCellStyle = dataGridViewCellStyle24;
             this.Column34.HeaderText = "Ngày xử lý";
             this.Column34.MinimumWidth = 6;
             this.Column34.Name = "Column34";
@@ -10846,8 +11072,8 @@
             // Column40
             // 
             this.Column40.DataPropertyName = "TimeStart";
-            dataGridViewCellStyle23.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column40.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle25.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column40.DefaultCellStyle = dataGridViewCellStyle25;
             this.Column40.HeaderText = "Thời gian vào";
             this.Column40.MinimumWidth = 6;
             this.Column40.Name = "Column40";
@@ -10857,8 +11083,8 @@
             // Column41
             // 
             this.Column41.DataPropertyName = "TimeEnd";
-            dataGridViewCellStyle24.Format = "dd-MM-yyyy HH:mm:ss";
-            this.Column41.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle26.Format = "dd-MM-yyyy HH:mm:ss";
+            this.Column41.DefaultCellStyle = dataGridViewCellStyle26;
             this.Column41.HeaderText = "Thời gian ra";
             this.Column41.MinimumWidth = 6;
             this.Column41.Name = "Column41";
@@ -11214,8 +11440,8 @@
             // dataGridViewTextBoxColumn34
             // 
             this.dataGridViewTextBoxColumn34.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle25.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn34.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle27.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn34.DefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridViewTextBoxColumn34.HeaderText = "Ngày ĐK";
             this.dataGridViewTextBoxColumn34.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
@@ -11271,8 +11497,8 @@
             // ReceiptExpirationDate
             // 
             this.ReceiptExpirationDate.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle26.Format = "dd-MM-yyyy";
-            this.ReceiptExpirationDate.DefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle28.Format = "dd-MM-yyyy";
+            this.ReceiptExpirationDate.DefaultCellStyle = dataGridViewCellStyle28;
             this.ReceiptExpirationDate.HeaderText = "Ngày hết hạn hiện tại";
             this.ReceiptExpirationDate.MinimumWidth = 6;
             this.ReceiptExpirationDate.Name = "ReceiptExpirationDate";
@@ -11282,9 +11508,9 @@
             // ReceiptNewExpirationDate
             // 
             this.ReceiptNewExpirationDate.DataPropertyName = "NewExpirationDate";
-            dataGridViewCellStyle27.Format = "d";
-            dataGridViewCellStyle27.NullValue = null;
-            this.ReceiptNewExpirationDate.DefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle29.Format = "d";
+            dataGridViewCellStyle29.NullValue = null;
+            this.ReceiptNewExpirationDate.DefaultCellStyle = dataGridViewCellStyle29;
             this.ReceiptNewExpirationDate.HeaderText = "Ngày hết hạn mới";
             this.ReceiptNewExpirationDate.MinimumWidth = 6;
             this.ReceiptNewExpirationDate.Name = "ReceiptNewExpirationDate";
@@ -11313,9 +11539,9 @@
             // ReceiptCost
             // 
             this.ReceiptCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle28.Format = "N0";
-            dataGridViewCellStyle28.NullValue = null;
-            this.ReceiptCost.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle30.Format = "N0";
+            dataGridViewCellStyle30.NullValue = null;
+            this.ReceiptCost.DefaultCellStyle = dataGridViewCellStyle30;
             this.ReceiptCost.HeaderText = "Số tiền";
             this.ReceiptCost.MinimumWidth = 6;
             this.ReceiptCost.Name = "ReceiptCost";
@@ -11710,16 +11936,6 @@
             this.label244.TabIndex = 49;
             this.label244.Text = "Từ";
             // 
-            // dtReceiptLogBook
-            // 
-            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogBook.Location = new System.Drawing.Point(685, 13);
-            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
-            this.dtReceiptLogBook.Size = new System.Drawing.Size(86, 22);
-            this.dtReceiptLogBook.TabIndex = 48;
-            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
-            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.cbReceiptLogCostExtendCard);
@@ -11981,9 +12197,9 @@
             // ReceiptLog_Cost
             // 
             this.ReceiptLog_Cost.DataPropertyName = "Cost";
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle29.Format = "N0";
-            this.ReceiptLog_Cost.DefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle31.Format = "N0";
+            this.ReceiptLog_Cost.DefaultCellStyle = dataGridViewCellStyle31;
             this.ReceiptLog_Cost.HeaderText = "Giá tiền";
             this.ReceiptLog_Cost.MinimumWidth = 6;
             this.ReceiptLog_Cost.Name = "ReceiptLog_Cost";
@@ -11993,8 +12209,8 @@
             // Column57
             // 
             this.Column57.DataPropertyName = "PrintDate";
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Column57.DefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Column57.DefaultCellStyle = dataGridViewCellStyle32;
             this.Column57.HeaderText = "Ngày in";
             this.Column57.MinimumWidth = 6;
             this.Column57.Name = "Column57";
@@ -12034,9 +12250,9 @@
             // ReceiptLog_Detail
             // 
             this.ReceiptLog_Detail.DataPropertyName = "Detail";
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle31.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.ReceiptLog_Detail.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle33.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.ReceiptLog_Detail.DefaultCellStyle = dataGridViewCellStyle33;
             this.ReceiptLog_Detail.FillWeight = 80F;
             this.ReceiptLog_Detail.HeaderText = "Chi tiết";
             this.ReceiptLog_Detail.MinimumWidth = 6;
@@ -12223,10 +12439,10 @@
             // ReceiptLogDetailCost
             // 
             this.ReceiptLogDetailCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle32.Format = "N0";
-            dataGridViewCellStyle32.NullValue = null;
-            this.ReceiptLogDetailCost.DefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle34.Format = "N0";
+            dataGridViewCellStyle34.NullValue = null;
+            this.ReceiptLogDetailCost.DefaultCellStyle = dataGridViewCellStyle34;
             this.ReceiptLogDetailCost.HeaderText = "Tiền thu";
             this.ReceiptLogDetailCost.MinimumWidth = 6;
             this.ReceiptLogDetailCost.Name = "ReceiptLogDetailCost";
@@ -12236,9 +12452,9 @@
             // ReceiptLogDetailExpirationDate
             // 
             this.ReceiptLogDetailExpirationDate.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle33.Format = "dd-MM-yyyy";
-            this.ReceiptLogDetailExpirationDate.DefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle35.Format = "dd-MM-yyyy";
+            this.ReceiptLogDetailExpirationDate.DefaultCellStyle = dataGridViewCellStyle35;
             this.ReceiptLogDetailExpirationDate.HeaderText = "Ngày hết hạn";
             this.ReceiptLogDetailExpirationDate.MinimumWidth = 6;
             this.ReceiptLogDetailExpirationDate.Name = "ReceiptLogDetailExpirationDate";
@@ -12248,8 +12464,8 @@
             // ReceiptLogDetailPrintDate
             // 
             this.ReceiptLogDetailPrintDate.DataPropertyName = "PrintDate";
-            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ReceiptLogDetailPrintDate.DefaultCellStyle = dataGridViewCellStyle34;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ReceiptLogDetailPrintDate.DefaultCellStyle = dataGridViewCellStyle36;
             this.ReceiptLogDetailPrintDate.HeaderText = "Ngày in";
             this.ReceiptLogDetailPrintDate.MinimumWidth = 6;
             this.ReceiptLogDetailPrintDate.Name = "ReceiptLogDetailPrintDate";
@@ -12441,16 +12657,6 @@
             this.label246.TabIndex = 49;
             this.label246.Text = "Từ";
             // 
-            // dtReceiptLogDetailBook
-            // 
-            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(779, 42);
-            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
-            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(86, 22);
-            this.dtReceiptLogDetailBook.TabIndex = 48;
-            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
-            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.cbReceiptLogDetailCostExtendCard);
@@ -12598,76 +12804,172 @@
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(135, 22);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
             // 
-            // DoanhThuPartName
+            // dtReceiptLogBook
             // 
-            this.DoanhThuPartName.DataPropertyName = "PartName";
-            this.DoanhThuPartName.HeaderText = "LOẠI XE";
-            this.DoanhThuPartName.MinimumWidth = 6;
-            this.DoanhThuPartName.Name = "DoanhThuPartName";
-            this.DoanhThuPartName.ReadOnly = true;
-            this.DoanhThuPartName.Width = 150;
+            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogBook.Location = new System.Drawing.Point(685, 13);
+            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
+            this.dtReceiptLogBook.Size = new System.Drawing.Size(86, 22);
+            this.dtReceiptLogBook.TabIndex = 48;
+            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
             // 
-            // DoanhThuCountCarIn
+            // dtReceiptLogDetailBook
             // 
-            this.DoanhThuCountCarIn.DataPropertyName = "CountCarIn";
-            this.DoanhThuCountCarIn.HeaderText = "LƯỢT VÀO";
-            this.DoanhThuCountCarIn.MinimumWidth = 6;
-            this.DoanhThuCountCarIn.Name = "DoanhThuCountCarIn";
-            this.DoanhThuCountCarIn.ReadOnly = true;
+            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(779, 42);
+            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
+            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(86, 22);
+            this.dtReceiptLogDetailBook.TabIndex = 48;
+            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
             // 
-            // DoanhThuCountCarOut
+            // progressBarDebtReport
             // 
-            this.DoanhThuCountCarOut.DataPropertyName = "CountCarOut";
-            this.DoanhThuCountCarOut.HeaderText = "LƯỢT RA";
-            this.DoanhThuCountCarOut.MinimumWidth = 6;
-            this.DoanhThuCountCarOut.Name = "DoanhThuCountCarOut";
-            this.DoanhThuCountCarOut.ReadOnly = true;
+            this.progressBarDebtReport.Location = new System.Drawing.Point(576, 394);
+            this.progressBarDebtReport.Name = "progressBarDebtReport";
+            this.progressBarDebtReport.Size = new System.Drawing.Size(100, 23);
+            this.progressBarDebtReport.Step = 1;
+            this.progressBarDebtReport.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBarDebtReport.TabIndex = 8;
             // 
-            // dataGridViewTextBoxColumn7
+            // STT_DebtReportTicketMonthList
             // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "CountCarSurvive";
-            this.dataGridViewTextBoxColumn7.HeaderText = "XE TỒN";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.STT_DebtReportTicketMonthList.HeaderText = "STT";
+            this.STT_DebtReportTicketMonthList.MinimumWidth = 6;
+            this.STT_DebtReportTicketMonthList.Name = "STT_DebtReportTicketMonthList";
+            this.STT_DebtReportTicketMonthList.Width = 50;
             // 
-            // Column63
+            // dataGridViewTextBoxColumn38
             // 
-            this.Column63.DataPropertyName = "CountCar";
-            this.Column63.HeaderText = "XE THÁNG ĐÃ THU";
-            this.Column63.MinimumWidth = 6;
-            this.Column63.Name = "Column63";
-            this.Column63.ReadOnly = true;
-            this.Column63.Width = 120;
+            this.dataGridViewTextBoxColumn38.DataPropertyName = "Identify";
+            this.dataGridViewTextBoxColumn38.HeaderText = "Số thẻ";
+            this.dataGridViewTextBoxColumn38.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn38.Name = "dataGridViewTextBoxColumn38";
+            this.dataGridViewTextBoxColumn38.ReadOnly = true;
             // 
-            // DoanhThuSumCost
+            // dataGridViewTextBoxColumn52
             // 
-            this.DoanhThuSumCost.DataPropertyName = "SumCost";
-            this.DoanhThuSumCost.HeaderText = "TIỀN THU";
-            this.DoanhThuSumCost.MinimumWidth = 6;
-            this.DoanhThuSumCost.Name = "DoanhThuSumCost";
-            this.DoanhThuSumCost.ReadOnly = true;
-            this.DoanhThuSumCost.Width = 120;
+            this.dataGridViewTextBoxColumn52.DataPropertyName = "Digit";
+            this.dataGridViewTextBoxColumn52.HeaderText = "Biển số";
+            this.dataGridViewTextBoxColumn52.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn52.Name = "dataGridViewTextBoxColumn52";
+            this.dataGridViewTextBoxColumn52.ReadOnly = true;
+            this.dataGridViewTextBoxColumn52.Width = 125;
             // 
-            // Column9
+            // dataGridViewTextBoxColumn55
             // 
-            this.Column9.DataPropertyName = "IDPart";
-            this.Column9.HeaderText = "Column9";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Visible = false;
-            this.Column9.Width = 125;
+            this.dataGridViewTextBoxColumn55.DataPropertyName = "Company";
+            this.dataGridViewTextBoxColumn55.HeaderText = "Công ty/Căn hộ";
+            this.dataGridViewTextBoxColumn55.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn55.Name = "dataGridViewTextBoxColumn55";
+            this.dataGridViewTextBoxColumn55.Width = 120;
             // 
-            // Column52
+            // dataGridViewTextBoxColumn56
             // 
-            this.Column52.DataPropertyName = "CardTypeID";
-            this.Column52.HeaderText = "Column52";
-            this.Column52.MinimumWidth = 6;
-            this.Column52.Name = "Column52";
-            this.Column52.ReadOnly = true;
-            this.Column52.Visible = false;
-            this.Column52.Width = 125;
+            this.dataGridViewTextBoxColumn56.DataPropertyName = "Address";
+            this.dataGridViewTextBoxColumn56.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn56.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn56.Name = "dataGridViewTextBoxColumn56";
+            this.dataGridViewTextBoxColumn56.ReadOnly = true;
+            this.dataGridViewTextBoxColumn56.Width = 120;
+            // 
+            // DebtPreviousCharge
+            // 
+            this.DebtPreviousCharge.DataPropertyName = "PreviousCharge";
+            this.DebtPreviousCharge.HeaderText = "Nợ đầu kỳ";
+            this.DebtPreviousCharge.Name = "DebtPreviousCharge";
+            // 
+            // DebtCurrentCharge
+            // 
+            this.DebtCurrentCharge.DataPropertyName = "CurrentCharge";
+            this.DebtCurrentCharge.HeaderText = "Phí tháng hiện tại";
+            this.DebtCurrentCharge.Name = "DebtCurrentCharge";
+            this.DebtCurrentCharge.Width = 90;
+            // 
+            // DebtDaysRemaining
+            // 
+            this.DebtDaysRemaining.DataPropertyName = "DaysRemaining";
+            this.DebtDaysRemaining.HeaderText = "Số ngày";
+            this.DebtDaysRemaining.MinimumWidth = 6;
+            this.DebtDaysRemaining.Name = "DebtDaysRemaining";
+            this.DebtDaysRemaining.ReadOnly = true;
+            this.DebtDaysRemaining.Width = 90;
+            // 
+            // dataGridViewTextBoxColumn46
+            // 
+            this.dataGridViewTextBoxColumn46.DataPropertyName = "RegistrationDate";
+            dataGridViewCellStyle17.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn46.DefaultCellStyle = dataGridViewCellStyle17;
+            this.dataGridViewTextBoxColumn46.HeaderText = "Ngày ĐK";
+            this.dataGridViewTextBoxColumn46.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn46.Name = "dataGridViewTextBoxColumn46";
+            this.dataGridViewTextBoxColumn46.ReadOnly = true;
+            this.dataGridViewTextBoxColumn46.Width = 110;
+            // 
+            // DebtExpirationDate
+            // 
+            this.DebtExpirationDate.DataPropertyName = "ExpirationDate";
+            dataGridViewCellStyle18.Format = "dd-MM-yyyy";
+            this.DebtExpirationDate.DefaultCellStyle = dataGridViewCellStyle18;
+            this.DebtExpirationDate.HeaderText = "Ngày HH";
+            this.DebtExpirationDate.MinimumWidth = 6;
+            this.DebtExpirationDate.Name = "DebtExpirationDate";
+            this.DebtExpirationDate.ReadOnly = true;
+            this.DebtExpirationDate.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn40
+            // 
+            this.dataGridViewTextBoxColumn40.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn40.HeaderText = "Mã chíp";
+            this.dataGridViewTextBoxColumn40.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn40.Name = "dataGridViewTextBoxColumn40";
+            this.dataGridViewTextBoxColumn40.ReadOnly = true;
+            this.dataGridViewTextBoxColumn40.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn53
+            // 
+            this.dataGridViewTextBoxColumn53.DataPropertyName = "CustomerName";
+            this.dataGridViewTextBoxColumn53.HeaderText = "Tên";
+            this.dataGridViewTextBoxColumn53.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn53.Name = "dataGridViewTextBoxColumn53";
+            this.dataGridViewTextBoxColumn53.ReadOnly = true;
+            this.dataGridViewTextBoxColumn53.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn54
+            // 
+            this.dataGridViewTextBoxColumn54.DataPropertyName = "PartName";
+            this.dataGridViewTextBoxColumn54.HeaderText = "Loại xe";
+            this.dataGridViewTextBoxColumn54.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn54.Name = "dataGridViewTextBoxColumn54";
+            this.dataGridViewTextBoxColumn54.ReadOnly = true;
+            this.dataGridViewTextBoxColumn54.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn57
+            // 
+            this.dataGridViewTextBoxColumn57.HeaderText = "Giới hạn giờ";
+            this.dataGridViewTextBoxColumn57.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn57.Name = "dataGridViewTextBoxColumn57";
+            this.dataGridViewTextBoxColumn57.ReadOnly = true;
+            this.dataGridViewTextBoxColumn57.Visible = false;
+            this.dataGridViewTextBoxColumn57.Width = 125;
+            // 
+            // DebtChargesAmount
+            // 
+            this.DebtChargesAmount.DataPropertyName = "ChargesAmount";
+            this.DebtChargesAmount.HeaderText = "Tiền thu";
+            this.DebtChargesAmount.MinimumWidth = 6;
+            this.DebtChargesAmount.Name = "DebtChargesAmount";
+            this.DebtChargesAmount.ReadOnly = true;
+            this.DebtChargesAmount.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn59
+            // 
+            this.dataGridViewTextBoxColumn59.DataPropertyName = "IsUsing";
+            this.dataGridViewTextBoxColumn59.HeaderText = "Còn sử dụng";
+            this.dataGridViewTextBoxColumn59.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn59.Name = "dataGridViewTextBoxColumn59";
+            this.dataGridViewTextBoxColumn59.Width = 130;
             // 
             // FormQuanLy
             // 
@@ -12859,6 +13161,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvActiveTicketMonthList)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.tabPageBaoCaoCongNo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDebtReport)).EndInit();
+            this.panel43.ResumeLayout(false);
+            this.panel43.PerformLayout();
             this.tabPageQuanLyHeThong.ResumeLayout(false);
             this.tabQuanLyHeThong.ResumeLayout(false);
             this.tabPageCauHinhCoBan.ResumeLayout(false);
@@ -14012,5 +14318,32 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DoanhThuSumCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column52;
+        private System.Windows.Forms.TabPage tabPageBaoCaoCongNo;
+        private System.Windows.Forms.DataGridView dgvDebtReport;
+        private System.Windows.Forms.Panel panel43;
+        private System.Windows.Forms.Label label257;
+        private System.Windows.Forms.TextBox tbDebtReportDaysRemainingSearch;
+        private System.Windows.Forms.Button btnExportDebtReport;
+        private System.Windows.Forms.Button btnSearchDebtReport;
+        private System.Windows.Forms.Label label258;
+        private System.Windows.Forms.Label label259;
+        private System.Windows.Forms.TextBox tbDebtReportKeyWordSearch;
+        private System.Windows.Forms.ProgressBar progressBarDebtReport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_DebtReportTicketMonthList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn52;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn55;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn56;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DebtPreviousCharge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DebtCurrentCharge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DebtDaysRemaining;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn46;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DebtExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn53;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn54;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn57;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DebtChargesAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn59;
     }
 }

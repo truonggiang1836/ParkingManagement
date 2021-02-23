@@ -76,7 +76,9 @@ namespace ParkingMangement.GUI
 
 
             tbCurrentDate.Text = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
-            tbMonthYear.Text = DateTime.Now.Month + "/" + DateTime.Now.Year;
+
+            DateTime extendMonth = DateTime.Now.AddMonths(monthCount - 1);
+            tbMonthYear.Text = extendMonth.Month + "/" + extendMonth.Year;
             tbUpdateDay.Text = "(cập nhật đến " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + ")";
 
             webBrowser1.Navigate("about:blank");

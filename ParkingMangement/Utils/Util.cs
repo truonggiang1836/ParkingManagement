@@ -162,7 +162,11 @@ namespace ParkingMangement.Utils
 
         public static string formatNumberAsMoney(long number)
         {
-            return string.Format("{0:#,000}", number);
+            if (number != 0)
+            {
+                return string.Format("{0:#,000}", number);
+            }
+            return "0";
         }
 
         public static double getMillisecondBetweenTwoDate(DateTime oldDate, DateTime newDate)
@@ -1761,6 +1765,42 @@ namespace ParkingMangement.Utils
         public static int MonthDifference(this DateTime lValue, DateTime rValue)
         {
             return (lValue.Month - rValue.Month) + 12 * (lValue.Year - rValue.Year);
+        }
+
+        public static int getCostExtendCard(DateTime expirationDate, DateTime newExpirationDate, string monthlyCostString)
+        {
+            int monthlyCost = 0;
+            int payCost = 0;
+
+            try
+            {
+                monthlyCost = Convert.ToInt32(monthlyCostString);
+            }
+            catch (Exception)
+            {
+
+            }
+
+            int dayCount = (newExpirationDate.Date - expirationDate.Date).Days;
+            if (dayCount == 0)
+            {
+                return 0;
+            }
+
+            int monthCount = Util.MonthDifference(newExpirationDate, expirationDate);
+            int pastRemainDays = Util.getDaysInMonth(expirationDate) - expirationDate.Day;
+
+            payCost += monthlyCost * pastRemainDays / 30;
+            if (Util.getDaysInMonth(newExpirationDate) == newExpirationDate.Day)
+            {
+                payCost += monthlyCost * monthCount;
+            }
+            else
+            {
+                int futureRemainDays = newExpirationDate.Day;
+                payCost += monthlyCost * (monthCount - 1) + monthlyCost * futureRemainDays / 30;
+            }
+            return payCost;
         }
 
         public static DateTime getLastDateOfCurrentMonth()
