@@ -28,22 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancelReceippt = new System.Windows.Forms.Button();
             this.btnPrintReceipt = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.dgvPrintReceipt = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tbIncludeVAT = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.tbCost = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.tbCurrentDate = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.tbCustomerName = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbMonthYear = new System.Windows.Forms.TextBox();
+            this.tbTitle = new System.Windows.Forms.TextBox();
+            this.panelPrintReceipt = new System.Windows.Forms.Panel();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.tbUpdateDay = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.richTextBoxNoticeFeeContent = new System.Windows.Forms.RichTextBox();
             this.ReceiptIsChosen = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.STT_ReceiptTicketMonthList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiptIdentify = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,28 +84,6 @@
             this.ReceiptExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReceiptNewExpirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn50 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tbIncludeVAT = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.tbCost = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.tbCurrentDate = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.tbCustomerName = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tbMonthYear = new System.Windows.Forms.TextBox();
-            this.tbTitle = new System.Windows.Forms.TextBox();
-            this.panelPrintReceipt = new System.Windows.Forms.Panel();
-            this.tbUpdateDay = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.richTextBoxNoticeFeeContent = new System.Windows.Forms.RichTextBox();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrintReceipt)).BeginInit();
             this.panel1.SuspendLayout();
@@ -161,216 +161,15 @@
             this.dgvPrintReceipt.ReadOnly = true;
             this.dgvPrintReceipt.RowHeadersVisible = false;
             this.dgvPrintReceipt.RowHeadersWidth = 51;
-            dataGridViewCellStyle48.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle48.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle48.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvPrintReceipt.RowsDefaultCellStyle = dataGridViewCellStyle48;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvPrintReceipt.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvPrintReceipt.Size = new System.Drawing.Size(727, 155);
             this.dgvPrintReceipt.TabIndex = 89;
             this.dgvPrintReceipt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPrintReceipt_CellContentClick);
             this.dgvPrintReceipt.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvPrintReceipt_DataBindingComplete);
-            // 
-            // ReceiptIsChosen
-            // 
-            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle37.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle37.NullValue = false;
-            this.ReceiptIsChosen.DefaultCellStyle = dataGridViewCellStyle37;
-            this.ReceiptIsChosen.HeaderText = "Chọn";
-            this.ReceiptIsChosen.MinimumWidth = 6;
-            this.ReceiptIsChosen.Name = "ReceiptIsChosen";
-            this.ReceiptIsChosen.ReadOnly = true;
-            this.ReceiptIsChosen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ReceiptIsChosen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ReceiptIsChosen.Visible = false;
-            this.ReceiptIsChosen.Width = 50;
-            // 
-            // STT_ReceiptTicketMonthList
-            // 
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.STT_ReceiptTicketMonthList.DefaultCellStyle = dataGridViewCellStyle38;
-            this.STT_ReceiptTicketMonthList.HeaderText = "STT";
-            this.STT_ReceiptTicketMonthList.MinimumWidth = 6;
-            this.STT_ReceiptTicketMonthList.Name = "STT_ReceiptTicketMonthList";
-            this.STT_ReceiptTicketMonthList.ReadOnly = true;
-            this.STT_ReceiptTicketMonthList.Width = 50;
-            // 
-            // ReceiptIdentify
-            // 
-            this.ReceiptIdentify.DataPropertyName = "Identify";
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.ReceiptIdentify.DefaultCellStyle = dataGridViewCellStyle39;
-            this.ReceiptIdentify.HeaderText = "Số thẻ";
-            this.ReceiptIdentify.MinimumWidth = 6;
-            this.ReceiptIdentify.Name = "ReceiptIdentify";
-            this.ReceiptIdentify.ReadOnly = true;
-            this.ReceiptIdentify.Width = 70;
-            // 
-            // ReceiptDigit
-            // 
-            this.ReceiptDigit.DataPropertyName = "Digit";
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.ReceiptDigit.DefaultCellStyle = dataGridViewCellStyle40;
-            this.ReceiptDigit.HeaderText = "Biển số";
-            this.ReceiptDigit.MinimumWidth = 6;
-            this.ReceiptDigit.Name = "ReceiptDigit";
-            this.ReceiptDigit.ReadOnly = true;
-            this.ReceiptDigit.Width = 90;
-            // 
-            // ReceiptPartName
-            // 
-            this.ReceiptPartName.DataPropertyName = "PartName";
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.ReceiptPartName.DefaultCellStyle = dataGridViewCellStyle41;
-            this.ReceiptPartName.HeaderText = "Loại xe";
-            this.ReceiptPartName.MinimumWidth = 6;
-            this.ReceiptPartName.Name = "ReceiptPartName";
-            this.ReceiptPartName.ReadOnly = true;
-            this.ReceiptPartName.Width = 90;
-            // 
-            // ReceiptIDPart
-            // 
-            this.ReceiptIDPart.DataPropertyName = "IDPart";
-            this.ReceiptIDPart.HeaderText = "Mã loại xe";
-            this.ReceiptIDPart.MinimumWidth = 6;
-            this.ReceiptIDPart.Name = "ReceiptIDPart";
-            this.ReceiptIDPart.ReadOnly = true;
-            this.ReceiptIDPart.Visible = false;
-            this.ReceiptIDPart.Width = 125;
-            // 
-            // ReceiptTicketMonthID
-            // 
-            this.ReceiptTicketMonthID.DataPropertyName = "ID";
-            this.ReceiptTicketMonthID.HeaderText = "Mã chíp";
-            this.ReceiptTicketMonthID.MinimumWidth = 6;
-            this.ReceiptTicketMonthID.Name = "ReceiptTicketMonthID";
-            this.ReceiptTicketMonthID.ReadOnly = true;
-            this.ReceiptTicketMonthID.Visible = false;
-            this.ReceiptTicketMonthID.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn33
-            // 
-            this.dataGridViewTextBoxColumn33.DataPropertyName = "DaysRemaining";
-            this.dataGridViewTextBoxColumn33.HeaderText = "Số ngày";
-            this.dataGridViewTextBoxColumn33.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
-            this.dataGridViewTextBoxColumn33.ReadOnly = true;
-            this.dataGridViewTextBoxColumn33.Visible = false;
-            this.dataGridViewTextBoxColumn33.Width = 125;
-            // 
-            // ReceiptCustomerName
-            // 
-            this.ReceiptCustomerName.DataPropertyName = "CustomerName";
-            dataGridViewCellStyle42.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.ReceiptCustomerName.DefaultCellStyle = dataGridViewCellStyle42;
-            this.ReceiptCustomerName.HeaderText = "Tên";
-            this.ReceiptCustomerName.MinimumWidth = 6;
-            this.ReceiptCustomerName.Name = "ReceiptCustomerName";
-            this.ReceiptCustomerName.ReadOnly = true;
-            this.ReceiptCustomerName.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn34
-            // 
-            this.dataGridViewTextBoxColumn34.DataPropertyName = "RegistrationDate";
-            dataGridViewCellStyle43.Format = "dd-MM-yyyy";
-            this.dataGridViewTextBoxColumn34.DefaultCellStyle = dataGridViewCellStyle43;
-            this.dataGridViewTextBoxColumn34.HeaderText = "Ngày ĐK";
-            this.dataGridViewTextBoxColumn34.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
-            this.dataGridViewTextBoxColumn34.ReadOnly = true;
-            this.dataGridViewTextBoxColumn34.Visible = false;
-            this.dataGridViewTextBoxColumn34.Width = 110;
-            // 
-            // ReceiptCompany
-            // 
-            this.ReceiptCompany.DataPropertyName = "Company";
-            this.ReceiptCompany.HeaderText = "Công ty/Căn hộ";
-            this.ReceiptCompany.MinimumWidth = 6;
-            this.ReceiptCompany.Name = "ReceiptCompany";
-            this.ReceiptCompany.ReadOnly = true;
-            this.ReceiptCompany.Visible = false;
-            this.ReceiptCompany.Width = 110;
-            // 
-            // ReceiptAddress
-            // 
-            this.ReceiptAddress.DataPropertyName = "Address";
-            this.ReceiptAddress.HeaderText = "Địa chỉ";
-            this.ReceiptAddress.MinimumWidth = 6;
-            this.ReceiptAddress.Name = "ReceiptAddress";
-            this.ReceiptAddress.ReadOnly = true;
-            this.ReceiptAddress.Visible = false;
-            this.ReceiptAddress.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn45
-            // 
-            this.dataGridViewTextBoxColumn45.HeaderText = "Giới hạn giờ";
-            this.dataGridViewTextBoxColumn45.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
-            this.dataGridViewTextBoxColumn45.ReadOnly = true;
-            this.dataGridViewTextBoxColumn45.Visible = false;
-            this.dataGridViewTextBoxColumn45.Width = 125;
-            // 
-            // ReceiptCost
-            // 
-            this.ReceiptCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle44.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle44.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            dataGridViewCellStyle44.Format = "N0";
-            dataGridViewCellStyle44.NullValue = null;
-            this.ReceiptCost.DefaultCellStyle = dataGridViewCellStyle44;
-            this.ReceiptCost.HeaderText = "Số tiền gốc";
-            this.ReceiptCost.MinimumWidth = 6;
-            this.ReceiptCost.Name = "ReceiptCost";
-            this.ReceiptCost.ReadOnly = true;
-            this.ReceiptCost.Visible = false;
-            this.ReceiptCost.Width = 125;
-            // 
-            // ReceiptPrintCost
-            // 
-            this.ReceiptPrintCost.DataPropertyName = "PrintCost";
-            dataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle45.Format = "N0";
-            this.ReceiptPrintCost.DefaultCellStyle = dataGridViewCellStyle45;
-            this.ReceiptPrintCost.HeaderText = "Số tiền";
-            this.ReceiptPrintCost.MinimumWidth = 6;
-            this.ReceiptPrintCost.Name = "ReceiptPrintCost";
-            this.ReceiptPrintCost.ReadOnly = true;
-            this.ReceiptPrintCost.Width = 70;
-            // 
-            // ReceiptExpirationDate
-            // 
-            this.ReceiptExpirationDate.DataPropertyName = "ExpirationDate";
-            dataGridViewCellStyle46.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle46.Format = "dd-MM-yyyy";
-            this.ReceiptExpirationDate.DefaultCellStyle = dataGridViewCellStyle46;
-            this.ReceiptExpirationDate.HeaderText = "Ngày HH cũ";
-            this.ReceiptExpirationDate.MinimumWidth = 6;
-            this.ReceiptExpirationDate.Name = "ReceiptExpirationDate";
-            this.ReceiptExpirationDate.ReadOnly = true;
-            // 
-            // ReceiptNewExpirationDate
-            // 
-            this.ReceiptNewExpirationDate.DataPropertyName = "NewExpirationDate";
-            dataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle47.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            dataGridViewCellStyle47.Format = "dd-MM-yyyy";
-            this.ReceiptNewExpirationDate.DefaultCellStyle = dataGridViewCellStyle47;
-            this.ReceiptNewExpirationDate.HeaderText = "Ngày hết hạn";
-            this.ReceiptNewExpirationDate.MinimumWidth = 6;
-            this.ReceiptNewExpirationDate.Name = "ReceiptNewExpirationDate";
-            this.ReceiptNewExpirationDate.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn50
-            // 
-            this.dataGridViewTextBoxColumn50.DataPropertyName = "IsUsing";
-            this.dataGridViewTextBoxColumn50.HeaderText = "Còn sử dụng";
-            this.dataGridViewTextBoxColumn50.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn50.Name = "dataGridViewTextBoxColumn50";
-            this.dataGridViewTextBoxColumn50.ReadOnly = true;
-            this.dataGridViewTextBoxColumn50.Visible = false;
-            this.dataGridViewTextBoxColumn50.Width = 120;
             // 
             // panel1
             // 
@@ -584,6 +383,16 @@
             this.panelPrintReceipt.TabIndex = 34;
             this.panelPrintReceipt.Paint += new System.Windows.Forms.PaintEventHandler(this.panelPrintReceipt_Paint);
             // 
+            // webBrowser1
+            // 
+            this.webBrowser1.Location = new System.Drawing.Point(15, 353);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(742, 145);
+            this.webBrowser1.TabIndex = 118;
+            this.webBrowser1.Visible = false;
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            // 
             // tbUpdateDay
             // 
             this.tbUpdateDay.AutoSize = true;
@@ -636,15 +445,207 @@
             this.richTextBoxNoticeFeeContent.Text = "-";
             this.richTextBoxNoticeFeeContent.TextChanged += new System.EventHandler(this.richTextBoxNoticeFeeContent_TextChanged);
             // 
-            // webBrowser1
+            // ReceiptIsChosen
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(15, 353);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(742, 145);
-            this.webBrowser1.TabIndex = 118;
-            this.webBrowser1.Visible = false;
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.NullValue = false;
+            this.ReceiptIsChosen.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ReceiptIsChosen.HeaderText = "Chọn";
+            this.ReceiptIsChosen.MinimumWidth = 6;
+            this.ReceiptIsChosen.Name = "ReceiptIsChosen";
+            this.ReceiptIsChosen.ReadOnly = true;
+            this.ReceiptIsChosen.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ReceiptIsChosen.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ReceiptIsChosen.Visible = false;
+            this.ReceiptIsChosen.Width = 50;
+            // 
+            // STT_ReceiptTicketMonthList
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.STT_ReceiptTicketMonthList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.STT_ReceiptTicketMonthList.HeaderText = "STT";
+            this.STT_ReceiptTicketMonthList.MinimumWidth = 6;
+            this.STT_ReceiptTicketMonthList.Name = "STT_ReceiptTicketMonthList";
+            this.STT_ReceiptTicketMonthList.ReadOnly = true;
+            this.STT_ReceiptTicketMonthList.Width = 50;
+            // 
+            // ReceiptIdentify
+            // 
+            this.ReceiptIdentify.DataPropertyName = "Identify";
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.ReceiptIdentify.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ReceiptIdentify.HeaderText = "Số thẻ";
+            this.ReceiptIdentify.MinimumWidth = 6;
+            this.ReceiptIdentify.Name = "ReceiptIdentify";
+            this.ReceiptIdentify.ReadOnly = true;
+            this.ReceiptIdentify.Width = 70;
+            // 
+            // ReceiptDigit
+            // 
+            this.ReceiptDigit.DataPropertyName = "Digit";
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.ReceiptDigit.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ReceiptDigit.HeaderText = "Biển số";
+            this.ReceiptDigit.MinimumWidth = 6;
+            this.ReceiptDigit.Name = "ReceiptDigit";
+            this.ReceiptDigit.ReadOnly = true;
+            this.ReceiptDigit.Width = 90;
+            // 
+            // ReceiptPartName
+            // 
+            this.ReceiptPartName.DataPropertyName = "PartName";
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.ReceiptPartName.DefaultCellStyle = dataGridViewCellStyle5;
+            this.ReceiptPartName.HeaderText = "Loại xe";
+            this.ReceiptPartName.MinimumWidth = 6;
+            this.ReceiptPartName.Name = "ReceiptPartName";
+            this.ReceiptPartName.ReadOnly = true;
+            this.ReceiptPartName.Width = 90;
+            // 
+            // ReceiptIDPart
+            // 
+            this.ReceiptIDPart.DataPropertyName = "IDPart";
+            this.ReceiptIDPart.HeaderText = "Mã loại xe";
+            this.ReceiptIDPart.MinimumWidth = 6;
+            this.ReceiptIDPart.Name = "ReceiptIDPart";
+            this.ReceiptIDPart.ReadOnly = true;
+            this.ReceiptIDPart.Visible = false;
+            this.ReceiptIDPart.Width = 125;
+            // 
+            // ReceiptTicketMonthID
+            // 
+            this.ReceiptTicketMonthID.DataPropertyName = "ID";
+            this.ReceiptTicketMonthID.HeaderText = "Mã chíp";
+            this.ReceiptTicketMonthID.MinimumWidth = 6;
+            this.ReceiptTicketMonthID.Name = "ReceiptTicketMonthID";
+            this.ReceiptTicketMonthID.ReadOnly = true;
+            this.ReceiptTicketMonthID.Visible = false;
+            this.ReceiptTicketMonthID.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn33
+            // 
+            this.dataGridViewTextBoxColumn33.DataPropertyName = "DaysRemaining";
+            this.dataGridViewTextBoxColumn33.HeaderText = "Số ngày";
+            this.dataGridViewTextBoxColumn33.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn33.Name = "dataGridViewTextBoxColumn33";
+            this.dataGridViewTextBoxColumn33.ReadOnly = true;
+            this.dataGridViewTextBoxColumn33.Visible = false;
+            this.dataGridViewTextBoxColumn33.Width = 125;
+            // 
+            // ReceiptCustomerName
+            // 
+            this.ReceiptCustomerName.DataPropertyName = "CustomerName";
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.ReceiptCustomerName.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ReceiptCustomerName.HeaderText = "Tên";
+            this.ReceiptCustomerName.MinimumWidth = 6;
+            this.ReceiptCustomerName.Name = "ReceiptCustomerName";
+            this.ReceiptCustomerName.ReadOnly = true;
+            this.ReceiptCustomerName.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn34
+            // 
+            this.dataGridViewTextBoxColumn34.DataPropertyName = "RegistrationDate";
+            dataGridViewCellStyle7.Format = "dd-MM-yyyy";
+            this.dataGridViewTextBoxColumn34.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewTextBoxColumn34.HeaderText = "Ngày ĐK";
+            this.dataGridViewTextBoxColumn34.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn34.Name = "dataGridViewTextBoxColumn34";
+            this.dataGridViewTextBoxColumn34.ReadOnly = true;
+            this.dataGridViewTextBoxColumn34.Visible = false;
+            this.dataGridViewTextBoxColumn34.Width = 110;
+            // 
+            // ReceiptCompany
+            // 
+            this.ReceiptCompany.DataPropertyName = "Company";
+            this.ReceiptCompany.HeaderText = "Công ty/Căn hộ";
+            this.ReceiptCompany.MinimumWidth = 6;
+            this.ReceiptCompany.Name = "ReceiptCompany";
+            this.ReceiptCompany.ReadOnly = true;
+            this.ReceiptCompany.Visible = false;
+            this.ReceiptCompany.Width = 110;
+            // 
+            // ReceiptAddress
+            // 
+            this.ReceiptAddress.DataPropertyName = "Address";
+            this.ReceiptAddress.HeaderText = "Địa chỉ";
+            this.ReceiptAddress.MinimumWidth = 6;
+            this.ReceiptAddress.Name = "ReceiptAddress";
+            this.ReceiptAddress.ReadOnly = true;
+            this.ReceiptAddress.Visible = false;
+            this.ReceiptAddress.Width = 80;
+            // 
+            // dataGridViewTextBoxColumn45
+            // 
+            this.dataGridViewTextBoxColumn45.HeaderText = "Giới hạn giờ";
+            this.dataGridViewTextBoxColumn45.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn45.Name = "dataGridViewTextBoxColumn45";
+            this.dataGridViewTextBoxColumn45.ReadOnly = true;
+            this.dataGridViewTextBoxColumn45.Visible = false;
+            this.dataGridViewTextBoxColumn45.Width = 125;
+            // 
+            // ReceiptCost
+            // 
+            this.ReceiptCost.DataPropertyName = "Cost";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            dataGridViewCellStyle8.Format = "N0";
+            dataGridViewCellStyle8.NullValue = null;
+            this.ReceiptCost.DefaultCellStyle = dataGridViewCellStyle8;
+            this.ReceiptCost.HeaderText = "Số tiền gốc";
+            this.ReceiptCost.MinimumWidth = 6;
+            this.ReceiptCost.Name = "ReceiptCost";
+            this.ReceiptCost.ReadOnly = true;
+            this.ReceiptCost.Visible = false;
+            this.ReceiptCost.Width = 125;
+            // 
+            // ReceiptPrintCost
+            // 
+            this.ReceiptPrintCost.DataPropertyName = "PrintCost";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle9.Format = "N0";
+            this.ReceiptPrintCost.DefaultCellStyle = dataGridViewCellStyle9;
+            this.ReceiptPrintCost.HeaderText = "Số tiền";
+            this.ReceiptPrintCost.MinimumWidth = 6;
+            this.ReceiptPrintCost.Name = "ReceiptPrintCost";
+            this.ReceiptPrintCost.ReadOnly = true;
+            this.ReceiptPrintCost.Width = 70;
+            // 
+            // ReceiptExpirationDate
+            // 
+            this.ReceiptExpirationDate.DataPropertyName = "ExpirationDate";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "dd-MM-yyyy";
+            this.ReceiptExpirationDate.DefaultCellStyle = dataGridViewCellStyle10;
+            this.ReceiptExpirationDate.HeaderText = "Ngày HH cũ";
+            this.ReceiptExpirationDate.MinimumWidth = 6;
+            this.ReceiptExpirationDate.Name = "ReceiptExpirationDate";
+            this.ReceiptExpirationDate.ReadOnly = true;
+            // 
+            // ReceiptNewExpirationDate
+            // 
+            this.ReceiptNewExpirationDate.DataPropertyName = "NewExpirationDate";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            dataGridViewCellStyle11.Format = "dd-MM-yyyy";
+            this.ReceiptNewExpirationDate.DefaultCellStyle = dataGridViewCellStyle11;
+            this.ReceiptNewExpirationDate.HeaderText = "Ngày hết hạn";
+            this.ReceiptNewExpirationDate.MinimumWidth = 6;
+            this.ReceiptNewExpirationDate.Name = "ReceiptNewExpirationDate";
+            this.ReceiptNewExpirationDate.ReadOnly = true;
+            this.ReceiptNewExpirationDate.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn50
+            // 
+            this.dataGridViewTextBoxColumn50.DataPropertyName = "IsUsing";
+            this.dataGridViewTextBoxColumn50.HeaderText = "Còn sử dụng";
+            this.dataGridViewTextBoxColumn50.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn50.Name = "dataGridViewTextBoxColumn50";
+            this.dataGridViewTextBoxColumn50.ReadOnly = true;
+            this.dataGridViewTextBoxColumn50.Visible = false;
+            this.dataGridViewTextBoxColumn50.Width = 120;
             // 
             // FormThongBaoPhi
             // 
@@ -673,24 +674,6 @@
         private System.Windows.Forms.Button btnPrintReceipt;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvPrintReceipt;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ReceiptIsChosen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT_ReceiptTicketMonthList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIdentify;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptDigit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptPartName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIDPart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptTicketMonthID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCompany;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptPrintCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptExpirationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNewExpirationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox tbIncludeVAT;
         private System.Windows.Forms.TextBox textBox11;
@@ -713,5 +696,23 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ReceiptIsChosen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT_ReceiptTicketMonthList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIdentify;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptDigit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptPartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptIDPart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptTicketMonthID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn33;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCompany;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn45;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptPrintCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptNewExpirationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn50;
     }
 }
