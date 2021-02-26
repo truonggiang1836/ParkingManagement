@@ -65,14 +65,14 @@ namespace ParkingMangement.GUI
             dgvPrintReceipt.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             dgvPrintReceipt.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
 
-            if (isCostExtendCard)
-            {
-                dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = true;
-            }
-            else
-            {
-                dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = false;
-            }
+            //if (isCostExtendCard)
+            //{
+            //    dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = true;
+            //}
+            //else
+            //{
+            //    dgvPrintReceipt.Columns["ReceiptNewExpirationDate"].Visible = false;
+            //}
 
 
             tbCurrentDate.Text = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
