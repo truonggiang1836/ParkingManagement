@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cameraWindow2 = new CameraViewer.CameraWindow();
             this.cameraWindow4 = new CameraViewer.CameraWindow();
@@ -212,84 +212,84 @@
             this.panel1.Controls.Add(this.pictureBoxImage3);
             this.panel1.Controls.Add(this.pictureBoxImage2);
             this.panel1.Controls.Add(this.pictureBox23);
-            this.panel1.Location = new System.Drawing.Point(133, 41);
+            this.panel1.Location = new System.Drawing.Point(129, 41);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(883, 561);
+            this.panel1.Size = new System.Drawing.Size(891, 561);
             this.panel1.TabIndex = 0;
             // 
             // cameraWindow2
             // 
             this.cameraWindow2.Camera = null;
-            this.cameraWindow2.Location = new System.Drawing.Point(221, 37);
+            this.cameraWindow2.Location = new System.Drawing.Point(222, 39);
             this.cameraWindow2.Name = "cameraWindow2";
-            this.cameraWindow2.Size = new System.Drawing.Size(209, 209);
+            this.cameraWindow2.Size = new System.Drawing.Size(220, 200);
             this.cameraWindow2.TabIndex = 123;
             this.cameraWindow2.Text = "cameraWindow2";
             // 
             // cameraWindow4
             // 
             this.cameraWindow4.Camera = null;
-            this.cameraWindow4.Location = new System.Drawing.Point(669, 37);
+            this.cameraWindow4.Location = new System.Drawing.Point(670, 39);
             this.cameraWindow4.Name = "cameraWindow4";
-            this.cameraWindow4.Size = new System.Drawing.Size(209, 209);
+            this.cameraWindow4.Size = new System.Drawing.Size(220, 200);
             this.cameraWindow4.TabIndex = 125;
             this.cameraWindow4.Text = "cameraWindow4";
             // 
             // cameraWindow3
             // 
             this.cameraWindow3.Camera = null;
-            this.cameraWindow3.Location = new System.Drawing.Point(453, 37);
+            this.cameraWindow3.Location = new System.Drawing.Point(448, 39);
             this.cameraWindow3.Name = "cameraWindow3";
-            this.cameraWindow3.Size = new System.Drawing.Size(209, 209);
+            this.cameraWindow3.Size = new System.Drawing.Size(220, 200);
             this.cameraWindow3.TabIndex = 124;
             this.cameraWindow3.Text = "cameraWindow3";
             // 
             // cameraWindow1
             // 
             this.cameraWindow1.Camera = null;
-            this.cameraWindow1.Location = new System.Drawing.Point(4, 37);
+            this.cameraWindow1.Location = new System.Drawing.Point(0, 39);
             this.cameraWindow1.Name = "cameraWindow1";
-            this.cameraWindow1.Size = new System.Drawing.Size(209, 209);
+            this.cameraWindow1.Size = new System.Drawing.Size(220, 200);
             this.cameraWindow1.TabIndex = 122;
             this.cameraWindow1.Text = "cameraWindow1";
             // 
             // axVLCPlugin4
             // 
             this.axVLCPlugin4.Enabled = true;
-            this.axVLCPlugin4.Location = new System.Drawing.Point(669, 4);
+            this.axVLCPlugin4.Location = new System.Drawing.Point(670, 1);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 275);
             this.axVLCPlugin4.TabIndex = 17;
             this.axVLCPlugin4.Visible = false;
             // 
             // axVLCPlugin3
             // 
             this.axVLCPlugin3.Enabled = true;
-            this.axVLCPlugin3.Location = new System.Drawing.Point(453, 4);
+            this.axVLCPlugin3.Location = new System.Drawing.Point(448, 1);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 275);
             this.axVLCPlugin3.TabIndex = 16;
             this.axVLCPlugin3.Visible = false;
             // 
             // axVLCPlugin2
             // 
             this.axVLCPlugin2.Enabled = true;
-            this.axVLCPlugin2.Location = new System.Drawing.Point(221, 4);
+            this.axVLCPlugin2.Location = new System.Drawing.Point(222, 1);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 275);
             this.axVLCPlugin2.TabIndex = 15;
             this.axVLCPlugin2.Visible = false;
             // 
             // axVLCPlugin1
             // 
             this.axVLCPlugin1.Enabled = true;
-            this.axVLCPlugin1.Location = new System.Drawing.Point(4, 3);
+            this.axVLCPlugin1.Location = new System.Drawing.Point(0, 1);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(210, 275);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 275);
             this.axVLCPlugin1.TabIndex = 14;
             this.axVLCPlugin1.Visible = false;
             this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
@@ -300,9 +300,9 @@
             this.pictureBoxImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage1.ErrorImage = null;
             this.pictureBoxImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage1.Image")));
-            this.pictureBoxImage1.Location = new System.Drawing.Point(4, 283);
+            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 283);
             this.pictureBoxImage1.Name = "pictureBoxImage1";
-            this.pictureBoxImage1.Size = new System.Drawing.Size(210, 275);
+            this.pictureBoxImage1.Size = new System.Drawing.Size(220, 275);
             this.pictureBoxImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage1.TabIndex = 9;
             this.pictureBoxImage1.TabStop = false;
@@ -312,9 +312,9 @@
             this.pictureBoxImage4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage4.Image")));
-            this.pictureBoxImage4.Location = new System.Drawing.Point(669, 283);
+            this.pictureBoxImage4.Location = new System.Drawing.Point(670, 283);
             this.pictureBoxImage4.Name = "pictureBoxImage4";
-            this.pictureBoxImage4.Size = new System.Drawing.Size(210, 275);
+            this.pictureBoxImage4.Size = new System.Drawing.Size(220, 275);
             this.pictureBoxImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage4.TabIndex = 7;
             this.pictureBoxImage4.TabStop = false;
@@ -324,9 +324,9 @@
             this.pictureBoxImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
-            this.pictureBoxImage3.Location = new System.Drawing.Point(453, 283);
+            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 283);
             this.pictureBoxImage3.Name = "pictureBoxImage3";
-            this.pictureBoxImage3.Size = new System.Drawing.Size(210, 275);
+            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 275);
             this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage3.TabIndex = 5;
             this.pictureBoxImage3.TabStop = false;
@@ -336,9 +336,9 @@
             this.pictureBoxImage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage2.Image")));
-            this.pictureBoxImage2.Location = new System.Drawing.Point(221, 283);
+            this.pictureBoxImage2.Location = new System.Drawing.Point(222, 283);
             this.pictureBoxImage2.Name = "pictureBoxImage2";
-            this.pictureBoxImage2.Size = new System.Drawing.Size(210, 275);
+            this.pictureBoxImage2.Size = new System.Drawing.Size(220, 275);
             this.pictureBoxImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage2.TabIndex = 3;
             this.pictureBoxImage2.TabStop = false;
@@ -556,32 +556,32 @@
             // 
             this.dgvThongKeXeTrongBai.AllowUserToAddRows = false;
             this.dgvThongKeXeTrongBai.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvThongKeXeTrongBai.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKeXeTrongBai.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvThongKeXeTrongBai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongKeXeTrongBai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.DoanhThuPartName,
             this.CountCarSurvive,
             this.CountCarEmpty});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvThongKeXeTrongBai.Location = new System.Drawing.Point(7, 43);
             this.dgvThongKeXeTrongBai.Name = "dgvThongKeXeTrongBai";
             this.dgvThongKeXeTrongBai.RowHeadersVisible = false;
@@ -604,10 +604,10 @@
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "TypeName";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.NullValue = null;
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle3;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.DoanhThuPartName.MinimumWidth = 6;
@@ -619,8 +619,8 @@
             // CountCarSurvive
             // 
             this.CountCarSurvive.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle4;
             this.CountCarSurvive.HeaderText = "SL trong bãi";
             this.CountCarSurvive.MinimumWidth = 6;
             this.CountCarSurvive.Name = "CountCarSurvive";
@@ -630,8 +630,8 @@
             // 
             this.CountCarEmpty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CountCarEmpty.DataPropertyName = "CountCarEmpty";
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle5;
             this.CountCarEmpty.HeaderText = "SL còn trống";
             this.CountCarEmpty.MinimumWidth = 6;
             this.CountCarEmpty.Name = "CountCarEmpty";

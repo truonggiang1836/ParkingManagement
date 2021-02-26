@@ -2686,7 +2686,7 @@ namespace ParkingMangement.GUI
             //    Application.Exit();
             //}
             Application.Exit();
-            System.Environment.Exit(1);
+            //System.Environment.Exit(1);
         }
 
         private void open_bitmap()
@@ -3370,7 +3370,7 @@ namespace ParkingMangement.GUI
                     double spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
                     oldUhfCardTime = DateTime.Now;
                     int distant = 1 * 60 * 1000; // 60s
-                    if (!Program.newUhfCardId.Equals(Program.oldUhfCardId) || spentTime > distant)
+                    if ((Program.newUhfCardId.Length == 53 && !Program.newUhfCardId.Equals(Program.oldUhfCardId)) || spentTime > distant)
                     {                       
                         //labelError.Text = newUhfCardId;
                         cardID = Program.newUhfCardId;
