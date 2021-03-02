@@ -3369,8 +3369,8 @@ namespace ParkingMangement.GUI
                 {                                
                     double spentTime = Util.getMillisecondBetweenTwoDate(oldUhfCardTime, DateTime.Now);
                     oldUhfCardTime = DateTime.Now;
-                    int distant = 1 * 60 * 1000; // 60s
-                    if ((Program.newUhfCardId.Length == 53 && !Program.newUhfCardId.Equals(Program.oldUhfCardId)) || spentTime > distant)
+                    int distant = 1 * 30 * 1000; // 30s
+                    if ((Program.newUhfCardId.Length == 53 && !Program.newUhfCardId.Equals(Program.oldUhfCardId)) || Program.oldUhfCardId == "" || spentTime > distant)
                     {                       
                         //labelError.Text = newUhfCardId;
                         cardID = Program.newUhfCardId;
