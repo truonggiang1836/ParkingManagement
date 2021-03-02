@@ -2686,7 +2686,7 @@ namespace ParkingMangement.GUI
             //    Application.Exit();
             //}
             Application.Exit();
-            //System.Environment.Exit(1);
+            System.Environment.Exit(1);
         }
 
         private void open_bitmap()

@@ -117,20 +117,34 @@ namespace CameraViewer
                 {
                     Bitmap lastFrame = camera.LastFrame;
 
-                    if (camera.ZoomFactor == 1.0f)
-                    {
-                        g.DrawImage(lastFrame, rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
-                    }
-                    else
-                    {
-                        double scaleFactor = Math.Sqrt(Camera.ZoomFactor);
-                        int xGap = (lastFrame.Width - (int)(lastFrame.Width / scaleFactor)) / 2;
-                        int yGap = (lastFrame.Height - (int)(lastFrame.Height / scaleFactor)) / 2;
+                    // Original code
+                    //if (camera.ZoomFactor == 1.0f)
+                    //{
+                    //    g.DrawImage(lastFrame, rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2);
+                    //}
+                    //else
+                    //{
+                    //    double scaleFactor = Math.Sqrt(Camera.ZoomFactor);
+                    //    int xGap = (lastFrame.Width - (int)(lastFrame.Width / scaleFactor)) / 2;
+                    //    int yGap = (lastFrame.Height - (int)(lastFrame.Height / scaleFactor)) / 2;
 
-                        g.DrawImage(lastFrame, new Rectangle(rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2),
-                                                new Rectangle(xGap, yGap, lastFrame.Width - xGap * 2, lastFrame.Height - yGap * 2),
-                                                GraphicsUnit.Pixel);
-                    }
+                    //    g.DrawImage(lastFrame, new Rectangle(rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2),
+                    //                            new Rectangle(xGap, yGap, lastFrame.Width - xGap * 2, lastFrame.Height - yGap * 2),
+                    //                            GraphicsUnit.Pixel);
+                    //}
+
+                    double scaleFactor = Math.Sqrt(Camera.ZoomFactor);
+                    int lastFrameWidth = lastFrame.Height * 220 / 265;
+
+                    int xGap = (lastFrame.Width - (int)(lastFrameWidth / scaleFactor)) / 2;
+                    int yGap = (lastFrame.Height - (int)(lastFrame.Height / scaleFactor)) / 2;
+
+                    int height = lastFrame.Height - yGap * 2;
+                    int width = height * 220 / 265;
+
+                    g.DrawImage(lastFrame, new Rectangle(rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2),
+                                            new Rectangle(xGap, yGap, width, lastFrame.Height - yGap * 2),
+                                            GraphicsUnit.Pixel);
                     firstFrame = false;
                 }
                 else

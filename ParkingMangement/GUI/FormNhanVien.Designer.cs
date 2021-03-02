@@ -150,6 +150,10 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -199,6 +203,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.cameraWindow2);
             this.panel1.Controls.Add(this.cameraWindow4);
             this.panel1.Controls.Add(this.cameraWindow3);
@@ -220,76 +228,76 @@
             // cameraWindow2
             // 
             this.cameraWindow2.Camera = null;
-            this.cameraWindow2.Location = new System.Drawing.Point(222, 39);
+            this.cameraWindow2.Location = new System.Drawing.Point(222, 25);
             this.cameraWindow2.Name = "cameraWindow2";
-            this.cameraWindow2.Size = new System.Drawing.Size(220, 200);
+            this.cameraWindow2.Size = new System.Drawing.Size(220, 265);
             this.cameraWindow2.TabIndex = 123;
             this.cameraWindow2.Text = "cameraWindow2";
             // 
             // cameraWindow4
             // 
             this.cameraWindow4.Camera = null;
-            this.cameraWindow4.Location = new System.Drawing.Point(670, 39);
+            this.cameraWindow4.Location = new System.Drawing.Point(670, 25);
             this.cameraWindow4.Name = "cameraWindow4";
-            this.cameraWindow4.Size = new System.Drawing.Size(220, 200);
+            this.cameraWindow4.Size = new System.Drawing.Size(220, 265);
             this.cameraWindow4.TabIndex = 125;
             this.cameraWindow4.Text = "cameraWindow4";
             // 
             // cameraWindow3
             // 
             this.cameraWindow3.Camera = null;
-            this.cameraWindow3.Location = new System.Drawing.Point(448, 39);
+            this.cameraWindow3.Location = new System.Drawing.Point(448, 25);
             this.cameraWindow3.Name = "cameraWindow3";
-            this.cameraWindow3.Size = new System.Drawing.Size(220, 200);
+            this.cameraWindow3.Size = new System.Drawing.Size(220, 265);
             this.cameraWindow3.TabIndex = 124;
             this.cameraWindow3.Text = "cameraWindow3";
             // 
             // cameraWindow1
             // 
             this.cameraWindow1.Camera = null;
-            this.cameraWindow1.Location = new System.Drawing.Point(0, 39);
+            this.cameraWindow1.Location = new System.Drawing.Point(0, 25);
             this.cameraWindow1.Name = "cameraWindow1";
-            this.cameraWindow1.Size = new System.Drawing.Size(220, 200);
+            this.cameraWindow1.Size = new System.Drawing.Size(220, 265);
             this.cameraWindow1.TabIndex = 122;
             this.cameraWindow1.Text = "cameraWindow1";
             // 
             // axVLCPlugin4
             // 
             this.axVLCPlugin4.Enabled = true;
-            this.axVLCPlugin4.Location = new System.Drawing.Point(670, 1);
+            this.axVLCPlugin4.Location = new System.Drawing.Point(670, 25);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 275);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 265);
             this.axVLCPlugin4.TabIndex = 17;
             this.axVLCPlugin4.Visible = false;
             // 
             // axVLCPlugin3
             // 
             this.axVLCPlugin3.Enabled = true;
-            this.axVLCPlugin3.Location = new System.Drawing.Point(448, 1);
+            this.axVLCPlugin3.Location = new System.Drawing.Point(448, 25);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 275);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 265);
             this.axVLCPlugin3.TabIndex = 16;
             this.axVLCPlugin3.Visible = false;
             // 
             // axVLCPlugin2
             // 
             this.axVLCPlugin2.Enabled = true;
-            this.axVLCPlugin2.Location = new System.Drawing.Point(222, 1);
+            this.axVLCPlugin2.Location = new System.Drawing.Point(222, 25);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 275);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 265);
             this.axVLCPlugin2.TabIndex = 15;
             this.axVLCPlugin2.Visible = false;
             // 
             // axVLCPlugin1
             // 
             this.axVLCPlugin1.Enabled = true;
-            this.axVLCPlugin1.Location = new System.Drawing.Point(0, 1);
+            this.axVLCPlugin1.Location = new System.Drawing.Point(0, 25);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 275);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 265);
             this.axVLCPlugin1.TabIndex = 14;
             this.axVLCPlugin1.Visible = false;
             this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
@@ -300,9 +308,9 @@
             this.pictureBoxImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage1.ErrorImage = null;
             this.pictureBoxImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage1.Image")));
-            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 283);
+            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 293);
             this.pictureBoxImage1.Name = "pictureBoxImage1";
-            this.pictureBoxImage1.Size = new System.Drawing.Size(220, 275);
+            this.pictureBoxImage1.Size = new System.Drawing.Size(220, 265);
             this.pictureBoxImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage1.TabIndex = 9;
             this.pictureBoxImage1.TabStop = false;
@@ -312,9 +320,9 @@
             this.pictureBoxImage4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage4.Image")));
-            this.pictureBoxImage4.Location = new System.Drawing.Point(670, 283);
+            this.pictureBoxImage4.Location = new System.Drawing.Point(670, 293);
             this.pictureBoxImage4.Name = "pictureBoxImage4";
-            this.pictureBoxImage4.Size = new System.Drawing.Size(220, 275);
+            this.pictureBoxImage4.Size = new System.Drawing.Size(220, 265);
             this.pictureBoxImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage4.TabIndex = 7;
             this.pictureBoxImage4.TabStop = false;
@@ -324,9 +332,9 @@
             this.pictureBoxImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
-            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 283);
+            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 293);
             this.pictureBoxImage3.Name = "pictureBoxImage3";
-            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 275);
+            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 265);
             this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage3.TabIndex = 5;
             this.pictureBoxImage3.TabStop = false;
@@ -336,9 +344,9 @@
             this.pictureBoxImage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage2.Image")));
-            this.pictureBoxImage2.Location = new System.Drawing.Point(222, 283);
+            this.pictureBoxImage2.Location = new System.Drawing.Point(222, 293);
             this.pictureBoxImage2.Name = "pictureBoxImage2";
-            this.pictureBoxImage2.Size = new System.Drawing.Size(220, 275);
+            this.pictureBoxImage2.Size = new System.Drawing.Size(220, 265);
             this.pictureBoxImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage2.TabIndex = 3;
             this.pictureBoxImage2.TabStop = false;
@@ -1450,6 +1458,54 @@
             this.pictureBox10.TabIndex = 127;
             this.pictureBox10.TabStop = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(43, 4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(141, 15);
+            this.label4.TabIndex = 126;
+            this.label4.Text = "ẢNH NGƯỜI GỬI VÀO";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(490, 4);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(133, 15);
+            this.label5.TabIndex = 127;
+            this.label5.Text = "ẢNH NGƯỜI GỬI RA";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(291, 4);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(87, 15);
+            this.label6.TabIndex = 128;
+            this.label6.Text = "ẢNH XE VÀO";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(740, 4);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(79, 15);
+            this.label7.TabIndex = 129;
+            this.label7.Text = "ẢNH XE RA";
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1539,6 +1595,7 @@
             this.Shown += new System.EventHandler(this.FormNhanVien_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
@@ -1708,5 +1765,9 @@
         private CameraViewer.CameraWindow cameraWindow2;
         private CameraViewer.CameraWindow cameraWindow4;
         private CameraViewer.CameraWindow cameraWindow3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }
