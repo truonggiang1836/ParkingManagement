@@ -96,6 +96,11 @@ namespace ParkingMangement.GUI
         private Configuration config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
         private RunningPool runningPool = new RunningPool();
 
+        Camera camera1;
+        Camera camera2;
+        Camera camera3;
+        Camera camera4;
+
 
         //=======class============
         clsImagePlate ImagePlate;
@@ -293,7 +298,7 @@ namespace ParkingMangement.GUI
         {
             string name1 = "cam1";
             // get camera
-            Camera camera1 = config.GetCameraByName(name1);
+           camera1 = config.GetCameraByName(name1);
 
             // add camera to running pool
             if (runningPool.Add(camera1))
@@ -303,7 +308,7 @@ namespace ParkingMangement.GUI
 
             string name2 = "cam2";
             // get camera
-            Camera camera2 = config.GetCameraByName(name2);
+            camera2 = config.GetCameraByName(name2);
 
             // add camera to running pool
             if (runningPool.Add(camera2))
@@ -313,7 +318,7 @@ namespace ParkingMangement.GUI
 
             string name3 = "cam3";
             // get camera
-            Camera camera3 = config.GetCameraByName(name3);
+            camera3 = config.GetCameraByName(name3);
 
             // add camera to running pool
             if (runningPool.Add(camera3))
@@ -323,7 +328,7 @@ namespace ParkingMangement.GUI
 
             string name4 = "cam4";
             // get camera
-            Camera camera4 = config.GetCameraByName(name4);
+            camera4 = config.GetCameraByName(name4);
 
             // add camera to running pool
             if (runningPool.Add(camera4))
@@ -2440,19 +2445,39 @@ namespace ParkingMangement.GUI
                 case ConfigDTO.TYPE_IN_IN:
                     labelXeVao.Text = Constant.sLabelXeVao;
                     labelXeRa.Text = Constant.sLabelXeVao;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeVaoBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeVaoBienSo;
                     break;
                 case ConfigDTO.TYPE_OUT_OUT:
                     labelXeVao.Text = Constant.sLabelXeRa;
                     labelXeRa.Text = Constant.sLabelXeRa;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeRaBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeRaBienSo;
                     break;
                 case ConfigDTO.TYPE_OUT_IN:
                     labelXeVao.Text = Constant.sLabelXeRa;
                     labelXeRa.Text = Constant.sLabelXeVao;
+                  
+                    labelXeVaoNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeRaBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeVaoBienSo;
                     break;
                 case ConfigDTO.TYPE_IN_OUT:
                 default:
                     labelXeVao.Text = Constant.sLabelXeVao;
                     labelXeRa.Text = Constant.sLabelXeRa;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeVaoBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeRaBienSo;
                     break;
             }
 
@@ -2685,7 +2710,12 @@ namespace ParkingMangement.GUI
             //{
             //    Application.Exit();
             //}
-            Application.Exit();
+
+            camera1.Lock();
+            camera2.Lock();
+            camera3.Lock();
+            camera4.Lock();
+            //Application.Exit();
             System.Environment.Exit(1);
         }
 

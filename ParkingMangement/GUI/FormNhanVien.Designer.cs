@@ -37,6 +37,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelXeRaBienSo = new System.Windows.Forms.Label();
+            this.labelXeVaoBienSo = new System.Windows.Forms.Label();
+            this.labelXeRaNguoi = new System.Windows.Forms.Label();
+            this.labelXeVaoNguoi = new System.Windows.Forms.Label();
             this.cameraWindow2 = new CameraViewer.CameraWindow();
             this.cameraWindow4 = new CameraViewer.CameraWindow();
             this.cameraWindow3 = new CameraViewer.CameraWindow();
@@ -150,10 +154,6 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
@@ -203,10 +203,10 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.labelXeRaBienSo);
+            this.panel1.Controls.Add(this.labelXeVaoBienSo);
+            this.panel1.Controls.Add(this.labelXeRaNguoi);
+            this.panel1.Controls.Add(this.labelXeVaoNguoi);
             this.panel1.Controls.Add(this.cameraWindow2);
             this.panel1.Controls.Add(this.cameraWindow4);
             this.panel1.Controls.Add(this.cameraWindow3);
@@ -224,6 +224,54 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(891, 561);
             this.panel1.TabIndex = 0;
+            // 
+            // labelXeRaBienSo
+            // 
+            this.labelXeRaBienSo.AutoSize = true;
+            this.labelXeRaBienSo.BackColor = System.Drawing.Color.Transparent;
+            this.labelXeRaBienSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXeRaBienSo.ForeColor = System.Drawing.Color.White;
+            this.labelXeRaBienSo.Location = new System.Drawing.Point(740, 4);
+            this.labelXeRaBienSo.Name = "labelXeRaBienSo";
+            this.labelXeRaBienSo.Size = new System.Drawing.Size(79, 15);
+            this.labelXeRaBienSo.TabIndex = 129;
+            this.labelXeRaBienSo.Text = "ẢNH XE RA";
+            // 
+            // labelXeVaoBienSo
+            // 
+            this.labelXeVaoBienSo.AutoSize = true;
+            this.labelXeVaoBienSo.BackColor = System.Drawing.Color.Transparent;
+            this.labelXeVaoBienSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXeVaoBienSo.ForeColor = System.Drawing.Color.White;
+            this.labelXeVaoBienSo.Location = new System.Drawing.Point(291, 4);
+            this.labelXeVaoBienSo.Name = "labelXeVaoBienSo";
+            this.labelXeVaoBienSo.Size = new System.Drawing.Size(87, 15);
+            this.labelXeVaoBienSo.TabIndex = 128;
+            this.labelXeVaoBienSo.Text = "ẢNH XE VÀO";
+            // 
+            // labelXeRaNguoi
+            // 
+            this.labelXeRaNguoi.AutoSize = true;
+            this.labelXeRaNguoi.BackColor = System.Drawing.Color.Transparent;
+            this.labelXeRaNguoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXeRaNguoi.ForeColor = System.Drawing.Color.White;
+            this.labelXeRaNguoi.Location = new System.Drawing.Point(490, 4);
+            this.labelXeRaNguoi.Name = "labelXeRaNguoi";
+            this.labelXeRaNguoi.Size = new System.Drawing.Size(133, 15);
+            this.labelXeRaNguoi.TabIndex = 127;
+            this.labelXeRaNguoi.Text = "ẢNH NGƯỜI GỬI RA";
+            // 
+            // labelXeVaoNguoi
+            // 
+            this.labelXeVaoNguoi.AutoSize = true;
+            this.labelXeVaoNguoi.BackColor = System.Drawing.Color.Transparent;
+            this.labelXeVaoNguoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelXeVaoNguoi.ForeColor = System.Drawing.Color.White;
+            this.labelXeVaoNguoi.Location = new System.Drawing.Point(43, 4);
+            this.labelXeVaoNguoi.Name = "labelXeVaoNguoi";
+            this.labelXeVaoNguoi.Size = new System.Drawing.Size(141, 15);
+            this.labelXeVaoNguoi.TabIndex = 126;
+            this.labelXeVaoNguoi.Text = "ẢNH NGƯỜI GỬI VÀO";
             // 
             // cameraWindow2
             // 
@@ -267,7 +315,7 @@
             this.axVLCPlugin4.Location = new System.Drawing.Point(670, 25);
             this.axVLCPlugin4.Name = "axVLCPlugin4";
             this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 265);
+            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 264);
             this.axVLCPlugin4.TabIndex = 17;
             this.axVLCPlugin4.Visible = false;
             // 
@@ -277,7 +325,7 @@
             this.axVLCPlugin3.Location = new System.Drawing.Point(448, 25);
             this.axVLCPlugin3.Name = "axVLCPlugin3";
             this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 265);
+            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 264);
             this.axVLCPlugin3.TabIndex = 16;
             this.axVLCPlugin3.Visible = false;
             // 
@@ -287,7 +335,7 @@
             this.axVLCPlugin2.Location = new System.Drawing.Point(222, 25);
             this.axVLCPlugin2.Name = "axVLCPlugin2";
             this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 265);
+            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 264);
             this.axVLCPlugin2.TabIndex = 15;
             this.axVLCPlugin2.Visible = false;
             // 
@@ -297,7 +345,7 @@
             this.axVLCPlugin1.Location = new System.Drawing.Point(0, 25);
             this.axVLCPlugin1.Name = "axVLCPlugin1";
             this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 265);
+            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 264);
             this.axVLCPlugin1.TabIndex = 14;
             this.axVLCPlugin1.Visible = false;
             this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
@@ -1458,54 +1506,6 @@
             this.pictureBox10.TabIndex = 127;
             this.pictureBox10.TabStop = false;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(43, 4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(141, 15);
-            this.label4.TabIndex = 126;
-            this.label4.Text = "ẢNH NGƯỜI GỬI VÀO";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(490, 4);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(133, 15);
-            this.label5.TabIndex = 127;
-            this.label5.Text = "ẢNH NGƯỜI GỬI RA";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(291, 4);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 15);
-            this.label6.TabIndex = 128;
-            this.label6.Text = "ẢNH XE VÀO";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(740, 4);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 15);
-            this.label7.TabIndex = 129;
-            this.label7.Text = "ẢNH XE RA";
-            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1765,9 +1765,9 @@
         private CameraViewer.CameraWindow cameraWindow2;
         private CameraViewer.CameraWindow cameraWindow4;
         private CameraViewer.CameraWindow cameraWindow3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelXeVaoNguoi;
+        private System.Windows.Forms.Label labelXeRaBienSo;
+        private System.Windows.Forms.Label labelXeVaoBienSo;
+        private System.Windows.Forms.Label labelXeRaNguoi;
     }
 }
