@@ -134,11 +134,18 @@ namespace ParkingMangement.GUI
                 readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);             
                 readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
                 readerLeftSerialPort.Open();
+            } catch (Exception e)
+            {
 
-                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);               
+            }
+
+            try
+            {
+                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
                 readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
                 readerRightSerialPort.Open();
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
 
             }
