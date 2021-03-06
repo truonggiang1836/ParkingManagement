@@ -354,12 +354,14 @@ namespace ParkingMangement.DAO
                 long countAllCarIn = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarInCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["CountCarIn"].ToString());
+                    long countCarInCommonData = 0;
+                    long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInCommonData);
                     countAllCarIn += countCarInCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarInTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarIn"].ToString());
+                    long countCarInTicketData = 0;
+                    long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInTicketData);
                     countAllCarIn += countCarInTicketData;
                 }
                 dataRow.SetField("CountCarIn", countAllCarIn);
@@ -368,12 +370,14 @@ namespace ParkingMangement.DAO
                 long countAllCarOut = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarOutCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["CountCarOut"].ToString());
+                    long countCarOutCommonData = 0;
+                    long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutCommonData);
                     countAllCarOut += countCarOutCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarOutTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarOut"].ToString());
+                    long countCarOutTicketData = 0;
+                    long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutTicketData);
                     countAllCarOut += countCarOutTicketData;
                 }
                 dataRow.SetField("CountCarOut", countAllCarOut);
@@ -381,12 +385,14 @@ namespace ParkingMangement.DAO
                 long countAllCarSurvive = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarSurviveCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString());
+                    long countCarSurviveCommonData = 0;
+                    long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveCommonData);
                     countAllCarSurvive += countCarSurviveCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarSurviveTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString());
+                    long countCarSurviveTicketData = 0;
+                    long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveTicketData);
                     countAllCarSurvive += countCarSurviveTicketData;
                 }
                 dataRow.SetField("CountCarSurvive", countAllCarSurvive);
@@ -394,12 +400,14 @@ namespace ParkingMangement.DAO
                 long countAllCar = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["CountCar"].ToString());
+                    long countCarCommonData = 0;
+                    long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCar"].ToString(), out countCarCommonData);
                     countAllCar += countCarCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCar"].ToString());
+                    long countCarTicketData = 0;
+                    long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCar"].ToString(), out countCarTicketData);
                     countAllCar += countCarTicketData;
                 }
                 dataRow.SetField("CountCar", countAllCar);
@@ -407,12 +415,14 @@ namespace ParkingMangement.DAO
                 long sumCost = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long sumCostCommonData = long.Parse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""));
+                    long sumCostCommonData = 0;
+                    long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostCommonData);
                     sumCost += sumCostCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long sumCostTicketData = long.Parse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""));
+                    long sumCostTicketData = 0;
+                    long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostTicketData);
                     sumCost += sumCostTicketData;
                 }
                 dataRow.SetField("SumCost", Util.formatNumberAsMoney(sumCost));

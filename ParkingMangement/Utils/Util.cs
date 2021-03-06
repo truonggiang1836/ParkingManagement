@@ -209,6 +209,8 @@ namespace ParkingMangement.Utils
                         sConfig.folderRoot = sConfig.folderRoot.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comReceiveIn = sConfig.comReceiveIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comReceiveOut = sConfig.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comReaderLeft = sConfig.comReaderLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comReaderRight = sConfig.comReaderRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comSend = sConfig.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comLedLeft = sConfig.comLedLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comLedRight = sConfig.comLedRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");

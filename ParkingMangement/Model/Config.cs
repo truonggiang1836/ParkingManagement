@@ -71,6 +71,12 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "com_receive_out")]
         public string comReceiveOut { get; set; } = "";
 
+        [XmlElement(ElementName = "com_reader_left")]
+        public string comReaderLeft { get; set; } = "";
+
+        [XmlElement(ElementName = "com_reader_right")]
+        public string comReaderRight { get; set; } = "";
+
         [XmlElement(ElementName = "com_send")]
         public string comSend { get; set; } = "";
 

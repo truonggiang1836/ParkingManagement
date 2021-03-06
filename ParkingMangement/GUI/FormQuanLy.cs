@@ -19,6 +19,7 @@ using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -84,6 +85,8 @@ namespace ParkingMangement.GUI
             getDataFromUhfReader();
 
             tbCardIDCreate.GotFocus += textBox_Enter;
+
+            readPegasusReaderCOM();
         }
 
         void textBox_Enter(object sender, EventArgs e)
@@ -4323,6 +4326,8 @@ namespace ParkingMangement.GUI
                     config.folderRoot = Constant.sEncodeStart + tb_folder_root.Text + Constant.sEncodeEnd;
                     config.comReceiveIn = Constant.sEncodeStart + tb_com_receive_in.Text + Constant.sEncodeEnd;
                     config.comReceiveOut = Constant.sEncodeStart + tb_com_receive_out.Text + Constant.sEncodeEnd;
+                    config.comReaderLeft = Constant.sEncodeStart + tb_com_reader_left.Text + Constant.sEncodeEnd;
+                    config.comReaderRight = Constant.sEncodeStart + tb_com_reader_right.Text + Constant.sEncodeEnd;
                     config.comSend = Constant.sEncodeStart + tb_com_send.Text + Constant.sEncodeEnd;
                     config.signalOpenBarieIn = Constant.sEncodeStart + tb_signal_open_barie_in.Text + Constant.sEncodeEnd;
                     config.signalCloseBarieIn = Constant.sEncodeStart + tb_signal_close_barie_in.Text + Constant.sEncodeEnd;
@@ -4371,6 +4376,8 @@ namespace ParkingMangement.GUI
                 tb_rfid_2.Text = config.rfidOut;
                 tb_com_receive_in.Text = config.comReceiveIn;
                 tb_com_receive_out.Text = config.comReceiveOut;
+                tb_com_reader_left.Text = config.comReaderLeft;
+                tb_com_reader_right.Text = config.comReaderRight;
                 tb_com_send.Text = config.comSend;
                 tb_signal_open_barie_in.Text = config.signalOpenBarieIn;
                 tb_signal_close_barie_in.Text = config.signalCloseBarieIn;
@@ -6561,6 +6568,48 @@ namespace ParkingMangement.GUI
         private void btnExportDebtReport_Click(object sender, EventArgs e)
         {
             exportDanhSachBaoCaoCongNoToExcel();
+        }
+
+        SerialPort readerLeftSerialPort;
+        SerialPort readerRightSerialPort;
+        private void readPegasusReaderCOM()
+        {
+            try
+            {
+                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);
+                readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
+                readerLeftSerialPort.Open();
+
+                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
+                readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
+                readerRightSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadLine();
+            Console.WriteLine(data);
+            string cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+
+            handleReceiveUhfData(cardID);
+        }
+
+        private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadLine();
+            Console.WriteLine(data);
+            string cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+
+            handleReceiveUhfData(cardID);
         }
     }
 }
