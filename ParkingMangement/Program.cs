@@ -224,11 +224,13 @@ namespace ParkingMangement
             aTimer.Start();
 
             checkForAutoLockCard();
+            deleteOldImages();
         }
 
         private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
         {
             checkForAutoLockCard();
+            deleteOldImages();
         }
 
         private static void checkForAutoLockCard()
@@ -238,6 +240,41 @@ namespace ParkingMangement
                 if (ConfigDAO.GetIsAutoLockCard() == 1)
                 {
                     Util.autoLockExpiredCard();
+                }
+            }
+        }
+
+        private static void deleteOldImages()
+        {
+            DataTable dt = CarDAO.GetCarGoOut(0);
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string image1 = dt.Rows[i].Field<string>("Images");
+                string image2 = dt.Rows[i].Field<string>("Images2");
+                string image3 = dt.Rows[i].Field<string>("Images3");
+                string image4 = dt.Rows[i].Field<string>("Images4");
+
+                deleteImage(image1);
+                deleteImage(image2);
+                deleteImage(image3);
+                deleteImage(image4);
+            }
+
+            Util.deleteDirectoryIfEmpty(Constant.getSharedImageFolder());
+        }
+
+        private static void deleteImage(string image)
+        {
+            string imagePath = Constant.getSharedImageFolder() + image;
+            if (File.Exists(imagePath))
+            {               
+                try
+                {
+                    File.Delete(imagePath);
+                }
+                catch (Exception e)
+                {
+
                 }
             }
         }

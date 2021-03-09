@@ -797,6 +797,12 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
+        public static DataTable GetCarGoOut(int month)
+        {
+            string sql = "select * from Car where DATEDIFF(MONTH, TimeStart, getdate()) > " + month + " and IDOut <> ''";
+            return (new Database()).ExcuQuery(sql);
+        }
+
         public static string GetLastCardID()
         {
             string sql = "select ID from Car order by Identify desc";

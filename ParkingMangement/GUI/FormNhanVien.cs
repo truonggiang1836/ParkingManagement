@@ -598,7 +598,6 @@ namespace ParkingMangement.GUI
         private void readCardEvent()
         {
             isShowExpiredMessage = false;
-            //deleteOldImages();
             Program.isHasCarInOut = true;
             if (!cardID.Equals(""))
             {
@@ -1528,15 +1527,6 @@ namespace ParkingMangement.GUI
             }
             return "";
         }
-
-        //private void deleteOldImages()
-        //{
-        //    string path = Constant.getSharedImageFolder() + Constant.getDateOnLastMonthString();
-        //    if (Directory.Exists(path))
-        //    {
-        //        Directory.Delete(path, true);
-        //    }
-        //}
 
         private void zoomImageShowToPictureBox(string filePath, PictureBox pictureBox)
         {      

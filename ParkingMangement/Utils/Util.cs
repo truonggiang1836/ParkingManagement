@@ -23,6 +23,25 @@ namespace ParkingMangement.Utils
     static class Util
     {
         private static Config sConfig = null;
+
+        public static void deleteDirectoryIfEmpty(string startLocation)
+        {
+            foreach (var directory in Directory.GetDirectories(startLocation))
+            {
+                deleteDirectoryIfEmpty(directory);
+                if (Directory.GetFiles(directory).Length == 0 &&
+                    Directory.GetDirectories(directory).Length == 0)
+                {
+                    try
+                    {
+                        Directory.Delete(directory, false);
+                    } catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+        }
         public static string ImageToBase64(string Path)
         {
             using (Image image = Image.FromFile(Path))
