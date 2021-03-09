@@ -224,7 +224,7 @@ namespace ParkingMangement.Utils
 
         public static string getCurrentDateString()
         {
-            return DateTime.Now.ToString("yyyyMMdd");
+            return DateTime.Now.ToString("yyyy.MM.dd");
         }
 
         public static string getDateOnLastMonthString()

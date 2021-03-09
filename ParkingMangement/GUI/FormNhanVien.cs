@@ -320,11 +320,12 @@ namespace ParkingMangement.GUI
             config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
             // load cameras tree
             config.LoadCameras();
-            
-            new Thread(() =>
-            {
-                openCameraWindow();
-            }).Start();
+
+            //new Thread(() =>
+            //{
+            //    openCameraWindow();
+            //}).Start();
+            openCameraWindow();
         }
 
         public void openCameraWindow()
@@ -1514,11 +1515,10 @@ namespace ParkingMangement.GUI
         {
             string path = Constant.getSharedImageFolder() + Constant.getCurrentDateString() + @"\";
             Directory.CreateDirectory(path);
-            Util.ShareFolder(path, "Test Share", "This is a Test Share");
 
             try
             {
-                string compressedFileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
+                string compressedFileName = cardID + DateTime.Now.ToString("_yyyy.MM.dd_HH.mm.ss_") + DateTime.Now.Ticks + ".jpg";
                 saveBitmapToFile(bitmap, path, compressedFileName);
                 return Constant.getCurrentDateString() + @"\" + compressedFileName;
             }
@@ -1666,15 +1666,19 @@ namespace ParkingMangement.GUI
 
             if (isCarIn())
             {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;
-                if (Constant.IS_NAPSHOT_FULL_IMAGE)
+                Invoke((MethodInvoker)(delegate ()
                 {
-                    imagePath1 = getPathFromSnapshot(axVLCPlugin);
-                } else
-                {
-                    imagePath1 = getPathFromSnapshotThumbnail(bmpScreenshot);
-                }
+                    Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
+                    pictureBox.Image = bmpScreenshot;
+
+                    if (Constant.IS_NAPSHOT_FULL_IMAGE)
+                    {
+                        imagePath1 = getPathFromSnapshot(axVLCPlugin);
+                    } else
+                    {
+                        imagePath1 = getPathFromSnapshotThumbnail(bmpScreenshot);
+                    }
+                }));
             }
         }
 
@@ -1699,8 +1703,11 @@ namespace ParkingMangement.GUI
 
             if (isCarIn())
             {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;
+                Invoke((MethodInvoker)(delegate ()
+                {
+                    Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
+                    pictureBox.Image = bmpScreenshot;
+                }));
             }
         }
 
@@ -1774,8 +1781,11 @@ namespace ParkingMangement.GUI
 
             if (isCarIn())
             {
-                Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;                
+                Invoke((MethodInvoker)(delegate ()
+                {
+                    Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
+                    pictureBox.Image = bmpScreenshot;
+                }));
             }
         }
 
