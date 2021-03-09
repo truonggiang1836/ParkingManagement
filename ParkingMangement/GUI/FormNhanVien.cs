@@ -35,6 +35,7 @@ using System.Timers;
 using ReaderB;
 using System.Collections;
 using CameraViewer;
+using System.Text.RegularExpressions;
 
 namespace ParkingMangement.GUI
 {
@@ -49,6 +50,7 @@ namespace ParkingMangement.GUI
         private DateTime oldUhfCardTime;
         private string rfidInput = "";
         private string portNameComReceiveInput = null;
+        private string portNameComReaderInput = null;
         private string oldPortNameComReceiveInput = null;
 
         //const string cameraUrl = @"rtsp://admin:bmv333999@192.168.1.190:554/cam/realmonitor?channel=1&subtype=0&unicast=true&proto=Onvif";
@@ -62,6 +64,8 @@ namespace ParkingMangement.GUI
         private string rfidOut = "";
         private string portNameComReceiveIn = "";
         private string portNameComReceiveOut = "";
+        private string portNameComReaderLeft = "";
+        private string portNameComReaderRight = "";
 
         private string imagePath1;
         private string imagePath2;
@@ -130,22 +134,51 @@ namespace ParkingMangement.GUI
             CurrentUserID = Program.CurrentUserID;
         }
 
-        SerialPort mySerialPort;
-        public void readPegasusReaderCOM()
+        SerialPort readerLeftSerialPort;
+        SerialPort readerRightSerialPort;
+        private void readPegasusReaderCOM()
         {
-            mySerialPort = new SerialPort("COM7", 9600, Parity.None, 8, StopBits.One);
-            mySerialPort.ReadTimeout = 500;
-            mySerialPort.Open();
+            try
+            {
+                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);             
+                readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
+                readerLeftSerialPort.Open();
+            } catch (Exception e)
+            {
 
-            mySerialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            }
+
+            try
+            {
+                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
+                readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
+                readerRightSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;           
+            string data = sp.ReadLine();
+            //Console.WriteLine(data);
+            cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+            portNameComReaderInput = sp.PortName;
+            readCardEvent();
+        }
+
+        private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string data = sp.ReadLine();
-            Console.WriteLine(data);
+            //Console.WriteLine(data);
             cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+            portNameComReaderInput = sp.PortName;
             readCardEvent();
         }
 
@@ -334,9 +367,9 @@ namespace ParkingMangement.GUI
             if (runningPool.Add(camera4))
             {
                 cameraWindow4.Camera = camera4;
-            }           
+            }
 
-            //readPegasusReaderCOM();
+            readPegasusReaderCOM();
         }
 
         private void loadInfo()
@@ -598,6 +631,7 @@ namespace ParkingMangement.GUI
                 }));
             }
             portNameComReceiveInput = null;
+            portNameComReaderInput = null;
             oldPortNameComReceiveInput = null;
         }
 
@@ -689,6 +723,7 @@ namespace ParkingMangement.GUI
                     if (!isKiemTraCapNhatXeVao)
                     {
                         labelError.Text = "Thẻ này chưa được quẹt đầu ra";
+                        Program.oldUhfCardId = "";
                         resetPictureBoxImage1();
                         resetPictureBoxImage2();
                         tbRFIDCardID.Focus();                        
@@ -730,6 +765,7 @@ namespace ParkingMangement.GUI
                 {
                     tbRFIDCardID.Focus();
                     labelError.Text = "Thẻ này chưa được quẹt đầu vào";
+                    Program.oldUhfCardId = "";
                     return false;
                 }
             }
@@ -1880,6 +1916,8 @@ namespace ParkingMangement.GUI
             rfidOut = mConfig.rfidOut;
             portNameComReceiveIn = mConfig.comReceiveIn;
             portNameComReceiveOut = mConfig.comReceiveOut;
+            portNameComReaderLeft = mConfig.comReaderLeft;
+            portNameComReaderRight = mConfig.comReaderRight;
             //cameraUrl1 = ConfigDAO.GetCamera1();
             //cameraUrl2 = ConfigDAO.GetCamera2();
             //cameraUrl3 = ConfigDAO.GetCamera3();
@@ -2463,7 +2501,7 @@ namespace ParkingMangement.GUI
                 case ConfigDTO.TYPE_OUT_IN:
                     labelXeVao.Text = Constant.sLabelXeRa;
                     labelXeRa.Text = Constant.sLabelXeVao;
-                  
+
                     labelXeVaoNguoi.Text = Constant.sLabelXeRaNguoi;
                     labelXeVaoBienSo.Text = Constant.sLabelXeRaBienSo;
                     labelXeRaNguoi.Text = Constant.sLabelXeVaoNguoi;
@@ -2504,7 +2542,8 @@ namespace ParkingMangement.GUI
                 labelDigitInLeft.Text = "";
                 labelDigitOutLeft.Text = "-";
                 labelDigitRegisterLeft.Text = "-";
-            } else
+            }
+            else
             {
                 labelCardIDRight.Text = "-";
                 labelPartNameTypeNameRight.Text = "-";
@@ -3422,10 +3461,13 @@ namespace ParkingMangement.GUI
 
         private bool inputIsRightSide()
         {
-
             if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes") && (cardID.Length == 53))
             {
                 bool result = portNameComReceiveInput.Equals(portNameComReceiveOut);
+                return result;
+            } else if (portNameComReaderInput != null)
+            {
+                bool result = portNameComReaderInput.Equals(portNameComReaderRight);
                 return result;
             }
             else if (!rfidInput.Equals("Global Keyboard"))
