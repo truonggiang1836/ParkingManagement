@@ -2419,19 +2419,39 @@ namespace ParkingMangement.GUI
                 case ConfigDTO.TYPE_IN_IN:
                     labelXeVao.Text = Constant.sLabelXeVao;
                     labelXeRa.Text = Constant.sLabelXeVao;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeVaoBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeVaoBienSo;
                     break;
                 case ConfigDTO.TYPE_OUT_OUT:
                     labelXeVao.Text = Constant.sLabelXeRa;
                     labelXeRa.Text = Constant.sLabelXeRa;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeRaBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeRaBienSo;
                     break;
                 case ConfigDTO.TYPE_OUT_IN:
                     labelXeVao.Text = Constant.sLabelXeRa;
                     labelXeRa.Text = Constant.sLabelXeVao;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeRaBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeVaoBienSo;
                     break;
                 case ConfigDTO.TYPE_IN_OUT:
                 default:
                     labelXeVao.Text = Constant.sLabelXeVao;
                     labelXeRa.Text = Constant.sLabelXeRa;
+
+                    labelXeVaoNguoi.Text = Constant.sLabelXeVaoNguoi;
+                    labelXeVaoBienSo.Text = Constant.sLabelXeVaoBienSo;
+                    labelXeRaNguoi.Text = Constant.sLabelXeRaNguoi;
+                    labelXeRaBienSo.Text = Constant.sLabelXeRaBienSo;
                     break;
             }
 
@@ -2458,7 +2478,8 @@ namespace ParkingMangement.GUI
                 labelDigitInLeft.Text = "";
                 labelDigitOutLeft.Text = "-";
                 labelDigitRegisterLeft.Text = "-";
-            } else
+            }
+            else
             {
                 labelCardIDRight.Text = "-";
                 labelPartNameTypeNameRight.Text = "-";

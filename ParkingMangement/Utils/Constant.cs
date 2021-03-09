@@ -22,6 +22,10 @@ namespace ParkingMangement.Utils
         public static string sLabelAlert = "Cảnh báo";
         public static string sLabelXeVao = "XE VÀO";
         public static string sLabelXeRa = "XE RA";
+        public static string sLabelXeVaoNguoi = "ẢNH NGƯỜI GỬI VÀO";
+        public static string sLabelXeVaoBienSo = "ẢNH XE VÀO";
+        public static string sLabelXeRaNguoi = "ẢNH NGƯỜI GỬI RA";
+        public static string sLabelXeRaBienSo = "ẢNH XE RA";      
         public static string sLabelMoiVao = "Mời vào";
         public static string sLabelMoiRa = "Mời ra";
         public static string sEncodeStart = "<![CDATA[";
