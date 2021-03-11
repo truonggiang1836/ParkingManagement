@@ -65,28 +65,28 @@ namespace ParkingMangement.GUI
         {
             try
             {
-                String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
-                if (File.Exists(filePath))
-                {
-                    Config config = Util.getConfigFile();
-                    config.ZoomCamera1 = value1;
-                    config.ZoomCamera2 = value2;
-                    config.ZoomCamera3 = value3;
-                    config.ZoomCamera4 = value4;
+                //String filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+                //if (File.Exists(filePath))
+                //{
+                //    Config config = Util.getConfigFile();
+                //    config.ZoomCamera1 = value1;
+                //    config.ZoomCamera2 = value2;
+                //    config.ZoomCamera3 = value3;
+                //    config.ZoomCamera4 = value4;
 
-                    XmlSerializer xs = new XmlSerializer(typeof(Config));
-                    TextWriter txtWriter = new StreamWriter(filePath);
-                    xs.Serialize(txtWriter, config);
-                    txtWriter.Close();
+                //    XmlSerializer xs = new XmlSerializer(typeof(Config));
+                //    TextWriter txtWriter = new StreamWriter(filePath);
+                //    xs.Serialize(txtWriter, config);
+                //    txtWriter.Close();                   
+                //}
 
-                    Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
-                    configuration.SaveZoomCamera("cam1", value1);
-                    configuration.SaveZoomCamera("cam2", value2);
-                    configuration.SaveZoomCamera("cam3", value3);
-                    configuration.SaveZoomCamera("cam4", value4);
+                Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                configuration.SaveZoomCamera("cam1", value1);
+                configuration.SaveZoomCamera("cam2", value2);
+                configuration.SaveZoomCamera("cam3", value3);
+                configuration.SaveZoomCamera("cam4", value4);
 
-                    return true;
-                }
+                return true;
             }
             catch (Exception e)
             {
