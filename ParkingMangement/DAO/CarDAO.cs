@@ -799,7 +799,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetCarGoOut(int month)
         {
-            string sql = "select * from Car where DATEDIFF(MONTH, TimeStart, getdate()) > " + month + " and IDOut <> ''";
+            string sql = "select top 1000 Images, Images2, Images3, Images4 from Car where DATEDIFF(MONTH, TimeStart, getdate()) > " + month + " and IDOut <> ''";
             return (new Database()).ExcuQuery(sql);
         }
 

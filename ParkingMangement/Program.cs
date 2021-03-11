@@ -246,21 +246,24 @@ namespace ParkingMangement
 
         private static void deleteOldImages()
         {
-            DataTable dt = CarDAO.GetCarGoOut(0);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            new Thread(() =>
             {
-                string image1 = dt.Rows[i].Field<string>("Images");
-                string image2 = dt.Rows[i].Field<string>("Images2");
-                string image3 = dt.Rows[i].Field<string>("Images3");
-                string image4 = dt.Rows[i].Field<string>("Images4");
+                DataTable dt = CarDAO.GetCarGoOut(6);
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string image1 = dt.Rows[i].Field<string>("Images");
+                    string image2 = dt.Rows[i].Field<string>("Images2");
+                    string image3 = dt.Rows[i].Field<string>("Images3");
+                    string image4 = dt.Rows[i].Field<string>("Images4");
 
-                deleteImage(image1);
-                deleteImage(image2);
-                deleteImage(image3);
-                deleteImage(image4);
-            }
+                    deleteImage(image1);
+                    deleteImage(image2);
+                    deleteImage(image3);
+                    deleteImage(image4);
+                }
 
-            Util.deleteDirectoryIfEmpty(Constant.getSharedImageFolder());
+                Util.deleteDirectoryIfEmpty(Constant.getSharedImageFolder());
+            }).Start();
         }
 
         private static void deleteImage(string image)
