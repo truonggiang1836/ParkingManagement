@@ -10,6 +10,7 @@ namespace ParkingMangement.Utils
     class Constant
     {
         public const bool IS_SYNC_DATA_APP = false;
+        public const bool IS_NEW_CAMERA = false;
         public const bool IS_NAPSHOT_FULL_IMAGE = false;
         public const int AUTO_CLOSE_MESSAGE_BOX_TIME = 2000;
         public const string BREAK_LINE = "\r\n";

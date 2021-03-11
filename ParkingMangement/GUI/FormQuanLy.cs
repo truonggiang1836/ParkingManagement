@@ -4343,11 +4343,14 @@ namespace ParkingMangement.GUI
                     xs.Serialize(txtWriter, config);
                     txtWriter.Close();
 
-                    Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
-                    configuration.SaveUrlCamera("cam1", config.cameraUrl1);
-                    configuration.SaveUrlCamera("cam2", config.cameraUrl2);
-                    configuration.SaveUrlCamera("cam3", config.cameraUrl3);
-                    configuration.SaveUrlCamera("cam4", config.cameraUrl4);
+                    if (Constant.IS_NEW_CAMERA)
+                    {
+                        Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                        configuration.SaveUrlCamera("cam1", config.cameraUrl1);
+                        configuration.SaveUrlCamera("cam2", config.cameraUrl2);
+                        configuration.SaveUrlCamera("cam3", config.cameraUrl3);
+                        configuration.SaveUrlCamera("cam4", config.cameraUrl4);
+                    }
 
                     this.ActiveControl = null;
                     MessageBox.Show(Constant.sMessageUpdateSuccess);
@@ -4374,14 +4377,24 @@ namespace ParkingMangement.GUI
         private void hienCauHinhKetNoiTuConfig()
         {
             try
-            {
-                Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));             
-                tb_camera_url_1.Text = configuration.GetUrlCamera("cam1");
-                tb_camera_url_2.Text = configuration.GetUrlCamera("cam2");
-                tb_camera_url_3.Text = configuration.GetUrlCamera("cam3");
-                tb_camera_url_4.Text = configuration.GetUrlCamera("cam4");
-
+            {             
                 Config config = mConfig;
+
+                if (!Constant.IS_NEW_CAMERA)
+                {
+                    tb_camera_url_1.Text = config.cameraUrl1;
+                    tb_camera_url_2.Text = config.cameraUrl2;
+                    tb_camera_url_3.Text = config.cameraUrl3;
+                    tb_camera_url_4.Text = config.cameraUrl4;
+                } else
+                {
+                    Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                    tb_camera_url_1.Text = configuration.GetUrlCamera("cam1");
+                    tb_camera_url_2.Text = configuration.GetUrlCamera("cam2");
+                    tb_camera_url_3.Text = configuration.GetUrlCamera("cam3");
+                    tb_camera_url_4.Text = configuration.GetUrlCamera("cam4");
+                }
+
                 tb_rfid_1.Text = config.rfidIn;
                 tb_rfid_2.Text = config.rfidOut;
                 tb_com_receive_in.Text = config.comReceiveIn;

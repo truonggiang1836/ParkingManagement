@@ -97,7 +97,7 @@ namespace ParkingMangement.GUI
 
         private int _lastFormSize;
 
-        private Configuration config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+        private Configuration config;
         private RunningPool runningPool = new RunningPool();
 
         Camera camera1;
@@ -281,13 +281,7 @@ namespace ParkingMangement.GUI
             //resetUhfByTimer();
             readConfigFile();
 
-            loadInfo();
-            //configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2, 
-            //    mConfig.ZoomCamera3, mConfig.ZoomCamera4);
-            //loadCamera1VLC();
-            //loadCamera2VLC();
-            //loadCamera3VLC();
-            //loadCamera4VLC();
+            loadInfo();          
 
             getDataFromUhfReader();
 
@@ -315,17 +309,42 @@ namespace ParkingMangement.GUI
             //    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
             //}).Start();
 
+            axVLCPlugin1.Visible = false;
+            axVLCPlugin2.Visible = false;
+            axVLCPlugin3.Visible = false;
+            axVLCPlugin4.Visible = false;
+            cameraWindow1.Visible = false;
+            cameraWindow2.Visible = false;
+            cameraWindow3.Visible = false;
+            cameraWindow4.Visible = false;
 
+            if (!Constant.IS_NEW_CAMERA)
+            {
+                axVLCPlugin1.Visible = true;
+                axVLCPlugin2.Visible = true;
+                axVLCPlugin3.Visible = true;
+                axVLCPlugin4.Visible = true;
 
-            config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
-            // load cameras tree
-            config.LoadCameras();
+                configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
+                    mConfig.ZoomCamera3, mConfig.ZoomCamera4);
+                loadCamera1VLC();
+                loadCamera2VLC();
+                loadCamera3VLC();
+                loadCamera4VLC();
+            } else
+            {
+                cameraWindow1.Visible = true;
+                cameraWindow2.Visible = true;
+                cameraWindow3.Visible = true;
+                cameraWindow4.Visible = true;
 
-            //new Thread(() =>
-            //{
-            //    openCameraWindow();
-            //}).Start();
-            openCameraWindow();
+                config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
+                // load cameras tree
+                config.LoadCameras();
+
+                openCameraWindow();
+            }           
         }
 
         public void openCameraWindow()
@@ -2750,10 +2769,22 @@ namespace ParkingMangement.GUI
             //    Application.Exit();
             //}
 
-            camera1.Lock();
-            camera2.Lock();
-            camera3.Lock();
-            camera4.Lock();
+            if (camera1 != null)
+            {
+                camera1.Lock();
+            }
+            if (camera2 != null)
+            {
+                camera2.Lock();
+            }
+            if (camera3 != null)
+            {
+                camera4.Lock();
+            }
+            if (camera4 != null)
+            {
+                camera4.Lock();
+            }
             //Application.Exit();
             System.Environment.Exit(1);
         }
