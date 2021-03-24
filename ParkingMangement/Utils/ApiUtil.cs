@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -33,6 +34,8 @@ namespace ParkingMangement.Utils
         public static string PARAM_PROJECT_ID = "projectId";
         public static string PARAM_KEY = "key";
         public static string PARAM_KEY_VALUE = "0919669444";
+        public static string PARAM_SIGNATURE = "signature";
+        public static string PARAM_SIGNATURE_VALUE = "cd6a9bd2a175104eed40f0d33a8b4020";      
         public static string PARAM_CARD_NUMBER = "cardnumber";
         public static string PARAM_STATUS = "status";     
 
@@ -41,6 +44,7 @@ namespace ParkingMangement.Utils
         //public static string BASE_URL = "http://api.spmgroup.vn:8080/parking-apis/";
         //public static string BASE_URL = "http://13.59.183.208:8080/parking-apis/";
         public static string BASE_URL = "https://spmpayment.vn/api/";
+        public static string BASE_PI_HOME_URL = @"http://tinh.pihome.asia/api/v1/";
 
         public static string API_LOGIN = BASE_URL + "admins/login";
         public static string API_ADD_UPDATE_CARD = BASE_URL + "cards/addupdate";
@@ -68,6 +72,9 @@ namespace ParkingMangement.Utils
         public static string API_MONTHLY_CARDS_SYNCS_SPM = BASE_URL + "get_v2.php";
         public static string API_MONTHLY_CARDS_SET_SYNC_DONE_SPM = BASE_URL + "set_v2.php";
 
+        public static string API_MONTHLY_CARDS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles";
+        public static string API_PARTS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicle-types";
+
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public static long CurrentTimeMillis()
@@ -79,6 +86,9 @@ namespace ParkingMangement.Utils
         {
             try
             {
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
                 WebClient webClient = new WebClient();
                 webClient.Encoding = Encoding.UTF8;
                 //webClient.Headers["Content-Type"] = "raw";
@@ -105,6 +115,41 @@ namespace ParkingMangement.Utils
             catch (Exception e)
             {
                 return null;
+            }
+        }
+
+        public WebClient getPiHomeWebClient()
+        {
+            try
+            {
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                WebClient webClient = new WebClient();
+                webClient.UseDefaultCredentials = true;
+                webClient.Headers.Set("Content-Type", "application/json");
+                //webClient.Encoding = Encoding.UTF8;
+                //webClient.Headers["Content-Type"] = "raw";
+                //webClient.Headers.Set("Content-Type", "application/json");
+                webClient.QueryString.Add(ApiUtil.PARAM_SIGNATURE, Util.getConfigFile().signature);
+                return webClient;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public static string Get(string uri)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
+
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (Stream stream = response.GetResponseStream())
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                return reader.ReadToEnd();
             }
         }
 

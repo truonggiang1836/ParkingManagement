@@ -104,6 +104,14 @@ namespace ParkingMangement.DAO
             return sql;
         }
 
+        public static string getUpdateSyncPiHomeSql(TicketMonthDTO ticketMonthDTO)
+        {
+            string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', CustomerName =N'"
+                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart
+                + "', IsSync ='" + ticketMonthDTO.IsSync + "', IsDeleted ='" + ticketMonthDTO.IsDeleted + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "', Phone =N'" + ticketMonthDTO.Phone + "' where Digit ='" + ticketMonthDTO.Digit + "'";
+            return sql;
+        }
+
         public static bool Update(TicketMonthDTO ticketMonthDTO)
         {
             string sql = getUpdateSql(ticketMonthDTO);
@@ -127,7 +135,13 @@ namespace ParkingMangement.DAO
         {
             string sql = getUpdateSyncSPMSql(ticketMonthDTO);
             (new Database()).ExcuNonQueryNoErrorMessage(sql);
-        }        
+        }
+
+        public static void UpdateSyncPiHomeNoErrorMessage(TicketMonthDTO ticketMonthDTO)
+        {
+            string sql = getUpdateSyncPiHomeSql(ticketMonthDTO);
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
 
         public static bool Delete(string id)
         {
@@ -548,29 +562,29 @@ namespace ParkingMangement.DAO
 
         public static void syncFromJson(string json)
         {
-            JArray jArray = JArray.Parse(json);
-            foreach (JObject jObject in jArray)
-            {
-                TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
-                ticketMonthDTO.Address = jObject.GetValue("address").ToString();
-                ticketMonthDTO.Account = jObject.GetValue("admin_id").ToString();
-                ticketMonthDTO.Digit = jObject.GetValue("car_number").ToString();
-                ticketMonthDTO.Company = jObject.GetValue("company").ToString();
-                ticketMonthDTO.CustomerName = jObject.GetValue("customer_name").ToString();
-                ticketMonthDTO.Email = jObject.GetValue("email").ToString();
-                ticketMonthDTO.RegistrationDate = Util.MillisecondToDateTime((long)jObject.SelectToken("start_date"));
-                ticketMonthDTO.ExpirationDate = Util.MillisecondToDateTime((long)jObject.SelectToken("end_date"));
-                ticketMonthDTO.ProcessDate = Util.MillisecondToDateTime((long)jObject.SelectToken("updated"));
-                ticketMonthDTO.DayUnlimit = ticketMonthDTO.ProcessDate;
-                ticketMonthDTO.Id = jObject.GetValue("card_code").ToString();
-                ticketMonthDTO.Cmnd = jObject.GetValue("id_number").ToString();
-                ticketMonthDTO.ChargesAmount = jObject.GetValue("parking_fee").ToString();
-                ticketMonthDTO.IdPart = jObject.GetValue("vehicle_id").ToString();
-                ticketMonthDTO.IsDeleted = (bool)jObject.SelectToken("deleted") ? "1" : "0";
-                ticketMonthDTO.IsSync = "1";
+            //JArray jArray = JArray.Parse(json);
+            //foreach (JObject jObject in jArray)
+            //{
+            //    TicketMonthDTO ticketMonthDTO = new TicketMonthDTO();
+            //    ticketMonthDTO.Address = jObject.GetValue("address").ToString();
+            //    ticketMonthDTO.Account = jObject.GetValue("admin_id").ToString();
+            //    ticketMonthDTO.Digit = jObject.GetValue("car_number").ToString();
+            //    ticketMonthDTO.Company = jObject.GetValue("company").ToString();
+            //    ticketMonthDTO.CustomerName = jObject.GetValue("customer_name").ToString();
+            //    ticketMonthDTO.Email = jObject.GetValue("email").ToString();
+            //    ticketMonthDTO.RegistrationDate = Util.MillisecondToDateTime((long)jObject.SelectToken("start_date"));
+            //    ticketMonthDTO.ExpirationDate = Util.MillisecondToDateTime((long)jObject.SelectToken("end_date"));
+            //    ticketMonthDTO.ProcessDate = Util.MillisecondToDateTime((long)jObject.SelectToken("updated"));
+            //    ticketMonthDTO.DayUnlimit = ticketMonthDTO.ProcessDate;
+            //    ticketMonthDTO.Id = jObject.GetValue("card_code").ToString();
+            //    ticketMonthDTO.Cmnd = jObject.GetValue("id_number").ToString();
+            //    ticketMonthDTO.ChargesAmount = jObject.GetValue("parking_fee").ToString();
+            //    ticketMonthDTO.IdPart = jObject.GetValue("vehicle_id").ToString();
+            //    ticketMonthDTO.IsDeleted = (bool)jObject.SelectToken("deleted") ? "1" : "0";
+            //    ticketMonthDTO.IsSync = "1";
 
-                InsertOrUpdateNoErrorMessage(ticketMonthDTO);
-            }
+            //    InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
+            //}
         }
 
         public static void syncFromSPMJson(string json)
@@ -633,7 +647,7 @@ namespace ParkingMangement.DAO
                 }
                 else if (!bienSo.Equals(""))
                 {
-                    InsertOrUpdateNoErrorMessage(ticketMonthDTO);
+                    InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
                 }
 
                 CardDTO cardDTO = new CardDTO();
@@ -663,13 +677,118 @@ namespace ParkingMangement.DAO
             Console.WriteLine("Sync API done!");
         }
 
-        public static void InsertOrUpdateNoErrorMessage(TicketMonthDTO ticketMonthDTO)
+        public static void syncFromPiHomeJson(string json)
+        {
+            JObject jParentObject = JObject.Parse(json);
+            JObject jDataObject = (JObject)jParentObject.GetValue("data");
+            JArray jArray = (JArray)jDataObject.GetValue("data");
+            int index = 0;
+            foreach (JObject jObject in jArray)
+            {
+                string id = jObject.GetValue("card_code").ToString();
+                string soThe = jObject.GetValue("card_number").ToString();
+                string bienSo = jObject.GetValue("license_plate").ToString();
+                //string isUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa") ? "0" : "1";
+                string isUsing = "1";
+
+                string sign = jObject.GetValue("type").ToString();
+                DataTable data = PartDAO.GetPartIDAndAmountBySign(sign);
+                string partId = "";
+                if (data != null && data.Rows.Count > 0)
+                {
+                    partId = data.Rows[0].Field<string>("ID");
+                }
+
+                TicketMonthDTO ticketMonthDTO = GetDTODataByID(id);
+                if (ticketMonthDTO == null)
+                {
+                    ticketMonthDTO = new TicketMonthDTO();
+                }
+                ticketMonthDTO.Account = Program.CurrentUserID;
+                ticketMonthDTO.Digit = bienSo;
+                ticketMonthDTO.Company = jObject.GetValue("apartment").ToString();
+                ticketMonthDTO.CustomerName = jObject.GetValue("customer_name").ToString();
+                try
+                {
+                    ticketMonthDTO.RegistrationDate = DateTime.Parse(jObject.GetValue("from_date").ToString());
+                    ticketMonthDTO.ExpirationDate = DateTime.Parse(jObject.GetValue("to_date").ToString());
+                }
+                catch
+                {
+                    Exception e;
+                }
+                ticketMonthDTO.ProcessDate = DateTime.Now;
+                ticketMonthDTO.DayUnlimit = DateTime.Now;
+                ticketMonthDTO.Id = id;
+
+                if (!partId.Equals(""))
+                {
+                    partId = data.Rows[0].Field<string>("ID");
+                    ticketMonthDTO.IdPart = partId;
+                }
+                ticketMonthDTO.ChargesAmount = jObject.GetValue("fee").ToString();
+                ticketMonthDTO.Phone = jObject.GetValue("phone").ToString();
+                ticketMonthDTO.IsDeleted = "0";
+                ticketMonthDTO.IsSync = "1";
+
+                if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
+                    && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals("")
+                    && ticketMonthDTO.ChargesAmount.Equals("0") && isUsing.Equals("0"))
+                {
+                    Delete(ticketMonthDTO.Id);
+                }
+                else if (!bienSo.Equals(""))
+                {
+                    InsertOrUpdatePiHomeNoErrorMessage(ticketMonthDTO);
+                }
+
+                CardDTO cardDTO = new CardDTO();
+                cardDTO.SystemId = id;
+                cardDTO.Id = id;
+                cardDTO.IsUsing = isUsing;
+                cardDTO.IsDeleted = "0";
+                cardDTO.Identify = soThe;
+                cardDTO.Type = partId;
+                cardDTO.DayUnlimit = DateTime.Now;
+                cardDTO.IsSync = "1";
+
+                CardDAO.InsertOrUpdate(cardDTO);
+
+                //Util.setSyncDoneMonthlyCardListToPiHomeServer(soThe);
+                //break;
+
+                Console.WriteLine("Sync API doing: " + index);
+
+                index++;
+
+                if (index % 100 == 0)
+                {
+                    Thread.Sleep(3000);
+                }
+            }
+            Console.WriteLine("Sync API done!");
+        }
+
+        public static void InsertOrUpdateSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
             if (!InsertNoErrorMessage(ticketMonthDTO))
             {
                 UpdateSyncSPMNoErrorMessage(ticketMonthDTO);
                 Console.WriteLine("Update Sync API");
             } else
+            {
+                Console.WriteLine("Insert Sync API");
+            }
+        }
+
+        public static void InsertOrUpdatePiHomeNoErrorMessage(TicketMonthDTO ticketMonthDTO)
+        {
+            if (!InsertNoErrorMessage(ticketMonthDTO))
+            {
+                UpdateSyncSPMNoErrorMessage(ticketMonthDTO);
+                Console.WriteLine("Update Sync API");
+            }
+            else
             {
                 Console.WriteLine("Insert Sync API");
             }

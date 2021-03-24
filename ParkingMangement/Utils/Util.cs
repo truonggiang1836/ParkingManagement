@@ -1260,6 +1260,74 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void syncMonthlyCardListFromPiHomeServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getPiHomeWebClient();
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SYNCS_PI_HOME);
+                Console.WriteLine(responseString);
+                TicketMonthDAO.syncFromPiHomeJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void syncPartListFromPiHomeServer()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getPiHomeWebClient();
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_PARTS_SYNCS_PI_HOME);
+                Console.WriteLine(responseString);
+                PartDAO.syncFromPiHomeJson(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                    }
+                }
+            }
+        }
+
+        public static void WC_DownloadComplete(object sender, DownloadStringCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                MessageBox.Show(e.Error.ToString());
+            }
+            else
+            {
+                string html = e.Result;
+            }
+        }
+
         public static void setSyncDoneMonthlyCardListToSPMServer(string soThe)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
@@ -1285,6 +1353,38 @@ namespace ParkingMangement.Utils
                     using (var reader = new StreamReader(responseStream))
                     {
                         responseText = reader.ReadToEnd();
+                        MessageBox.Show("api set done fail: " + responseText);
+                    }
+                }
+            }
+        }
+
+        public static void setSyncDoneMonthlyCardListToPiHomeServer(string soThe)
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getWebClient();
+
+            webClient.QueryString.Add(ApiUtil.PARAM_CARD_NUMBER, soThe);
+            webClient.QueryString.Add(ApiUtil.PARAM_STATUS, "null");
+            try
+            {
+                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SET_SYNC_DONE_SPM);
+                Console.WriteLine(responseString);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                        MessageBox.Show("api set done fail: " + responseText);
                     }
                 }
             }

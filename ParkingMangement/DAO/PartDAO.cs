@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using ParkingMangement.DTO;
+using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,6 +27,12 @@ namespace ParkingMangement.DAO
         public static void UpdateIsSync(string listId)
         {
             string sql = "update Part set IsSync = 1 where ID in " + listId;
+            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
+        public static void UpdateNameAndAmout(string name, string amount, string sign)
+        {
+            string sql = "update Part set PartName = N'" + name + "', Amount = '" + amount + "' where sign = '" + sign + "'";
             (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
@@ -161,6 +168,27 @@ namespace ParkingMangement.DAO
 
                 InsertOrUpdate(partDTO);
             }
+        }
+
+        public static void syncFromPiHomeJson(string json)
+        {
+            JObject jParentObject = JObject.Parse(json);
+            JObject jDataObject = (JObject)jParentObject.GetValue("data");
+            JArray jArray = (JArray)jDataObject.GetValue("data");
+            int index = 0;
+            foreach (JObject jObject in jArray)
+            {
+                string code = jObject.GetValue("code").ToString();
+                string ten = jObject.GetValue("ten").ToString();
+                string price = jObject.GetValue("price").ToString();
+
+                UpdateNameAndAmout(ten, price, code);
+
+                //Util.setSyncDoneMonthlyCardListToPiHomeServer(soThe);
+
+                Console.WriteLine("Part Sync API doing: " + index);
+            }
+            Console.WriteLine("Part Sync API done!");
         }
 
         public static void InsertOrUpdate(PartDTO partDTO)

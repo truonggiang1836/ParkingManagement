@@ -124,6 +124,8 @@ namespace ParkingMangement.Model
       
         [XmlElement(ElementName = "project_id")]
         public string projectId { get; set; } = "";
+        [XmlElement(ElementName = "signature")]
+        public string signature { get; set; } = "";
         [XmlElement(ElementName = "python_folder")]
         public string pythonFolder { get; set; } = "";
         [XmlElement(ElementName = "python_run_file")]
