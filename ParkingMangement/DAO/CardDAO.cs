@@ -271,7 +271,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetNotDeletedCardByID(string id)
         {
-            string sql = "select * from SmartCard where ID = '" + id + "' and IsDeleted = 0";
+            string sql = "select top 1 * from SmartCard where ID = '" + id + "' and IsDeleted = 0";
             return (new Database()).ExcuQuery(sql);
         }
 

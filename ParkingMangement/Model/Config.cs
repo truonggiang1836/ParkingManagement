@@ -54,16 +54,16 @@ namespace ParkingMangement.Model
         public int inOutType { get; set; } = 1;
 
         [XmlElement(ElementName = "zoom_camera_1")]
-        public int ZoomCamera1 { get; set; } = 30;
+        public float ZoomCamera1 { get; set; } = 30;
 
         [XmlElement(ElementName = "zoom_camera_2")]
-        public int ZoomCamera2 { get; set; } = 30;
+        public float ZoomCamera2 { get; set; } = 30;
 
         [XmlElement(ElementName = "zoom_camera_3")]
-        public int ZoomCamera3 { get; set; } = 30;
+        public float ZoomCamera3 { get; set; } = 30;
 
         [XmlElement(ElementName = "zoom_camera_4")]
-        public int ZoomCamera4 { get; set; } = 30;
+        public float ZoomCamera4 { get; set; } = 30;
 
         [XmlElement(ElementName = "com_receive_in")]
         public string comReceiveIn { get; set; } = "";
@@ -134,5 +134,7 @@ namespace ParkingMangement.Model
         public string pythonServerUrl { get; set; } = "";
         [XmlElement(ElementName = "is_use_cost_deposit")]
         public string isUseCostDeposit { get; set; } = "yes";
+        [XmlElement(ElementName = "is_include_min_minute")]
+        public string isIncludeMinMinute { get; set; } = "yes";
     }
 }

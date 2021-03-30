@@ -36,6 +36,8 @@ using ReaderB;
 using System.Collections;
 using CameraViewer;
 using System.Text.RegularExpressions;
+using SimpleLPR3;
+using Image = System.Drawing.Image;
 
 namespace ParkingMangement.GUI
 {
@@ -84,9 +86,12 @@ namespace ParkingMangement.GUI
 
         private DataTable mListCarSurvive;
         private BindingSource mBindingSource;
-        private UHFReader mUHFReader;
         private int mNoticeExpiredDate;
-        private int parkingTypeID;
+        private int mParkingTypeID;
+        private int mCalculationTicketMonth;
+        private int mExpiredTicketMonthTypeID;
+        private int mBikeSpace;
+        private int mCarSpace;
         private bool isUhfCard = false;
 
         private Size oldSize;
@@ -108,8 +113,24 @@ namespace ParkingMangement.GUI
 
         //=======class============
         clsImagePlate ImagePlate;
-        clsLicensePlate LicensePlate;
-        clsNetwork Network;
+
+        //========== WareLogic Read Digit =========
+        struct LPEntry
+        {
+            public string fileName;
+            public string plate;
+        }
+
+        ISimpleLPR _lpr;
+        IProcessor _proc;
+        string _curFile;
+        Bitmap _curBitmap;
+        List<Candidate> _curCands;
+
+        List<string> files;
+        int enumF;
+
+        List<LPEntry> lps;
 
         public FormNhanVien()
         {
@@ -127,66 +148,43 @@ namespace ParkingMangement.GUI
 
             //this.Resize += new EventHandler(Form_Resize);
             _lastFormSize = GetFormArea(this.Size);
-
+           
             mConfig = Util.getConfigFile();
-            parkingTypeID = ConfigDAO.GetParkingTypeID();
-            mNoticeExpiredDate = ConfigDAO.GetNoticeExpiredDate();
-            CurrentUserID = Program.CurrentUserID;
-        }
-
-        SerialPort readerLeftSerialPort;
-        SerialPort readerRightSerialPort;
-        private void readPegasusReaderCOM()
-        {
-            try
+            new Thread(() =>
             {
-                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);             
-                readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
-                readerLeftSerialPort.Open();
-            } catch (Exception e)
-            {
+                mParkingTypeID = ConfigDAO.GetParkingTypeID();
+                mNoticeExpiredDate = ConfigDAO.GetNoticeExpiredDate();
+                mCalculationTicketMonth = ConfigDAO.GetCalculationTicketMonth();
+                mExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+                mBikeSpace = ConfigDAO.GetBikeSpace();
+                mCarSpace = ConfigDAO.GetCarSpace();
+                CurrentUserID = Program.CurrentUserID;
 
-            }
 
-            try
-            {
-                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
-                readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
-                readerRightSerialPort.Open();
-            }
-            catch (Exception e)
-            {
+                // WareLogic Read Digit
+                try
+                {
+                    EngineSetupParms setupP;
+                    setupP.cudaDeviceId = -1; // Use CPU
+                    setupP.enableImageProcessingWithGPU = false;
+                    setupP.enableClassificationWithGPU = false;
+                    setupP.maxConcurrentImageProcessingOps = 0;  // Use the default value.  
 
-            }
-        }
+                    _lpr = SimpleLPR.Setup(setupP);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(this, ex.Message, "Unable to initialize the SimpleLPR library", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    throw;
+                }
 
-        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;           
-            string data = sp.ReadLine();
-            //Console.WriteLine(data);
-            cardID = data.Trim();
-            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
-            portNameComReaderInput = sp.PortName;
-            readCardEvent();
-        }
-
-        private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;
-            string data = sp.ReadLine();
-            //Console.WriteLine(data);
-            cardID = data.Trim();
-            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
-            portNameComReaderInput = sp.PortName;
-            readCardEvent();
+                files = new List<string>();
+                lps = new List<LPEntry>();
+            }).Start();
         }
 
         private void FormStaff_Load(object sender, EventArgs e)
         {
-            //Network = new clsNetwork();
-            //Network.AutoLoadNetworkChar();
-            //Network.AutoLoadNetworkNum();
             this.BackColor = ColorTranslator.FromHtml("#2e2925");
             this.ActiveControl = tbRFIDCardID;
             pictureBoxDigitIn.BackColor = ColorTranslator.FromHtml("#fcfdfc");
@@ -270,45 +268,6 @@ namespace ParkingMangement.GUI
 
             labelNhanVien.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
 
-            mUHFReader = new UHFReader();
-            if (mConfig.isUsingUhf.Equals("yes"))
-            {
-                // OLD UHF READER
-                initUhfTimer();
-            }
-
-            updateThongKeXeTrongBaiByTimer();
-            //resetUhfByTimer();
-            readConfigFile();
-
-            loadInfo();          
-
-            getDataFromUhfReader();
-
-            oldSize = base.Size;
-
-            CheckForIllegalCrossThreadCalls = false;
-            //loadEmguCvCamera1();
-            //loadEmguCvCamera2();
-            //loadEmguCvCamera3();
-            //loadEmguCvCamera4();
-            //imageBox1.Visible = false;
-            //imageBox2.Visible = false;
-            //imageBox3.Visible = false;
-            //imageBox4.Visible = false;
-
-            if (!mConfig.readDigitFolder.Equals(""))
-            {
-                runPythonServer();
-            }
-
-            //new Thread(() =>
-            //{
-            //    Thread.CurrentThread.IsBackground = true;
-            //    Util.sendCardListToServer(CardDAO.GetAllDataForSync());
-            //    Util.sendMonthlyCardListToServer(TicketMonthDAO.GetAllDataForSync());
-            //}).Start();
-
             axVLCPlugin1.Visible = false;
             axVLCPlugin2.Visible = false;
             axVLCPlugin3.Visible = false;
@@ -316,35 +275,112 @@ namespace ParkingMangement.GUI
             cameraWindow1.Visible = false;
             cameraWindow2.Visible = false;
             cameraWindow3.Visible = false;
-            cameraWindow4.Visible = false;
+            cameraWindow4.Visible = false;          
 
-            if (!Constant.IS_NEW_CAMERA)
+            new Thread(() =>
             {
-                axVLCPlugin1.Visible = true;
-                axVLCPlugin2.Visible = true;
-                axVLCPlugin3.Visible = true;
-                axVLCPlugin4.Visible = true;
+                if (!Constant.IS_NEW_CAMERA)
+                {
+                    axVLCPlugin1.Visible = true;
+                    axVLCPlugin2.Visible = true;
+                    axVLCPlugin3.Visible = true;
+                    axVLCPlugin4.Visible = true;
 
-                configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
-                    mConfig.ZoomCamera3, mConfig.ZoomCamera4);
-                loadCamera1VLC();
-                loadCamera2VLC();
-                loadCamera3VLC();
-                loadCamera4VLC();
-            } else
+                    configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
+                        mConfig.ZoomCamera3, mConfig.ZoomCamera4);
+                    loadCamera1VLC();
+                    loadCamera2VLC();
+                    loadCamera3VLC();
+                    loadCamera4VLC();
+                }
+                else
+                {
+                    cameraWindow1.Visible = true;
+                    cameraWindow2.Visible = true;
+                    cameraWindow3.Visible = true;
+                    cameraWindow4.Visible = true;
+
+                    config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                    config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
+                    // load cameras tree
+                    config.LoadCameras();
+
+                    openCameraWindow();
+                }
+            }).Start();
+
+            new Thread(() =>
             {
-                cameraWindow1.Visible = true;
-                cameraWindow2.Visible = true;
-                cameraWindow3.Visible = true;
-                cameraWindow4.Visible = true;
 
-                config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
-                config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
-                // load cameras tree
-                config.LoadCameras();
+                updateThongKeXeTrongBaiByTimer();
+                //resetUhfByTimer();
+                readConfigFile();
 
-                openCameraWindow();
-            }           
+                loadInfo();
+
+                getDataFromUhfReader();
+
+                oldSize = base.Size;
+
+                CheckForIllegalCrossThreadCalls = false;
+
+                if (!mConfig.readDigitFolder.Equals(""))
+                {
+                    runPythonServer();
+                }
+            }).Start();
+
+            readPegasusReaderCOM();
+        }
+
+        SerialPort readerLeftSerialPort;
+        SerialPort readerRightSerialPort;
+
+        private void readPegasusReaderCOM()
+        {
+            try
+            {
+                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);
+                readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
+                readerLeftSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            try
+            {
+                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
+                readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
+                readerRightSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadLine();
+            //Console.WriteLine(data);
+            cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+            portNameComReaderInput = sp.PortName;
+            readCardEvent();
+        }
+
+        private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadLine();
+            //Console.WriteLine(data);
+            cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+            portNameComReaderInput = sp.PortName;
+            readCardEvent();
         }
 
         public void openCameraWindow()
@@ -388,8 +424,6 @@ namespace ParkingMangement.GUI
             {
                 cameraWindow4.Camera = camera4;
             }
-
-            readPegasusReaderCOM();
         }
 
         private void loadInfo()
@@ -405,6 +439,9 @@ namespace ParkingMangement.GUI
             {
                 case Keys.Escape:
                     resetForm();
+                    break;
+                case Keys.Z:
+                    //nextFile();
                     break;
                 case Keys.Space:
                     //if (tbRFIDCardID.Text.Equals("") && !cardID.Equals("") && KiemTraXeChuaRa())
@@ -429,6 +466,7 @@ namespace ParkingMangement.GUI
                         }
                     }
                     tbRFIDCardID.Focus();
+                    //readDigitWareLogic();
                     break;
                 case Keys.Q:
                     rbLeftSide.Checked = true;
@@ -643,11 +681,15 @@ namespace ParkingMangement.GUI
                         Util.playAudio(Constant.notused);
                     }                    
                 }
-                mListCarSurvive = CarDAO.GetListCarSurvive();
-                Invoke(new MethodInvoker(() =>
+                new Thread(() =>
                 {
-                    dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
-                }));
+                    mListCarSurvive = CarDAO.GetListCarSurvive();
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
+                    }));
+                }).Start();
+                
             }
             portNameComReceiveInput = null;
             portNameComReaderInput = null;
@@ -683,36 +725,39 @@ namespace ParkingMangement.GUI
             DataTable dtLastCar = CarDAO.GetLastCarByID(cardID);
             //checkForOpenBarie(dtLastCar, true);
 
-            if (inputIsLeftSide())
+            new Thread(() =>
             {
-                labelDigitInLeft.Text = "";
-                labelDigitOutLeft.Text = "";
-                labelDigitRegisterLeft.Text = "";
-                labelCustomerNameLeft.Text = "-";
-
-                labelPartNameTypeNameLeft.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
-              
-                if (isTicketCard)
+                if (inputIsLeftSide())
                 {
-                    labelCustomerNameLeft.Text = dtTicketCard.CustomerName;
-                    labelDigitRegisterLeft.Text = dtTicketCard.Digit;
-                }              
-            }
-            else
-            {
-                labelDigitInRight.Text = "";
-                labelDigitOutRight.Text = "";
-                labelDigitRegisterRight.Text = "";
-                labelCustomerNameRight.Text = "-";
+                    labelDigitInLeft.Text = "";
+                    labelDigitOutLeft.Text = "";
+                    labelDigitRegisterLeft.Text = "";
+                    labelCustomerNameLeft.Text = "-";
 
-                labelPartNameTypeNameRight.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
+                    labelPartNameTypeNameLeft.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
 
-                if (isTicketCard)
-                {
-                    labelCustomerNameRight.Text = dtTicketCard.CustomerName;
-                    labelDigitRegisterRight.Text = dtTicketCard.Digit;
+                    if (isTicketCard)
+                    {
+                        labelCustomerNameLeft.Text = dtTicketCard.CustomerName;
+                        labelDigitRegisterLeft.Text = dtTicketCard.Digit;
+                    }
                 }
-            }
+                else
+                {
+                    labelDigitInRight.Text = "";
+                    labelDigitOutRight.Text = "";
+                    labelDigitRegisterRight.Text = "";
+                    labelCustomerNameRight.Text = "-";
+
+                    labelPartNameTypeNameRight.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
+
+                    if (isTicketCard)
+                    {
+                        labelCustomerNameRight.Text = dtTicketCard.CustomerName;
+                        labelDigitRegisterRight.Text = dtTicketCard.Digit;
+                    }
+                }
+            }).Start();
 
             bool isLockedCard = false;
             if (!dtCommonCard.IsUsing.Equals("1"))
@@ -727,10 +772,6 @@ namespace ParkingMangement.GUI
             }
 
             string inputDigit = "";
-            //if (!mConfig.readDigitFolder.Equals(""))
-            //{
-            //    inputDigit = docBienSo();
-            //}
 
             bool isKiemTraXeChuaRa = KiemTraXeChuaRa(dtLastCar);
             bool isKiemTraCapNhatXeVao = KiemTraCapNhatXeVao(dtLastCar);
@@ -778,7 +819,11 @@ namespace ParkingMangement.GUI
                     {
                         checkExpiredTicket(dtTicketCard, isTicketCard);
                     }
-                    loadCarInData(dtLastCar);
+                    new Thread(() =>
+                    {
+                        loadCarInData(dtLastCar);
+                    }).Start();
+                    
                     updateCarOut(dtTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit);
                 } else
                 {
@@ -1033,7 +1078,7 @@ namespace ParkingMangement.GUI
             }
 
             // send data to server
-            WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
+            //WaitSyncCarInDAO.Insert(CarDAO.GetLastIdentifyByID(cardID));
             //sendOrderDataToServer();
         }   
 
@@ -1103,7 +1148,7 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
                     {
                         labelCostRight.Text = "VE THANG";
                     }
@@ -1122,7 +1167,7 @@ namespace ParkingMangement.GUI
 
                     if (isTicketMonthCard)
                     {
-                        if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                        if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
                         {
                             labelCostRight.Text = "VE THANG";
                         }
@@ -1139,7 +1184,7 @@ namespace ParkingMangement.GUI
 
                     if (isTicketMonthCard)
                     {
-                        if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                        if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
                         {
                             labelCostLeft.Text = "VE THANG";
                         }
@@ -1157,7 +1202,7 @@ namespace ParkingMangement.GUI
 
                 if (isTicketMonthCard)
                 {
-                    if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
                     {
                         labelCostLeft.Text = "VE THANG";
                     }
@@ -1167,7 +1212,7 @@ namespace ParkingMangement.GUI
 
         private void showCostToScreen(CarDTO carDTO, bool isTicketMonthCard, Label labelCost)
         {
-            if (isTicketMonthCard && ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+            if (isTicketMonthCard && mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
             {
                 labelCost.Text = "VE THANG";
             }
@@ -1232,7 +1277,7 @@ namespace ParkingMangement.GUI
                 if (isTicketMonthCard)
                 {
                     // VE THANG
-                    if (ConfigDAO.GetCalculationTicketMonth() == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
                     {
                         carDTO.Cost = 0;
                     } else
@@ -1247,8 +1292,7 @@ namespace ParkingMangement.GUI
                         
                     }
 
-                    int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
-                    switch (expiredTicketMonthTypeID)
+                    switch (mExpiredTicketMonthTypeID)
                     {
                         case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
                             break;
@@ -1640,8 +1684,8 @@ namespace ParkingMangement.GUI
             String rtspString = cameraUrl1;
             var uri = new Uri(rtspString);
             var convertedURI = uri.AbsoluteUri;
-            //axVLCPlugin1.playlist.add(convertedURI);
-            axVLCPlugin1.playlist.add(rtspString, "1", "--network-caching=100");
+            axVLCPlugin1.playlist.add(convertedURI);
+            //axVLCPlugin1.playlist.add(convertedURI, "1", "--network-caching=100");
             try
             {
                 axVLCPlugin1.playlist.play();
@@ -1723,7 +1767,9 @@ namespace ParkingMangement.GUI
         private void loadCamera2VLC()
         {
             String rtspString = cameraUrl2;
-            axVLCPlugin2.playlist.add(rtspString);
+            var uri = new Uri(rtspString);
+            var convertedURI = uri.AbsoluteUri;
+            axVLCPlugin2.playlist.add(convertedURI);
             try
             {
                 axVLCPlugin2.playlist.play();
@@ -1801,7 +1847,9 @@ namespace ParkingMangement.GUI
         private void loadCamera3VLC()
         {
             String rtspString = cameraUrl3;
-            axVLCPlugin3.playlist.add(rtspString);
+            var uri = new Uri(rtspString);
+            var convertedURI = uri.AbsoluteUri;
+            axVLCPlugin3.playlist.add(convertedURI);
             try
             {
                 axVLCPlugin3.playlist.play();
@@ -1843,7 +1891,9 @@ namespace ParkingMangement.GUI
         private void loadCamera4VLC()
         {
             String rtspString = cameraUrl4;
-            axVLCPlugin4.playlist.add(rtspString);
+            var uri = new Uri(rtspString);
+            var convertedURI = uri.AbsoluteUri;
+            axVLCPlugin4.playlist.add(convertedURI);
             try
             {
                 axVLCPlugin4.playlist.play();
@@ -1895,7 +1945,8 @@ namespace ParkingMangement.GUI
             System.Drawing.Point ps = axVLCPlugin.PointToScreen(System.Drawing.Point.Empty);
             gfxScreenshot.CopyFromScreen(ps.X, ps.Y, 0, 0, imgSize, CopyPixelOperation.SourceCopy);
             //axVLCPlugin.playlist.play();
-            return bmpScreenshot;
+            //return bmpScreenshot;
+            return Util.GetCompressedBitmap(bmpScreenshot, 60);
         }
 
         private void tbRFIDCardID_Leave(object sender, EventArgs e)
@@ -1956,7 +2007,7 @@ namespace ParkingMangement.GUI
         //    rfidOut = config.rfidOut;
         //}
 
-        public void configVLC(int value1, int value2, int value3, int value4)
+        public void configVLC(float value1, float value2, float value3, float value4)
         {
             float zoomValue1 = (float) value1 / 100;
             float zoomValue2 = (float) value2 / 100;
@@ -2060,7 +2111,7 @@ namespace ParkingMangement.GUI
 
         private int tinhTienGiuXe(DataTable dtLastCar)
         {          
-            switch (parkingTypeID)
+            switch (mParkingTypeID)
             {
                 case Constant.LOAI_GIU_XE_MIEN_PHI:
                     return 0;
@@ -2309,6 +2360,11 @@ namespace ParkingMangement.GUI
 
         private int getCostTinhTienTongHop2(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
         {
+            if (mConfig.isIncludeMinMinute.Equals("no"))
+            {
+                timeIn.AddMinutes(computerDTO.MinMinute);
+            }
+
             double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
             double totalHourOfDay = getTotalHourOfDay(timeIn, timeOut, computerDTO);
             double totalHourOfNight = getTotalHourOfNight(timeIn, timeOut, computerDTO);
@@ -2394,7 +2450,7 @@ namespace ParkingMangement.GUI
                 int cost = 0;
                 if (computerDTO.CycleMilestone3 > computerDTO.HourMilestone1)
                 {
-                    // xe may
+                    // chu ky 24h
                     int temp1 = ((int)spentTimeByHour) / computerDTO.CycleMilestone3;
                     timeIn = timeIn.AddHours(temp1 * computerDTO.CycleMilestone3);
                     cost = computerDTO.CostMilestone4;
@@ -2406,7 +2462,7 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    // o to
+                    // chu ky nho danh cho o to
                     spentTimeByHour = spentTimeByHour - computerDTO.HourMilestone1;
                     int temp1 = ((int)spentTimeByHour) / computerDTO.CycleMilestone3;
                     int costMilestoneRemain = computerDTO.CostMilestone1;
@@ -2771,19 +2827,19 @@ namespace ParkingMangement.GUI
 
             if (camera1 != null)
             {
-                camera1.Lock();
+                camera1.CloseVideoSource();
             }
             if (camera2 != null)
             {
-                camera2.Lock();
+                camera2.CloseVideoSource();
             }
             if (camera3 != null)
             {
-                camera4.Lock();
+                camera4.CloseVideoSource();
             }
             if (camera4 != null)
             {
-                camera4.Lock();
+                camera4.CloseVideoSource();
             }
             //Application.Exit();
             System.Environment.Exit(1);
@@ -2960,7 +3016,7 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 10 * 1000;
+            aTimer.Interval = 30 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();           
         }
@@ -2972,13 +3028,16 @@ namespace ParkingMangement.GUI
             // Wait for all finalizers to complete before continuing.
             GC.WaitForPendingFinalizers();
             try
-            {               
-                Invoke(new MethodInvoker(() =>
+            {
+                new Thread(() =>
                 {
                     mListCarSurvive = CarDAO.GetListCarSurvive();
-                    mBindingSource.DataSource = mListCarSurvive;
-                    showLostAvailableToLed();
-                }));
+                    Invoke(new MethodInvoker(() =>
+                    {
+                        mBindingSource.DataSource = mListCarSurvive;
+                        showLostAvailableToLed();
+                    }));
+                }).Start();
             }
             catch (Exception)
             {
@@ -3015,7 +3074,7 @@ namespace ParkingMangement.GUI
         private void showLostAvailableToLed()
         {
             string portName = mConfig.comLostAvailable;
-            int countBikeEmpty = ConfigDAO.GetBikeSpace() - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_BIKE);
+            int countBikeEmpty = mBikeSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_BIKE);
             if (countBikeEmpty < 0)
             {
                 countBikeEmpty = 0;
@@ -3025,7 +3084,7 @@ namespace ParkingMangement.GUI
             writeDataToLostAvailablePort(dataBike, portName);
 
             Thread.Sleep(1000);
-            int countCarEmpty = ConfigDAO.GetCarSpace() - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_CAR);
+            int countCarEmpty = mCarSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_CAR);
             if (countCarEmpty < 0)
             {
                 countCarEmpty = 0;
@@ -3679,47 +3738,162 @@ namespace ParkingMangement.GUI
             Bitmap bmpScreenshot = null;
             if (inputIsLeftSide())
             {
-                bmpScreenshot = getBitMapFromCamera(axVLCPlugin2);
-                //if (CardDAO.GetTypeByID(cardID) == TypeDTO.TYPE_CAR)
-                //{                                      
-                //    try
-                //    {
-                //        Directory.CreateDirectory(mConfig.readDigitFolder + @"\BIEN_SO_OTO\");
-                //        Directory.SetCurrentDirectory(mConfig.readDigitFolder + @"\BIEN_SO_OTO\");
-                //        axVLCPlugin2.video.takeSnapshot();
-                //    }
-                //    catch (Exception e)
-                //    {
-
-                //    }
-                //}       
+                bmpScreenshot = getBitMapFromCamera(axVLCPlugin2);      
             } else
             {
                 bmpScreenshot = getBitMapFromCamera(axVLCPlugin4);
-                //if (CardDAO.GetTypeByID(cardID) == TypeDTO.TYPE_CAR)
-                //{
-                //    try
-                //    {
-                //        Directory.CreateDirectory(mConfig.readDigitFolder + @"\BIEN_SO_OTO\");
-                //        Directory.SetCurrentDirectory(mConfig.readDigitFolder + @"\BIEN_SO_OTO\");
-                //        axVLCPlugin4.video.takeSnapshot();
-                //    }
-                //    catch (Exception e)
-                //    {
-
-                //    }
-                //}
             }
             string fileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
             string filePath = mConfig.readDigitFolder + fileName;
             saveBitmapToFile(bmpScreenshot, mConfig.readDigitFolder, fileName);
             bmpScreenshot.Dispose();
-            string digit = uploadCarNumberImage(filePath, inputIsLeftSide(), isCarIn());
-            if (!digit.Equals("khong bien so"))
+            //string plateNumber = uploadCarNumberImage(filePath, inputIsLeftSide(), isCarIn());
+
+            string plateNumber = readDigitWareLogic();
+            File.Delete(filePath);
+
+            if (inputIsLeftSide())
             {
-                File.Delete(filePath);
+                if (isCarIn())
+                {
+                    labelDigitInLeft.Text = plateNumber;
+                }
+                else
+                {
+                    labelDigitOutLeft.Text = plateNumber;
+                }
+            }
+            else
+            {
+                if (isCarIn())
+                {
+                    labelDigitInRight.Text = plateNumber;
+                }
+                else
+                {
+                    labelDigitOutRight.Text = plateNumber;
+                }
+            }
+            return plateNumber;
+        }
+
+        private string readDigitWareLogic()
+        {
+            string productKeyPath = Application.StartupPath + "\\license\\key_plate_number.xml";
+            string inputFolderPath = mConfig.readDigitFolder;
+            try
+            {
+                if (_proc == null)
+                {
+                    if (productKeyPath.Length > 0 && File.Exists(productKeyPath))
+                        _lpr.set_productKey(productKeyPath);
+                    _proc = _lpr.createProcessor();
+                    _proc.plateRegionDetectionEnabled = true;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                //MessageBox.Show(this, ex.Message, "Unable to create processor object", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+
+            if (_proc != null)
+            {
+                lps.Clear();
+                files.Clear();
+
+                System.IO.DirectoryInfo dInfo = new System.IO.DirectoryInfo(inputFolderPath);
+                foreach (System.IO.FileInfo f in dInfo.GetFiles("*.*", System.IO.SearchOption.AllDirectories))
+                {
+                    if (f.Extension.ToLower() == ".jpg" || f.Extension.ToLower() == ".tif" ||
+                         f.Extension.ToLower() == ".png" || f.Extension.ToLower() == ".bmp")
+                    {
+                        files.Add(f.FullName);
+                    }
+                }
+
+                string selectedCountry = "Vietnam";
+                if (files.Count > 0)
+                {
+                    for (uint i = 0; i < _lpr.numSupportedCountries; ++i)
+                    {
+                        string sCountry = _lpr.get_countryCode(i);
+                        _lpr.set_countryWeight(sCountry, sCountry == selectedCountry ? 1.0f : 0.0f);
+                    }
+
+                    enumF = 0;
+
+                  _lpr.realizeCountryWeights();
+                   Cursor.Current = Cursors.Default;
+
+                    if (enumF < files.Count)
+                    {
+                        _curFile = files[0];
+                        return analyzeCurrentFile();
+                    }
+                }
+            }
+            return "";
+        }
+
+        private string analyzeCurrentFile()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            _curCands = null;
+
+            try
+            {
+                using (FileStream fs = new FileStream(_curFile, FileMode.Open, FileAccess.Read))
+                {
+                    using (Image imTmp = Image.FromStream(fs, true, true))
+                    {
+
+                        _curBitmap = new Bitmap((Bitmap)imTmp);
+                    }
+                }
+
+                _curCands = _proc.analyze(_curBitmap);
+
+                //drawImage();
+            }
+            catch (System.Exception ex)
+            {
+                //MessageBox.Show(this, ex.Message, "Analyze method failed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+
+            Cursor.Current = Cursors.Default;
+
+            CountryMatch bestMatch;
+            bestMatch.confidence = -1.0f;
+            bestMatch.text = "";
+
+            if (_curCands != null && _curCands.Count > 0)
+            {
+                for (int i = 0; i < _curCands.Count; ++i)
+                {
+                    if (_curCands[i].matches.Count > 1)
+                    {
+                        if (_curCands[i].matches[0].confidence > bestMatch.confidence)
+                            bestMatch = _curCands[i].matches[0];
+                    }
+                }
+            }
+
+            string digit = "";
+            if (bestMatch.confidence > 0)
+            {
+                digit = bestMatch.text;
             }
             return digit;
+        }
+
+        private void nextFile()
+        {
+            if (enumF < files.Count)
+            {
+                _curFile = files[enumF++];
+
+                analyzeCurrentFile();
+            }
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)

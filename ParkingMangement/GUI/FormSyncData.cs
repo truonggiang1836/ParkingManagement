@@ -79,8 +79,12 @@ namespace ParkingMangement.GUI
                     //Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
 
                     Util.syncMonthlyCardListFromSPMServer();
-                    Util.syncMonthlyCardListFromPiHomeServer();
-                    Util.syncPartListFromPiHomeServer();
+
+                    if (!Util.getConfigFile().signature.Equals(""))
+                    {
+                        Util.syncMonthlyCardListFromPiHomeServer();
+                        Util.syncPartListFromPiHomeServer();
+                    }                  
                 }).Start();
             }
             catch (Exception)

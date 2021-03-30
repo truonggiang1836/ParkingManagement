@@ -515,7 +515,7 @@ namespace ParkingMangement.DAO
             string groupBySql = " group by Part.TypeID";
             string sql = "select Part.TypeID from Part inner join Car on Car.IDPart = Part.ID where 0 = 0";
             sql += groupBySql;
-            DataTable data = (new Database()).ExcuQuery(sql);
+            DataTable data = (new Database()).ExcuQueryNoErrorMessage(sql);
             if (data != null)
             {
                 data.Columns.Add("TypeName", typeof(Bitmap));
@@ -925,7 +925,7 @@ namespace ParkingMangement.DAO
 
         public static int GetLastIdentifyByID(string id)
         {
-            string sql = "select Identify from Car where ID = '" + id + "'" + " order by Identify desc";
+            string sql = "select top 1 Identify from Car where ID = '" + id + "'" + " order by Identify desc";
             DataTable dt = (new Database()).ExcuQuery(sql);
             if (dt != null && dt.Rows.Count > 0)
             {

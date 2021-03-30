@@ -35,7 +35,7 @@ namespace ParkingMangement
         {
             // Connection String.
             string connString = @"Data Source=" + datasource + ";Initial Catalog="
-                        + database + ";Integrated Security=False;Network Library=dbmssocn;Connect Timeout=30;User Instance=False;User ID=" + username + ";Password=" + password;
+                        + database + ";Integrated Security=False;Connect Timeout=10;User Instance=False;User ID=" + username + ";Password=" + password;
             SqlConnection conn = new SqlConnection(connString);
 
             return conn;

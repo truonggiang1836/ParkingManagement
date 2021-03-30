@@ -29,18 +29,26 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelXeRaBienSo = new System.Windows.Forms.Label();
             this.labelXeVaoBienSo = new System.Windows.Forms.Label();
             this.labelXeRaNguoi = new System.Windows.Forms.Label();
             this.labelXeVaoNguoi = new System.Windows.Forms.Label();
+            this.cameraWindow2 = new CameraViewer.CameraWindow();
+            this.cameraWindow4 = new CameraViewer.CameraWindow();
+            this.cameraWindow3 = new CameraViewer.CameraWindow();
+            this.cameraWindow1 = new CameraViewer.CameraWindow();
+            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
             this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
@@ -146,15 +154,11 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.cameraWindow2 = new CameraViewer.CameraWindow();
-            this.cameraWindow4 = new CameraViewer.CameraWindow();
-            this.cameraWindow3 = new CameraViewer.CameraWindow();
-            this.cameraWindow1 = new CameraViewer.CameraWindow();
-            this.axVLCPlugin4 = new AxAXVLC.AxVLCPlugin2();
-            this.axVLCPlugin3 = new AxAXVLC.AxVLCPlugin2();
-            this.axVLCPlugin2 = new AxAXVLC.AxVLCPlugin2();
-            this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
@@ -195,10 +199,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -220,9 +220,9 @@
             this.panel1.Controls.Add(this.pictureBoxImage3);
             this.panel1.Controls.Add(this.pictureBoxImage2);
             this.panel1.Controls.Add(this.pictureBox23);
-            this.panel1.Location = new System.Drawing.Point(129, 41);
+            this.panel1.Location = new System.Drawing.Point(129, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(891, 561);
+            this.panel1.Size = new System.Drawing.Size(891, 562);
             this.panel1.TabIndex = 0;
             // 
             // labelXeRaBienSo
@@ -231,7 +231,7 @@
             this.labelXeRaBienSo.BackColor = System.Drawing.Color.Transparent;
             this.labelXeRaBienSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXeRaBienSo.ForeColor = System.Drawing.Color.White;
-            this.labelXeRaBienSo.Location = new System.Drawing.Point(740, 4);
+            this.labelXeRaBienSo.Location = new System.Drawing.Point(740, 3);
             this.labelXeRaBienSo.Name = "labelXeRaBienSo";
             this.labelXeRaBienSo.Size = new System.Drawing.Size(79, 15);
             this.labelXeRaBienSo.TabIndex = 129;
@@ -243,7 +243,7 @@
             this.labelXeVaoBienSo.BackColor = System.Drawing.Color.Transparent;
             this.labelXeVaoBienSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXeVaoBienSo.ForeColor = System.Drawing.Color.White;
-            this.labelXeVaoBienSo.Location = new System.Drawing.Point(291, 4);
+            this.labelXeVaoBienSo.Location = new System.Drawing.Point(291, 3);
             this.labelXeVaoBienSo.Name = "labelXeVaoBienSo";
             this.labelXeVaoBienSo.Size = new System.Drawing.Size(87, 15);
             this.labelXeVaoBienSo.TabIndex = 128;
@@ -255,7 +255,7 @@
             this.labelXeRaNguoi.BackColor = System.Drawing.Color.Transparent;
             this.labelXeRaNguoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXeRaNguoi.ForeColor = System.Drawing.Color.White;
-            this.labelXeRaNguoi.Location = new System.Drawing.Point(490, 4);
+            this.labelXeRaNguoi.Location = new System.Drawing.Point(490, 3);
             this.labelXeRaNguoi.Name = "labelXeRaNguoi";
             this.labelXeRaNguoi.Size = new System.Drawing.Size(133, 15);
             this.labelXeRaNguoi.TabIndex = 127;
@@ -267,11 +267,88 @@
             this.labelXeVaoNguoi.BackColor = System.Drawing.Color.Transparent;
             this.labelXeVaoNguoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelXeVaoNguoi.ForeColor = System.Drawing.Color.White;
-            this.labelXeVaoNguoi.Location = new System.Drawing.Point(43, 4);
+            this.labelXeVaoNguoi.Location = new System.Drawing.Point(43, 3);
             this.labelXeVaoNguoi.Name = "labelXeVaoNguoi";
             this.labelXeVaoNguoi.Size = new System.Drawing.Size(141, 15);
             this.labelXeVaoNguoi.TabIndex = 126;
             this.labelXeVaoNguoi.Text = "ẢNH NGƯỜI GỬI VÀO";
+            // 
+            // cameraWindow2
+            // 
+            this.cameraWindow2.Camera = null;
+            this.cameraWindow2.Location = new System.Drawing.Point(222, 21);
+            this.cameraWindow2.Name = "cameraWindow2";
+            this.cameraWindow2.Size = new System.Drawing.Size(220, 270);
+            this.cameraWindow2.TabIndex = 123;
+            this.cameraWindow2.Text = "cameraWindow2";
+            // 
+            // cameraWindow4
+            // 
+            this.cameraWindow4.Camera = null;
+            this.cameraWindow4.Location = new System.Drawing.Point(670, 21);
+            this.cameraWindow4.Name = "cameraWindow4";
+            this.cameraWindow4.Size = new System.Drawing.Size(220, 270);
+            this.cameraWindow4.TabIndex = 125;
+            this.cameraWindow4.Text = "cameraWindow4";
+            // 
+            // cameraWindow3
+            // 
+            this.cameraWindow3.Camera = null;
+            this.cameraWindow3.Location = new System.Drawing.Point(448, 21);
+            this.cameraWindow3.Name = "cameraWindow3";
+            this.cameraWindow3.Size = new System.Drawing.Size(220, 270);
+            this.cameraWindow3.TabIndex = 124;
+            this.cameraWindow3.Text = "cameraWindow3";
+            // 
+            // cameraWindow1
+            // 
+            this.cameraWindow1.Camera = null;
+            this.cameraWindow1.Location = new System.Drawing.Point(0, 21);
+            this.cameraWindow1.Name = "cameraWindow1";
+            this.cameraWindow1.Size = new System.Drawing.Size(220, 270);
+            this.cameraWindow1.TabIndex = 122;
+            this.cameraWindow1.Text = "cameraWindow1";
+            // 
+            // axVLCPlugin4
+            // 
+            this.axVLCPlugin4.Enabled = true;
+            this.axVLCPlugin4.Location = new System.Drawing.Point(670, 21);
+            this.axVLCPlugin4.Name = "axVLCPlugin4";
+            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
+            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPlugin4.TabIndex = 17;
+            this.axVLCPlugin4.Visible = false;
+            // 
+            // axVLCPlugin3
+            // 
+            this.axVLCPlugin3.Enabled = true;
+            this.axVLCPlugin3.Location = new System.Drawing.Point(448, 21);
+            this.axVLCPlugin3.Name = "axVLCPlugin3";
+            this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
+            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPlugin3.TabIndex = 16;
+            this.axVLCPlugin3.Visible = false;
+            // 
+            // axVLCPlugin2
+            // 
+            this.axVLCPlugin2.Enabled = true;
+            this.axVLCPlugin2.Location = new System.Drawing.Point(222, 21);
+            this.axVLCPlugin2.Name = "axVLCPlugin2";
+            this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
+            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPlugin2.TabIndex = 15;
+            this.axVLCPlugin2.Visible = false;
+            // 
+            // axVLCPlugin1
+            // 
+            this.axVLCPlugin1.Enabled = true;
+            this.axVLCPlugin1.Location = new System.Drawing.Point(0, 21);
+            this.axVLCPlugin1.Name = "axVLCPlugin1";
+            this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
+            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPlugin1.TabIndex = 14;
+            this.axVLCPlugin1.Visible = false;
+            this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
             // 
             // pictureBoxImage1
             // 
@@ -281,7 +358,7 @@
             this.pictureBoxImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage1.Image")));
             this.pictureBoxImage1.Location = new System.Drawing.Point(0, 293);
             this.pictureBoxImage1.Name = "pictureBoxImage1";
-            this.pictureBoxImage1.Size = new System.Drawing.Size(220, 265);
+            this.pictureBoxImage1.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage1.TabIndex = 9;
             this.pictureBoxImage1.TabStop = false;
@@ -293,7 +370,7 @@
             this.pictureBoxImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage4.Image")));
             this.pictureBoxImage4.Location = new System.Drawing.Point(670, 293);
             this.pictureBoxImage4.Name = "pictureBoxImage4";
-            this.pictureBoxImage4.Size = new System.Drawing.Size(220, 265);
+            this.pictureBoxImage4.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage4.TabIndex = 7;
             this.pictureBoxImage4.TabStop = false;
@@ -305,7 +382,7 @@
             this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
             this.pictureBoxImage3.Location = new System.Drawing.Point(448, 293);
             this.pictureBoxImage3.Name = "pictureBoxImage3";
-            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 265);
+            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage3.TabIndex = 5;
             this.pictureBoxImage3.TabStop = false;
@@ -317,7 +394,7 @@
             this.pictureBoxImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage2.Image")));
             this.pictureBoxImage2.Location = new System.Drawing.Point(222, 293);
             this.pictureBoxImage2.Name = "pictureBoxImage2";
-            this.pictureBoxImage2.Size = new System.Drawing.Size(220, 265);
+            this.pictureBoxImage2.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage2.TabIndex = 3;
             this.pictureBoxImage2.TabStop = false;
@@ -535,32 +612,32 @@
             // 
             this.dgvThongKeXeTrongBai.AllowUserToAddRows = false;
             this.dgvThongKeXeTrongBai.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvThongKeXeTrongBai.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvThongKeXeTrongBai.BackgroundColor = System.Drawing.Color.White;
             this.dgvThongKeXeTrongBai.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvThongKeXeTrongBai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvThongKeXeTrongBai.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.DoanhThuPartName,
             this.CountCarSurvive,
             this.CountCarEmpty});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvThongKeXeTrongBai.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvThongKeXeTrongBai.Location = new System.Drawing.Point(7, 43);
             this.dgvThongKeXeTrongBai.Name = "dgvThongKeXeTrongBai";
             this.dgvThongKeXeTrongBai.RowHeadersVisible = false;
@@ -579,15 +656,14 @@
             this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.Visible = false;
-            this.Column1.Width = 6;
             // 
             // DoanhThuPartName
             // 
             this.DoanhThuPartName.DataPropertyName = "TypeName";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.NullValue = null;
-            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.NullValue = null;
+            this.DoanhThuPartName.DefaultCellStyle = dataGridViewCellStyle3;
             this.DoanhThuPartName.HeaderText = "Loại xe";
             this.DoanhThuPartName.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.DoanhThuPartName.MinimumWidth = 6;
@@ -599,8 +675,8 @@
             // CountCarSurvive
             // 
             this.CountCarSurvive.DataPropertyName = "CountCarSurvive";
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarSurvive.DefaultCellStyle = dataGridViewCellStyle4;
             this.CountCarSurvive.HeaderText = "SL trong bãi";
             this.CountCarSurvive.MinimumWidth = 6;
             this.CountCarSurvive.Name = "CountCarSurvive";
@@ -610,8 +686,8 @@
             // 
             this.CountCarEmpty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.CountCarEmpty.DataPropertyName = "CountCarEmpty";
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CountCarEmpty.DefaultCellStyle = dataGridViewCellStyle5;
             this.CountCarEmpty.HeaderText = "SL còn trống";
             this.CountCarEmpty.MinimumWidth = 6;
             this.CountCarEmpty.Name = "CountCarEmpty";
@@ -1430,83 +1506,6 @@
             this.pictureBox10.TabIndex = 127;
             this.pictureBox10.TabStop = false;
             // 
-            // cameraWindow2
-            // 
-            this.cameraWindow2.Camera = null;
-            this.cameraWindow2.Location = new System.Drawing.Point(222, 25);
-            this.cameraWindow2.Name = "cameraWindow2";
-            this.cameraWindow2.Size = new System.Drawing.Size(220, 265);
-            this.cameraWindow2.TabIndex = 123;
-            this.cameraWindow2.Text = "cameraWindow2";
-            // 
-            // cameraWindow4
-            // 
-            this.cameraWindow4.Camera = null;
-            this.cameraWindow4.Location = new System.Drawing.Point(670, 25);
-            this.cameraWindow4.Name = "cameraWindow4";
-            this.cameraWindow4.Size = new System.Drawing.Size(220, 265);
-            this.cameraWindow4.TabIndex = 125;
-            this.cameraWindow4.Text = "cameraWindow4";
-            // 
-            // cameraWindow3
-            // 
-            this.cameraWindow3.Camera = null;
-            this.cameraWindow3.Location = new System.Drawing.Point(448, 25);
-            this.cameraWindow3.Name = "cameraWindow3";
-            this.cameraWindow3.Size = new System.Drawing.Size(220, 265);
-            this.cameraWindow3.TabIndex = 124;
-            this.cameraWindow3.Text = "cameraWindow3";
-            // 
-            // cameraWindow1
-            // 
-            this.cameraWindow1.Camera = null;
-            this.cameraWindow1.Location = new System.Drawing.Point(0, 25);
-            this.cameraWindow1.Name = "cameraWindow1";
-            this.cameraWindow1.Size = new System.Drawing.Size(220, 264);
-            this.cameraWindow1.TabIndex = 122;
-            this.cameraWindow1.Text = "cameraWindow1";
-            // 
-            // axVLCPlugin4
-            // 
-            this.axVLCPlugin4.Enabled = true;
-            this.axVLCPlugin4.Location = new System.Drawing.Point(670, 25);
-            this.axVLCPlugin4.Name = "axVLCPlugin4";
-            this.axVLCPlugin4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin4.OcxState")));
-            this.axVLCPlugin4.Size = new System.Drawing.Size(220, 264);
-            this.axVLCPlugin4.TabIndex = 17;
-            this.axVLCPlugin4.Visible = false;
-            // 
-            // axVLCPlugin3
-            // 
-            this.axVLCPlugin3.Enabled = true;
-            this.axVLCPlugin3.Location = new System.Drawing.Point(448, 25);
-            this.axVLCPlugin3.Name = "axVLCPlugin3";
-            this.axVLCPlugin3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin3.OcxState")));
-            this.axVLCPlugin3.Size = new System.Drawing.Size(220, 264);
-            this.axVLCPlugin3.TabIndex = 16;
-            this.axVLCPlugin3.Visible = false;
-            // 
-            // axVLCPlugin2
-            // 
-            this.axVLCPlugin2.Enabled = true;
-            this.axVLCPlugin2.Location = new System.Drawing.Point(222, 25);
-            this.axVLCPlugin2.Name = "axVLCPlugin2";
-            this.axVLCPlugin2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin2.OcxState")));
-            this.axVLCPlugin2.Size = new System.Drawing.Size(220, 264);
-            this.axVLCPlugin2.TabIndex = 15;
-            this.axVLCPlugin2.Visible = false;
-            // 
-            // axVLCPlugin1
-            // 
-            this.axVLCPlugin1.Enabled = true;
-            this.axVLCPlugin1.Location = new System.Drawing.Point(0, 25);
-            this.axVLCPlugin1.Name = "axVLCPlugin1";
-            this.axVLCPlugin1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPlugin1.OcxState")));
-            this.axVLCPlugin1.Size = new System.Drawing.Size(220, 264);
-            this.axVLCPlugin1.TabIndex = 14;
-            this.axVLCPlugin1.Visible = false;
-            this.axVLCPlugin1.Enter += new System.EventHandler(this.axVLCPlugin1_Enter);
-            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1597,6 +1596,10 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
@@ -1641,10 +1644,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

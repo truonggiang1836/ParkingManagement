@@ -134,13 +134,13 @@ namespace CameraViewer
                     //}
 
                     double scaleFactor = Math.Sqrt(Camera.ZoomFactor);
-                    int lastFrameWidth = lastFrame.Height * 220 / 265;
+                    int lastFrameWidth = lastFrame.Height * 220 / 270;
 
                     int xGap = (lastFrame.Width - (int)(lastFrameWidth / scaleFactor)) / 2;
                     int yGap = (lastFrame.Height - (int)(lastFrame.Height / scaleFactor)) / 2;
 
                     int height = lastFrame.Height - yGap * 2;
-                    int width = height * 220 / 265;
+                    int width = height * 220 / 270;
 
                     g.DrawImage(lastFrame, new Rectangle(rc.X + 1, rc.Y + 1, rc.Width - 2, rc.Height - 2),
                                             new Rectangle(xGap, yGap, width, lastFrame.Height - yGap * 2),

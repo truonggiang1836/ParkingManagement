@@ -445,13 +445,13 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetDataByID(string id)
         {
-            string sql = "select * from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
+            string sql = "select top 1 * from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
             return (new Database()).ExcuQuery(sql);
         }
 
         public static TicketMonthDTO GetDTODataByID(string id)
         {
-            string sql = "select * from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
+            string sql = "select top 1 * from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
             DataTable dt = (new Database()).ExcuQuery(sql);
             TicketMonthDTO ticketMonthDTO = null;
             if (dt != null && dt.Rows.Count > 0)
@@ -498,7 +498,9 @@ namespace ParkingMangement.DAO
 
         public static string GetDigitByID(string id)
         {
-            DataTable dt = GetDataByID(id);
+            string sql = "select top 1 Digit from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
+            DataTable dt = (new Database()).ExcuQuery(sql);
+
             if (dt != null && dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("Digit");

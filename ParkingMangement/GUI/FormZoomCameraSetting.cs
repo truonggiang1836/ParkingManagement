@@ -18,7 +18,7 @@ namespace ParkingMangement.GUI
     public partial class FormZoomCameraSetting : Form
     {
         public FormNhanVien formNhanVien;
-        private List<int> listZoomValue = new List<int>();
+        private List<float> listZoomValue = new List<float>();
         public FormZoomCameraSetting()
         {
             InitializeComponent();
@@ -27,14 +27,10 @@ namespace ParkingMangement.GUI
         private void FormZoomCameraSetting_Load(object sender, EventArgs e)
         {
             int maxZoom = 100;
-            if (Constant.IS_NEW_CAMERA)
-            {
-                maxZoom = 25;
-            }
             
             for (int i = 1; i <= maxZoom; i = i + 1)
             {
-                int value = i;
+                float value = (float) i / 10;
                 listZoomValue.Add(value);
                 cbZoomValue1.Items.Add(value);
                 cbZoomValue2.Items.Add(value);
@@ -67,10 +63,10 @@ namespace ParkingMangement.GUI
 
         private void btnYes_Click(object sender, EventArgs e)
         {
-            int value1 = listZoomValue[cbZoomValue1.SelectedIndex];
-            int value2 = listZoomValue[cbZoomValue2.SelectedIndex];
-            int value3 = listZoomValue[cbZoomValue3.SelectedIndex];
-            int value4 = listZoomValue[cbZoomValue4.SelectedIndex];
+            float value1 = listZoomValue[cbZoomValue1.SelectedIndex];
+            float value2 = listZoomValue[cbZoomValue2.SelectedIndex];
+            float value3 = listZoomValue[cbZoomValue3.SelectedIndex];
+            float value4 = listZoomValue[cbZoomValue4.SelectedIndex];
             saveZoomCameraValueToConfig(value1, value2, value3, value4);
 
             if (!Constant.IS_NEW_CAMERA)
@@ -86,7 +82,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private static bool saveZoomCameraValueToConfig(int value1, int value2, int value3, int value4)
+        private static bool saveZoomCameraValueToConfig(float value1, float value2, float value3, float value4)
         {
             try
             {

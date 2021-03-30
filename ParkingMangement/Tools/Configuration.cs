@@ -489,7 +489,7 @@ namespace CameraViewer
 			return "";
 		}
 
-		public int GetZoomCamera(string name)
+		public float GetZoomCamera(string name)
 		{
 			XmlDocument doc = new XmlDocument();
 			doc.Load(camerasFile);
@@ -499,7 +499,7 @@ namespace CameraViewer
 			{
 				if (n.GetAttribute("name") == name)
 				{
-					return int.Parse(n.GetAttribute("zoom"));
+					return float.Parse(n.GetAttribute("zoom"));
 				}
 			}
 			return 1;

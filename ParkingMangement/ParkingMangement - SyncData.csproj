@@ -135,6 +135,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ParkingManagement\ParkingMangement\bin\Debug\RawInput.dll</HintPath>
     </Reference>
+    <Reference Include="SimpleLPR3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=5aac3768fadb0f24, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SimpleLPR3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Design" />
