@@ -31,6 +31,9 @@ namespace ParkingMangement.DTO
         private string isSync = "0";
         private string isDeleted = "0";
 
+        private string cardNumber = "";
+        private string partSign = "";
+
         public string CardIdentify { get => cardIdentify; set => cardIdentify = value; }
         public string Id { get => id; set => id = value; }
         public DateTime? ProcessDate { get => processDate; set => processDate = value; }
@@ -53,5 +56,7 @@ namespace ParkingMangement.DTO
         public string Phone { get => phone; set => phone = value; }
         public string IsSync { get => isSync; set => isSync = value; }
         public string IsDeleted { get => isDeleted; set => isDeleted = value; }
+        public string CardNumber { get => cardNumber; set => cardNumber = value; }
+        public string PartSign { get => partSign; set => partSign = value; }
     }
 }

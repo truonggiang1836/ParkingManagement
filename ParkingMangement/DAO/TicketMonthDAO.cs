@@ -150,6 +150,13 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
+        public static bool DeleteNoErrorMessage(string id)
+        {
+            //string sql = "delete from TicketMonth where ID ='" + id + "'";
+            string sql = "update TicketMonth set IsDeleted = 1, IsSync = 0 where ID ='" + id + "'";
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
         public static bool HardDeleteIfCardBeDeleted(string id)
         {
             string sql = "delete from TicketMonth where ID ='" + id + "' and IsDeleted = 1";
@@ -599,7 +606,8 @@ namespace ParkingMangement.DAO
                 string id = jObject.GetValue("maThe").ToString();
                 string soThe = jObject.GetValue("soThe").ToString();
                 string bienSo = jObject.GetValue("bienSo").ToString();
-                string isUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa") ? "0" : "1";
+                string trangThai = jObject.GetValue("trangThai").ToString();
+                string isUsing = trangThai.Equals("BiKhoa") ? "0" : "1";
 
                 string sign = jObject.GetValue("loaiThe").ToString();
                 DataTable data = PartDAO.GetPartIDAndAmountBySign(sign);
@@ -641,28 +649,38 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.IsDeleted = "0";
                 ticketMonthDTO.IsSync = "1";
 
-                if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
-                    && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals("")
-                    && ticketMonthDTO.ChargesAmount.Equals("0") && isUsing.Equals("0"))
+                if (trangThai.Equals("BiXoa"))
                 {
-                    Delete(ticketMonthDTO.Id);
+                    DeleteNoErrorMessage(id);
+                    CardDAO.DeleteNoErrorMessage(id);
                 }
-                else if (!bienSo.Equals(""))
+                else
                 {
-                    InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
+                    if (id.Length > 0)
+                    {
+                        CardDTO cardDTO = new CardDTO();
+                        cardDTO.SystemId = id;
+                        cardDTO.Id = id;
+                        cardDTO.IsUsing = isUsing;
+                        cardDTO.IsDeleted = "0";
+                        cardDTO.Identify = soThe;
+                        cardDTO.Type = partId;
+                        cardDTO.DayUnlimit = DateTime.Now;
+                        cardDTO.IsSync = "1";
+
+                        CardDAO.InsertOrUpdate(cardDTO);
+
+                        if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
+                        && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals(""))
+                        {
+                            DeleteNoErrorMessage(id);
+                        }
+                        else
+                        {
+                            InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
+                        }
+                    }
                 }
-
-                CardDTO cardDTO = new CardDTO();
-                cardDTO.SystemId = id;
-                cardDTO.Id = id;
-                cardDTO.IsUsing = isUsing;
-                cardDTO.IsDeleted = "0";
-                cardDTO.Identify = soThe;
-                cardDTO.Type = partId;
-                cardDTO.DayUnlimit = DateTime.Now;
-                cardDTO.IsSync = "1";
-
-                CardDAO.InsertOrUpdate(cardDTO);
 
                 Util.setSyncDoneMonthlyCardListToSPMServer(soThe);
                 //break;

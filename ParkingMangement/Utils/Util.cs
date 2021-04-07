@@ -16,6 +16,7 @@ using System.Linq;
 using System.Management;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -202,9 +203,9 @@ namespace ParkingMangement.Utils
             return "0";
         }
 
-        public static double getMillisecondBetweenTwoDate(DateTime oldDate, DateTime newDate)
+        public static double getMillisecondBetweenTwoDate(DateTime? oldDate, DateTime newDate)
         {
-            TimeSpan span = newDate - oldDate;
+            TimeSpan span = newDate - oldDate.Value;
             double ms = span.TotalMilliseconds;
             return ms;
         }
@@ -1330,6 +1331,21 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void updateCardToPiHomeServer(TicketMonthDTO ticketMonthDTO)
+        {
+            WebClient webClient = (new ApiUtil()).getPiHomeWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            param.Add(ApiUtil.PARAM_LICENSE_PLATE, ticketMonthDTO.Digit);
+            param.Add(ApiUtil.PARAM_CARD_CODE, ticketMonthDTO.Id);
+            param.Add(ApiUtil.PARAM_CARD_NUMBER, ticketMonthDTO.CardNumber);
+            param.Add(ApiUtil.PARAM_CUSTOMER_NAME, ticketMonthDTO.CustomerName);
+            param.Add(ApiUtil.PARAM_FEE, ticketMonthDTO.ChargesAmount);
+            param.Add(ApiUtil.PARAM_CUSTOMER_NAME, ticketMonthDTO.CustomerName);
+            param.Add(ApiUtil.PARAM_CUSTOMER_NAME, ticketMonthDTO.CustomerName);
+            byte[] responsebytes = webClient.UploadValues(ApiUtil.API_MONTHLY_CARDS_UPDATE_PI_HOME, "POST", param);
+            string responsebody = Encoding.UTF8.GetString(responsebytes);
+            //MessageBox.Show(responsebody);
+        }
         public static void WC_DownloadComplete(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -1350,7 +1366,7 @@ namespace ParkingMangement.Utils
             }
             WebClient webClient = (new ApiUtil()).getWebClient();
 
-            webClient.QueryString.Add(ApiUtil.PARAM_CARD_NUMBER, soThe);
+            webClient.QueryString.Add(ApiUtil.PARAM_CARD_NUMBER_SPM, soThe);
             webClient.QueryString.Add(ApiUtil.PARAM_STATUS, "null");
             try
             {
@@ -1629,6 +1645,11 @@ namespace ParkingMangement.Utils
                 return recentFile.Name;
             }
             return "";
+        }
+
+        public static string getFolderPath(string folderName)
+        {
+            return Application.StartupPath + "\\" + folderName + "\\";
         }
 
         public static void ShareFolder(string FolderPath, string ShareName, string Description)
@@ -1923,17 +1944,24 @@ namespace ParkingMangement.Utils
             }
 
             int monthCount = Util.MonthDifference(newExpirationDate, expirationDate);
-            int pastRemainDays = Util.getDaysInMonth(expirationDate) - expirationDate.Day;
-
-            payCost += monthlyCost * pastRemainDays / 30;
-            if (Util.getDaysInMonth(newExpirationDate) == newExpirationDate.Day)
+            if (expirationDate.Day == 1 && newExpirationDate.Day == 1)
             {
                 payCost += monthlyCost * monthCount;
             }
             else
             {
-                int futureRemainDays = newExpirationDate.Day;
-                payCost += monthlyCost * (monthCount - 1) + monthlyCost * futureRemainDays / 30;
+                int pastRemainDays = Util.getDaysInMonth(expirationDate) - expirationDate.Day;
+
+                payCost += monthlyCost * pastRemainDays / 30;
+                if (Util.getDaysInMonth(newExpirationDate) == newExpirationDate.Day)
+                {
+                    payCost += monthlyCost * monthCount;
+                }
+                else
+                {
+                    int futureRemainDays = newExpirationDate.Day;
+                    payCost += monthlyCost * (monthCount - 1) + monthlyCost * futureRemainDays / 30;
+                }
             }
             return payCost;
         }
@@ -1942,14 +1970,16 @@ namespace ParkingMangement.Utils
         {
             DateTime now = DateTime.Now;
             DateTime startDate = new DateTime(now.Year, now.Month, 1);
-            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            //DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            DateTime endDate = startDate.AddMonths(1);
             return endDate;
         }
 
         public static DateTime getLastDateOfCurrentMonth(DateTime date)
         {
             DateTime startDate = new DateTime(date.Year, date.Month, 1);
-            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            //DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+            DateTime endDate = startDate.AddMonths(1);
             return endDate;
         }
 

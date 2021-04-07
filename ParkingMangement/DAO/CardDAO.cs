@@ -115,7 +115,7 @@ namespace ParkingMangement.DAO
         public static void lockExpiredCardWithDeposit()
         {
             string sql = "update SmartCard set SmartCard.IsUsing = 0, SmartCard.IsSync = 0 from SmartCard inner join TicketMonth on SmartCard.ID = TicketMonth.ID"
-                + " where DATEDIFF(MONTH, TicketMonth.ExpirationDate, getdate()) >= 2 and SmartCard.IsUsing = 1 and TicketMonth.IsDeleted = 0 and SmartCard.IsDeleted = 0";
+                + " where DATEDIFF(MONTH, TicketMonth.ExpirationDate, getdate()) >= 1 and DATEDIFF(DAYOFYEAR, TicketMonth.ExpirationDate, getdate()) >= 28 and SmartCard.IsUsing = 1 and TicketMonth.IsDeleted = 0 and SmartCard.IsDeleted = 0";
             (new Database()).ExcuNonQuery(sql);
         }
 
@@ -200,6 +200,12 @@ namespace ParkingMangement.DAO
             //string sql = "delete from SmartCard where ID = '" + id + "'";
             string sql = "update SmartCard set IsDeleted = 1, IsSync = 0 where ID = '" + id + "'";
             return (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool DeleteNoErrorMessage(string id)
+        {
+            string sql = "update SmartCard set IsDeleted = 1, IsSync = 0 where ID = '" + id + "'";
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static bool HardDeleteIfCardBeDeleted(string id)

@@ -50,7 +50,7 @@ namespace ParkingMangement
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
 
             doTimerAutoLockCard();
-            //Database.UpdateDB();
+            Database.UpdateDB();
 
             if (Constant.IS_SYNC_DATA_APP)
             {
@@ -224,13 +224,15 @@ namespace ParkingMangement
             aTimer.Start();
 
             checkForAutoLockCard();
-            deleteOldImages();
         }
 
         private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
         {
             checkForAutoLockCard();
-            deleteOldImages();
+            //if (!Constant.IS_SYNC_DATA_APP)
+            //{
+            //    deleteOldImages();
+            //}
         }
 
         private static void checkForAutoLockCard()

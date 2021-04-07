@@ -82,8 +82,9 @@ namespace ParkingMangement.GUI
 
                     if (!Util.getConfigFile().signature.Equals(""))
                     {
-                        Util.syncMonthlyCardListFromPiHomeServer();
-                        Util.syncPartListFromPiHomeServer();
+                        //Util.syncMonthlyCardListFromPiHomeServer();
+                        //Util.syncPartListFromPiHomeServer();
+                        //Util.updateCardToPiHomeServer();
                     }                  
                 }).Start();
             }

@@ -86,6 +86,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                command.CommandTimeout = 60;
                 int value = Convert.ToInt32(command.ExecuteScalar());
                 mySqlTransaction.Commit();
                 return value;
@@ -113,6 +114,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                command.CommandTimeout = 60;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
@@ -143,6 +145,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                command.CommandTimeout = 60;
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
@@ -172,7 +175,8 @@ namespace ParkingMangement
                 mySqlConnection = GetDBConnection();
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
-                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);               
+                SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                command.CommandTimeout = 60;
                 result = command.ExecuteNonQuery();
                 mySqlTransaction.Commit();
                 if (result > 0)
@@ -216,6 +220,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
+                command.CommandTimeout = 60;
                 int result = command.ExecuteNonQuery();
                 mySqlTransaction.Commit();
                 if (result > 0)

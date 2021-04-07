@@ -23,6 +23,16 @@ namespace ParkingMangement.Utils
         public static string PARAM_VEHICLE_ID = "vehicle_id";
         public static string PARAM_PC_NAME = "pc_name";
         public static string PARAM_CARD_CODE = "card_code";
+        public static string PARAM_LICENSE_PLATE = "license_plate";
+        public static string PARAM_CUSTOMER_NAME = "customer_name";
+        public static string PARAM_FEE = "fee";
+        public static string PARAM_PHONE = "phone";
+        public static string PARAM_APARTMENT = "apartment";
+        public static string PARAM_TYPE = "type";
+        public static string PARAM_FROM_DATE = "from_date";
+        public static string PARAM_TO_DATE = "to_date";
+        public static string PARAM_CARD_NUMBER_SPM = "cardnumber";
+
         public static string PARAM_CAR_NUMBER = "car_number";
         public static string PARAM_CAR_STT = "car_stt";
         public static string PARAM_CREATED_FROM = "created_from";
@@ -36,7 +46,7 @@ namespace ParkingMangement.Utils
         public static string PARAM_KEY_VALUE = "0919669444";
         public static string PARAM_SIGNATURE = "signature";
         public static string PARAM_SIGNATURE_VALUE = "cd6a9bd2a175104eed40f0d33a8b4020";      
-        public static string PARAM_CARD_NUMBER = "cardnumber";
+        public static string PARAM_CARD_NUMBER = "card_number";
         public static string PARAM_STATUS = "status";     
 
         //public static string BASE_URL = "http://apipm.hoanganhonline.com/public/";
@@ -73,6 +83,7 @@ namespace ParkingMangement.Utils
         public static string API_MONTHLY_CARDS_SET_SYNC_DONE_SPM = BASE_URL + "set_v2.php";
 
         public static string API_MONTHLY_CARDS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles";
+        public static string API_MONTHLY_CARDS_UPDATE_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles/update";
         public static string API_PARTS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicle-types";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
@@ -127,7 +138,7 @@ namespace ParkingMangement.Utils
 
                 WebClient webClient = new WebClient();
                 webClient.UseDefaultCredentials = true;
-                webClient.Headers.Set("Content-Type", "application/json");
+                webClient.Headers.Set("Content-Type", "application/x-www-form-urlencoded");
                 //webClient.Encoding = Encoding.UTF8;
                 //webClient.Headers["Content-Type"] = "raw";
                 //webClient.Headers.Set("Content-Type", "application/json");

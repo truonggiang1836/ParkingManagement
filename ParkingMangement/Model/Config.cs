@@ -86,6 +86,12 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "com_led_right")]
         public string comLedRight { get; set; } = "";
 
+        [XmlElement(ElementName = "read_digit_left_lane")]
+        public string readDigitLeftLane { get; set; } = "2";
+
+        [XmlElement(ElementName = "read_digit_right_lane")]
+        public string readDigitRightLane { get; set; } = "4";
+
         [XmlElement(ElementName = "com_lost_available")]
         public string comLostAvailable { get; set; } = "";
 
@@ -120,7 +126,7 @@ namespace ParkingMangement.Model
         public string isUsingUhf { get; set; } = "no";
 
         [XmlElement(ElementName = "read_digit_folder")]
-        public string readDigitFolder { get; set; } = "";
+        public string readDigitFolder { get; set; } = "HINH_BIEN_SO";
       
         [XmlElement(ElementName = "project_id")]
         public string projectId { get; set; } = "";
@@ -135,6 +141,6 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "is_use_cost_deposit")]
         public string isUseCostDeposit { get; set; } = "yes";
         [XmlElement(ElementName = "is_include_min_minute")]
-        public string isIncludeMinMinute { get; set; } = "yes";
+        public string isIncludeMinMinute { get; set; } = "yes";     
     }
 }
