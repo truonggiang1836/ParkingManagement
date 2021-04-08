@@ -149,7 +149,51 @@ namespace ParkingMangement.GUI
             //this.Resize += new EventHandler(Form_Resize);
             _lastFormSize = GetFormArea(this.Size);
            
-            mConfig = Util.getConfigFile();
+            mConfig = Util.getConfigFile();            
+            readConfigFile();
+
+            new Thread(() =>
+            {
+                // Thread.CurrentThread.IsBackground = true;
+                axVLCPlugin1.Visible = false;
+                axVLCPlugin2.Visible = false;
+                axVLCPlugin3.Visible = false;
+                axVLCPlugin4.Visible = false;
+                cameraWindow1.Visible = false;
+                cameraWindow2.Visible = false;
+                cameraWindow3.Visible = false;
+                cameraWindow4.Visible = false;
+
+                if (!Constant.IS_NEW_CAMERA)
+                {
+                    axVLCPlugin1.Visible = true;
+                    axVLCPlugin2.Visible = true;
+                    axVLCPlugin3.Visible = true;
+                    axVLCPlugin4.Visible = true;
+
+                    configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
+                        mConfig.ZoomCamera3, mConfig.ZoomCamera4);
+                    loadCamera1VLC();
+                    loadCamera2VLC();
+                    loadCamera3VLC();
+                    loadCamera4VLC();
+                }
+                else
+                {
+                    cameraWindow1.Visible = true;
+                    cameraWindow2.Visible = true;
+                    cameraWindow3.Visible = true;
+                    cameraWindow4.Visible = true;
+
+                    config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
+                    config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
+                    // load cameras tree
+                    config.LoadCameras();
+
+                    openCameraWindow();
+                }
+            }).Start();
+
             new Thread(() =>
             {
                 // Thread.CurrentThread.IsBackground = true;
@@ -268,52 +312,7 @@ namespace ParkingMangement.GUI
             labelComputer.Text = mConfig.computerName;
             labelParkingName.Text = ConfigDAO.GetParkingName();
 
-            labelNhanVien.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);
-
-            axVLCPlugin1.Visible = false;
-            axVLCPlugin2.Visible = false;
-            axVLCPlugin3.Visible = false;
-            axVLCPlugin4.Visible = false;
-            cameraWindow1.Visible = false;
-            cameraWindow2.Visible = false;
-            cameraWindow3.Visible = false;
-            cameraWindow4.Visible = false;
-
-            readConfigFile();
-
-            new Thread(() =>
-            {
-                // Thread.CurrentThread.IsBackground = true;
-
-                if (!Constant.IS_NEW_CAMERA)
-                {
-                    axVLCPlugin1.Visible = true;
-                    axVLCPlugin2.Visible = true;
-                    axVLCPlugin3.Visible = true;
-                    axVLCPlugin4.Visible = true;
-
-                    configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
-                        mConfig.ZoomCamera3, mConfig.ZoomCamera4);
-                    loadCamera1VLC();
-                    loadCamera2VLC();
-                    loadCamera3VLC();
-                    loadCamera4VLC();
-                }
-                else
-                {
-                    cameraWindow1.Visible = true;
-                    cameraWindow2.Visible = true;
-                    cameraWindow3.Visible = true;
-                    cameraWindow4.Visible = true;
-
-                    config = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
-                    config.providers.Load(Path.GetDirectoryName(Application.ExecutablePath));
-                    // load cameras tree
-                    config.LoadCameras();
-
-                    openCameraWindow();
-                }
-            }).Start();
+            labelNhanVien.Text = UserDAO.GetUserNameByID(Program.CurrentUserID);          
 
             new Thread(() =>
             {
