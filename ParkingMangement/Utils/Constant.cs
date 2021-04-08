@@ -182,14 +182,12 @@ namespace ParkingMangement.Utils
         public const int NODE_VALUE_XEM_THONG_KE = 3;
         public const int NODE_VALUE_DIEU_CHINH_CONG_THUC_TINH_TIEN = 4;
         public const int NODE_VALUE_QUAN_LY_LOAI_XE = 5;
-        public const int NODE_VALUE_QUAN_LY_THE_XE = 6;
-        public const int NODE_VALUE_KHOA_THE = 23;
+        public const int NODE_VALUE_QUAN_LY_THE_XE = 6;       
         public const int NODE_VALUE_KICH_HOAT_THE = 7;
         public const int NODE_VALUE_NHAT_KY_VE_THANG = 8;
         public const int NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG = 9;
         public const int NODE_VALUE_GIA_HAN_VE_THANG = 10;
-        public const int NODE_VALUE_MAT_THE_THANG = 11;
-        public const int NODE_VALUE_KHOA_VE_THANG = 24;
+        public const int NODE_VALUE_MAT_THE_THANG = 11;        
         public const int NODE_VALUE_KICH_HOAT_VE_THANG = 12;
         public const int NODE_VALUE_CAU_HINH_CO_BAN = 13;
         public const int NODE_VALUE_QUAN_LY_TIEN_THU = 14;
@@ -201,6 +199,15 @@ namespace ParkingMangement.Utils
         public const int NODE_VALUE_XEM_HOP_DEN = 20;
         public const int NODE_VALUE_LUU_MAT_THE = 21;
         public const int NODE_VALUE_XEM_BAO_CAO_F7 = 22;
+        public const int NODE_VALUE_KHOA_THE = 23;
+        public const int NODE_VALUE_KHOA_VE_THANG = 24;
+
+        public const int NODE_VALUE_IN_PHIEU_THU_CHI = 25;
+        public const int NODE_VALUE_IN_PHIEU_THONG_BAO_PHI = 26;
+        public const int NODE_VALUE_LICH_SU_PHIEU_THU_CHI = 27;
+
+        public const int NODE_VALUE_TIM_VE_THANG = 28;
+        public const int NODE_VALUE_BAO_CAO_CONG_NO = 29;
 
         // path file
         public static String sFileNameConfig = "Config.xml";

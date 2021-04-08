@@ -38,9 +38,12 @@ namespace ParkingMangement.GUI
         private string[] listFunctionQuanLyNhanSu = { "1", "2" };
         private string[] listFunctionQuanLyDoanhThu = { "3", "4" };
         private string[] listFunctionQuanLyTheLoaiXe = { "5", "6", "23", "7" };
-        private string[] listFunctionQuanLyVeThang = { "8", "9", "10", "11", "24", "12" };
+        private string[] listFunctionQuanLyVeThang = { "8", "9", "10", "11", "24", "12", 
+            Constant.NODE_VALUE_TIM_VE_THANG.ToString(), Constant.NODE_VALUE_BAO_CAO_CONG_NO.ToString() };
         private string[] listFunctionQuanLyHeThong = { "13", "14", "15", "16" };
         private string[] listFunctionQuanLyXe = { "17", "18", "19", "20" };
+        private string[] listFunctionQuanLyPhieuThuChi = { Constant.NODE_VALUE_IN_PHIEU_THU_CHI.ToString(), 
+            Constant.NODE_VALUE_IN_PHIEU_THONG_BAO_PHI.ToString(), Constant.NODE_VALUE_LICH_SU_PHIEU_THU_CHI.ToString() };
 
         private RawInput _rawinput;
         const bool CaptureOnlyInForeground = true;
@@ -1493,12 +1496,54 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dtTicketLogRegistrationDateSearch);
                 setFormatDateForDateTimePicker(dtTicketLogExpirationDateSearch);
                 dtTicketLogRegistrationDateSearch.Value = DateTime.Now.AddMonths(-1);
+
+                btnPrintReceipt.Enabled = false;
+                btnPrintTransferCost.Enabled = false;
+                btnPrintFeeNotice.Enabled = false;
+
+                string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+                string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+
+                btnTicketMonthEdit.Enabled = false;
+                tbTicketMonthKeyWordSearch.Enabled = false;
+
+                if (listFunctionSec.Contains(Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG.ToString()))
+                {
+                    btnTicketMonthEdit.Enabled = true;
+                } else
+                {
+                    tabControlTaoMoiTheThang.TabPages.Remove(tabPageTaoTheThang);
+                }
+
+                if (listFunctionSec.Contains(Constant.NODE_VALUE_TIM_VE_THANG.ToString()))
+                {
+                    tbTicketMonthKeyWordSearch.Enabled = true;
+                }
             }
             else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
             {
                 addDataToRFIDComboBox();
                 loadCauHinhHienThiData();
                 hienCauHinhKetNoiTuConfig();
+            } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyPhieuThuChi"])
+            {
+                string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+                string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
+
+                btnPrintReceipt.Enabled = false;
+                btnPrintTransferCost.Enabled = false;
+                btnPrintFeeNotice.Enabled = false;
+
+                if (listFunctionSec.Contains(Constant.NODE_VALUE_IN_PHIEU_THU_CHI.ToString()))
+                {
+                    btnPrintReceipt.Enabled = true;
+                    btnPrintTransferCost.Enabled = true;
+                }
+
+                if (listFunctionSec.Contains(Constant.NODE_VALUE_IN_PHIEU_THONG_BAO_PHI.ToString()))
+                {
+                    btnPrintFeeNotice.Enabled = true;
+                }
             }
         }
 
@@ -3269,6 +3314,10 @@ namespace ParkingMangement.GUI
             {
                 treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyXe", true)[0].Checked = true;
             }
+            if (checkTickParentNodeWhenLoadData(listFunctionSec, listFunctionQuanLyPhieuThuChi))
+            {
+                treeViewPhanQuyenTruyCap.Nodes.Find("NodeQuanLyPhieuThuChi", true)[0].Checked = true;
+            }
         }
 
         private bool checkTickParentNodeWhenLoadData(string[] listAllFunctionSelect, string[] listFunctionTarget)
@@ -3390,11 +3439,13 @@ namespace ParkingMangement.GUI
 
             int countTabQuanLyVeThang = 0;
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_NHAT_KY_VE_THANG, tabPageXemNhatKyVeThang, tabQuanLyVeThang);
-            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG, tabPageTaoMoiVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG, 
+                Constant.NODE_VALUE_TIM_VE_THANG, tabPageTaoMoiVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_GIA_HAN_VE_THANG, tabPageGiaHanVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_MAT_THE_THANG, tabPageMatVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KHOA_VE_THANG, tabPageKhoaVeThang, tabQuanLyVeThang);
             countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_KICH_HOAT_VE_THANG, tabPageKichHoatVeThang, tabQuanLyVeThang);
+            countTabQuanLyVeThang += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_BAO_CAO_CONG_NO, tabPageBaoCaoCongNo, tabQuanLyVeThang);
             if (countTabQuanLyVeThang == 0)
             {
                 tabQuanLy.TabPages.Remove(tabPageQuanLyVeThang);
@@ -3419,11 +3470,34 @@ namespace ParkingMangement.GUI
             {
                 tabQuanLy.TabPages.Remove(tabPageQuanLyXeRaVao);
             }
+
+            int countTabQuanLyPhieuThuChi = 0;
+            countTabQuanLyPhieuThuChi += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_IN_PHIEU_THU_CHI, 
+                Constant.NODE_VALUE_IN_PHIEU_THONG_BAO_PHI, tabPageInPhieuThuChi, tabQuanLyPhieuThuChi);
+            countTabQuanLyPhieuThuChi += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_LICH_SU_PHIEU_THU_CHI, tabPageLichSuPhieuThuChi, tabQuanLyPhieuThuChi);
+            countTabQuanLyPhieuThuChi += checkShowTabPage(listFunctionSec, Constant.NODE_VALUE_LICH_SU_PHIEU_THU_CHI, tabPageChiTietPhieuThuChi, tabQuanLyPhieuThuChi);
+            if (countTabQuanLyPhieuThuChi == 0)
+            {
+                tabQuanLy.TabPages.Remove(tabPageQuanLyPhieuThuChi);
+            }
         }
         private int checkShowTabPage(string[] listFunctionSec, int nodeValue, TabPage tabPage, TabControl tabControl)
         {
             (tabPage as TabPage).Enabled = true;
             if (Array.IndexOf(listFunctionSec, nodeValue + "") == -1)
+            {
+                (tabPage as TabPage).Enabled = false;
+                (tabPage as TabPage).Hide();
+                tabControl.TabPages.Remove(tabPage);
+                return 0;
+            }
+            return 1;
+        }
+
+        private int checkShowTabPage(string[] listFunctionSec, int nodeValue1, int nodeValue2, TabPage tabPage, TabControl tabControl)
+        {
+            (tabPage as TabPage).Enabled = true;
+            if (Array.IndexOf(listFunctionSec, nodeValue1 + "") == -1 && Array.IndexOf(listFunctionSec, nodeValue2 + "") == -1)
             {
                 (tabPage as TabPage).Enabled = false;
                 (tabPage as TabPage).Hide();
