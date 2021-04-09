@@ -1504,20 +1504,24 @@ namespace ParkingMangement.GUI
                 string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
                 string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
 
-                btnTicketMonthEdit.Enabled = false;
-                tbTicketMonthKeyWordSearch.Enabled = false;
+                if (!functionId.Equals("Ad"))
+                {
+                    btnTicketMonthEdit.Enabled = false;
+                    tbTicketMonthKeyWordSearch.Enabled = false;
 
-                if (listFunctionSec.Contains(Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG.ToString()))
-                {
-                    btnTicketMonthEdit.Enabled = true;
-                } else
-                {
-                    tabControlTaoMoiTheThang.TabPages.Remove(tabPageTaoTheThang);
-                }
+                    if (listFunctionSec.Contains(Constant.NODE_VALUE_CAP_NHAT_THONG_TIN_VE_THANG.ToString()))
+                    {
+                        btnTicketMonthEdit.Enabled = true;
+                    }
+                    else
+                    {
+                        tabControlTaoMoiTheThang.TabPages.Remove(tabPageTaoTheThang);
+                    }
 
-                if (listFunctionSec.Contains(Constant.NODE_VALUE_TIM_VE_THANG.ToString()))
-                {
-                    tbTicketMonthKeyWordSearch.Enabled = true;
+                    if (listFunctionSec.Contains(Constant.NODE_VALUE_TIM_VE_THANG.ToString()))
+                    {
+                        tbTicketMonthKeyWordSearch.Enabled = true;
+                    }
                 }
             }
             else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyHeThong"])
@@ -1530,19 +1534,22 @@ namespace ParkingMangement.GUI
                 string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
                 string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
 
-                btnPrintReceipt.Enabled = false;
-                btnPrintTransferCost.Enabled = false;
-                btnPrintFeeNotice.Enabled = false;
-
-                if (listFunctionSec.Contains(Constant.NODE_VALUE_IN_PHIEU_THU_CHI.ToString()))
+                if (!functionId.Equals("Ad"))
                 {
-                    btnPrintReceipt.Enabled = true;
-                    btnPrintTransferCost.Enabled = true;
-                }
+                    btnPrintReceipt.Enabled = false;
+                    btnPrintTransferCost.Enabled = false;
+                    btnPrintFeeNotice.Enabled = false;
 
-                if (listFunctionSec.Contains(Constant.NODE_VALUE_IN_PHIEU_THONG_BAO_PHI.ToString()))
-                {
-                    btnPrintFeeNotice.Enabled = true;
+                    if (listFunctionSec.Contains(Constant.NODE_VALUE_IN_PHIEU_THU_CHI.ToString()))
+                    {
+                        btnPrintReceipt.Enabled = true;
+                        btnPrintTransferCost.Enabled = true;
+                    }
+
+                    if (listFunctionSec.Contains(Constant.NODE_VALUE_IN_PHIEU_THONG_BAO_PHI.ToString()))
+                    {
+                        btnPrintFeeNotice.Enabled = true;
+                    }
                 }
             }
         }
