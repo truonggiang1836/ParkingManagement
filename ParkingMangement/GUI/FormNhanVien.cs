@@ -667,25 +667,28 @@ namespace ParkingMangement.GUI
                 CardDTO dtCommonCard = CardDAO.GetNotDeletedCardModelByID(cardID);               
                 if (dtCommonCard != null)
                 {
-                    if (inputIsLeftSide())
-                    {
-                        labelCardIDLeft.Text = dtCommonCard.Identify + "";
-                    }
-                    else
-                    {
-                        labelCardIDRight.Text = dtCommonCard.Identify + "";
-                    }
-
                     TicketMonthDTO dtTicketCard = TicketMonthDAO.GetDTODataByID(cardID);
-                    checkForSaveToDBAsync(dtCommonCard, dtTicketCard);
+                    string cardTypeID = PartDAO.GetCardTypeByID(dtCommonCard.Type);
+                    if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH) && dtTicketCard == null)
+                    {
+                        checkUsingCardForShowError();
+                    } else
+                    {
+                        if (inputIsLeftSide())
+                        {
+                            labelCardIDLeft.Text = dtCommonCard.Identify + "";
+                        }
+                        else
+                        {
+                            labelCardIDRight.Text = dtCommonCard.Identify + "";
+                        }
+
+                        checkForSaveToDBAsync(dtCommonCard, dtTicketCard);
+                    }
                 }
                 else
                 {
-                    if (cardID.Length == 8 || cardID.Length == 10 || cardID.Length == 18 || cardID.Length == 53)
-                    {
-                        labelError.Text = Constant.sMessageCardIdNotExist;
-                        Util.playAudio(Constant.notused);
-                    }                    
+                    checkUsingCardForShowError();
                 }
                 new Thread(() =>
                 {
@@ -702,6 +705,15 @@ namespace ParkingMangement.GUI
             portNameComReceiveInput = null;
             portNameComReaderInput = null;
             oldPortNameComReceiveInput = null;
+        }
+
+        private void checkUsingCardForShowError()
+        {
+            if (cardID.Length == 8 || cardID.Length == 10 || cardID.Length == 18 || cardID.Length == 53)
+            {
+                labelError.Text = Constant.sMessageCardIdNotExist;
+                Util.playAudio(Constant.notused);
+            }
         }
 
         private void timerCurrentTime_Tick(object sender, EventArgs e)
@@ -733,37 +745,32 @@ namespace ParkingMangement.GUI
             DataTable dtLastCar = CarDAO.GetLastCarByID(cardID);
             //checkForOpenBarie(dtLastCar, true);
 
-            new Thread(() =>
+            if (inputIsLeftSide())
             {
-                // Thread.CurrentThread.IsBackground = true;
+                labelDigitRegisterLeft.Text = "";
+                labelCustomerNameLeft.Text = "-";
 
-                if (inputIsLeftSide())
-                {                  
-                    labelDigitRegisterLeft.Text = "";
-                    labelCustomerNameLeft.Text = "-";
+                labelPartNameTypeNameLeft.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
 
-                    labelPartNameTypeNameLeft.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
-
-                    if (isTicketCard)
-                    {
-                        labelCustomerNameLeft.Text = dtTicketCard.CustomerName;
-                        labelDigitRegisterLeft.Text = dtTicketCard.Digit;
-                    }
-                }
-                else
+                if (isTicketCard)
                 {
-                    labelDigitRegisterRight.Text = "";
-                    labelCustomerNameRight.Text = "-";
-
-                    labelPartNameTypeNameRight.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
-
-                    if (isTicketCard)
-                    {
-                        labelCustomerNameRight.Text = dtTicketCard.CustomerName;
-                        labelDigitRegisterRight.Text = dtTicketCard.Digit;
-                    }
+                    labelCustomerNameLeft.Text = dtTicketCard.CustomerName;
+                    labelDigitRegisterLeft.Text = dtTicketCard.Digit;
                 }
-            }).Start();
+            }
+            else
+            {
+                labelDigitRegisterRight.Text = "";
+                labelCustomerNameRight.Text = "-";
+
+                labelPartNameTypeNameRight.Text = CardDAO.GetPartName_TypeNameByCardID(cardID);
+
+                if (isTicketCard)
+                {
+                    labelCustomerNameRight.Text = dtTicketCard.CustomerName;
+                    labelDigitRegisterRight.Text = dtTicketCard.Digit;
+                }
+            }
 
             bool isLockedCard = false;
             if (!dtCommonCard.IsUsing.Equals("1"))
