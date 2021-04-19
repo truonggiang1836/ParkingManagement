@@ -81,6 +81,7 @@ namespace ParkingMangement.Utils
 
         public static string API_MONTHLY_CARDS_SYNCS_SPM = BASE_URL + "get_v2.php";
         public static string API_MONTHLY_CARDS_SET_SYNC_DONE_SPM = BASE_URL + "set_v2.php";
+        public static string API_REVENUE_SYNC_SPM = BASE_URL + "winapp/";
 
         public static string API_MONTHLY_CARDS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles";
         public static string API_MONTHLY_CARDS_UPDATE_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles/update";
@@ -121,6 +122,24 @@ namespace ParkingMangement.Utils
                 //webClient.QueryString.Add(PARAM_API_AUTH_KEY, apiAuthKey);
 
                 webClient.QueryString.Add(ApiUtil.PARAM_KEY, Util.getConfigFile().projectId);
+                return webClient;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
+        public WebClient getPostRawWebClient()
+        {
+            try
+            {
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                WebClient webClient = new WebClient();
+                webClient.Encoding = Encoding.UTF8;
+                webClient.Headers["Content-Type"] = "raw";
                 return webClient;
             }
             catch (Exception e)

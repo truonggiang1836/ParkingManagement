@@ -1389,6 +1389,113 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void setSyncRevenueToSPMServer(string jsonString)
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return;
+            }
+            WebClient webClient = (new ApiUtil()).getPostRawWebClient();
+
+            string url = ApiUtil.API_REVENUE_SYNC_SPM + Util.getConfigFile().projectId;
+            try
+            {
+                string result = webClient.UploadString(new Uri(url), "POST", jsonString);
+                Console.WriteLine("result_api: " + result);
+            }
+            catch (WebException exception)
+            {
+                string responseText;
+                var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                        MessageBox.Show("api set done fail: " + responseText);
+                    }
+                }
+            }
+        }
+
+        private static Order getRevenuFromData(DataRow dtRow)
+        {
+            Order order = new Order();
+            order.ProjectId = Util.getConfigFile().projectId;
+            order.OrderId = dtRow.Field<int>("Identify");
+            order.CardSTT = dtRow.Field<string>("SmartCardIdentify");
+            order.CardCode = dtRow.Field<string>("ID");
+            DateTime checkinDatetime = dtRow.Field<DateTime>("TimeStart");
+            //checkinDatetime = checkinDatetime.AddHours(11);
+            //order.CheckinTime = checkinDatetime.ToString(Constant.sDateTimeFormatForAPI);
+            order.CheckinTime = DateTimeToMillisecond(checkinDatetime);
+            if (dtRow.Field<DateTime?>("TimeEnd") != null)
+            {
+                DateTime checkoutDatetime = dtRow.Field<DateTime>("TimeEnd");
+                //checkoutDatetime = checkoutDatetime.AddHours(11);
+                //order.CheckoutTime = checkoutDatetime.ToString(Constant.sDateTimeFormatForAPI);
+                order.CheckoutTime = DateTimeToMillisecond(checkoutDatetime);
+            }
+            if (dtRow["Digit"] != DBNull.Value)
+            {
+                order.CarNumber = dtRow.Field<string>("Digit");
+            }
+            if (dtRow["DigitIn"] != DBNull.Value)
+            {
+                order.CarNumberIn = dtRow.Field<string>("DigitIn");
+            }
+            if (dtRow["DigitOut"] != DBNull.Value)
+            {
+                order.CarNumberOut = dtRow.Field<string>("DigitOut");
+            }
+
+            int adminCheckinId = 0;
+            Int32.TryParse(dtRow.Field<string>("IDIn"), out adminCheckinId);
+            order.AdminCheckinId = adminCheckinId;
+
+            order.AdminCheckinName = dtRow.Field<string>("UserIn");
+            int adminCheckoutId = 0;
+            if (dtRow["IDOut"] != DBNull.Value)
+            {
+                Int32.TryParse(dtRow.Field<string>("IDOut"), out adminCheckoutId);
+            }
+            order.AdminCheckoutId = adminCheckoutId;
+
+            order.AdminCheckoutName = dtRow.Field<string>("UserOut");
+
+            int monthlyCardId = 0;
+            if (dtRow["IDTicketMonth"] != DBNull.Value)
+            {
+                Int32.TryParse(dtRow.Field<string>("IDTicketMonth"), out monthlyCardId);
+            }
+            order.MonthlyCardId = monthlyCardId;
+
+
+            int vehicleId = 0;
+            try
+            {
+                Int32.TryParse(dtRow.Field<string>("IDPart"), out vehicleId);
+            }
+            catch (Exception)
+            {
+
+            }
+            order.VehicleId = vehicleId;
+
+            order.VehicleName = dtRow.Field<string>("PartName");
+            order.VehicleCode = dtRow.Field<string>("Sign");
+            order.IsCardLost = dtRow.Field<int>("IsLostCard");
+            order.TotalPrice = dtRow.Field<int>("Cost");
+            order.PcName = dtRow.Field<string>("Computer");
+            order.Account = dtRow.Field<string>("Account");
+            DateTime dateUpdate = dtRow.Field<DateTime>("DateUpdate");
+            //dateUpdate = checkinDatetime.AddHours(11);
+            order.Created = DateTimeToMillisecond(dateUpdate);
+            order.Updated = DateTimeToMillisecond(dateUpdate);
+            return order;
+        }
+
         public static void setSyncDoneMonthlyCardListToPiHomeServer(string soThe)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())

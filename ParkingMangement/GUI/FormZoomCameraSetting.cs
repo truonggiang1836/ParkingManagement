@@ -26,11 +26,11 @@ namespace ParkingMangement.GUI
 
         private void FormZoomCameraSetting_Load(object sender, EventArgs e)
         {
-            int maxZoom = 100;
+            //int maxZoom = 100;
             
-            for (int i = 1; i <= maxZoom; i = i + 1)
+            for (int i = 1; i <= 20; i = i + 1)
             {
-                float value = (float) i / 10;
+                float value = (float) i * 5;
                 listZoomValue.Add(value);
                 cbZoomValue1.Items.Add(value);
                 cbZoomValue2.Items.Add(value);
