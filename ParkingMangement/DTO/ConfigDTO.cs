@@ -64,5 +64,7 @@ namespace ParkingMangement.DTO
         public int NoticeExpiredDate { get => noticeExpiredDate; set => noticeExpiredDate = value; }
         public int DepositCost { get => depositCost; set => depositCost = value; }
         public string NoticeFeeContent { get => noticeFeeContent; set => noticeFeeContent = value; }
+        public int StartHourNightShift { get; set; }
+        public int EndHourNightShift { get; set; }
     }
 }

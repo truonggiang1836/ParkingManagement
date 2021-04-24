@@ -28,7 +28,7 @@ namespace ParkingMangement.GUI
             this.Visible = false;
             Hide();
 
-            //syncOrderData();
+            syncOrderData();
             syncCardData();
         }
 
@@ -47,8 +47,7 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    Util.sendOrderDataToServer();
-                    //Util.sendOldOrderListToServer(CarDAO.GetAllDataForSync());
+                    Util.syncRevenueToSPMServer();
                 }).Start();
             }
             catch (Exception)
@@ -98,9 +97,11 @@ namespace ParkingMangement.GUI
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 20 * 1000;
+            aTimer.Interval = 5 * 60 * 1000; // 5'
             aTimer.Enabled = true;
             aTimer.Start();
+
+            Util.syncRevenueToSPMServer();
         }
 
         private void syncCardData()

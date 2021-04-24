@@ -21,6 +21,8 @@ namespace ParkingMangement
         public static DateTime StartWorkTime;
         public static DateTime EndWorkTime;
         public static string CurrentUserID = "";
+        public static string CurrentStaffUserID = "";
+        public static string CurrentManagerUserID = "";
         public static string CurrentToken = "";
         public static bool isHostMachine = false;
         public static bool isHasCarInOut = false;

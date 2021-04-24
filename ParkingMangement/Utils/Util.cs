@@ -17,6 +17,7 @@ using System.Management;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -25,6 +26,8 @@ namespace ParkingMangement.Utils
     static class Util
     {
         private static Config sConfig = null;
+        private static int sStartHourNightShift = -1;
+        private static int sEndHourNightShift = -1;
 
         public static void deleteDirectoryIfEmpty(string startLocation)
         {
@@ -509,6 +512,51 @@ namespace ParkingMangement.Utils
 
             }
             return false;
+        }
+
+        private static RevenueDetail getRevenueDetailFromData(DataRow dtRow)
+        {
+            RevenueDetail revenueDetail = new RevenueDetail();
+            revenueDetail.LoaiThe = dtRow.Field<string>("PartSign");
+            revenueDetail.SoXeVao = dtRow.Field<long>("CountCarIn");
+            revenueDetail.SoXeRa = dtRow.Field<long>("CountCarOut");
+            revenueDetail.SoXeTon = dtRow.Field<long>("CountCarSurvive");
+            revenueDetail.SoTien = dtRow.Field<long>("SumCost");
+            return revenueDetail;
+        }
+
+        public static string getRevenueData(DateTime? startTime, DateTime? endTime, string userID, string userName, string revenueId)
+        {
+            DataTable dtTable = CarDAO.GetTotalCostForSyncToWeb(startTime, endTime, userID);
+            Revenue revenue = new Revenue();
+            revenue.RequestType = "revenue";
+            revenue.MaCaTruc = revenueId;
+            revenue.GioBatDau = startTime?.ToString("yyyy-MM-dd HH:mm:ss");
+            revenue.GioKetThuc = endTime?.ToString("yyyy-MM-dd HH:mm:ss");
+            revenue.NhanVien = userName;
+
+            List<RevenueDetail> listRevenueDetail = new List<RevenueDetail>();
+            int count = dtTable.Rows.Count;
+            for (int i = 0; i < count; i++)
+            {
+                DataRow dtRow = dtTable.Rows[i];
+                if (i == count - 1)
+                {
+                    revenue.TongXeVao = dtRow.Field<long>("CountCarIn");
+                    revenue.TongXeRa = dtRow.Field<long>("CountCarOut");
+                    revenue.TongXeTon = dtRow.Field<long>("CountCarSurvive");
+                    revenue.TongTien = dtRow.Field<long>("SumCost");
+                } else
+                {
+                    RevenueDetail revenueDetail = getRevenueDetailFromData(dtRow);
+                    listRevenueDetail.Add(revenueDetail);                   
+                }
+            }
+            revenue.SoLuotXe = JsonConvert.SerializeObject(listRevenueDetail);
+            revenue.SoLuotXeChiTiet = revenue.SoLuotXe;
+
+            string jsonString = JsonConvert.SerializeObject(revenue);
+            return jsonString;
         }
 
         private static void updateSyncOrderMessage(long identify, string message, bool isCarIn)
@@ -1247,6 +1295,96 @@ namespace ParkingMangement.Utils
             }
         }
 
+        public static void syncRevenueToSPMServer()
+        {
+            if (sEndHourNightShift == -1)
+            {
+                sEndHourNightShift = ConfigDAO.GetEndHourNightShift();
+            }
+            if (sStartHourNightShift == -1) {
+                sStartHourNightShift = ConfigDAO.GetStartHourNightShift();
+            }
+
+            DateTime startDateCurrentShift = DateTime.Now;
+            DateTime endDateCurrentShift = DateTime.Now;
+            DateTime startDatePreviousShift;
+            DateTime endDatePreviousShift;
+            if (DateTime.Now.Hour < sEndHourNightShift)
+            {
+                // ca dem truoc 7h
+                startDateCurrentShift = startDateCurrentShift.AddDays(-1);
+                startDateCurrentShift = setHour(startDateCurrentShift, sStartHourNightShift);
+                endDateCurrentShift = setHour(endDateCurrentShift, sEndHourNightShift);
+
+                startDatePreviousShift = setHour(startDateCurrentShift, sEndHourNightShift);
+                endDatePreviousShift = startDateCurrentShift;
+            }
+            else if (DateTime.Now.Hour >= sStartHourNightShift)
+            {
+                // ca dem sau 19h
+                startDateCurrentShift = setHour(startDateCurrentShift, sStartHourNightShift);
+                endDateCurrentShift = endDateCurrentShift.AddDays(1);
+                endDateCurrentShift = setHour(endDateCurrentShift, sEndHourNightShift);
+
+                startDatePreviousShift = setHour(startDateCurrentShift, sEndHourNightShift);
+                endDatePreviousShift = startDateCurrentShift;
+            }
+            else
+            {
+                // ca ngay
+                startDateCurrentShift = setHour(startDateCurrentShift, sEndHourNightShift);
+                endDateCurrentShift = setHour(endDateCurrentShift, sStartHourNightShift);
+
+                startDatePreviousShift = startDateCurrentShift.AddDays(-1);
+                startDatePreviousShift = setHour(startDatePreviousShift, sStartHourNightShift);
+                endDatePreviousShift = startDateCurrentShift;
+            }
+
+            DataTable dt = UserDAO.GetAllStaftForSyncRevenue();
+            foreach (DataRow row in dt.Rows)
+            {
+                string userID = row["UserID"].ToString();
+                string userName = row["NameUser"].ToString();
+                InsertOrUpdateRevenue(startDateCurrentShift, endDateCurrentShift, userID, userName);
+
+                string startPreviousDateTimeString = startDatePreviousShift.ToString("yyyyMMdd_HH");
+                string previousRevenueId = RevenueDAO.GetRevenueId(startPreviousDateTimeString, userID);
+                if (previousRevenueId == null || (DateTime.Now - startDateCurrentShift).TotalMinutes <= 10)
+                {
+                    InsertOrUpdateRevenue(startDatePreviousShift, endDatePreviousShift, userID, userName);
+                }
+            }
+
+            DataTable waitSyncDt = RevenueDAO.GetAllDataIsNotSync();
+            foreach (DataRow row in waitSyncDt.Rows)
+            {
+                string json = row["JsonBody"].ToString();
+                string revenueId = row["RevenueId"].ToString();
+                if (postRevenueToSPMServer(json))
+                {
+                    RevenueDAO.UpdateIsSync(revenueId);
+                }
+            }
+        }
+
+        private static void InsertOrUpdateRevenue(DateTime startDate, DateTime endDate, string userID, string userName)
+        {
+            string startDateTimeString = startDate.ToString("yyyyMMdd_HH");
+            string revenueId = RevenueDAO.GetRevenueId(startDateTimeString, userID);
+            if (revenueId == null)
+            {
+                revenueId = DateTimeToMillisecond(DateTime.Now).ToString();
+            }
+
+            string jsonCurrentShift = getRevenueData(startDate, endDate, userID, userName, revenueId);
+            RevenueDTO currentRevenue = new RevenueDTO();
+            currentRevenue.RevenueId = revenueId;
+            currentRevenue.StartDateTimeString = startDate.ToString("yyyyMMdd_HH");
+            currentRevenue.UserId = userID;
+            currentRevenue.JsonBody = jsonCurrentShift;
+            RevenueDAO.InsertOrUpdate(currentRevenue);
+        }
+
         public static void syncMonthlyCardListFromSPMServer()
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
@@ -1389,11 +1527,11 @@ namespace ParkingMangement.Utils
             }
         }
 
-        public static void setSyncRevenueToSPMServer(string jsonString)
+        public static bool postRevenueToSPMServer(string jsonString)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
-                return;
+                return false;
             }
             WebClient webClient = (new ApiUtil()).getPostRawWebClient();
 
@@ -1402,6 +1540,7 @@ namespace ParkingMangement.Utils
             {
                 string result = webClient.UploadString(new Uri(url), "POST", jsonString);
                 Console.WriteLine("result_api: " + result);
+                return true;
             }
             catch (WebException exception)
             {
@@ -1416,6 +1555,7 @@ namespace ParkingMangement.Utils
                         MessageBox.Show("api set done fail: " + responseText);
                     }
                 }
+                return false;
             }
         }
 
@@ -2123,6 +2263,25 @@ namespace ParkingMangement.Utils
                 System.Media.SoundPlayer player = new System.Media.SoundPlayer(url);
                 player.Play();
             }
+        }
+
+        public static async void playAsyncAudio(string audioName)
+        {
+            string url = Application.StartupPath + "\\audio\\" + audioName;
+            if (File.Exists(url))
+            {
+                using (var player = new System.Media.SoundPlayer(url))
+                {
+                    await Task.Run(() => {player.PlaySync(); });
+                }
+            }         
+        }
+
+        public static DateTime setHour(DateTime dateTime, int hour)
+        {
+            TimeSpan ts = new TimeSpan(hour, 0, 0);
+            dateTime = dateTime.Date + ts;
+            return dateTime;
         }
 
         private static string Chu(string gNumber)

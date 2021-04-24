@@ -24,6 +24,12 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
+        public static DataTable GetAllStaftForSyncRevenue()
+        {
+            string sql = "select UserId, NameUser from UserCar where IDFunct = 'Nh'";
+            return (new Database()).ExcuQueryNoErrorMessage(sql);
+        }
+
         public static void UpdateIsSync(string listId)
         {
             string sql = "update UserCar set IsSync = 1 where UserID in " + listId;

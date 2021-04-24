@@ -67,54 +67,26 @@ namespace ParkingMangement
             {
                 labelError.Text = "Thông tin không chính xác";
             }
-
-            loginAPIAsync(account, pass);
-        }
-
-        private void loginAPIAsync(string account, string pass)
-        {
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            webClient.QueryString.Add(ApiUtil.PARAM_ACCOUNT, account);
-            webClient.QueryString.Add(ApiUtil.PARAM_PASSWORD, pass);
-            try
-            {
-                String responseString = webClient.DownloadString(ApiUtil.API_LOGIN);
-                Console.WriteLine(responseString);
-                UserDTO userDTO = new UserDTO(responseString);
-                Program.CurrentUserID = userDTO.Id;
-                Program.CurrentToken = userDTO.Token;
-
-                //Program.sendOrderListToServer();
-            } catch (WebException exception)
-            {
-                string responseText;
-                var responseStream = exception.Response?.GetResponseStream();
-
-                if (responseStream != null)
-                {
-                    using (var reader = new StreamReader(responseStream))
-                    {
-                        responseText = reader.ReadToEnd();
-                    }
-                }
-            }
         }
 
         private void loginDone(DataTable data)
         {
             this.Hide();
-            Program.StartWorkTime = DateTime.Now;
-            Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
+            Program.StartWorkTime = DateTime.Now;         
             runSyncDataProcess();
 
             Form f = null;
+            string userId = data.Rows[0].Field<string>("UserID");
+            Program.CurrentUserID = userId;
             if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
             {
                 f = new FormQuanLy();
                 ((FormQuanLy)f).formNhanVien = this.formNhanVien;
+                Program.CurrentManagerUserID = userId;
             } else
             {
                 f = new FormNhanVien();
+                Program.CurrentStaffUserID = userId;
             }
 
             if (formNhanVien != null)
@@ -157,7 +129,7 @@ namespace ParkingMangement
             this.Close();
             if (formNhanVien != null)
             {
-                Program.CurrentUserID = formNhanVien.CurrentUserID;
+                Program.CurrentStaffUserID = formNhanVien.CurrentUserID;
             }
         }
 

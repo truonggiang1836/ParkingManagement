@@ -11,7 +11,7 @@ namespace ParkingMangement.DAO
 {
     class TicketLogDAO
     {
-        private static string sqlGetAllData = "select TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
+        private static string sqlGetAllData = "select DISTINCT TicketLog.ProcessDate, LogType.LogTypeName, UserCar.NameUser, SmartCard.Identify" +
                 ", TicketLog.TicketMonthID, TicketLog.Digit, TicketLog.CustomerName, TicketLog.CMND, TicketLog.Email, TicketLog.Company, " +
                 "TicketLog.Address, TicketLog.CarKind, Part.PartName, TicketLog.RegistrationDate, TicketLog.ExpirationDate from" +
                 " TicketLog left join LogType on TicketLog.LogTypeID = LogType.LogTypeID left join Part on TicketLog.IDPart = Part.ID" +

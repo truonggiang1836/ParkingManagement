@@ -243,6 +243,15 @@ namespace ParkingMangement
 
                 sql = "ALTER TABLE Config ADD IsUseCostDeposit int NOT NULL DEFAULT(1);";
                 (new Database()).ExcuQueryNoErrorMessage(sql);
+
+                sql = "ALTER TABLE Config ADD StartHourNightShift int NOT NULL DEFAULT(19),"
+                    + "EndHourNightShift int NOT NULL DEFAULT(7);";
+                (new Database()).ExcuQueryNoErrorMessage(sql);
+
+                sql = "CREATE TABLE Revenue (RevenueId nvarchar(50) NOT NULL, StartDateTimeString nvarchar(50) NOT NULL,"
+                    + " UserId nvarchar(50) NOT NULL, JsonBody nvarchar(MAX), IsSync int NOT NULL DEFAULT(0)," 
+                    + "CONSTRAINT PK_Revenue PRIMARY KEY (StartDateTimeString, UserId));";
+                (new Database()).ExcuQueryNoErrorMessage(sql);
             }
             catch (Exception)
             {

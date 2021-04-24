@@ -81,7 +81,7 @@ namespace ParkingMangement.Utils
 
         public static string API_MONTHLY_CARDS_SYNCS_SPM = BASE_URL + "get_v2.php";
         public static string API_MONTHLY_CARDS_SET_SYNC_DONE_SPM = BASE_URL + "set_v2.php";
-        public static string API_REVENUE_SYNC_SPM = BASE_URL + "winapp/";
+        public static string API_REVENUE_SYNC_SPM = BASE_URL + "v1/winapp/";
 
         public static string API_MONTHLY_CARDS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles";
         public static string API_MONTHLY_CARDS_UPDATE_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles/update";

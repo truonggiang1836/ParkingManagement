@@ -7,12 +7,12 @@ namespace ParkingMangement.Model
         [JsonProperty("LoaiThe")]
         public string LoaiThe { get; set; }
         [JsonProperty("SoXeVao")]
-        public string SoXeVao { get; set; }
+        public long SoXeVao { get; set; }
         [JsonProperty("SoXeRa")]
-        public string SoXeRa { get; set; }
+        public long SoXeRa { get; set; }
         [JsonProperty("SoXeTon")]
-        public string SoXeTon { get; set; }
+        public long SoXeTon { get; set; }
         [JsonProperty("SoTien")]
-        public string SoTien { get; set; }
+        public long SoTien { get; set; }
     }
 }

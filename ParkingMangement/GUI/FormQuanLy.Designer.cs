@@ -1215,6 +1215,13 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
+            this.numericStartHourNightShift = new System.Windows.Forms.NumericUpDown();
+            this.numericEndHourNightShift = new System.Windows.Forms.NumericUpDown();
+            this.label262 = new System.Windows.Forms.Label();
+            this.label263 = new System.Windows.Forms.Label();
+            this.label264 = new System.Windows.Forms.Label();
+            this.label265 = new System.Windows.Forms.Label();
+            this.groupBox17 = new System.Windows.Forms.GroupBox();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -1419,6 +1426,9 @@
             this.panel40.SuspendLayout();
             this.panel42.SuspendLayout();
             this.groupBox15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericStartHourNightShift)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericEndHourNightShift)).BeginInit();
+            this.groupBox17.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabQuanLy
@@ -1444,7 +1454,7 @@
             this.tabPageQuanLyNhanSu.Controls.Add(this.tabQuanLyNhanSu);
             this.tabPageQuanLyNhanSu.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyNhanSu.Name = "tabPageQuanLyNhanSu";
-            this.tabPageQuanLyNhanSu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyNhanSu.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyNhanSu.Size = new System.Drawing.Size(1170, 649);
             this.tabPageQuanLyNhanSu.TabIndex = 0;
             this.tabPageQuanLyNhanSu.Text = "QUẢN LÝ NHÂN SỰ";
@@ -1467,7 +1477,7 @@
             this.tabPageThongTinNhanSu.Controls.Add(this.panel3);
             this.tabPageThongTinNhanSu.Location = new System.Drawing.Point(4, 25);
             this.tabPageThongTinNhanSu.Name = "tabPageThongTinNhanSu";
-            this.tabPageThongTinNhanSu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageThongTinNhanSu.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageThongTinNhanSu.Size = new System.Drawing.Size(1153, 608);
             this.tabPageThongTinNhanSu.TabIndex = 0;
             this.tabPageThongTinNhanSu.Text = "Thông tin nhân sự";
@@ -1595,7 +1605,7 @@
             this.tabPage25.Controls.Add(this.tbUserIDCreate);
             this.tabPage25.Location = new System.Drawing.Point(4, 25);
             this.tabPage25.Name = "tabPage25";
-            this.tabPage25.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage25.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage25.Size = new System.Drawing.Size(318, 356);
             this.tabPage25.TabIndex = 0;
             this.tabPage25.Text = "Tạo nhân viên";
@@ -1753,7 +1763,7 @@
             this.tabPage26.Controls.Add(this.panelChinhSuaNhanVien);
             this.tabPage26.Location = new System.Drawing.Point(4, 25);
             this.tabPage26.Name = "tabPage26";
-            this.tabPage26.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage26.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage26.Size = new System.Drawing.Size(318, 356);
             this.tabPage26.TabIndex = 1;
             this.tabPage26.Text = "Chỉnh sửa nhân viên";
@@ -1935,7 +1945,7 @@
             this.tabPageDoBangChamCong.Controls.Add(this.panel1);
             this.tabPageDoBangChamCong.Location = new System.Drawing.Point(4, 25);
             this.tabPageDoBangChamCong.Name = "tabPageDoBangChamCong";
-            this.tabPageDoBangChamCong.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageDoBangChamCong.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageDoBangChamCong.Size = new System.Drawing.Size(1153, 608);
             this.tabPageDoBangChamCong.TabIndex = 1;
             this.tabPageDoBangChamCong.Text = "Dò bảng chấm công";
@@ -2190,7 +2200,7 @@
             this.tabPageQuanLyDoanhThu.Controls.Add(this.tabQuanLyDoanhThu);
             this.tabPageQuanLyDoanhThu.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyDoanhThu.Name = "tabPageQuanLyDoanhThu";
-            this.tabPageQuanLyDoanhThu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyDoanhThu.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyDoanhThu.Size = new System.Drawing.Size(1170, 649);
             this.tabPageQuanLyDoanhThu.TabIndex = 1;
             this.tabPageQuanLyDoanhThu.Text = "QUẢN LÝ DOANH THU";
@@ -2223,7 +2233,7 @@
             this.tabPageThongKeDoanhThu.Controls.Add(this.dgvThongKeDoanhThu);
             this.tabPageThongKeDoanhThu.Location = new System.Drawing.Point(4, 25);
             this.tabPageThongKeDoanhThu.Name = "tabPageThongKeDoanhThu";
-            this.tabPageThongKeDoanhThu.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageThongKeDoanhThu.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageThongKeDoanhThu.Size = new System.Drawing.Size(1152, 610);
             this.tabPageThongKeDoanhThu.TabIndex = 0;
             this.tabPageThongKeDoanhThu.Text = "Thống kê doanh thu";
@@ -2570,7 +2580,7 @@
             this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panelTinhTienCongVan);
             this.tabPageCongThucTinhTienTheoCongVan.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTinhTienTheoCongVan.Name = "tabPageCongThucTinhTienTheoCongVan";
-            this.tabPageCongThucTinhTienTheoCongVan.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCongThucTinhTienTheoCongVan.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCongThucTinhTienTheoCongVan.Size = new System.Drawing.Size(1152, 610);
             this.tabPageCongThucTinhTienTheoCongVan.TabIndex = 1;
             this.tabPageCongThucTinhTienTheoCongVan.Text = "Công thức tính tiền theo công văn";
@@ -3035,7 +3045,7 @@
             this.tabPageCongThucTinhTienLuyTien.Controls.Add(this.panelTinhTienLuyTien);
             this.tabPageCongThucTinhTienLuyTien.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTinhTienLuyTien.Name = "tabPageCongThucTinhTienLuyTien";
-            this.tabPageCongThucTinhTienLuyTien.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCongThucTinhTienLuyTien.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCongThucTinhTienLuyTien.Size = new System.Drawing.Size(1152, 610);
             this.tabPageCongThucTinhTienLuyTien.TabIndex = 2;
             this.tabPageCongThucTinhTienLuyTien.Text = "Công thức tính tiền lũy tiến";
@@ -3428,7 +3438,7 @@
             this.tabPageCongThucTongHop.Controls.Add(this.panelTinhTienTongHop);
             this.tabPageCongThucTongHop.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTongHop.Name = "tabPageCongThucTongHop";
-            this.tabPageCongThucTongHop.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCongThucTongHop.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCongThucTongHop.Size = new System.Drawing.Size(1152, 610);
             this.tabPageCongThucTongHop.TabIndex = 3;
             this.tabPageCongThucTongHop.Text = "Công thức tổng hợp";
@@ -3942,7 +3952,7 @@
             this.tabPageCongThucTongHop2.Controls.Add(this.panelTinhTienTongHop2);
             this.tabPageCongThucTongHop2.Location = new System.Drawing.Point(4, 25);
             this.tabPageCongThucTongHop2.Name = "tabPageCongThucTongHop2";
-            this.tabPageCongThucTongHop2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCongThucTongHop2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCongThucTongHop2.Size = new System.Drawing.Size(1152, 610);
             this.tabPageCongThucTongHop2.TabIndex = 4;
             this.tabPageCongThucTongHop2.Text = "Công thức tổng hợp theo ngày đêm";
@@ -4509,7 +4519,7 @@
             this.tabPageQuanLyTheXeLoaiXe.Controls.Add(this.tabQuanLyThe_LoaiXe);
             this.tabPageQuanLyTheXeLoaiXe.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyTheXeLoaiXe.Name = "tabPageQuanLyTheXeLoaiXe";
-            this.tabPageQuanLyTheXeLoaiXe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyTheXeLoaiXe.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyTheXeLoaiXe.Size = new System.Drawing.Size(1170, 649);
             this.tabPageQuanLyTheXeLoaiXe.TabIndex = 2;
             this.tabPageQuanLyTheXeLoaiXe.Text = "QUẢN LÝ THẺ XE - LOẠI XE";
@@ -4538,7 +4548,7 @@
             this.tabPageQuanLyTheXe.Controls.Add(this.panel7);
             this.tabPageQuanLyTheXe.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyTheXe.Name = "tabPageQuanLyTheXe";
-            this.tabPageQuanLyTheXe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyTheXe.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyTheXe.Size = new System.Drawing.Size(1153, 614);
             this.tabPageQuanLyTheXe.TabIndex = 0;
             this.tabPageQuanLyTheXe.Text = "Quản lý thẻ xe";
@@ -4731,7 +4741,7 @@
             this.tabPage27.Controls.Add(this.tbCardIdentifyCreate);
             this.tabPage27.Location = new System.Drawing.Point(4, 25);
             this.tabPage27.Name = "tabPage27";
-            this.tabPage27.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage27.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage27.Size = new System.Drawing.Size(440, 174);
             this.tabPage27.TabIndex = 0;
             this.tabPage27.Text = "Tạo thẻ chip";
@@ -4816,7 +4826,7 @@
             this.tabPage28.Controls.Add(this.tbCardSearch);
             this.tabPage28.Location = new System.Drawing.Point(4, 25);
             this.tabPage28.Name = "tabPage28";
-            this.tabPage28.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage28.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage28.Size = new System.Drawing.Size(440, 174);
             this.tabPage28.TabIndex = 1;
             this.tabPage28.Text = "Chỉnh sửa/Tìm kiếm thẻ";
@@ -4924,7 +4934,7 @@
             this.tabPage29.Controls.Add(this.btnImportDanhSachTheXe);
             this.tabPage29.Location = new System.Drawing.Point(4, 25);
             this.tabPage29.Name = "tabPage29";
-            this.tabPage29.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage29.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage29.Size = new System.Drawing.Size(440, 174);
             this.tabPage29.TabIndex = 2;
             this.tabPage29.Text = "Import/Export DS thẻ";
@@ -4956,7 +4966,7 @@
             this.tabPageQuanLyLoaiXe.Controls.Add(this.dgvPartList);
             this.tabPageQuanLyLoaiXe.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyLoaiXe.Name = "tabPageQuanLyLoaiXe";
-            this.tabPageQuanLyLoaiXe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyLoaiXe.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyLoaiXe.Size = new System.Drawing.Size(1153, 614);
             this.tabPageQuanLyLoaiXe.TabIndex = 1;
             this.tabPageQuanLyLoaiXe.Text = "Quản lý loại xe";
@@ -4991,7 +5001,7 @@
             this.tabPage30.Controls.Add(this.tbPartIdCreate);
             this.tabPage30.Location = new System.Drawing.Point(4, 25);
             this.tabPage30.Name = "tabPage30";
-            this.tabPage30.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage30.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage30.Size = new System.Drawing.Size(358, 294);
             this.tabPage30.TabIndex = 0;
             this.tabPage30.Text = "Tạo loại xe";
@@ -5141,7 +5151,7 @@
             this.tabPage31.Controls.Add(this.panelChinhSuaLoaiXe);
             this.tabPage31.Location = new System.Drawing.Point(4, 25);
             this.tabPage31.Name = "tabPage31";
-            this.tabPage31.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage31.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage31.Size = new System.Drawing.Size(358, 294);
             this.tabPage31.TabIndex = 1;
             this.tabPage31.Text = "Chỉnh sửa loại xe";
@@ -5395,7 +5405,7 @@
             this.tabPageKhoaThe.Controls.Add(this.panel35);
             this.tabPageKhoaThe.Location = new System.Drawing.Point(4, 25);
             this.tabPageKhoaThe.Name = "tabPageKhoaThe";
-            this.tabPageKhoaThe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageKhoaThe.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageKhoaThe.Size = new System.Drawing.Size(1153, 614);
             this.tabPageKhoaThe.TabIndex = 4;
             this.tabPageKhoaThe.Text = "Khóa thẻ";
@@ -5543,7 +5553,7 @@
             this.tabPageKichHoatThe.Controls.Add(this.panel6);
             this.tabPageKichHoatThe.Location = new System.Drawing.Point(4, 25);
             this.tabPageKichHoatThe.Name = "tabPageKichHoatThe";
-            this.tabPageKichHoatThe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageKichHoatThe.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageKichHoatThe.Size = new System.Drawing.Size(1153, 614);
             this.tabPageKichHoatThe.TabIndex = 2;
             this.tabPageKichHoatThe.Text = "Kích hoạt thẻ";
@@ -5691,7 +5701,7 @@
             this.tabPageQuanLyVeThang.Controls.Add(this.tabQuanLyVeThang);
             this.tabPageQuanLyVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyVeThang.Name = "tabPageQuanLyVeThang";
-            this.tabPageQuanLyVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyVeThang.Size = new System.Drawing.Size(1170, 649);
             this.tabPageQuanLyVeThang.TabIndex = 3;
             this.tabPageQuanLyVeThang.Text = "QUẢN LÝ VÉ THÁNG";
@@ -5720,7 +5730,7 @@
             this.tabPageXemNhatKyVeThang.Controls.Add(this.panel20);
             this.tabPageXemNhatKyVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageXemNhatKyVeThang.Name = "tabPageXemNhatKyVeThang";
-            this.tabPageXemNhatKyVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageXemNhatKyVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageXemNhatKyVeThang.Size = new System.Drawing.Size(1156, 617);
             this.tabPageXemNhatKyVeThang.TabIndex = 0;
             this.tabPageXemNhatKyVeThang.Text = "Xem nhật ký vé tháng";
@@ -6353,7 +6363,7 @@
             this.tabPageTaoMoiVeThang.Controls.Add(this.tabControlTaoMoiTheThang);
             this.tabPageTaoMoiVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageTaoMoiVeThang.Name = "tabPageTaoMoiVeThang";
-            this.tabPageTaoMoiVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageTaoMoiVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTaoMoiVeThang.Size = new System.Drawing.Size(1156, 617);
             this.tabPageTaoMoiVeThang.TabIndex = 1;
             this.tabPageTaoMoiVeThang.Text = "Tạo mới vé tháng";
@@ -6590,7 +6600,7 @@
             this.tabPageTaoTheThang.Controls.Add(this.btnTicketMonthCreate);
             this.tabPageTaoTheThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageTaoTheThang.Name = "tabPageTaoTheThang";
-            this.tabPageTaoTheThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageTaoTheThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTaoTheThang.Size = new System.Drawing.Size(358, 568);
             this.tabPageTaoTheThang.TabIndex = 0;
             this.tabPageTaoTheThang.Text = "Tạo mới";
@@ -6930,7 +6940,7 @@
             this.tabPage8.Controls.Add(this.tbTicketMonthKeyWordSearch);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage8.Size = new System.Drawing.Size(358, 568);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "Chỉnh sửa/Tìm kiếm thẻ";
@@ -7327,7 +7337,7 @@
             this.tabPageGiaHanVeThang.Controls.Add(this.panel23);
             this.tabPageGiaHanVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageGiaHanVeThang.Name = "tabPageGiaHanVeThang";
-            this.tabPageGiaHanVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageGiaHanVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageGiaHanVeThang.Size = new System.Drawing.Size(1156, 617);
             this.tabPageGiaHanVeThang.TabIndex = 2;
             this.tabPageGiaHanVeThang.Text = "Gia hạn - Thông tin hết hạn vé tháng";
@@ -7699,7 +7709,7 @@
             this.tabPageMatVeThang.Controls.Add(this.panel24);
             this.tabPageMatVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageMatVeThang.Name = "tabPageMatVeThang";
-            this.tabPageMatVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageMatVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageMatVeThang.Size = new System.Drawing.Size(1156, 617);
             this.tabPageMatVeThang.TabIndex = 3;
             this.tabPageMatVeThang.Text = "Mất thẻ tháng / đổi mã thẻ";
@@ -7992,9 +8002,9 @@
             this.tabPageKhoaVeThang.Controls.Add(this.dgvBlockTicketMonthList);
             this.tabPageKhoaVeThang.Controls.Add(this.panel36);
             this.tabPageKhoaVeThang.Location = new System.Drawing.Point(4, 25);
-            this.tabPageKhoaVeThang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageKhoaVeThang.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageKhoaVeThang.Name = "tabPageKhoaVeThang";
-            this.tabPageKhoaVeThang.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageKhoaVeThang.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageKhoaVeThang.Size = new System.Drawing.Size(1156, 617);
             this.tabPageKhoaVeThang.TabIndex = 5;
             this.tabPageKhoaVeThang.Text = "Khóa thẻ tháng";
@@ -8234,7 +8244,7 @@
             this.tabPageKichHoatVeThang.Controls.Add(this.panel5);
             this.tabPageKichHoatVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageKichHoatVeThang.Name = "tabPageKichHoatVeThang";
-            this.tabPageKichHoatVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageKichHoatVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageKichHoatVeThang.Size = new System.Drawing.Size(1156, 617);
             this.tabPageKichHoatVeThang.TabIndex = 4;
             this.tabPageKichHoatVeThang.Text = "Kích hoạt thẻ tháng";
@@ -8476,7 +8486,7 @@
             this.tabPageBaoCaoCongNo.Controls.Add(this.panel43);
             this.tabPageBaoCaoCongNo.Location = new System.Drawing.Point(4, 25);
             this.tabPageBaoCaoCongNo.Name = "tabPageBaoCaoCongNo";
-            this.tabPageBaoCaoCongNo.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageBaoCaoCongNo.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageBaoCaoCongNo.Size = new System.Drawing.Size(1156, 617);
             this.tabPageBaoCaoCongNo.TabIndex = 6;
             this.tabPageBaoCaoCongNo.Text = "Báo cáo công nợ";
@@ -8747,7 +8757,7 @@
             this.tabPageQuanLyHeThong.Controls.Add(this.tabQuanLyHeThong);
             this.tabPageQuanLyHeThong.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyHeThong.Name = "tabPageQuanLyHeThong";
-            this.tabPageQuanLyHeThong.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyHeThong.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyHeThong.Size = new System.Drawing.Size(1170, 649);
             this.tabPageQuanLyHeThong.TabIndex = 4;
             this.tabPageQuanLyHeThong.Text = "QUẢN LÝ  HỆ THỐNG";
@@ -8771,7 +8781,7 @@
             this.tabPageCauHinhCoBan.Controls.Add(this.tabControl3);
             this.tabPageCauHinhCoBan.Location = new System.Drawing.Point(4, 25);
             this.tabPageCauHinhCoBan.Name = "tabPageCauHinhCoBan";
-            this.tabPageCauHinhCoBan.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCauHinhCoBan.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCauHinhCoBan.Size = new System.Drawing.Size(1150, 615);
             this.tabPageCauHinhCoBan.TabIndex = 0;
             this.tabPageCauHinhCoBan.Text = "Cấu hình cơ bản";
@@ -8793,7 +8803,7 @@
             this.tabPageCauHinhKetNoi.Controls.Add(this.groupBox2);
             this.tabPageCauHinhKetNoi.Location = new System.Drawing.Point(4, 25);
             this.tabPageCauHinhKetNoi.Name = "tabPageCauHinhKetNoi";
-            this.tabPageCauHinhKetNoi.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCauHinhKetNoi.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCauHinhKetNoi.Size = new System.Drawing.Size(1133, 577);
             this.tabPageCauHinhKetNoi.TabIndex = 0;
             this.tabPageCauHinhKetNoi.Text = "Cấu hình kết nối";
@@ -9229,9 +9239,10 @@
             this.tabPageCauHinhHienThi.Controls.Add(this.textBox5);
             this.tabPageCauHinhHienThi.Controls.Add(this.label164);
             this.tabPageCauHinhHienThi.Controls.Add(this.textBox4);
+            this.tabPageCauHinhHienThi.Controls.Add(this.groupBox17);
             this.tabPageCauHinhHienThi.Location = new System.Drawing.Point(4, 25);
             this.tabPageCauHinhHienThi.Name = "tabPageCauHinhHienThi";
-            this.tabPageCauHinhHienThi.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageCauHinhHienThi.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageCauHinhHienThi.Size = new System.Drawing.Size(1133, 577);
             this.tabPageCauHinhHienThi.TabIndex = 1;
             this.tabPageCauHinhHienThi.Text = "Cấu hình hiển thị";
@@ -9653,7 +9664,7 @@
             this.tabPageQuanLyThuTienXe.Controls.Add(this.panel26);
             this.tabPageQuanLyThuTienXe.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyThuTienXe.Name = "tabPageQuanLyThuTienXe";
-            this.tabPageQuanLyThuTienXe.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyThuTienXe.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyThuTienXe.Size = new System.Drawing.Size(1150, 615);
             this.tabPageQuanLyThuTienXe.TabIndex = 1;
             this.tabPageQuanLyThuTienXe.Text = "Quản lý thu tiền xe";
@@ -9931,7 +9942,7 @@
             this.tabPagePhanQuyenTruyCap.Controls.Add(this.flowLayoutPanel1);
             this.tabPagePhanQuyenTruyCap.Location = new System.Drawing.Point(4, 25);
             this.tabPagePhanQuyenTruyCap.Name = "tabPagePhanQuyenTruyCap";
-            this.tabPagePhanQuyenTruyCap.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPagePhanQuyenTruyCap.Padding = new System.Windows.Forms.Padding(3);
             this.tabPagePhanQuyenTruyCap.Size = new System.Drawing.Size(1150, 615);
             this.tabPagePhanQuyenTruyCap.TabIndex = 2;
             this.tabPagePhanQuyenTruyCap.Text = "Phân quyền truy cập";
@@ -10073,7 +10084,7 @@
             this.tabPageNhatKyHeThong.Controls.Add(this.panel29);
             this.tabPageNhatKyHeThong.Location = new System.Drawing.Point(4, 25);
             this.tabPageNhatKyHeThong.Name = "tabPageNhatKyHeThong";
-            this.tabPageNhatKyHeThong.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageNhatKyHeThong.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageNhatKyHeThong.Size = new System.Drawing.Size(1150, 615);
             this.tabPageNhatKyHeThong.TabIndex = 3;
             this.tabPageNhatKyHeThong.Text = "Nhật ký hệ thống";
@@ -10403,7 +10414,7 @@
             this.tabPageQuanLyXeRaVao.Controls.Add(this.tabQuanLyXe);
             this.tabPageQuanLyXeRaVao.Location = new System.Drawing.Point(4, 25);
             this.tabPageQuanLyXeRaVao.Name = "tabPageQuanLyXeRaVao";
-            this.tabPageQuanLyXeRaVao.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageQuanLyXeRaVao.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageQuanLyXeRaVao.Size = new System.Drawing.Size(1170, 649);
             this.tabPageQuanLyXeRaVao.TabIndex = 5;
             this.tabPageQuanLyXeRaVao.Text = "QUẢN LÝ XE RA VÀO";
@@ -10431,7 +10442,7 @@
             this.tabPageThietLapRaVao.Controls.Add(this.tbTicketLimitDay);
             this.tabPageThietLapRaVao.Location = new System.Drawing.Point(4, 25);
             this.tabPageThietLapRaVao.Name = "tabPageThietLapRaVao";
-            this.tabPageThietLapRaVao.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageThietLapRaVao.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageThietLapRaVao.Size = new System.Drawing.Size(1150, 615);
             this.tabPageThietLapRaVao.TabIndex = 0;
             this.tabPageThietLapRaVao.Text = "Thiết lập ra vào";
@@ -10598,7 +10609,7 @@
             this.tabPageTraCuuVaoRa.Controls.Add(this.panel10);
             this.tabPageTraCuuVaoRa.Location = new System.Drawing.Point(4, 25);
             this.tabPageTraCuuVaoRa.Name = "tabPageTraCuuVaoRa";
-            this.tabPageTraCuuVaoRa.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageTraCuuVaoRa.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTraCuuVaoRa.Size = new System.Drawing.Size(1150, 615);
             this.tabPageTraCuuVaoRa.TabIndex = 1;
             this.tabPageTraCuuVaoRa.Text = "Tra cứu vào ra";
@@ -11187,7 +11198,7 @@
             this.tabPageTraCuuVaoRaVeThang.Controls.Add(this.panel15);
             this.tabPageTraCuuVaoRaVeThang.Location = new System.Drawing.Point(4, 25);
             this.tabPageTraCuuVaoRaVeThang.Name = "tabPageTraCuuVaoRaVeThang";
-            this.tabPageTraCuuVaoRaVeThang.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageTraCuuVaoRaVeThang.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageTraCuuVaoRaVeThang.Size = new System.Drawing.Size(1150, 615);
             this.tabPageTraCuuVaoRaVeThang.TabIndex = 2;
             this.tabPageTraCuuVaoRaVeThang.Text = "Tra cứu vào ra vé tháng";
@@ -11461,7 +11472,7 @@
             // 
             this.tabPageXemHopDen.Location = new System.Drawing.Point(4, 25);
             this.tabPageXemHopDen.Name = "tabPageXemHopDen";
-            this.tabPageXemHopDen.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageXemHopDen.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageXemHopDen.Size = new System.Drawing.Size(1150, 615);
             this.tabPageXemHopDen.TabIndex = 3;
             this.tabPageXemHopDen.Text = "Xem hộp đen";
@@ -11499,7 +11510,7 @@
             this.tabPageInPhieuThuChi.Controls.Add(this.panelPrintReceipt);
             this.tabPageInPhieuThuChi.Location = new System.Drawing.Point(4, 25);
             this.tabPageInPhieuThuChi.Name = "tabPageInPhieuThuChi";
-            this.tabPageInPhieuThuChi.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageInPhieuThuChi.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageInPhieuThuChi.Size = new System.Drawing.Size(1153, 608);
             this.tabPageInPhieuThuChi.TabIndex = 0;
             this.tabPageInPhieuThuChi.Text = "In phiếu thu / chi";
@@ -11561,7 +11572,7 @@
             this.panelPrintReceipt.Controls.Add(this.tbPrintReceiptCost);
             this.panelPrintReceipt.Controls.Add(this.label235);
             this.panelPrintReceipt.Location = new System.Drawing.Point(19, 19);
-            this.panelPrintReceipt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelPrintReceipt.Margin = new System.Windows.Forms.Padding(2);
             this.panelPrintReceipt.Name = "panelPrintReceipt";
             this.panelPrintReceipt.Size = new System.Drawing.Size(1110, 533);
             this.panelPrintReceipt.TabIndex = 31;
@@ -12074,7 +12085,7 @@
             this.tabPageLichSuPhieuThuChi.Controls.Add(this.flowLayoutPanel2);
             this.tabPageLichSuPhieuThuChi.Location = new System.Drawing.Point(4, 25);
             this.tabPageLichSuPhieuThuChi.Name = "tabPageLichSuPhieuThuChi";
-            this.tabPageLichSuPhieuThuChi.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageLichSuPhieuThuChi.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageLichSuPhieuThuChi.Size = new System.Drawing.Size(1153, 608);
             this.tabPageLichSuPhieuThuChi.TabIndex = 1;
             this.tabPageLichSuPhieuThuChi.Text = "Lịch sử phiếu thu / chi";
@@ -12543,7 +12554,7 @@
             this.tabPageChiTietPhieuThuChi.Controls.Add(this.panel41);
             this.tabPageChiTietPhieuThuChi.Location = new System.Drawing.Point(4, 25);
             this.tabPageChiTietPhieuThuChi.Name = "tabPageChiTietPhieuThuChi";
-            this.tabPageChiTietPhieuThuChi.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPageChiTietPhieuThuChi.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageChiTietPhieuThuChi.Size = new System.Drawing.Size(1153, 608);
             this.tabPageChiTietPhieuThuChi.TabIndex = 2;
             this.tabPageChiTietPhieuThuChi.Text = "Chi tiết phiếu thu / chi";
@@ -12554,7 +12565,7 @@
             this.panel41.Controls.Add(this.flowLayoutPanel3);
             this.panel41.Controls.Add(this.panel42);
             this.panel41.Location = new System.Drawing.Point(5, 2);
-            this.panel41.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel41.Margin = new System.Windows.Forms.Padding(2);
             this.panel41.Name = "panel41";
             this.panel41.Size = new System.Drawing.Size(1143, 601);
             this.panel41.TabIndex = 29;
@@ -13044,6 +13055,96 @@
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(135, 22);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
             // 
+            // numericStartHourNightShift
+            // 
+            this.numericStartHourNightShift.Location = new System.Drawing.Point(161, 54);
+            this.numericStartHourNightShift.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.numericStartHourNightShift.Name = "numericStartHourNightShift";
+            this.numericStartHourNightShift.Size = new System.Drawing.Size(65, 22);
+            this.numericStartHourNightShift.TabIndex = 61;
+            this.numericStartHourNightShift.Value = new decimal(new int[] {
+            19,
+            0,
+            0,
+            0});
+            // 
+            // numericEndHourNightShift
+            // 
+            this.numericEndHourNightShift.Location = new System.Drawing.Point(161, 23);
+            this.numericEndHourNightShift.Maximum = new decimal(new int[] {
+            23,
+            0,
+            0,
+            0});
+            this.numericEndHourNightShift.Name = "numericEndHourNightShift";
+            this.numericEndHourNightShift.Size = new System.Drawing.Size(65, 22);
+            this.numericEndHourNightShift.TabIndex = 60;
+            this.numericEndHourNightShift.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // label262
+            // 
+            this.label262.AutoSize = true;
+            this.label262.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label262.Location = new System.Drawing.Point(229, 58);
+            this.label262.Name = "label262";
+            this.label262.Size = new System.Drawing.Size(15, 16);
+            this.label262.TabIndex = 59;
+            this.label262.Text = "h";
+            // 
+            // label263
+            // 
+            this.label263.AutoSize = true;
+            this.label263.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label263.Location = new System.Drawing.Point(229, 26);
+            this.label263.Name = "label263";
+            this.label263.Size = new System.Drawing.Size(15, 16);
+            this.label263.TabIndex = 58;
+            this.label263.Text = "h";
+            this.label263.Click += new System.EventHandler(this.label263_Click);
+            // 
+            // label264
+            // 
+            this.label264.AutoSize = true;
+            this.label264.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label264.Location = new System.Drawing.Point(120, 58);
+            this.label264.Name = "label264";
+            this.label264.Size = new System.Drawing.Size(35, 16);
+            this.label264.TabIndex = 57;
+            this.label264.Text = "Đến:";
+            // 
+            // label265
+            // 
+            this.label265.AutoSize = true;
+            this.label265.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label265.Location = new System.Drawing.Point(33, 28);
+            this.label265.Name = "label265";
+            this.label265.Size = new System.Drawing.Size(122, 16);
+            this.label265.TabIndex = 56;
+            this.label265.Text = "Ca ngày bắt đầu từ:";
+            // 
+            // groupBox17
+            // 
+            this.groupBox17.Controls.Add(this.numericStartHourNightShift);
+            this.groupBox17.Controls.Add(this.numericEndHourNightShift);
+            this.groupBox17.Controls.Add(this.label265);
+            this.groupBox17.Controls.Add(this.label262);
+            this.groupBox17.Controls.Add(this.label264);
+            this.groupBox17.Controls.Add(this.label263);
+            this.groupBox17.Location = new System.Drawing.Point(777, 22);
+            this.groupBox17.Name = "groupBox17";
+            this.groupBox17.Size = new System.Drawing.Size(348, 91);
+            this.groupBox17.TabIndex = 62;
+            this.groupBox17.TabStop = false;
+            this.groupBox17.Text = "Thời gian ca trực";
+            // 
             // FormQuanLy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -13329,6 +13430,10 @@
             this.panel42.PerformLayout();
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericStartHourNightShift)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericEndHourNightShift)).EndInit();
+            this.groupBox17.ResumeLayout(false);
+            this.groupBox17.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -14422,5 +14527,12 @@
         private System.Windows.Forms.Label label260;
         private System.Windows.Forms.Label label261;
         private System.Windows.Forms.TextBox tb_com_reader_left;
+        private System.Windows.Forms.GroupBox groupBox17;
+        private System.Windows.Forms.NumericUpDown numericStartHourNightShift;
+        private System.Windows.Forms.NumericUpDown numericEndHourNightShift;
+        private System.Windows.Forms.Label label265;
+        private System.Windows.Forms.Label label262;
+        private System.Windows.Forms.Label label264;
+        private System.Windows.Forms.Label label263;
     }
 }

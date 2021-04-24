@@ -15,14 +15,16 @@ namespace ParkingMangement.Model
         [JsonProperty("GioKetThuc")]
         public string GioKetThuc { get; set; }
         [JsonProperty("TongXeVao")]
-        public string TongXeVao { get; set; }
+        public long TongXeVao { get; set; }
         [JsonProperty("TongXeRa")]
-        public string TongXeRa { get; set; }
+        public long TongXeRa { get; set; }
         [JsonProperty("TongXeTon")]
-        public string TongXeTon { get; set; }
+        public long TongXeTon { get; set; }
         [JsonProperty("TongTien")]
-        public string TongTien { get; set; }
+        public long TongTien { get; set; }
         [JsonProperty("SoLuotXe")]
-        public RevenueDetail SoLuotXe { get; set; }
+        public string SoLuotXe { get; set; }
+        [JsonProperty("SoLuotXeChiTiet")]
+        public string SoLuotXeChiTiet { get; set; }
     }
 }

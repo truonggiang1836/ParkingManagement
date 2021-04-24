@@ -240,11 +240,11 @@ namespace ParkingMangement.GUI
                 CarDTO carDTO = new CarDTO();
                 carDTO.Identify = identify;
                 carDTO.TimeEnd = DateTime.Now;
-                carDTO.IdOut = Program.CurrentUserID;
+                carDTO.IdOut = Program.CurrentStaffUserID;
                 carDTO.Cost = 0;
                 carDTO.IsLostCard = ConfigDAO.GetLostCard();
                 carDTO.Computer = Environment.MachineName;
-                carDTO.Account = Program.CurrentUserID;
+                carDTO.Account = Program.CurrentStaffUserID;
                 carDTO.DateUpdate = DateTime.Now;
                 carDTO.DateLostCard = DateTime.Now;
                 DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);

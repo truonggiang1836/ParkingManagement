@@ -45,16 +45,20 @@ namespace ParkingMangement.GUI
         {
             this.Hide();
             Program.StartWorkTime = DateTime.Now;
-            Program.CurrentUserID = data.Rows[0].Field<string>("UserID");
+            Program.CurrentStaffUserID = data.Rows[0].Field<string>("UserID");
             Form f = new FormNhanVien();
+            string userId = data.Rows[0].Field<string>("UserID");
+            Program.CurrentUserID = userId;
             if (data.Rows[0].Field<string>("IDFunct") != Constant.FUNCTION_ID_NHAN_VIEN)
             {
                 f = new FormQuanLy();
                 ((FormQuanLy)f).formNhanVien = this.formNhanVien;
+                Program.CurrentManagerUserID = userId;
             }
 
             if (formNhanVien != null)
             {
+                Program.CurrentStaffUserID = userId;
                 if (f.GetType() == typeof(FormQuanLy))
                 {
                     f.FormClosing += new FormClosingEventHandler(FormQuanLy_FormClosing);
@@ -77,7 +81,7 @@ namespace ParkingMangement.GUI
             this.Close();
             if (formNhanVien != null)
             {
-                Program.CurrentUserID = formNhanVien.CurrentUserID;
+                Program.CurrentStaffUserID = formNhanVien.CurrentUserID;
             }
         }
 

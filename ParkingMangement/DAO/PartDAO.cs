@@ -53,6 +53,17 @@ namespace ParkingMangement.DAO
             return "";
         }
 
+        public static string GetPartSignByPartID(string id)
+        {
+            string sql = "select Sign from Part where ID = '" + id + "'";
+            DataTable data = (new Database()).ExcuQuery(sql);
+            if (data != null && data.Rows.Count > 0)
+            {
+                return data.Rows[0].Field<string>("Sign");
+            }
+            return "";
+        }
+
         public static DataTable GetPartIDAndAmountBySign(string sign)
         {
             string sql = "select ID, Amount from Part where Sign = '" + sign + "'";

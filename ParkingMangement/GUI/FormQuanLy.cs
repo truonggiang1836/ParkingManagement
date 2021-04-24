@@ -457,6 +457,8 @@ namespace ParkingMangement.GUI
                 ticketType = CarDAO.MONTH_TICKET;
             }
             dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userInID, userOutID, ticketType);
+            //string json = Util.getRevenueData(startDateReport, endDateReport, userOutID);
+            //Util.syncRevenueToSPMServer(json);
         }
 
         private void btnAllSaleReport_Click(object sender, EventArgs e)
@@ -1501,7 +1503,7 @@ namespace ParkingMangement.GUI
                 btnPrintTransferCost.Enabled = false;
                 btnPrintFeeNotice.Enabled = false;
 
-                string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+                string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentManagerUserID);
                 string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
 
                 if (!functionId.Equals("Ad"))
@@ -1531,7 +1533,7 @@ namespace ParkingMangement.GUI
                 hienCauHinhKetNoiTuConfig();
             } else if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyPhieuThuChi"])
             {
-                string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+                string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentManagerUserID);
                 string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
 
                 if (!functionId.Equals("Ad"))
@@ -1773,7 +1775,7 @@ namespace ParkingMangement.GUI
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthRegistrationDateEdit);
                 setFormatDateForDateTimePicker(dateTimePickerTicketMonthExpirationDateEdit);
 
-                string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+                string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentManagerUserID);
                 if (functionID.Equals(Constant.FUNCTION_ID_ADMIN))
                 {
                     dateTimePickerTicketMonthRegistrationDateCreate.Enabled = true;
@@ -1833,7 +1835,7 @@ namespace ParkingMangement.GUI
             CardDTO cardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
             ticketMonthDTO.IdPart = cardDTO.Type;
 
-            ticketMonthDTO.Account = Program.CurrentUserID;
+            ticketMonthDTO.Account = Program.CurrentManagerUserID;
             ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateCreate.Value.Date;
             ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateCreate.Value.Date;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountCreate.Text;
@@ -1881,7 +1883,7 @@ namespace ParkingMangement.GUI
             CardDTO oldCardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
             ticketMonthDTO.IdPart = oldCardDTO.Type;
 
-            ticketMonthDTO.Account = Program.CurrentUserID;
+            ticketMonthDTO.Account = Program.CurrentManagerUserID;
             ticketMonthDTO.RegistrationDate = dateTimePickerTicketMonthRegistrationDateEdit.Value;
             ticketMonthDTO.ExpirationDate = dateTimePickerTicketMonthExpirationDateEdit.Value;
             ticketMonthDTO.ChargesAmount = tbTicketMonthChargesAmountEdit.Text;
@@ -2188,7 +2190,7 @@ namespace ParkingMangement.GUI
                 DateTime expirationDate = Convert.ToDateTime(dgvTicketMonthList.Rows[Index].Cells["ExpirationDate"].Value);
                 ticketMonthDTO.ExpirationDate = expirationDate;
             }
-            ticketMonthDTO.Account = Program.CurrentUserID;
+            ticketMonthDTO.Account = Program.CurrentManagerUserID;
             addTicketLog(Constant.LOG_TYPE_DELETE_TICKET_MONTH, ticketMonthDTO);
         }
 
@@ -2819,7 +2821,7 @@ namespace ParkingMangement.GUI
 
         private void saveLostCard()
         {
-            string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+            string functionId = UserDAO.GetFunctionIDByUserID(Program.CurrentManagerUserID);
             string[] listFunctionSec = FunctionalDAO.GetFunctionSecByID(functionId).Split(',');
             if (!listFunctionSec.Contains(Constant.NODE_VALUE_LUU_MAT_THE.ToString()))
             {
@@ -2838,11 +2840,11 @@ namespace ParkingMangement.GUI
                 CarDTO carDTO = new CarDTO();
                 carDTO.Identify = identify;
                 carDTO.TimeEnd = DateTime.Now;
-                carDTO.IdOut = Program.CurrentUserID;
+                carDTO.IdOut = Program.CurrentManagerUserID;
                 carDTO.Cost = 0;
                 carDTO.IsLostCard = ConfigDAO.GetLostCard();
                 carDTO.Computer = Environment.MachineName;
-                carDTO.Account = Program.CurrentUserID;
+                carDTO.Account = Program.CurrentManagerUserID;
                 carDTO.DateUpdate = DateTime.Now;
                 carDTO.DateLostCard = DateTime.Now;
                 DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
@@ -2917,6 +2919,8 @@ namespace ParkingMangement.GUI
             tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
             tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
             tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
+            numericEndHourNightShift.Value = ConfigDAO.GetEndHourNightShift();
+            numericStartHourNightShift.Value = ConfigDAO.GetStartHourNightShift();
 
             loadQuyenNhanVien();
 
@@ -3134,6 +3138,8 @@ namespace ParkingMangement.GUI
             configDTO.NoticeExpiredDate = noticeExpiredDate;
 
             configDTO.NoticeFeeContent = tbNoticeFeeContent.Text;
+            configDTO.StartHourNightShift = (int) numericStartHourNightShift.Value;
+            configDTO.EndHourNightShift = (int) numericEndHourNightShift.Value;
 
             if (ConfigDAO.UpdateCauHinhHienThi(configDTO))
             {
@@ -3408,7 +3414,7 @@ namespace ParkingMangement.GUI
 
         private void checkShowHideAllTabPage()
         {
-            string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentUserID);
+            string functionID = UserDAO.GetFunctionIDByUserID(Program.CurrentManagerUserID);
             if (functionID.Equals(Constant.FUNCTION_ID_ADMIN))
             {
                 return;
@@ -4220,7 +4226,7 @@ namespace ParkingMangement.GUI
 
         void Delete_Car_Click(Object sender, System.EventArgs e, int currentRow)
         {
-            if (UserDAO.GetFunctionIDByUserID(Program.CurrentUserID) != Constant.FUNCTION_ID_ADMIN)
+            if (UserDAO.GetFunctionIDByUserID(Program.CurrentManagerUserID) != Constant.FUNCTION_ID_ADMIN)
             {
                 MessageBox.Show("Chỉ có admin mới được quyền xóa!");
                 return;
@@ -4966,7 +4972,7 @@ namespace ParkingMangement.GUI
 
                     TicketMonthDTO ticketMonthDTO = TicketMonthDAO.getTicketMonthFromDataRow(row);
                     ticketMonthDTO.ProcessDate = DateTime.Now;
-                    ticketMonthDTO.Account = Program.CurrentUserID;
+                    ticketMonthDTO.Account = Program.CurrentManagerUserID;
                     ticketMonthDTO.Status = 0;
                     ticketMonthDTO.DayUnlimit = DateTime.Now;
                     CardDTO cardDTO = CardDAO.GetCardModelByID(ticketMonthDTO.Id);
@@ -6721,6 +6727,11 @@ namespace ParkingMangement.GUI
             cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
 
             handleReceiveUhfData(cardID);
+        }
+
+        private void label263_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

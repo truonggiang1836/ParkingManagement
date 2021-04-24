@@ -187,6 +187,32 @@ namespace ParkingMangement.DAO
             }
         }
 
+        public static int GetStartHourNightShift()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("StartHourNightShift");
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public static int GetEndHourNightShift()
+        {
+            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("EndHourNightShift");
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public static string getUpdateSql(ConfigDTO configDTO)
         {
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
