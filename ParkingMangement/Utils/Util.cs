@@ -1340,6 +1340,9 @@ namespace ParkingMangement.Utils
                 endDatePreviousShift = startDateCurrentShift;
             }
 
+            endDateCurrentShift = endDateCurrentShift.AddSeconds(-1);
+            endDatePreviousShift = endDatePreviousShift.AddSeconds(-1);
+
             DataTable dt = UserDAO.GetAllStaftForSyncRevenue();
             foreach (DataRow row in dt.Rows)
             {
