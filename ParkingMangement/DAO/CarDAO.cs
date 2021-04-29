@@ -917,7 +917,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetLastCarByID(string id)
         {
-            string sql = "select top 1 Identify, ID, TimeStart, TimeEnd, Digit, DigitIn, Images, Images2, Images3, Images4, Cost from Car where ID = '" + id + "'" + sqlOrderByIdentifyDesc;
+            string sql = "select top 1 Identify, ID, TimeStart, TimeEnd, Digit, DigitIn, Images, Images2, Cost from Car where ID = '" + id + "'" + sqlOrderByIdentifyDesc;
             return (new Database()).ExcuQuery(sql);
         }
 
@@ -939,24 +939,24 @@ namespace ParkingMangement.DAO
             return "";
         }
 
-        public static void Insert(CarDTO carDTO)
+        public static bool Insert(CarDTO carDTO)
         {
             string sql = "insert into Car(ID, TimeStart, Digit, DigitIn, IDIn, IDOut, IDTicketMonth, IDPart, Images, Images2, Computer, Account, DateUpdate) values ('" + carDTO.Id + "', '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', '" + carDTO.Digit + "', '" + carDTO.DigitIn
                 + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', '" + carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Computer + "', '" + carDTO.Account + "', '" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "')";
-            (new Database()).ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
-        public static void UpdateCarIn(CarDTO carDTO)
+        public static bool UpdateCarIn(CarDTO carDTO)
         {
             string sql = "update Car set TimeStart ='" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', IDIn ='" + carDTO.IdIn + "', DigitIn ='" + carDTO.DigitIn + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account +
                 "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
-            (new Database()).ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
-        public static void UpdateCarOut(CarDTO carDTO)
+        public static bool UpdateCarOut(CarDTO carDTO)
         {
             string sql = "update Car set DigitOut = '" + carDTO.DigitOut + "', TimeEnd ='" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
-            (new Database()).ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static bool UpdateLostCard(CarDTO carDTO)

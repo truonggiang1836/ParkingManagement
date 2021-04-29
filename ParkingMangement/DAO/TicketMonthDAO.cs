@@ -641,7 +641,6 @@ namespace ParkingMangement.DAO
 
                 if (!partId.Equals(""))
                 {
-                    partId = data.Rows[0].Field<string>("ID");
                     ticketMonthDTO.IdPart = partId;
                 }
                 ticketMonthDTO.ChargesAmount = jObject.GetValue("phiThang").ToString();

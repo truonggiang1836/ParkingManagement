@@ -79,7 +79,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "select CardTypeID from Part where ID = '" + id + "'";
             DataTable data = (new Database()).ExcuQuery(sql);
-            if (data != null)
+            if (data != null && data.Rows.Count > 0)
             {
                 return data.Rows[0].Field<string>("CardTypeID");
             }

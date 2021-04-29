@@ -70,6 +70,7 @@ namespace ParkingMangement.Utils
         public static string sLabelCardNotUsing = "Không dùng";
         public static string sMessageCardIdentifyExisted = "Số thẻ đã tồn tại";
         public static string sMessageCardIdExisted = "Mã thẻ chíp đã tồn tại";
+        public static string sMessageCardNotUpdate = "Thẻ chưa nhận vào hệ thống. Xin vui lòng quẹt lại!";
 
         // car
         public static string sMessageXeDaRaKhoiBai = "Xe này đã ra khỏi bãi";
