@@ -1441,7 +1441,7 @@ namespace ParkingMangement.GUI
                         carDTO.Computer = Environment.MachineName;
                         carDTO.Account = Program.CurrentStaffUserID;
                         carDTO.DateUpdate = DateTime.Now;
-                        if (!CarDAO.UpdateCarOut(carDTO)
+                        if (!CarDAO.UpdateCarOut(carDTO))
                         {
                             resetDataOneSide(true);
                             MessageBox.Show(Constant.sMessageCardNotUpdate);
@@ -2301,11 +2301,14 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    // vào ngày - ra đêm hoặc vào đêm - ra ngày hoặc vào đêm ra đêm trong nhiều ca
+                    // vào ngày - ra đêm hoặc vào đêm - ra ngày hoặc vào ngày - ra ngày hoặc vào đêm - ra đêm trong nhiều ca
                     if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
                         // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
-                        if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
+                        if (timeIn.Hour < computerDTO.StartHourNight && timeOut.Hour >= computerDTO.EndHourNight && Util.getTotalTimeByDay(timeIn.Date, timeOut.Date) == 1) {
+                            // thời gian đêm trọn khung giờ
+                            return computerDTO.NightCost;
+                        } else if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                         {
                             // thời gian ngày lớn hơn đêm
                             if (getTotalHourOfDay(timeIn, timeOut, computerDTO) <= limit)
