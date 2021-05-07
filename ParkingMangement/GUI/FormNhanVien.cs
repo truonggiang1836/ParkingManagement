@@ -86,7 +86,9 @@ namespace ParkingMangement.GUI
 
         private DataTable mListCarSurvive;
         private BindingSource mBindingSource;
+        private bool mIsUseCostDeposit = true;
         private int mNoticeExpiredDate;
+        private int mNoticeToBeExpireDate;
         private int mParkingTypeID;
         private int mCalculationTicketMonth;
         private int mExpiredTicketMonthTypeID;
@@ -163,13 +165,7 @@ namespace ParkingMangement.GUI
             new Thread(() =>
             {
                 // Thread.CurrentThread.IsBackground = true;
-
-                mParkingTypeID = ConfigDAO.GetParkingTypeID();
-                mNoticeExpiredDate = ConfigDAO.GetNoticeExpiredDate();
-                mCalculationTicketMonth = ConfigDAO.GetCalculationTicketMonth();
-                mExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
-                mBikeSpace = ConfigDAO.GetBikeSpace();
-                mCarSpace = ConfigDAO.GetCarSpace();
+                loadConfigInfoDB();
                 CurrentUserID = Program.CurrentStaffUserID;
 
 
@@ -276,7 +272,7 @@ namespace ParkingMangement.GUI
             dgvThongKeXeTrongBai.EnableHeadersVisualStyles = false;
             dgvThongKeXeTrongBai.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 6.75F, FontStyle.Bold);
             labelComputer.Text = mConfig.computerName;
-            labelParkingName.Text = ConfigDAO.GetParkingName();
+            labelParkingName.Text = ConfigDAO.GetParkingName(ConfigDAO.GetConfig());
 
             labelNhanVien.Text = UserDAO.GetUserNameByID(Program.CurrentStaffUserID);
 
@@ -698,6 +694,8 @@ namespace ParkingMangement.GUI
 
         private void readCardEvent(string cardID)
         {
+            loadConfigInfoDB();
+
             mCurrentCardID = cardID;
             isShowExpiredMessage = false;
             Program.isHasCarInOut = true;
@@ -926,21 +924,21 @@ namespace ParkingMangement.GUI
                     {
                         bool isExpired = false;
                         int currentDay = (int)System.DateTime.Now.Day;
-                        if (mConfig.isUseCostDeposit.Equals("no"))
+                        if (!mIsUseCostDeposit)
                         {
                             // vé tháng đã hết hạn không cọc
                             isExpired = true;
                         }
                         else
                         {
-                            if (-totalDaysLeft >= mNoticeExpiredDate && -totalDaysLeft <= 31)
+                            if (-totalDaysLeft >= mNoticeToBeExpireDate - 1 && -totalDaysLeft < mNoticeExpiredDate - 1)
                             {
                                 // vé tháng sắp hết hạn có cọc
                                 isShowExpiredMessage = true;
                                 labelError.Text = Constant.sMessageNearExpiredCard;
                                 Util.playAudio(Constant.tobeexpired);
                             }
-                            else if (-totalDaysLeft > 31)
+                            else if (-totalDaysLeft >= mNoticeExpiredDate - 1)
                             {
                                 // vé tháng đã hết hạn có cọc
                                 isExpired = true;
@@ -954,9 +952,9 @@ namespace ParkingMangement.GUI
                             Util.playAudio(Constant.expired);
                         }
                     }
-                    else if (totalDaysLeft <= 30 - mNoticeExpiredDate)
+                    else if (totalDaysLeft <= 31 - mNoticeToBeExpireDate)
                     {
-                        if (mConfig.isUseCostDeposit.Equals("no"))
+                        if (!mIsUseCostDeposit)
                         {
                             // vé tháng sắp hết hạn không cọc
                             isShowExpiredMessage = true;
@@ -3242,6 +3240,7 @@ namespace ParkingMangement.GUI
 
         private void showLostAvailableToLed()
         {
+            loadConfigInfoDB();
             string portName = mConfig.comLostAvailable;
             int countBikeEmpty = mBikeSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_BIKE);
             if (countBikeEmpty < 0)
@@ -4182,6 +4181,19 @@ namespace ParkingMangement.GUI
             this.Close();
             this.Dispose();
             GC.Collect();
+        }
+
+        private void loadConfigInfoDB()
+        {
+            DataTable dtConfig = ConfigDAO.GetConfig();
+            mParkingTypeID = ConfigDAO.GetParkingTypeID(dtConfig);
+            mIsUseCostDeposit = ConfigDAO.GetIsUseCostDeposit(dtConfig) == ConfigDTO.USE_COST_DEPOSIT_YES;
+            mNoticeExpiredDate = ConfigDAO.GetNoticeExpiredDate(dtConfig);
+            mNoticeToBeExpireDate = ConfigDAO.GetNoticeToBeExpireDate(dtConfig);
+            mCalculationTicketMonth = ConfigDAO.GetCalculationTicketMonth(dtConfig);
+            mExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID(dtConfig);
+            mBikeSpace = ConfigDAO.GetBikeSpace(dtConfig);
+            mCarSpace = ConfigDAO.GetCarSpace(dtConfig);
         }
 
         private void pictureBoxChangeLaneLeft_Click(object sender, EventArgs e)

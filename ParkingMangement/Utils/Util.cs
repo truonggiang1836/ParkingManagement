@@ -1173,50 +1173,50 @@ namespace ParkingMangement.Utils
             }
         }
 
-        public static void sendConfigToServer()
-        {
-            //return;
-            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
-            {
-                return;
-            }
-            List<DisplayConfig> listDisplayConfig = new List<DisplayConfig>();
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            string jsonString = "";
-            DisplayConfig displayConfig = new DisplayConfig();
-            displayConfig.ProjectId = Util.getConfigFile().projectId;
-            displayConfig.Id = 1;
-            displayConfig.LostCard = ConfigDAO.GetLostCard();
-            displayConfig.BikeSpace = ConfigDAO.GetBikeSpace();
-            displayConfig.CarSpace = ConfigDAO.GetCarSpace();
-            displayConfig.TicketLimitDay = ConfigDAO.GetTicketMonthLimit();
-            displayConfig.NightLimit = ConfigDAO.GetNightLimit();
-            displayConfig.ParkingTypeId = ConfigDAO.GetParkingTypeID();
-            displayConfig.ExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
-            displayConfig.ParkingName = ConfigDAO.GetParkingName();
-            displayConfig.CalculationTicketMonth = ConfigDAO.GetCalculationTicketMonth();
-            displayConfig.IsAutoLockCard = ConfigDAO.GetIsAutoLockCard();
-            displayConfig.LockCardDate = ConfigDAO.GetLockCardDate();
+        //public static void sendConfigToServer()
+        //{
+        //    //return;
+        //    if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+        //    {
+        //        return;
+        //    }
+        //    List<DisplayConfig> listDisplayConfig = new List<DisplayConfig>();
+        //    WebClient webClient = (new ApiUtil()).getWebClient();
+        //    string jsonString = "";
+        //    DisplayConfig displayConfig = new DisplayConfig();
+        //    displayConfig.ProjectId = Util.getConfigFile().projectId;
+        //    displayConfig.Id = 1;
+        //    displayConfig.LostCard = ConfigDAO.GetLostCard();
+        //    displayConfig.BikeSpace = ConfigDAO.GetBikeSpace();
+        //    displayConfig.CarSpace = ConfigDAO.GetCarSpace();
+        //    displayConfig.TicketLimitDay = ConfigDAO.GetTicketMonthLimit();
+        //    displayConfig.NightLimit = ConfigDAO.GetNightLimit();
+        //    displayConfig.ParkingTypeId = ConfigDAO.GetParkingTypeID();
+        //    displayConfig.ExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+        //    displayConfig.ParkingName = ConfigDAO.GetParkingName();
+        //    displayConfig.CalculationTicketMonth = ConfigDAO.GetCalculationTicketMonth();
+        //    displayConfig.IsAutoLockCard = ConfigDAO.GetIsAutoLockCard();
+        //    displayConfig.LockCardDate = ConfigDAO.GetLockCardDate();
 
-            listDisplayConfig.Add(displayConfig);
+        //    listDisplayConfig.Add(displayConfig);
 
-            jsonString = JsonConvert.SerializeObject(listDisplayConfig);
-            Console.WriteLine(":: " + jsonString);
+        //    jsonString = JsonConvert.SerializeObject(listDisplayConfig);
+        //    Console.WriteLine(":: " + jsonString);
 
-            try
-            {
-                if (!jsonString.Equals(""))
-                {
-                    string result = webClient.UploadString(new Uri(ApiUtil.API_CONFIG_BATCH_INSERT), "POST", jsonString);
-                    Console.WriteLine("result_api: " + result);
-                }
-                Console.WriteLine("json_api: " + jsonString);
-            }
-            catch (Exception e)
-            {
+        //    try
+        //    {
+        //        if (!jsonString.Equals(""))
+        //        {
+        //            string result = webClient.UploadString(new Uri(ApiUtil.API_CONFIG_BATCH_INSERT), "POST", jsonString);
+        //            Console.WriteLine("result_api: " + result);
+        //        }
+        //        Console.WriteLine("json_api: " + jsonString);
+        //    }
+        //    catch (Exception e)
+        //    {
 
-            }
-        }
+        //    }
+        //}
 
         public static void sendOrderDataToServer()
         {
@@ -1299,10 +1299,10 @@ namespace ParkingMangement.Utils
         {
             if (sEndHourNightShift == -1)
             {
-                sEndHourNightShift = ConfigDAO.GetEndHourNightShift();
+                sEndHourNightShift = ConfigDAO.GetEndHourNightShift(ConfigDAO.GetConfig());
             }
             if (sStartHourNightShift == -1) {
-                sStartHourNightShift = ConfigDAO.GetStartHourNightShift();
+                sStartHourNightShift = ConfigDAO.GetStartHourNightShift(ConfigDAO.GetConfig());
             }
 
             DateTime startDateCurrentShift = DateTime.Now;
@@ -2154,8 +2154,9 @@ namespace ParkingMangement.Utils
         public static void autoLockExpiredCard()
         {
             int currentDay = (int)System.DateTime.Now.Day;
-            int lockCardDate = ConfigDAO.GetLockCardDate();
-            if (Util.getConfigFile().isUseCostDeposit.Equals("no"))
+            int lockCardDate = ConfigDAO.GetLockCardDate(ConfigDAO.GetConfig());
+            bool isUseCostDeposit = ConfigDAO.GetIsUseCostDeposit(ConfigDAO.GetConfig()) == ConfigDTO.USE_COST_DEPOSIT_YES;
+            if (!isUseCostDeposit)
             {
                 CardDAO.lockExpiredCardNoDeposit(lockCardDate);
             }

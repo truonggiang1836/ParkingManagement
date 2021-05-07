@@ -2461,10 +2461,11 @@ namespace ParkingMangement.GUI
 
         private void loadConfig()
         {
-            tbBikeSpace.Text = ConfigDAO.GetBikeSpace().ToString();
-            tbCarSpace.Text = ConfigDAO.GetCarSpace().ToString();
-            tbTicketLimitDay.Text = ConfigDAO.GetTicketMonthLimit().ToString();
-            tbNightLimit.Text = ConfigDAO.GetNightLimit().ToString();
+            DataTable dtConfig = ConfigDAO.GetConfig();
+            tbBikeSpace.Text = ConfigDAO.GetBikeSpace(dtConfig).ToString();
+            tbCarSpace.Text = ConfigDAO.GetCarSpace(dtConfig).ToString();
+            tbTicketLimitDay.Text = ConfigDAO.GetTicketMonthLimit(dtConfig).ToString();
+            tbNightLimit.Text = ConfigDAO.GetNightLimit(dtConfig).ToString();
         }
 
         private void addBlackCar()
@@ -2842,7 +2843,7 @@ namespace ParkingMangement.GUI
                 carDTO.TimeEnd = DateTime.Now;
                 carDTO.IdOut = Program.CurrentManagerUserID;
                 carDTO.Cost = 0;
-                carDTO.IsLostCard = ConfigDAO.GetLostCard();
+                carDTO.IsLostCard = ConfigDAO.GetLostCard(ConfigDAO.GetConfig());
                 carDTO.Computer = Environment.MachineName;
                 carDTO.Account = Program.CurrentManagerUserID;
                 carDTO.DateUpdate = DateTime.Now;
@@ -2887,7 +2888,8 @@ namespace ParkingMangement.GUI
 
         private void loadCauHinhHienThiData()
         {
-            int parkingTypeID = ConfigDAO.GetParkingTypeID();
+            DataTable dtConfig = ConfigDAO.GetConfig();
+            int parkingTypeID = ConfigDAO.GetParkingTypeID(dtConfig);
             switch (parkingTypeID)
             {
                 case Constant.LOAI_GIU_XE_MIEN_PHI:
@@ -2909,22 +2911,22 @@ namespace ParkingMangement.GUI
                     rbGiuXeTheoCongVan.Checked = true;
                     break;
             }
-            int calculationTicketMonthType = ConfigDAO.GetCalculationTicketMonth();
+            int calculationTicketMonthType = ConfigDAO.GetCalculationTicketMonth(dtConfig);
             checkBoxTinhTienVeThang.Checked = calculationTicketMonthType == ConfigDTO.CALCULATION_TICKET_MONTH_YES;
 
-            tbParkingName.Text = ConfigDAO.GetParkingName();
-            tbLostCard.Text = ConfigDAO.GetLostCard().ToString();
-            tbBikeSpace2.Text = ConfigDAO.GetBikeSpace().ToString();
-            tbCarSpace2.Text = ConfigDAO.GetCarSpace().ToString();
-            tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit().ToString();
-            tbNightLimit2.Text = ConfigDAO.GetNightLimit().ToString();
-            tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
-            numericEndHourNightShift.Value = ConfigDAO.GetEndHourNightShift();
-            numericStartHourNightShift.Value = ConfigDAO.GetStartHourNightShift();
+            tbParkingName.Text = ConfigDAO.GetParkingName(dtConfig);
+            tbLostCard.Text = ConfigDAO.GetLostCard(dtConfig).ToString();
+            tbBikeSpace2.Text = ConfigDAO.GetBikeSpace(dtConfig).ToString();
+            tbCarSpace2.Text = ConfigDAO.GetCarSpace(dtConfig).ToString();
+            tbTicketLimitDay2.Text = ConfigDAO.GetTicketMonthLimit(dtConfig).ToString();
+            tbNightLimit2.Text = ConfigDAO.GetNightLimit(dtConfig).ToString();
+            tbNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent(dtConfig);
+            numericEndHourNightShift.Value = ConfigDAO.GetEndHourNightShift(dtConfig);
+            numericStartHourNightShift.Value = ConfigDAO.GetStartHourNightShift(dtConfig);
 
             loadQuyenNhanVien();
 
-            int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID();
+            int expiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID(dtConfig);
             switch (expiredTicketMonthTypeID)
             {
                 case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
@@ -2935,11 +2937,18 @@ namespace ParkingMangement.GUI
                     rbChiCanhBaoHetHan.Checked = true;
                     break;
             }
-            checkShowHideLockCardDate();
-            int isAutoLockCard = ConfigDAO.GetIsAutoLockCard();
+            
+            int isAutoLockCard = ConfigDAO.GetIsAutoLockCard(dtConfig);
             cbTuDongKhoaThe.Checked = isAutoLockCard == ConfigDTO.AUTO_LOCK_CARD_YES;
-            tbLockCardDate.Text = ConfigDAO.GetLockCardDate() + "";
-            tbNoticeExpiredDate.Text = ConfigDAO.GetNoticeExpiredDate() + "";
+            tbLockCardDate.Text = ConfigDAO.GetLockCardDate(dtConfig) + "";
+            tbNoticeToBeExpireDate.Text = ConfigDAO.GetNoticeToBeExpireDate(dtConfig) + "";
+
+            int isUseCostDeposit = ConfigDAO.GetIsUseCostDeposit(dtConfig);
+            cbTinhPhiCocThe.Checked = isUseCostDeposit == ConfigDTO.USE_COST_DEPOSIT_YES;
+            tbNoticeExpiredDate.Text = ConfigDAO.GetNoticeExpiredDate(dtConfig) + "";
+
+            checkShowHideLockCardDate();
+            checkShowHideNoticeExpiredDate();
         }
 
         private void loadQuyenNhanVien()
@@ -3115,6 +3124,13 @@ namespace ParkingMangement.GUI
             }
             configDTO.IsAutoLockCard = isAuToLockCard;
 
+            int isUseCostDeposit = ConfigDTO.USE_COST_DEPOSIT_NO;
+            if (cbTinhPhiCocThe.Checked)
+            {
+                isUseCostDeposit = ConfigDTO.USE_COST_DEPOSIT_YES;
+            }
+            configDTO.IsUseCostDeposit = isUseCostDeposit;
+
             int lockCardDate = 5;
             if (int.TryParse(tbLockCardDate.Text, out lockCardDate))
             {
@@ -3136,6 +3152,17 @@ namespace ParkingMangement.GUI
                 }
             }
             configDTO.NoticeExpiredDate = noticeExpiredDate;
+
+            int noticeToBeExpireDate = 20;
+            if (int.TryParse(tbNoticeToBeExpireDate.Text, out noticeToBeExpireDate))
+            {
+                if (noticeToBeExpireDate < 1 || noticeToBeExpireDate > 28)
+                {
+                    MessageBox.Show(Constant.sMessageInvalidError);
+                    return;
+                }
+            }
+            configDTO.NoticeToBeExpireDate = noticeToBeExpireDate;
 
             configDTO.NoticeFeeContent = tbNoticeFeeContent.Text;
             configDTO.StartHourNightShift = (int) numericStartHourNightShift.Value;
@@ -6104,11 +6131,11 @@ namespace ParkingMangement.GUI
                         {
                             if (rbAddCostCreateCard.Checked)
                             {
-                                payCost += ConfigDAO.GetLostCard();
+                                payCost += ConfigDAO.GetLostCard(ConfigDAO.GetConfig());
                             }
                             if (rbRemoveCostCreateCard.Checked)
                             {
-                                payCost -= ConfigDAO.GetLostCard();
+                                payCost -= ConfigDAO.GetLostCard(ConfigDAO.GetConfig());
                             }
                         }
 
@@ -6226,7 +6253,7 @@ namespace ParkingMangement.GUI
 
         private void loadDataPrintReceipt()
         {
-            tbPrintReceiptCustomerName.Text = ConfigDAO.GetParkingName();
+            tbPrintReceiptCustomerName.Text = ConfigDAO.GetParkingName(ConfigDAO.GetConfig());
         }
 
         private void configReceiptHistory()
@@ -6297,7 +6324,7 @@ namespace ParkingMangement.GUI
             {
                 return;
             }
-            string customerName = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptCustomerName"].Value) + " - " + ConfigDAO.GetParkingName();
+            string customerName = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptCustomerName"].Value) + " - " + ConfigDAO.GetParkingName(ConfigDAO.GetConfig());
             tbPrintReceiptCustomerName.Text = customerName;
             string address = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptAddress"].Value);
             string company = Convert.ToString(dgvPrintReceipt.Rows[Index].Cells["ReceiptCompany"].Value);
@@ -6732,6 +6759,16 @@ namespace ParkingMangement.GUI
         private void label263_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cbTinhPhiCocThe_CheckedChanged(object sender, EventArgs e)
+        {
+            checkShowHideNoticeExpiredDate();
+        }
+
+        private void checkShowHideNoticeExpiredDate()
+        {
+            panelNoticeExpiredDate.Visible = cbTinhPhiCocThe.Checked;
         }
     }
 }

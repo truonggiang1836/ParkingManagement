@@ -242,7 +242,7 @@ namespace ParkingMangement.GUI
                 carDTO.TimeEnd = DateTime.Now;
                 carDTO.IdOut = Program.CurrentStaffUserID;
                 carDTO.Cost = 0;
-                carDTO.IsLostCard = ConfigDAO.GetLostCard();
+                carDTO.IsLostCard = ConfigDAO.GetLostCard(ConfigDAO.GetConfig());
                 carDTO.Computer = Environment.MachineName;
                 carDTO.Account = Program.CurrentStaffUserID;
                 carDTO.DateUpdate = DateTime.Now;

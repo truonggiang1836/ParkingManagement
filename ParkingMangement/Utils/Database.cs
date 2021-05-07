@@ -252,6 +252,9 @@ namespace ParkingMangement
                     + " UserId nvarchar(50) NOT NULL, JsonBody nvarchar(MAX), IsSync int NOT NULL DEFAULT(0)," 
                     + "CONSTRAINT PK_Revenue PRIMARY KEY (StartDateTimeString, UserId));";
                 (new Database()).ExcuQueryNoErrorMessage(sql);
+
+                sql = "ALTER TABLE Config ADD NoticeToBeExpireDate int NOT NULL DEFAULT(20);";
+                (new Database()).ExcuQueryNoErrorMessage(sql);
             }
             catch (Exception)
             {

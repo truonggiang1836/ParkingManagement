@@ -138,8 +138,6 @@ namespace ParkingMangement.Model
         public string pythonRunFile { get; set; } = "";
         [XmlElement(ElementName = "python_server_url")]
         public string pythonServerUrl { get; set; } = "";
-        [XmlElement(ElementName = "is_use_cost_deposit")]
-        public string isUseCostDeposit { get; set; } = "yes";
         [XmlElement(ElementName = "is_include_min_minute")]
         public string isIncludeMinMinute { get; set; } = "yes";     
     }

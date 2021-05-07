@@ -115,7 +115,7 @@ namespace ParkingMangement.DAO
         public static void lockExpiredCardWithDeposit()
         {
             string sql = "update SmartCard set SmartCard.IsUsing = 0, SmartCard.IsSync = 0 from SmartCard inner join TicketMonth on SmartCard.ID = TicketMonth.ID"
-                + " where DATEDIFF(MONTH, TicketMonth.ExpirationDate, getdate()) >= 1 and DATEDIFF(DAYOFYEAR, TicketMonth.ExpirationDate, getdate()) >= 28 and SmartCard.IsUsing = 1 and TicketMonth.IsDeleted = 0 and SmartCard.IsDeleted = 0";
+                + " where DATEDIFF(MONTH, DATEADD(DAY, -1, TicketMonth.ExpirationDate), getdate()) >= 2 and DATEDIFF(DAYOFYEAR, TicketMonth.ExpirationDate, getdate()) >= 28 and SmartCard.IsUsing = 1 and TicketMonth.IsDeleted = 0 and SmartCard.IsDeleted = 0";
             (new Database()).ExcuNonQuery(sql);
         }
 

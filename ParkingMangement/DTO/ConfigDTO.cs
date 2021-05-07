@@ -16,6 +16,8 @@ namespace ParkingMangement.DTO
         public const int CALCULATION_TICKET_MONTH_YES = 1;
         public const int AUTO_LOCK_CARD_NO = 0;
         public const int AUTO_LOCK_CARD_YES = 1;
+        public const int USE_COST_DEPOSIT_NO = 0;
+        public const int USE_COST_DEPOSIT_YES = 1;
 
         private int lostCard;
         private int bikeSpace;
@@ -66,5 +68,7 @@ namespace ParkingMangement.DTO
         public string NoticeFeeContent { get => noticeFeeContent; set => noticeFeeContent = value; }
         public int StartHourNightShift { get; set; }
         public int EndHourNightShift { get; set; }
+        public int IsUseCostDeposit { get; set; }
+        public int NoticeToBeExpireDate { get; set; }
     }
 }

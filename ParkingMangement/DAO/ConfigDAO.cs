@@ -18,9 +18,8 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
-        public static int GetLostCard()
+        public static int GetLostCard(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("LostCard");
@@ -31,9 +30,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetBikeSpace()
+        public static int GetBikeSpace(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("BikeSpace");
@@ -44,9 +42,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetCarSpace()
+        public static int GetCarSpace(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("CarSpace");
@@ -57,9 +54,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetTicketMonthLimit()
+        public static int GetTicketMonthLimit(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("TicketLimitDay");
@@ -70,9 +66,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetNightLimit()
+        public static int GetNightLimit(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("NightLimit");
@@ -83,9 +78,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetParkingTypeID()
+        public static int GetParkingTypeID(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("ParkingTypeID");
@@ -96,9 +90,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetExpiredTicketMonthTypeID()
+        public static int GetExpiredTicketMonthTypeID(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("ExpiredTicketMonthTypeID");
@@ -109,9 +102,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetLockCardDate()
+        public static int GetLockCardDate(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("LockCardDate");
@@ -122,9 +114,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetNoticeExpiredDate()
+        public static int GetNoticeExpiredDate(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("NoticeExpiredDate");
@@ -135,9 +126,20 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetIsAutoLockCard()
+        public static int GetNoticeToBeExpireDate(DataTable dt)
         {
-            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("NoticeToBeExpireDate");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static int GetIsAutoLockCard(DataTable dt)
+        {
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("IsAutoLockCard");
@@ -148,9 +150,20 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static string GetParkingName()
+        public static int GetIsUseCostDeposit(DataTable dt)
         {
-            DataTable dt = GetConfig();
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("IsUseCostDeposit");
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public static string GetParkingName(DataTable dt)
+        {
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("ParkingName");
@@ -161,9 +174,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static string GetNoticeFeeContent()
+        public static string GetNoticeFeeContent(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<string>("NoticeFeeContent");
@@ -174,9 +186,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetCalculationTicketMonth()
+        public static int GetCalculationTicketMonth(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("CalculationTicketMonth");
@@ -187,9 +198,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetStartHourNightShift()
+        public static int GetStartHourNightShift(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("StartHourNightShift");
@@ -200,9 +210,8 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static int GetEndHourNightShift()
+        public static int GetEndHourNightShift(DataTable dt)
         {
-            DataTable dt = GetConfig();
             if (dt != null & dt.Rows.Count > 0)
             {
                 return dt.Rows[0].Field<int>("EndHourNightShift");
@@ -218,8 +227,8 @@ namespace ParkingMangement.DAO
             string sql = "update Config set LostCard =" + configDTO.LostCard + ", BikeSpace =" + configDTO.BikeSpace + ", CarSpace =" + configDTO.CarSpace
                 + ", TicketLimitDay =" + configDTO.TicketLimitDay + ", NightLimit =" + configDTO.NightLimit + ", ParkingTypeID =" + configDTO.ParkingTypeId
                 + ", ExpiredTicketMonthTypeID =" + configDTO.ExpiredTicketMonthTypeID + ", ParkingName = '" + configDTO.ParkingName + "', CalculationTicketMonth = " + configDTO.CalculationTicketMonth
-                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate 
-                + ", NoticeFeeContent = N'" + configDTO.NoticeFeeContent + "'";
+                + ", IsAutoLockCard = " + configDTO.IsAutoLockCard + ", IsUseCostDeposit = " + configDTO.IsUseCostDeposit + ", LockCardDate = " + configDTO.LockCardDate + ", NoticeExpiredDate = " + configDTO.NoticeExpiredDate
+                + ", NoticeToBeExpireDate = " + configDTO.NoticeToBeExpireDate + ", NoticeFeeContent = N'" + configDTO.NoticeFeeContent + "'";
             return sql;
         }
 

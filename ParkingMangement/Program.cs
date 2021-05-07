@@ -1,4 +1,5 @@
 ﻿using ParkingMangement.DAO;
+using ParkingMangement.DTO;
 using ParkingMangement.GUI;
 using ParkingMangement.Model;
 using ParkingMangement.Utils;
@@ -241,7 +242,7 @@ namespace ParkingMangement
         {
             if (!Constant.IS_SYNC_DATA_APP)
             {
-                if (ConfigDAO.GetIsAutoLockCard() == 1)
+                if (ConfigDAO.GetIsAutoLockCard(ConfigDAO.GetConfig()) == ConfigDTO.AUTO_LOCK_CARD_YES)
                 {
                     Util.autoLockExpiredCard();
                 }

@@ -694,12 +694,12 @@ namespace ParkingMangement.DAO
                     if (typeID == TypeDTO.TYPE_BIKE)
                     {
                         bitmap = sBitmapBikeIcon;
-                        countCarEmpty = ConfigDAO.GetBikeSpace() - countCarSurvive;
+                        countCarEmpty = ConfigDAO.GetBikeSpace(ConfigDAO.GetConfig()) - countCarSurvive;
                     }
                     else
                     {
                         bitmap = sBitmapCarIcon;
-                        countCarEmpty = ConfigDAO.GetCarSpace() - countCarSurvive;
+                        countCarEmpty = ConfigDAO.GetCarSpace(ConfigDAO.GetConfig()) - countCarSurvive;
                     }
                     if (countCarEmpty < 0)
                     {

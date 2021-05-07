@@ -82,7 +82,7 @@ namespace ParkingMangement.GUI
             tbUpdateDay.Text = "(cập nhật đến " + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + ")";
 
             webBrowser1.Navigate("about:blank");
-            webBrowser1.DocumentText = ConfigDAO.GetNoticeFeeContent();
+            webBrowser1.DocumentText = ConfigDAO.GetNoticeFeeContent(ConfigDAO.GetConfig());
 
             //richTextBoxNoticeFeeContent.Text = ConfigDAO.GetNoticeFeeContent();
 
