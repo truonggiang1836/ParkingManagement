@@ -356,7 +356,8 @@ namespace ParkingMangement.GUI
                 {
                     rfidInput = rfidIn;
                 }
-                readCardEvent(cardID);
+                bool isInputLeftSide = inputIsLeftSide(cardID);
+                readCardEvent(cardID, isInputLeftSide);
             }));
         }
 
@@ -407,7 +408,8 @@ namespace ParkingMangement.GUI
             cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
             portNameComReaderInput = sp.PortName;
             Program.oldUhfCardId = "";
-            readCardEvent(cardID);
+            bool isInputLeftSide = inputIsLeftSide(cardID);
+            readCardEvent(cardID, isInputLeftSide);
         }
 
         private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -419,7 +421,8 @@ namespace ParkingMangement.GUI
             cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
             portNameComReaderInput = sp.PortName;
             Program.oldUhfCardId = "";
-            readCardEvent(cardID);
+            bool isInputLeftSide = inputIsLeftSide(cardID);
+            readCardEvent(cardID, isInputLeftSide);
         }
 
         public void openCameraWindow()
@@ -692,10 +695,8 @@ namespace ParkingMangement.GUI
             bitmap.Save(fileDir, ImageFormat.Jpeg);
         }
 
-        private void readCardEvent(string cardID)
+        private void readCardEvent(string cardID, bool isInputLeftSide)
         {
-            loadConfigInfoDB();
-
             mCurrentCardID = cardID;
             isShowExpiredMessage = false;
             Program.isHasCarInOut = true;
@@ -712,7 +713,7 @@ namespace ParkingMangement.GUI
                     }
                     else
                     {
-                        if (inputIsLeftSide(cardID))
+                        if (isInputLeftSide)
                         {
                             labelCardIDLeft.Text = dtCommonCard.Identify + "";
                         }
@@ -721,7 +722,7 @@ namespace ParkingMangement.GUI
                             labelCardIDRight.Text = dtCommonCard.Identify + "";
                         }
 
-                        checkForSaveToDBAsync(dtCommonCard, dtTicketCard, cardID);
+                        checkForSaveToDBAsync(dtCommonCard, dtTicketCard, cardID, isInputLeftSide);
                     }
                 }
                 else
@@ -759,14 +760,14 @@ namespace ParkingMangement.GUI
             //labelDateOut.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
         }
 
-        private void checkForOpenBarie(DataTable dtLastCar, string cardID)
+        private void checkForOpenBarie(DataTable dtLastCar, string cardID, bool isInputLeftSide)
         {
             if (cardID.Length == 53)
             {
                 isUhfCard = true;
             }
 
-            if (!inputIsRightSide(cardID))
+            if (isInputLeftSide)
             {
                 checkForOpenBarieIn(isUhfCard, cardID);
             }
@@ -777,11 +778,11 @@ namespace ParkingMangement.GUI
             isUhfCard = false;
         }
 
-        private bool checkForSaveToDBAsync(CardDTO dtCommonCard, TicketMonthDTO dtTicketCard, string cardID)
+        private bool checkForSaveToDBAsync(CardDTO dtCommonCard, TicketMonthDTO dtTicketCard, string cardID, bool isInputLeftSide)
         {
             bool isTicketCard = dtTicketCard != null;
 
-            if (inputIsLeftSide(cardID))
+            if (isInputLeftSide)
             {
                 labelDigitRegisterLeft.Text = "";
                 labelCustomerNameLeft.Text = "-";
@@ -814,7 +815,7 @@ namespace ParkingMangement.GUI
                 isLockedCard = true;
                 Util.playAudio(Constant.locked);
                 MessageBox.Show(Constant.sMessageCardIsLost);
-                if (isCarIn(cardID))
+                if (isCarIn(cardID, isInputLeftSide))
                 {
                     return false;
                 }
@@ -824,7 +825,7 @@ namespace ParkingMangement.GUI
             bool isKiemTraXeChuaRa = KiemTraXeChuaRa(dtLastCar);
             bool isKiemTraCapNhatXeVao = KiemTraCapNhatXeVao(dtLastCar, cardID);
             bool isKiemTraCapNhatXeRa = KiemTraCapNhatXeRa(dtLastCar, cardID);
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 if (isKiemTraXeChuaRa)
                 {
@@ -832,17 +833,17 @@ namespace ParkingMangement.GUI
                     {
                         labelError.Text = "Thẻ này chưa được quẹt đầu ra";
                         Program.oldUhfCardId = "";
-                        resetPictureBoxImage1(cardID);
-                        resetPictureBoxImage2(cardID);
+                        resetPictureBoxImage1(cardID, isInputLeftSide);
+                        resetPictureBoxImage2(cardID, isInputLeftSide);
                         tbRFIDCardID.Focus();
                         return false;
                     }
                 }
 
-                loadImage1ToPictureBox(cardID);
-                loadImage2ToPictureBox(cardID);
-                saveImage1ToFile(cardID);
-                saveImage2ToFile(cardID);
+                loadImage1ToPictureBox(cardID, isInputLeftSide);
+                loadImage2ToPictureBox(cardID, isInputLeftSide);
+                saveImage1ToFile(cardID, isInputLeftSide);
+                saveImage2ToFile(cardID, isInputLeftSide);
 
                 if (!isLockedCard)
                 {
@@ -853,29 +854,29 @@ namespace ParkingMangement.GUI
                 {
                     if (isKiemTraCapNhatXeVao)
                     {
-                        string inputDigit = docBienSo(cardID);
-                        updateCarIn(dtTicketCard, dtLastCar, inputDigit, cardID);
+                        string inputDigit = docBienSo(cardID, isInputLeftSide);
+                        updateCarIn(dtTicketCard, dtLastCar, inputDigit, cardID, isInputLeftSide);
                     }
                 }
                 else
                 {
-                    string inputDigit = docBienSo(cardID);
-                    insertCarInAsync(dtCommonCard, dtTicketCard, inputDigit, cardID);
+                    string inputDigit = docBienSo(cardID, isInputLeftSide);
+                    insertCarInAsync(dtCommonCard, dtTicketCard, inputDigit, cardID, isInputLeftSide);
                 }
             }
             else
             {
                 if (isKiemTraXeChuaRa || isKiemTraCapNhatXeRa)
                 {
-                    loadCarInDataAsync(dtLastCar, cardID);
+                    loadCarInData(dtLastCar, cardID, isInputLeftSide);
 
                     if (!isLockedCard)
                     {
                         checkExpiredTicket(dtTicketCard, isTicketCard);
                     }
 
-                    string inputDigit = docBienSo(cardID);
-                    updateCarOutAsync(dtTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit, cardID);
+                    string inputDigit = docBienSo(cardID, isInputLeftSide);
+                    updateCarOutAsync(dtTicketCard, dtLastCar, isKiemTraCapNhatXeRa, inputDigit, cardID, isInputLeftSide);
                 }
                 else
                 {
@@ -885,29 +886,7 @@ namespace ParkingMangement.GUI
                     return false;
                 }
             }
-            new Thread(() =>
-            {
-                // Thread.CurrentThread.IsBackground = true;
-
-                checkForOpenBarie(dtLastCar, cardID);
-            }).Start();
-
-            //if (!mConfig.readDigitFolder.Equals(""))
-            //{
-            //    new Thread(() =>
-            //    {
-            //        // Thread.CurrentThread.IsBackground = true;
-            //        inputDigit = docBienSo();
-            //        if (isCarIn())
-            //        {
-            //            CarDAO.UpdateDigitIn(cardID, inputDigit);
-            //        }
-            //        else
-            //        {
-            //            CarDAO.UpdateDigitOut(cardID, inputDigit);
-            //        }
-            //    }).Start();                            
-            //}
+            checkForOpenBarie(dtLastCar, cardID, isInputLeftSide);
             return true;
         }
 
@@ -970,23 +949,18 @@ namespace ParkingMangement.GUI
         {
             if (!digit.Equals(""))
             {
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-
-                    CarDAO.UpdateDigitIn(mCurrentCardID, digit);
-                }).Start();
-
+                CarDAO.UpdateDigitIn(mCurrentCardID, digit);
                 labelDigitInRight.Text = "";
             }
             DataTable dtTicketCard = TicketMonthDAO.GetDataByID(mCurrentCardID);
+            bool isInputLeftSide = inputIsLeftSide(mCurrentCardID);
             if (dtTicketCard != null && dtTicketCard.Rows.Count > 0)
             {
-                updateScreenForCarIn(true, mCurrentCardID);
+                updateScreenForCarIn(true, mCurrentCardID, isInputLeftSide);
             }
             else
             {
-                updateScreenForCarIn(false, mCurrentCardID);
+                updateScreenForCarIn(false, mCurrentCardID, isInputLeftSide);
             }
         }
 
@@ -1094,7 +1068,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void insertCarInAsync(CardDTO dtCommonCard, TicketMonthDTO dtTicketCard, string inputDigit, string cardID)
+        private void insertCarInAsync(CardDTO dtCommonCard, TicketMonthDTO dtTicketCard, string inputDigit, string cardID, bool isInputLeftSide)
         {
             bool isTicketMonthCard = dtTicketCard != null;
             //checkForOpenBarieIn();
@@ -1127,11 +1101,11 @@ namespace ParkingMangement.GUI
 
             if (!CarDAO.Insert(carDTO))
             {
-                resetDataOneSide(true);
+                resetDataOneSide(true, isInputLeftSide);
                 MessageBox.Show(Constant.sMessageCardNotUpdate);
                 return;
             }
-            updateScreenForCarIn(isTicketMonthCard, cardID);
+            updateScreenForCarIn(isTicketMonthCard, cardID, isInputLeftSide);
 
             // play audio
             if (!isShowExpiredMessage)
@@ -1144,7 +1118,7 @@ namespace ParkingMangement.GUI
             //sendOrderDataToServer();
         }
 
-        private void updateCarIn(TicketMonthDTO dtTicketCard, DataTable dtLastCar, string inputDigit, string cardID)
+        private void updateCarIn(TicketMonthDTO dtTicketCard, DataTable dtLastCar, string inputDigit, string cardID, bool isInputLeftSide)
         {
             bool isTicketMonthCard = dtTicketCard != null;
             if (dtLastCar != null && dtLastCar.Rows.Count > 0)
@@ -1172,18 +1146,18 @@ namespace ParkingMangement.GUI
 
                 if (!CarDAO.UpdateCarIn(carDTO))
                 {
-                    resetDataOneSide(true);
+                    resetDataOneSide(true, isInputLeftSide);
                     MessageBox.Show(Constant.sMessageCardNotUpdate);
                     return;
                 }
 
-                updateScreenForCarIn(isTicketMonthCard, cardID);
+                updateScreenForCarIn(isTicketMonthCard, cardID, isInputLeftSide);
             }
         }
 
-        private void updateScreenForCarIn(bool isTicketMonthCard, string cardID)
+        private void updateScreenForCarIn(bool isTicketMonthCard, string cardID, bool isInputLeftSide)
         {
-            if (inputIsLeftSide(cardID))
+            if (isInputLeftSide)
             {
                 labelDateInLeft.Text = DateTime.Now.ToString("dd/MM/yyyy");
                 labelTimeInLeft.Text = DateTime.Now.ToString("HH:mm");
@@ -1222,7 +1196,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (inputIsRightSide(cardID))
+                if (!isInputLeftSide)
                 {
                     labelCostRight.Text = "-";
                     labelMoiVao.Text = "";
@@ -1292,92 +1266,65 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private async Task updateCarOutAsync(TicketMonthDTO dtTicketCard, DataTable dtLastCar, bool isUpdateCarOut, string inputDigit, string cardID)
+        private async Task updateCarOutAsync(TicketMonthDTO dtTicketCard, DataTable dtLastCar, bool isUpdateCarOut, string inputDigit, string cardID, bool isInputLeftSide)
         {
-            await Task.Run(() =>
+            bool isTicketMonthCard = dtTicketCard != null;
+            if (dtLastCar != null && dtLastCar.Rows.Count > 0)
             {
-                bool isTicketMonthCard = dtTicketCard != null;
-                if (dtLastCar != null && dtLastCar.Rows.Count > 0)
+                DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
+                DateTime timeOut = DateTime.Now;
+                if (isUpdateCarOut)
                 {
-                    DateTime timeIn = dtLastCar.Rows[0].Field<DateTime>("TimeStart");
-                    DateTime timeOut = DateTime.Now;
-                    if (isUpdateCarOut)
-                    {
-                        timeOut = dtLastCar.Rows[0].Field<DateTime>("TimeEnd");
-                    }
+                    timeOut = dtLastCar.Rows[0].Field<DateTime>("TimeEnd");
+                }
 
-                    string digitIn = dtLastCar.Rows[0].Field<string>("DigitIn");
-                    string digit = dtLastCar.Rows[0].Field<string>("Digit");
-                    if (inputIsLeftSide(cardID))
-                    {
-                        labelDigitInLeft.Text = digitIn;
-                        labelDateInLeft.Text = timeIn.ToString("dd/MM/yyyy");
-                        labelTimeInLeft.Text = timeIn.ToString("HH:mm");
-                        labelDateOutLeft.Text = timeOut.ToString("dd/MM/yyyy");
-                        labelTimeOutLeft.Text = timeOut.ToString("HH:mm");
-                        if (isTicketMonthCard)
-                        {
-                            labelDigitRegisterLeft.Text = dtTicketCard.Digit;
-                        }
-                    }
-                    else
-                    {
-                        labelDigitInRight.Text = digitIn;
-                        labelDateInRight.Text = timeIn.ToString("dd/MM/yyyy");
-                        labelTimeInRight.Text = timeIn.ToString("HH:mm");
-                        labelDateOutRight.Text = timeOut.ToString("dd/MM/yyyy");
-                        labelTimeOutRight.Text = timeOut.ToString("HH:mm");
-                        if (isTicketMonthCard)
-                        {
-                            labelDigitRegisterRight.Text = dtTicketCard.Digit;
-                        }
-                    }
-
-                    int identify = dtLastCar.Rows[0].Field<int>("Identify");
-                    CarDTO carDTO = new CarDTO();
-                    carDTO.Identify = identify;
-                    carDTO.Id = cardID;
-                    carDTO.TimeEnd = timeOut;
-                    carDTO.IdOut = Program.CurrentStaffUserID;
-                    if (!inputDigit.Equals(""))
-                    {
-                        carDTO.DigitOut = inputDigit;
-                    }
-
+                string digitIn = dtLastCar.Rows[0].Field<string>("DigitIn");
+                string digit = dtLastCar.Rows[0].Field<string>("Digit");
+                if (isInputLeftSide)
+                {
+                    labelDigitInLeft.Text = digitIn;
+                    labelDateInLeft.Text = timeIn.ToString("dd/MM/yyyy");
+                    labelTimeInLeft.Text = timeIn.ToString("HH:mm");
+                    labelDateOutLeft.Text = timeOut.ToString("dd/MM/yyyy");
+                    labelTimeOutLeft.Text = timeOut.ToString("HH:mm");
                     if (isTicketMonthCard)
                     {
-                        // VE THANG
-                        if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
-                        {
-                            carDTO.Cost = 0;
-                        }
-                        else
-                        {
-                            if (!isUpdateCarOut)
-                            {
-                                carDTO.Cost = tinhTienGiuXe(dtLastCar, cardID);
-                            }
-                            else
-                            {
-                                carDTO.Cost = dtLastCar.Rows[0].Field<int>("Cost");
-                            }
+                        labelDigitRegisterLeft.Text = dtTicketCard.Digit;
+                    }
+                }
+                else
+                {
+                    labelDigitInRight.Text = digitIn;
+                    labelDateInRight.Text = timeIn.ToString("dd/MM/yyyy");
+                    labelTimeInRight.Text = timeIn.ToString("HH:mm");
+                    labelDateOutRight.Text = timeOut.ToString("dd/MM/yyyy");
+                    labelTimeOutRight.Text = timeOut.ToString("HH:mm");
+                    if (isTicketMonthCard)
+                    {
+                        labelDigitRegisterRight.Text = dtTicketCard.Digit;
+                    }
+                }
 
-                        }
+                int identify = dtLastCar.Rows[0].Field<int>("Identify");
+                CarDTO carDTO = new CarDTO();
+                carDTO.Identify = identify;
+                carDTO.Id = cardID;
+                carDTO.TimeEnd = timeOut;
+                carDTO.IdOut = Program.CurrentStaffUserID;
+                if (!inputDigit.Equals(""))
+                {
+                    carDTO.DigitOut = inputDigit;
+                }
 
-                        switch (mExpiredTicketMonthTypeID)
-                        {
-                            case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
-                                break;
-                            case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
-                            default:
-                                carDTO.Cost = tinhTienGiuXe(dtLastCar, cardID);
-                                isTicketMonthCard = false;
-                                break;
-                        }
+                if (isTicketMonthCard)
+                {
+                    // VE THANG
+                    if (mCalculationTicketMonth == ConfigDTO.CALCULATION_TICKET_MONTH_NO)
+                    {
+                        carDTO.Cost = 0;
                     }
                     else
                     {
-                        // VE VANG LAI
                         if (!isUpdateCarOut)
                         {
                             carDTO.Cost = tinhTienGiuXe(dtLastCar, cardID);
@@ -1386,36 +1333,52 @@ namespace ParkingMangement.GUI
                         {
                             carDTO.Cost = dtLastCar.Rows[0].Field<int>("Cost");
                         }
+
                     }
 
-                    int inOutType = mConfig.inOutType;
+                    switch (mExpiredTicketMonthTypeID)
+                    {
+                        case Constant.LOAI_HET_HAN_CHI_CANH_BAO_HET_HAN:
+                            break;
+                        case Constant.LOAI_HET_HAN_TINH_TIEN_NHU_VANG_LAI:
+                        default:
+                            carDTO.Cost = tinhTienGiuXe(dtLastCar, cardID);
+                            isTicketMonthCard = false;
+                            break;
+                    }
+                }
+                else
+                {
+                    // VE VANG LAI
+                    if (!isUpdateCarOut)
+                    {
+                        carDTO.Cost = tinhTienGiuXe(dtLastCar, cardID);
+                    }
+                    else
+                    {
+                        carDTO.Cost = dtLastCar.Rows[0].Field<int>("Cost");
+                    }
+                }
 
-                    if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                int inOutType = mConfig.inOutType;
+
+                if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                {
+                    labelCostLeft.Text = "-";
+                    labelMoiVao.Text = Constant.sLabelMoiRa;
+                    labelMoiRa.Text = "";
+
+                    showCostToScreen(carDTO, isTicketMonthCard, labelCostLeft);
+                }
+                else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+                {
+                    if (isInputLeftSide)
                     {
                         labelCostLeft.Text = "-";
                         labelMoiVao.Text = Constant.sLabelMoiRa;
                         labelMoiRa.Text = "";
 
                         showCostToScreen(carDTO, isTicketMonthCard, labelCostLeft);
-                    }
-                    else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
-                    {
-                        if (inputIsLeftSide(cardID))
-                        {
-                            labelCostLeft.Text = "-";
-                            labelMoiVao.Text = Constant.sLabelMoiRa;
-                            labelMoiRa.Text = "";
-
-                            showCostToScreen(carDTO, isTicketMonthCard, labelCostLeft);
-                        }
-                        else
-                        {
-                            labelCostRight.Text = "-";
-                            labelMoiVao.Text = "";
-                            labelMoiRa.Text = Constant.sLabelMoiRa;
-
-                            showCostToScreen(carDTO, isTicketMonthCard, labelCostRight);
-                        }
                     }
                     else
                     {
@@ -1425,31 +1388,47 @@ namespace ParkingMangement.GUI
 
                         showCostToScreen(carDTO, isTicketMonthCard, labelCostRight);
                     }
+                }
+                else
+                {
+                    labelCostRight.Text = "-";
+                    labelMoiVao.Text = "";
+                    labelMoiRa.Text = Constant.sLabelMoiRa;
 
-                    // show cost to LED
-                    showCostToLed(carDTO.Cost + "", isTicketMonthCard, cardID);
+                    showCostToScreen(carDTO, isTicketMonthCard, labelCostRight);
+                }
 
-                    if (!isUpdateCarOut)
+                // show cost to LED
+                showCostToLed(carDTO.Cost + "", isTicketMonthCard, cardID, isInputLeftSide);
+
+                if (!isUpdateCarOut)
+                {
+                    saveImage3ToFile(cardID, isInputLeftSide);
+                    saveImage4ToFile(cardID, isInputLeftSide);
+
+                    carDTO.Images3 = imagePath3;
+                    carDTO.Images4 = imagePath4;
+                    carDTO.Computer = Environment.MachineName;
+                    carDTO.Account = Program.CurrentStaffUserID;
+                    carDTO.DateUpdate = DateTime.Now;
+
+                    //await Task.Run(() =>
+                    //{
+                    //    if (!CarDAO.UpdateCarOut(carDTO))
+                    //    {
+                    //        resetDataOneSide(true, isInputLeftSide);
+                    //        MessageBox.Show(Constant.sMessageCardNotUpdate);
+                    //        return;
+                    //    }
+                    //});
+                    new Thread(() =>
                     {
-                        saveImage3ToFile(cardID);
-                        saveImage4ToFile(cardID);
-
-                        carDTO.Images3 = imagePath3;
-                        carDTO.Images4 = imagePath4;
-                        carDTO.Computer = Environment.MachineName;
-                        carDTO.Account = Program.CurrentStaffUserID;
-                        carDTO.DateUpdate = DateTime.Now;
                         if (!CarDAO.UpdateCarOut(carDTO))
                         {
-                            resetDataOneSide(true);
+                            resetDataOneSide(true, isInputLeftSide);
                             MessageBox.Show(Constant.sMessageCardNotUpdate);
                             return;
                         }
-
-
-                        // send data to server
-                        //WaitSyncCarOutDAO.Insert(identify);
-                        //sendOrderDataToServer();
 
                         // play audio
                         string compareInputDigit = inputDigit.Replace("-", "").Replace(".", "").Replace(" ", "");
@@ -1476,26 +1455,23 @@ namespace ParkingMangement.GUI
 
                         if (!isTicketMonthCard)
                         {
-                            new Thread(() =>
+                            if (compareInputDigit.Length > 0 && compareInputDigit.Equals(compareDigitIn))
                             {
-                                // Thread.CurrentThread.IsBackground = true;
-
-                                if (compareInputDigit.Length > 0 && compareInputDigit.Equals(compareDigitIn))
-                                {
-                                    playCostToAudio(carDTO.Cost.ToString());
-                                    Thread.Sleep(100);
-                                    Util.playAudio(Constant.goOut);
-                                }
-                                else
-                                {
-                                    labelError.Text = "Biển số không khớp hoặc không đọc được!";
-                                    playCostToAudio(carDTO.Cost.ToString());
-                                }
-                            }).Start();
+                                playCostToAudio(carDTO.Cost.ToString());
+                                Thread.Sleep(100);
+                                Util.playAudio(Constant.goOut);
+                            }
+                            else
+                            {
+                                labelError.Text = "Biển số không khớp hoặc không đọc được!";
+                                playCostToAudio(carDTO.Cost.ToString());
+                            }
                         }
-                    }
+                    }).Start();
+
+                    
                 }
-            });
+            }          
         }
 
         private void playCostToAudio(string cost)
@@ -1508,34 +1484,27 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private async Task loadCarInDataAsync(DataTable dtLastCar, string cardID)
-        {  
-            await Task.Run(() => {
-                if (dtLastCar != null)
-                {
-                    int inOutType = mConfig.inOutType;
+        private void loadCarInData(DataTable dtLastCar, string cardID, bool isInputLeftSide)
+        {
+            if (dtLastCar != null)
+            {
+                int inOutType = mConfig.inOutType;
 
-                    string image = dtLastCar.Rows[0].Field<string>("Images");
-                    string imagePath1 = Constant.getSharedImageFolder() + image;
-                    if (File.Exists(imagePath1))
+                string image = dtLastCar.Rows[0].Field<string>("Images");
+                string imagePath1 = Constant.getSharedImageFolder() + image;
+                if (File.Exists(imagePath1))
+                {
+                    if (inOutType == ConfigDTO.TYPE_OUT_IN)
                     {
-                        if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                        //pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
+                        zoomImageShowToPictureBox(imagePath1, pictureBoxImage1);
+                    }
+                    else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+                    {
+                        if (isInputLeftSide)
                         {
                             //pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
                             zoomImageShowToPictureBox(imagePath1, pictureBoxImage1);
-                        }
-                        else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
-                        {
-                            if (inputIsLeftSide(cardID))
-                            {
-                                //pictureBoxImage1.Image = System.Drawing.Image.FromFile(imagePath1);
-                                zoomImageShowToPictureBox(imagePath1, pictureBoxImage1);
-                            }
-                            else
-                            {
-                                //pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
-                                zoomImageShowToPictureBox(imagePath1, pictureBoxImage3);
-                            }
                         }
                         else
                         {
@@ -1543,27 +1512,27 @@ namespace ParkingMangement.GUI
                             zoomImageShowToPictureBox(imagePath1, pictureBoxImage3);
                         }
                     }
-                    string image2 = dtLastCar.Rows[0].Field<string>("Images2");
-                    string imagePath2 = Constant.getSharedImageFolder() + image2;
-                    if (File.Exists(imagePath2))
+                    else
                     {
-                        if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                        //pictureBoxImage3.Image = System.Drawing.Image.FromFile(imagePath1);
+                        zoomImageShowToPictureBox(imagePath1, pictureBoxImage3);
+                    }
+                }
+                string image2 = dtLastCar.Rows[0].Field<string>("Images2");
+                string imagePath2 = Constant.getSharedImageFolder() + image2;
+                if (File.Exists(imagePath2))
+                {
+                    if (inOutType == ConfigDTO.TYPE_OUT_IN)
+                    {
+                        //pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
+                        zoomImageShowToPictureBox(imagePath2, pictureBoxImage2);
+                    }
+                    else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
+                    {
+                        if (isInputLeftSide)
                         {
                             //pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
                             zoomImageShowToPictureBox(imagePath2, pictureBoxImage2);
-                        }
-                        else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
-                        {
-                            if (inputIsLeftSide(cardID))
-                            {
-                                //pictureBoxImage2.Image = System.Drawing.Image.FromFile(imagePath2);
-                                zoomImageShowToPictureBox(imagePath2, pictureBoxImage2);
-                            }
-                            else
-                            {
-                                //pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
-                                zoomImageShowToPictureBox(imagePath2, pictureBoxImage4);
-                            }
                         }
                         else
                         {
@@ -1571,8 +1540,13 @@ namespace ParkingMangement.GUI
                             zoomImageShowToPictureBox(imagePath2, pictureBoxImage4);
                         }
                     }
+                    else
+                    {
+                        //pictureBoxImage4.Image = System.Drawing.Image.FromFile(imagePath2);
+                        zoomImageShowToPictureBox(imagePath2, pictureBoxImage4);
+                    }
                 }
-            });
+            }
         }
 
         private bool KiemTraXeChuaRa(DataTable dtLastCar)
@@ -1747,7 +1721,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void resetPictureBoxImage1(string cardID)
+        private void resetPictureBoxImage1(string cardID, bool isInputLeftSide)
         {
             PictureBox pictureBox = pictureBoxImage1;
             int inOutType = mConfig.inOutType;
@@ -1763,13 +1737,13 @@ namespace ParkingMangement.GUI
                 }
             }
 
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 pictureBox.Image = Properties.Resources.ic_logo;
             }
         }
 
-        private void resetPictureBoxImage2(string cardID)
+        private void resetPictureBoxImage2(string cardID, bool isInputLeftSide)
         {
             PictureBox pictureBox = pictureBoxImage2;
             int inOutType = mConfig.inOutType;
@@ -1785,7 +1759,7 @@ namespace ParkingMangement.GUI
                 }
             }
 
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 pictureBox.Image = Properties.Resources.ic_logo;
             }
@@ -1807,7 +1781,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void saveImage1ToFile(string cardID)
+        private void saveImage1ToFile(string cardID, bool isInputLeftSide)
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
             PictureBox pictureBox = pictureBoxImage1;
@@ -1819,14 +1793,14 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (inputIsRightSide(cardID))
+                if (!isInputLeftSide)
                 {
                     axVLCPlugin = axVLCPlugin3;
                     pictureBox = pictureBoxImage3;
                 }
             }
 
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 Invoke((MethodInvoker)(delegate ()
                 {
@@ -1845,7 +1819,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void loadImage1ToPictureBox(string cardID)
+        private void loadImage1ToPictureBox(string cardID, bool isInputLeftSide)
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin1;
             PictureBox pictureBox = pictureBoxImage1;
@@ -1857,14 +1831,14 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (inputIsRightSide(cardID))
+                if (!isInputLeftSide)
                 {
                     axVLCPlugin = axVLCPlugin3;
                     pictureBox = pictureBoxImage3;
                 }
             }
 
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 Invoke((MethodInvoker)(delegate ()
                 {
@@ -1890,7 +1864,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void saveImage2ToFile(string cardID)
+        private void saveImage2ToFile(string cardID, bool isInputLeftSide)
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
             PictureBox pictureBox = pictureBoxImage2;
@@ -1902,14 +1876,14 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (inputIsRightSide(cardID))
+                if (!isInputLeftSide)
                 {
                     axVLCPlugin = axVLCPlugin4;
                     pictureBox = pictureBoxImage4;
                 }
             }
 
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 //imagePath2 = getPathFromSnapshot(axVLCPlugin);
                 if (Constant.IS_NAPSHOT_FULL_IMAGE)
@@ -1924,7 +1898,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void loadImage2ToPictureBox(string cardID)
+        private void loadImage2ToPictureBox(string cardID, bool isInputLeftSide)
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin2;
             PictureBox pictureBox = pictureBoxImage2;
@@ -1936,14 +1910,14 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
             {
-                if (inputIsRightSide(cardID))
+                if (!isInputLeftSide)
                 {
                     axVLCPlugin = axVLCPlugin4;
                     pictureBox = pictureBoxImage4;
                 }
             }
 
-            if (isCarIn(cardID))
+            if (isCarIn(cardID, isInputLeftSide))
             {
                 Invoke((MethodInvoker)(delegate ()
                 {
@@ -1969,7 +1943,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void saveImage3ToFile(string cardID)
+        private void saveImage3ToFile(string cardID, bool isInputLeftSide)
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin3;
             int inOutType = mConfig.inOutType;
@@ -1979,7 +1953,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
-                if (inputIsLeftSide(cardID))
+                if (isInputLeftSide)
                 {
                     axVLCPlugin = axVLCPlugin1;
                 }
@@ -2012,7 +1986,7 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void saveImage4ToFile(string cardID)
+        private void saveImage4ToFile(string cardID, bool isInputLeftSide)
         {
             AxVLCPlugin2 axVLCPlugin = axVLCPlugin4;
             int inOutType = mConfig.inOutType;
@@ -2022,7 +1996,7 @@ namespace ParkingMangement.GUI
             }
             else if (inOutType == ConfigDTO.TYPE_OUT_OUT)
             {
-                if (inputIsLeftSide(cardID))
+                if (isInputLeftSide)
                 {
                     axVLCPlugin = axVLCPlugin2;
                 }
@@ -2152,8 +2126,6 @@ namespace ParkingMangement.GUI
             else
             {
                 rfidInput = "";
-                rfidInput = "";
-                rfidInput = "";
             }
         }
 
@@ -2185,7 +2157,7 @@ namespace ParkingMangement.GUI
             MessageBox.Show(ex.Message);
         }
 
-        private bool isCarIn(string cardID)
+        private bool isCarIn(string cardID, bool isInputLeftSide)
         {
             int inOutType = mConfig.inOutType;
             switch (inOutType)
@@ -2195,19 +2167,19 @@ namespace ParkingMangement.GUI
                 case ConfigDTO.TYPE_OUT_OUT:
                     return false;
                 case ConfigDTO.TYPE_IN_OUT:
-                    if (inputIsRightSide(cardID))
+                    if (!isInputLeftSide)
                     {
                         return false;
                     }
                     return true;
                 case ConfigDTO.TYPE_OUT_IN:
-                    if (inputIsRightSide(cardID))
+                    if (!isInputLeftSide)
                     {
                         return true;
                     }
                     return false;
                 default:
-                    if (inputIsRightSide(cardID))
+                    if (!isInputLeftSide)
                     {
                         return false;
                     }
@@ -2783,14 +2755,19 @@ namespace ParkingMangement.GUI
             resetAllData();
         }
 
-        private void resetDataOneSide(bool isResetImage)
+        private void resetDataOneSide(bool isResetImage, Boolean? isInputLeftSide)
         {
             //Program.oldUhfCardId = "";
             labelError.Text = "";
             labelMoiVao.Text = "";
             labelMoiRa.Text = "";
 
-            if (inputIsLeftSide(mCurrentCardID))
+            if (isInputLeftSide == null)
+            {
+                isInputLeftSide = inputIsLeftSide(mCurrentCardID);
+            }
+
+            if ((bool) isInputLeftSide)
             {
                 labelCardIDLeft.Text = "-";
                 labelPartNameTypeNameLeft.Text = "-";
@@ -2887,13 +2864,14 @@ namespace ParkingMangement.GUI
                     Program.oldUhfCardId = "";
                     Program.newUhfCardId = "";
                     labelError.Text = "";
-                    resetDataOneSide(false);
+                    resetDataOneSide(false, null);
                     string cardID = tbRFIDCardID.Text.Trim();
                     tbRFIDCardID.Text = "";
 
                     if (!cardID.Equals(""))
                     {
-                        readCardEvent(cardID);
+                        bool isInputLeftSide = inputIsLeftSide(cardID);
+                        readCardEvent(cardID, isInputLeftSide);
                     }
                     break;
             }
@@ -3197,7 +3175,7 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     // Thread.CurrentThread.IsBackground = true;
-
+                    loadConfigInfoDB();
                     mListCarSurvive = CarDAO.GetListCarSurvive();
                     Invoke(new MethodInvoker(() =>
                     {
@@ -3422,7 +3400,7 @@ namespace ParkingMangement.GUI
             writeDataToPort(data, portName);
         }
 
-        private void showCostToLed(string cost, bool isTicketMonthCard, string cardID)
+        private void showCostToLed(string cost, bool isTicketMonthCard, string cardID, bool isInputLeftSide)
         {
             if (mConfig.comLedLeft.Equals("") && mConfig.comLedRight.Equals(""))
             {
@@ -3439,7 +3417,7 @@ namespace ParkingMangement.GUI
             if (!mConfig.comLedRight.Equals(""))
             {
                 // 2 cổng COM
-                if (inputIsLeftSide(cardID))
+                if (isInputLeftSide)
                 {
                     portName = mConfig.comLedLeft;
                     writeDataToLeftLedPort(data, portName);
@@ -3454,7 +3432,7 @@ namespace ParkingMangement.GUI
             {
                 // 1 cổng COM
                 portName = mConfig.comLedLeft;
-                if (inputIsLeftSide(cardID))
+                if (isInputLeftSide)
                 {
                     data = "@tien1_" + cost + "&";
                     writeDataToRightLedPort(data, portName);
@@ -3501,7 +3479,8 @@ namespace ParkingMangement.GUI
             byte[] buf = new byte[spL.BytesToRead];
             Console.WriteLine("DATA RECEIVED!");
             string cardID = spL.ReadExisting();
-            readCardEvent(cardID);
+            bool isInputLeftSide = inputIsLeftSide(cardID);
+            readCardEvent(cardID, isInputLeftSide);
         }
 
         //SerialPort port;
@@ -3711,7 +3690,8 @@ namespace ParkingMangement.GUI
                         string cardID = Program.newUhfCardId;
                         //portNameComReceiveInput = portName;
 
-                        readCardEvent(cardID);
+                        bool isInputLeftSide = inputIsLeftSide(cardID);
+                        readCardEvent(cardID, isInputLeftSide);
                         timerReadUHFData.Stop();
                         timerReadUHFData.Start();
                     }
@@ -3912,12 +3892,12 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private string docBienSo(string cardID)
+        private string docBienSo(string cardID, bool isInputLeftSide)
         {
             // DocBienSo
             string type = CardDAO.GetTypeByID(cardID);
             AxVLCPlugin2 axVLCPlugin;
-            if (inputIsLeftSide(cardID))
+            if (isInputLeftSide)
             {
                 if (mConfig.readDigitLeftLane.Equals("2"))
                 {
@@ -3989,12 +3969,12 @@ namespace ParkingMangement.GUI
 
             }
 
-            if (inputIsLeftSide(cardID))
+            if (isInputLeftSide)
             {
                 labelDigitInLeft.Text = "";
                 labelDigitOutLeft.Text = "";
 
-                if (isCarIn(cardID))
+                if (isCarIn(cardID, isInputLeftSide))
                 {
                     labelDigitInLeft.Text = plateNumber;
                 }
@@ -4008,7 +3988,7 @@ namespace ParkingMangement.GUI
                 labelDigitInRight.Text = "";
                 labelDigitOutRight.Text = "";
 
-                if (isCarIn(cardID))
+                if (isCarIn(cardID, isInputLeftSide))
                 {
                     labelDigitInRight.Text = plateNumber;
                 }

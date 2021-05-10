@@ -186,6 +186,9 @@ namespace ParkingMangement
                     //This code happens ONLY when trying to add duplicated values to the primary key in the database, 
                     // in this case just do nothing and continue loading the other no duplicated values
                     MessageBox.Show(Constant.sMessageDuplicateDataError);
+                } else if (Ex.Number == 1205)
+                {
+                    // Deadlock 
                 }
                 else
                 {
