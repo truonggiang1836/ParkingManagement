@@ -6,6 +6,7 @@ using ParkingMangement.Utils;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
@@ -227,11 +228,13 @@ namespace ParkingMangement
             aTimer.Start();
 
             checkForAutoLockCard();
+            runSyncDataProcess();
         }
 
         private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
         {
             checkForAutoLockCard();
+            runSyncDataProcess();
             //if (!Constant.IS_SYNC_DATA_APP)
             //{
             //    deleteOldImages();
@@ -283,6 +286,19 @@ namespace ParkingMangement
                 catch (Exception e)
                 {
 
+                }
+            }
+        }
+
+        private static void runSyncDataProcess()
+        {
+            Process[] pname = Process.GetProcessesByName("ParkingMangement_SyncData");
+            if (pname.Length == 0)
+            {
+                string filePath = Application.StartupPath + "\\ParkingMangement_SyncData.exe";
+                if (File.Exists(filePath))
+                {
+                    Process.Start(filePath);
                 }
             }
         }

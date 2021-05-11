@@ -707,8 +707,8 @@ namespace ParkingMangement.DAO
                 string id = jObject.GetValue("card_code").ToString();
                 string soThe = jObject.GetValue("card_number").ToString();
                 string bienSo = jObject.GetValue("license_plate").ToString();
-                //string isUsing = jObject.GetValue("trangThai").ToString().Equals("BiKhoa") ? "0" : "1";
-                string isUsing = "1";
+                string trangThai = jObject.GetValue("status").ToString();
+                string isUsing = trangThai.Equals("BiKhoa") ? "0" : "1";
 
                 string sign = jObject.GetValue("type").ToString();
                 DataTable data = PartDAO.GetPartIDAndAmountBySign(sign);
@@ -750,31 +750,41 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.IsDeleted = "0";
                 ticketMonthDTO.IsSync = "1";
 
-                if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
-                    && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals("")
-                    && ticketMonthDTO.ChargesAmount.Equals("0") && isUsing.Equals("0"))
+                if (trangThai.Equals("BiXoa"))
                 {
-                    Delete(ticketMonthDTO.Id);
+                    DeleteNoErrorMessage(id);
+                    CardDAO.DeleteNoErrorMessage(id);
                 }
-                else if (!bienSo.Equals(""))
+                else
                 {
-                    InsertOrUpdatePiHomeNoErrorMessage(ticketMonthDTO);
+                    if (id.Length > 0)
+                    {
+                        CardDTO cardDTO = new CardDTO();
+                        cardDTO.SystemId = id;
+                        cardDTO.Id = id;
+                        cardDTO.IsUsing = isUsing;
+                        cardDTO.IsDeleted = "0";
+                        cardDTO.Identify = soThe;
+                        cardDTO.Type = partId;
+                        cardDTO.DayUnlimit = DateTime.Now;
+                        cardDTO.IsSync = "1";
+
+                        CardDAO.InsertOrUpdate(cardDTO);
+
+                        if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
+                        && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals(""))
+                        {
+                            DeleteNoErrorMessage(id);
+                        }
+                        else if (!bienSo.Equals(""))
+                        {
+                            InsertOrUpdatePiHomeNoErrorMessage(ticketMonthDTO);
+                        }
+                    }
                 }
 
-                CardDTO cardDTO = new CardDTO();
-                cardDTO.SystemId = id;
-                cardDTO.Id = id;
-                cardDTO.IsUsing = isUsing;
-                cardDTO.IsDeleted = "0";
-                cardDTO.Identify = soThe;
-                cardDTO.Type = partId;
-                cardDTO.DayUnlimit = DateTime.Now;
-                cardDTO.IsSync = "1";
-
-                CardDAO.InsertOrUpdate(cardDTO);
-
-                //Util.setSyncDoneMonthlyCardListToPiHomeServer(soThe);
-                //break;
+                Util.setSyncDoneMonthlyCardListToPiHomeServer(id);
+                break;
 
                 Console.WriteLine("Sync API doing: " + index);
 

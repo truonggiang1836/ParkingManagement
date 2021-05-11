@@ -1639,19 +1639,18 @@ namespace ParkingMangement.Utils
             return order;
         }
 
-        public static void setSyncDoneMonthlyCardListToPiHomeServer(string soThe)
+        public static void setSyncDoneMonthlyCardListToPiHomeServer(string cardCode)
         {
             if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
             {
                 return;
             }
-            WebClient webClient = (new ApiUtil()).getWebClient();
-
-            webClient.QueryString.Add(ApiUtil.PARAM_CARD_NUMBER, soThe);
-            webClient.QueryString.Add(ApiUtil.PARAM_STATUS, "null");
+            WebClient webClient = (new ApiUtil()).getPiHomeWebClient();
+            var param = new System.Collections.Specialized.NameValueCollection();
+            param.Add(ApiUtil.PARAM_CARD_CODE, cardCode);
             try
             {
-                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SET_SYNC_DONE_SPM);
+                String responseString = webClient.DownloadString(ApiUtil.API_MONTHLY_CARDS_SET_DONE_PI_HOME);
                 Console.WriteLine(responseString);
             }
             catch (WebException exception)

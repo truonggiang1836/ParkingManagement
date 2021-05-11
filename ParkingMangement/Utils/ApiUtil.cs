@@ -85,6 +85,7 @@ namespace ParkingMangement.Utils
 
         public static string API_MONTHLY_CARDS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles";
         public static string API_MONTHLY_CARDS_UPDATE_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles/update";
+        public static string API_MONTHLY_CARDS_SET_DONE_PI_HOME = BASE_PI_HOME_URL + "parking/vehicles/set-done";
         public static string API_PARTS_SYNCS_PI_HOME = BASE_PI_HOME_URL + "parking/vehicle-types";
 
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);

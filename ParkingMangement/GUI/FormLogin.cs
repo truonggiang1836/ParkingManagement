@@ -72,8 +72,7 @@ namespace ParkingMangement
         private void loginDone(DataTable data)
         {
             this.Hide();
-            Program.StartWorkTime = DateTime.Now;         
-            runSyncDataProcess();
+            Program.StartWorkTime = DateTime.Now;                     
 
             Form f = null;
             string userId = data.Rows[0].Field<string>("UserID");
@@ -109,20 +108,7 @@ namespace ParkingMangement
             }
 
             LogUtil.addLoginLog();
-        }
-
-        private void runSyncDataProcess()
-        {         
-            Process[] pname = Process.GetProcessesByName("ParkingMangement_SyncData");
-            if (pname.Length == 0)
-            {
-                string filePath = Application.StartupPath + "\\ParkingMangement_SyncData.exe";
-                if (File.Exists(filePath))
-                {
-                    Process.Start(filePath);
-                }                
-            }
-        }
+        }     
 
         void FormQuanLy_FormClosing(object sender, FormClosingEventArgs e)
         {
