@@ -95,6 +95,7 @@ namespace ParkingMangement.GUI
         private int mBikeSpace;
         private int mCarSpace;
         private bool isUhfCard = false;
+        private bool mIsUpdatingDB = false;
 
         private Size oldSize;
         private const float LARGER_FONT_FACTOR = 1.5f;
@@ -366,7 +367,7 @@ namespace ParkingMangement.GUI
             rfidInput = rfidIn;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventTest);
-            aTimer.Interval = 1 * 500;
+            aTimer.Interval = 1 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
         }
@@ -697,11 +698,18 @@ namespace ParkingMangement.GUI
 
         private void readCardEvent(string cardID, bool isInputLeftSide)
         {
+            if (mIsUpdatingDB)
+            {
+                return;
+            }
+            mIsUpdatingDB = true;
             mCurrentCardID = cardID;
             isShowExpiredMessage = false;
             Program.isHasCarInOut = true;
+
             if (!cardID.Equals(""))
             {
+                resetDataOneSide(false, null);
                 CardDTO dtCommonCard = CardDAO.GetNotDeletedCardModelByID(cardID);
                 if (dtCommonCard != null)
                 {
@@ -710,6 +718,7 @@ namespace ParkingMangement.GUI
                     if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_MONTH) && dtTicketCard == null)
                     {
                         checkUsingCardForShowError(cardID);
+                        mIsUpdatingDB = false;
                     }
                     else
                     {
@@ -728,6 +737,7 @@ namespace ParkingMangement.GUI
                 else
                 {
                     checkUsingCardForShowError(cardID);
+                    mIsUpdatingDB = false;
                 }
                 new Thread(() =>
                 {
@@ -740,10 +750,13 @@ namespace ParkingMangement.GUI
                     }));
                 }).Start();
 
+            } else
+            {
+                mIsUpdatingDB = false;
             }
             portNameComReceiveInput = null;
             portNameComReaderInput = null;
-            oldPortNameComReceiveInput = null;
+            oldPortNameComReceiveInput = null;            
         }
 
         private void checkUsingCardForShowError(string cardID)
@@ -817,6 +830,7 @@ namespace ParkingMangement.GUI
                 MessageBox.Show(Constant.sMessageCardIsLost);
                 if (isCarIn(cardID, isInputLeftSide))
                 {
+                    mIsUpdatingDB = false;
                     return false;
                 }
             }
@@ -836,6 +850,7 @@ namespace ParkingMangement.GUI
                         resetPictureBoxImage1(cardID, isInputLeftSide);
                         resetPictureBoxImage2(cardID, isInputLeftSide);
                         tbRFIDCardID.Focus();
+                        mIsUpdatingDB = false;
                         return false;
                     }
                 }
@@ -863,13 +878,13 @@ namespace ParkingMangement.GUI
                     string inputDigit = docBienSo(cardID, isInputLeftSide);
                     insertCarInAsync(dtCommonCard, dtTicketCard, inputDigit, cardID, isInputLeftSide);
                 }
+                mIsUpdatingDB = false;
             }
             else
             {
                 if (isKiemTraXeChuaRa || isKiemTraCapNhatXeRa)
                 {
                     loadCarInData(dtLastCar, cardID, isInputLeftSide);
-
                     if (!isLockedCard)
                     {
                         checkExpiredTicket(dtTicketCard, isTicketCard);
@@ -883,6 +898,7 @@ namespace ParkingMangement.GUI
                     tbRFIDCardID.Focus();
                     labelError.Text = "Thẻ này chưa được quẹt đầu vào";
                     Program.oldUhfCardId = "";
+                    mIsUpdatingDB = false;
                     return false;
                 }
             }
@@ -1148,6 +1164,7 @@ namespace ParkingMangement.GUI
                 {
                     resetDataOneSide(true, isInputLeftSide);
                     MessageBox.Show(Constant.sMessageCardNotUpdate);
+                    mIsUpdatingDB = false;
                     return;
                 }
 
@@ -1421,14 +1438,17 @@ namespace ParkingMangement.GUI
                     //        return;
                     //    }
                     //});
+
                     new Thread(() =>
                     {
                         if (!CarDAO.UpdateCarOut(carDTO))
                         {
                             resetDataOneSide(true, isInputLeftSide);
                             MessageBox.Show(Constant.sMessageCardNotUpdate);
+                            mIsUpdatingDB = false;
                             return;
                         }
+                        mIsUpdatingDB = false;
 
                         // play audio
                         string compareInputDigit = inputDigit.Replace("-", "").Replace(".", "").Replace(" ", "");
@@ -1467,11 +1487,15 @@ namespace ParkingMangement.GUI
                                 playCostToAudio(carDTO.Cost.ToString());
                             }
                         }
-                    }).Start();
-
-                    
+                    }).Start();     
+                } else
+                {
+                    mIsUpdatingDB = false;
                 }
-            }          
+            } else
+            {
+                mIsUpdatingDB = false;
+            }  
         }
 
         private void playCostToAudio(string cost)
@@ -2863,8 +2887,7 @@ namespace ParkingMangement.GUI
                 case Keys.Enter:
                     Program.oldUhfCardId = "";
                     Program.newUhfCardId = "";
-                    labelError.Text = "";
-                    resetDataOneSide(false, null);
+                    labelError.Text = "";                   
                     string cardID = tbRFIDCardID.Text.Trim();
                     tbRFIDCardID.Text = "";
 
