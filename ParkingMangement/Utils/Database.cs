@@ -264,5 +264,35 @@ namespace ParkingMangement
 
             }
         }
+
+        static public void backupDB()
+        {
+            string runningPath = Util.getFolderPath("BACKUP_PARKING_DB");
+            backupDB(runningPath);
+            string systemPath = "C:\\BACKUP_PARKING_DB\\";
+            backupDB(systemPath);
+        }
+
+        static public void backupDB(string folderPath)
+        {         
+            try
+            {
+                string fileName = "ParkingManagement" + DateTime.Now.ToString("_yyyy.MM.dd_HH.mm") + ".bak";
+                Util.CreateFolderIfMissing(folderPath);
+                DirectoryInfo di = new DirectoryInfo(folderPath);
+                foreach (FileInfo file in di.GetFiles())
+                {
+                    file.Delete();
+                }
+
+                string filePath = folderPath + fileName;
+                string sql = "BACKUP DATABASE ParkingManagement TO DISK = '" + filePath + "'";
+                (new Database()).ExcuQueryNoErrorMessage(sql);
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
     }
 }

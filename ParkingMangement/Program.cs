@@ -52,15 +52,15 @@ namespace ParkingMangement
             initUhfReader();
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-
-            doTimerAutoLockCard();
-            Database.UpdateDB();
+         
+            Database.UpdateDB();           
 
             if (Constant.IS_SYNC_DATA_APP)
             {
                 Application.Run(new FormSyncData());
             } else
             {
+                doTimerAutoLockCard();
                 Application.Run(new FormLogin());              
             }
         }
@@ -223,22 +223,30 @@ namespace ParkingMangement
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventAutoLockCard);
-            aTimer.Interval = 1 * 60 * 60 * 1000; //1h
+            //aTimer.Interval = 1 * 60 * 60 * 1000; //1h
+            aTimer.Interval = 60 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
 
             checkForAutoLockCard();
             runSyncDataProcess();
+            backupDB();
         }
 
         private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
         {
             checkForAutoLockCard();
             runSyncDataProcess();
-            //if (!Constant.IS_SYNC_DATA_APP)
-            //{
-            //    deleteOldImages();
-            //}
+            backupDB();
+        }
+
+        private static void backupDB()
+        {
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                Database.backupDB();
+            }).Start();
         }
 
         private static void checkForAutoLockCard()
