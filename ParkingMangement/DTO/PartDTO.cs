@@ -11,7 +11,6 @@ namespace ParkingMangement.DTO
         private string isSync = "0";
         private string isDeleted = "0";
         public string ID { get; set; }
-        public string PartID { get; set; }
         public string Name { get; set; }
         public string Sign { get; set; }
         public int Amount { get; set; }

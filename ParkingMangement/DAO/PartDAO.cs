@@ -124,6 +124,7 @@ namespace ParkingMangement.DAO
 
         public static void Insert(PartDTO partDTO)
         {
+            HardDeleteIfCardBeDeleted(partDTO.ID);
             string sql = getInsertSql(partDTO);
             (new Database()).ExcuNonQuery(sql);
         }
@@ -151,6 +152,12 @@ namespace ParkingMangement.DAO
             //string sql = "delete from Part where ID = '" + partID + "'";
             string sql = "update Part set IsDeleted = 1, IsSync = 0 where ID = '" + partID + "'";
             (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool HardDeleteIfCardBeDeleted(string partID)
+        {
+            string sql = "delete from Part where ID = '" + partID + "' and IsDeleted = 1";
+            return (new Database()).ExcuNonQuery(sql);
         }
 
         public static void syncFromJson(string json)

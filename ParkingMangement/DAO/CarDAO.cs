@@ -917,7 +917,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetLastCarByID(string id)
         {
-            string sql = "select top 1 Identify, ID, TimeStart, TimeEnd, Digit, DigitIn, Images, Images2, Cost from Car where ID = '" + id + "' order by TimeStart desc";
+            string sql = "select top 1 Identify, ID, TimeStart, TimeEnd, Digit, DigitIn, Images, Images2, Cost from Car where ID = '" + id + "' order by TimeStart desc, Identify desc";
             return (new Database()).ExcuQuery(sql);
         }
 
