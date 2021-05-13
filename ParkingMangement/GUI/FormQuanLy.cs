@@ -1903,6 +1903,11 @@ namespace ParkingMangement.GUI
                 {
                     loadTicketMonthData();
 
+                    if (!Util.getConfigFile().signature.Equals(""))
+                    {
+                        Util.updateCardToPiHomeServer(ticketMonthDTO);
+                    }
+
                     addTicketLog(Constant.LOG_TYPE_UPDATE_TICKET_MONTH, ticketMonthDTO);
                     MessageBox.Show("Cập nhật thẻ thành công!");
                 }

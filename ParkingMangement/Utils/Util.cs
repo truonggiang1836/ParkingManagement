@@ -1478,11 +1478,7 @@ namespace ParkingMangement.Utils
             var param = new System.Collections.Specialized.NameValueCollection();
             param.Add(ApiUtil.PARAM_LICENSE_PLATE, ticketMonthDTO.Digit);
             param.Add(ApiUtil.PARAM_CARD_CODE, ticketMonthDTO.Id);
-            param.Add(ApiUtil.PARAM_CARD_NUMBER, ticketMonthDTO.CardNumber);
-            param.Add(ApiUtil.PARAM_CUSTOMER_NAME, ticketMonthDTO.CustomerName);
-            param.Add(ApiUtil.PARAM_FEE, ticketMonthDTO.ChargesAmount);
-            param.Add(ApiUtil.PARAM_CUSTOMER_NAME, ticketMonthDTO.CustomerName);
-            param.Add(ApiUtil.PARAM_CUSTOMER_NAME, ticketMonthDTO.CustomerName);
+            param.Add(ApiUtil.PARAM_CARD_NUMBER, ticketMonthDTO.CardIdentify);
             byte[] responsebytes = webClient.UploadValues(ApiUtil.API_MONTHLY_CARDS_UPDATE_PI_HOME, "POST", param);
             string responsebody = Encoding.UTF8.GetString(responsebytes);
             //MessageBox.Show(responsebody);
