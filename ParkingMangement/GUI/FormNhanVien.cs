@@ -298,10 +298,12 @@ namespace ParkingMangement.GUI
 
                     configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
                         mConfig.ZoomCamera3, mConfig.ZoomCamera4);
-                    loadCamera1VLC();
-                    loadCamera2VLC();
-                    loadCamera3VLC();
-                    loadCamera4VLC();
+                    loadCameraVLC(axVLCPlugin1, cameraUrl1);
+                    loadCameraVLC(axVLCPlugin2, cameraUrl2);
+                    loadCameraVLC(axVLCPlugin3, cameraUrl3);
+                    loadCameraVLC(axVLCPlugin4, cameraUrl4);
+
+                    //loadCameraVLC(axVLCPluginCar2, cameraUrl2);
                 }
                 else
                 {
@@ -422,7 +424,7 @@ namespace ParkingMangement.GUI
             cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
             portNameComReaderInput = sp.PortName;
             Program.oldUhfCardId = "";
-            bool isInputLeftSide = inputIsLeftSide(cardID);
+            bool isInputLeftSide = inputIsLeftSide(cardID);          
             readCardEvent(cardID, isInputLeftSide);
         }
 
@@ -698,6 +700,7 @@ namespace ParkingMangement.GUI
 
         private void readCardEvent(string cardID, bool isInputLeftSide)
         {
+            this.BringToFront();
             if (mIsUpdatingDB)
             {
                 return;
@@ -1789,14 +1792,13 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void loadCamera1VLC()
+        private void loadCameraVLC(AxVLCPlugin2 axVLCPlugin, String cameraUrl)
         {
-            String rtspString = cameraUrl1;
-            axVLCPlugin1.playlist.add(rtspString, "1", options);
+            axVLCPlugin.playlist.add(cameraUrl, "1", options);
             try
             {
-                axVLCPlugin1.playlist.play();
-                axVLCPlugin1.BringToFront();
+                axVLCPlugin.playlist.play();
+                axVLCPlugin.BringToFront();
 
             }
             catch (Exception ex)
@@ -2139,6 +2141,8 @@ namespace ParkingMangement.GUI
             axVLCPlugin2.volume = 0;
             axVLCPlugin3.volume = 0;
             axVLCPlugin4.volume = 0;
+            axVLCPluginCar2.volume = 0;
+            axVLCPluginCar4.volume = 0;
         }
 
         private void OnKeyPressed(object sender, RawInputEventArg e)
@@ -2894,6 +2898,18 @@ namespace ParkingMangement.GUI
                     if (!cardID.Equals(""))
                     {
                         bool isInputLeftSide = inputIsLeftSide(cardID);
+                        if (!mConfig.cameraCarUrl2.Equals(""))
+                        {
+                            axVLCPluginCar2.Visible = !axVLCPluginCar2.Visible;
+                            if (axVLCPluginCar2.Visible)
+                            {
+                                axVLCPluginCar2.BringToFront();
+                            }
+                            else
+                            {
+                                axVLCPluginCar2.SendToBack();
+                            }
+                        }
                         readCardEvent(cardID, isInputLeftSide);
                     }
                     break;

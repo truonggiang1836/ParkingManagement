@@ -236,6 +236,8 @@ namespace ParkingMangement.Utils
                         sConfig.cameraUrl2 = sConfig.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.cameraUrl3 = sConfig.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.cameraUrl4 = sConfig.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraCarUrl2 = sConfig.cameraCarUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraCarUrl4 = sConfig.cameraCarUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.rfidIn = sConfig.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.rfidOut = sConfig.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.computerName = sConfig.computerName.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");

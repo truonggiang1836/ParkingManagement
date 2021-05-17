@@ -1454,8 +1454,8 @@ namespace ParkingMangement.GUI
         {
             if (tabQuanLy.SelectedTab == tabQuanLy.TabPages["tabPageQuanLyDoanhThu"])
             {
-                setFormatTimeForDateTimePicker(dtStartTimeSaleReport);
-                setFormatTimeForDateTimePicker(dtEndTimeSaleReport);
+                setFormatFullTimeForDateTimePicker(dtStartTimeSaleReport);
+                setFormatFullTimeForDateTimePicker(dtEndTimeSaleReport);
                 setFormatDateForDateTimePicker(dtDateSaleReport);
                 setFormatDateForDateTimePicker(dtStartDateSaleReport);
                 setFormatDateForDateTimePicker(dtEndDateSaleReport);
@@ -2364,6 +2364,7 @@ namespace ParkingMangement.GUI
             string id = tbLostTicketMonthID.Text;
             if (TicketMonthDAO.updateTicketByID(id, identify))
             {
+
                 searchLostTicketMonth();
                 MessageBox.Show(Constant.sMessageUpdateSuccess);
             }
@@ -2573,6 +2574,13 @@ namespace ParkingMangement.GUI
                 cb.DisplayMember = "NameUser";
                 cb.ValueMember = "UserID";
             }
+        }
+
+        public static void setFormatFullTimeForDateTimePicker(DateTimePicker dateTimePicker)
+        {
+            dateTimePicker.Format = DateTimePickerFormat.Custom;
+            dateTimePicker.CustomFormat = "HH:mm:ss";
+            dateTimePicker.ShowUpDown = true;
         }
 
         public static void setFormatTimeForDateTimePicker(DateTimePicker dateTimePicker)
@@ -6774,6 +6782,28 @@ namespace ParkingMangement.GUI
         private void checkShowHideNoticeExpiredDate()
         {
             panelNoticeExpiredDate.Visible = cbTinhPhiCocThe.Checked;
+        }
+
+        private void btnCarListSelectAll_Click(object sender, EventArgs e)
+        {
+            if ((string) btnCarListSelectAll.Tag == "")
+            {
+                foreach (DataGridViewRow row in dgvCarList.Rows)
+                {
+                    row.Cells["SelectCar"].Value = true;
+                }
+                btnCarListSelectAll.Tag = "select";
+                btnCarListSelectAll.Text = "BỎ CHỌN";
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgvCarList.Rows)
+                {
+                    row.Cells["SelectCar"].Value = false;
+                }
+                btnCarListSelectAll.Tag = "";
+                btnCarListSelectAll.Text = "CHỌN TẤT CẢ";
+            }
         }
     }
 }

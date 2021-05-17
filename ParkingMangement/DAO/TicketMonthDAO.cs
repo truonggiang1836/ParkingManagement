@@ -221,7 +221,7 @@ namespace ParkingMangement.DAO
                     data.Rows[row].SetField("IsUsing", Constant.sLabelCardNotUsing);
                 }
 
-                if (daysRemaining != null && daysRemaining.GetValueOrDefault() < daysRemainingInDB)
+                if (daysRemaining != null && daysRemaining.GetValueOrDefault() != daysRemainingInDB)
                 {
                     data.Rows[row].Delete();
                 }

@@ -35,6 +35,7 @@ namespace ParkingMangement.Utils
         public static string sButtonUpdate = "CẬP NHẬT";
         public static string sTitleDelete = "Xóa dữ liệu";
         public static string sButtonDelete = "Xóa";
+        public static string sButtonSelectAll = "Chọn tất cả";
         public static string sMessageConfirmDelete = "Bạn có muốn xóa không?";
         public static string sMessageExportExcelSuccess = "Xuất file Excel thành công";
         public static string sMessageImportExcelSuccess = "Nhập file Excel hoàn tất";

@@ -37,6 +37,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.axVLCPluginCar4 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPluginCar2 = new AxAXVLC.AxVLCPlugin2();
             this.labelXeRaBienSo = new System.Windows.Forms.Label();
             this.labelXeVaoBienSo = new System.Windows.Forms.Label();
             this.labelXeRaNguoi = new System.Windows.Forms.Label();
@@ -155,6 +157,8 @@
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).BeginInit();
@@ -203,6 +207,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.axVLCPluginCar4);
+            this.panel1.Controls.Add(this.axVLCPluginCar2);
             this.panel1.Controls.Add(this.labelXeRaBienSo);
             this.panel1.Controls.Add(this.labelXeVaoBienSo);
             this.panel1.Controls.Add(this.labelXeRaNguoi);
@@ -224,6 +230,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(891, 562);
             this.panel1.TabIndex = 0;
+            // 
+            // axVLCPluginCar4
+            // 
+            this.axVLCPluginCar4.Enabled = true;
+            this.axVLCPluginCar4.Location = new System.Drawing.Point(670, 21);
+            this.axVLCPluginCar4.Name = "axVLCPluginCar4";
+            this.axVLCPluginCar4.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPluginCar4.OcxState")));
+            this.axVLCPluginCar4.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPluginCar4.TabIndex = 131;
+            this.axVLCPluginCar4.Visible = false;
+            // 
+            // axVLCPluginCar2
+            // 
+            this.axVLCPluginCar2.Enabled = true;
+            this.axVLCPluginCar2.Location = new System.Drawing.Point(222, 21);
+            this.axVLCPluginCar2.Name = "axVLCPluginCar2";
+            this.axVLCPluginCar2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPluginCar2.OcxState")));
+            this.axVLCPluginCar2.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPluginCar2.TabIndex = 130;
+            this.axVLCPluginCar2.Visible = false;
             // 
             // labelXeRaBienSo
             // 
@@ -1598,6 +1624,8 @@
             this.Shown += new System.EventHandler(this.FormNhanVien_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin2)).EndInit();
@@ -1771,5 +1799,7 @@
         private System.Windows.Forms.Label labelXeRaBienSo;
         private System.Windows.Forms.Label labelXeVaoBienSo;
         private System.Windows.Forms.Label labelXeRaNguoi;
+        private AxAXVLC.AxVLCPlugin2 axVLCPluginCar4;
+        private AxAXVLC.AxVLCPlugin2 axVLCPluginCar2;
     }
 }
