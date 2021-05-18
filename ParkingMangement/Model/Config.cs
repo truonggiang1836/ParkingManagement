@@ -163,6 +163,8 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "python_server_url")]
         public string pythonServerUrl { get; set; } = "";
         [XmlElement(ElementName = "is_include_min_minute")]
-        public string isIncludeMinMinute { get; set; } = "yes";     
+        public string isIncludeMinMinute { get; set; } = "yes";
+        [XmlElement(ElementName = "backup_computer_name")]
+        public string backupComputerName { get; set; } = "";
     }
 }

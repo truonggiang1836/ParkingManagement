@@ -2264,7 +2264,8 @@ namespace ParkingMangement.GUI
 
         private void OnKeyPressed(object sender, RawInputEventArg e)
         {
-            if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut))
+            if (e.KeyPressEvent.DeviceName.Equals(rfidIn) || e.KeyPressEvent.DeviceName.Equals(rfidOut) ||
+                e.KeyPressEvent.DeviceName.Equals(rfidCarIn) || e.KeyPressEvent.DeviceName.Equals(rfidCarOut))
             {
                 rfidInput = e.KeyPressEvent.DeviceName;
             }

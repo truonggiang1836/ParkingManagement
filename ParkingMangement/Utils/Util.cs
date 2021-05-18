@@ -213,6 +213,15 @@ namespace ParkingMangement.Utils
             return ms;
         }
 
+        public static void deleteAllFileOnDirectory(string directory)
+        {
+            DirectoryInfo di = new DirectoryInfo(directory);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+        }
+
         public static Config getConfigFile()
         {
             if (sConfig != null)

@@ -267,32 +267,53 @@ namespace ParkingMangement
 
         static public void backupDB()
         {
-            string runningPath = Util.getFolderPath("BACKUP_PARKING_DB");
-            backupDB(runningPath);
-            string systemPath = "C:\\BACKUP_PARKING_DB\\";
-            backupDB(systemPath);
-        }
-
-        static public void backupDB(string folderPath)
-        {         
             try
             {
                 string fileName = "ParkingManagement" + DateTime.Now.ToString("_yyyy.MM.dd_HH.mm") + ".bak";
-                Util.CreateFolderIfMissing(folderPath);
-                DirectoryInfo di = new DirectoryInfo(folderPath);
-                foreach (FileInfo file in di.GetFiles())
+                string runningPath = Util.getFolderPath("BACKUP_PARKING_DB");
+                Util.CreateFolderIfMissing(runningPath);
+                backupDB(runningPath, fileName);
+
+                string localFilePath = runningPath + fileName;
+                string systemPath = "C:\\BACKUP_PARKING_DB\\";
+                string systemFilePath = systemPath + fileName;
+
+                Util.CreateFolderIfMissing(systemPath);
+                if (Directory.Exists(systemPath))
                 {
-                    file.Delete();
+                    Util.deleteAllFileOnDirectory(systemPath);
+                    File.Copy(localFilePath, systemFilePath, true);
                 }
 
-                string filePath = folderPath + fileName;
-                string sql = "BACKUP DATABASE ParkingManagement TO DISK = '" + filePath + "'";
-                (new Database()).ExcuQueryNoErrorMessage(sql);
+                if (Util.getConfigFile().backupComputerName.Length > 0)
+                {
+                    string sharedFolderPath = @"\\" + Util.getConfigFile().backupComputerName + @"\BACKUP_PARKING_DB" + @"\";
+                    string sharedFilePath = sharedFolderPath + fileName;              
+
+                    if (Directory.Exists(sharedFolderPath))
+                    {
+                        Util.deleteAllFileOnDirectory(sharedFolderPath);
+                        File.Copy(localFilePath, sharedFilePath, true);
+                    }
+                }
             }
             catch (Exception e)
             {
 
             }
+        }
+
+        static public void backupDB(string folderPath, string fileName)
+        {           
+            DirectoryInfo di = new DirectoryInfo(folderPath);
+            foreach (FileInfo file in di.GetFiles())
+            {
+                file.Delete();
+            }
+
+            string filePath = folderPath + fileName;
+            string sql = "BACKUP DATABASE ParkingManagement TO DISK = '" + filePath + "'";
+            (new Database()).ExcuQueryNoErrorMessage(sql);
         }
     }
 }
