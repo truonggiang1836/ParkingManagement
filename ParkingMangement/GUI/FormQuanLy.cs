@@ -4448,14 +4448,22 @@ namespace ParkingMangement.GUI
                     config.cameraUrl2 = tb_camera_url_2.Text;
                     config.cameraUrl3 = tb_camera_url_3.Text;
                     config.cameraUrl4 = tb_camera_url_4.Text;
+                    config.cameraCarUrl1 = tb_camera_car_url_1.Text;
+                    config.cameraCarUrl2 = tb_camera_car_url_2.Text;
+                    config.cameraCarUrl3 = tb_camera_car_url_3.Text;
+                    config.cameraCarUrl4 = tb_camera_car_url_4.Text;
                     config.rfidIn = Constant.sEncodeStart + tb_rfid_1.Text + Constant.sEncodeEnd;
                     config.rfidOut = Constant.sEncodeStart + tb_rfid_2.Text + Constant.sEncodeEnd;
+                    config.rfidCarIn = Constant.sEncodeStart + tb_rfid_car_1.Text + Constant.sEncodeEnd;
+                    config.rfidCarOut = Constant.sEncodeStart + tb_rfid_car_2.Text + Constant.sEncodeEnd;
                     config.computerName = Constant.sEncodeStart + tb_ip_host.Text + Constant.sEncodeEnd;
                     config.folderRoot = Constant.sEncodeStart + tb_folder_root.Text + Constant.sEncodeEnd;
                     config.comReceiveIn = Constant.sEncodeStart + tb_com_receive_in.Text + Constant.sEncodeEnd;
                     config.comReceiveOut = Constant.sEncodeStart + tb_com_receive_out.Text + Constant.sEncodeEnd;
                     config.comReaderLeft = Constant.sEncodeStart + tb_com_reader_left.Text + Constant.sEncodeEnd;
                     config.comReaderRight = Constant.sEncodeStart + tb_com_reader_right.Text + Constant.sEncodeEnd;
+                    config.comReaderCarLeft = Constant.sEncodeStart + tb_com_reader_car_left.Text + Constant.sEncodeEnd;
+                    config.comReaderCarRight = Constant.sEncodeStart + tb_com_reader_car_right.Text + Constant.sEncodeEnd;
                     config.comSend = Constant.sEncodeStart + tb_com_send.Text + Constant.sEncodeEnd;
                     config.signalOpenBarieIn = Constant.sEncodeStart + tb_signal_open_barie_in.Text + Constant.sEncodeEnd;
                     config.signalCloseBarieIn = Constant.sEncodeStart + tb_signal_close_barie_in.Text + Constant.sEncodeEnd;
@@ -4513,6 +4521,10 @@ namespace ParkingMangement.GUI
                     tb_camera_url_2.Text = config.cameraUrl2;
                     tb_camera_url_3.Text = config.cameraUrl3;
                     tb_camera_url_4.Text = config.cameraUrl4;
+                    tb_camera_car_url_1.Text = config.cameraCarUrl1;
+                    tb_camera_car_url_2.Text = config.cameraCarUrl2;
+                    tb_camera_car_url_3.Text = config.cameraCarUrl3;
+                    tb_camera_car_url_4.Text = config.cameraCarUrl4;
                 } else
                 {
                     Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
@@ -4524,10 +4536,14 @@ namespace ParkingMangement.GUI
 
                 tb_rfid_1.Text = config.rfidIn;
                 tb_rfid_2.Text = config.rfidOut;
+                tb_rfid_car_1.Text = config.rfidCarIn;
+                tb_rfid_car_2.Text = config.rfidCarOut;
                 tb_com_receive_in.Text = config.comReceiveIn;
                 tb_com_receive_out.Text = config.comReceiveOut;
                 tb_com_reader_left.Text = config.comReaderLeft;
                 tb_com_reader_right.Text = config.comReaderRight;
+                tb_com_reader_car_left.Text = config.comReaderCarLeft;
+                tb_com_reader_car_right.Text = config.comReaderCarRight;
                 tb_com_send.Text = config.comSend;
                 tb_signal_open_barie_in.Text = config.signalOpenBarieIn;
                 tb_signal_close_barie_in.Text = config.signalCloseBarieIn;
@@ -6804,6 +6820,11 @@ namespace ParkingMangement.GUI
                 btnCarListSelectAll.Tag = "";
                 btnCarListSelectAll.Text = "CHỌN TẤT CẢ";
             }
+        }
+
+        private void textBox10_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -62,12 +62,21 @@ namespace ParkingMangement.GUI
         private string cameraUrl3 = cameraUrl;
         private string cameraUrl4 = cameraUrl;
 
+        private string cameraCarUrl1 = cameraUrl;
+        private string cameraCarUrl2 = cameraUrl;
+        private string cameraCarUrl3 = cameraUrl;
+        private string cameraCarUrl4 = cameraUrl;
+
         private string rfidIn = "";
         private string rfidOut = "";
+        private string rfidCarIn = "";
+        private string rfidCarOut = "";
         private string portNameComReceiveIn = "";
         private string portNameComReceiveOut = "";
         private string portNameComReaderLeft = "";
         private string portNameComReaderRight = "";
+        private string portNameComReaderCarLeft = "";
+        private string portNameComReaderCarRight = "";
 
         private string imagePath1;
         private string imagePath2;
@@ -297,13 +306,17 @@ namespace ParkingMangement.GUI
                     axVLCPlugin4.Visible = true;
 
                     configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
-                        mConfig.ZoomCamera3, mConfig.ZoomCamera4);
+                        mConfig.ZoomCamera3, mConfig.ZoomCamera4);                  
+
+                    loadCameraVLC(axVLCPluginCar1, cameraCarUrl1);
+                    loadCameraVLC(axVLCPluginCar2, cameraCarUrl2);
+                    loadCameraVLC(axVLCPluginCar3, cameraCarUrl3);
+                    loadCameraVLC(axVLCPluginCar4, cameraCarUrl4);
+
                     loadCameraVLC(axVLCPlugin1, cameraUrl1);
                     loadCameraVLC(axVLCPlugin2, cameraUrl2);
                     loadCameraVLC(axVLCPlugin3, cameraUrl3);
                     loadCameraVLC(axVLCPlugin4, cameraUrl4);
-
-                    //loadCameraVLC(axVLCPluginCar2, cameraUrl2);
                 }
                 else
                 {
@@ -376,6 +389,8 @@ namespace ParkingMangement.GUI
 
         SerialPort readerLeftSerialPort;
         SerialPort readerRightSerialPort;
+        SerialPort readerCarLeftSerialPort;
+        SerialPort readerCarRightSerialPort;
 
         private void readPegasusReaderCOM()
         {
@@ -400,13 +415,34 @@ namespace ParkingMangement.GUI
             {
 
             }
+
+            try
+            {
+                readerCarLeftSerialPort = new SerialPort(mConfig.comReaderCarLeft, 9600, Parity.None, 8, StopBits.One);
+                readerCarLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderCarLeft_DataReceived);
+                readerCarLeftSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            try
+            {
+                readerCarRightSerialPort = new SerialPort(mConfig.comReaderCarRight, 9600, Parity.None, 8, StopBits.One);
+                readerCarRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderCarRight_DataReceived);
+                readerCarRightSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
-        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void DataReceivedEvent(object sender)
         {
             SerialPort sp = (SerialPort)sender;
             string data = sp.ReadLine();
-            //Console.WriteLine(data);
             string cardID = data.Trim();
             cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
             portNameComReaderInput = sp.PortName;
@@ -415,17 +451,24 @@ namespace ParkingMangement.GUI
             readCardEvent(cardID, isInputLeftSide);
         }
 
+        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            DataReceivedEvent(sender);
+        }
+
         private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            SerialPort sp = (SerialPort)sender;
-            string data = sp.ReadLine();
-            //Console.WriteLine(data);
-            string cardID = data.Trim();
-            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
-            portNameComReaderInput = sp.PortName;
-            Program.oldUhfCardId = "";
-            bool isInputLeftSide = inputIsLeftSide(cardID);          
-            readCardEvent(cardID, isInputLeftSide);
+            DataReceivedEvent(sender);
+        }
+
+        private void portComReaderCarLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            DataReceivedEvent(sender);
+        }
+
+        private void portComReaderCarRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            DataReceivedEvent(sender);
         }
 
         public void openCameraWindow()
@@ -698,6 +741,65 @@ namespace ParkingMangement.GUI
             bitmap.Save(fileDir, ImageFormat.Jpeg);
         }
 
+        private void checkForShowCarCamera(string cardID, bool isInputLeftSide)
+        {
+            bool isShowLeftCarCam = false;
+            bool isShowRightCarCam = false;
+            if ((!mConfig.cameraCarUrl1.Equals("") || !mConfig.cameraCarUrl2.Equals("")) && isInputLeftSide)
+            {
+                if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes") && (cardID.Length == 53))
+                {
+                    isShowLeftCarCam = portNameComReceiveInput.Equals(portNameComReceiveIn);
+                }
+                else if (portNameComReaderInput != null)
+                {
+                    isShowLeftCarCam = portNameComReaderInput.Equals(portNameComReaderCarLeft);
+                }
+                else if (!rfidInput.Equals("Global Keyboard"))
+                {
+                    isShowLeftCarCam = rfidInput.Equals(rfidCarIn);
+                }
+
+                if (isShowLeftCarCam)
+                {
+                    axVLCPluginCar1.BringToFront();
+                    axVLCPluginCar2.BringToFront();
+                }
+                else
+                {
+                    axVLCPluginCar1.SendToBack();
+                    axVLCPluginCar2.SendToBack();
+                }
+            }
+
+            if ((!mConfig.cameraCarUrl3.Equals("") || !mConfig.cameraCarUrl4.Equals("")) && !isInputLeftSide)
+            {
+                if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes") && (cardID.Length == 53))
+                {
+                    isShowRightCarCam = portNameComReceiveInput.Equals(portNameComReceiveOut);
+                }
+                else if (portNameComReaderInput != null)
+                {
+                    isShowRightCarCam = portNameComReaderInput.Equals(portNameComReaderCarRight);
+                }
+                else if (!rfidInput.Equals("Global Keyboard"))
+                {
+                    isShowRightCarCam = rfidInput.Equals(rfidCarOut);
+                }
+
+                if (isShowRightCarCam)
+                {
+                    axVLCPluginCar3.BringToFront();
+                    axVLCPluginCar4.BringToFront();
+                }
+                else
+                {
+                    axVLCPluginCar3.SendToBack();
+                    axVLCPluginCar4.SendToBack();
+                }
+            }
+        }
+
         private void readCardEvent(string cardID, bool isInputLeftSide)
         {
             this.BringToFront();
@@ -705,6 +807,8 @@ namespace ParkingMangement.GUI
             {
                 return;
             }
+            checkForShowCarCamera(cardID, isInputLeftSide);
+
             mIsUpdatingDB = true;
             mCurrentCardID = cardID;
             isShowExpiredMessage = false;
@@ -1794,16 +1898,19 @@ namespace ParkingMangement.GUI
 
         private void loadCameraVLC(AxVLCPlugin2 axVLCPlugin, String cameraUrl)
         {
-            axVLCPlugin.playlist.add(cameraUrl, "1", options);
-            try
+            if (cameraUrl.Length > 0)
             {
-                axVLCPlugin.playlist.play();
-                axVLCPlugin.BringToFront();
+                try
+                {
+                    axVLCPlugin.playlist.add(cameraUrl, "1", options);
+                    axVLCPlugin.playlist.play();
+                    axVLCPlugin.BringToFront();
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
 
@@ -2087,12 +2194,22 @@ namespace ParkingMangement.GUI
             cameraUrl2 = mConfig.cameraUrl2;
             cameraUrl3 = mConfig.cameraUrl3;
             cameraUrl4 = mConfig.cameraUrl4;
+
+            cameraCarUrl1 = mConfig.cameraCarUrl1;
+            cameraCarUrl2 = mConfig.cameraCarUrl2;
+            cameraCarUrl3 = mConfig.cameraCarUrl3;
+            cameraCarUrl4 = mConfig.cameraCarUrl4;
+
             rfidIn = mConfig.rfidIn;
             rfidOut = mConfig.rfidOut;
+            rfidCarIn = mConfig.rfidCarIn;
+            rfidCarOut = mConfig.rfidCarOut;
             portNameComReceiveIn = mConfig.comReceiveIn;
             portNameComReceiveOut = mConfig.comReceiveOut;
             portNameComReaderLeft = mConfig.comReaderLeft;
             portNameComReaderRight = mConfig.comReaderRight;
+            portNameComReaderCarLeft = mConfig.comReaderCarLeft;
+            portNameComReaderCarRight = mConfig.comReaderCarRight;
             //cameraUrl1 = ConfigDAO.GetCamera1();
             //cameraUrl2 = ConfigDAO.GetCamera2();
             //cameraUrl3 = ConfigDAO.GetCamera3();
@@ -2897,19 +3014,7 @@ namespace ParkingMangement.GUI
 
                     if (!cardID.Equals(""))
                     {
-                        bool isInputLeftSide = inputIsLeftSide(cardID);
-                        if (!mConfig.cameraCarUrl2.Equals(""))
-                        {
-                            axVLCPluginCar2.Visible = !axVLCPluginCar2.Visible;
-                            if (axVLCPluginCar2.Visible)
-                            {
-                                axVLCPluginCar2.BringToFront();
-                            }
-                            else
-                            {
-                                axVLCPluginCar2.SendToBack();
-                            }
-                        }
+                        bool isInputLeftSide = inputIsLeftSide(cardID);                       
                         readCardEvent(cardID, isInputLeftSide);
                     }
                     break;
@@ -3753,12 +3858,12 @@ namespace ParkingMangement.GUI
             }
             else if (portNameComReaderInput != null)
             {
-                bool result = portNameComReaderInput.Equals(portNameComReaderRight);
+                bool result = portNameComReaderInput.Equals(portNameComReaderRight) || portNameComReaderInput.Equals(portNameComReaderCarRight);
                 return result;
             }
             else if (!rfidInput.Equals("Global Keyboard"))
             {
-                bool result = rfidInput.Equals(rfidOut);
+                bool result = rfidInput.Equals(rfidOut) || rfidInput.Equals(rfidCarOut);
                 return result;
             }
             else

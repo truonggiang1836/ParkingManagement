@@ -23,8 +23,14 @@ namespace ParkingMangement.Model
         [XmlElement(ElementName = "camera_url_4")]
         public string cameraUrl4 { get; set; } = "";
 
+        [XmlElement(ElementName = "camera_car_url_1")]
+        public string cameraCarUrl1 { get; set; } = "";
+
         [XmlElement(ElementName = "camera_car_url_2")]
         public string cameraCarUrl2 { get; set; } = "";
+
+        [XmlElement(ElementName = "camera_car_url_3")]
+        public string cameraCarUrl3 { get; set; } = "";
 
         [XmlElement(ElementName = "camera_car_url_4")]
         public string cameraCarUrl4 { get; set; } = "";
@@ -34,6 +40,12 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "rfid_out")]
         public string rfidOut { get; set; } = "";
+
+        [XmlElement(ElementName = "rfid_car_in")]
+        public string rfidCarIn { get; set; } = "";
+
+        [XmlElement(ElementName = "rfid_car_out")]
+        public string rfidCarOut { get; set; } = "";
 
         [XmlElement(ElementName = "computer_name")]
         public string computerName { get; set; } = "";
@@ -82,6 +94,12 @@ namespace ParkingMangement.Model
 
         [XmlElement(ElementName = "com_reader_right")]
         public string comReaderRight { get; set; } = "";
+
+        [XmlElement(ElementName = "com_reader_car_left")]
+        public string comReaderCarLeft { get; set; } = "";
+
+        [XmlElement(ElementName = "com_reader_car_right")]
+        public string comReaderCarRight { get; set; } = "";
 
         [XmlElement(ElementName = "com_send")]
         public string comSend { get; set; } = "";

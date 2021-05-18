@@ -1141,6 +1141,7 @@
             this.cbReceiptLogPrintDate = new System.Windows.Forms.CheckBox();
             this.label245 = new System.Windows.Forms.Label();
             this.label244 = new System.Windows.Forms.Label();
+            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1209,6 +1210,7 @@
             this.cbReceiptLogDetailPrintDate = new System.Windows.Forms.CheckBox();
             this.label243 = new System.Windows.Forms.Label();
             this.label246 = new System.Windows.Forms.Label();
+            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.cbReceiptLogDetailCostExtendCard = new System.Windows.Forms.CheckBox();
             this.cbReceiptLogDetailCostDeposit = new System.Windows.Forms.CheckBox();
@@ -1225,8 +1227,22 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtReceiptLogBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
-            this.dtReceiptLogDetailBook = new ParkingMangement.Utils.DateTimePickerYearMonth();
+            this.tb_camera_car_url_4 = new System.Windows.Forms.TextBox();
+            this.label267 = new System.Windows.Forms.Label();
+            this.label268 = new System.Windows.Forms.Label();
+            this.tb_camera_car_url_3 = new System.Windows.Forms.TextBox();
+            this.label269 = new System.Windows.Forms.Label();
+            this.tb_camera_car_url_2 = new System.Windows.Forms.TextBox();
+            this.label270 = new System.Windows.Forms.Label();
+            this.tb_camera_car_url_1 = new System.Windows.Forms.TextBox();
+            this.tb_com_reader_car_right = new System.Windows.Forms.TextBox();
+            this.label271 = new System.Windows.Forms.Label();
+            this.label272 = new System.Windows.Forms.Label();
+            this.tb_com_reader_car_left = new System.Windows.Forms.TextBox();
+            this.tb_rfid_car_1 = new System.Windows.Forms.TextBox();
+            this.label273 = new System.Windows.Forms.Label();
+            this.tb_rfid_car_2 = new System.Windows.Forms.TextBox();
+            this.label274 = new System.Windows.Forms.Label();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -1448,7 +1464,7 @@
             this.tabQuanLy.Controls.Add(this.tabPageQuanLyPhieuThuChi);
             this.tabQuanLy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabQuanLy.Location = new System.Drawing.Point(3, 4);
-            this.tabQuanLy.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLy.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLy.Name = "tabQuanLy";
             this.tabQuanLy.SelectedIndex = 0;
             this.tabQuanLy.Size = new System.Drawing.Size(1571, 834);
@@ -1460,9 +1476,9 @@
             this.tabPageQuanLyNhanSu.BackColor = System.Drawing.Color.LightSteelBlue;
             this.tabPageQuanLyNhanSu.Controls.Add(this.tabQuanLyNhanSu);
             this.tabPageQuanLyNhanSu.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyNhanSu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyNhanSu.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyNhanSu.Name = "tabPageQuanLyNhanSu";
-            this.tabPageQuanLyNhanSu.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyNhanSu.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyNhanSu.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyNhanSu.TabIndex = 0;
             this.tabPageQuanLyNhanSu.Text = "QUẢN LÝ NHÂN SỰ";
@@ -1472,7 +1488,7 @@
             this.tabQuanLyNhanSu.Controls.Add(this.tabPageThongTinNhanSu);
             this.tabQuanLyNhanSu.Controls.Add(this.tabPageDoBangChamCong);
             this.tabQuanLyNhanSu.Location = new System.Drawing.Point(8, 7);
-            this.tabQuanLyNhanSu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyNhanSu.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyNhanSu.Name = "tabQuanLyNhanSu";
             this.tabQuanLyNhanSu.SelectedIndex = 0;
             this.tabQuanLyNhanSu.Size = new System.Drawing.Size(1548, 784);
@@ -1485,9 +1501,9 @@
             this.tabPageThongTinNhanSu.Controls.Add(this.panel4);
             this.tabPageThongTinNhanSu.Controls.Add(this.panel3);
             this.tabPageThongTinNhanSu.Location = new System.Drawing.Point(4, 29);
-            this.tabPageThongTinNhanSu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageThongTinNhanSu.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageThongTinNhanSu.Name = "tabPageThongTinNhanSu";
-            this.tabPageThongTinNhanSu.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageThongTinNhanSu.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageThongTinNhanSu.Size = new System.Drawing.Size(1540, 751);
             this.tabPageThongTinNhanSu.TabIndex = 0;
             this.tabPageThongTinNhanSu.Text = "Thông tin nhân sự";
@@ -1497,7 +1513,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.dgvUserList);
             this.panel4.Location = new System.Drawing.Point(500, 42);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1012, 405);
             this.panel4.TabIndex = 1;
@@ -1514,7 +1530,7 @@
             this.FunctionName,
             this.SexName});
             this.dgvUserList.Location = new System.Drawing.Point(4, 4);
-            this.dgvUserList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvUserList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvUserList.Name = "dgvUserList";
             this.dgvUserList.ReadOnly = true;
             this.dgvUserList.RowHeadersWidth = 51;
@@ -1583,7 +1599,7 @@
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.tabControl7);
             this.panel3.Location = new System.Drawing.Point(28, 42);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(443, 481);
             this.panel3.TabIndex = 0;
@@ -1593,7 +1609,7 @@
             this.tabControl7.Controls.Add(this.tabPage25);
             this.tabControl7.Controls.Add(this.tabPage26);
             this.tabControl7.Location = new System.Drawing.Point(4, 4);
-            this.tabControl7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl7.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl7.Name = "tabControl7";
             this.tabControl7.SelectedIndex = 0;
             this.tabControl7.Size = new System.Drawing.Size(435, 474);
@@ -1618,9 +1634,9 @@
             this.tabPage25.Controls.Add(this.label3);
             this.tabPage25.Controls.Add(this.tbUserIDCreate);
             this.tabPage25.Location = new System.Drawing.Point(4, 29);
-            this.tabPage25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage25.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage25.Name = "tabPage25";
-            this.tabPage25.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage25.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage25.Size = new System.Drawing.Size(427, 441);
             this.tabPage25.TabIndex = 0;
             this.tabPage25.Text = "Tạo nhân viên";
@@ -1640,7 +1656,7 @@
             // tbUserConfirmPassCreate
             // 
             this.tbUserConfirmPassCreate.Location = new System.Drawing.Point(179, 182);
-            this.tbUserConfirmPassCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserConfirmPassCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserConfirmPassCreate.Name = "tbUserConfirmPassCreate";
             this.tbUserConfirmPassCreate.PasswordChar = '*';
             this.tbUserConfirmPassCreate.Size = new System.Drawing.Size(196, 26);
@@ -1649,7 +1665,7 @@
             // btnCancelCreateUser
             // 
             this.btnCancelCreateUser.Location = new System.Drawing.Point(211, 322);
-            this.btnCancelCreateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelCreateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelCreateUser.Name = "btnCancelCreateUser";
             this.btnCancelCreateUser.Size = new System.Drawing.Size(144, 37);
             this.btnCancelCreateUser.TabIndex = 11;
@@ -1660,7 +1676,7 @@
             // btnCreateUser
             // 
             this.btnCreateUser.Location = new System.Drawing.Point(43, 322);
-            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateUser.Name = "btnCreateUser";
             this.btnCreateUser.Size = new System.Drawing.Size(144, 37);
             this.btnCreateUser.TabIndex = 10;
@@ -1673,7 +1689,7 @@
             this.cbUserSexCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserSexCreate.FormattingEnabled = true;
             this.cbUserSexCreate.Location = new System.Drawing.Point(179, 266);
-            this.cbUserSexCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUserSexCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbUserSexCreate.Name = "cbUserSexCreate";
             this.cbUserSexCreate.Size = new System.Drawing.Size(196, 28);
             this.cbUserSexCreate.TabIndex = 9;
@@ -1705,7 +1721,7 @@
             this.cbUserFunctionCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserFunctionCreate.FormattingEnabled = true;
             this.cbUserFunctionCreate.Location = new System.Drawing.Point(179, 223);
-            this.cbUserFunctionCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUserFunctionCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbUserFunctionCreate.Name = "cbUserFunctionCreate";
             this.cbUserFunctionCreate.Size = new System.Drawing.Size(196, 28);
             this.cbUserFunctionCreate.TabIndex = 8;
@@ -1724,7 +1740,7 @@
             // tbUserPassCreate
             // 
             this.tbUserPassCreate.Location = new System.Drawing.Point(179, 142);
-            this.tbUserPassCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserPassCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserPassCreate.Name = "tbUserPassCreate";
             this.tbUserPassCreate.PasswordChar = '*';
             this.tbUserPassCreate.Size = new System.Drawing.Size(196, 26);
@@ -1744,7 +1760,7 @@
             // tbUserAccountCreate
             // 
             this.tbUserAccountCreate.Location = new System.Drawing.Point(179, 101);
-            this.tbUserAccountCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserAccountCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserAccountCreate.Name = "tbUserAccountCreate";
             this.tbUserAccountCreate.Size = new System.Drawing.Size(196, 26);
             this.tbUserAccountCreate.TabIndex = 4;
@@ -1763,7 +1779,7 @@
             // tbUserNameCreate
             // 
             this.tbUserNameCreate.Location = new System.Drawing.Point(179, 60);
-            this.tbUserNameCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserNameCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserNameCreate.Name = "tbUserNameCreate";
             this.tbUserNameCreate.Size = new System.Drawing.Size(196, 26);
             this.tbUserNameCreate.TabIndex = 2;
@@ -1782,7 +1798,7 @@
             // tbUserIDCreate
             // 
             this.tbUserIDCreate.Location = new System.Drawing.Point(179, 20);
-            this.tbUserIDCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserIDCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserIDCreate.Name = "tbUserIDCreate";
             this.tbUserIDCreate.Size = new System.Drawing.Size(196, 26);
             this.tbUserIDCreate.TabIndex = 0;
@@ -1793,9 +1809,9 @@
             this.tabPage26.Controls.Add(this.btnUpdateUser);
             this.tabPage26.Controls.Add(this.panelChinhSuaNhanVien);
             this.tabPage26.Location = new System.Drawing.Point(4, 29);
-            this.tabPage26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage26.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage26.Name = "tabPage26";
-            this.tabPage26.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage26.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage26.Size = new System.Drawing.Size(427, 441);
             this.tabPage26.TabIndex = 1;
             this.tabPage26.Text = "Chỉnh sửa nhân viên";
@@ -1804,7 +1820,7 @@
             // btnCancelUpdateUser
             // 
             this.btnCancelUpdateUser.Location = new System.Drawing.Point(211, 336);
-            this.btnCancelUpdateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelUpdateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelUpdateUser.Name = "btnCancelUpdateUser";
             this.btnCancelUpdateUser.Size = new System.Drawing.Size(144, 37);
             this.btnCancelUpdateUser.TabIndex = 25;
@@ -1815,7 +1831,7 @@
             // btnUpdateUser
             // 
             this.btnUpdateUser.Location = new System.Drawing.Point(43, 336);
-            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateUser.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateUser.Name = "btnUpdateUser";
             this.btnUpdateUser.Size = new System.Drawing.Size(144, 37);
             this.btnUpdateUser.TabIndex = 24;
@@ -1840,7 +1856,7 @@
             this.panelChinhSuaNhanVien.Controls.Add(this.label14);
             this.panelChinhSuaNhanVien.Controls.Add(this.tbUserIDEdit);
             this.panelChinhSuaNhanVien.Location = new System.Drawing.Point(8, 7);
-            this.panelChinhSuaNhanVien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelChinhSuaNhanVien.Margin = new System.Windows.Forms.Padding(4);
             this.panelChinhSuaNhanVien.Name = "panelChinhSuaNhanVien";
             this.panelChinhSuaNhanVien.Size = new System.Drawing.Size(408, 321);
             this.panelChinhSuaNhanVien.TabIndex = 26;
@@ -1859,7 +1875,7 @@
             // tbUserConfirmPassEdit
             // 
             this.tbUserConfirmPassEdit.Location = new System.Drawing.Point(180, 175);
-            this.tbUserConfirmPassEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserConfirmPassEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserConfirmPassEdit.Name = "tbUserConfirmPassEdit";
             this.tbUserConfirmPassEdit.PasswordChar = '*';
             this.tbUserConfirmPassEdit.Size = new System.Drawing.Size(196, 26);
@@ -1870,7 +1886,7 @@
             this.cbUserSexEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserSexEdit.FormattingEnabled = true;
             this.cbUserSexEdit.Location = new System.Drawing.Point(180, 257);
-            this.cbUserSexEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUserSexEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbUserSexEdit.Name = "cbUserSexEdit";
             this.cbUserSexEdit.Size = new System.Drawing.Size(196, 28);
             this.cbUserSexEdit.TabIndex = 34;
@@ -1902,7 +1918,7 @@
             this.cbUserFunctionEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserFunctionEdit.FormattingEnabled = true;
             this.cbUserFunctionEdit.Location = new System.Drawing.Point(180, 214);
-            this.cbUserFunctionEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUserFunctionEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbUserFunctionEdit.Name = "cbUserFunctionEdit";
             this.cbUserFunctionEdit.Size = new System.Drawing.Size(196, 28);
             this.cbUserFunctionEdit.TabIndex = 33;
@@ -1921,7 +1937,7 @@
             // tbUserPassEdit
             // 
             this.tbUserPassEdit.Location = new System.Drawing.Point(180, 133);
-            this.tbUserPassEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserPassEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserPassEdit.Name = "tbUserPassEdit";
             this.tbUserPassEdit.PasswordChar = '*';
             this.tbUserPassEdit.Size = new System.Drawing.Size(196, 26);
@@ -1941,7 +1957,7 @@
             // tbUserAccountEdit
             // 
             this.tbUserAccountEdit.Location = new System.Drawing.Point(180, 92);
-            this.tbUserAccountEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserAccountEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserAccountEdit.Name = "tbUserAccountEdit";
             this.tbUserAccountEdit.Size = new System.Drawing.Size(196, 26);
             this.tbUserAccountEdit.TabIndex = 28;
@@ -1960,7 +1976,7 @@
             // tbUserNameEdit
             // 
             this.tbUserNameEdit.Location = new System.Drawing.Point(180, 52);
-            this.tbUserNameEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserNameEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserNameEdit.Name = "tbUserNameEdit";
             this.tbUserNameEdit.Size = new System.Drawing.Size(196, 26);
             this.tbUserNameEdit.TabIndex = 26;
@@ -1980,7 +1996,7 @@
             // 
             this.tbUserIDEdit.Enabled = false;
             this.tbUserIDEdit.Location = new System.Drawing.Point(180, 11);
-            this.tbUserIDEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbUserIDEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbUserIDEdit.Name = "tbUserIDEdit";
             this.tbUserIDEdit.Size = new System.Drawing.Size(196, 26);
             this.tbUserIDEdit.TabIndex = 24;
@@ -1993,9 +2009,9 @@
             this.tabPageDoBangChamCong.Controls.Add(this.panel2);
             this.tabPageDoBangChamCong.Controls.Add(this.panel1);
             this.tabPageDoBangChamCong.Location = new System.Drawing.Point(4, 29);
-            this.tabPageDoBangChamCong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDoBangChamCong.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageDoBangChamCong.Name = "tabPageDoBangChamCong";
-            this.tabPageDoBangChamCong.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageDoBangChamCong.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageDoBangChamCong.Size = new System.Drawing.Size(1540, 751);
             this.tabPageDoBangChamCong.TabIndex = 1;
             this.tabPageDoBangChamCong.Text = "Dò bảng chấm công";
@@ -2013,7 +2029,7 @@
             this.TotalTime,
             this.Column35});
             this.dgvWorkList.Location = new System.Drawing.Point(584, 27);
-            this.dgvWorkList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvWorkList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvWorkList.Name = "dgvWorkList";
             this.dgvWorkList.ReadOnly = true;
             this.dgvWorkList.RowHeadersWidth = 51;
@@ -2091,7 +2107,7 @@
             // btnExportBangChamCong
             // 
             this.btnExportBangChamCong.Location = new System.Drawing.Point(27, 293);
-            this.btnExportBangChamCong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportBangChamCong.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportBangChamCong.Name = "btnExportBangChamCong";
             this.btnExportBangChamCong.Size = new System.Drawing.Size(532, 37);
             this.btnExportBangChamCong.TabIndex = 7;
@@ -2104,7 +2120,7 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.dgvUserList2);
             this.panel2.Location = new System.Drawing.Point(27, 347);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(532, 378);
             this.panel2.TabIndex = 5;
@@ -2118,7 +2134,7 @@
             this.Column2,
             this.Column3});
             this.dgvUserList2.Location = new System.Drawing.Point(4, 4);
-            this.dgvUserList2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvUserList2.Margin = new System.Windows.Forms.Padding(4);
             this.dgvUserList2.Name = "dgvUserList2";
             this.dgvUserList2.RowHeadersWidth = 51;
             this.dgvUserList2.Size = new System.Drawing.Size(524, 374);
@@ -2161,7 +2177,7 @@
             this.panel1.Controls.Add(this.radioButtonWorkMultiDate);
             this.panel1.Controls.Add(this.radioButtonWorkDate);
             this.panel1.Location = new System.Drawing.Point(27, 27);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(532, 250);
             this.panel1.TabIndex = 0;
@@ -2169,7 +2185,7 @@
             // btnWorkAll
             // 
             this.btnWorkAll.Location = new System.Drawing.Point(47, 84);
-            this.btnWorkAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnWorkAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnWorkAll.Name = "btnWorkAll";
             this.btnWorkAll.Size = new System.Drawing.Size(139, 37);
             this.btnWorkAll.TabIndex = 8;
@@ -2191,7 +2207,7 @@
             // 
             this.dateTimePickerWorkAssignEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerWorkAssignEndDate.Location = new System.Drawing.Point(123, 197);
-            this.dateTimePickerWorkAssignEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerWorkAssignEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWorkAssignEndDate.Name = "dateTimePickerWorkAssignEndDate";
             this.dateTimePickerWorkAssignEndDate.Size = new System.Drawing.Size(292, 26);
             this.dateTimePickerWorkAssignEndDate.TabIndex = 6;
@@ -2210,7 +2226,7 @@
             // 
             this.dateTimePickerWorkAssignStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerWorkAssignStartDate.Location = new System.Drawing.Point(123, 158);
-            this.dateTimePickerWorkAssignStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerWorkAssignStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWorkAssignStartDate.Name = "dateTimePickerWorkAssignStartDate";
             this.dateTimePickerWorkAssignStartDate.Size = new System.Drawing.Size(292, 26);
             this.dateTimePickerWorkAssignStartDate.TabIndex = 4;
@@ -2218,7 +2234,7 @@
             // btnWorkSearch
             // 
             this.btnWorkSearch.Location = new System.Drawing.Point(345, 84);
-            this.btnWorkSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnWorkSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnWorkSearch.Name = "btnWorkSearch";
             this.btnWorkSearch.Size = new System.Drawing.Size(139, 37);
             this.btnWorkSearch.TabIndex = 3;
@@ -2230,7 +2246,7 @@
             // 
             this.dateTimePickerWorkAssignDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerWorkAssignDate.Location = new System.Drawing.Point(123, 44);
-            this.dateTimePickerWorkAssignDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerWorkAssignDate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerWorkAssignDate.Name = "dateTimePickerWorkAssignDate";
             this.dateTimePickerWorkAssignDate.Size = new System.Drawing.Size(292, 26);
             this.dateTimePickerWorkAssignDate.TabIndex = 2;
@@ -2239,7 +2255,7 @@
             // 
             this.radioButtonWorkMultiDate.AutoSize = true;
             this.radioButtonWorkMultiDate.Location = new System.Drawing.Point(16, 128);
-            this.radioButtonWorkMultiDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonWorkMultiDate.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonWorkMultiDate.Name = "radioButtonWorkMultiDate";
             this.radioButtonWorkMultiDate.Size = new System.Drawing.Size(113, 24);
             this.radioButtonWorkMultiDate.TabIndex = 1;
@@ -2251,7 +2267,7 @@
             this.radioButtonWorkDate.AutoSize = true;
             this.radioButtonWorkDate.Checked = true;
             this.radioButtonWorkDate.Location = new System.Drawing.Point(16, 16);
-            this.radioButtonWorkDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButtonWorkDate.Margin = new System.Windows.Forms.Padding(4);
             this.radioButtonWorkDate.Name = "radioButtonWorkDate";
             this.radioButtonWorkDate.Size = new System.Drawing.Size(98, 24);
             this.radioButtonWorkDate.TabIndex = 0;
@@ -2263,9 +2279,9 @@
             // 
             this.tabPageQuanLyDoanhThu.Controls.Add(this.tabQuanLyDoanhThu);
             this.tabPageQuanLyDoanhThu.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyDoanhThu.Name = "tabPageQuanLyDoanhThu";
-            this.tabPageQuanLyDoanhThu.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyDoanhThu.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyDoanhThu.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyDoanhThu.TabIndex = 1;
             this.tabPageQuanLyDoanhThu.Text = "QUẢN LÝ DOANH THU";
@@ -2279,7 +2295,7 @@
             this.tabQuanLyDoanhThu.Controls.Add(this.tabPageCongThucTongHop);
             this.tabQuanLyDoanhThu.Controls.Add(this.tabPageCongThucTongHop2);
             this.tabQuanLyDoanhThu.Location = new System.Drawing.Point(7, 5);
-            this.tabQuanLyDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyDoanhThu.Name = "tabQuanLyDoanhThu";
             this.tabQuanLyDoanhThu.SelectedIndex = 0;
             this.tabQuanLyDoanhThu.Size = new System.Drawing.Size(1547, 786);
@@ -2298,9 +2314,9 @@
             this.tabPageThongKeDoanhThu.Controls.Add(this.panel16);
             this.tabPageThongKeDoanhThu.Controls.Add(this.dgvThongKeDoanhThu);
             this.tabPageThongKeDoanhThu.Location = new System.Drawing.Point(4, 29);
-            this.tabPageThongKeDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageThongKeDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageThongKeDoanhThu.Name = "tabPageThongKeDoanhThu";
-            this.tabPageThongKeDoanhThu.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageThongKeDoanhThu.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageThongKeDoanhThu.Size = new System.Drawing.Size(1539, 753);
             this.tabPageThongKeDoanhThu.TabIndex = 0;
             this.tabPageThongKeDoanhThu.Text = "Thống kê doanh thu";
@@ -2310,7 +2326,7 @@
             // 
             this.rbMonthTicketSaleReport.AutoSize = true;
             this.rbMonthTicketSaleReport.Location = new System.Drawing.Point(711, 679);
-            this.rbMonthTicketSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbMonthTicketSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.rbMonthTicketSaleReport.Name = "rbMonthTicketSaleReport";
             this.rbMonthTicketSaleReport.Size = new System.Drawing.Size(96, 24);
             this.rbMonthTicketSaleReport.TabIndex = 23;
@@ -2321,7 +2337,7 @@
             // 
             this.rbCommonTicketSaleReport.AutoSize = true;
             this.rbCommonTicketSaleReport.Location = new System.Drawing.Point(869, 679);
-            this.rbCommonTicketSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCommonTicketSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.rbCommonTicketSaleReport.Name = "rbCommonTicketSaleReport";
             this.rbCommonTicketSaleReport.Size = new System.Drawing.Size(90, 24);
             this.rbCommonTicketSaleReport.TabIndex = 22;
@@ -2333,7 +2349,7 @@
             this.rbAllTicketSaleReport.AutoSize = true;
             this.rbAllTicketSaleReport.Checked = true;
             this.rbAllTicketSaleReport.Location = new System.Drawing.Point(563, 679);
-            this.rbAllTicketSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbAllTicketSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.rbAllTicketSaleReport.Name = "rbAllTicketSaleReport";
             this.rbAllTicketSaleReport.Size = new System.Drawing.Size(77, 24);
             this.rbAllTicketSaleReport.TabIndex = 21;
@@ -2344,7 +2360,7 @@
             // button8
             // 
             this.button8.Location = new System.Drawing.Point(1105, 613);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(407, 46);
             this.button8.TabIndex = 20;
@@ -2354,7 +2370,7 @@
             // btnExportDoanhThuChiTiet
             // 
             this.btnExportDoanhThuChiTiet.Location = new System.Drawing.Point(563, 613);
-            this.btnExportDoanhThuChiTiet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDoanhThuChiTiet.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDoanhThuChiTiet.Name = "btnExportDoanhThuChiTiet";
             this.btnExportDoanhThuChiTiet.Size = new System.Drawing.Size(407, 46);
             this.btnExportDoanhThuChiTiet.TabIndex = 19;
@@ -2365,7 +2381,7 @@
             // btnExportDoanhThuTongQuat
             // 
             this.btnExportDoanhThuTongQuat.Location = new System.Drawing.Point(20, 613);
-            this.btnExportDoanhThuTongQuat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDoanhThuTongQuat.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDoanhThuTongQuat.Name = "btnExportDoanhThuTongQuat";
             this.btnExportDoanhThuTongQuat.Size = new System.Drawing.Size(407, 46);
             this.btnExportDoanhThuTongQuat.TabIndex = 18;
@@ -2376,7 +2392,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(20, 679);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(407, 46);
             this.button4.TabIndex = 17;
@@ -2391,7 +2407,7 @@
             this.panel16.Controls.Add(this.label48);
             this.panel16.Controls.Add(this.panel17);
             this.panel16.Location = new System.Drawing.Point(20, 22);
-            this.panel16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel16.Margin = new System.Windows.Forms.Padding(4);
             this.panel16.Name = "panel16";
             this.panel16.Size = new System.Drawing.Size(476, 560);
             this.panel16.TabIndex = 2;
@@ -2412,7 +2428,7 @@
             this.cbNhanVienRaReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbNhanVienRaReport.FormattingEnabled = true;
             this.cbNhanVienRaReport.Location = new System.Drawing.Point(192, 523);
-            this.cbNhanVienRaReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbNhanVienRaReport.Margin = new System.Windows.Forms.Padding(4);
             this.cbNhanVienRaReport.Name = "cbNhanVienRaReport";
             this.cbNhanVienRaReport.Size = new System.Drawing.Size(199, 28);
             this.cbNhanVienRaReport.TabIndex = 28;
@@ -2422,7 +2438,7 @@
             this.cbNhanVienVaoReport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbNhanVienVaoReport.FormattingEnabled = true;
             this.cbNhanVienVaoReport.Location = new System.Drawing.Point(192, 482);
-            this.cbNhanVienVaoReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbNhanVienVaoReport.Margin = new System.Windows.Forms.Padding(4);
             this.cbNhanVienVaoReport.Name = "cbNhanVienVaoReport";
             this.cbNhanVienVaoReport.Size = new System.Drawing.Size(199, 28);
             this.cbNhanVienVaoReport.TabIndex = 27;
@@ -2452,7 +2468,7 @@
             this.panel17.Controls.Add(this.rbOneDateSaleReport);
             this.panel17.Controls.Add(this.dtDateSaleReport);
             this.panel17.Location = new System.Drawing.Point(32, 32);
-            this.panel17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel17.Margin = new System.Windows.Forms.Padding(4);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(409, 436);
             this.panel17.TabIndex = 10;
@@ -2460,7 +2476,7 @@
             // btnAllSaleReport
             // 
             this.btnAllSaleReport.Location = new System.Drawing.Point(41, 368);
-            this.btnAllSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAllSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnAllSaleReport.Name = "btnAllSaleReport";
             this.btnAllSaleReport.Size = new System.Drawing.Size(163, 46);
             this.btnAllSaleReport.TabIndex = 30;
@@ -2472,7 +2488,7 @@
             // 
             this.dtEndTimeSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtEndTimeSaleReport.Location = new System.Drawing.Point(253, 308);
-            this.dtEndTimeSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtEndTimeSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.dtEndTimeSaleReport.Name = "dtEndTimeSaleReport";
             this.dtEndTimeSaleReport.Size = new System.Drawing.Size(105, 26);
             this.dtEndTimeSaleReport.TabIndex = 29;
@@ -2482,7 +2498,7 @@
             // 
             this.dtStartTimeSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtStartTimeSaleReport.Location = new System.Drawing.Point(253, 230);
-            this.dtStartTimeSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtStartTimeSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.dtStartTimeSaleReport.Name = "dtStartTimeSaleReport";
             this.dtStartTimeSaleReport.Size = new System.Drawing.Size(105, 26);
             this.dtStartTimeSaleReport.TabIndex = 28;
@@ -2492,7 +2508,7 @@
             // 
             this.dtEndDateSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtEndDateSaleReport.Location = new System.Drawing.Point(41, 308);
-            this.dtEndDateSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtEndDateSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.dtEndDateSaleReport.Name = "dtEndDateSaleReport";
             this.dtEndDateSaleReport.Size = new System.Drawing.Size(161, 26);
             this.dtEndDateSaleReport.TabIndex = 23;
@@ -2501,7 +2517,7 @@
             // 
             this.dtStartDateSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtStartDateSaleReport.Location = new System.Drawing.Point(41, 230);
-            this.dtStartDateSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtStartDateSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.dtStartDateSaleReport.Name = "dtStartDateSaleReport";
             this.dtStartDateSaleReport.Size = new System.Drawing.Size(161, 26);
             this.dtStartDateSaleReport.TabIndex = 21;
@@ -2529,7 +2545,7 @@
             // btnSearchSaleReport
             // 
             this.btnSearchSaleReport.Location = new System.Drawing.Point(249, 368);
-            this.btnSearchSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchSaleReport.Name = "btnSearchSaleReport";
             this.btnSearchSaleReport.Size = new System.Drawing.Size(111, 46);
             this.btnSearchSaleReport.TabIndex = 16;
@@ -2541,7 +2557,7 @@
             // 
             this.rbMultiDateSaleReport.AutoSize = true;
             this.rbMultiDateSaleReport.Location = new System.Drawing.Point(21, 139);
-            this.rbMultiDateSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbMultiDateSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.rbMultiDateSaleReport.Name = "rbMultiDateSaleReport";
             this.rbMultiDateSaleReport.Size = new System.Drawing.Size(113, 24);
             this.rbMultiDateSaleReport.TabIndex = 13;
@@ -2553,7 +2569,7 @@
             this.rbOneDateSaleReport.AutoSize = true;
             this.rbOneDateSaleReport.Checked = true;
             this.rbOneDateSaleReport.Location = new System.Drawing.Point(21, 17);
-            this.rbOneDateSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbOneDateSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.rbOneDateSaleReport.Name = "rbOneDateSaleReport";
             this.rbOneDateSaleReport.Size = new System.Drawing.Size(98, 24);
             this.rbOneDateSaleReport.TabIndex = 10;
@@ -2565,7 +2581,7 @@
             // 
             this.dtDateSaleReport.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateSaleReport.Location = new System.Drawing.Point(41, 75);
-            this.dtDateSaleReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtDateSaleReport.Margin = new System.Windows.Forms.Padding(4);
             this.dtDateSaleReport.Name = "dtDateSaleReport";
             this.dtDateSaleReport.Size = new System.Drawing.Size(161, 26);
             this.dtDateSaleReport.TabIndex = 8;
@@ -2584,7 +2600,7 @@
             this.Column9,
             this.Column52});
             this.dgvThongKeDoanhThu.Location = new System.Drawing.Point(525, 22);
-            this.dgvThongKeDoanhThu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvThongKeDoanhThu.Margin = new System.Windows.Forms.Padding(4);
             this.dgvThongKeDoanhThu.Name = "dgvThongKeDoanhThu";
             this.dgvThongKeDoanhThu.ReadOnly = true;
             this.dgvThongKeDoanhThu.RowHeadersWidth = 51;
@@ -2671,9 +2687,9 @@
             this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.btnChinhSuaTinhTienCongVan);
             this.tabPageCongThucTinhTienTheoCongVan.Controls.Add(this.panelTinhTienCongVan);
             this.tabPageCongThucTinhTienTheoCongVan.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCongThucTinhTienTheoCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTinhTienTheoCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTinhTienTheoCongVan.Name = "tabPageCongThucTinhTienTheoCongVan";
-            this.tabPageCongThucTinhTienTheoCongVan.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTinhTienTheoCongVan.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTinhTienTheoCongVan.Size = new System.Drawing.Size(1539, 753);
             this.tabPageCongThucTinhTienTheoCongVan.TabIndex = 1;
             this.tabPageCongThucTinhTienTheoCongVan.Text = "Công thức tính tiền theo công văn";
@@ -2683,7 +2699,7 @@
             // 
             this.panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel31.Location = new System.Drawing.Point(8, 510);
-            this.panel31.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel31.Margin = new System.Windows.Forms.Padding(4);
             this.panel31.Name = "panel31";
             this.panel31.Size = new System.Drawing.Size(1519, 232);
             this.panel31.TabIndex = 14;
@@ -2691,7 +2707,7 @@
             // btnChinhSuaTinhTienCongVan
             // 
             this.btnChinhSuaTinhTienCongVan.Location = new System.Drawing.Point(255, 228);
-            this.btnChinhSuaTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChinhSuaTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.btnChinhSuaTinhTienCongVan.Name = "btnChinhSuaTinhTienCongVan";
             this.btnChinhSuaTinhTienCongVan.Size = new System.Drawing.Size(144, 37);
             this.btnChinhSuaTinhTienCongVan.TabIndex = 13;
@@ -2732,7 +2748,7 @@
             this.panelTinhTienCongVan.Controls.Add(this.groupBox1);
             this.panelTinhTienCongVan.Enabled = false;
             this.panelTinhTienCongVan.Location = new System.Drawing.Point(443, 27);
-            this.panelTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.panelTinhTienCongVan.Name = "panelTinhTienCongVan";
             this.panelTinhTienCongVan.Size = new System.Drawing.Size(658, 475);
             this.panelTinhTienCongVan.TabIndex = 0;
@@ -2767,7 +2783,7 @@
             0,
             0});
             this.numericTinhTienCongVanLimit.Location = new System.Drawing.Point(116, 175);
-            this.numericTinhTienCongVanLimit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanLimit.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanLimit.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2807,7 +2823,7 @@
             0,
             0});
             this.numericTinhTienCongVanMinTime.Location = new System.Drawing.Point(261, 252);
-            this.numericTinhTienCongVanMinTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanMinTime.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanMinTime.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2836,7 +2852,7 @@
             0,
             0});
             this.numericTinhTienCongVanMinCost.Location = new System.Drawing.Point(492, 254);
-            this.numericTinhTienCongVanMinCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanMinCost.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanMinCost.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2849,7 +2865,7 @@
             // numericTinhTienCongVanEndHourNight
             // 
             this.numericTinhTienCongVanEndHourNight.Location = new System.Drawing.Point(492, 20);
-            this.numericTinhTienCongVanEndHourNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanEndHourNight.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanEndHourNight.Maximum = new decimal(new int[] {
             23,
             0,
@@ -2862,7 +2878,7 @@
             // numericTinhTienCongVanStartHourNight
             // 
             this.numericTinhTienCongVanStartHourNight.Location = new System.Drawing.Point(209, 20);
-            this.numericTinhTienCongVanStartHourNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanStartHourNight.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanStartHourNight.Maximum = new decimal(new int[] {
             23,
             0,
@@ -2880,7 +2896,7 @@
             0,
             0});
             this.numericTinhTienCongVanDayNightCost.Location = new System.Drawing.Point(492, 214);
-            this.numericTinhTienCongVanDayNightCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanDayNightCost.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanDayNightCost.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2898,7 +2914,7 @@
             0,
             0});
             this.numericTinhTienCongVanNightCost.Location = new System.Drawing.Point(492, 175);
-            this.numericTinhTienCongVanNightCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanNightCost.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanNightCost.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2916,7 +2932,7 @@
             0,
             0});
             this.numericTinhTienCongVanDayCost.Location = new System.Drawing.Point(492, 135);
-            this.numericTinhTienCongVanDayCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanDayCost.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanDayCost.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2929,7 +2945,7 @@
             // btnHuyTinhTienCongVan
             // 
             this.btnHuyTinhTienCongVan.Location = new System.Drawing.Point(341, 423);
-            this.btnHuyTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHuyTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.btnHuyTinhTienCongVan.Name = "btnHuyTinhTienCongVan";
             this.btnHuyTinhTienCongVan.Size = new System.Drawing.Size(144, 37);
             this.btnHuyTinhTienCongVan.TabIndex = 13;
@@ -2940,7 +2956,7 @@
             // btnCapNhatTinhTienCongVan
             // 
             this.btnCapNhatTinhTienCongVan.Location = new System.Drawing.Point(173, 423);
-            this.btnCapNhatTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCapNhatTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.btnCapNhatTinhTienCongVan.Name = "btnCapNhatTinhTienCongVan";
             this.btnCapNhatTinhTienCongVan.Size = new System.Drawing.Size(144, 37);
             this.btnCapNhatTinhTienCongVan.TabIndex = 12;
@@ -2997,7 +3013,7 @@
             this.cbLoaiXeTinhTienCongVan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiXeTinhTienCongVan.FormattingEnabled = true;
             this.cbLoaiXeTinhTienCongVan.Location = new System.Drawing.Point(116, 134);
-            this.cbLoaiXeTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbLoaiXeTinhTienCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.cbLoaiXeTinhTienCongVan.Name = "cbLoaiXeTinhTienCongVan";
             this.cbLoaiXeTinhTienCongVan.Size = new System.Drawing.Size(205, 28);
             this.cbLoaiXeTinhTienCongVan.TabIndex = 40;
@@ -3017,7 +3033,7 @@
             // trackBarTinhTienCongVanIntervalBetweenDayNight
             // 
             this.trackBarTinhTienCongVanIntervalBetweenDayNight.Location = new System.Drawing.Point(252, 65);
-            this.trackBarTinhTienCongVanIntervalBetweenDayNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienCongVanIntervalBetweenDayNight.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienCongVanIntervalBetweenDayNight.Maximum = 24;
             this.trackBarTinhTienCongVanIntervalBetweenDayNight.Name = "trackBarTinhTienCongVanIntervalBetweenDayNight";
             this.trackBarTinhTienCongVanIntervalBetweenDayNight.Size = new System.Drawing.Size(313, 56);
@@ -3088,9 +3104,9 @@
             this.groupBox1.Controls.Add(this.label152);
             this.groupBox1.Controls.Add(this.trackBarTinhTienCongVanCycleTicketMonth);
             this.groupBox1.Location = new System.Drawing.Point(35, 299);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(588, 108);
             this.groupBox1.TabIndex = 47;
             this.groupBox1.TabStop = false;
@@ -3105,7 +3121,7 @@
             0,
             0});
             this.numericTinhTienCongVanCostTicketMonth.Location = new System.Drawing.Point(457, 41);
-            this.numericTinhTienCongVanCostTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienCongVanCostTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienCongVanCostTicketMonth.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3162,7 +3178,7 @@
             // trackBarTinhTienCongVanCycleTicketMonth
             // 
             this.trackBarTinhTienCongVanCycleTicketMonth.Location = new System.Drawing.Point(109, 41);
-            this.trackBarTinhTienCongVanCycleTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienCongVanCycleTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienCongVanCycleTicketMonth.Maximum = 24;
             this.trackBarTinhTienCongVanCycleTicketMonth.Name = "trackBarTinhTienCongVanCycleTicketMonth";
             this.trackBarTinhTienCongVanCycleTicketMonth.Size = new System.Drawing.Size(169, 56);
@@ -3175,9 +3191,9 @@
             this.tabPageCongThucTinhTienLuyTien.Controls.Add(this.btnChinhSuaTinhTienLuyTien);
             this.tabPageCongThucTinhTienLuyTien.Controls.Add(this.panelTinhTienLuyTien);
             this.tabPageCongThucTinhTienLuyTien.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCongThucTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTinhTienLuyTien.Name = "tabPageCongThucTinhTienLuyTien";
-            this.tabPageCongThucTinhTienLuyTien.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTinhTienLuyTien.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTinhTienLuyTien.Size = new System.Drawing.Size(1539, 753);
             this.tabPageCongThucTinhTienLuyTien.TabIndex = 2;
             this.tabPageCongThucTinhTienLuyTien.Text = "Công thức tính tiền lũy tiến";
@@ -3187,7 +3203,7 @@
             // 
             this.panel28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel28.Location = new System.Drawing.Point(8, 560);
-            this.panel28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel28.Margin = new System.Windows.Forms.Padding(4);
             this.panel28.Name = "panel28";
             this.panel28.Size = new System.Drawing.Size(1519, 183);
             this.panel28.TabIndex = 16;
@@ -3195,7 +3211,7 @@
             // btnChinhSuaTinhTienLuyTien
             // 
             this.btnChinhSuaTinhTienLuyTien.Location = new System.Drawing.Point(252, 230);
-            this.btnChinhSuaTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChinhSuaTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.btnChinhSuaTinhTienLuyTien.Name = "btnChinhSuaTinhTienLuyTien";
             this.btnChinhSuaTinhTienLuyTien.Size = new System.Drawing.Size(144, 37);
             this.btnChinhSuaTinhTienLuyTien.TabIndex = 15;
@@ -3222,7 +3238,7 @@
             this.panelTinhTienLuyTien.Controls.Add(this.groupBox3);
             this.panelTinhTienLuyTien.Enabled = false;
             this.panelTinhTienLuyTien.Location = new System.Drawing.Point(440, 30);
-            this.panelTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.panelTinhTienLuyTien.Name = "panelTinhTienLuyTien";
             this.panelTinhTienLuyTien.Size = new System.Drawing.Size(658, 523);
             this.panelTinhTienLuyTien.TabIndex = 14;
@@ -3236,7 +3252,7 @@
             0,
             0});
             this.numericTinhTienLuyTienCostMilestone2.Location = new System.Drawing.Point(384, 98);
-            this.numericTinhTienLuyTienCostMilestone2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienLuyTienCostMilestone2.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienLuyTienCostMilestone2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3255,7 +3271,7 @@
             0,
             0});
             this.numericTinhTienLuyTienCostMilestone1.Location = new System.Drawing.Point(384, 58);
-            this.numericTinhTienLuyTienCostMilestone1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienLuyTienCostMilestone1.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienLuyTienCostMilestone1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3277,9 +3293,9 @@
             this.groupBox4.Controls.Add(this.label166);
             this.groupBox4.Controls.Add(this.trackBarTinhTienLuyTienCycleMilestone3);
             this.groupBox4.Location = new System.Drawing.Point(35, 145);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox4.Size = new System.Drawing.Size(588, 176);
             this.groupBox4.TabIndex = 59;
             this.groupBox4.TabStop = false;
@@ -3293,7 +3309,7 @@
             0,
             0});
             this.numericTinhTienLuyTienCostMilestone3.Location = new System.Drawing.Point(271, 25);
-            this.numericTinhTienLuyTienCostMilestone3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienLuyTienCostMilestone3.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienLuyTienCostMilestone3.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3307,7 +3323,7 @@
             // 
             this.radioTinhTienLuyTienAdd2Milestone.AutoSize = true;
             this.radioTinhTienLuyTienAdd2Milestone.Location = new System.Drawing.Point(421, 135);
-            this.radioTinhTienLuyTienAdd2Milestone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioTinhTienLuyTienAdd2Milestone.Margin = new System.Windows.Forms.Padding(4);
             this.radioTinhTienLuyTienAdd2Milestone.Name = "radioTinhTienLuyTienAdd2Milestone";
             this.radioTinhTienLuyTienAdd2Milestone.Size = new System.Drawing.Size(120, 24);
             this.radioTinhTienLuyTienAdd2Milestone.TabIndex = 62;
@@ -3318,7 +3334,7 @@
             // 
             this.radioTinhTienLuyTienAdd1Milestone.AutoSize = true;
             this.radioTinhTienLuyTienAdd1Milestone.Location = new System.Drawing.Point(220, 135);
-            this.radioTinhTienLuyTienAdd1Milestone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioTinhTienLuyTienAdd1Milestone.Margin = new System.Windows.Forms.Padding(4);
             this.radioTinhTienLuyTienAdd1Milestone.Name = "radioTinhTienLuyTienAdd1Milestone";
             this.radioTinhTienLuyTienAdd1Milestone.Size = new System.Drawing.Size(120, 24);
             this.radioTinhTienLuyTienAdd1Milestone.TabIndex = 61;
@@ -3330,7 +3346,7 @@
             this.radioTinhTienLuyTienNoAdd.AutoSize = true;
             this.radioTinhTienLuyTienNoAdd.Checked = true;
             this.radioTinhTienLuyTienNoAdd.Location = new System.Drawing.Point(27, 135);
-            this.radioTinhTienLuyTienNoAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioTinhTienLuyTienNoAdd.Margin = new System.Windows.Forms.Padding(4);
             this.radioTinhTienLuyTienNoAdd.Name = "radioTinhTienLuyTienNoAdd";
             this.radioTinhTienLuyTienNoAdd.Size = new System.Drawing.Size(118, 24);
             this.radioTinhTienLuyTienNoAdd.TabIndex = 60;
@@ -3385,7 +3401,7 @@
             // trackBarTinhTienLuyTienCycleMilestone3
             // 
             this.trackBarTinhTienLuyTienCycleMilestone3.Location = new System.Drawing.Point(109, 65);
-            this.trackBarTinhTienLuyTienCycleMilestone3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienLuyTienCycleMilestone3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienLuyTienCycleMilestone3.Maximum = 24;
             this.trackBarTinhTienLuyTienCycleMilestone3.Name = "trackBarTinhTienLuyTienCycleMilestone3";
             this.trackBarTinhTienLuyTienCycleMilestone3.Size = new System.Drawing.Size(308, 56);
@@ -3428,7 +3444,7 @@
             // numericTinhTienLuyTienHourMilestone2
             // 
             this.numericTinhTienLuyTienHourMilestone2.Location = new System.Drawing.Point(188, 98);
-            this.numericTinhTienLuyTienHourMilestone2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienLuyTienHourMilestone2.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienLuyTienHourMilestone2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3442,7 +3458,7 @@
             // 
             this.numericTinhTienLuyTienHourMilestone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.numericTinhTienLuyTienHourMilestone1.Location = new System.Drawing.Point(188, 58);
-            this.numericTinhTienLuyTienHourMilestone1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienLuyTienHourMilestone1.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienLuyTienHourMilestone1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3455,7 +3471,7 @@
             // btnHuyTinhTienLuyTien
             // 
             this.btnHuyTinhTienLuyTien.Location = new System.Drawing.Point(341, 465);
-            this.btnHuyTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHuyTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.btnHuyTinhTienLuyTien.Name = "btnHuyTinhTienLuyTien";
             this.btnHuyTinhTienLuyTien.Size = new System.Drawing.Size(144, 37);
             this.btnHuyTinhTienLuyTien.TabIndex = 13;
@@ -3466,7 +3482,7 @@
             // btnCapNhatTinhTienLuyTien
             // 
             this.btnCapNhatTinhTienLuyTien.Location = new System.Drawing.Point(173, 465);
-            this.btnCapNhatTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCapNhatTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.btnCapNhatTinhTienLuyTien.Name = "btnCapNhatTinhTienLuyTien";
             this.btnCapNhatTinhTienLuyTien.Size = new System.Drawing.Size(144, 37);
             this.btnCapNhatTinhTienLuyTien.TabIndex = 12;
@@ -3501,7 +3517,7 @@
             this.cbLoaiXeTinhTienLuyTien.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiXeTinhTienLuyTien.FormattingEnabled = true;
             this.cbLoaiXeTinhTienLuyTien.Location = new System.Drawing.Point(185, 16);
-            this.cbLoaiXeTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbLoaiXeTinhTienLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.cbLoaiXeTinhTienLuyTien.Name = "cbLoaiXeTinhTienLuyTien";
             this.cbLoaiXeTinhTienLuyTien.Size = new System.Drawing.Size(344, 28);
             this.cbLoaiXeTinhTienLuyTien.TabIndex = 40;
@@ -3516,9 +3532,9 @@
             this.groupBox3.Controls.Add(this.label157);
             this.groupBox3.Controls.Add(this.trackBarTinhTienLuyTienCycleTicketMonth);
             this.groupBox3.Location = new System.Drawing.Point(35, 338);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(588, 111);
             this.groupBox3.TabIndex = 47;
             this.groupBox3.TabStop = false;
@@ -3533,7 +3549,7 @@
             0,
             0});
             this.numericTinhTienLuyTienCostTicketMonth.Location = new System.Drawing.Point(457, 36);
-            this.numericTinhTienLuyTienCostTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienLuyTienCostTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienLuyTienCostTicketMonth.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3590,7 +3606,7 @@
             // trackBarTinhTienLuyTienCycleTicketMonth
             // 
             this.trackBarTinhTienLuyTienCycleTicketMonth.Location = new System.Drawing.Point(109, 36);
-            this.trackBarTinhTienLuyTienCycleTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienLuyTienCycleTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienLuyTienCycleTicketMonth.Maximum = 24;
             this.trackBarTinhTienLuyTienCycleTicketMonth.Name = "trackBarTinhTienLuyTienCycleTicketMonth";
             this.trackBarTinhTienLuyTienCycleTicketMonth.Size = new System.Drawing.Size(169, 56);
@@ -3603,9 +3619,9 @@
             this.tabPageCongThucTongHop.Controls.Add(this.btnChinhSuaTinhTienTongHop);
             this.tabPageCongThucTongHop.Controls.Add(this.panelTinhTienTongHop);
             this.tabPageCongThucTongHop.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCongThucTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTongHop.Name = "tabPageCongThucTongHop";
-            this.tabPageCongThucTongHop.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTongHop.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTongHop.Size = new System.Drawing.Size(1539, 753);
             this.tabPageCongThucTongHop.TabIndex = 3;
             this.tabPageCongThucTongHop.Text = "Công thức tổng hợp";
@@ -3615,7 +3631,7 @@
             // 
             this.panel33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel33.Location = new System.Drawing.Point(8, 559);
-            this.panel33.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel33.Margin = new System.Windows.Forms.Padding(4);
             this.panel33.Name = "panel33";
             this.panel33.Size = new System.Drawing.Size(1519, 183);
             this.panel33.TabIndex = 16;
@@ -3623,7 +3639,7 @@
             // btnChinhSuaTinhTienTongHop
             // 
             this.btnChinhSuaTinhTienTongHop.Location = new System.Drawing.Point(255, 223);
-            this.btnChinhSuaTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChinhSuaTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.btnChinhSuaTinhTienTongHop.Name = "btnChinhSuaTinhTienTongHop";
             this.btnChinhSuaTinhTienTongHop.Size = new System.Drawing.Size(144, 37);
             this.btnChinhSuaTinhTienTongHop.TabIndex = 15;
@@ -3651,7 +3667,7 @@
             this.panelTinhTienTongHop.Controls.Add(this.groupBox5);
             this.panelTinhTienTongHop.Enabled = false;
             this.panelTinhTienTongHop.Location = new System.Drawing.Point(443, 15);
-            this.panelTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.panelTinhTienTongHop.Name = "panelTinhTienTongHop";
             this.panelTinhTienTongHop.Size = new System.Drawing.Size(871, 536);
             this.panelTinhTienTongHop.TabIndex = 14;
@@ -3676,7 +3692,7 @@
             0,
             0});
             this.numericTinhTienTongHopNightCost.Location = new System.Drawing.Point(87, 309);
-            this.numericTinhTienTongHopNightCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopNightCost.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopNightCost.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3720,9 +3736,9 @@
             this.groupBox6.Controls.Add(this.label171);
             this.groupBox6.Controls.Add(this.label172);
             this.groupBox6.Location = new System.Drawing.Point(87, 46);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox6.Size = new System.Drawing.Size(756, 255);
             this.groupBox6.TabIndex = 60;
             this.groupBox6.TabStop = false;
@@ -3739,9 +3755,9 @@
             this.groupBox7.Controls.Add(this.label180);
             this.groupBox7.Controls.Add(this.trackBarTinhTienTongHopCycleMilestone3);
             this.groupBox7.Location = new System.Drawing.Point(27, 66);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox7.Size = new System.Drawing.Size(697, 176);
             this.groupBox7.TabIndex = 70;
             this.groupBox7.TabStop = false;
@@ -3755,7 +3771,7 @@
             0,
             0});
             this.numericTinhTienTongHopCostMilestone3.Location = new System.Drawing.Point(271, 25);
-            this.numericTinhTienTongHopCostMilestone3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopCostMilestone3.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopCostMilestone3.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3769,7 +3785,7 @@
             // 
             this.radioTinhTienTongHopAdd2Milestone.AutoSize = true;
             this.radioTinhTienTongHopAdd2Milestone.Location = new System.Drawing.Point(421, 135);
-            this.radioTinhTienTongHopAdd2Milestone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioTinhTienTongHopAdd2Milestone.Margin = new System.Windows.Forms.Padding(4);
             this.radioTinhTienTongHopAdd2Milestone.Name = "radioTinhTienTongHopAdd2Milestone";
             this.radioTinhTienTongHopAdd2Milestone.Size = new System.Drawing.Size(120, 24);
             this.radioTinhTienTongHopAdd2Milestone.TabIndex = 62;
@@ -3780,7 +3796,7 @@
             // 
             this.radioTinhTienTongHopAdd1Milestone.AutoSize = true;
             this.radioTinhTienTongHopAdd1Milestone.Location = new System.Drawing.Point(220, 135);
-            this.radioTinhTienTongHopAdd1Milestone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioTinhTienTongHopAdd1Milestone.Margin = new System.Windows.Forms.Padding(4);
             this.radioTinhTienTongHopAdd1Milestone.Name = "radioTinhTienTongHopAdd1Milestone";
             this.radioTinhTienTongHopAdd1Milestone.Size = new System.Drawing.Size(120, 24);
             this.radioTinhTienTongHopAdd1Milestone.TabIndex = 61;
@@ -3792,7 +3808,7 @@
             this.radioTinhTienTongHopNoAdd.AutoSize = true;
             this.radioTinhTienTongHopNoAdd.Checked = true;
             this.radioTinhTienTongHopNoAdd.Location = new System.Drawing.Point(27, 135);
-            this.radioTinhTienTongHopNoAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioTinhTienTongHopNoAdd.Margin = new System.Windows.Forms.Padding(4);
             this.radioTinhTienTongHopNoAdd.Name = "radioTinhTienTongHopNoAdd";
             this.radioTinhTienTongHopNoAdd.Size = new System.Drawing.Size(118, 24);
             this.radioTinhTienTongHopNoAdd.TabIndex = 60;
@@ -3847,7 +3863,7 @@
             // trackBarTinhTienTongHopCycleMilestone3
             // 
             this.trackBarTinhTienTongHopCycleMilestone3.Location = new System.Drawing.Point(109, 65);
-            this.trackBarTinhTienTongHopCycleMilestone3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienTongHopCycleMilestone3.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienTongHopCycleMilestone3.Maximum = 24;
             this.trackBarTinhTienTongHopCycleMilestone3.Minimum = 1;
             this.trackBarTinhTienTongHopCycleMilestone3.Name = "trackBarTinhTienTongHopCycleMilestone3";
@@ -3865,7 +3881,7 @@
             0,
             0});
             this.numericTinhTienTongHopCostMilestone2.Location = new System.Drawing.Point(588, 25);
-            this.numericTinhTienTongHopCostMilestone2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopCostMilestone2.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopCostMilestone2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3884,7 +3900,7 @@
             0,
             0});
             this.numericTinhTienTongHopCostMilestone1.Location = new System.Drawing.Point(217, 25);
-            this.numericTinhTienTongHopCostMilestone1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopCostMilestone1.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopCostMilestone1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3919,7 +3935,7 @@
             // numericTinhTienTongHopHourMilestone2
             // 
             this.numericTinhTienTongHopHourMilestone2.Location = new System.Drawing.Point(459, 25);
-            this.numericTinhTienTongHopHourMilestone2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopHourMilestone2.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopHourMilestone2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3933,7 +3949,7 @@
             // 
             this.numericTinhTienTongHopHourMilestone1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.numericTinhTienTongHopHourMilestone1.Location = new System.Drawing.Point(88, 25);
-            this.numericTinhTienTongHopHourMilestone1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopHourMilestone1.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopHourMilestone1.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -3968,7 +3984,7 @@
             // numericTinhTienTongHopEndHourNight
             // 
             this.numericTinhTienTongHopEndHourNight.Location = new System.Drawing.Point(397, 11);
-            this.numericTinhTienTongHopEndHourNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopEndHourNight.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopEndHourNight.Maximum = new decimal(new int[] {
             23,
             0,
@@ -3981,7 +3997,7 @@
             // numericTinhTienTongHopStartHourNight
             // 
             this.numericTinhTienTongHopStartHourNight.Location = new System.Drawing.Point(201, 11);
-            this.numericTinhTienTongHopStartHourNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopStartHourNight.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopStartHourNight.Maximum = new decimal(new int[] {
             23,
             0,
@@ -3994,7 +4010,7 @@
             // btnHuyTinhTienTongHop
             // 
             this.btnHuyTinhTienTongHop.Location = new System.Drawing.Point(449, 482);
-            this.btnHuyTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHuyTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.btnHuyTinhTienTongHop.Name = "btnHuyTinhTienTongHop";
             this.btnHuyTinhTienTongHop.Size = new System.Drawing.Size(144, 37);
             this.btnHuyTinhTienTongHop.TabIndex = 13;
@@ -4005,7 +4021,7 @@
             // btnCapNhatTinhTienTongHop
             // 
             this.btnCapNhatTinhTienTongHop.Location = new System.Drawing.Point(281, 482);
-            this.btnCapNhatTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCapNhatTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.btnCapNhatTinhTienTongHop.Name = "btnCapNhatTinhTienTongHop";
             this.btnCapNhatTinhTienTongHop.Size = new System.Drawing.Size(144, 37);
             this.btnCapNhatTinhTienTongHop.TabIndex = 12;
@@ -4018,7 +4034,7 @@
             this.cbLoaiXeTinhTienTongHop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiXeTinhTienTongHop.FormattingEnabled = true;
             this.cbLoaiXeTinhTienTongHop.Location = new System.Drawing.Point(643, 9);
-            this.cbLoaiXeTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbLoaiXeTinhTienTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.cbLoaiXeTinhTienTongHop.Name = "cbLoaiXeTinhTienTongHop";
             this.cbLoaiXeTinhTienTongHop.Size = new System.Drawing.Size(199, 28);
             this.cbLoaiXeTinhTienTongHop.TabIndex = 40;
@@ -4077,9 +4093,9 @@
             this.groupBox5.Controls.Add(this.label168);
             this.groupBox5.Controls.Add(this.trackBarTinhTienTongHopCycleTicketMonth);
             this.groupBox5.Location = new System.Drawing.Point(87, 350);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox5.Size = new System.Drawing.Size(756, 123);
             this.groupBox5.TabIndex = 47;
             this.groupBox5.TabStop = false;
@@ -4094,7 +4110,7 @@
             0,
             0});
             this.numericTinhTienTongHopCostTicketMonth.Location = new System.Drawing.Point(457, 41);
-            this.numericTinhTienTongHopCostTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHopCostTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHopCostTicketMonth.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4151,7 +4167,7 @@
             // trackBarTinhTienTongHopCycleTicketMonth
             // 
             this.trackBarTinhTienTongHopCycleTicketMonth.Location = new System.Drawing.Point(109, 41);
-            this.trackBarTinhTienTongHopCycleTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienTongHopCycleTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienTongHopCycleTicketMonth.Maximum = 24;
             this.trackBarTinhTienTongHopCycleTicketMonth.Name = "trackBarTinhTienTongHopCycleTicketMonth";
             this.trackBarTinhTienTongHopCycleTicketMonth.Size = new System.Drawing.Size(169, 56);
@@ -4163,9 +4179,9 @@
             this.tabPageCongThucTongHop2.Controls.Add(this.btnChinhSuaTinhTienTongHop2);
             this.tabPageCongThucTongHop2.Controls.Add(this.panelTinhTienTongHop2);
             this.tabPageCongThucTongHop2.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCongThucTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTongHop2.Name = "tabPageCongThucTongHop2";
-            this.tabPageCongThucTongHop2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCongThucTongHop2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCongThucTongHop2.Size = new System.Drawing.Size(1539, 753);
             this.tabPageCongThucTongHop2.TabIndex = 4;
             this.tabPageCongThucTongHop2.Text = "Công thức tổng hợp theo ngày đêm";
@@ -4174,7 +4190,7 @@
             // btnChinhSuaTinhTienTongHop2
             // 
             this.btnChinhSuaTinhTienTongHop2.Location = new System.Drawing.Point(239, 235);
-            this.btnChinhSuaTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChinhSuaTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.btnChinhSuaTinhTienTongHop2.Name = "btnChinhSuaTinhTienTongHop2";
             this.btnChinhSuaTinhTienTongHop2.Size = new System.Drawing.Size(144, 37);
             this.btnChinhSuaTinhTienTongHop2.TabIndex = 17;
@@ -4202,7 +4218,7 @@
             this.panelTinhTienTongHop2.Controls.Add(this.label222);
             this.panelTinhTienTongHop2.Enabled = false;
             this.panelTinhTienTongHop2.Location = new System.Drawing.Point(427, 27);
-            this.panelTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.panelTinhTienTongHop2.Name = "panelTinhTienTongHop2";
             this.panelTinhTienTongHop2.Size = new System.Drawing.Size(871, 686);
             this.panelTinhTienTongHop2.TabIndex = 16;
@@ -4243,7 +4259,7 @@
             // trackBarTinhTienTongHop2CycleMilestone
             // 
             this.trackBarTinhTienTongHop2CycleMilestone.Location = new System.Drawing.Point(284, 441);
-            this.trackBarTinhTienTongHop2CycleMilestone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackBarTinhTienTongHop2CycleMilestone.Margin = new System.Windows.Forms.Padding(4);
             this.trackBarTinhTienTongHop2CycleMilestone.Maximum = 24;
             this.trackBarTinhTienTongHop2CycleMilestone.Minimum = 1;
             this.trackBarTinhTienTongHop2CycleMilestone.Name = "trackBarTinhTienTongHop2CycleMilestone";
@@ -4258,7 +4274,7 @@
             this.cbLoaiXeTinhTienTongHop2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiXeTinhTienTongHop2.FormattingEnabled = true;
             this.cbLoaiXeTinhTienTongHop2.Location = new System.Drawing.Point(300, 63);
-            this.cbLoaiXeTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbLoaiXeTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.cbLoaiXeTinhTienTongHop2.Name = "cbLoaiXeTinhTienTongHop2";
             this.cbLoaiXeTinhTienTongHop2.Size = new System.Drawing.Size(344, 28);
             this.cbLoaiXeTinhTienTongHop2.TabIndex = 64;
@@ -4293,9 +4309,9 @@
             this.groupBox12.Controls.Add(this.groupBox13);
             this.groupBox12.Controls.Add(this.groupBox14);
             this.groupBox12.Location = new System.Drawing.Point(87, 107);
-            this.groupBox12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox12.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox12.Size = new System.Drawing.Size(756, 308);
             this.groupBox12.TabIndex = 60;
             this.groupBox12.TabStop = false;
@@ -4320,7 +4336,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone4Night.Location = new System.Drawing.Point(535, 246);
-            this.numericTinhTienTongHop2CostMilestone4Night.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone4Night.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone4Night.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4338,7 +4354,7 @@
             0,
             0});
             this.numericTinhTienTongHop2MinTime.Location = new System.Drawing.Point(89, 26);
-            this.numericTinhTienTongHop2MinTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2MinTime.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2MinTime.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4368,7 +4384,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone4Day.Location = new System.Drawing.Point(280, 246);
-            this.numericTinhTienTongHop2CostMilestone4Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone4Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone4Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4386,7 +4402,7 @@
             0,
             0});
             this.numericTinhTienTongHop2MinCost.Location = new System.Drawing.Point(280, 26);
-            this.numericTinhTienTongHop2MinCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2MinCost.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2MinCost.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4405,7 +4421,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone3Night.Location = new System.Drawing.Point(535, 206);
-            this.numericTinhTienTongHop2CostMilestone3Night.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone3Night.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone3Night.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4424,7 +4440,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone3Day.Location = new System.Drawing.Point(280, 206);
-            this.numericTinhTienTongHop2CostMilestone3Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone3Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone3Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4493,7 +4509,7 @@
             // 
             this.numericTinhTienTongHop2HourMilestone3Day.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.numericTinhTienTongHop2HourMilestone3Day.Location = new System.Drawing.Point(89, 206);
-            this.numericTinhTienTongHop2HourMilestone3Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2HourMilestone3Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2HourMilestone3Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4512,7 +4528,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone2Night.Location = new System.Drawing.Point(533, 165);
-            this.numericTinhTienTongHop2CostMilestone2Night.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone2Night.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone2Night.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4531,7 +4547,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone2Day.Location = new System.Drawing.Point(280, 165);
-            this.numericTinhTienTongHop2CostMilestone2Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone2Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone2Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4550,7 +4566,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone1Night.Location = new System.Drawing.Point(535, 124);
-            this.numericTinhTienTongHop2CostMilestone1Night.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone1Night.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone1Night.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4569,7 +4585,7 @@
             0,
             0});
             this.numericTinhTienTongHop2CostMilestone1Day.Location = new System.Drawing.Point(280, 124);
-            this.numericTinhTienTongHop2CostMilestone1Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2CostMilestone1Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2CostMilestone1Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4627,7 +4643,7 @@
             // 
             this.numericTinhTienTongHop2HourMilestone1Day.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.numericTinhTienTongHop2HourMilestone1Day.Location = new System.Drawing.Point(89, 124);
-            this.numericTinhTienTongHop2HourMilestone1Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2HourMilestone1Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2HourMilestone1Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4640,7 +4656,7 @@
             // numericTinhTienTongHop2HourMilestone2Day
             // 
             this.numericTinhTienTongHop2HourMilestone2Day.Location = new System.Drawing.Point(89, 165);
-            this.numericTinhTienTongHop2HourMilestone2Day.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2HourMilestone2Day.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2HourMilestone2Day.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -4653,9 +4669,9 @@
             // groupBox13
             // 
             this.groupBox13.Location = new System.Drawing.Point(256, 101);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox13.Size = new System.Drawing.Size(197, 187);
             this.groupBox13.TabIndex = 70;
             this.groupBox13.TabStop = false;
@@ -4663,9 +4679,9 @@
             // groupBox14
             // 
             this.groupBox14.Location = new System.Drawing.Point(509, 101);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox14.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox14.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox14.Size = new System.Drawing.Size(197, 187);
             this.groupBox14.TabIndex = 82;
             this.groupBox14.TabStop = false;
@@ -4673,7 +4689,7 @@
             // numericTinhTienTongHop2EndHourNight
             // 
             this.numericTinhTienTongHop2EndHourNight.Location = new System.Drawing.Point(437, 11);
-            this.numericTinhTienTongHop2EndHourNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2EndHourNight.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2EndHourNight.Maximum = new decimal(new int[] {
             23,
             0,
@@ -4686,7 +4702,7 @@
             // numericTinhTienTongHop2StartHourNight
             // 
             this.numericTinhTienTongHop2StartHourNight.Location = new System.Drawing.Point(201, 11);
-            this.numericTinhTienTongHop2StartHourNight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericTinhTienTongHop2StartHourNight.Margin = new System.Windows.Forms.Padding(4);
             this.numericTinhTienTongHop2StartHourNight.Maximum = new decimal(new int[] {
             23,
             0,
@@ -4699,7 +4715,7 @@
             // btnHuyTinhTienTongHop2
             // 
             this.btnHuyTinhTienTongHop2.Location = new System.Drawing.Point(449, 610);
-            this.btnHuyTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHuyTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.btnHuyTinhTienTongHop2.Name = "btnHuyTinhTienTongHop2";
             this.btnHuyTinhTienTongHop2.Size = new System.Drawing.Size(144, 37);
             this.btnHuyTinhTienTongHop2.TabIndex = 13;
@@ -4710,7 +4726,7 @@
             // btnCapNhatTinhTienTongHop2
             // 
             this.btnCapNhatTinhTienTongHop2.Location = new System.Drawing.Point(281, 610);
-            this.btnCapNhatTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCapNhatTinhTienTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.btnCapNhatTinhTienTongHop2.Name = "btnCapNhatTinhTienTongHop2";
             this.btnCapNhatTinhTienTongHop2.Size = new System.Drawing.Size(144, 37);
             this.btnCapNhatTinhTienTongHop2.TabIndex = 12;
@@ -4777,9 +4793,9 @@
             // 
             this.tabPageQuanLyTheXeLoaiXe.Controls.Add(this.tabQuanLyThe_LoaiXe);
             this.tabPageQuanLyTheXeLoaiXe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyTheXeLoaiXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyTheXeLoaiXe.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyTheXeLoaiXe.Name = "tabPageQuanLyTheXeLoaiXe";
-            this.tabPageQuanLyTheXeLoaiXe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyTheXeLoaiXe.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyTheXeLoaiXe.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyTheXeLoaiXe.TabIndex = 2;
             this.tabPageQuanLyTheXeLoaiXe.Text = "QUẢN LÝ THẺ XE - LOẠI XE";
@@ -4792,7 +4808,7 @@
             this.tabQuanLyThe_LoaiXe.Controls.Add(this.tabPageKhoaThe);
             this.tabQuanLyThe_LoaiXe.Controls.Add(this.tabPageKichHoatThe);
             this.tabQuanLyThe_LoaiXe.Location = new System.Drawing.Point(4, 4);
-            this.tabQuanLyThe_LoaiXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyThe_LoaiXe.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyThe_LoaiXe.Name = "tabQuanLyThe_LoaiXe";
             this.tabQuanLyThe_LoaiXe.SelectedIndex = 0;
             this.tabQuanLyThe_LoaiXe.Size = new System.Drawing.Size(1548, 791);
@@ -4808,9 +4824,9 @@
             this.tabPageQuanLyTheXe.Controls.Add(this.dgvCardStatistic);
             this.tabPageQuanLyTheXe.Controls.Add(this.panel7);
             this.tabPageQuanLyTheXe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyTheXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyTheXe.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyTheXe.Name = "tabPageQuanLyTheXe";
-            this.tabPageQuanLyTheXe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyTheXe.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyTheXe.Size = new System.Drawing.Size(1540, 758);
             this.tabPageQuanLyTheXe.TabIndex = 0;
             this.tabPageQuanLyTheXe.Text = "Quản lý thẻ xe";
@@ -4820,7 +4836,7 @@
             // 
             this.btnCardDelete.ForeColor = System.Drawing.Color.Black;
             this.btnCardDelete.Location = new System.Drawing.Point(803, 7);
-            this.btnCardDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCardDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnCardDelete.Name = "btnCardDelete";
             this.btnCardDelete.Size = new System.Drawing.Size(141, 44);
             this.btnCardDelete.TabIndex = 32;
@@ -4833,7 +4849,7 @@
             // 
             this.btnCardSelectAll.ForeColor = System.Drawing.Color.Black;
             this.btnCardSelectAll.Location = new System.Drawing.Point(655, 7);
-            this.btnCardSelectAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCardSelectAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnCardSelectAll.Name = "btnCardSelectAll";
             this.btnCardSelectAll.Size = new System.Drawing.Size(141, 44);
             this.btnCardSelectAll.TabIndex = 31;
@@ -4855,7 +4871,7 @@
             this.CardTypeName,
             this.IsUsing});
             this.dgvCardList.Location = new System.Drawing.Point(655, 58);
-            this.dgvCardList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCardList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCardList.Name = "dgvCardList";
             this.dgvCardList.RowHeadersWidth = 51;
             this.dgvCardList.Size = new System.Drawing.Size(855, 672);
@@ -4926,7 +4942,7 @@
             // btnExportDanhSachTheXe
             // 
             this.btnExportDanhSachTheXe.Location = new System.Drawing.Point(29, 681);
-            this.btnExportDanhSachTheXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachTheXe.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachTheXe.Name = "btnExportDanhSachTheXe";
             this.btnExportDanhSachTheXe.Size = new System.Drawing.Size(596, 49);
             this.btnExportDanhSachTheXe.TabIndex = 14;
@@ -4943,7 +4959,7 @@
             this.Column14,
             this.Column15});
             this.dgvCardStatistic.Location = new System.Drawing.Point(29, 300);
-            this.dgvCardStatistic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCardStatistic.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCardStatistic.Name = "dgvCardStatistic";
             this.dgvCardStatistic.ReadOnly = true;
             this.dgvCardStatistic.RowHeadersWidth = 51;
@@ -4982,7 +4998,7 @@
             this.panel7.BackColor = System.Drawing.Color.White;
             this.panel7.Controls.Add(this.tabControl8);
             this.panel7.Location = new System.Drawing.Point(24, 27);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(601, 254);
             this.panel7.TabIndex = 2;
@@ -4993,7 +5009,7 @@
             this.tabControl8.Controls.Add(this.tabPage28);
             this.tabControl8.Controls.Add(this.tabPage29);
             this.tabControl8.Location = new System.Drawing.Point(0, 0);
-            this.tabControl8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl8.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl8.Name = "tabControl8";
             this.tabControl8.SelectedIndex = 0;
             this.tabControl8.Size = new System.Drawing.Size(601, 250);
@@ -5009,9 +5025,9 @@
             this.tabPage27.Controls.Add(this.label19);
             this.tabPage27.Controls.Add(this.tbCardIdentifyCreate);
             this.tabPage27.Location = new System.Drawing.Point(4, 29);
-            this.tabPage27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage27.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage27.Name = "tabPage27";
-            this.tabPage27.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage27.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage27.Size = new System.Drawing.Size(593, 217);
             this.tabPage27.TabIndex = 0;
             this.tabPage27.Text = "Tạo thẻ chip";
@@ -5035,7 +5051,7 @@
             this.cbIsUsingCreate.Checked = true;
             this.cbIsUsingCreate.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbIsUsingCreate.Location = new System.Drawing.Point(479, 42);
-            this.cbIsUsingCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbIsUsingCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbIsUsingCreate.Name = "cbIsUsingCreate";
             this.cbIsUsingCreate.Size = new System.Drawing.Size(92, 24);
             this.cbIsUsingCreate.TabIndex = 19;
@@ -5047,7 +5063,7 @@
             this.cbPartNameCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPartNameCreate.FormattingEnabled = true;
             this.cbPartNameCreate.Location = new System.Drawing.Point(231, 38);
-            this.cbPartNameCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPartNameCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbPartNameCreate.Name = "cbPartNameCreate";
             this.cbPartNameCreate.Size = new System.Drawing.Size(233, 28);
             this.cbPartNameCreate.TabIndex = 18;
@@ -5066,7 +5082,7 @@
             // tbCardIDCreate
             // 
             this.tbCardIDCreate.Location = new System.Drawing.Point(90, 79);
-            this.tbCardIDCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCardIDCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbCardIDCreate.Name = "tbCardIDCreate";
             this.tbCardIDCreate.Size = new System.Drawing.Size(475, 26);
             this.tbCardIDCreate.TabIndex = 16;
@@ -5088,7 +5104,7 @@
             this.tbCardIdentifyCreate.BackColor = System.Drawing.SystemColors.Window;
             this.tbCardIdentifyCreate.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.tbCardIdentifyCreate.Location = new System.Drawing.Point(90, 39);
-            this.tbCardIdentifyCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCardIdentifyCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbCardIdentifyCreate.Name = "tbCardIdentifyCreate";
             this.tbCardIdentifyCreate.Size = new System.Drawing.Size(126, 26);
             this.tbCardIdentifyCreate.TabIndex = 14;
@@ -5102,9 +5118,9 @@
             this.tabPage28.Controls.Add(this.label17);
             this.tabPage28.Controls.Add(this.tbCardSearch);
             this.tabPage28.Location = new System.Drawing.Point(4, 29);
-            this.tabPage28.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage28.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage28.Name = "tabPage28";
-            this.tabPage28.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage28.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage28.Size = new System.Drawing.Size(593, 217);
             this.tabPage28.TabIndex = 1;
             this.tabPage28.Text = "Chỉnh sửa/Tìm kiếm thẻ";
@@ -5118,7 +5134,7 @@
             this.panelChinhSuaTheXe.Controls.Add(this.label16);
             this.panelChinhSuaTheXe.Enabled = false;
             this.panelChinhSuaTheXe.Location = new System.Drawing.Point(12, 42);
-            this.panelChinhSuaTheXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelChinhSuaTheXe.Margin = new System.Windows.Forms.Padding(4);
             this.panelChinhSuaTheXe.Name = "panelChinhSuaTheXe";
             this.panelChinhSuaTheXe.Size = new System.Drawing.Size(547, 43);
             this.panelChinhSuaTheXe.TabIndex = 23;
@@ -5128,7 +5144,7 @@
             this.cbIsUsingEdit.AutoSize = true;
             this.cbIsUsingEdit.Enabled = false;
             this.cbIsUsingEdit.Location = new System.Drawing.Point(443, 10);
-            this.cbIsUsingEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbIsUsingEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbIsUsingEdit.Name = "cbIsUsingEdit";
             this.cbIsUsingEdit.Size = new System.Drawing.Size(92, 24);
             this.cbIsUsingEdit.TabIndex = 27;
@@ -5140,7 +5156,7 @@
             this.cbPartNameEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPartNameEdit.FormattingEnabled = true;
             this.cbPartNameEdit.Location = new System.Drawing.Point(220, 6);
-            this.cbPartNameEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPartNameEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbPartNameEdit.Name = "cbPartNameEdit";
             this.cbPartNameEdit.Size = new System.Drawing.Size(205, 28);
             this.cbPartNameEdit.TabIndex = 26;
@@ -5149,7 +5165,7 @@
             // 
             this.tbCardIdentifyEdit.BackColor = System.Drawing.SystemColors.Window;
             this.tbCardIdentifyEdit.Location = new System.Drawing.Point(137, 7);
-            this.tbCardIdentifyEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCardIdentifyEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbCardIdentifyEdit.Name = "tbCardIdentifyEdit";
             this.tbCardIdentifyEdit.Size = new System.Drawing.Size(68, 26);
             this.tbCardIdentifyEdit.TabIndex = 24;
@@ -5168,7 +5184,7 @@
             // btnCardEdit
             // 
             this.btnCardEdit.Location = new System.Drawing.Point(149, 126);
-            this.btnCardEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCardEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnCardEdit.Name = "btnCardEdit";
             this.btnCardEdit.Size = new System.Drawing.Size(289, 39);
             this.btnCardEdit.TabIndex = 22;
@@ -5190,7 +5206,7 @@
             // tbCardIDEdit
             // 
             this.tbCardIDEdit.Location = new System.Drawing.Point(149, 90);
-            this.tbCardIDEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCardIDEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbCardIDEdit.Name = "tbCardIDEdit";
             this.tbCardIDEdit.ReadOnly = true;
             this.tbCardIDEdit.Size = new System.Drawing.Size(288, 26);
@@ -5210,7 +5226,7 @@
             // tbCardSearch
             // 
             this.tbCardSearch.Location = new System.Drawing.Point(149, 11);
-            this.tbCardSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCardSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbCardSearch.Name = "tbCardSearch";
             this.tbCardSearch.Size = new System.Drawing.Size(288, 26);
             this.tbCardSearch.TabIndex = 14;
@@ -5221,9 +5237,9 @@
             this.tabPage29.Controls.Add(this.btnExportDanhSachTheXe2);
             this.tabPage29.Controls.Add(this.btnImportDanhSachTheXe);
             this.tabPage29.Location = new System.Drawing.Point(4, 29);
-            this.tabPage29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage29.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage29.Name = "tabPage29";
-            this.tabPage29.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage29.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage29.Size = new System.Drawing.Size(593, 217);
             this.tabPage29.TabIndex = 2;
             this.tabPage29.Text = "Import/Export DS thẻ";
@@ -5232,7 +5248,7 @@
             // btnExportDanhSachTheXe2
             // 
             this.btnExportDanhSachTheXe2.Location = new System.Drawing.Point(213, 119);
-            this.btnExportDanhSachTheXe2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachTheXe2.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachTheXe2.Name = "btnExportDanhSachTheXe2";
             this.btnExportDanhSachTheXe2.Size = new System.Drawing.Size(289, 49);
             this.btnExportDanhSachTheXe2.TabIndex = 24;
@@ -5243,7 +5259,7 @@
             // btnImportDanhSachTheXe
             // 
             this.btnImportDanhSachTheXe.Location = new System.Drawing.Point(213, 41);
-            this.btnImportDanhSachTheXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportDanhSachTheXe.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportDanhSachTheXe.Name = "btnImportDanhSachTheXe";
             this.btnImportDanhSachTheXe.Size = new System.Drawing.Size(289, 49);
             this.btnImportDanhSachTheXe.TabIndex = 23;
@@ -5256,9 +5272,9 @@
             this.tabPageQuanLyLoaiXe.Controls.Add(this.tabControl9);
             this.tabPageQuanLyLoaiXe.Controls.Add(this.dgvPartList);
             this.tabPageQuanLyLoaiXe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyLoaiXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyLoaiXe.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyLoaiXe.Name = "tabPageQuanLyLoaiXe";
-            this.tabPageQuanLyLoaiXe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyLoaiXe.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyLoaiXe.Size = new System.Drawing.Size(1540, 758);
             this.tabPageQuanLyLoaiXe.TabIndex = 1;
             this.tabPageQuanLyLoaiXe.Text = "Quản lý loại xe";
@@ -5269,7 +5285,7 @@
             this.tabControl9.Controls.Add(this.tabPage30);
             this.tabControl9.Controls.Add(this.tabPage31);
             this.tabControl9.Location = new System.Drawing.Point(31, 60);
-            this.tabControl9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl9.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl9.Name = "tabControl9";
             this.tabControl9.SelectedIndex = 0;
             this.tabControl9.Size = new System.Drawing.Size(488, 398);
@@ -5293,9 +5309,9 @@
             this.tabPage30.Controls.Add(this.label25);
             this.tabPage30.Controls.Add(this.tbPartIdCreate);
             this.tabPage30.Location = new System.Drawing.Point(4, 29);
-            this.tabPage30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage30.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage30.Name = "tabPage30";
-            this.tabPage30.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage30.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage30.Size = new System.Drawing.Size(480, 365);
             this.tabPage30.TabIndex = 0;
             this.tabPage30.Text = "Tạo loại xe";
@@ -5306,7 +5322,7 @@
             this.cbCardTypeNameCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCardTypeNameCreate.FormattingEnabled = true;
             this.cbCardTypeNameCreate.Location = new System.Drawing.Point(176, 153);
-            this.cbCardTypeNameCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCardTypeNameCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbCardTypeNameCreate.Name = "cbCardTypeNameCreate";
             this.cbCardTypeNameCreate.Size = new System.Drawing.Size(243, 28);
             this.cbCardTypeNameCreate.TabIndex = 53;
@@ -5327,7 +5343,7 @@
             this.cbTypeNameCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTypeNameCreate.FormattingEnabled = true;
             this.cbTypeNameCreate.Location = new System.Drawing.Point(176, 112);
-            this.cbTypeNameCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTypeNameCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbTypeNameCreate.Name = "cbTypeNameCreate";
             this.cbTypeNameCreate.Size = new System.Drawing.Size(243, 28);
             this.cbTypeNameCreate.TabIndex = 19;
@@ -5346,7 +5362,7 @@
             // tbPartNameCreate
             // 
             this.tbPartNameCreate.Location = new System.Drawing.Point(176, 74);
-            this.tbPartNameCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartNameCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartNameCreate.Name = "tbPartNameCreate";
             this.tbPartNameCreate.Size = new System.Drawing.Size(243, 26);
             this.tbPartNameCreate.TabIndex = 15;
@@ -5354,7 +5370,7 @@
             // btnCreatePart
             // 
             this.btnCreatePart.Location = new System.Drawing.Point(68, 282);
-            this.btnCreatePart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreatePart.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreatePart.Name = "btnCreatePart";
             this.btnCreatePart.Size = new System.Drawing.Size(144, 37);
             this.btnCreatePart.TabIndex = 14;
@@ -5376,7 +5392,7 @@
             // btnCancelCreatePart
             // 
             this.btnCancelCreatePart.Location = new System.Drawing.Point(239, 282);
-            this.btnCancelCreatePart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelCreatePart.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelCreatePart.Name = "btnCancelCreatePart";
             this.btnCancelCreatePart.Size = new System.Drawing.Size(144, 37);
             this.btnCancelCreatePart.TabIndex = 11;
@@ -5398,7 +5414,7 @@
             // tbPartAmountCreate
             // 
             this.tbPartAmountCreate.Location = new System.Drawing.Point(176, 231);
-            this.tbPartAmountCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartAmountCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartAmountCreate.Name = "tbPartAmountCreate";
             this.tbPartAmountCreate.Size = new System.Drawing.Size(133, 26);
             this.tbPartAmountCreate.TabIndex = 6;
@@ -5417,7 +5433,7 @@
             // tbPartSignCreate
             // 
             this.tbPartSignCreate.Location = new System.Drawing.Point(176, 193);
-            this.tbPartSignCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartSignCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartSignCreate.Name = "tbPartSignCreate";
             this.tbPartSignCreate.Size = new System.Drawing.Size(243, 26);
             this.tbPartSignCreate.TabIndex = 4;
@@ -5447,7 +5463,7 @@
             // tbPartIdCreate
             // 
             this.tbPartIdCreate.Location = new System.Drawing.Point(176, 34);
-            this.tbPartIdCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartIdCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartIdCreate.Name = "tbPartIdCreate";
             this.tbPartIdCreate.Size = new System.Drawing.Size(243, 26);
             this.tbPartIdCreate.TabIndex = 0;
@@ -5459,9 +5475,9 @@
             this.tabPage31.Controls.Add(this.btnUpdatePart);
             this.tabPage31.Controls.Add(this.panelChinhSuaLoaiXe);
             this.tabPage31.Location = new System.Drawing.Point(4, 29);
-            this.tabPage31.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage31.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage31.Name = "tabPage31";
-            this.tabPage31.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage31.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage31.Size = new System.Drawing.Size(480, 365);
             this.tabPage31.TabIndex = 1;
             this.tabPage31.Text = "Chỉnh sửa loại xe";
@@ -5470,7 +5486,7 @@
             // btnCancelUpdatePart
             // 
             this.btnCancelUpdatePart.Location = new System.Drawing.Point(239, 289);
-            this.btnCancelUpdatePart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelUpdatePart.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelUpdatePart.Name = "btnCancelUpdatePart";
             this.btnCancelUpdatePart.Size = new System.Drawing.Size(144, 37);
             this.btnCancelUpdatePart.TabIndex = 25;
@@ -5481,7 +5497,7 @@
             // btnUpdatePart
             // 
             this.btnUpdatePart.Location = new System.Drawing.Point(69, 289);
-            this.btnUpdatePart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdatePart.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdatePart.Name = "btnUpdatePart";
             this.btnUpdatePart.Size = new System.Drawing.Size(144, 37);
             this.btnUpdatePart.TabIndex = 24;
@@ -5505,7 +5521,7 @@
             this.panelChinhSuaLoaiXe.Controls.Add(this.tbPartSignEdit);
             this.panelChinhSuaLoaiXe.Controls.Add(this.label29);
             this.panelChinhSuaLoaiXe.Location = new System.Drawing.Point(8, 7);
-            this.panelChinhSuaLoaiXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelChinhSuaLoaiXe.Margin = new System.Windows.Forms.Padding(4);
             this.panelChinhSuaLoaiXe.Name = "panelChinhSuaLoaiXe";
             this.panelChinhSuaLoaiXe.Size = new System.Drawing.Size(461, 274);
             this.panelChinhSuaLoaiXe.TabIndex = 27;
@@ -5515,7 +5531,7 @@
             this.cbCardTypeNameEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCardTypeNameEdit.FormattingEnabled = true;
             this.cbCardTypeNameEdit.Location = new System.Drawing.Point(171, 145);
-            this.cbCardTypeNameEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCardTypeNameEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbCardTypeNameEdit.Name = "cbCardTypeNameEdit";
             this.cbCardTypeNameEdit.Size = new System.Drawing.Size(243, 28);
             this.cbCardTypeNameEdit.TabIndex = 51;
@@ -5536,7 +5552,7 @@
             this.cbTypeNameEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTypeNameEdit.FormattingEnabled = true;
             this.cbTypeNameEdit.Location = new System.Drawing.Point(171, 103);
-            this.cbTypeNameEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTypeNameEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbTypeNameEdit.Name = "cbTypeNameEdit";
             this.cbTypeNameEdit.Size = new System.Drawing.Size(243, 28);
             this.cbTypeNameEdit.TabIndex = 49;
@@ -5577,7 +5593,7 @@
             // tbPartIdEdit
             // 
             this.tbPartIdEdit.Location = new System.Drawing.Point(171, 23);
-            this.tbPartIdEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartIdEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartIdEdit.Name = "tbPartIdEdit";
             this.tbPartIdEdit.ReadOnly = true;
             this.tbPartIdEdit.Size = new System.Drawing.Size(243, 26);
@@ -5586,7 +5602,7 @@
             // tbPartNameEdit
             // 
             this.tbPartNameEdit.Location = new System.Drawing.Point(171, 64);
-            this.tbPartNameEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartNameEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartNameEdit.Name = "tbPartNameEdit";
             this.tbPartNameEdit.Size = new System.Drawing.Size(243, 26);
             this.tbPartNameEdit.TabIndex = 39;
@@ -5616,7 +5632,7 @@
             // tbPartAmountEdit
             // 
             this.tbPartAmountEdit.Location = new System.Drawing.Point(171, 229);
-            this.tbPartAmountEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartAmountEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartAmountEdit.Name = "tbPartAmountEdit";
             this.tbPartAmountEdit.Size = new System.Drawing.Size(133, 26);
             this.tbPartAmountEdit.TabIndex = 43;
@@ -5624,7 +5640,7 @@
             // tbPartSignEdit
             // 
             this.tbPartSignEdit.Location = new System.Drawing.Point(171, 188);
-            this.tbPartSignEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPartSignEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbPartSignEdit.Name = "tbPartSignEdit";
             this.tbPartSignEdit.Size = new System.Drawing.Size(243, 26);
             this.tbPartSignEdit.TabIndex = 41;
@@ -5653,7 +5669,7 @@
             this.Sign,
             this.Limit});
             this.dgvPartList.Location = new System.Drawing.Point(553, 60);
-            this.dgvPartList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvPartList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPartList.Name = "dgvPartList";
             this.dgvPartList.ReadOnly = true;
             this.dgvPartList.RowHeadersWidth = 51;
@@ -5731,9 +5747,9 @@
             this.tabPageKhoaThe.Controls.Add(this.panel18);
             this.tabPageKhoaThe.Controls.Add(this.panel35);
             this.tabPageKhoaThe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageKhoaThe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageKhoaThe.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageKhoaThe.Name = "tabPageKhoaThe";
-            this.tabPageKhoaThe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageKhoaThe.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageKhoaThe.Size = new System.Drawing.Size(1540, 758);
             this.tabPageKhoaThe.TabIndex = 4;
             this.tabPageKhoaThe.Text = "Khóa thẻ";
@@ -5744,7 +5760,7 @@
             this.panel18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel18.Controls.Add(this.dgvLockCardList);
             this.panel18.Location = new System.Drawing.Point(8, 213);
-            this.panel18.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel18.Margin = new System.Windows.Forms.Padding(4);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(1521, 535);
             this.panel18.TabIndex = 1;
@@ -5761,7 +5777,7 @@
             this.dataGridViewTextBoxColumn16,
             this.dataGridViewTextBoxColumn17});
             this.dgvLockCardList.Location = new System.Drawing.Point(4, 4);
-            this.dgvLockCardList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLockCardList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLockCardList.Name = "dgvLockCardList";
             this.dgvLockCardList.RowHeadersWidth = 51;
             this.dgvLockCardList.Size = new System.Drawing.Size(1511, 526);
@@ -5826,7 +5842,7 @@
             this.panel35.Controls.Add(this.btnSearchCardToLock);
             this.panel35.Controls.Add(this.label218);
             this.panel35.Location = new System.Drawing.Point(387, 21);
-            this.panel35.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel35.Margin = new System.Windows.Forms.Padding(4);
             this.panel35.Name = "panel35";
             this.panel35.Size = new System.Drawing.Size(731, 168);
             this.panel35.TabIndex = 0;
@@ -5845,7 +5861,7 @@
             // tbLockCardSearch
             // 
             this.tbLockCardSearch.Location = new System.Drawing.Point(133, 37);
-            this.tbLockCardSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLockCardSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbLockCardSearch.Name = "tbLockCardSearch";
             this.tbLockCardSearch.Size = new System.Drawing.Size(280, 26);
             this.tbLockCardSearch.TabIndex = 16;
@@ -5853,7 +5869,7 @@
             // btnLockCard
             // 
             this.btnLockCard.Location = new System.Drawing.Point(431, 98);
-            this.btnLockCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLockCard.Margin = new System.Windows.Forms.Padding(4);
             this.btnLockCard.Name = "btnLockCard";
             this.btnLockCard.Size = new System.Drawing.Size(259, 37);
             this.btnLockCard.TabIndex = 15;
@@ -5864,7 +5880,7 @@
             // btnSearchCardToLock
             // 
             this.btnSearchCardToLock.Location = new System.Drawing.Point(43, 98);
-            this.btnSearchCardToLock.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchCardToLock.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchCardToLock.Name = "btnSearchCardToLock";
             this.btnSearchCardToLock.Size = new System.Drawing.Size(259, 37);
             this.btnSearchCardToLock.TabIndex = 14;
@@ -5888,9 +5904,9 @@
             this.tabPageKichHoatThe.Controls.Add(this.panel8);
             this.tabPageKichHoatThe.Controls.Add(this.panel6);
             this.tabPageKichHoatThe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageKichHoatThe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageKichHoatThe.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageKichHoatThe.Name = "tabPageKichHoatThe";
-            this.tabPageKichHoatThe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageKichHoatThe.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageKichHoatThe.Size = new System.Drawing.Size(1540, 758);
             this.tabPageKichHoatThe.TabIndex = 2;
             this.tabPageKichHoatThe.Text = "Kích hoạt thẻ";
@@ -5901,7 +5917,7 @@
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel8.Controls.Add(this.dgvActiveCardList);
             this.panel8.Location = new System.Drawing.Point(8, 213);
-            this.panel8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel8.Margin = new System.Windows.Forms.Padding(4);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1521, 535);
             this.panel8.TabIndex = 1;
@@ -5918,7 +5934,7 @@
             this.Column18,
             this.Column19});
             this.dgvActiveCardList.Location = new System.Drawing.Point(4, 4);
-            this.dgvActiveCardList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvActiveCardList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvActiveCardList.Name = "dgvActiveCardList";
             this.dgvActiveCardList.RowHeadersWidth = 51;
             this.dgvActiveCardList.Size = new System.Drawing.Size(1511, 526);
@@ -5984,7 +6000,7 @@
             this.panel6.Controls.Add(this.btnTimTheBiMat);
             this.panel6.Controls.Add(this.label32);
             this.panel6.Location = new System.Drawing.Point(387, 21);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(731, 168);
             this.panel6.TabIndex = 0;
@@ -6003,7 +6019,7 @@
             // tbLostCardSearch
             // 
             this.tbLostCardSearch.Location = new System.Drawing.Point(133, 37);
-            this.tbLostCardSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLostCardSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbLostCardSearch.Name = "tbLostCardSearch";
             this.tbLostCardSearch.Size = new System.Drawing.Size(280, 26);
             this.tbLostCardSearch.TabIndex = 16;
@@ -6011,7 +6027,7 @@
             // btnKichHoatThe
             // 
             this.btnKichHoatThe.Location = new System.Drawing.Point(431, 98);
-            this.btnKichHoatThe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKichHoatThe.Margin = new System.Windows.Forms.Padding(4);
             this.btnKichHoatThe.Name = "btnKichHoatThe";
             this.btnKichHoatThe.Size = new System.Drawing.Size(259, 37);
             this.btnKichHoatThe.TabIndex = 15;
@@ -6022,7 +6038,7 @@
             // btnTimTheBiMat
             // 
             this.btnTimTheBiMat.Location = new System.Drawing.Point(43, 98);
-            this.btnTimTheBiMat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTimTheBiMat.Margin = new System.Windows.Forms.Padding(4);
             this.btnTimTheBiMat.Name = "btnTimTheBiMat";
             this.btnTimTheBiMat.Size = new System.Drawing.Size(259, 37);
             this.btnTimTheBiMat.TabIndex = 14;
@@ -6045,9 +6061,9 @@
             // 
             this.tabPageQuanLyVeThang.Controls.Add(this.tabQuanLyVeThang);
             this.tabPageQuanLyVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyVeThang.Name = "tabPageQuanLyVeThang";
-            this.tabPageQuanLyVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyVeThang.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyVeThang.TabIndex = 3;
             this.tabPageQuanLyVeThang.Text = "QUẢN LÝ VÉ THÁNG";
@@ -6063,7 +6079,7 @@
             this.tabQuanLyVeThang.Controls.Add(this.tabPageKichHoatVeThang);
             this.tabQuanLyVeThang.Controls.Add(this.tabPageBaoCaoCongNo);
             this.tabQuanLyVeThang.Location = new System.Drawing.Point(4, 4);
-            this.tabQuanLyVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyVeThang.Name = "tabQuanLyVeThang";
             this.tabQuanLyVeThang.SelectedIndex = 0;
             this.tabQuanLyVeThang.Size = new System.Drawing.Size(1552, 795);
@@ -6076,9 +6092,9 @@
             this.tabPageXemNhatKyVeThang.Controls.Add(this.dgvTicketLogList);
             this.tabPageXemNhatKyVeThang.Controls.Add(this.panel20);
             this.tabPageXemNhatKyVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageXemNhatKyVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageXemNhatKyVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageXemNhatKyVeThang.Name = "tabPageXemNhatKyVeThang";
-            this.tabPageXemNhatKyVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageXemNhatKyVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageXemNhatKyVeThang.Size = new System.Drawing.Size(1544, 762);
             this.tabPageXemNhatKyVeThang.TabIndex = 0;
             this.tabPageXemNhatKyVeThang.Text = "Xem nhật ký vé tháng";
@@ -6115,7 +6131,7 @@
             this.panel22.Controls.Add(this.label85);
             this.panel22.Controls.Add(this.tbTicketLogProcessType);
             this.panel22.Location = new System.Drawing.Point(429, 7);
-            this.panel22.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel22.Margin = new System.Windows.Forms.Padding(4);
             this.panel22.Name = "panel22";
             this.panel22.Size = new System.Drawing.Size(1104, 353);
             this.panel22.TabIndex = 2;
@@ -6134,7 +6150,7 @@
             // tbTicketLogCompany
             // 
             this.tbTicketLogCompany.Location = new System.Drawing.Point(641, 18);
-            this.tbTicketLogCompany.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogCompany.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogCompany.Name = "tbTicketLogCompany";
             this.tbTicketLogCompany.ReadOnly = true;
             this.tbTicketLogCompany.Size = new System.Drawing.Size(335, 26);
@@ -6154,7 +6170,7 @@
             // tbTicketLogExpirationDate
             // 
             this.tbTicketLogExpirationDate.Location = new System.Drawing.Point(641, 270);
-            this.tbTicketLogExpirationDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogExpirationDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogExpirationDate.Name = "tbTicketLogExpirationDate";
             this.tbTicketLogExpirationDate.ReadOnly = true;
             this.tbTicketLogExpirationDate.Size = new System.Drawing.Size(335, 26);
@@ -6174,7 +6190,7 @@
             // tbTicketLogRegistrationDate
             // 
             this.tbTicketLogRegistrationDate.Location = new System.Drawing.Point(641, 228);
-            this.tbTicketLogRegistrationDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogRegistrationDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogRegistrationDate.Name = "tbTicketLogRegistrationDate";
             this.tbTicketLogRegistrationDate.ReadOnly = true;
             this.tbTicketLogRegistrationDate.Size = new System.Drawing.Size(335, 26);
@@ -6194,7 +6210,7 @@
             // tbTicketLogPartName
             // 
             this.tbTicketLogPartName.Location = new System.Drawing.Point(641, 186);
-            this.tbTicketLogPartName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogPartName.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogPartName.Name = "tbTicketLogPartName";
             this.tbTicketLogPartName.ReadOnly = true;
             this.tbTicketLogPartName.Size = new System.Drawing.Size(335, 26);
@@ -6214,7 +6230,7 @@
             // tbTicketLogCarKind
             // 
             this.tbTicketLogCarKind.Location = new System.Drawing.Point(641, 144);
-            this.tbTicketLogCarKind.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogCarKind.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogCarKind.Name = "tbTicketLogCarKind";
             this.tbTicketLogCarKind.ReadOnly = true;
             this.tbTicketLogCarKind.Size = new System.Drawing.Size(335, 26);
@@ -6234,7 +6250,7 @@
             // tbTicketLogAddress
             // 
             this.tbTicketLogAddress.Location = new System.Drawing.Point(641, 102);
-            this.tbTicketLogAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogAddress.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogAddress.Name = "tbTicketLogAddress";
             this.tbTicketLogAddress.ReadOnly = true;
             this.tbTicketLogAddress.Size = new System.Drawing.Size(335, 26);
@@ -6254,7 +6270,7 @@
             // tbTicketLogEmail
             // 
             this.tbTicketLogEmail.Location = new System.Drawing.Point(641, 60);
-            this.tbTicketLogEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogEmail.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogEmail.Name = "tbTicketLogEmail";
             this.tbTicketLogEmail.ReadOnly = true;
             this.tbTicketLogEmail.Size = new System.Drawing.Size(335, 26);
@@ -6274,7 +6290,7 @@
             // tbTicketLogCMND
             // 
             this.tbTicketLogCMND.Location = new System.Drawing.Point(123, 270);
-            this.tbTicketLogCMND.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogCMND.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogCMND.Name = "tbTicketLogCMND";
             this.tbTicketLogCMND.ReadOnly = true;
             this.tbTicketLogCMND.Size = new System.Drawing.Size(335, 26);
@@ -6294,7 +6310,7 @@
             // tbTicketLogCustomerName
             // 
             this.tbTicketLogCustomerName.Location = new System.Drawing.Point(123, 228);
-            this.tbTicketLogCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogCustomerName.Name = "tbTicketLogCustomerName";
             this.tbTicketLogCustomerName.ReadOnly = true;
             this.tbTicketLogCustomerName.Size = new System.Drawing.Size(335, 26);
@@ -6314,7 +6330,7 @@
             // tbTicketLogDigit
             // 
             this.tbTicketLogDigit.Location = new System.Drawing.Point(123, 186);
-            this.tbTicketLogDigit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogDigit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogDigit.Name = "tbTicketLogDigit";
             this.tbTicketLogDigit.ReadOnly = true;
             this.tbTicketLogDigit.Size = new System.Drawing.Size(335, 26);
@@ -6334,7 +6350,7 @@
             // tbTicketLogTicketMonthID
             // 
             this.tbTicketLogTicketMonthID.Location = new System.Drawing.Point(123, 144);
-            this.tbTicketLogTicketMonthID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogTicketMonthID.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogTicketMonthID.Name = "tbTicketLogTicketMonthID";
             this.tbTicketLogTicketMonthID.ReadOnly = true;
             this.tbTicketLogTicketMonthID.Size = new System.Drawing.Size(335, 26);
@@ -6354,7 +6370,7 @@
             // tbTicketLogNameUser
             // 
             this.tbTicketLogNameUser.Location = new System.Drawing.Point(123, 102);
-            this.tbTicketLogNameUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogNameUser.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogNameUser.Name = "tbTicketLogNameUser";
             this.tbTicketLogNameUser.ReadOnly = true;
             this.tbTicketLogNameUser.Size = new System.Drawing.Size(335, 26);
@@ -6374,7 +6390,7 @@
             // tbTicketLogProcessDate
             // 
             this.tbTicketLogProcessDate.Location = new System.Drawing.Point(123, 60);
-            this.tbTicketLogProcessDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogProcessDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogProcessDate.Name = "tbTicketLogProcessDate";
             this.tbTicketLogProcessDate.ReadOnly = true;
             this.tbTicketLogProcessDate.Size = new System.Drawing.Size(335, 26);
@@ -6394,7 +6410,7 @@
             // tbTicketLogProcessType
             // 
             this.tbTicketLogProcessType.Location = new System.Drawing.Point(123, 18);
-            this.tbTicketLogProcessType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogProcessType.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogProcessType.Name = "tbTicketLogProcessType";
             this.tbTicketLogProcessType.ReadOnly = true;
             this.tbTicketLogProcessType.Size = new System.Drawing.Size(335, 26);
@@ -6422,7 +6438,7 @@
             this.PartName_Log,
             this.CarKind_Log});
             this.dgvTicketLogList.Location = new System.Drawing.Point(8, 368);
-            this.dgvTicketLogList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvTicketLogList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvTicketLogList.Name = "dgvTicketLogList";
             this.dgvTicketLogList.ReadOnly = true;
             this.dgvTicketLogList.RowHeadersWidth = 51;
@@ -6593,7 +6609,7 @@
             this.panel20.Controls.Add(this.label80);
             this.panel20.Controls.Add(this.tbTicketLogKeyWordSearch);
             this.panel20.Location = new System.Drawing.Point(8, 7);
-            this.panel20.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel20.Margin = new System.Windows.Forms.Padding(4);
             this.panel20.Name = "panel20";
             this.panel20.Size = new System.Drawing.Size(399, 353);
             this.panel20.TabIndex = 0;
@@ -6602,7 +6618,7 @@
             // 
             this.btnExportNhatKyVeThang.ForeColor = System.Drawing.Color.Blue;
             this.btnExportNhatKyVeThang.Location = new System.Drawing.Point(23, 302);
-            this.btnExportNhatKyVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportNhatKyVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportNhatKyVeThang.Name = "btnExportNhatKyVeThang";
             this.btnExportNhatKyVeThang.Size = new System.Drawing.Size(353, 37);
             this.btnExportNhatKyVeThang.TabIndex = 27;
@@ -6614,7 +6630,7 @@
             // 
             this.btnShowAllTicketLog.ForeColor = System.Drawing.Color.Blue;
             this.btnShowAllTicketLog.Location = new System.Drawing.Point(224, 257);
-            this.btnShowAllTicketLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowAllTicketLog.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowAllTicketLog.Name = "btnShowAllTicketLog";
             this.btnShowAllTicketLog.Size = new System.Drawing.Size(152, 37);
             this.btnShowAllTicketLog.TabIndex = 27;
@@ -6630,7 +6646,7 @@
             this.panel21.Controls.Add(this.label83);
             this.panel21.Controls.Add(this.dtTicketLogRegistrationDateSearch);
             this.panel21.Location = new System.Drawing.Point(23, 139);
-            this.panel21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel21.Margin = new System.Windows.Forms.Padding(4);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(353, 102);
             this.panel21.TabIndex = 13;
@@ -6650,7 +6666,7 @@
             // 
             this.dtTicketLogExpirationDateSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtTicketLogExpirationDateSearch.Location = new System.Drawing.Point(109, 58);
-            this.dtTicketLogExpirationDateSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtTicketLogExpirationDateSearch.Margin = new System.Windows.Forms.Padding(4);
             this.dtTicketLogExpirationDateSearch.Name = "dtTicketLogExpirationDateSearch";
             this.dtTicketLogExpirationDateSearch.Size = new System.Drawing.Size(217, 26);
             this.dtTicketLogExpirationDateSearch.TabIndex = 14;
@@ -6670,7 +6686,7 @@
             // 
             this.dtTicketLogRegistrationDateSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtTicketLogRegistrationDateSearch.Location = new System.Drawing.Point(109, 17);
-            this.dtTicketLogRegistrationDateSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtTicketLogRegistrationDateSearch.Margin = new System.Windows.Forms.Padding(4);
             this.dtTicketLogRegistrationDateSearch.Name = "dtTicketLogRegistrationDateSearch";
             this.dtTicketLogRegistrationDateSearch.Size = new System.Drawing.Size(217, 26);
             this.dtTicketLogRegistrationDateSearch.TabIndex = 9;
@@ -6679,7 +6695,7 @@
             // 
             this.btnSearchTicketLog.ForeColor = System.Drawing.Color.Blue;
             this.btnSearchTicketLog.Location = new System.Drawing.Point(23, 257);
-            this.btnSearchTicketLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchTicketLog.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchTicketLog.Name = "btnSearchTicketLog";
             this.btnSearchTicketLog.Size = new System.Drawing.Size(152, 37);
             this.btnSearchTicketLog.TabIndex = 26;
@@ -6714,7 +6730,7 @@
             this.cbPartNameTicketLogSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPartNameTicketLogSearch.FormattingEnabled = true;
             this.cbPartNameTicketLogSearch.Location = new System.Drawing.Point(132, 90);
-            this.cbPartNameTicketLogSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbPartNameTicketLogSearch.Margin = new System.Windows.Forms.Padding(4);
             this.cbPartNameTicketLogSearch.Name = "cbPartNameTicketLogSearch";
             this.cbPartNameTicketLogSearch.Size = new System.Drawing.Size(243, 28);
             this.cbPartNameTicketLogSearch.TabIndex = 10;
@@ -6724,7 +6740,7 @@
             this.cbTicketLogNameSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTicketLogNameSearch.FormattingEnabled = true;
             this.cbTicketLogNameSearch.Location = new System.Drawing.Point(132, 53);
-            this.cbTicketLogNameSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTicketLogNameSearch.Margin = new System.Windows.Forms.Padding(4);
             this.cbTicketLogNameSearch.Name = "cbTicketLogNameSearch";
             this.cbTicketLogNameSearch.Size = new System.Drawing.Size(243, 28);
             this.cbTicketLogNameSearch.TabIndex = 9;
@@ -6743,7 +6759,7 @@
             // tbTicketLogKeyWordSearch
             // 
             this.tbTicketLogKeyWordSearch.Location = new System.Drawing.Point(132, 18);
-            this.tbTicketLogKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLogKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLogKeyWordSearch.Name = "tbTicketLogKeyWordSearch";
             this.tbTicketLogKeyWordSearch.Size = new System.Drawing.Size(243, 26);
             this.tbTicketLogKeyWordSearch.TabIndex = 2;
@@ -6755,9 +6771,9 @@
             this.tabPageTaoMoiVeThang.Controls.Add(this.dgvTicketMonthList);
             this.tabPageTaoMoiVeThang.Controls.Add(this.tabControlTaoMoiTheThang);
             this.tabPageTaoMoiVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageTaoMoiVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTaoMoiVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageTaoMoiVeThang.Name = "tabPageTaoMoiVeThang";
-            this.tabPageTaoMoiVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTaoMoiVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageTaoMoiVeThang.Size = new System.Drawing.Size(1544, 762);
             this.tabPageTaoMoiVeThang.TabIndex = 1;
             this.tabPageTaoMoiVeThang.Text = "Tạo mới vé tháng";
@@ -6767,7 +6783,7 @@
             // 
             this.btnTicketMonthDelete.ForeColor = System.Drawing.Color.Black;
             this.btnTicketMonthDelete.Location = new System.Drawing.Point(649, 7);
-            this.btnTicketMonthDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTicketMonthDelete.Margin = new System.Windows.Forms.Padding(4);
             this.btnTicketMonthDelete.Name = "btnTicketMonthDelete";
             this.btnTicketMonthDelete.Size = new System.Drawing.Size(141, 44);
             this.btnTicketMonthDelete.TabIndex = 34;
@@ -6780,7 +6796,7 @@
             // 
             this.btnTicketMonthSelectAll.ForeColor = System.Drawing.Color.Black;
             this.btnTicketMonthSelectAll.Location = new System.Drawing.Point(501, 7);
-            this.btnTicketMonthSelectAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTicketMonthSelectAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnTicketMonthSelectAll.Name = "btnTicketMonthSelectAll";
             this.btnTicketMonthSelectAll.Size = new System.Drawing.Size(141, 44);
             this.btnTicketMonthSelectAll.TabIndex = 33;
@@ -6814,7 +6830,7 @@
             this.Note,
             this.TicketMonthIsUsing});
             this.dgvTicketMonthList.Location = new System.Drawing.Point(501, 60);
-            this.dgvTicketMonthList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvTicketMonthList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvTicketMonthList.Name = "dgvTicketMonthList";
             this.dgvTicketMonthList.RowHeadersWidth = 51;
             this.dgvTicketMonthList.Size = new System.Drawing.Size(1029, 687);
@@ -6985,7 +7001,7 @@
             this.tabControlTaoMoiTheThang.Controls.Add(this.tabPage8);
             this.tabControlTaoMoiTheThang.Controls.Add(this.tabPage17);
             this.tabControlTaoMoiTheThang.Location = new System.Drawing.Point(8, 17);
-            this.tabControlTaoMoiTheThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControlTaoMoiTheThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlTaoMoiTheThang.Name = "tabControlTaoMoiTheThang";
             this.tabControlTaoMoiTheThang.SelectedIndex = 0;
             this.tabControlTaoMoiTheThang.Size = new System.Drawing.Size(488, 735);
@@ -6997,9 +7013,9 @@
             this.tabPageTaoTheThang.Controls.Add(this.btnTicketMonthCancelCreate);
             this.tabPageTaoTheThang.Controls.Add(this.btnTicketMonthCreate);
             this.tabPageTaoTheThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageTaoTheThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTaoTheThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageTaoTheThang.Name = "tabPageTaoTheThang";
-            this.tabPageTaoTheThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTaoTheThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageTaoTheThang.Size = new System.Drawing.Size(480, 702);
             this.tabPageTaoTheThang.TabIndex = 0;
             this.tabPageTaoTheThang.Text = "Tạo mới";
@@ -7039,7 +7055,7 @@
             this.panel19.Controls.Add(this.tbTicketMonthIdentifyCreate);
             this.panel19.Controls.Add(this.label79);
             this.panel19.Location = new System.Drawing.Point(8, 7);
-            this.panel19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel19.Margin = new System.Windows.Forms.Padding(4);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(461, 630);
             this.panel19.TabIndex = 31;
@@ -7047,7 +7063,7 @@
             // tbTicketMonthNoteCreate
             // 
             this.tbTicketMonthNoteCreate.Location = new System.Drawing.Point(153, 494);
-            this.tbTicketMonthNoteCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthNoteCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthNoteCreate.Name = "tbTicketMonthNoteCreate";
             this.tbTicketMonthNoteCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthNoteCreate.TabIndex = 50;
@@ -7066,7 +7082,7 @@
             // tbTicketMonthPhoneCreate
             // 
             this.tbTicketMonthPhoneCreate.Location = new System.Drawing.Point(153, 284);
-            this.tbTicketMonthPhoneCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthPhoneCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthPhoneCreate.Name = "tbTicketMonthPhoneCreate";
             this.tbTicketMonthPhoneCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthPhoneCreate.TabIndex = 48;
@@ -7096,7 +7112,7 @@
             // tbTicketMonthIDCreate
             // 
             this.tbTicketMonthIDCreate.Location = new System.Drawing.Point(153, 41);
-            this.tbTicketMonthIDCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthIDCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthIDCreate.Name = "tbTicketMonthIDCreate";
             this.tbTicketMonthIDCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthIDCreate.TabIndex = 26;
@@ -7119,7 +7135,7 @@
             this.dateTimePickerTicketMonthExpirationDateCreate.Enabled = false;
             this.dateTimePickerTicketMonthExpirationDateCreate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthExpirationDateCreate.Location = new System.Drawing.Point(153, 459);
-            this.dateTimePickerTicketMonthExpirationDateCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerTicketMonthExpirationDateCreate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerTicketMonthExpirationDateCreate.Name = "dateTimePickerTicketMonthExpirationDateCreate";
             this.dateTimePickerTicketMonthExpirationDateCreate.Size = new System.Drawing.Size(280, 26);
             this.dateTimePickerTicketMonthExpirationDateCreate.TabIndex = 45;
@@ -7140,7 +7156,7 @@
             this.dateTimePickerTicketMonthRegistrationDateCreate.Enabled = false;
             this.dateTimePickerTicketMonthRegistrationDateCreate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthRegistrationDateCreate.Location = new System.Drawing.Point(153, 425);
-            this.dateTimePickerTicketMonthRegistrationDateCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerTicketMonthRegistrationDateCreate.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerTicketMonthRegistrationDateCreate.Name = "dateTimePickerTicketMonthRegistrationDateCreate";
             this.dateTimePickerTicketMonthRegistrationDateCreate.Size = new System.Drawing.Size(280, 26);
             this.dateTimePickerTicketMonthRegistrationDateCreate.TabIndex = 9;
@@ -7161,7 +7177,7 @@
             this.cbTicketMonthPartCreate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTicketMonthPartCreate.FormattingEnabled = true;
             this.cbTicketMonthPartCreate.Location = new System.Drawing.Point(153, 388);
-            this.cbTicketMonthPartCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTicketMonthPartCreate.Margin = new System.Windows.Forms.Padding(4);
             this.cbTicketMonthPartCreate.Name = "cbTicketMonthPartCreate";
             this.cbTicketMonthPartCreate.Size = new System.Drawing.Size(280, 28);
             this.cbTicketMonthPartCreate.TabIndex = 42;
@@ -7169,7 +7185,7 @@
             // tbTicketMonthChargesAmountCreate
             // 
             this.tbTicketMonthChargesAmountCreate.Location = new System.Drawing.Point(153, 353);
-            this.tbTicketMonthChargesAmountCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthChargesAmountCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthChargesAmountCreate.Name = "tbTicketMonthChargesAmountCreate";
             this.tbTicketMonthChargesAmountCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthChargesAmountCreate.TabIndex = 41;
@@ -7177,7 +7193,7 @@
             // tbTicketMonthCarKindCreate
             // 
             this.tbTicketMonthCarKindCreate.Location = new System.Drawing.Point(153, 319);
-            this.tbTicketMonthCarKindCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCarKindCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCarKindCreate.Name = "tbTicketMonthCarKindCreate";
             this.tbTicketMonthCarKindCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCarKindCreate.TabIndex = 40;
@@ -7207,7 +7223,7 @@
             // tbTicketMonthAddressCreate
             // 
             this.tbTicketMonthAddressCreate.Location = new System.Drawing.Point(153, 250);
-            this.tbTicketMonthAddressCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthAddressCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthAddressCreate.Name = "tbTicketMonthAddressCreate";
             this.tbTicketMonthAddressCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthAddressCreate.TabIndex = 37;
@@ -7215,7 +7231,7 @@
             // tbTicketMonthCompanyCreate
             // 
             this.tbTicketMonthCompanyCreate.Location = new System.Drawing.Point(153, 215);
-            this.tbTicketMonthCompanyCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCompanyCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCompanyCreate.Name = "tbTicketMonthCompanyCreate";
             this.tbTicketMonthCompanyCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCompanyCreate.TabIndex = 36;
@@ -7245,7 +7261,7 @@
             // tbTicketMonthEmailCreate
             // 
             this.tbTicketMonthEmailCreate.Location = new System.Drawing.Point(153, 178);
-            this.tbTicketMonthEmailCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthEmailCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthEmailCreate.Name = "tbTicketMonthEmailCreate";
             this.tbTicketMonthEmailCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthEmailCreate.TabIndex = 32;
@@ -7264,7 +7280,7 @@
             // tbTicketMonthCMNDCreate
             // 
             this.tbTicketMonthCMNDCreate.Location = new System.Drawing.Point(153, 144);
-            this.tbTicketMonthCMNDCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCMNDCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCMNDCreate.Name = "tbTicketMonthCMNDCreate";
             this.tbTicketMonthCMNDCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCMNDCreate.TabIndex = 30;
@@ -7283,7 +7299,7 @@
             // tbTicketMonthCustomerNameCreate
             // 
             this.tbTicketMonthCustomerNameCreate.Location = new System.Drawing.Point(153, 110);
-            this.tbTicketMonthCustomerNameCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCustomerNameCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCustomerNameCreate.Name = "tbTicketMonthCustomerNameCreate";
             this.tbTicketMonthCustomerNameCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCustomerNameCreate.TabIndex = 28;
@@ -7302,7 +7318,7 @@
             // tbTicketMonthDigitCreate
             // 
             this.tbTicketMonthDigitCreate.Location = new System.Drawing.Point(153, 75);
-            this.tbTicketMonthDigitCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthDigitCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthDigitCreate.Name = "tbTicketMonthDigitCreate";
             this.tbTicketMonthDigitCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthDigitCreate.TabIndex = 26;
@@ -7321,7 +7337,7 @@
             // tbTicketMonthIdentifyCreate
             // 
             this.tbTicketMonthIdentifyCreate.Location = new System.Drawing.Point(153, 7);
-            this.tbTicketMonthIdentifyCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthIdentifyCreate.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthIdentifyCreate.Name = "tbTicketMonthIdentifyCreate";
             this.tbTicketMonthIdentifyCreate.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthIdentifyCreate.TabIndex = 24;
@@ -7343,7 +7359,7 @@
             // 
             this.btnTicketMonthCancelCreate.ForeColor = System.Drawing.Color.Blue;
             this.btnTicketMonthCancelCreate.Location = new System.Drawing.Point(211, 650);
-            this.btnTicketMonthCancelCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTicketMonthCancelCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnTicketMonthCancelCreate.Name = "btnTicketMonthCancelCreate";
             this.btnTicketMonthCancelCreate.Size = new System.Drawing.Size(144, 37);
             this.btnTicketMonthCancelCreate.TabIndex = 30;
@@ -7355,7 +7371,7 @@
             // 
             this.btnTicketMonthCreate.ForeColor = System.Drawing.Color.Blue;
             this.btnTicketMonthCreate.Location = new System.Drawing.Point(43, 650);
-            this.btnTicketMonthCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTicketMonthCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnTicketMonthCreate.Name = "btnTicketMonthCreate";
             this.btnTicketMonthCreate.Size = new System.Drawing.Size(144, 37);
             this.btnTicketMonthCreate.TabIndex = 29;
@@ -7371,9 +7387,9 @@
             this.tabPage8.Controls.Add(this.label64);
             this.tabPage8.Controls.Add(this.tbTicketMonthKeyWordSearch);
             this.tabPage8.Location = new System.Drawing.Point(4, 29);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage8.Size = new System.Drawing.Size(480, 702);
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "Chỉnh sửa/Tìm kiếm thẻ";
@@ -7414,7 +7430,7 @@
             this.panelChinhSuaVeThang.Controls.Add(this.tbTicketMonthIdentifyEdit);
             this.panelChinhSuaVeThang.Controls.Add(this.label59);
             this.panelChinhSuaVeThang.Location = new System.Drawing.Point(8, 52);
-            this.panelChinhSuaVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelChinhSuaVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.panelChinhSuaVeThang.Name = "panelChinhSuaVeThang";
             this.panelChinhSuaVeThang.Size = new System.Drawing.Size(461, 584);
             this.panelChinhSuaVeThang.TabIndex = 26;
@@ -7422,7 +7438,7 @@
             // tbTicketMonthIsUsing
             // 
             this.tbTicketMonthIsUsing.Location = new System.Drawing.Point(152, 495);
-            this.tbTicketMonthIsUsing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthIsUsing.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthIsUsing.Name = "tbTicketMonthIsUsing";
             this.tbTicketMonthIsUsing.ReadOnly = true;
             this.tbTicketMonthIsUsing.Size = new System.Drawing.Size(280, 26);
@@ -7442,7 +7458,7 @@
             // tbTicketMonthNoteEdit
             // 
             this.tbTicketMonthNoteEdit.Location = new System.Drawing.Point(152, 460);
-            this.tbTicketMonthNoteEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthNoteEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthNoteEdit.Name = "tbTicketMonthNoteEdit";
             this.tbTicketMonthNoteEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthNoteEdit.TabIndex = 54;
@@ -7461,7 +7477,7 @@
             // tbTicketMonthPhoneEdit
             // 
             this.tbTicketMonthPhoneEdit.Location = new System.Drawing.Point(153, 251);
-            this.tbTicketMonthPhoneEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthPhoneEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthPhoneEdit.Name = "tbTicketMonthPhoneEdit";
             this.tbTicketMonthPhoneEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthPhoneEdit.TabIndex = 52;
@@ -7480,7 +7496,7 @@
             // tbTicketMonthIDEdit
             // 
             this.tbTicketMonthIDEdit.Location = new System.Drawing.Point(23, 534);
-            this.tbTicketMonthIDEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthIDEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthIDEdit.Name = "tbTicketMonthIDEdit";
             this.tbTicketMonthIDEdit.Size = new System.Drawing.Size(111, 26);
             this.tbTicketMonthIDEdit.TabIndex = 50;
@@ -7502,7 +7518,7 @@
             this.dateTimePickerTicketMonthExpirationDateEdit.Enabled = false;
             this.dateTimePickerTicketMonthExpirationDateEdit.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthExpirationDateEdit.Location = new System.Drawing.Point(153, 426);
-            this.dateTimePickerTicketMonthExpirationDateEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerTicketMonthExpirationDateEdit.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerTicketMonthExpirationDateEdit.Name = "dateTimePickerTicketMonthExpirationDateEdit";
             this.dateTimePickerTicketMonthExpirationDateEdit.Size = new System.Drawing.Size(280, 26);
             this.dateTimePickerTicketMonthExpirationDateEdit.TabIndex = 45;
@@ -7523,7 +7539,7 @@
             this.dateTimePickerTicketMonthRegistrationDateEdit.Enabled = false;
             this.dateTimePickerTicketMonthRegistrationDateEdit.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerTicketMonthRegistrationDateEdit.Location = new System.Drawing.Point(153, 391);
-            this.dateTimePickerTicketMonthRegistrationDateEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerTicketMonthRegistrationDateEdit.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerTicketMonthRegistrationDateEdit.Name = "dateTimePickerTicketMonthRegistrationDateEdit";
             this.dateTimePickerTicketMonthRegistrationDateEdit.Size = new System.Drawing.Size(280, 26);
             this.dateTimePickerTicketMonthRegistrationDateEdit.TabIndex = 9;
@@ -7545,7 +7561,7 @@
             this.cbTicketMonthPartEdit.Enabled = false;
             this.cbTicketMonthPartEdit.FormattingEnabled = true;
             this.cbTicketMonthPartEdit.Location = new System.Drawing.Point(153, 354);
-            this.cbTicketMonthPartEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTicketMonthPartEdit.Margin = new System.Windows.Forms.Padding(4);
             this.cbTicketMonthPartEdit.Name = "cbTicketMonthPartEdit";
             this.cbTicketMonthPartEdit.Size = new System.Drawing.Size(280, 28);
             this.cbTicketMonthPartEdit.TabIndex = 42;
@@ -7553,7 +7569,7 @@
             // tbTicketMonthChargesAmountEdit
             // 
             this.tbTicketMonthChargesAmountEdit.Location = new System.Drawing.Point(153, 320);
-            this.tbTicketMonthChargesAmountEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthChargesAmountEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthChargesAmountEdit.Name = "tbTicketMonthChargesAmountEdit";
             this.tbTicketMonthChargesAmountEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthChargesAmountEdit.TabIndex = 41;
@@ -7561,7 +7577,7 @@
             // tbTicketMonthCarKindEdit
             // 
             this.tbTicketMonthCarKindEdit.Location = new System.Drawing.Point(153, 286);
-            this.tbTicketMonthCarKindEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCarKindEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCarKindEdit.Name = "tbTicketMonthCarKindEdit";
             this.tbTicketMonthCarKindEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCarKindEdit.TabIndex = 40;
@@ -7591,7 +7607,7 @@
             // tbTicketMonthAddressEdit
             // 
             this.tbTicketMonthAddressEdit.Location = new System.Drawing.Point(153, 217);
-            this.tbTicketMonthAddressEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthAddressEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthAddressEdit.Name = "tbTicketMonthAddressEdit";
             this.tbTicketMonthAddressEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthAddressEdit.TabIndex = 37;
@@ -7599,7 +7615,7 @@
             // tbTicketMonthCompanyEdit
             // 
             this.tbTicketMonthCompanyEdit.Location = new System.Drawing.Point(153, 182);
-            this.tbTicketMonthCompanyEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCompanyEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCompanyEdit.Name = "tbTicketMonthCompanyEdit";
             this.tbTicketMonthCompanyEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCompanyEdit.TabIndex = 36;
@@ -7629,7 +7645,7 @@
             // tbTicketMonthEmailEdit
             // 
             this.tbTicketMonthEmailEdit.Location = new System.Drawing.Point(153, 145);
-            this.tbTicketMonthEmailEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthEmailEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthEmailEdit.Name = "tbTicketMonthEmailEdit";
             this.tbTicketMonthEmailEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthEmailEdit.TabIndex = 32;
@@ -7648,7 +7664,7 @@
             // tbTicketMonthCMNDEdit
             // 
             this.tbTicketMonthCMNDEdit.Location = new System.Drawing.Point(153, 111);
-            this.tbTicketMonthCMNDEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCMNDEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCMNDEdit.Name = "tbTicketMonthCMNDEdit";
             this.tbTicketMonthCMNDEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCMNDEdit.TabIndex = 30;
@@ -7667,7 +7683,7 @@
             // tbTicketMonthCustomerNameEdit
             // 
             this.tbTicketMonthCustomerNameEdit.Location = new System.Drawing.Point(153, 76);
-            this.tbTicketMonthCustomerNameEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthCustomerNameEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthCustomerNameEdit.Name = "tbTicketMonthCustomerNameEdit";
             this.tbTicketMonthCustomerNameEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthCustomerNameEdit.TabIndex = 28;
@@ -7686,7 +7702,7 @@
             // tbTicketMonthDigitEdit
             // 
             this.tbTicketMonthDigitEdit.Location = new System.Drawing.Point(153, 42);
-            this.tbTicketMonthDigitEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthDigitEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthDigitEdit.Name = "tbTicketMonthDigitEdit";
             this.tbTicketMonthDigitEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthDigitEdit.TabIndex = 26;
@@ -7705,7 +7721,7 @@
             // tbTicketMonthIdentifyEdit
             // 
             this.tbTicketMonthIdentifyEdit.Location = new System.Drawing.Point(153, 7);
-            this.tbTicketMonthIdentifyEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthIdentifyEdit.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthIdentifyEdit.Name = "tbTicketMonthIdentifyEdit";
             this.tbTicketMonthIdentifyEdit.Size = new System.Drawing.Size(280, 26);
             this.tbTicketMonthIdentifyEdit.TabIndex = 24;
@@ -7725,7 +7741,7 @@
             // 
             this.btnTicketMonthCancelEdit.ForeColor = System.Drawing.Color.Blue;
             this.btnTicketMonthCancelEdit.Location = new System.Drawing.Point(211, 649);
-            this.btnTicketMonthCancelEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTicketMonthCancelEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnTicketMonthCancelEdit.Name = "btnTicketMonthCancelEdit";
             this.btnTicketMonthCancelEdit.Size = new System.Drawing.Size(144, 37);
             this.btnTicketMonthCancelEdit.TabIndex = 25;
@@ -7737,7 +7753,7 @@
             // 
             this.btnTicketMonthEdit.ForeColor = System.Drawing.Color.Blue;
             this.btnTicketMonthEdit.Location = new System.Drawing.Point(43, 649);
-            this.btnTicketMonthEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnTicketMonthEdit.Margin = new System.Windows.Forms.Padding(4);
             this.btnTicketMonthEdit.Name = "btnTicketMonthEdit";
             this.btnTicketMonthEdit.Size = new System.Drawing.Size(144, 37);
             this.btnTicketMonthEdit.TabIndex = 24;
@@ -7761,7 +7777,7 @@
             // 
             this.tbTicketMonthKeyWordSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTicketMonthKeyWordSearch.Location = new System.Drawing.Point(161, 12);
-            this.tbTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthKeyWordSearch.Name = "tbTicketMonthKeyWordSearch";
             this.tbTicketMonthKeyWordSearch.Size = new System.Drawing.Size(280, 30);
             this.tbTicketMonthKeyWordSearch.TabIndex = 12;
@@ -7772,7 +7788,7 @@
             this.tabPage17.Controls.Add(this.btnExportDanhSachVeThang);
             this.tabPage17.Controls.Add(this.btnImportDanhSachVeThang);
             this.tabPage17.Location = new System.Drawing.Point(4, 29);
-            this.tabPage17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage17.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage17.Name = "tabPage17";
             this.tabPage17.Size = new System.Drawing.Size(480, 702);
             this.tabPage17.TabIndex = 2;
@@ -7782,7 +7798,7 @@
             // btnExportDanhSachVeThang
             // 
             this.btnExportDanhSachVeThang.Location = new System.Drawing.Point(75, 126);
-            this.btnExportDanhSachVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachVeThang.Name = "btnExportDanhSachVeThang";
             this.btnExportDanhSachVeThang.Size = new System.Drawing.Size(324, 49);
             this.btnExportDanhSachVeThang.TabIndex = 26;
@@ -7793,7 +7809,7 @@
             // btnImportDanhSachVeThang
             // 
             this.btnImportDanhSachVeThang.Location = new System.Drawing.Point(75, 47);
-            this.btnImportDanhSachVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportDanhSachVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportDanhSachVeThang.Name = "btnImportDanhSachVeThang";
             this.btnImportDanhSachVeThang.Size = new System.Drawing.Size(324, 49);
             this.btnImportDanhSachVeThang.TabIndex = 25;
@@ -7808,9 +7824,9 @@
             this.tabPageGiaHanVeThang.Controls.Add(this.panel25);
             this.tabPageGiaHanVeThang.Controls.Add(this.panel23);
             this.tabPageGiaHanVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageGiaHanVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageGiaHanVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageGiaHanVeThang.Name = "tabPageGiaHanVeThang";
-            this.tabPageGiaHanVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageGiaHanVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageGiaHanVeThang.Size = new System.Drawing.Size(1544, 762);
             this.tabPageGiaHanVeThang.TabIndex = 2;
             this.tabPageGiaHanVeThang.Text = "Gia hạn - Thông tin hết hạn vé tháng";
@@ -7837,7 +7853,7 @@
             this.dataGridViewTextBoxColumn14,
             this.Column54});
             this.dgvRenewTicketMonthList.Location = new System.Drawing.Point(8, 245);
-            this.dgvRenewTicketMonthList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvRenewTicketMonthList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvRenewTicketMonthList.Name = "dgvRenewTicketMonthList";
             this.dgvRenewTicketMonthList.RowHeadersWidth = 51;
             this.dgvRenewTicketMonthList.Size = new System.Drawing.Size(1525, 507);
@@ -7988,7 +8004,7 @@
             this.panel27.Controls.Add(this.label113);
             this.panel27.Controls.Add(this.tbRenewPlusDate);
             this.panel27.Location = new System.Drawing.Point(1048, 26);
-            this.panel27.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel27.Margin = new System.Windows.Forms.Padding(4);
             this.panel27.Name = "panel27";
             this.panel27.Size = new System.Drawing.Size(455, 199);
             this.panel27.TabIndex = 3;
@@ -7998,7 +8014,7 @@
             // 
             this.btnRenewByPlusDate.ForeColor = System.Drawing.Color.Blue;
             this.btnRenewByPlusDate.Location = new System.Drawing.Point(40, 134);
-            this.btnRenewByPlusDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRenewByPlusDate.Margin = new System.Windows.Forms.Padding(4);
             this.btnRenewByPlusDate.Name = "btnRenewByPlusDate";
             this.btnRenewByPlusDate.Size = new System.Drawing.Size(371, 44);
             this.btnRenewByPlusDate.TabIndex = 28;
@@ -8020,7 +8036,7 @@
             // tbRenewPlusDate
             // 
             this.tbRenewPlusDate.Location = new System.Drawing.Point(233, 84);
-            this.tbRenewPlusDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbRenewPlusDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbRenewPlusDate.Name = "tbRenewPlusDate";
             this.tbRenewPlusDate.Size = new System.Drawing.Size(176, 26);
             this.tbRenewPlusDate.TabIndex = 2;
@@ -8035,7 +8051,7 @@
             this.panel25.Controls.Add(this.dtRenewDate);
             this.panel25.Controls.Add(this.btnRenewByExpirationDate);
             this.panel25.Location = new System.Drawing.Point(544, 26);
-            this.panel25.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel25.Margin = new System.Windows.Forms.Padding(4);
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(455, 199);
             this.panel25.TabIndex = 2;
@@ -8055,7 +8071,7 @@
             // 
             this.dtRenewExpirationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtRenewExpirationDate.Location = new System.Drawing.Point(192, 85);
-            this.dtRenewExpirationDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtRenewExpirationDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtRenewExpirationDate.Name = "dtRenewExpirationDate";
             this.dtRenewExpirationDate.Size = new System.Drawing.Size(217, 26);
             this.dtRenewExpirationDate.TabIndex = 30;
@@ -8075,7 +8091,7 @@
             // 
             this.dtRenewDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtRenewDate.Location = new System.Drawing.Point(192, 44);
-            this.dtRenewDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtRenewDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtRenewDate.Name = "dtRenewDate";
             this.dtRenewDate.Size = new System.Drawing.Size(217, 26);
             this.dtRenewDate.TabIndex = 28;
@@ -8084,7 +8100,7 @@
             // 
             this.btnRenewByExpirationDate.ForeColor = System.Drawing.Color.Blue;
             this.btnRenewByExpirationDate.Location = new System.Drawing.Point(40, 134);
-            this.btnRenewByExpirationDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRenewByExpirationDate.Margin = new System.Windows.Forms.Padding(4);
             this.btnRenewByExpirationDate.Name = "btnRenewByExpirationDate";
             this.btnRenewByExpirationDate.Size = new System.Drawing.Size(371, 44);
             this.btnRenewByExpirationDate.TabIndex = 27;
@@ -8104,7 +8120,7 @@
             this.panel23.Controls.Add(this.label103);
             this.panel23.Controls.Add(this.tbRenewTicketMonthKeyWordSearch);
             this.panel23.Location = new System.Drawing.Point(40, 26);
-            this.panel23.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel23.Margin = new System.Windows.Forms.Padding(4);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(455, 199);
             this.panel23.TabIndex = 1;
@@ -8113,7 +8129,7 @@
             // 
             this.btnNearExpiredTicketMonthSelectAll.ForeColor = System.Drawing.Color.Blue;
             this.btnNearExpiredTicketMonthSelectAll.Location = new System.Drawing.Point(283, 134);
-            this.btnNearExpiredTicketMonthSelectAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNearExpiredTicketMonthSelectAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnNearExpiredTicketMonthSelectAll.Name = "btnNearExpiredTicketMonthSelectAll";
             this.btnNearExpiredTicketMonthSelectAll.Size = new System.Drawing.Size(141, 44);
             this.btnNearExpiredTicketMonthSelectAll.TabIndex = 30;
@@ -8136,7 +8152,7 @@
             // tbRenewTicketMonthDaysRemainingSearch
             // 
             this.tbRenewTicketMonthDaysRemainingSearch.Location = new System.Drawing.Point(204, 87);
-            this.tbRenewTicketMonthDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbRenewTicketMonthDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbRenewTicketMonthDaysRemainingSearch.Name = "tbRenewTicketMonthDaysRemainingSearch";
             this.tbRenewTicketMonthDaysRemainingSearch.Size = new System.Drawing.Size(219, 26);
             this.tbRenewTicketMonthDaysRemainingSearch.TabIndex = 28;
@@ -8145,7 +8161,7 @@
             // 
             this.btnExportDanhSachTheHetHan.ForeColor = System.Drawing.Color.Blue;
             this.btnExportDanhSachTheHetHan.Location = new System.Drawing.Point(136, 134);
-            this.btnExportDanhSachTheHetHan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachTheHetHan.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachTheHetHan.Name = "btnExportDanhSachTheHetHan";
             this.btnExportDanhSachTheHetHan.Size = new System.Drawing.Size(129, 44);
             this.btnExportDanhSachTheHetHan.TabIndex = 27;
@@ -8157,7 +8173,7 @@
             // 
             this.btnNearExpiredTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
             this.btnNearExpiredTicketMonthSearch.Location = new System.Drawing.Point(23, 134);
-            this.btnNearExpiredTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNearExpiredTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnNearExpiredTicketMonthSearch.Name = "btnNearExpiredTicketMonthSearch";
             this.btnNearExpiredTicketMonthSearch.Size = new System.Drawing.Size(96, 44);
             this.btnNearExpiredTicketMonthSearch.TabIndex = 26;
@@ -8190,7 +8206,7 @@
             // tbRenewTicketMonthKeyWordSearch
             // 
             this.tbRenewTicketMonthKeyWordSearch.Location = new System.Drawing.Point(204, 18);
-            this.tbRenewTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbRenewTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbRenewTicketMonthKeyWordSearch.Name = "tbRenewTicketMonthKeyWordSearch";
             this.tbRenewTicketMonthKeyWordSearch.Size = new System.Drawing.Size(219, 26);
             this.tbRenewTicketMonthKeyWordSearch.TabIndex = 2;
@@ -8201,9 +8217,9 @@
             this.tabPageMatVeThang.Controls.Add(this.dgvLostTicketMonthList);
             this.tabPageMatVeThang.Controls.Add(this.panel24);
             this.tabPageMatVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageMatVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMatVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageMatVeThang.Name = "tabPageMatVeThang";
-            this.tabPageMatVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageMatVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageMatVeThang.Size = new System.Drawing.Size(1544, 762);
             this.tabPageMatVeThang.TabIndex = 3;
             this.tabPageMatVeThang.Text = "Mất thẻ tháng / đổi mã thẻ";
@@ -8212,7 +8228,7 @@
             // tbTicketMonthIdentify
             // 
             this.tbTicketMonthIdentify.Location = new System.Drawing.Point(1224, 49);
-            this.tbTicketMonthIdentify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketMonthIdentify.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketMonthIdentify.Name = "tbTicketMonthIdentify";
             this.tbTicketMonthIdentify.Size = new System.Drawing.Size(219, 26);
             this.tbTicketMonthIdentify.TabIndex = 34;
@@ -8239,7 +8255,7 @@
             this.Column5,
             this.Column6});
             this.dgvLostTicketMonthList.Location = new System.Drawing.Point(8, 235);
-            this.dgvLostTicketMonthList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLostTicketMonthList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLostTicketMonthList.Name = "dgvLostTicketMonthList";
             this.dgvLostTicketMonthList.ReadOnly = true;
             this.dgvLostTicketMonthList.RowHeadersWidth = 51;
@@ -8403,7 +8419,7 @@
             this.panel24.Controls.Add(this.btnLostTicketMonthUpdate);
             this.panel24.Controls.Add(this.tbLostTicketMonthKeyWordSearch);
             this.panel24.Location = new System.Drawing.Point(379, 17);
-            this.panel24.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel24.Margin = new System.Windows.Forms.Padding(4);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(787, 199);
             this.panel24.TabIndex = 5;
@@ -8411,7 +8427,7 @@
             // tbLostTicketMonthID
             // 
             this.tbLostTicketMonthID.Location = new System.Drawing.Point(531, 71);
-            this.tbLostTicketMonthID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLostTicketMonthID.Margin = new System.Windows.Forms.Padding(4);
             this.tbLostTicketMonthID.Name = "tbLostTicketMonthID";
             this.tbLostTicketMonthID.Size = new System.Drawing.Size(219, 26);
             this.tbLostTicketMonthID.TabIndex = 33;
@@ -8431,7 +8447,7 @@
             // tbLostTicketMonthCardIdentify
             // 
             this.tbLostTicketMonthCardIdentify.Location = new System.Drawing.Point(531, 31);
-            this.tbLostTicketMonthCardIdentify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLostTicketMonthCardIdentify.Margin = new System.Windows.Forms.Padding(4);
             this.tbLostTicketMonthCardIdentify.Name = "tbLostTicketMonthCardIdentify";
             this.tbLostTicketMonthCardIdentify.ReadOnly = true;
             this.tbLostTicketMonthCardIdentify.Size = new System.Drawing.Size(219, 26);
@@ -8441,7 +8457,7 @@
             // 
             this.btnLostTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
             this.btnLostTicketMonthSearch.Location = new System.Drawing.Point(28, 121);
-            this.btnLostTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLostTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnLostTicketMonthSearch.Name = "btnLostTicketMonthSearch";
             this.btnLostTicketMonthSearch.Size = new System.Drawing.Size(309, 44);
             this.btnLostTicketMonthSearch.TabIndex = 26;
@@ -8486,7 +8502,7 @@
             // 
             this.btnLostTicketMonthUpdate.ForeColor = System.Drawing.Color.Blue;
             this.btnLostTicketMonthUpdate.Location = new System.Drawing.Point(441, 121);
-            this.btnLostTicketMonthUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLostTicketMonthUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnLostTicketMonthUpdate.Name = "btnLostTicketMonthUpdate";
             this.btnLostTicketMonthUpdate.Size = new System.Drawing.Size(309, 44);
             this.btnLostTicketMonthUpdate.TabIndex = 34;
@@ -8497,7 +8513,7 @@
             // tbLostTicketMonthKeyWordSearch
             // 
             this.tbLostTicketMonthKeyWordSearch.Location = new System.Drawing.Point(117, 33);
-            this.tbLostTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLostTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbLostTicketMonthKeyWordSearch.Name = "tbLostTicketMonthKeyWordSearch";
             this.tbLostTicketMonthKeyWordSearch.Size = new System.Drawing.Size(219, 26);
             this.tbLostTicketMonthKeyWordSearch.TabIndex = 2;
@@ -8520,7 +8536,7 @@
             // 
             this.btSelectAllBlockTicketMonth.ForeColor = System.Drawing.Color.Black;
             this.btSelectAllBlockTicketMonth.Location = new System.Drawing.Point(11, 182);
-            this.btSelectAllBlockTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSelectAllBlockTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.btSelectAllBlockTicketMonth.Name = "btSelectAllBlockTicketMonth";
             this.btSelectAllBlockTicketMonth.Size = new System.Drawing.Size(141, 44);
             this.btSelectAllBlockTicketMonth.TabIndex = 35;
@@ -8546,7 +8562,7 @@
             this.dataGridViewTextBoxColumn29,
             this.dataGridViewTextBoxColumn30});
             this.dgvBlockTicketMonthList.Location = new System.Drawing.Point(11, 235);
-            this.dgvBlockTicketMonthList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBlockTicketMonthList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBlockTicketMonthList.Name = "dgvBlockTicketMonthList";
             this.dgvBlockTicketMonthList.RowHeadersWidth = 51;
             this.dgvBlockTicketMonthList.Size = new System.Drawing.Size(1525, 507);
@@ -8664,7 +8680,7 @@
             this.panel36.Controls.Add(this.label225);
             this.panel36.Controls.Add(this.tbBlockTicketMonthKeyWordSearch);
             this.panel36.Location = new System.Drawing.Point(455, 20);
-            this.panel36.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel36.Margin = new System.Windows.Forms.Padding(4);
             this.panel36.Name = "panel36";
             this.panel36.Size = new System.Drawing.Size(638, 199);
             this.panel36.TabIndex = 9;
@@ -8672,7 +8688,7 @@
             // tbBlockTicketMonthDaysRemainingSearch
             // 
             this.tbBlockTicketMonthDaysRemainingSearch.Location = new System.Drawing.Point(204, 92);
-            this.tbBlockTicketMonthDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBlockTicketMonthDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbBlockTicketMonthDaysRemainingSearch.Name = "tbBlockTicketMonthDaysRemainingSearch";
             this.tbBlockTicketMonthDaysRemainingSearch.Size = new System.Drawing.Size(265, 26);
             this.tbBlockTicketMonthDaysRemainingSearch.TabIndex = 32;
@@ -8692,7 +8708,7 @@
             // 
             this.btnBlockTicketMonth.ForeColor = System.Drawing.Color.Blue;
             this.btnBlockTicketMonth.Location = new System.Drawing.Point(411, 135);
-            this.btnBlockTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBlockTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.btnBlockTicketMonth.Name = "btnBlockTicketMonth";
             this.btnBlockTicketMonth.Size = new System.Drawing.Size(200, 44);
             this.btnBlockTicketMonth.TabIndex = 28;
@@ -8715,7 +8731,7 @@
             // 
             this.btnExportDanhSachKhoaTheThang.ForeColor = System.Drawing.Color.Blue;
             this.btnExportDanhSachKhoaTheThang.Location = new System.Drawing.Point(217, 135);
-            this.btnExportDanhSachKhoaTheThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachKhoaTheThang.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachKhoaTheThang.Name = "btnExportDanhSachKhoaTheThang";
             this.btnExportDanhSachKhoaTheThang.Size = new System.Drawing.Size(152, 44);
             this.btnExportDanhSachKhoaTheThang.TabIndex = 27;
@@ -8727,7 +8743,7 @@
             // 
             this.btnBlockTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
             this.btnBlockTicketMonthSearch.Location = new System.Drawing.Point(23, 135);
-            this.btnBlockTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBlockTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnBlockTicketMonthSearch.Name = "btnBlockTicketMonthSearch";
             this.btnBlockTicketMonthSearch.Size = new System.Drawing.Size(152, 44);
             this.btnBlockTicketMonthSearch.TabIndex = 26;
@@ -8749,7 +8765,7 @@
             // tbBlockTicketMonthKeyWordSearch
             // 
             this.tbBlockTicketMonthKeyWordSearch.Location = new System.Drawing.Point(204, 30);
-            this.tbBlockTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBlockTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbBlockTicketMonthKeyWordSearch.Name = "tbBlockTicketMonthKeyWordSearch";
             this.tbBlockTicketMonthKeyWordSearch.Size = new System.Drawing.Size(265, 26);
             this.tbBlockTicketMonthKeyWordSearch.TabIndex = 2;
@@ -8760,9 +8776,9 @@
             this.tabPageKichHoatVeThang.Controls.Add(this.dgvActiveTicketMonthList);
             this.tabPageKichHoatVeThang.Controls.Add(this.panel5);
             this.tabPageKichHoatVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageKichHoatVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageKichHoatVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageKichHoatVeThang.Name = "tabPageKichHoatVeThang";
-            this.tabPageKichHoatVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageKichHoatVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageKichHoatVeThang.Size = new System.Drawing.Size(1544, 762);
             this.tabPageKichHoatVeThang.TabIndex = 4;
             this.tabPageKichHoatVeThang.Text = "Kích hoạt thẻ tháng";
@@ -8772,7 +8788,7 @@
             // 
             this.btSelectAllAciveTicketMonth.ForeColor = System.Drawing.Color.Black;
             this.btSelectAllAciveTicketMonth.Location = new System.Drawing.Point(8, 182);
-            this.btSelectAllAciveTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSelectAllAciveTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.btSelectAllAciveTicketMonth.Name = "btSelectAllAciveTicketMonth";
             this.btSelectAllAciveTicketMonth.Size = new System.Drawing.Size(141, 44);
             this.btSelectAllAciveTicketMonth.TabIndex = 34;
@@ -8798,7 +8814,7 @@
             this.Column45,
             this.Column46});
             this.dgvActiveTicketMonthList.Location = new System.Drawing.Point(8, 235);
-            this.dgvActiveTicketMonthList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvActiveTicketMonthList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvActiveTicketMonthList.Name = "dgvActiveTicketMonthList";
             this.dgvActiveTicketMonthList.RowHeadersWidth = 51;
             this.dgvActiveTicketMonthList.Size = new System.Drawing.Size(1525, 507);
@@ -8918,7 +8934,7 @@
             this.panel5.Controls.Add(this.label110);
             this.panel5.Controls.Add(this.tbActiveTicketMonthKeyWordSearch);
             this.panel5.Location = new System.Drawing.Point(453, 20);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(638, 199);
             this.panel5.TabIndex = 7;
@@ -8926,7 +8942,7 @@
             // tbAciveTicketMonthDaysRemainingSearch
             // 
             this.tbAciveTicketMonthDaysRemainingSearch.Location = new System.Drawing.Point(204, 92);
-            this.tbAciveTicketMonthDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbAciveTicketMonthDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbAciveTicketMonthDaysRemainingSearch.Name = "tbAciveTicketMonthDaysRemainingSearch";
             this.tbAciveTicketMonthDaysRemainingSearch.Size = new System.Drawing.Size(265, 26);
             this.tbAciveTicketMonthDaysRemainingSearch.TabIndex = 30;
@@ -8946,7 +8962,7 @@
             // 
             this.btnActiveTicketMonth.ForeColor = System.Drawing.Color.Blue;
             this.btnActiveTicketMonth.Location = new System.Drawing.Point(411, 135);
-            this.btnActiveTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActiveTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.btnActiveTicketMonth.Name = "btnActiveTicketMonth";
             this.btnActiveTicketMonth.Size = new System.Drawing.Size(200, 44);
             this.btnActiveTicketMonth.TabIndex = 28;
@@ -8969,7 +8985,7 @@
             // 
             this.btnExportDanhSachKichHoatTheThang.ForeColor = System.Drawing.Color.Blue;
             this.btnExportDanhSachKichHoatTheThang.Location = new System.Drawing.Point(217, 135);
-            this.btnExportDanhSachKichHoatTheThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachKichHoatTheThang.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachKichHoatTheThang.Name = "btnExportDanhSachKichHoatTheThang";
             this.btnExportDanhSachKichHoatTheThang.Size = new System.Drawing.Size(152, 44);
             this.btnExportDanhSachKichHoatTheThang.TabIndex = 27;
@@ -8981,7 +8997,7 @@
             // 
             this.btnActiveTicketMonthSearch.ForeColor = System.Drawing.Color.Blue;
             this.btnActiveTicketMonthSearch.Location = new System.Drawing.Point(23, 135);
-            this.btnActiveTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActiveTicketMonthSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnActiveTicketMonthSearch.Name = "btnActiveTicketMonthSearch";
             this.btnActiveTicketMonthSearch.Size = new System.Drawing.Size(152, 44);
             this.btnActiveTicketMonthSearch.TabIndex = 26;
@@ -9003,7 +9019,7 @@
             // tbActiveTicketMonthKeyWordSearch
             // 
             this.tbActiveTicketMonthKeyWordSearch.Location = new System.Drawing.Point(204, 30);
-            this.tbActiveTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbActiveTicketMonthKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbActiveTicketMonthKeyWordSearch.Name = "tbActiveTicketMonthKeyWordSearch";
             this.tbActiveTicketMonthKeyWordSearch.Size = new System.Drawing.Size(265, 26);
             this.tbActiveTicketMonthKeyWordSearch.TabIndex = 2;
@@ -9014,9 +9030,9 @@
             this.tabPageBaoCaoCongNo.Controls.Add(this.dgvDebtReport);
             this.tabPageBaoCaoCongNo.Controls.Add(this.panel43);
             this.tabPageBaoCaoCongNo.Location = new System.Drawing.Point(4, 29);
-            this.tabPageBaoCaoCongNo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageBaoCaoCongNo.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageBaoCaoCongNo.Name = "tabPageBaoCaoCongNo";
-            this.tabPageBaoCaoCongNo.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageBaoCaoCongNo.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageBaoCaoCongNo.Size = new System.Drawing.Size(1544, 762);
             this.tabPageBaoCaoCongNo.TabIndex = 6;
             this.tabPageBaoCaoCongNo.Text = "Báo cáo công nợ";
@@ -9025,7 +9041,7 @@
             // progressBarDebtReport
             // 
             this.progressBarDebtReport.Location = new System.Drawing.Point(768, 485);
-            this.progressBarDebtReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.progressBarDebtReport.Margin = new System.Windows.Forms.Padding(4);
             this.progressBarDebtReport.Name = "progressBarDebtReport";
             this.progressBarDebtReport.Size = new System.Drawing.Size(133, 28);
             this.progressBarDebtReport.Step = 1;
@@ -9054,7 +9070,7 @@
             this.DebtChargesAmount,
             this.dataGridViewTextBoxColumn59});
             this.dgvDebtReport.Location = new System.Drawing.Point(8, 235);
-            this.dgvDebtReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvDebtReport.Margin = new System.Windows.Forms.Padding(4);
             this.dgvDebtReport.Name = "dgvDebtReport";
             this.dgvDebtReport.RowHeadersWidth = 51;
             this.dgvDebtReport.Size = new System.Drawing.Size(1525, 507);
@@ -9214,7 +9230,7 @@
             this.panel43.Controls.Add(this.label259);
             this.panel43.Controls.Add(this.tbDebtReportKeyWordSearch);
             this.panel43.Location = new System.Drawing.Point(601, 20);
-            this.panel43.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel43.Margin = new System.Windows.Forms.Padding(4);
             this.panel43.Name = "panel43";
             this.panel43.Size = new System.Drawing.Size(455, 199);
             this.panel43.TabIndex = 6;
@@ -9233,7 +9249,7 @@
             // tbDebtReportDaysRemainingSearch
             // 
             this.tbDebtReportDaysRemainingSearch.Location = new System.Drawing.Point(204, 87);
-            this.tbDebtReportDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbDebtReportDaysRemainingSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbDebtReportDaysRemainingSearch.Name = "tbDebtReportDaysRemainingSearch";
             this.tbDebtReportDaysRemainingSearch.Size = new System.Drawing.Size(219, 26);
             this.tbDebtReportDaysRemainingSearch.TabIndex = 28;
@@ -9242,7 +9258,7 @@
             // 
             this.btnExportDebtReport.ForeColor = System.Drawing.Color.Blue;
             this.btnExportDebtReport.Location = new System.Drawing.Point(248, 134);
-            this.btnExportDebtReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDebtReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDebtReport.Name = "btnExportDebtReport";
             this.btnExportDebtReport.Size = new System.Drawing.Size(129, 44);
             this.btnExportDebtReport.TabIndex = 27;
@@ -9254,7 +9270,7 @@
             // 
             this.btnSearchDebtReport.ForeColor = System.Drawing.Color.Blue;
             this.btnSearchDebtReport.Location = new System.Drawing.Point(81, 134);
-            this.btnSearchDebtReport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchDebtReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchDebtReport.Name = "btnSearchDebtReport";
             this.btnSearchDebtReport.Size = new System.Drawing.Size(96, 44);
             this.btnSearchDebtReport.TabIndex = 26;
@@ -9287,7 +9303,7 @@
             // tbDebtReportKeyWordSearch
             // 
             this.tbDebtReportKeyWordSearch.Location = new System.Drawing.Point(204, 18);
-            this.tbDebtReportKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbDebtReportKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbDebtReportKeyWordSearch.Name = "tbDebtReportKeyWordSearch";
             this.tbDebtReportKeyWordSearch.Size = new System.Drawing.Size(219, 26);
             this.tbDebtReportKeyWordSearch.TabIndex = 2;
@@ -9296,9 +9312,9 @@
             // 
             this.tabPageQuanLyHeThong.Controls.Add(this.tabQuanLyHeThong);
             this.tabPageQuanLyHeThong.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyHeThong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyHeThong.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyHeThong.Name = "tabPageQuanLyHeThong";
-            this.tabPageQuanLyHeThong.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyHeThong.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyHeThong.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyHeThong.TabIndex = 4;
             this.tabPageQuanLyHeThong.Text = "QUẢN LÝ  HỆ THỐNG";
@@ -9311,7 +9327,7 @@
             this.tabQuanLyHeThong.Controls.Add(this.tabPagePhanQuyenTruyCap);
             this.tabQuanLyHeThong.Controls.Add(this.tabPageNhatKyHeThong);
             this.tabQuanLyHeThong.Location = new System.Drawing.Point(8, 2);
-            this.tabQuanLyHeThong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyHeThong.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyHeThong.Name = "tabQuanLyHeThong";
             this.tabQuanLyHeThong.SelectedIndex = 0;
             this.tabQuanLyHeThong.Size = new System.Drawing.Size(1544, 793);
@@ -9322,9 +9338,9 @@
             // 
             this.tabPageCauHinhCoBan.Controls.Add(this.tabControl3);
             this.tabPageCauHinhCoBan.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCauHinhCoBan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCauHinhCoBan.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCauHinhCoBan.Name = "tabPageCauHinhCoBan";
-            this.tabPageCauHinhCoBan.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCauHinhCoBan.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCauHinhCoBan.Size = new System.Drawing.Size(1536, 760);
             this.tabPageCauHinhCoBan.TabIndex = 0;
             this.tabPageCauHinhCoBan.Text = "Cấu hình cơ bản";
@@ -9335,7 +9351,7 @@
             this.tabControl3.Controls.Add(this.tabPageCauHinhKetNoi);
             this.tabControl3.Controls.Add(this.tabPageCauHinhHienThi);
             this.tabControl3.Location = new System.Drawing.Point(8, 7);
-            this.tabControl3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl3.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(1521, 746);
@@ -9346,9 +9362,9 @@
             this.tabPageCauHinhKetNoi.Controls.Add(this.btnLuuCauHinhKetNoi);
             this.tabPageCauHinhKetNoi.Controls.Add(this.groupBox2);
             this.tabPageCauHinhKetNoi.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCauHinhKetNoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCauHinhKetNoi.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCauHinhKetNoi.Name = "tabPageCauHinhKetNoi";
-            this.tabPageCauHinhKetNoi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCauHinhKetNoi.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCauHinhKetNoi.Size = new System.Drawing.Size(1513, 713);
             this.tabPageCauHinhKetNoi.TabIndex = 0;
             this.tabPageCauHinhKetNoi.Text = "Cấu hình kết nối";
@@ -9357,7 +9373,7 @@
             // btnLuuCauHinhKetNoi
             // 
             this.btnLuuCauHinhKetNoi.Location = new System.Drawing.Point(700, 631);
-            this.btnLuuCauHinhKetNoi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLuuCauHinhKetNoi.Margin = new System.Windows.Forms.Padding(4);
             this.btnLuuCauHinhKetNoi.Name = "btnLuuCauHinhKetNoi";
             this.btnLuuCauHinhKetNoi.Size = new System.Drawing.Size(144, 43);
             this.btnLuuCauHinhKetNoi.TabIndex = 12;
@@ -9367,6 +9383,22 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tb_rfid_car_1);
+            this.groupBox2.Controls.Add(this.label273);
+            this.groupBox2.Controls.Add(this.tb_rfid_car_2);
+            this.groupBox2.Controls.Add(this.label274);
+            this.groupBox2.Controls.Add(this.tb_com_reader_car_right);
+            this.groupBox2.Controls.Add(this.label271);
+            this.groupBox2.Controls.Add(this.label272);
+            this.groupBox2.Controls.Add(this.tb_com_reader_car_left);
+            this.groupBox2.Controls.Add(this.tb_camera_car_url_4);
+            this.groupBox2.Controls.Add(this.label267);
+            this.groupBox2.Controls.Add(this.label268);
+            this.groupBox2.Controls.Add(this.tb_camera_car_url_3);
+            this.groupBox2.Controls.Add(this.label269);
+            this.groupBox2.Controls.Add(this.tb_camera_car_url_2);
+            this.groupBox2.Controls.Add(this.label270);
+            this.groupBox2.Controls.Add(this.tb_camera_car_url_1);
             this.groupBox2.Controls.Add(this.tb_com_reader_right);
             this.groupBox2.Controls.Add(this.label260);
             this.groupBox2.Controls.Add(this.label261);
@@ -9409,27 +9441,28 @@
             this.groupBox2.Controls.Add(this.tb_camera_url_2);
             this.groupBox2.Controls.Add(this.label142);
             this.groupBox2.Controls.Add(this.tb_camera_url_1);
-            this.groupBox2.Location = new System.Drawing.Point(245, 11);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(8, 8);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(1045, 599);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Size = new System.Drawing.Size(1488, 599);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
             // tb_com_reader_right
             // 
-            this.tb_com_reader_right.Location = new System.Drawing.Point(685, 342);
-            this.tb_com_reader_right.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_com_reader_right.BackColor = System.Drawing.Color.Linen;
+            this.tb_com_reader_right.Location = new System.Drawing.Point(1272, 340);
+            this.tb_com_reader_right.Margin = new System.Windows.Forms.Padding(4);
             this.tb_com_reader_right.Name = "tb_com_reader_right";
-            this.tb_com_reader_right.Size = new System.Drawing.Size(329, 26);
+            this.tb_com_reader_right.Size = new System.Drawing.Size(199, 26);
             this.tb_com_reader_right.TabIndex = 73;
             // 
             // label260
             // 
             this.label260.AutoSize = true;
             this.label260.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label260.Location = new System.Drawing.Point(539, 346);
+            this.label260.Location = new System.Drawing.Point(1126, 344);
             this.label260.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label260.Name = "label260";
             this.label260.Size = new System.Drawing.Size(139, 20);
@@ -9440,7 +9473,7 @@
             // 
             this.label261.AutoSize = true;
             this.label261.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label261.Location = new System.Drawing.Point(539, 310);
+            this.label261.Location = new System.Drawing.Point(1126, 310);
             this.label261.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label261.Name = "label261";
             this.label261.Size = new System.Drawing.Size(129, 20);
@@ -9449,16 +9482,17 @@
             // 
             // tb_com_reader_left
             // 
-            this.tb_com_reader_left.Location = new System.Drawing.Point(685, 306);
-            this.tb_com_reader_left.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_com_reader_left.BackColor = System.Drawing.Color.Linen;
+            this.tb_com_reader_left.Location = new System.Drawing.Point(1272, 306);
+            this.tb_com_reader_left.Margin = new System.Windows.Forms.Padding(4);
             this.tb_com_reader_left.Name = "tb_com_reader_left";
-            this.tb_com_reader_left.Size = new System.Drawing.Size(329, 26);
+            this.tb_com_reader_left.Size = new System.Drawing.Size(199, 26);
             this.tb_com_reader_left.TabIndex = 70;
             // 
             // tb_signal_open_barie_out_motobike
             // 
-            this.tb_signal_open_barie_out_motobike.Location = new System.Drawing.Point(816, 482);
-            this.tb_signal_open_barie_out_motobike.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_open_barie_out_motobike.Location = new System.Drawing.Point(1272, 237);
+            this.tb_signal_open_barie_out_motobike.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_open_barie_out_motobike.Name = "tb_signal_open_barie_out_motobike";
             this.tb_signal_open_barie_out_motobike.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_open_barie_out_motobike.TabIndex = 69;
@@ -9467,7 +9501,7 @@
             // 
             this.label201.AutoSize = true;
             this.label201.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label201.Location = new System.Drawing.Point(535, 521);
+            this.label201.Location = new System.Drawing.Point(1013, 275);
             this.label201.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label201.Name = "label201";
             this.label201.Size = new System.Drawing.Size(252, 20);
@@ -9476,8 +9510,8 @@
             // 
             // tb_signal_close_barie_out_motobike
             // 
-            this.tb_signal_close_barie_out_motobike.Location = new System.Drawing.Point(816, 517);
-            this.tb_signal_close_barie_out_motobike.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_close_barie_out_motobike.Location = new System.Drawing.Point(1272, 272);
+            this.tb_signal_close_barie_out_motobike.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_close_barie_out_motobike.Name = "tb_signal_close_barie_out_motobike";
             this.tb_signal_close_barie_out_motobike.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_close_barie_out_motobike.TabIndex = 67;
@@ -9486,7 +9520,7 @@
             // 
             this.label202.AutoSize = true;
             this.label202.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label202.Location = new System.Drawing.Point(535, 486);
+            this.label202.Location = new System.Drawing.Point(1013, 240);
             this.label202.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label202.Name = "label202";
             this.label202.Size = new System.Drawing.Size(248, 20);
@@ -9497,7 +9531,7 @@
             // 
             this.label203.AutoSize = true;
             this.label203.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label203.Location = new System.Drawing.Point(535, 450);
+            this.label203.Location = new System.Drawing.Point(1013, 204);
             this.label203.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label203.Name = "label203";
             this.label203.Size = new System.Drawing.Size(242, 20);
@@ -9506,8 +9540,8 @@
             // 
             // tb_signal_close_barie_in_motobike
             // 
-            this.tb_signal_close_barie_in_motobike.Location = new System.Drawing.Point(816, 447);
-            this.tb_signal_close_barie_in_motobike.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_close_barie_in_motobike.Location = new System.Drawing.Point(1272, 202);
+            this.tb_signal_close_barie_in_motobike.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_close_barie_in_motobike.Name = "tb_signal_close_barie_in_motobike";
             this.tb_signal_close_barie_in_motobike.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_close_barie_in_motobike.TabIndex = 64;
@@ -9516,7 +9550,7 @@
             // 
             this.label204.AutoSize = true;
             this.label204.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label204.Location = new System.Drawing.Point(535, 415);
+            this.label204.Location = new System.Drawing.Point(1013, 169);
             this.label204.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label204.Name = "label204";
             this.label204.Size = new System.Drawing.Size(238, 20);
@@ -9525,16 +9559,16 @@
             // 
             // tb_signal_open_barie_in_motobike
             // 
-            this.tb_signal_open_barie_in_motobike.Location = new System.Drawing.Point(816, 411);
-            this.tb_signal_open_barie_in_motobike.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_open_barie_in_motobike.Location = new System.Drawing.Point(1272, 166);
+            this.tb_signal_open_barie_in_motobike.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_open_barie_in_motobike.Name = "tb_signal_open_barie_in_motobike";
             this.tb_signal_open_barie_in_motobike.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_open_barie_in_motobike.TabIndex = 62;
             // 
             // tb_signal_open_barie_out
             // 
-            this.tb_signal_open_barie_out.Location = new System.Drawing.Point(224, 482);
-            this.tb_signal_open_barie_out.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_open_barie_out.Location = new System.Drawing.Point(1272, 94);
+            this.tb_signal_open_barie_out.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_open_barie_out.Name = "tb_signal_open_barie_out";
             this.tb_signal_open_barie_out.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_open_barie_out.TabIndex = 61;
@@ -9543,7 +9577,7 @@
             // 
             this.label197.AutoSize = true;
             this.label197.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label197.Location = new System.Drawing.Point(23, 521);
+            this.label197.Location = new System.Drawing.Point(1071, 133);
             this.label197.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label197.Name = "label197";
             this.label197.Size = new System.Drawing.Size(180, 20);
@@ -9552,8 +9586,8 @@
             // 
             // tb_signal_close_barie_out
             // 
-            this.tb_signal_close_barie_out.Location = new System.Drawing.Point(224, 517);
-            this.tb_signal_close_barie_out.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_close_barie_out.Location = new System.Drawing.Point(1272, 129);
+            this.tb_signal_close_barie_out.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_close_barie_out.Name = "tb_signal_close_barie_out";
             this.tb_signal_close_barie_out.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_close_barie_out.TabIndex = 59;
@@ -9562,7 +9596,7 @@
             // 
             this.label198.AutoSize = true;
             this.label198.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label198.Location = new System.Drawing.Point(23, 486);
+            this.label198.Location = new System.Drawing.Point(1071, 98);
             this.label198.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label198.Name = "label198";
             this.label198.Size = new System.Drawing.Size(176, 20);
@@ -9573,7 +9607,7 @@
             // 
             this.label199.AutoSize = true;
             this.label199.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label199.Location = new System.Drawing.Point(23, 450);
+            this.label199.Location = new System.Drawing.Point(1071, 62);
             this.label199.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label199.Name = "label199";
             this.label199.Size = new System.Drawing.Size(170, 20);
@@ -9582,8 +9616,8 @@
             // 
             // tb_signal_close_barie_in
             // 
-            this.tb_signal_close_barie_in.Location = new System.Drawing.Point(224, 447);
-            this.tb_signal_close_barie_in.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_close_barie_in.Location = new System.Drawing.Point(1272, 59);
+            this.tb_signal_close_barie_in.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_close_barie_in.Name = "tb_signal_close_barie_in";
             this.tb_signal_close_barie_in.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_close_barie_in.TabIndex = 56;
@@ -9592,7 +9626,7 @@
             // 
             this.label200.AutoSize = true;
             this.label200.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label200.Location = new System.Drawing.Point(23, 415);
+            this.label200.Location = new System.Drawing.Point(1071, 29);
             this.label200.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label200.Name = "label200";
             this.label200.Size = new System.Drawing.Size(166, 20);
@@ -9601,25 +9635,26 @@
             // 
             // tb_signal_open_barie_in
             // 
-            this.tb_signal_open_barie_in.Location = new System.Drawing.Point(224, 411);
-            this.tb_signal_open_barie_in.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_signal_open_barie_in.Location = new System.Drawing.Point(1272, 25);
+            this.tb_signal_open_barie_in.Margin = new System.Windows.Forms.Padding(4);
             this.tb_signal_open_barie_in.Name = "tb_signal_open_barie_in";
             this.tb_signal_open_barie_in.Size = new System.Drawing.Size(199, 26);
             this.tb_signal_open_barie_in.TabIndex = 54;
             // 
             // tb_com_receive_out
             // 
-            this.tb_com_receive_out.Location = new System.Drawing.Point(156, 342);
-            this.tb_com_receive_out.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_com_receive_out.BackColor = System.Drawing.Color.Linen;
+            this.tb_com_receive_out.Location = new System.Drawing.Point(1272, 478);
+            this.tb_com_receive_out.Margin = new System.Windows.Forms.Padding(4);
             this.tb_com_receive_out.Name = "tb_com_receive_out";
-            this.tb_com_receive_out.Size = new System.Drawing.Size(343, 26);
+            this.tb_com_receive_out.Size = new System.Drawing.Size(201, 26);
             this.tb_com_receive_out.TabIndex = 53;
             // 
             // label190
             // 
             this.label190.AutoSize = true;
             this.label190.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label190.Location = new System.Drawing.Point(23, 380);
+            this.label190.Location = new System.Drawing.Point(1139, 516);
             this.label190.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label190.Name = "label190";
             this.label190.Size = new System.Drawing.Size(90, 20);
@@ -9628,17 +9663,18 @@
             // 
             // tb_com_send
             // 
-            this.tb_com_send.Location = new System.Drawing.Point(156, 377);
-            this.tb_com_send.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_com_send.BackColor = System.Drawing.Color.Linen;
+            this.tb_com_send.Location = new System.Drawing.Point(1272, 513);
+            this.tb_com_send.Margin = new System.Windows.Forms.Padding(4);
             this.tb_com_send.Name = "tb_com_send";
-            this.tb_com_send.Size = new System.Drawing.Size(859, 26);
+            this.tb_com_send.Size = new System.Drawing.Size(201, 26);
             this.tb_com_send.TabIndex = 51;
             // 
             // label193
             // 
             this.label193.AutoSize = true;
             this.label193.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label193.Location = new System.Drawing.Point(23, 346);
+            this.label193.Location = new System.Drawing.Point(1139, 482);
             this.label193.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label193.Name = "label193";
             this.label193.Size = new System.Drawing.Size(126, 20);
@@ -9649,7 +9685,7 @@
             // 
             this.label194.AutoSize = true;
             this.label194.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label194.Location = new System.Drawing.Point(23, 310);
+            this.label194.Location = new System.Drawing.Point(1139, 446);
             this.label194.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label194.Name = "label194";
             this.label194.Size = new System.Drawing.Size(116, 20);
@@ -9658,25 +9694,26 @@
             // 
             // tb_com_receive_in
             // 
-            this.tb_com_receive_in.Location = new System.Drawing.Point(156, 306);
-            this.tb_com_receive_in.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_com_receive_in.BackColor = System.Drawing.Color.Linen;
+            this.tb_com_receive_in.Location = new System.Drawing.Point(1272, 442);
+            this.tb_com_receive_in.Margin = new System.Windows.Forms.Padding(4);
             this.tb_com_receive_in.Name = "tb_com_receive_in";
-            this.tb_com_receive_in.Size = new System.Drawing.Size(343, 26);
+            this.tb_com_receive_in.Size = new System.Drawing.Size(201, 26);
             this.tb_com_receive_in.TabIndex = 48;
             // 
             // tb_ip_host
             // 
-            this.tb_ip_host.Location = new System.Drawing.Point(156, 236);
-            this.tb_ip_host.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_ip_host.Location = new System.Drawing.Point(141, 446);
+            this.tb_ip_host.Margin = new System.Windows.Forms.Padding(4);
             this.tb_ip_host.Name = "tb_ip_host";
-            this.tb_ip_host.Size = new System.Drawing.Size(859, 26);
+            this.tb_ip_host.Size = new System.Drawing.Size(839, 26);
             this.tb_ip_host.TabIndex = 47;
             // 
             // label129
             // 
             this.label129.AutoSize = true;
             this.label129.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label129.Location = new System.Drawing.Point(23, 274);
+            this.label129.Location = new System.Drawing.Point(8, 484);
             this.label129.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label129.Name = "label129";
             this.label129.Size = new System.Drawing.Size(88, 20);
@@ -9685,17 +9722,17 @@
             // 
             // tb_folder_root
             // 
-            this.tb_folder_root.Location = new System.Drawing.Point(156, 271);
-            this.tb_folder_root.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_folder_root.Location = new System.Drawing.Point(141, 481);
+            this.tb_folder_root.Margin = new System.Windows.Forms.Padding(4);
             this.tb_folder_root.Name = "tb_folder_root";
-            this.tb_folder_root.Size = new System.Drawing.Size(859, 26);
+            this.tb_folder_root.Size = new System.Drawing.Size(839, 26);
             this.tb_folder_root.TabIndex = 45;
             // 
             // label130
             // 
             this.label130.AutoSize = true;
             this.label130.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label130.Location = new System.Drawing.Point(20, 240);
+            this.label130.Location = new System.Drawing.Point(5, 450);
             this.label130.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label130.Name = "label130";
             this.label130.Size = new System.Drawing.Size(105, 20);
@@ -9704,25 +9741,27 @@
             // 
             // tb_rfid_1
             // 
-            this.tb_rfid_1.Location = new System.Drawing.Point(156, 166);
-            this.tb_rfid_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_rfid_1.BackColor = System.Drawing.Color.Linen;
+            this.tb_rfid_1.Location = new System.Drawing.Point(141, 306);
+            this.tb_rfid_1.Margin = new System.Windows.Forms.Padding(4);
             this.tb_rfid_1.Name = "tb_rfid_1";
-            this.tb_rfid_1.Size = new System.Drawing.Size(859, 26);
+            this.tb_rfid_1.Size = new System.Drawing.Size(839, 26);
             this.tb_rfid_1.TabIndex = 43;
             // 
             // tb_camera_url_4
             // 
-            this.tb_camera_url_4.Location = new System.Drawing.Point(156, 132);
-            this.tb_camera_url_4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_camera_url_4.BackColor = System.Drawing.Color.Linen;
+            this.tb_camera_url_4.Location = new System.Drawing.Point(141, 132);
+            this.tb_camera_url_4.Margin = new System.Windows.Forms.Padding(4);
             this.tb_camera_url_4.Name = "tb_camera_url_4";
-            this.tb_camera_url_4.Size = new System.Drawing.Size(859, 26);
+            this.tb_camera_url_4.Size = new System.Drawing.Size(839, 26);
             this.tb_camera_url_4.TabIndex = 42;
             // 
             // label137
             // 
             this.label137.AutoSize = true;
             this.label137.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label137.Location = new System.Drawing.Point(23, 204);
+            this.label137.Location = new System.Drawing.Point(8, 344);
             this.label137.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label137.Name = "label137";
             this.label137.Size = new System.Drawing.Size(86, 20);
@@ -9731,17 +9770,18 @@
             // 
             // tb_rfid_2
             // 
-            this.tb_rfid_2.Location = new System.Drawing.Point(156, 201);
-            this.tb_rfid_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_rfid_2.BackColor = System.Drawing.Color.Linen;
+            this.tb_rfid_2.Location = new System.Drawing.Point(141, 341);
+            this.tb_rfid_2.Margin = new System.Windows.Forms.Padding(4);
             this.tb_rfid_2.Name = "tb_rfid_2";
-            this.tb_rfid_2.Size = new System.Drawing.Size(859, 26);
+            this.tb_rfid_2.Size = new System.Drawing.Size(839, 26);
             this.tb_rfid_2.TabIndex = 18;
             // 
             // label138
             // 
             this.label138.AutoSize = true;
             this.label138.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label138.Location = new System.Drawing.Point(23, 170);
+            this.label138.Location = new System.Drawing.Point(8, 310);
             this.label138.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label138.Name = "label138";
             this.label138.Size = new System.Drawing.Size(76, 20);
@@ -9752,7 +9792,7 @@
             // 
             this.label139.AutoSize = true;
             this.label139.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label139.Location = new System.Drawing.Point(23, 135);
+            this.label139.Location = new System.Drawing.Point(8, 135);
             this.label139.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label139.Name = "label139";
             this.label139.Size = new System.Drawing.Size(82, 20);
@@ -9763,7 +9803,7 @@
             // 
             this.label140.AutoSize = true;
             this.label140.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label140.Location = new System.Drawing.Point(23, 101);
+            this.label140.Location = new System.Drawing.Point(8, 101);
             this.label140.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label140.Name = "label140";
             this.label140.Size = new System.Drawing.Size(82, 20);
@@ -9772,17 +9812,18 @@
             // 
             // tb_camera_url_3
             // 
-            this.tb_camera_url_3.Location = new System.Drawing.Point(156, 97);
-            this.tb_camera_url_3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_camera_url_3.BackColor = System.Drawing.Color.Linen;
+            this.tb_camera_url_3.Location = new System.Drawing.Point(141, 97);
+            this.tb_camera_url_3.Margin = new System.Windows.Forms.Padding(4);
             this.tb_camera_url_3.Name = "tb_camera_url_3";
-            this.tb_camera_url_3.Size = new System.Drawing.Size(859, 26);
+            this.tb_camera_url_3.Size = new System.Drawing.Size(839, 26);
             this.tb_camera_url_3.TabIndex = 12;
             // 
             // label141
             // 
             this.label141.AutoSize = true;
             this.label141.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label141.Location = new System.Drawing.Point(23, 66);
+            this.label141.Location = new System.Drawing.Point(8, 66);
             this.label141.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label141.Name = "label141";
             this.label141.Size = new System.Drawing.Size(82, 20);
@@ -9791,17 +9832,18 @@
             // 
             // tb_camera_url_2
             // 
-            this.tb_camera_url_2.Location = new System.Drawing.Point(156, 63);
-            this.tb_camera_url_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_camera_url_2.BackColor = System.Drawing.Color.Linen;
+            this.tb_camera_url_2.Location = new System.Drawing.Point(141, 63);
+            this.tb_camera_url_2.Margin = new System.Windows.Forms.Padding(4);
             this.tb_camera_url_2.Name = "tb_camera_url_2";
-            this.tb_camera_url_2.Size = new System.Drawing.Size(859, 26);
+            this.tb_camera_url_2.Size = new System.Drawing.Size(839, 26);
             this.tb_camera_url_2.TabIndex = 10;
             // 
             // label142
             // 
             this.label142.AutoSize = true;
             this.label142.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label142.Location = new System.Drawing.Point(23, 32);
+            this.label142.Location = new System.Drawing.Point(8, 32);
             this.label142.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label142.Name = "label142";
             this.label142.Size = new System.Drawing.Size(82, 20);
@@ -9810,10 +9852,11 @@
             // 
             // tb_camera_url_1
             // 
-            this.tb_camera_url_1.Location = new System.Drawing.Point(156, 28);
-            this.tb_camera_url_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tb_camera_url_1.BackColor = System.Drawing.Color.Linen;
+            this.tb_camera_url_1.Location = new System.Drawing.Point(141, 28);
+            this.tb_camera_url_1.Margin = new System.Windows.Forms.Padding(4);
             this.tb_camera_url_1.Name = "tb_camera_url_1";
-            this.tb_camera_url_1.Size = new System.Drawing.Size(859, 26);
+            this.tb_camera_url_1.Size = new System.Drawing.Size(839, 26);
             this.tb_camera_url_1.TabIndex = 8;
             // 
             // tabPageCauHinhHienThi
@@ -9831,9 +9874,9 @@
             this.tabPageCauHinhHienThi.Controls.Add(this.textBox4);
             this.tabPageCauHinhHienThi.Controls.Add(this.groupBox17);
             this.tabPageCauHinhHienThi.Location = new System.Drawing.Point(4, 29);
-            this.tabPageCauHinhHienThi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCauHinhHienThi.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageCauHinhHienThi.Name = "tabPageCauHinhHienThi";
-            this.tabPageCauHinhHienThi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageCauHinhHienThi.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageCauHinhHienThi.Size = new System.Drawing.Size(1513, 713);
             this.tabPageCauHinhHienThi.TabIndex = 1;
             this.tabPageCauHinhHienThi.Text = "Cấu hình hiển thị";
@@ -9844,9 +9887,9 @@
             this.groupBox16.Controls.Add(this.label256);
             this.groupBox16.Controls.Add(this.tbNoticeFeeContent);
             this.groupBox16.Location = new System.Drawing.Point(513, 146);
-            this.groupBox16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox16.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox16.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox16.Size = new System.Drawing.Size(987, 502);
             this.groupBox16.TabIndex = 20;
             this.groupBox16.TabStop = false;
@@ -9866,7 +9909,7 @@
             // tbNoticeFeeContent
             // 
             this.tbNoticeFeeContent.Location = new System.Drawing.Point(15, 58);
-            this.tbNoticeFeeContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNoticeFeeContent.Margin = new System.Windows.Forms.Padding(4);
             this.tbNoticeFeeContent.Multiline = true;
             this.tbNoticeFeeContent.Name = "tbNoticeFeeContent";
             this.tbNoticeFeeContent.Size = new System.Drawing.Size(959, 426);
@@ -9887,7 +9930,7 @@
             // tbParkingName
             // 
             this.tbParkingName.Location = new System.Drawing.Point(116, 106);
-            this.tbParkingName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbParkingName.Margin = new System.Windows.Forms.Padding(4);
             this.tbParkingName.Name = "tbParkingName";
             this.tbParkingName.Size = new System.Drawing.Size(380, 26);
             this.tbParkingName.TabIndex = 18;
@@ -9895,7 +9938,7 @@
             // btnLuuCauHinhHienThi
             // 
             this.btnLuuCauHinhHienThi.Location = new System.Drawing.Point(433, 656);
-            this.btnLuuCauHinhHienThi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLuuCauHinhHienThi.Margin = new System.Windows.Forms.Padding(4);
             this.btnLuuCauHinhHienThi.Name = "btnLuuCauHinhHienThi";
             this.btnLuuCauHinhHienThi.Size = new System.Drawing.Size(144, 43);
             this.btnLuuCauHinhHienThi.TabIndex = 17;
@@ -9912,9 +9955,9 @@
             this.groupBox10.Controls.Add(this.label184);
             this.groupBox10.Controls.Add(this.tbTicketLimitDay2);
             this.groupBox10.Location = new System.Drawing.Point(513, 27);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox10.Size = new System.Drawing.Size(503, 105);
             this.groupBox10.TabIndex = 16;
             this.groupBox10.TabStop = false;
@@ -9936,7 +9979,7 @@
             // 
             this.cbSeeReportAccess.AutoSize = true;
             this.cbSeeReportAccess.Location = new System.Drawing.Point(48, 62);
-            this.cbSeeReportAccess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSeeReportAccess.Margin = new System.Windows.Forms.Padding(4);
             this.cbSeeReportAccess.Name = "cbSeeReportAccess";
             this.cbSeeReportAccess.Size = new System.Drawing.Size(211, 24);
             this.cbSeeReportAccess.TabIndex = 17;
@@ -9946,7 +9989,7 @@
             // tbNightLimit2
             // 
             this.tbNightLimit2.Location = new System.Drawing.Point(328, 62);
-            this.tbNightLimit2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNightLimit2.Margin = new System.Windows.Forms.Padding(4);
             this.tbNightLimit2.Name = "tbNightLimit2";
             this.tbNightLimit2.Size = new System.Drawing.Size(152, 26);
             this.tbNightLimit2.TabIndex = 26;
@@ -9956,7 +9999,7 @@
             // 
             this.cbSaveLostCardAccess.AutoSize = true;
             this.cbSaveLostCardAccess.Location = new System.Drawing.Point(48, 30);
-            this.cbSaveLostCardAccess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSaveLostCardAccess.Margin = new System.Windows.Forms.Padding(4);
             this.cbSaveLostCardAccess.Name = "cbSaveLostCardAccess";
             this.cbSaveLostCardAccess.Size = new System.Drawing.Size(189, 24);
             this.cbSaveLostCardAccess.TabIndex = 0;
@@ -9978,7 +10021,7 @@
             // tbTicketLimitDay2
             // 
             this.tbTicketLimitDay2.Location = new System.Drawing.Point(328, 28);
-            this.tbTicketLimitDay2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLimitDay2.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLimitDay2.Name = "tbTicketLimitDay2";
             this.tbTicketLimitDay2.Size = new System.Drawing.Size(152, 26);
             this.tbTicketLimitDay2.TabIndex = 24;
@@ -9993,9 +10036,9 @@
             this.groupBox9.Controls.Add(this.rbChiCanhBaoHetHan);
             this.groupBox9.Controls.Add(this.rbTinhTienNhuVangLai);
             this.groupBox9.Location = new System.Drawing.Point(17, 501);
-            this.groupBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox9.Size = new System.Drawing.Size(480, 146);
             this.groupBox9.TabIndex = 15;
             this.groupBox9.TabStop = false;
@@ -10006,7 +10049,7 @@
             this.panelNoticeExpiredDate.Controls.Add(this.label266);
             this.panelNoticeExpiredDate.Controls.Add(this.tbNoticeExpiredDate);
             this.panelNoticeExpiredDate.Location = new System.Drawing.Point(233, 94);
-            this.panelNoticeExpiredDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelNoticeExpiredDate.Margin = new System.Windows.Forms.Padding(4);
             this.panelNoticeExpiredDate.Name = "panelNoticeExpiredDate";
             this.panelNoticeExpiredDate.Size = new System.Drawing.Size(239, 30);
             this.panelNoticeExpiredDate.TabIndex = 24;
@@ -10025,7 +10068,7 @@
             // tbNoticeExpiredDate
             // 
             this.tbNoticeExpiredDate.Location = new System.Drawing.Point(199, 2);
-            this.tbNoticeExpiredDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNoticeExpiredDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbNoticeExpiredDate.Name = "tbNoticeExpiredDate";
             this.tbNoticeExpiredDate.Size = new System.Drawing.Size(35, 26);
             this.tbNoticeExpiredDate.TabIndex = 25;
@@ -10037,7 +10080,7 @@
             this.panel34.Controls.Add(this.label188);
             this.panel34.Controls.Add(this.tbNoticeToBeExpireDate);
             this.panel34.Location = new System.Drawing.Point(233, 59);
-            this.panel34.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel34.Margin = new System.Windows.Forms.Padding(4);
             this.panel34.Name = "panel34";
             this.panel34.Size = new System.Drawing.Size(239, 30);
             this.panel34.TabIndex = 22;
@@ -10056,7 +10099,7 @@
             // tbNoticeToBeExpireDate
             // 
             this.tbNoticeToBeExpireDate.Location = new System.Drawing.Point(199, 2);
-            this.tbNoticeToBeExpireDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNoticeToBeExpireDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbNoticeToBeExpireDate.Name = "tbNoticeToBeExpireDate";
             this.tbNoticeToBeExpireDate.Size = new System.Drawing.Size(35, 26);
             this.tbNoticeToBeExpireDate.TabIndex = 25;
@@ -10068,7 +10111,7 @@
             this.panelLockCardDate.Controls.Add(this.label223);
             this.panelLockCardDate.Controls.Add(this.tbLockCardDate);
             this.panelLockCardDate.Location = new System.Drawing.Point(233, 25);
-            this.panelLockCardDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelLockCardDate.Margin = new System.Windows.Forms.Padding(4);
             this.panelLockCardDate.Name = "panelLockCardDate";
             this.panelLockCardDate.Size = new System.Drawing.Size(239, 30);
             this.panelLockCardDate.TabIndex = 21;
@@ -10088,7 +10131,7 @@
             // tbLockCardDate
             // 
             this.tbLockCardDate.Location = new System.Drawing.Point(199, 2);
-            this.tbLockCardDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLockCardDate.Margin = new System.Windows.Forms.Padding(4);
             this.tbLockCardDate.Name = "tbLockCardDate";
             this.tbLockCardDate.Size = new System.Drawing.Size(35, 26);
             this.tbLockCardDate.TabIndex = 25;
@@ -10099,7 +10142,7 @@
             // 
             this.cbTuDongKhoaThe.AutoSize = true;
             this.cbTuDongKhoaThe.Location = new System.Drawing.Point(27, 95);
-            this.cbTuDongKhoaThe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTuDongKhoaThe.Margin = new System.Windows.Forms.Padding(4);
             this.cbTuDongKhoaThe.Name = "cbTuDongKhoaThe";
             this.cbTuDongKhoaThe.Size = new System.Drawing.Size(159, 24);
             this.cbTuDongKhoaThe.TabIndex = 23;
@@ -10111,7 +10154,7 @@
             // 
             this.rbChiCanhBaoHetHan.AutoSize = true;
             this.rbChiCanhBaoHetHan.Location = new System.Drawing.Point(27, 62);
-            this.rbChiCanhBaoHetHan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbChiCanhBaoHetHan.Margin = new System.Windows.Forms.Padding(4);
             this.rbChiCanhBaoHetHan.Name = "rbChiCanhBaoHetHan";
             this.rbChiCanhBaoHetHan.Size = new System.Drawing.Size(188, 24);
             this.rbChiCanhBaoHetHan.TabIndex = 1;
@@ -10123,7 +10166,7 @@
             this.rbTinhTienNhuVangLai.AutoSize = true;
             this.rbTinhTienNhuVangLai.Checked = true;
             this.rbTinhTienNhuVangLai.Location = new System.Drawing.Point(27, 30);
-            this.rbTinhTienNhuVangLai.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbTinhTienNhuVangLai.Margin = new System.Windows.Forms.Padding(4);
             this.rbTinhTienNhuVangLai.Name = "rbTinhTienNhuVangLai";
             this.rbTinhTienNhuVangLai.Size = new System.Drawing.Size(188, 24);
             this.rbTinhTienNhuVangLai.TabIndex = 0;
@@ -10141,9 +10184,9 @@
             this.groupBox8.Controls.Add(this.rbGiuXeTheoCongVan);
             this.groupBox8.Controls.Add(this.rbGiuXeMienPhi);
             this.groupBox8.Location = new System.Drawing.Point(17, 146);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox8.Size = new System.Drawing.Size(480, 347);
             this.groupBox8.TabIndex = 14;
             this.groupBox8.TabStop = false;
@@ -10153,7 +10196,7 @@
             // 
             this.rbGiuXeTongHop2.AutoSize = true;
             this.rbGiuXeTongHop2.Location = new System.Drawing.Point(15, 94);
-            this.rbGiuXeTongHop2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGiuXeTongHop2.Margin = new System.Windows.Forms.Padding(4);
             this.rbGiuXeTongHop2.Name = "rbGiuXeTongHop2";
             this.rbGiuXeTongHop2.Size = new System.Drawing.Size(261, 24);
             this.rbGiuXeTongHop2.TabIndex = 22;
@@ -10164,7 +10207,7 @@
             // 
             this.checkBoxTinhTienVeThang.AutoSize = true;
             this.checkBoxTinhTienVeThang.Location = new System.Drawing.Point(15, 129);
-            this.checkBoxTinhTienVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBoxTinhTienVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.checkBoxTinhTienVeThang.Name = "checkBoxTinhTienVeThang";
             this.checkBoxTinhTienVeThang.Size = new System.Drawing.Size(163, 24);
             this.checkBoxTinhTienVeThang.TabIndex = 21;
@@ -10182,7 +10225,7 @@
             this.panel32.Controls.Add(this.label187);
             this.panel32.Controls.Add(this.tbLostCard);
             this.panel32.Location = new System.Drawing.Point(8, 174);
-            this.panel32.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel32.Margin = new System.Windows.Forms.Padding(4);
             this.panel32.Name = "panel32";
             this.panel32.Size = new System.Drawing.Size(463, 166);
             this.panel32.TabIndex = 4;
@@ -10191,7 +10234,7 @@
             // 
             this.cbTinhPhiCocThe.AutoSize = true;
             this.cbTinhPhiCocThe.Location = new System.Drawing.Point(23, 18);
-            this.cbTinhPhiCocThe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbTinhPhiCocThe.Margin = new System.Windows.Forms.Padding(4);
             this.cbTinhPhiCocThe.Name = "cbTinhPhiCocThe";
             this.cbTinhPhiCocThe.Size = new System.Drawing.Size(150, 24);
             this.cbTinhPhiCocThe.TabIndex = 23;
@@ -10213,7 +10256,7 @@
             // tbCarSpace2
             // 
             this.tbCarSpace2.Location = new System.Drawing.Point(224, 124);
-            this.tbCarSpace2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCarSpace2.Margin = new System.Windows.Forms.Padding(4);
             this.tbCarSpace2.Name = "tbCarSpace2";
             this.tbCarSpace2.Size = new System.Drawing.Size(223, 26);
             this.tbCarSpace2.TabIndex = 22;
@@ -10232,7 +10275,7 @@
             // tbBikeSpace2
             // 
             this.tbBikeSpace2.Location = new System.Drawing.Point(224, 89);
-            this.tbBikeSpace2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBikeSpace2.Margin = new System.Windows.Forms.Padding(4);
             this.tbBikeSpace2.Name = "tbBikeSpace2";
             this.tbBikeSpace2.Size = new System.Drawing.Size(223, 26);
             this.tbBikeSpace2.TabIndex = 20;
@@ -10251,7 +10294,7 @@
             // tbLostCard
             // 
             this.tbLostCard.Location = new System.Drawing.Point(224, 55);
-            this.tbLostCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLostCard.Margin = new System.Windows.Forms.Padding(4);
             this.tbLostCard.Name = "tbLostCard";
             this.tbLostCard.Size = new System.Drawing.Size(223, 26);
             this.tbLostCard.TabIndex = 18;
@@ -10260,7 +10303,7 @@
             // 
             this.rbGiuXeTongHop.AutoSize = true;
             this.rbGiuXeTongHop.Location = new System.Drawing.Point(281, 62);
-            this.rbGiuXeTongHop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGiuXeTongHop.Margin = new System.Windows.Forms.Padding(4);
             this.rbGiuXeTongHop.Name = "rbGiuXeTongHop";
             this.rbGiuXeTongHop.Size = new System.Drawing.Size(147, 24);
             this.rbGiuXeTongHop.TabIndex = 3;
@@ -10271,7 +10314,7 @@
             // 
             this.rbGiuXeLuyTien.AutoSize = true;
             this.rbGiuXeLuyTien.Location = new System.Drawing.Point(281, 30);
-            this.rbGiuXeLuyTien.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGiuXeLuyTien.Margin = new System.Windows.Forms.Padding(4);
             this.rbGiuXeLuyTien.Name = "rbGiuXeLuyTien";
             this.rbGiuXeLuyTien.Size = new System.Drawing.Size(173, 24);
             this.rbGiuXeLuyTien.TabIndex = 2;
@@ -10283,7 +10326,7 @@
             this.rbGiuXeTheoCongVan.AutoSize = true;
             this.rbGiuXeTheoCongVan.Checked = true;
             this.rbGiuXeTheoCongVan.Location = new System.Drawing.Point(15, 62);
-            this.rbGiuXeTheoCongVan.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGiuXeTheoCongVan.Margin = new System.Windows.Forms.Padding(4);
             this.rbGiuXeTheoCongVan.Name = "rbGiuXeTheoCongVan";
             this.rbGiuXeTheoCongVan.Size = new System.Drawing.Size(187, 24);
             this.rbGiuXeTheoCongVan.TabIndex = 1;
@@ -10295,7 +10338,7 @@
             // 
             this.rbGiuXeMienPhi.AutoSize = true;
             this.rbGiuXeMienPhi.Location = new System.Drawing.Point(15, 30);
-            this.rbGiuXeMienPhi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbGiuXeMienPhi.Margin = new System.Windows.Forms.Padding(4);
             this.rbGiuXeMienPhi.Name = "rbGiuXeMienPhi";
             this.rbGiuXeMienPhi.Size = new System.Drawing.Size(146, 24);
             this.rbGiuXeMienPhi.TabIndex = 0;
@@ -10316,7 +10359,7 @@
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(116, 71);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(380, 26);
             this.textBox5.TabIndex = 12;
@@ -10335,7 +10378,7 @@
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(17, 37);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(479, 26);
             this.textBox4.TabIndex = 10;
@@ -10349,9 +10392,9 @@
             this.groupBox17.Controls.Add(this.label264);
             this.groupBox17.Controls.Add(this.label263);
             this.groupBox17.Location = new System.Drawing.Point(1036, 27);
-            this.groupBox17.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox17.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox17.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox17.Size = new System.Drawing.Size(464, 112);
             this.groupBox17.TabIndex = 62;
             this.groupBox17.TabStop = false;
@@ -10360,7 +10403,7 @@
             // numericStartHourNightShift
             // 
             this.numericStartHourNightShift.Location = new System.Drawing.Point(215, 66);
-            this.numericStartHourNightShift.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericStartHourNightShift.Margin = new System.Windows.Forms.Padding(4);
             this.numericStartHourNightShift.Maximum = new decimal(new int[] {
             23,
             0,
@@ -10378,7 +10421,7 @@
             // numericEndHourNightShift
             // 
             this.numericEndHourNightShift.Location = new System.Drawing.Point(215, 28);
-            this.numericEndHourNightShift.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericEndHourNightShift.Margin = new System.Windows.Forms.Padding(4);
             this.numericEndHourNightShift.Maximum = new decimal(new int[] {
             23,
             0,
@@ -10443,9 +10486,9 @@
             this.tabPageQuanLyThuTienXe.Controls.Add(this.dgvCashManagementList);
             this.tabPageQuanLyThuTienXe.Controls.Add(this.panel26);
             this.tabPageQuanLyThuTienXe.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyThuTienXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyThuTienXe.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyThuTienXe.Name = "tabPageQuanLyThuTienXe";
-            this.tabPageQuanLyThuTienXe.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyThuTienXe.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyThuTienXe.Size = new System.Drawing.Size(1536, 760);
             this.tabPageQuanLyThuTienXe.TabIndex = 1;
             this.tabPageQuanLyThuTienXe.Text = "Quản lý thu tiền xe";
@@ -10467,7 +10510,7 @@
             this.dataGridViewTextBoxColumn47,
             this.dataGridViewTextBoxColumn48});
             this.dgvCashManagementList.Location = new System.Drawing.Point(8, 270);
-            this.dgvCashManagementList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCashManagementList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCashManagementList.Name = "dgvCashManagementList";
             this.dgvCashManagementList.ReadOnly = true;
             this.dgvCashManagementList.RowHeadersWidth = 51;
@@ -10585,7 +10628,7 @@
             this.panel26.Controls.Add(this.label111);
             this.panel26.Controls.Add(this.dtCashManagementStartDate);
             this.panel26.Location = new System.Drawing.Point(8, 7);
-            this.panel26.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel26.Margin = new System.Windows.Forms.Padding(4);
             this.panel26.Name = "panel26";
             this.panel26.Size = new System.Drawing.Size(1517, 249);
             this.panel26.TabIndex = 0;
@@ -10604,7 +10647,7 @@
             // button19
             // 
             this.button19.Location = new System.Drawing.Point(403, 169);
-            this.button19.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button19.Margin = new System.Windows.Forms.Padding(4);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(283, 37);
             this.button19.TabIndex = 62;
@@ -10614,7 +10657,7 @@
             // btnUpdateCash
             // 
             this.btnUpdateCash.Location = new System.Drawing.Point(216, 169);
-            this.btnUpdateCash.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateCash.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateCash.Name = "btnUpdateCash";
             this.btnUpdateCash.Size = new System.Drawing.Size(144, 37);
             this.btnUpdateCash.TabIndex = 60;
@@ -10624,7 +10667,7 @@
             // btnSearchCash
             // 
             this.btnSearchCash.Location = new System.Drawing.Point(33, 169);
-            this.btnSearchCash.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchCash.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchCash.Name = "btnSearchCash";
             this.btnSearchCash.Size = new System.Drawing.Size(144, 37);
             this.btnSearchCash.TabIndex = 59;
@@ -10635,7 +10678,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(593, 64);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(357, 83);
@@ -10655,7 +10698,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(593, 26);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(357, 26);
             this.textBox2.TabIndex = 56;
@@ -10675,7 +10718,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(149, 121);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(280, 26);
             this.textBox1.TabIndex = 54;
@@ -10706,7 +10749,7 @@
             // 
             this.dtCashManagementEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtCashManagementEndDate.Location = new System.Drawing.Point(149, 65);
-            this.dtCashManagementEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtCashManagementEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtCashManagementEndDate.Name = "dtCashManagementEndDate";
             this.dtCashManagementEndDate.Size = new System.Drawing.Size(280, 26);
             this.dtCashManagementEndDate.TabIndex = 51;
@@ -10726,7 +10769,7 @@
             // 
             this.dtCashManagementStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtCashManagementStartDate.Location = new System.Drawing.Point(149, 26);
-            this.dtCashManagementStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtCashManagementStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtCashManagementStartDate.Name = "dtCashManagementStartDate";
             this.dtCashManagementStartDate.Size = new System.Drawing.Size(280, 26);
             this.dtCashManagementStartDate.TabIndex = 47;
@@ -10738,9 +10781,9 @@
             this.tabPagePhanQuyenTruyCap.Controls.Add(this.btnSaveUserAccess);
             this.tabPagePhanQuyenTruyCap.Controls.Add(this.flowLayoutPanel1);
             this.tabPagePhanQuyenTruyCap.Location = new System.Drawing.Point(4, 29);
-            this.tabPagePhanQuyenTruyCap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPagePhanQuyenTruyCap.Margin = new System.Windows.Forms.Padding(4);
             this.tabPagePhanQuyenTruyCap.Name = "tabPagePhanQuyenTruyCap";
-            this.tabPagePhanQuyenTruyCap.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPagePhanQuyenTruyCap.Padding = new System.Windows.Forms.Padding(4);
             this.tabPagePhanQuyenTruyCap.Size = new System.Drawing.Size(1536, 760);
             this.tabPagePhanQuyenTruyCap.TabIndex = 2;
             this.tabPagePhanQuyenTruyCap.Text = "Phân quyền truy cập";
@@ -10751,7 +10794,7 @@
             this.cbUserFunctionAccessSetting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbUserFunctionAccessSetting.FormattingEnabled = true;
             this.cbUserFunctionAccessSetting.Location = new System.Drawing.Point(693, 30);
-            this.cbUserFunctionAccessSetting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbUserFunctionAccessSetting.Margin = new System.Windows.Forms.Padding(4);
             this.cbUserFunctionAccessSetting.Name = "cbUserFunctionAccessSetting";
             this.cbUserFunctionAccessSetting.Size = new System.Drawing.Size(321, 28);
             this.cbUserFunctionAccessSetting.TabIndex = 13;
@@ -10771,7 +10814,7 @@
             // btnSaveUserAccess
             // 
             this.btnSaveUserAccess.Location = new System.Drawing.Point(693, 702);
-            this.btnSaveUserAccess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveUserAccess.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveUserAccess.Name = "btnSaveUserAccess";
             this.btnSaveUserAccess.Size = new System.Drawing.Size(144, 37);
             this.btnSaveUserAccess.TabIndex = 11;
@@ -10783,7 +10826,7 @@
             // 
             this.flowLayoutPanel1.Controls.Add(this.treeViewPhanQuyenTruyCap);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(516, 89);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(496, 556);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -10792,7 +10835,7 @@
             // 
             this.treeViewPhanQuyenTruyCap.CheckBoxes = true;
             this.treeViewPhanQuyenTruyCap.Location = new System.Drawing.Point(4, 4);
-            this.treeViewPhanQuyenTruyCap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeViewPhanQuyenTruyCap.Margin = new System.Windows.Forms.Padding(4);
             this.treeViewPhanQuyenTruyCap.Name = "treeViewPhanQuyenTruyCap";
             treeNode1.Name = "NodeName1";
             treeNode1.Text = "Thông tin nhân sự";
@@ -10886,9 +10929,9 @@
             this.tabPageNhatKyHeThong.Controls.Add(this.dgvLogList);
             this.tabPageNhatKyHeThong.Controls.Add(this.panel29);
             this.tabPageNhatKyHeThong.Location = new System.Drawing.Point(4, 29);
-            this.tabPageNhatKyHeThong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageNhatKyHeThong.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageNhatKyHeThong.Name = "tabPageNhatKyHeThong";
-            this.tabPageNhatKyHeThong.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageNhatKyHeThong.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageNhatKyHeThong.Size = new System.Drawing.Size(1536, 760);
             this.tabPageNhatKyHeThong.TabIndex = 3;
             this.tabPageNhatKyHeThong.Text = "Nhật ký hệ thống";
@@ -10906,7 +10949,7 @@
             this.panel30.Controls.Add(this.label149);
             this.panel30.Controls.Add(this.label148);
             this.panel30.Location = new System.Drawing.Point(371, 7);
-            this.panel30.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel30.Margin = new System.Windows.Forms.Padding(4);
             this.panel30.Name = "panel30";
             this.panel30.Size = new System.Drawing.Size(1155, 357);
             this.panel30.TabIndex = 3;
@@ -10914,7 +10957,7 @@
             // tbLogNote
             // 
             this.tbLogNote.Location = new System.Drawing.Point(7, 91);
-            this.tbLogNote.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLogNote.Margin = new System.Windows.Forms.Padding(4);
             this.tbLogNote.Multiline = true;
             this.tbLogNote.Name = "tbLogNote";
             this.tbLogNote.ReadOnly = true;
@@ -11030,7 +11073,7 @@
             this.CommonLogNote,
             this.CommonLogComputer});
             this.dgvLogList.Location = new System.Drawing.Point(5, 384);
-            this.dgvLogList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLogList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLogList.Name = "dgvLogList";
             this.dgvLogList.ReadOnly = true;
             this.dgvLogList.RowHeadersWidth = 51;
@@ -11118,7 +11161,7 @@
             this.panel29.Controls.Add(this.cbLogType);
             this.panel29.Controls.Add(this.label146);
             this.panel29.Location = new System.Drawing.Point(4, 7);
-            this.panel29.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel29.Margin = new System.Windows.Forms.Padding(4);
             this.panel29.Name = "panel29";
             this.panel29.Size = new System.Drawing.Size(359, 357);
             this.panel29.TabIndex = 0;
@@ -11126,7 +11169,7 @@
             // btnLogSearch
             // 
             this.btnLogSearch.Location = new System.Drawing.Point(25, 209);
-            this.btnLogSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogSearch.Name = "btnLogSearch";
             this.btnLogSearch.Size = new System.Drawing.Size(128, 53);
             this.btnLogSearch.TabIndex = 32;
@@ -11159,7 +11202,7 @@
             // tbLogSearchKeyWord
             // 
             this.tbLogSearchKeyWord.Location = new System.Drawing.Point(131, 20);
-            this.tbLogSearchKeyWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLogSearchKeyWord.Margin = new System.Windows.Forms.Padding(4);
             this.tbLogSearchKeyWord.Name = "tbLogSearchKeyWord";
             this.tbLogSearchKeyWord.Size = new System.Drawing.Size(201, 26);
             this.tbLogSearchKeyWord.TabIndex = 29;
@@ -11167,7 +11210,7 @@
             // tbLogShowAllData
             // 
             this.tbLogShowAllData.Location = new System.Drawing.Point(203, 209);
-            this.tbLogShowAllData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbLogShowAllData.Margin = new System.Windows.Forms.Padding(4);
             this.tbLogShowAllData.Name = "tbLogShowAllData";
             this.tbLogShowAllData.Size = new System.Drawing.Size(135, 53);
             this.tbLogShowAllData.TabIndex = 27;
@@ -11178,7 +11221,7 @@
             // btnExportNhatKyHeThong
             // 
             this.btnExportNhatKyHeThong.Location = new System.Drawing.Point(25, 283);
-            this.btnExportNhatKyHeThong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportNhatKyHeThong.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportNhatKyHeThong.Name = "btnExportNhatKyHeThong";
             this.btnExportNhatKyHeThong.Size = new System.Drawing.Size(312, 53);
             this.btnExportNhatKyHeThong.TabIndex = 26;
@@ -11190,7 +11233,7 @@
             // 
             this.dtLogSearchEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtLogSearchEndTime.Location = new System.Drawing.Point(131, 153);
-            this.dtLogSearchEndTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtLogSearchEndTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtLogSearchEndTime.Name = "dtLogSearchEndTime";
             this.dtLogSearchEndTime.Size = new System.Drawing.Size(201, 26);
             this.dtLogSearchEndTime.TabIndex = 24;
@@ -11199,7 +11242,7 @@
             // 
             this.dtLogSearchStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtLogSearchStartTime.Location = new System.Drawing.Point(131, 111);
-            this.dtLogSearchStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtLogSearchStartTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtLogSearchStartTime.Name = "dtLogSearchStartTime";
             this.dtLogSearchStartTime.Size = new System.Drawing.Size(201, 26);
             this.dtLogSearchStartTime.TabIndex = 23;
@@ -11220,7 +11263,7 @@
             this.cbLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLogType.FormattingEnabled = true;
             this.cbLogType.Location = new System.Drawing.Point(131, 63);
-            this.cbLogType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbLogType.Margin = new System.Windows.Forms.Padding(4);
             this.cbLogType.Name = "cbLogType";
             this.cbLogType.Size = new System.Drawing.Size(201, 28);
             this.cbLogType.TabIndex = 21;
@@ -11240,9 +11283,9 @@
             // 
             this.tabPageQuanLyXeRaVao.Controls.Add(this.tabQuanLyXe);
             this.tabPageQuanLyXeRaVao.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyXeRaVao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyXeRaVao.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyXeRaVao.Name = "tabPageQuanLyXeRaVao";
-            this.tabPageQuanLyXeRaVao.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyXeRaVao.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyXeRaVao.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyXeRaVao.TabIndex = 5;
             this.tabPageQuanLyXeRaVao.Text = "QUẢN LÝ XE RA VÀO";
@@ -11255,7 +11298,7 @@
             this.tabQuanLyXe.Controls.Add(this.tabPageTraCuuVaoRaVeThang);
             this.tabQuanLyXe.Controls.Add(this.tabPageXemHopDen);
             this.tabQuanLyXe.Location = new System.Drawing.Point(11, 10);
-            this.tabQuanLyXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyXe.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyXe.Name = "tabQuanLyXe";
             this.tabQuanLyXe.SelectedIndex = 0;
             this.tabQuanLyXe.Size = new System.Drawing.Size(1544, 793);
@@ -11270,9 +11313,9 @@
             this.tabPageThietLapRaVao.Controls.Add(this.label37);
             this.tabPageThietLapRaVao.Controls.Add(this.tbTicketLimitDay);
             this.tabPageThietLapRaVao.Location = new System.Drawing.Point(4, 29);
-            this.tabPageThietLapRaVao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageThietLapRaVao.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageThietLapRaVao.Name = "tabPageThietLapRaVao";
-            this.tabPageThietLapRaVao.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageThietLapRaVao.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageThietLapRaVao.Size = new System.Drawing.Size(1536, 760);
             this.tabPageThietLapRaVao.TabIndex = 0;
             this.tabPageThietLapRaVao.Text = "Thiết lập ra vào";
@@ -11290,7 +11333,7 @@
             this.panel9.Controls.Add(this.btnSaveConfig);
             this.panel9.Controls.Add(this.tbBikeSpace);
             this.panel9.Location = new System.Drawing.Point(569, 7);
-            this.panel9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel9.Margin = new System.Windows.Forms.Padding(4);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(396, 741);
             this.panel9.TabIndex = 0;
@@ -11313,7 +11356,7 @@
             this.BlackCarDigit,
             this.BlackCarIdentify});
             this.dgvBlackCarList.Location = new System.Drawing.Point(100, 281);
-            this.dgvBlackCarList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvBlackCarList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBlackCarList.Name = "dgvBlackCarList";
             this.dgvBlackCarList.RowHeadersWidth = 51;
             this.dgvBlackCarList.Size = new System.Drawing.Size(195, 417);
@@ -11340,7 +11383,7 @@
             // tbCarSpace
             // 
             this.tbCarSpace.Location = new System.Drawing.Point(204, 66);
-            this.tbCarSpace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCarSpace.Margin = new System.Windows.Forms.Padding(4);
             this.tbCarSpace.Name = "tbCarSpace";
             this.tbCarSpace.Size = new System.Drawing.Size(161, 26);
             this.tbCarSpace.TabIndex = 20;
@@ -11348,7 +11391,7 @@
             // btnAddBlackCar
             // 
             this.btnAddBlackCar.Location = new System.Drawing.Point(100, 236);
-            this.btnAddBlackCar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddBlackCar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddBlackCar.Name = "btnAddBlackCar";
             this.btnAddBlackCar.Size = new System.Drawing.Size(195, 37);
             this.btnAddBlackCar.TabIndex = 25;
@@ -11370,7 +11413,7 @@
             // tbBlackCarDigit
             // 
             this.tbBlackCarDigit.Location = new System.Drawing.Point(100, 202);
-            this.tbBlackCarDigit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBlackCarDigit.Margin = new System.Windows.Forms.Padding(4);
             this.tbBlackCarDigit.Name = "tbBlackCarDigit";
             this.tbBlackCarDigit.Size = new System.Drawing.Size(193, 26);
             this.tbBlackCarDigit.TabIndex = 25;
@@ -11389,7 +11432,7 @@
             // btnSaveConfig
             // 
             this.btnSaveConfig.Location = new System.Drawing.Point(100, 118);
-            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveConfig.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(195, 37);
             this.btnSaveConfig.TabIndex = 24;
@@ -11400,7 +11443,7 @@
             // tbBikeSpace
             // 
             this.tbBikeSpace.Location = new System.Drawing.Point(204, 26);
-            this.tbBikeSpace.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbBikeSpace.Margin = new System.Windows.Forms.Padding(4);
             this.tbBikeSpace.Name = "tbBikeSpace";
             this.tbBikeSpace.Size = new System.Drawing.Size(161, 26);
             this.tbBikeSpace.TabIndex = 12;
@@ -11408,7 +11451,7 @@
             // tbNightLimit
             // 
             this.tbNightLimit.Location = new System.Drawing.Point(1192, 114);
-            this.tbNightLimit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbNightLimit.Margin = new System.Windows.Forms.Padding(4);
             this.tbNightLimit.Name = "tbNightLimit";
             this.tbNightLimit.Size = new System.Drawing.Size(161, 26);
             this.tbNightLimit.TabIndex = 18;
@@ -11441,7 +11484,7 @@
             // tbTicketLimitDay
             // 
             this.tbTicketLimitDay.Location = new System.Drawing.Point(1192, 74);
-            this.tbTicketLimitDay.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTicketLimitDay.Margin = new System.Windows.Forms.Padding(4);
             this.tbTicketLimitDay.Name = "tbTicketLimitDay";
             this.tbTicketLimitDay.Size = new System.Drawing.Size(161, 26);
             this.tbTicketLimitDay.TabIndex = 16;
@@ -11452,9 +11495,9 @@
             this.tabPageTraCuuVaoRa.Controls.Add(this.dgvCarList);
             this.tabPageTraCuuVaoRa.Controls.Add(this.panel10);
             this.tabPageTraCuuVaoRa.Location = new System.Drawing.Point(4, 29);
-            this.tabPageTraCuuVaoRa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTraCuuVaoRa.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageTraCuuVaoRa.Name = "tabPageTraCuuVaoRa";
-            this.tabPageTraCuuVaoRa.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTraCuuVaoRa.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageTraCuuVaoRa.Size = new System.Drawing.Size(1536, 760);
             this.tabPageTraCuuVaoRa.TabIndex = 1;
             this.tabPageTraCuuVaoRa.Text = "Tra cứu vào ra";
@@ -11490,7 +11533,7 @@
             this.Column34,
             this.Column48});
             this.dgvCarList.Location = new System.Drawing.Point(8, 377);
-            this.dgvCarList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCarList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCarList.Name = "dgvCarList";
             this.dgvCarList.RowHeadersWidth = 51;
             this.dgvCarList.Size = new System.Drawing.Size(1517, 372);
@@ -11750,7 +11793,7 @@
             this.panel10.Controls.Add(this.label35);
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Location = new System.Drawing.Point(8, 7);
-            this.panel10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel10.Margin = new System.Windows.Forms.Padding(4);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(1517, 362);
             this.panel10.TabIndex = 0;
@@ -11759,7 +11802,7 @@
             // 
             this.btnCarListSelectAll.ForeColor = System.Drawing.Color.Black;
             this.btnCarListSelectAll.Location = new System.Drawing.Point(1351, 303);
-            this.btnCarListSelectAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCarListSelectAll.Margin = new System.Windows.Forms.Padding(4);
             this.btnCarListSelectAll.Name = "btnCarListSelectAll";
             this.btnCarListSelectAll.Size = new System.Drawing.Size(141, 44);
             this.btnCarListSelectAll.TabIndex = 31;
@@ -11771,7 +11814,7 @@
             // btnXemDanhSachXeTon
             // 
             this.btnXemDanhSachXeTon.Location = new System.Drawing.Point(144, 294);
-            this.btnXemDanhSachXeTon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnXemDanhSachXeTon.Margin = new System.Windows.Forms.Padding(4);
             this.btnXemDanhSachXeTon.Name = "btnXemDanhSachXeTon";
             this.btnXemDanhSachXeTon.Size = new System.Drawing.Size(123, 53);
             this.btnXemDanhSachXeTon.TabIndex = 30;
@@ -11782,7 +11825,7 @@
             // tbCarLogIdentify
             // 
             this.tbCarLogIdentify.Location = new System.Drawing.Point(1204, 12);
-            this.tbCarLogIdentify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCarLogIdentify.Margin = new System.Windows.Forms.Padding(4);
             this.tbCarLogIdentify.Name = "tbCarLogIdentify";
             this.tbCarLogIdentify.Size = new System.Drawing.Size(147, 26);
             this.tbCarLogIdentify.TabIndex = 29;
@@ -11792,7 +11835,7 @@
             // 
             this.dateTimePickerCarTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerCarTimeOut.Location = new System.Drawing.Point(415, 112);
-            this.dateTimePickerCarTimeOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarTimeOut.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarTimeOut.Name = "dateTimePickerCarTimeOut";
             this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(147, 26);
             this.dateTimePickerCarTimeOut.TabIndex = 28;
@@ -11802,7 +11845,7 @@
             // 
             this.dateTimePickerCarTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerCarTimeIn.Location = new System.Drawing.Point(415, 70);
-            this.dateTimePickerCarTimeIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarTimeIn.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarTimeIn.Name = "dateTimePickerCarTimeIn";
             this.dateTimePickerCarTimeIn.Size = new System.Drawing.Size(147, 26);
             this.dateTimePickerCarTimeIn.TabIndex = 27;
@@ -11824,7 +11867,7 @@
             this.comboBoxNhanVienVao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxNhanVienVao.FormattingEnabled = true;
             this.comboBoxNhanVienVao.Location = new System.Drawing.Point(143, 238);
-            this.comboBoxNhanVienVao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxNhanVienVao.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxNhanVienVao.Name = "comboBoxNhanVienVao";
             this.comboBoxNhanVienVao.Size = new System.Drawing.Size(147, 28);
             this.comboBoxNhanVienVao.TabIndex = 25;
@@ -11834,7 +11877,7 @@
             this.comboBoxNhanVienRa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxNhanVienRa.FormattingEnabled = true;
             this.comboBoxNhanVienRa.Location = new System.Drawing.Point(415, 238);
-            this.comboBoxNhanVienRa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxNhanVienRa.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxNhanVienRa.Name = "comboBoxNhanVienRa";
             this.comboBoxNhanVienRa.Size = new System.Drawing.Size(147, 28);
             this.comboBoxNhanVienRa.TabIndex = 24;
@@ -11875,7 +11918,7 @@
             // tbCarDigitSearch
             // 
             this.tbCarDigitSearch.Location = new System.Drawing.Point(415, 154);
-            this.tbCarDigitSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCarDigitSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbCarDigitSearch.Name = "tbCarDigitSearch";
             this.tbCarDigitSearch.Size = new System.Drawing.Size(147, 26);
             this.tbCarDigitSearch.TabIndex = 20;
@@ -11896,7 +11939,7 @@
             this.panel13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel13.Controls.Add(this.pictureBoxCarLogImage2);
             this.panel13.Location = new System.Drawing.Point(585, 182);
-            this.panel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(295, 169);
             this.panel13.TabIndex = 18;
@@ -11906,7 +11949,7 @@
             this.pictureBoxCarLogImage2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxCarLogImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage2.Image")));
             this.pictureBoxCarLogImage2.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxCarLogImage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxCarLogImage2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxCarLogImage2.Name = "pictureBoxCarLogImage2";
             this.pictureBoxCarLogImage2.Size = new System.Drawing.Size(285, 160);
             this.pictureBoxCarLogImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -11919,7 +11962,7 @@
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel14.Controls.Add(this.pictureBoxCarLogImage1);
             this.panel14.Location = new System.Drawing.Point(585, 7);
-            this.panel14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel14.Margin = new System.Windows.Forms.Padding(4);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(295, 169);
             this.panel14.TabIndex = 17;
@@ -11929,7 +11972,7 @@
             this.pictureBoxCarLogImage1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxCarLogImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage1.Image")));
             this.pictureBoxCarLogImage1.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxCarLogImage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxCarLogImage1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxCarLogImage1.Name = "pictureBoxCarLogImage1";
             this.pictureBoxCarLogImage1.Size = new System.Drawing.Size(285, 160);
             this.pictureBoxCarLogImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -11942,7 +11985,7 @@
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel12.Controls.Add(this.pictureBoxCarLogImage4);
             this.panel12.Location = new System.Drawing.Point(887, 182);
-            this.panel12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(295, 169);
             this.panel12.TabIndex = 16;
@@ -11952,7 +11995,7 @@
             this.pictureBoxCarLogImage4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxCarLogImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage4.Image")));
             this.pictureBoxCarLogImage4.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxCarLogImage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxCarLogImage4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxCarLogImage4.Name = "pictureBoxCarLogImage4";
             this.pictureBoxCarLogImage4.Size = new System.Drawing.Size(285, 160);
             this.pictureBoxCarLogImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -11963,7 +12006,7 @@
             // btnSearchCar
             // 
             this.btnSearchCar.Location = new System.Drawing.Point(33, 294);
-            this.btnSearchCar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchCar.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchCar.Name = "btnSearchCar";
             this.btnSearchCar.Size = new System.Drawing.Size(103, 53);
             this.btnSearchCar.TabIndex = 15;
@@ -11975,7 +12018,7 @@
             // 
             this.btnSaveLostCard.ForeColor = System.Drawing.Color.Red;
             this.btnSaveLostCard.Location = new System.Drawing.Point(417, 294);
-            this.btnSaveLostCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveLostCard.Margin = new System.Windows.Forms.Padding(4);
             this.btnSaveLostCard.Name = "btnSaveLostCard";
             this.btnSaveLostCard.Size = new System.Drawing.Size(145, 53);
             this.btnSaveLostCard.TabIndex = 14;
@@ -11986,7 +12029,7 @@
             // btnExportDanhSachXe
             // 
             this.btnExportDanhSachXe.Location = new System.Drawing.Point(275, 294);
-            this.btnExportDanhSachXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachXe.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachXe.Name = "btnExportDanhSachXe";
             this.btnExportDanhSachXe.Size = new System.Drawing.Size(135, 53);
             this.btnExportDanhSachXe.TabIndex = 13;
@@ -11997,7 +12040,7 @@
             // tbCarIDSearch
             // 
             this.tbCarIDSearch.Location = new System.Drawing.Point(143, 196);
-            this.tbCarIDSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCarIDSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbCarIDSearch.Name = "tbCarIDSearch";
             this.tbCarIDSearch.Size = new System.Drawing.Size(419, 26);
             this.tbCarIDSearch.TabIndex = 11;
@@ -12005,7 +12048,7 @@
             // tbCardIdentifySearchCar
             // 
             this.tbCardIdentifySearchCar.Location = new System.Drawing.Point(143, 154);
-            this.tbCardIdentifySearchCar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCardIdentifySearchCar.Margin = new System.Windows.Forms.Padding(4);
             this.tbCardIdentifySearchCar.Name = "tbCardIdentifySearchCar";
             this.tbCardIdentifySearchCar.Size = new System.Drawing.Size(147, 26);
             this.tbCardIdentifySearchCar.TabIndex = 10;
@@ -12014,7 +12057,7 @@
             // 
             this.dateTimePickerCarDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerCarDateOut.Location = new System.Drawing.Point(143, 112);
-            this.dateTimePickerCarDateOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarDateOut.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarDateOut.Name = "dateTimePickerCarDateOut";
             this.dateTimePickerCarDateOut.Size = new System.Drawing.Size(251, 26);
             this.dateTimePickerCarDateOut.TabIndex = 8;
@@ -12023,7 +12066,7 @@
             // 
             this.dateTimePickerCarDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerCarDateIn.Location = new System.Drawing.Point(143, 70);
-            this.dateTimePickerCarDateIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarDateIn.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarDateIn.Name = "dateTimePickerCarDateIn";
             this.dateTimePickerCarDateIn.Size = new System.Drawing.Size(251, 26);
             this.dateTimePickerCarDateIn.TabIndex = 6;
@@ -12044,7 +12087,7 @@
             this.comboBoxTruyVanLoaiXe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTruyVanLoaiXe.FormattingEnabled = true;
             this.comboBoxTruyVanLoaiXe.Location = new System.Drawing.Point(143, 17);
-            this.comboBoxTruyVanLoaiXe.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxTruyVanLoaiXe.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxTruyVanLoaiXe.Name = "comboBoxTruyVanLoaiXe";
             this.comboBoxTruyVanLoaiXe.Size = new System.Drawing.Size(419, 28);
             this.comboBoxTruyVanLoaiXe.TabIndex = 4;
@@ -12065,7 +12108,7 @@
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel11.Controls.Add(this.pictureBoxCarLogImage3);
             this.panel11.Location = new System.Drawing.Point(887, 7);
-            this.panel11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel11.Margin = new System.Windows.Forms.Padding(4);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(295, 169);
             this.panel11.TabIndex = 0;
@@ -12075,7 +12118,7 @@
             this.pictureBoxCarLogImage3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxCarLogImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxCarLogImage3.Image")));
             this.pictureBoxCarLogImage3.Location = new System.Drawing.Point(4, 4);
-            this.pictureBoxCarLogImage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBoxCarLogImage3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBoxCarLogImage3.Name = "pictureBoxCarLogImage3";
             this.pictureBoxCarLogImage3.Size = new System.Drawing.Size(285, 160);
             this.pictureBoxCarLogImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -12088,9 +12131,9 @@
             this.tabPageTraCuuVaoRaVeThang.Controls.Add(this.dgvCarTicketMonthList);
             this.tabPageTraCuuVaoRaVeThang.Controls.Add(this.panel15);
             this.tabPageTraCuuVaoRaVeThang.Location = new System.Drawing.Point(4, 29);
-            this.tabPageTraCuuVaoRaVeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTraCuuVaoRaVeThang.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageTraCuuVaoRaVeThang.Name = "tabPageTraCuuVaoRaVeThang";
-            this.tabPageTraCuuVaoRaVeThang.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageTraCuuVaoRaVeThang.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageTraCuuVaoRaVeThang.Size = new System.Drawing.Size(1536, 760);
             this.tabPageTraCuuVaoRaVeThang.TabIndex = 2;
             this.tabPageTraCuuVaoRaVeThang.Text = "Tra cứu vào ra vé tháng";
@@ -12114,7 +12157,7 @@
             this.Column42,
             this.Column51});
             this.dgvCarTicketMonthList.Location = new System.Drawing.Point(8, 155);
-            this.dgvCarTicketMonthList.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvCarTicketMonthList.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCarTicketMonthList.Name = "dgvCarTicketMonthList";
             this.dgvCarTicketMonthList.ReadOnly = true;
             this.dgvCarTicketMonthList.RowHeadersWidth = 51;
@@ -12249,7 +12292,7 @@
             this.panel15.Controls.Add(this.dateTimePickerCarTicketMonthDateIn);
             this.panel15.Controls.Add(this.label51);
             this.panel15.Location = new System.Drawing.Point(8, 7);
-            this.panel15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel15.Margin = new System.Windows.Forms.Padding(4);
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(1517, 140);
             this.panel15.TabIndex = 1;
@@ -12258,7 +12301,7 @@
             // 
             this.dateTimePickerCarTicketMonthTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerCarTicketMonthTimeOut.Location = new System.Drawing.Point(936, 31);
-            this.dateTimePickerCarTicketMonthTimeOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarTicketMonthTimeOut.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarTicketMonthTimeOut.Name = "dateTimePickerCarTicketMonthTimeOut";
             this.dateTimePickerCarTicketMonthTimeOut.Size = new System.Drawing.Size(117, 26);
             this.dateTimePickerCarTicketMonthTimeOut.TabIndex = 31;
@@ -12268,7 +12311,7 @@
             // 
             this.dateTimePickerCarTicketMonthTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dateTimePickerCarTicketMonthTimeIn.Location = new System.Drawing.Point(380, 31);
-            this.dateTimePickerCarTicketMonthTimeIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarTicketMonthTimeIn.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarTicketMonthTimeIn.Name = "dateTimePickerCarTicketMonthTimeIn";
             this.dateTimePickerCarTicketMonthTimeIn.Size = new System.Drawing.Size(117, 26);
             this.dateTimePickerCarTicketMonthTimeIn.TabIndex = 30;
@@ -12278,7 +12321,7 @@
             // 
             this.dateTimePickerCarTicketMonthDateOut.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerCarTicketMonthDateOut.Location = new System.Drawing.Point(692, 31);
-            this.dateTimePickerCarTicketMonthDateOut.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarTicketMonthDateOut.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarTicketMonthDateOut.Name = "dateTimePickerCarTicketMonthDateOut";
             this.dateTimePickerCarTicketMonthDateOut.Size = new System.Drawing.Size(228, 26);
             this.dateTimePickerCarTicketMonthDateOut.TabIndex = 28;
@@ -12308,7 +12351,7 @@
             // tbCompany
             // 
             this.tbCompany.Location = new System.Drawing.Point(692, 78);
-            this.tbCompany.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCompany.Margin = new System.Windows.Forms.Padding(4);
             this.tbCompany.Name = "tbCompany";
             this.tbCompany.Size = new System.Drawing.Size(361, 26);
             this.tbCompany.TabIndex = 20;
@@ -12327,7 +12370,7 @@
             // btnSearchCarTicketMonth
             // 
             this.btnSearchCarTicketMonth.Location = new System.Drawing.Point(1096, 39);
-            this.btnSearchCarTicketMonth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchCarTicketMonth.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchCarTicketMonth.Name = "btnSearchCarTicketMonth";
             this.btnSearchCarTicketMonth.Size = new System.Drawing.Size(111, 53);
             this.btnSearchCarTicketMonth.TabIndex = 15;
@@ -12338,7 +12381,7 @@
             // btnExportDanhSachXeThang
             // 
             this.btnExportDanhSachXeThang.Location = new System.Drawing.Point(1235, 39);
-            this.btnExportDanhSachXeThang.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportDanhSachXeThang.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportDanhSachXeThang.Name = "btnExportDanhSachXeThang";
             this.btnExportDanhSachXeThang.Size = new System.Drawing.Size(173, 53);
             this.btnExportDanhSachXeThang.TabIndex = 13;
@@ -12349,7 +12392,7 @@
             // tbCustomerName
             // 
             this.tbCustomerName.Location = new System.Drawing.Point(136, 78);
-            this.tbCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.tbCustomerName.Name = "tbCustomerName";
             this.tbCustomerName.Size = new System.Drawing.Size(361, 26);
             this.tbCustomerName.TabIndex = 10;
@@ -12358,7 +12401,7 @@
             // 
             this.dateTimePickerCarTicketMonthDateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePickerCarTicketMonthDateIn.Location = new System.Drawing.Point(136, 31);
-            this.dateTimePickerCarTicketMonthDateIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePickerCarTicketMonthDateIn.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePickerCarTicketMonthDateIn.Name = "dateTimePickerCarTicketMonthDateIn";
             this.dateTimePickerCarTicketMonthDateIn.Size = new System.Drawing.Size(228, 26);
             this.dateTimePickerCarTicketMonthDateIn.TabIndex = 6;
@@ -12377,9 +12420,9 @@
             // tabPageXemHopDen
             // 
             this.tabPageXemHopDen.Location = new System.Drawing.Point(4, 29);
-            this.tabPageXemHopDen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageXemHopDen.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageXemHopDen.Name = "tabPageXemHopDen";
-            this.tabPageXemHopDen.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageXemHopDen.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageXemHopDen.Size = new System.Drawing.Size(1536, 760);
             this.tabPageXemHopDen.TabIndex = 3;
             this.tabPageXemHopDen.Text = "Xem hộp đen";
@@ -12389,7 +12432,7 @@
             // 
             this.tabPageQuanLyPhieuThuChi.Controls.Add(this.tabQuanLyPhieuThuChi);
             this.tabPageQuanLyPhieuThuChi.Location = new System.Drawing.Point(4, 29);
-            this.tabPageQuanLyPhieuThuChi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageQuanLyPhieuThuChi.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageQuanLyPhieuThuChi.Name = "tabPageQuanLyPhieuThuChi";
             this.tabPageQuanLyPhieuThuChi.Size = new System.Drawing.Size(1563, 801);
             this.tabPageQuanLyPhieuThuChi.TabIndex = 6;
@@ -12402,7 +12445,7 @@
             this.tabQuanLyPhieuThuChi.Controls.Add(this.tabPageLichSuPhieuThuChi);
             this.tabQuanLyPhieuThuChi.Controls.Add(this.tabPageChiTietPhieuThuChi);
             this.tabQuanLyPhieuThuChi.Location = new System.Drawing.Point(7, 7);
-            this.tabQuanLyPhieuThuChi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabQuanLyPhieuThuChi.Margin = new System.Windows.Forms.Padding(4);
             this.tabQuanLyPhieuThuChi.Name = "tabQuanLyPhieuThuChi";
             this.tabQuanLyPhieuThuChi.SelectedIndex = 0;
             this.tabQuanLyPhieuThuChi.Size = new System.Drawing.Size(1548, 784);
@@ -12418,9 +12461,9 @@
             this.tabPageInPhieuThuChi.Controls.Add(this.btnPrintTransferCost);
             this.tabPageInPhieuThuChi.Controls.Add(this.panelPrintReceipt);
             this.tabPageInPhieuThuChi.Location = new System.Drawing.Point(4, 29);
-            this.tabPageInPhieuThuChi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageInPhieuThuChi.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageInPhieuThuChi.Name = "tabPageInPhieuThuChi";
-            this.tabPageInPhieuThuChi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageInPhieuThuChi.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageInPhieuThuChi.Size = new System.Drawing.Size(1540, 751);
             this.tabPageInPhieuThuChi.TabIndex = 0;
             this.tabPageInPhieuThuChi.Text = "In phiếu thu / chi";
@@ -12429,7 +12472,7 @@
             // 
             this.btnPrintFeeNotice.ForeColor = System.Drawing.Color.Black;
             this.btnPrintFeeNotice.Location = new System.Drawing.Point(1100, 693);
-            this.btnPrintFeeNotice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrintFeeNotice.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintFeeNotice.Name = "btnPrintFeeNotice";
             this.btnPrintFeeNotice.Size = new System.Drawing.Size(264, 44);
             this.btnPrintFeeNotice.TabIndex = 35;
@@ -12441,7 +12484,7 @@
             // 
             this.btnCancedReceipt.ForeColor = System.Drawing.Color.Black;
             this.btnCancedReceipt.Location = new System.Drawing.Point(1408, 692);
-            this.btnCancedReceipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancedReceipt.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancedReceipt.Name = "btnCancedReceipt";
             this.btnCancedReceipt.Size = new System.Drawing.Size(80, 44);
             this.btnCancedReceipt.TabIndex = 34;
@@ -12459,7 +12502,7 @@
             this.btnPrintReceipt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintReceipt.ForeColor = System.Drawing.Color.White;
             this.btnPrintReceipt.Location = new System.Drawing.Point(469, 692);
-            this.btnPrintReceipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrintReceipt.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintReceipt.Name = "btnPrintReceipt";
             this.btnPrintReceipt.Size = new System.Drawing.Size(264, 44);
             this.btnPrintReceipt.TabIndex = 33;
@@ -12471,7 +12514,7 @@
             // 
             this.btnPrintTransferCost.ForeColor = System.Drawing.Color.Black;
             this.btnPrintTransferCost.Location = new System.Drawing.Point(784, 692);
-            this.btnPrintTransferCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPrintTransferCost.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintTransferCost.Name = "btnPrintTransferCost";
             this.btnPrintTransferCost.Size = new System.Drawing.Size(264, 44);
             this.btnPrintTransferCost.TabIndex = 32;
@@ -12517,7 +12560,7 @@
             this.dataGridViewTextBoxColumn50});
             this.dgvPrintReceipt.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dgvPrintReceipt.Location = new System.Drawing.Point(16, 277);
-            this.dgvPrintReceipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvPrintReceipt.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPrintReceipt.Name = "dgvPrintReceipt";
             this.dgvPrintReceipt.RowHeadersVisible = false;
             this.dgvPrintReceipt.RowHeadersWidth = 51;
@@ -12726,7 +12769,7 @@
             this.panel37.Controls.Add(this.tbPrintReceiptCustomerName);
             this.panel37.Controls.Add(this.tbPrintReceiptKeyWordSearch);
             this.panel37.Location = new System.Drawing.Point(17, 12);
-            this.panel37.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel37.Margin = new System.Windows.Forms.Padding(4);
             this.panel37.Name = "panel37";
             this.panel37.Size = new System.Drawing.Size(1445, 252);
             this.panel37.TabIndex = 7;
@@ -12735,7 +12778,7 @@
             // 
             this.btnSearchCardPrintReceipt.ForeColor = System.Drawing.Color.Black;
             this.btnSearchCardPrintReceipt.Location = new System.Drawing.Point(668, 62);
-            this.btnSearchCardPrintReceipt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearchCardPrintReceipt.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearchCardPrintReceipt.Name = "btnSearchCardPrintReceipt";
             this.btnSearchCardPrintReceipt.Size = new System.Drawing.Size(69, 52);
             this.btnSearchCardPrintReceipt.TabIndex = 54;
@@ -12746,7 +12789,7 @@
             // numericMonthExtendCount
             // 
             this.numericMonthExtendCount.Location = new System.Drawing.Point(1207, 212);
-            this.numericMonthExtendCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.numericMonthExtendCount.Margin = new System.Windows.Forms.Padding(4);
             this.numericMonthExtendCount.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -12778,7 +12821,7 @@
             // 
             this.cbCostDeposit.AutoSize = true;
             this.cbCostDeposit.Location = new System.Drawing.Point(1193, 92);
-            this.cbCostDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCostDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.cbCostDeposit.Name = "cbCostDeposit";
             this.cbCostDeposit.Size = new System.Drawing.Size(87, 24);
             this.cbCostDeposit.TabIndex = 50;
@@ -12790,7 +12833,7 @@
             // 
             this.cbCostExtendCard.AutoSize = true;
             this.cbCostExtendCard.Location = new System.Drawing.Point(1017, 62);
-            this.cbCostExtendCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCostExtendCard.Margin = new System.Windows.Forms.Padding(4);
             this.cbCostExtendCard.Name = "cbCostExtendCard";
             this.cbCostExtendCard.Size = new System.Drawing.Size(114, 24);
             this.cbCostExtendCard.TabIndex = 49;
@@ -12802,7 +12845,7 @@
             // 
             this.cbVAT.AutoSize = true;
             this.cbVAT.Location = new System.Drawing.Point(1193, 62);
-            this.cbVAT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbVAT.Margin = new System.Windows.Forms.Padding(4);
             this.cbVAT.Name = "cbVAT";
             this.cbVAT.Size = new System.Drawing.Size(101, 24);
             this.cbVAT.TabIndex = 48;
@@ -12815,9 +12858,9 @@
             this.groupBoxCostDeposit.Controls.Add(this.rbRemoveCostDeposit);
             this.groupBoxCostDeposit.Controls.Add(this.rbAddCostDeposit);
             this.groupBoxCostDeposit.Location = new System.Drawing.Point(1193, 116);
-            this.groupBoxCostDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCostDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxCostDeposit.Name = "groupBoxCostDeposit";
-            this.groupBoxCostDeposit.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCostDeposit.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxCostDeposit.Size = new System.Drawing.Size(160, 84);
             this.groupBoxCostDeposit.TabIndex = 47;
             this.groupBoxCostDeposit.TabStop = false;
@@ -12827,7 +12870,7 @@
             // 
             this.rbRemoveCostDeposit.AutoSize = true;
             this.rbRemoveCostDeposit.Location = new System.Drawing.Point(15, 49);
-            this.rbRemoveCostDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbRemoveCostDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.rbRemoveCostDeposit.Name = "rbRemoveCostDeposit";
             this.rbRemoveCostDeposit.Size = new System.Drawing.Size(119, 24);
             this.rbRemoveCostDeposit.TabIndex = 45;
@@ -12840,7 +12883,7 @@
             this.rbAddCostDeposit.AutoSize = true;
             this.rbAddCostDeposit.Checked = true;
             this.rbAddCostDeposit.Location = new System.Drawing.Point(15, 16);
-            this.rbAddCostDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbAddCostDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.rbAddCostDeposit.Name = "rbAddCostDeposit";
             this.rbAddCostDeposit.Size = new System.Drawing.Size(122, 24);
             this.rbAddCostDeposit.TabIndex = 44;
@@ -12853,7 +12896,7 @@
             // 
             this.cbCostCreateCard.AutoSize = true;
             this.cbCostCreateCard.Location = new System.Drawing.Point(1017, 95);
-            this.cbCostCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCostCreateCard.Margin = new System.Windows.Forms.Padding(4);
             this.cbCostCreateCard.Name = "cbCostCreateCard";
             this.cbCostCreateCard.Size = new System.Drawing.Size(115, 24);
             this.cbCostCreateCard.TabIndex = 46;
@@ -12866,9 +12909,9 @@
             this.groupBoxCostCreateCard.Controls.Add(this.rbRemoveCostCreateCard);
             this.groupBoxCostCreateCard.Controls.Add(this.rbAddCostCreateCard);
             this.groupBoxCostCreateCard.Location = new System.Drawing.Point(1013, 116);
-            this.groupBoxCostCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCostCreateCard.Margin = new System.Windows.Forms.Padding(4);
             this.groupBoxCostCreateCard.Name = "groupBoxCostCreateCard";
-            this.groupBoxCostCreateCard.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBoxCostCreateCard.Padding = new System.Windows.Forms.Padding(4);
             this.groupBoxCostCreateCard.Size = new System.Drawing.Size(160, 84);
             this.groupBoxCostCreateCard.TabIndex = 45;
             this.groupBoxCostCreateCard.TabStop = false;
@@ -12878,7 +12921,7 @@
             // 
             this.rbRemoveCostCreateCard.AutoSize = true;
             this.rbRemoveCostCreateCard.Location = new System.Drawing.Point(12, 49);
-            this.rbRemoveCostCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbRemoveCostCreateCard.Margin = new System.Windows.Forms.Padding(4);
             this.rbRemoveCostCreateCard.Name = "rbRemoveCostCreateCard";
             this.rbRemoveCostCreateCard.Size = new System.Drawing.Size(123, 24);
             this.rbRemoveCostCreateCard.TabIndex = 45;
@@ -12891,7 +12934,7 @@
             this.rbAddCostCreateCard.AutoSize = true;
             this.rbAddCostCreateCard.Checked = true;
             this.rbAddCostCreateCard.Location = new System.Drawing.Point(12, 16);
-            this.rbAddCostCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbAddCostCreateCard.Margin = new System.Windows.Forms.Padding(4);
             this.rbAddCostCreateCard.Name = "rbAddCostCreateCard";
             this.rbAddCostCreateCard.Size = new System.Drawing.Size(133, 24);
             this.rbAddCostCreateCard.TabIndex = 44;
@@ -12914,7 +12957,7 @@
             // tbPrintReceiptReason
             // 
             this.tbPrintReceiptReason.Location = new System.Drawing.Point(187, 207);
-            this.tbPrintReceiptReason.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrintReceiptReason.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrintReceiptReason.Name = "tbPrintReceiptReason";
             this.tbPrintReceiptReason.Size = new System.Drawing.Size(549, 26);
             this.tbPrintReceiptReason.TabIndex = 42;
@@ -12966,7 +13009,7 @@
             // tbPrintReceiptAddress
             // 
             this.tbPrintReceiptAddress.Location = new System.Drawing.Point(187, 167);
-            this.tbPrintReceiptAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrintReceiptAddress.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrintReceiptAddress.Name = "tbPrintReceiptAddress";
             this.tbPrintReceiptAddress.Size = new System.Drawing.Size(549, 26);
             this.tbPrintReceiptAddress.TabIndex = 31;
@@ -12985,7 +13028,7 @@
             // tbPrintReceiptCustomerName
             // 
             this.tbPrintReceiptCustomerName.Location = new System.Drawing.Point(187, 128);
-            this.tbPrintReceiptCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrintReceiptCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrintReceiptCustomerName.Name = "tbPrintReceiptCustomerName";
             this.tbPrintReceiptCustomerName.Size = new System.Drawing.Size(549, 26);
             this.tbPrintReceiptCustomerName.TabIndex = 29;
@@ -12995,7 +13038,7 @@
             this.tbPrintReceiptKeyWordSearch.BackColor = System.Drawing.Color.White;
             this.tbPrintReceiptKeyWordSearch.ForeColor = System.Drawing.Color.Black;
             this.tbPrintReceiptKeyWordSearch.Location = new System.Drawing.Point(187, 63);
-            this.tbPrintReceiptKeyWordSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrintReceiptKeyWordSearch.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrintReceiptKeyWordSearch.Name = "tbPrintReceiptKeyWordSearch";
             this.tbPrintReceiptKeyWordSearch.Size = new System.Drawing.Size(460, 26);
             this.tbPrintReceiptKeyWordSearch.TabIndex = 2;
@@ -13004,7 +13047,7 @@
             // 
             this.tbPrintReceiptCost.BackColor = System.Drawing.Color.White;
             this.tbPrintReceiptCost.Location = new System.Drawing.Point(1236, 624);
-            this.tbPrintReceiptCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPrintReceiptCost.Margin = new System.Windows.Forms.Padding(4);
             this.tbPrintReceiptCost.Name = "tbPrintReceiptCost";
             this.tbPrintReceiptCost.ReadOnly = true;
             this.tbPrintReceiptCost.Size = new System.Drawing.Size(225, 26);
@@ -13027,9 +13070,9 @@
             this.tabPageLichSuPhieuThuChi.Controls.Add(this.panel39);
             this.tabPageLichSuPhieuThuChi.Controls.Add(this.flowLayoutPanel2);
             this.tabPageLichSuPhieuThuChi.Location = new System.Drawing.Point(4, 29);
-            this.tabPageLichSuPhieuThuChi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageLichSuPhieuThuChi.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageLichSuPhieuThuChi.Name = "tabPageLichSuPhieuThuChi";
-            this.tabPageLichSuPhieuThuChi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageLichSuPhieuThuChi.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageLichSuPhieuThuChi.Size = new System.Drawing.Size(1540, 751);
             this.tabPageLichSuPhieuThuChi.TabIndex = 1;
             this.tabPageLichSuPhieuThuChi.Text = "Lịch sử phiếu thu / chi";
@@ -13057,7 +13100,7 @@
             this.panel39.Controls.Add(this.dtReceiptLogStartDate);
             this.panel39.Controls.Add(this.cbReceiptLogType);
             this.panel39.Location = new System.Drawing.Point(8, 4);
-            this.panel39.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel39.Margin = new System.Windows.Forms.Padding(4);
             this.panel39.Name = "panel39";
             this.panel39.Size = new System.Drawing.Size(1516, 208);
             this.panel39.TabIndex = 67;
@@ -13077,7 +13120,7 @@
             // 
             this.cbReceiptLogBook.AutoSize = true;
             this.cbReceiptLogBook.Location = new System.Drawing.Point(795, 17);
-            this.cbReceiptLogBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogBook.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogBook.Name = "cbReceiptLogBook";
             this.cbReceiptLogBook.Size = new System.Drawing.Size(102, 24);
             this.cbReceiptLogBook.TabIndex = 55;
@@ -13088,7 +13131,7 @@
             // 
             this.cbReceiptLogPrintDate.AutoSize = true;
             this.cbReceiptLogPrintDate.Location = new System.Drawing.Point(16, 70);
-            this.cbReceiptLogPrintDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogPrintDate.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogPrintDate.Name = "cbReceiptLogPrintDate";
             this.cbReceiptLogPrintDate.Size = new System.Drawing.Size(87, 24);
             this.cbReceiptLogPrintDate.TabIndex = 53;
@@ -13117,15 +13160,26 @@
             this.label244.TabIndex = 49;
             this.label244.Text = "Từ";
             // 
+            // dtReceiptLogBook
+            // 
+            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogBook.Location = new System.Drawing.Point(913, 16);
+            this.dtReceiptLogBook.Margin = new System.Windows.Forms.Padding(4);
+            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
+            this.dtReceiptLogBook.Size = new System.Drawing.Size(113, 26);
+            this.dtReceiptLogBook.TabIndex = 48;
+            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            // 
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.cbReceiptLogCostExtendCard);
             this.groupBox11.Controls.Add(this.cbReceiptLogCostDeposit);
             this.groupBox11.Controls.Add(this.cbReceiptLogCostCreateCard);
             this.groupBox11.Location = new System.Drawing.Point(548, 100);
-            this.groupBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox11.Size = new System.Drawing.Size(481, 86);
             this.groupBox11.TabIndex = 44;
             this.groupBox11.TabStop = false;
@@ -13135,7 +13189,7 @@
             // 
             this.cbReceiptLogCostExtendCard.AutoSize = true;
             this.cbReceiptLogCostExtendCard.Location = new System.Drawing.Point(96, 18);
-            this.cbReceiptLogCostExtendCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogCostExtendCard.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogCostExtendCard.Name = "cbReceiptLogCostExtendCard";
             this.cbReceiptLogCostExtendCard.Size = new System.Drawing.Size(114, 24);
             this.cbReceiptLogCostExtendCard.TabIndex = 52;
@@ -13146,7 +13200,7 @@
             // 
             this.cbReceiptLogCostDeposit.AutoSize = true;
             this.cbReceiptLogCostDeposit.Location = new System.Drawing.Point(276, 52);
-            this.cbReceiptLogCostDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogCostDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogCostDeposit.Name = "cbReceiptLogCostDeposit";
             this.cbReceiptLogCostDeposit.Size = new System.Drawing.Size(87, 24);
             this.cbReceiptLogCostDeposit.TabIndex = 51;
@@ -13157,7 +13211,7 @@
             // 
             this.cbReceiptLogCostCreateCard.AutoSize = true;
             this.cbReceiptLogCostCreateCard.Location = new System.Drawing.Point(96, 52);
-            this.cbReceiptLogCostCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogCostCreateCard.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogCostCreateCard.Name = "cbReceiptLogCostCreateCard";
             this.cbReceiptLogCostCreateCard.Size = new System.Drawing.Size(115, 24);
             this.cbReceiptLogCostCreateCard.TabIndex = 50;
@@ -13167,7 +13221,7 @@
             // btnReceiptLogSearch
             // 
             this.btnReceiptLogSearch.Location = new System.Drawing.Point(1119, 71);
-            this.btnReceiptLogSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReceiptLogSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnReceiptLogSearch.Name = "btnReceiptLogSearch";
             this.btnReceiptLogSearch.Size = new System.Drawing.Size(111, 53);
             this.btnReceiptLogSearch.TabIndex = 43;
@@ -13178,7 +13232,7 @@
             // btnReceiptLogExportExcel
             // 
             this.btnReceiptLogExportExcel.Location = new System.Drawing.Point(1257, 71);
-            this.btnReceiptLogExportExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReceiptLogExportExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnReceiptLogExportExcel.Name = "btnReceiptLogExportExcel";
             this.btnReceiptLogExportExcel.Size = new System.Drawing.Size(173, 53);
             this.btnReceiptLogExportExcel.TabIndex = 42;
@@ -13200,7 +13254,7 @@
             // tbReceiptLogCustomerName
             // 
             this.tbReceiptLogCustomerName.Location = new System.Drawing.Point(156, 159);
-            this.tbReceiptLogCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogCustomerName.Name = "tbReceiptLogCustomerName";
             this.tbReceiptLogCustomerName.Size = new System.Drawing.Size(336, 26);
             this.tbReceiptLogCustomerName.TabIndex = 40;
@@ -13209,7 +13263,7 @@
             // 
             this.dtReceiptLogEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtReceiptLogEndTime.Location = new System.Drawing.Point(345, 110);
-            this.dtReceiptLogEndTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogEndTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogEndTime.Name = "dtReceiptLogEndTime";
             this.dtReceiptLogEndTime.Size = new System.Drawing.Size(147, 26);
             this.dtReceiptLogEndTime.TabIndex = 39;
@@ -13219,7 +13273,7 @@
             // 
             this.dtReceiptLogStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtReceiptLogStartTime.Location = new System.Drawing.Point(345, 68);
-            this.dtReceiptLogStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogStartTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogStartTime.Name = "dtReceiptLogStartTime";
             this.dtReceiptLogStartTime.Size = new System.Drawing.Size(147, 26);
             this.dtReceiptLogStartTime.TabIndex = 38;
@@ -13239,7 +13293,7 @@
             // tbReceiptLogAddress
             // 
             this.tbReceiptLogAddress.Location = new System.Drawing.Point(644, 57);
-            this.tbReceiptLogAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogAddress.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogAddress.Name = "tbReceiptLogAddress";
             this.tbReceiptLogAddress.Size = new System.Drawing.Size(383, 26);
             this.tbReceiptLogAddress.TabIndex = 36;
@@ -13258,7 +13312,7 @@
             // tbReceiptLogNumber
             // 
             this.tbReceiptLogNumber.Location = new System.Drawing.Point(644, 16);
-            this.tbReceiptLogNumber.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogNumber.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogNumber.Name = "tbReceiptLogNumber";
             this.tbReceiptLogNumber.Size = new System.Drawing.Size(88, 26);
             this.tbReceiptLogNumber.TabIndex = 34;
@@ -13267,7 +13321,7 @@
             // 
             this.dtReceiptLogEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtReceiptLogEndDate.Location = new System.Drawing.Point(156, 110);
-            this.dtReceiptLogEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogEndDate.Name = "dtReceiptLogEndDate";
             this.dtReceiptLogEndDate.Size = new System.Drawing.Size(163, 26);
             this.dtReceiptLogEndDate.TabIndex = 33;
@@ -13276,7 +13330,7 @@
             // 
             this.dtReceiptLogStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtReceiptLogStartDate.Location = new System.Drawing.Point(156, 68);
-            this.dtReceiptLogStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogStartDate.Name = "dtReceiptLogStartDate";
             this.dtReceiptLogStartDate.Size = new System.Drawing.Size(163, 26);
             this.dtReceiptLogStartDate.TabIndex = 32;
@@ -13286,7 +13340,7 @@
             this.cbReceiptLogType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbReceiptLogType.FormattingEnabled = true;
             this.cbReceiptLogType.Location = new System.Drawing.Point(156, 16);
-            this.cbReceiptLogType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogType.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogType.Name = "cbReceiptLogType";
             this.cbReceiptLogType.Size = new System.Drawing.Size(336, 28);
             this.cbReceiptLogType.TabIndex = 30;
@@ -13296,7 +13350,7 @@
             this.flowLayoutPanel2.Controls.Add(this.dgv_ReceiptHistory);
             this.flowLayoutPanel2.Controls.Add(this.panel38);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(8, 215);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(1521, 530);
             this.flowLayoutPanel2.TabIndex = 66;
@@ -13321,7 +13375,7 @@
             this.ReceiptLog_Detail,
             this.ReceiptLogID});
             this.dgv_ReceiptHistory.Location = new System.Drawing.Point(4, 4);
-            this.dgv_ReceiptHistory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv_ReceiptHistory.Margin = new System.Windows.Forms.Padding(4);
             this.dgv_ReceiptHistory.Name = "dgv_ReceiptHistory";
             this.dgv_ReceiptHistory.ReadOnly = true;
             this.dgv_ReceiptHistory.RowHeadersVisible = false;
@@ -13479,7 +13533,7 @@
             this.panel38.Controls.Add(this.textBox11);
             this.panel38.Controls.Add(this.tbReceiptLogTotalCost);
             this.panel38.Location = new System.Drawing.Point(4, 491);
-            this.panel38.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel38.Margin = new System.Windows.Forms.Padding(4);
             this.panel38.Name = "panel38";
             this.panel38.Size = new System.Drawing.Size(1499, 34);
             this.panel38.TabIndex = 64;
@@ -13490,7 +13544,7 @@
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox11.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox11.Location = new System.Drawing.Point(927, 4);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
             this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(104, 22);
@@ -13503,7 +13557,7 @@
             this.tbReceiptLogTotalCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbReceiptLogTotalCost.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbReceiptLogTotalCost.Location = new System.Drawing.Point(1039, 4);
-            this.tbReceiptLogTotalCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogTotalCost.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogTotalCost.Multiline = true;
             this.tbReceiptLogTotalCost.Name = "tbReceiptLogTotalCost";
             this.tbReceiptLogTotalCost.ReadOnly = true;
@@ -13516,9 +13570,9 @@
             // 
             this.tabPageChiTietPhieuThuChi.Controls.Add(this.panel41);
             this.tabPageChiTietPhieuThuChi.Location = new System.Drawing.Point(4, 29);
-            this.tabPageChiTietPhieuThuChi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageChiTietPhieuThuChi.Margin = new System.Windows.Forms.Padding(4);
             this.tabPageChiTietPhieuThuChi.Name = "tabPageChiTietPhieuThuChi";
-            this.tabPageChiTietPhieuThuChi.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPageChiTietPhieuThuChi.Padding = new System.Windows.Forms.Padding(4);
             this.tabPageChiTietPhieuThuChi.Size = new System.Drawing.Size(1540, 751);
             this.tabPageChiTietPhieuThuChi.TabIndex = 2;
             this.tabPageChiTietPhieuThuChi.Text = "Chi tiết phiếu thu / chi";
@@ -13539,7 +13593,7 @@
             this.flowLayoutPanel3.Controls.Add(this.dgvReceiptLogDetail);
             this.flowLayoutPanel3.Controls.Add(this.panel40);
             this.flowLayoutPanel3.Location = new System.Drawing.Point(13, 250);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(1500, 480);
             this.flowLayoutPanel3.TabIndex = 67;
@@ -13564,7 +13618,7 @@
             this.ReceiptLogDetailReason});
             this.dgvReceiptLogDetail.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.dgvReceiptLogDetail.Location = new System.Drawing.Point(4, 4);
-            this.dgvReceiptLogDetail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvReceiptLogDetail.Margin = new System.Windows.Forms.Padding(4);
             this.dgvReceiptLogDetail.Name = "dgvReceiptLogDetail";
             this.dgvReceiptLogDetail.RowHeadersVisible = false;
             this.dgvReceiptLogDetail.RowHeadersWidth = 51;
@@ -13691,7 +13745,7 @@
             this.panel40.Controls.Add(this.textBox6);
             this.panel40.Controls.Add(this.tbReceiptLogDetailTotalCost);
             this.panel40.Location = new System.Drawing.Point(4, 444);
-            this.panel40.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel40.Margin = new System.Windows.Forms.Padding(4);
             this.panel40.Name = "panel40";
             this.panel40.Size = new System.Drawing.Size(1487, 34);
             this.panel40.TabIndex = 65;
@@ -13702,7 +13756,7 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.Location = new System.Drawing.Point(959, 4);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(104, 22);
@@ -13715,7 +13769,7 @@
             this.tbReceiptLogDetailTotalCost.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbReceiptLogDetailTotalCost.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbReceiptLogDetailTotalCost.Location = new System.Drawing.Point(1071, 4);
-            this.tbReceiptLogDetailTotalCost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailTotalCost.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailTotalCost.Multiline = true;
             this.tbReceiptLogDetailTotalCost.Name = "tbReceiptLogDetailTotalCost";
             this.tbReceiptLogDetailTotalCost.ReadOnly = true;
@@ -13753,7 +13807,7 @@
             this.panel42.Controls.Add(this.dtReceiptLogDetailEndDate);
             this.panel42.Controls.Add(this.dtReceiptLogDetailStartDate);
             this.panel42.Location = new System.Drawing.Point(13, 7);
-            this.panel42.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel42.Margin = new System.Windows.Forms.Padding(4);
             this.panel42.Name = "panel42";
             this.panel42.Size = new System.Drawing.Size(1500, 235);
             this.panel42.TabIndex = 66;
@@ -13774,7 +13828,7 @@
             this.cbReceiptLogDetailVehicle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbReceiptLogDetailVehicle.FormattingEnabled = true;
             this.cbReceiptLogDetailVehicle.Location = new System.Drawing.Point(728, 10);
-            this.cbReceiptLogDetailVehicle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogDetailVehicle.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogDetailVehicle.Name = "cbReceiptLogDetailVehicle";
             this.cbReceiptLogDetailVehicle.Size = new System.Drawing.Size(425, 28);
             this.cbReceiptLogDetailVehicle.TabIndex = 63;
@@ -13793,7 +13847,7 @@
             // tbReceiptLogDetailAddress
             // 
             this.tbReceiptLogDetailAddress.Location = new System.Drawing.Point(1001, 91);
-            this.tbReceiptLogDetailAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailAddress.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailAddress.Name = "tbReceiptLogDetailAddress";
             this.tbReceiptLogDetailAddress.Size = new System.Drawing.Size(152, 26);
             this.tbReceiptLogDetailAddress.TabIndex = 61;
@@ -13812,7 +13866,7 @@
             // tbReceiptLogDetailCardID
             // 
             this.tbReceiptLogDetailCardID.Location = new System.Drawing.Point(367, 145);
-            this.tbReceiptLogDetailCardID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailCardID.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailCardID.Name = "tbReceiptLogDetailCardID";
             this.tbReceiptLogDetailCardID.Size = new System.Drawing.Size(148, 26);
             this.tbReceiptLogDetailCardID.TabIndex = 59;
@@ -13831,7 +13885,7 @@
             // tbReceiptLogDetailCardIdentify
             // 
             this.tbReceiptLogDetailCardIdentify.Location = new System.Drawing.Point(157, 145);
-            this.tbReceiptLogDetailCardIdentify.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailCardIdentify.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailCardIdentify.Name = "tbReceiptLogDetailCardIdentify";
             this.tbReceiptLogDetailCardIdentify.Size = new System.Drawing.Size(103, 26);
             this.tbReceiptLogDetailCardIdentify.TabIndex = 57;
@@ -13840,7 +13894,7 @@
             // 
             this.cbReceiptLogDetailBook.AutoSize = true;
             this.cbReceiptLogDetailBook.Location = new System.Drawing.Point(920, 53);
-            this.cbReceiptLogDetailBook.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogDetailBook.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogDetailBook.Name = "cbReceiptLogDetailBook";
             this.cbReceiptLogDetailBook.Size = new System.Drawing.Size(102, 24);
             this.cbReceiptLogDetailBook.TabIndex = 55;
@@ -13851,7 +13905,7 @@
             // 
             this.cbReceiptLogDetailPrintDate.AutoSize = true;
             this.cbReceiptLogDetailPrintDate.Location = new System.Drawing.Point(17, 15);
-            this.cbReceiptLogDetailPrintDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogDetailPrintDate.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogDetailPrintDate.Name = "cbReceiptLogDetailPrintDate";
             this.cbReceiptLogDetailPrintDate.Size = new System.Drawing.Size(87, 24);
             this.cbReceiptLogDetailPrintDate.TabIndex = 53;
@@ -13880,15 +13934,26 @@
             this.label246.TabIndex = 49;
             this.label246.Text = "Từ";
             // 
+            // dtReceiptLogDetailBook
+            // 
+            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
+            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(1039, 52);
+            this.dtReceiptLogDetailBook.Margin = new System.Windows.Forms.Padding(4);
+            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
+            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(113, 26);
+            this.dtReceiptLogDetailBook.TabIndex = 48;
+            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            // 
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.cbReceiptLogDetailCostExtendCard);
             this.groupBox15.Controls.Add(this.cbReceiptLogDetailCostDeposit);
             this.groupBox15.Controls.Add(this.cbReceiptLogDetailCostCreateCard);
             this.groupBox15.Location = new System.Drawing.Point(659, 135);
-            this.groupBox15.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox15.Size = new System.Drawing.Size(496, 86);
             this.groupBox15.TabIndex = 44;
             this.groupBox15.TabStop = false;
@@ -13898,7 +13963,7 @@
             // 
             this.cbReceiptLogDetailCostExtendCard.AutoSize = true;
             this.cbReceiptLogDetailCostExtendCard.Location = new System.Drawing.Point(113, 18);
-            this.cbReceiptLogDetailCostExtendCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogDetailCostExtendCard.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogDetailCostExtendCard.Name = "cbReceiptLogDetailCostExtendCard";
             this.cbReceiptLogDetailCostExtendCard.Size = new System.Drawing.Size(114, 24);
             this.cbReceiptLogDetailCostExtendCard.TabIndex = 52;
@@ -13909,7 +13974,7 @@
             // 
             this.cbReceiptLogDetailCostDeposit.AutoSize = true;
             this.cbReceiptLogDetailCostDeposit.Location = new System.Drawing.Point(293, 52);
-            this.cbReceiptLogDetailCostDeposit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogDetailCostDeposit.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogDetailCostDeposit.Name = "cbReceiptLogDetailCostDeposit";
             this.cbReceiptLogDetailCostDeposit.Size = new System.Drawing.Size(87, 24);
             this.cbReceiptLogDetailCostDeposit.TabIndex = 51;
@@ -13920,7 +13985,7 @@
             // 
             this.cbReceiptLogDetailCostCreateCard.AutoSize = true;
             this.cbReceiptLogDetailCostCreateCard.Location = new System.Drawing.Point(113, 52);
-            this.cbReceiptLogDetailCostCreateCard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbReceiptLogDetailCostCreateCard.Margin = new System.Windows.Forms.Padding(4);
             this.cbReceiptLogDetailCostCreateCard.Name = "cbReceiptLogDetailCostCreateCard";
             this.cbReceiptLogDetailCostCreateCard.Size = new System.Drawing.Size(115, 24);
             this.cbReceiptLogDetailCostCreateCard.TabIndex = 50;
@@ -13930,7 +13995,7 @@
             // btnReceiptLogDetailSearch
             // 
             this.btnReceiptLogDetailSearch.Location = new System.Drawing.Point(1288, 46);
-            this.btnReceiptLogDetailSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReceiptLogDetailSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnReceiptLogDetailSearch.Name = "btnReceiptLogDetailSearch";
             this.btnReceiptLogDetailSearch.Size = new System.Drawing.Size(111, 53);
             this.btnReceiptLogDetailSearch.TabIndex = 43;
@@ -13941,7 +14006,7 @@
             // btnReceiptLogDetailExportExcel
             // 
             this.btnReceiptLogDetailExportExcel.Location = new System.Drawing.Point(1257, 123);
-            this.btnReceiptLogDetailExportExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReceiptLogDetailExportExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnReceiptLogDetailExportExcel.Name = "btnReceiptLogDetailExportExcel";
             this.btnReceiptLogDetailExportExcel.Size = new System.Drawing.Size(173, 53);
             this.btnReceiptLogDetailExportExcel.TabIndex = 42;
@@ -13963,7 +14028,7 @@
             // tbReceiptLogDetailCustomerName
             // 
             this.tbReceiptLogDetailCustomerName.Location = new System.Drawing.Point(157, 103);
-            this.tbReceiptLogDetailCustomerName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailCustomerName.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailCustomerName.Name = "tbReceiptLogDetailCustomerName";
             this.tbReceiptLogDetailCustomerName.Size = new System.Drawing.Size(357, 26);
             this.tbReceiptLogDetailCustomerName.TabIndex = 40;
@@ -13972,7 +14037,7 @@
             // 
             this.dtReceiptLogDetailEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtReceiptLogDetailEndTime.Location = new System.Drawing.Point(368, 54);
-            this.dtReceiptLogDetailEndTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogDetailEndTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogDetailEndTime.Name = "dtReceiptLogDetailEndTime";
             this.dtReceiptLogDetailEndTime.Size = new System.Drawing.Size(147, 26);
             this.dtReceiptLogDetailEndTime.TabIndex = 39;
@@ -13982,7 +14047,7 @@
             // 
             this.dtReceiptLogDetailStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.dtReceiptLogDetailStartTime.Location = new System.Drawing.Point(368, 12);
-            this.dtReceiptLogDetailStartTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogDetailStartTime.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogDetailStartTime.Name = "dtReceiptLogDetailStartTime";
             this.dtReceiptLogDetailStartTime.Size = new System.Drawing.Size(147, 26);
             this.dtReceiptLogDetailStartTime.TabIndex = 38;
@@ -14002,7 +14067,7 @@
             // tbReceiptLogDetailCompany
             // 
             this.tbReceiptLogDetailCompany.Location = new System.Drawing.Point(728, 92);
-            this.tbReceiptLogDetailCompany.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailCompany.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailCompany.Name = "tbReceiptLogDetailCompany";
             this.tbReceiptLogDetailCompany.Size = new System.Drawing.Size(152, 26);
             this.tbReceiptLogDetailCompany.TabIndex = 36;
@@ -14021,7 +14086,7 @@
             // tbReceiptLogDetailDigit
             // 
             this.tbReceiptLogDetailDigit.Location = new System.Drawing.Point(728, 52);
-            this.tbReceiptLogDetailDigit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbReceiptLogDetailDigit.Margin = new System.Windows.Forms.Padding(4);
             this.tbReceiptLogDetailDigit.Name = "tbReceiptLogDetailDigit";
             this.tbReceiptLogDetailDigit.Size = new System.Drawing.Size(152, 26);
             this.tbReceiptLogDetailDigit.TabIndex = 34;
@@ -14030,7 +14095,7 @@
             // 
             this.dtReceiptLogDetailEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtReceiptLogDetailEndDate.Location = new System.Drawing.Point(157, 54);
-            this.dtReceiptLogDetailEndDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogDetailEndDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogDetailEndDate.Name = "dtReceiptLogDetailEndDate";
             this.dtReceiptLogDetailEndDate.Size = new System.Drawing.Size(179, 26);
             this.dtReceiptLogDetailEndDate.TabIndex = 33;
@@ -14039,32 +14104,163 @@
             // 
             this.dtReceiptLogDetailStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtReceiptLogDetailStartDate.Location = new System.Drawing.Point(157, 12);
-            this.dtReceiptLogDetailStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtReceiptLogDetailStartDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtReceiptLogDetailStartDate.Name = "dtReceiptLogDetailStartDate";
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(179, 26);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
             // 
-            // dtReceiptLogBook
+            // tb_camera_car_url_4
             // 
-            this.dtReceiptLogBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogBook.Location = new System.Drawing.Point(913, 16);
-            this.dtReceiptLogBook.Margin = new System.Windows.Forms.Padding(4);
-            this.dtReceiptLogBook.Name = "dtReceiptLogBook";
-            this.dtReceiptLogBook.Size = new System.Drawing.Size(113, 26);
-            this.dtReceiptLogBook.TabIndex = 48;
-            this.dtReceiptLogBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            this.tb_camera_car_url_4.Location = new System.Drawing.Point(141, 272);
+            this.tb_camera_car_url_4.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_camera_car_url_4.Name = "tb_camera_car_url_4";
+            this.tb_camera_car_url_4.Size = new System.Drawing.Size(839, 26);
+            this.tb_camera_car_url_4.TabIndex = 81;
             // 
-            // dtReceiptLogDetailBook
+            // label267
             // 
-            this.dtReceiptLogDetailBook.CustomFormat = "MM-yyyy";
-            this.dtReceiptLogDetailBook.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtReceiptLogDetailBook.Location = new System.Drawing.Point(1039, 52);
-            this.dtReceiptLogDetailBook.Margin = new System.Windows.Forms.Padding(4);
-            this.dtReceiptLogDetailBook.Name = "dtReceiptLogDetailBook";
-            this.dtReceiptLogDetailBook.Size = new System.Drawing.Size(113, 26);
-            this.dtReceiptLogDetailBook.TabIndex = 48;
-            this.dtReceiptLogDetailBook.Value = new System.DateTime(2020, 7, 18, 20, 10, 10, 275);
+            this.label267.AutoSize = true;
+            this.label267.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label267.Location = new System.Drawing.Point(8, 275);
+            this.label267.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label267.Name = "label267";
+            this.label267.Size = new System.Drawing.Size(111, 20);
+            this.label267.TabIndex = 80;
+            this.label267.Text = "Camera car 4";
+            // 
+            // label268
+            // 
+            this.label268.AutoSize = true;
+            this.label268.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label268.Location = new System.Drawing.Point(8, 241);
+            this.label268.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label268.Name = "label268";
+            this.label268.Size = new System.Drawing.Size(111, 20);
+            this.label268.TabIndex = 79;
+            this.label268.Text = "Camera car 3";
+            // 
+            // tb_camera_car_url_3
+            // 
+            this.tb_camera_car_url_3.Location = new System.Drawing.Point(141, 237);
+            this.tb_camera_car_url_3.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_camera_car_url_3.Name = "tb_camera_car_url_3";
+            this.tb_camera_car_url_3.Size = new System.Drawing.Size(839, 26);
+            this.tb_camera_car_url_3.TabIndex = 78;
+            // 
+            // label269
+            // 
+            this.label269.AutoSize = true;
+            this.label269.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label269.Location = new System.Drawing.Point(8, 206);
+            this.label269.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label269.Name = "label269";
+            this.label269.Size = new System.Drawing.Size(111, 20);
+            this.label269.TabIndex = 77;
+            this.label269.Text = "Camera car 2";
+            // 
+            // tb_camera_car_url_2
+            // 
+            this.tb_camera_car_url_2.Location = new System.Drawing.Point(141, 203);
+            this.tb_camera_car_url_2.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_camera_car_url_2.Name = "tb_camera_car_url_2";
+            this.tb_camera_car_url_2.Size = new System.Drawing.Size(839, 26);
+            this.tb_camera_car_url_2.TabIndex = 76;
+            // 
+            // label270
+            // 
+            this.label270.AutoSize = true;
+            this.label270.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label270.Location = new System.Drawing.Point(8, 172);
+            this.label270.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label270.Name = "label270";
+            this.label270.Size = new System.Drawing.Size(111, 20);
+            this.label270.TabIndex = 75;
+            this.label270.Text = "Camera car 1";
+            // 
+            // tb_camera_car_url_1
+            // 
+            this.tb_camera_car_url_1.Location = new System.Drawing.Point(141, 168);
+            this.tb_camera_car_url_1.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_camera_car_url_1.Name = "tb_camera_car_url_1";
+            this.tb_camera_car_url_1.Size = new System.Drawing.Size(839, 26);
+            this.tb_camera_car_url_1.TabIndex = 74;
+            // 
+            // tb_com_reader_car_right
+            // 
+            this.tb_com_reader_car_right.Location = new System.Drawing.Point(1272, 408);
+            this.tb_com_reader_car_right.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_com_reader_car_right.Name = "tb_com_reader_car_right";
+            this.tb_com_reader_car_right.Size = new System.Drawing.Size(199, 26);
+            this.tb_com_reader_car_right.TabIndex = 85;
+            // 
+            // label271
+            // 
+            this.label271.AutoSize = true;
+            this.label271.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label271.Location = new System.Drawing.Point(1102, 412);
+            this.label271.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label271.Name = "label271";
+            this.label271.Size = new System.Drawing.Size(168, 20);
+            this.label271.TabIndex = 84;
+            this.label271.Text = "COM reader car right";
+            // 
+            // label272
+            // 
+            this.label272.AutoSize = true;
+            this.label272.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label272.Location = new System.Drawing.Point(1102, 378);
+            this.label272.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label272.Name = "label272";
+            this.label272.Size = new System.Drawing.Size(158, 20);
+            this.label272.TabIndex = 83;
+            this.label272.Text = "COM reader car left";
+            // 
+            // tb_com_reader_car_left
+            // 
+            this.tb_com_reader_car_left.Location = new System.Drawing.Point(1272, 374);
+            this.tb_com_reader_car_left.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_com_reader_car_left.Name = "tb_com_reader_car_left";
+            this.tb_com_reader_car_left.Size = new System.Drawing.Size(199, 26);
+            this.tb_com_reader_car_left.TabIndex = 82;
+            // 
+            // tb_rfid_car_1
+            // 
+            this.tb_rfid_car_1.Location = new System.Drawing.Point(141, 376);
+            this.tb_rfid_car_1.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_rfid_car_1.Name = "tb_rfid_car_1";
+            this.tb_rfid_car_1.Size = new System.Drawing.Size(839, 26);
+            this.tb_rfid_car_1.TabIndex = 89;
+            // 
+            // label273
+            // 
+            this.label273.AutoSize = true;
+            this.label273.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label273.Location = new System.Drawing.Point(8, 414);
+            this.label273.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label273.Name = "label273";
+            this.label273.Size = new System.Drawing.Size(115, 20);
+            this.label273.TabIndex = 88;
+            this.label273.Text = "RFID car right";
+            // 
+            // tb_rfid_car_2
+            // 
+            this.tb_rfid_car_2.Location = new System.Drawing.Point(141, 411);
+            this.tb_rfid_car_2.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_rfid_car_2.Name = "tb_rfid_car_2";
+            this.tb_rfid_car_2.Size = new System.Drawing.Size(839, 26);
+            this.tb_rfid_car_2.TabIndex = 87;
+            this.tb_rfid_car_2.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
+            // 
+            // label274
+            // 
+            this.label274.AutoSize = true;
+            this.label274.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label274.Location = new System.Drawing.Point(8, 380);
+            this.label274.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label274.Name = "label274";
+            this.label274.Size = new System.Drawing.Size(105, 20);
+            this.label274.TabIndex = 86;
+            this.label274.Text = "RFID car left";
             // 
             // FormQuanLy
             // 
@@ -14076,7 +14272,7 @@
             this.Controls.Add(this.tabQuanLy);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormQuanLy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormQuanLy_FormClosing);
@@ -15463,5 +15659,21 @@
         private System.Windows.Forms.TextBox tbNoticeExpiredDate;
         private System.Windows.Forms.CheckBox cbTinhPhiCocThe;
         private System.Windows.Forms.Button btnCarListSelectAll;
+        private System.Windows.Forms.TextBox tb_camera_car_url_4;
+        private System.Windows.Forms.Label label267;
+        private System.Windows.Forms.Label label268;
+        private System.Windows.Forms.TextBox tb_camera_car_url_3;
+        private System.Windows.Forms.Label label269;
+        private System.Windows.Forms.TextBox tb_camera_car_url_2;
+        private System.Windows.Forms.Label label270;
+        private System.Windows.Forms.TextBox tb_camera_car_url_1;
+        private System.Windows.Forms.TextBox tb_rfid_car_1;
+        private System.Windows.Forms.Label label273;
+        private System.Windows.Forms.TextBox tb_rfid_car_2;
+        private System.Windows.Forms.Label label274;
+        private System.Windows.Forms.TextBox tb_com_reader_car_right;
+        private System.Windows.Forms.Label label271;
+        private System.Windows.Forms.Label label272;
+        private System.Windows.Forms.TextBox tb_com_reader_car_left;
     }
 }

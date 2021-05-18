@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNhanVien));
             this.panel1 = new System.Windows.Forms.Panel();
             this.axVLCPluginCar4 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPluginCar2 = new AxAXVLC.AxVLCPlugin2();
@@ -156,6 +156,8 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.axVLCPluginCar1 = new AxAXVLC.AxVLCPlugin2();
+            this.axVLCPluginCar3 = new AxAXVLC.AxVLCPlugin2();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar2)).BeginInit();
@@ -203,10 +205,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.axVLCPluginCar3);
+            this.panel1.Controls.Add(this.axVLCPluginCar1);
             this.panel1.Controls.Add(this.axVLCPluginCar4);
             this.panel1.Controls.Add(this.axVLCPluginCar2);
             this.panel1.Controls.Add(this.labelXeRaBienSo);
@@ -1535,6 +1541,26 @@
             this.pictureBox10.TabIndex = 127;
             this.pictureBox10.TabStop = false;
             // 
+            // axVLCPluginCar1
+            // 
+            this.axVLCPluginCar1.Enabled = true;
+            this.axVLCPluginCar1.Location = new System.Drawing.Point(0, 21);
+            this.axVLCPluginCar1.Name = "axVLCPluginCar1";
+            this.axVLCPluginCar1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPluginCar1.OcxState")));
+            this.axVLCPluginCar1.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPluginCar1.TabIndex = 132;
+            this.axVLCPluginCar1.Visible = false;
+            // 
+            // axVLCPluginCar3
+            // 
+            this.axVLCPluginCar3.Enabled = true;
+            this.axVLCPluginCar3.Location = new System.Drawing.Point(448, 21);
+            this.axVLCPluginCar3.Name = "axVLCPluginCar3";
+            this.axVLCPluginCar3.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axVLCPluginCar3.OcxState")));
+            this.axVLCPluginCar3.Size = new System.Drawing.Size(220, 270);
+            this.axVLCPluginCar3.TabIndex = 133;
+            this.axVLCPluginCar3.Visible = false;
+            // 
             // FormNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1674,6 +1700,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1801,5 +1829,7 @@
         private System.Windows.Forms.Label labelXeRaNguoi;
         private AxAXVLC.AxVLCPlugin2 axVLCPluginCar4;
         private AxAXVLC.AxVLCPlugin2 axVLCPluginCar2;
+        private AxAXVLC.AxVLCPlugin2 axVLCPluginCar3;
+        private AxAXVLC.AxVLCPlugin2 axVLCPluginCar1;
     }
 }

@@ -236,10 +236,14 @@ namespace ParkingMangement.Utils
                         sConfig.cameraUrl2 = sConfig.cameraUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.cameraUrl3 = sConfig.cameraUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.cameraUrl4 = sConfig.cameraUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraCarUrl1 = sConfig.cameraCarUrl1.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.cameraCarUrl2 = sConfig.cameraCarUrl2.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.cameraCarUrl3 = sConfig.cameraCarUrl3.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.cameraCarUrl4 = sConfig.cameraCarUrl4.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.rfidIn = sConfig.rfidIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.rfidOut = sConfig.rfidOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.rfidCarIn = sConfig.rfidCarIn.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.rfidCarOut = sConfig.rfidCarOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.computerName = sConfig.computerName.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.sqlDataSource = sConfig.sqlDataSource.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.sqlPort = sConfig.sqlPort.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
@@ -250,6 +254,8 @@ namespace ParkingMangement.Utils
                         sConfig.comReceiveOut = sConfig.comReceiveOut.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comReaderLeft = sConfig.comReaderLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comReaderRight = sConfig.comReaderRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comReaderCarLeft = sConfig.comReaderCarLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
+                        sConfig.comReaderCarRight = sConfig.comReaderCarRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comSend = sConfig.comSend.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comLedLeft = sConfig.comLedLeft.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
                         sConfig.comLedRight = sConfig.comLedRight.Replace(Constant.sEncodeStart, "").Replace(Constant.sEncodeEnd, "");
