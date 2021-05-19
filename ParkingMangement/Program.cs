@@ -229,8 +229,24 @@ namespace ParkingMangement
             aTimer.Start();
 
             checkForAutoLockCard();
-            runSyncDataProcess();
-            backupDB();
+            runSyncDataProcess();           
+            generateConfigFile();
+            backupDB();           
+        }
+
+        private static void generateConfigFile()
+        {
+            try
+            {
+                string filePath = Application.StartupPath + "\\" + Constant.sFileNameConfig;
+                XmlSerializer xs = new XmlSerializer(typeof(Config));
+                TextWriter txtWriter = new StreamWriter(filePath);
+                xs.Serialize(txtWriter, Util.getConfigFile());
+                txtWriter.Close();
+            } catch (Exception e)
+            {
+
+            }
         }
 
         private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
@@ -242,16 +258,19 @@ namespace ParkingMangement
 
         private static void backupDB()
         {
-            new Thread(() =>
+            if (Environment.MachineName.Equals(Util.getConfigFile().computerName))
             {
-                Thread.CurrentThread.IsBackground = true;
-                Database.backupDB();
-            }).Start();
+                new Thread(() =>
+                {
+                    Thread.CurrentThread.IsBackground = true;
+                    Database.backupDB();
+                }).Start();
+            }           
         }
 
         private static void checkForAutoLockCard()
         {
-            if (!Constant.IS_SYNC_DATA_APP)
+            if (!Constant.IS_SYNC_DATA_APP && Environment.MachineName.Equals(Util.getConfigFile().computerName))
             {
                 if (ConfigDAO.GetIsAutoLockCard(ConfigDAO.GetConfig()) == ConfigDTO.AUTO_LOCK_CARD_YES)
                 {
