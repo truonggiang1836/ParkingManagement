@@ -26,20 +26,20 @@ namespace ParkingMangement.GUI
 
         private void FormZoomCameraSetting_Load(object sender, EventArgs e)
         {
-            //int maxZoom = 100;
-            
-            for (int i = 1; i <= 20; i = i + 1)
-            {
-                float value = (float) i * 5;
-                listZoomValue.Add(value);
-                cbZoomValue1.Items.Add(value);
-                cbZoomValue2.Items.Add(value);
-                cbZoomValue3.Items.Add(value);
-                cbZoomValue4.Items.Add(value);
-            }
+            //int maxZoom = 100;            
 
             if (!Constant.IS_NEW_CAMERA)
             {
+                for (int i = 1; i <= 20; i = i + 1)
+                {
+                    float value = (float)i * 5;
+                    listZoomValue.Add(value);
+                    cbZoomValue1.Items.Add(value);
+                    cbZoomValue2.Items.Add(value);
+                    cbZoomValue3.Items.Add(value);
+                    cbZoomValue4.Items.Add(value);
+                }
+
                 Config config = Util.getConfigFile();
                 cbZoomValue1.SelectedIndex = listZoomValue.IndexOf(config.ZoomCamera1);
                 cbZoomValue2.SelectedIndex = listZoomValue.IndexOf(config.ZoomCamera2);
@@ -48,6 +48,16 @@ namespace ParkingMangement.GUI
             }
             else
             {
+                for (int i = 1; i <= 50; i = i + 1)
+                {
+                    float value = (float) i / 10;
+                    listZoomValue.Add(value);
+                    cbZoomValue1.Items.Add(value);
+                    cbZoomValue2.Items.Add(value);
+                    cbZoomValue3.Items.Add(value);
+                    cbZoomValue4.Items.Add(value);
+                }
+
                 Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
                 cbZoomValue1.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam1"));
                 cbZoomValue2.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam2"));

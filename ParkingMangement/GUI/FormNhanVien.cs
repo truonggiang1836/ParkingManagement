@@ -293,6 +293,12 @@ namespace ParkingMangement.GUI
                 axVLCPlugin2.Visible = false;
                 axVLCPlugin3.Visible = false;
                 axVLCPlugin4.Visible = false;
+
+                axVLCPluginCar1.Visible = false;
+                axVLCPluginCar2.Visible = false;
+                axVLCPluginCar3.Visible = false;
+                axVLCPluginCar4.Visible = false;
+
                 cameraWindow1.Visible = false;
                 cameraWindow2.Visible = false;
                 cameraWindow3.Visible = false;
@@ -304,6 +310,11 @@ namespace ParkingMangement.GUI
                     axVLCPlugin2.Visible = true;
                     axVLCPlugin3.Visible = true;
                     axVLCPlugin4.Visible = true;
+
+                    axVLCPluginCar1.Visible = true;
+                    axVLCPluginCar2.Visible = true;
+                    axVLCPluginCar3.Visible = true;
+                    axVLCPluginCar4.Visible = true;
 
                     configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
                         mConfig.ZoomCamera3, mConfig.ZoomCamera4);                  
@@ -3850,6 +3861,24 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private bool inputIsCarLane()
+        {
+            if (portNameComReaderInput != null)
+            {
+                bool result = portNameComReaderInput.Equals(portNameComReaderCarLeft) || portNameComReaderInput.Equals(portNameComReaderCarRight);
+                return result;
+            }
+            else if (!rfidInput.Equals("Global Keyboard"))
+            {
+                bool result = rfidInput.Equals(rfidCarIn) || rfidInput.Equals(rfidCarOut);
+                return result;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private bool inputIsRightSide(string cardID)
         {
             if (portNameComReceiveInput != null && mConfig.isUsingUhf.Equals("yes") && (cardID.Length == 53))
@@ -4046,7 +4075,7 @@ namespace ParkingMangement.GUI
             {
                 if (mConfig.readDigitLeftLane.Equals("2"))
                 {
-                    if (type == TypeDTO.TYPE_BIKE)
+                    if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
                         axVLCPlugin = axVLCPlugin2;
                     }
@@ -4057,7 +4086,7 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    if (type == TypeDTO.TYPE_BIKE)
+                    if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
                         axVLCPlugin = axVLCPlugin1;
                     }
@@ -4071,7 +4100,7 @@ namespace ParkingMangement.GUI
             {
                 if (mConfig.readDigitRightLane.Equals("4"))
                 {
-                    if (type == TypeDTO.TYPE_BIKE)
+                    if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
                         axVLCPlugin = axVLCPlugin4;
                     }
@@ -4082,7 +4111,7 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    if (type == TypeDTO.TYPE_BIKE)
+                    if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
                         axVLCPlugin = axVLCPlugin3;
                     }
