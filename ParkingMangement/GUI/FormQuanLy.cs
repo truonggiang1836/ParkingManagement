@@ -6836,5 +6836,10 @@ namespace ParkingMangement.GUI
         {
 
         }
+
+        private void btFindNotRegisterMonthlyCard_Click(object sender, EventArgs e)
+        {
+            dgvCardList.DataSource = CardDAO.GetAllNotRegisterMonthlyCardData();
+        }
     }
 }

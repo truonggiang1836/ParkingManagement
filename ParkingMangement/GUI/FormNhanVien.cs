@@ -311,11 +311,6 @@ namespace ParkingMangement.GUI
                     axVLCPlugin3.Visible = true;
                     axVLCPlugin4.Visible = true;
 
-                    axVLCPluginCar1.Visible = true;
-                    axVLCPluginCar2.Visible = true;
-                    axVLCPluginCar3.Visible = true;
-                    axVLCPluginCar4.Visible = true;
-
                     configVLC(mConfig.ZoomCamera1, mConfig.ZoomCamera2,
                         mConfig.ZoomCamera3, mConfig.ZoomCamera4);                  
 
@@ -752,6 +747,18 @@ namespace ParkingMangement.GUI
             bitmap.Save(fileDir, ImageFormat.Jpeg);
         }
 
+        private void setTopVisibleForCamera(AxVLCPlugin2 axVLCPlugin, bool isVisible)
+        {
+            axVLCPlugin.Visible = isVisible;
+            if (isVisible)
+            {
+                axVLCPlugin.BringToFront();
+            } else
+            {
+                axVLCPlugin.SendToBack();
+            }
+        }
+
         private void checkForShowCarCamera(string cardID, bool isInputLeftSide)
         {
             bool isShowLeftCarCam = false;
@@ -771,16 +778,8 @@ namespace ParkingMangement.GUI
                     isShowLeftCarCam = rfidInput.Equals(rfidCarIn);
                 }
 
-                if (isShowLeftCarCam)
-                {
-                    axVLCPluginCar1.BringToFront();
-                    axVLCPluginCar2.BringToFront();
-                }
-                else
-                {
-                    axVLCPluginCar1.SendToBack();
-                    axVLCPluginCar2.SendToBack();
-                }
+                setTopVisibleForCamera(axVLCPluginCar1, isShowLeftCarCam);
+                setTopVisibleForCamera(axVLCPluginCar2, isShowLeftCarCam);
             }
 
             if ((!mConfig.cameraCarUrl3.Equals("") || !mConfig.cameraCarUrl4.Equals("")) && !isInputLeftSide)
@@ -798,16 +797,8 @@ namespace ParkingMangement.GUI
                     isShowRightCarCam = rfidInput.Equals(rfidCarOut);
                 }
 
-                if (isShowRightCarCam)
-                {
-                    axVLCPluginCar3.BringToFront();
-                    axVLCPluginCar4.BringToFront();
-                }
-                else
-                {
-                    axVLCPluginCar3.SendToBack();
-                    axVLCPluginCar4.SendToBack();
-                }
+                setTopVisibleForCamera(axVLCPluginCar3, isShowRightCarCam);
+                setTopVisibleForCamera(axVLCPluginCar4, isShowRightCarCam);
             }
         }
 
@@ -4395,6 +4386,26 @@ namespace ParkingMangement.GUI
         private void labelGetCardRight_Click(object sender, EventArgs e)
         {
             openFormQuanLyXeRaVao();
+        }
+
+        private void pictureBoxChangeLeftCamera_Click(object sender, EventArgs e)
+        {
+            if (!cameraCarUrl1.Equals("") || !cameraCarUrl2.Equals(""))
+            {
+                bool isVisible = !axVLCPluginCar1.Visible;
+                setTopVisibleForCamera(axVLCPluginCar1, isVisible);
+                setTopVisibleForCamera(axVLCPluginCar2, isVisible);
+            }
+        }
+
+        private void pictureBoxChangeRightCamera_Click(object sender, EventArgs e)
+        {
+            if (!cameraCarUrl3.Equals("") || !cameraCarUrl4.Equals(""))
+            {
+                bool isVisible = !axVLCPluginCar3.Visible;
+                setTopVisibleForCamera(axVLCPluginCar3, isVisible);
+                setTopVisibleForCamera(axVLCPluginCar4, isVisible);
+            }
         }
     }
 }
