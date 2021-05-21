@@ -388,7 +388,7 @@ namespace ParkingMangement.GUI
             rfidInput = rfidIn;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventTest);
-            aTimer.Interval = 1 * 1000;
+            aTimer.Interval = 1 * 500;
             aTimer.Enabled = true;
             aTimer.Start();
         }

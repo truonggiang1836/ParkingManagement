@@ -20,7 +20,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetAllNotRegisterMonthlyCardData()
         {
-            string sql = "select card.*, Part.PartName, CardType.CardTypeName from Part, CardType, SmartCard card left join TicketMonth monthlyCard on card.ID = monthlyCard.ID " +
+            string sql = "select card.Identify, card.ID, card.IsUsing, Part.PartName, CardType.CardTypeName from Part, CardType, SmartCard card left join TicketMonth monthlyCard on card.ID = monthlyCard.ID " +
                 "where monthlyCard.ID IS NULL and card.Type = Part.ID and Part.CardTypeID = CardType.CardTypeID and CardType.CardTypeID = 2 and card.IsDeleted = 0 order by card.Identify asc";
             return (new Database()).ExcuQuery(sql);
         }

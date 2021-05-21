@@ -6839,7 +6839,23 @@ namespace ParkingMangement.GUI
 
         private void btFindNotRegisterMonthlyCard_Click(object sender, EventArgs e)
         {
-            dgvCardList.DataSource = CardDAO.GetAllNotRegisterMonthlyCardData();
+            DataTable data = CardDAO.GetAllNotRegisterMonthlyCardData();
+            if (data != null)
+            {
+                for (int row = 0; row < data.Rows.Count; row++)
+                {
+                    if (data.Rows[row].Field<string>("IsUsing") == "1")
+                    {
+                        data.Rows[row].SetField("IsUsing", Constant.sLabelCardUsing);
+                    }
+                    else
+                    {
+                        data.Rows[row].SetField("IsUsing", Constant.sLabelCardNotUsing);
+                    }
+                }
+
+                dgvCardList.DataSource = data;
+            }
         }
     }
 }
