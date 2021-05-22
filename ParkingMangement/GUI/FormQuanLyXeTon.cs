@@ -10,9 +10,11 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -287,6 +289,87 @@ namespace ParkingMangement.GUI
         private void btnXemTatCaXeTon_Click(object sender, EventArgs e)
         {
             loadTatCaXeTon();
+        }
+
+        private void addEventReadPegasusReaderCOM()
+        {
+            if (Program.readerLeftSerialPort != null && Program.readerLeftSerialPort.IsOpen)
+            {
+                Program.readerLeftSerialPort.DataReceived += portComReader_DataReceived;
+            }
+
+            if (Program.readerRightSerialPort != null && Program.readerRightSerialPort.IsOpen)
+            {
+                Program.readerRightSerialPort.DataReceived += portComReader_DataReceived;
+            }
+
+            if (Program.readerCarLeftSerialPort != null && Program.readerCarLeftSerialPort.IsOpen)
+            {
+                Program.readerCarLeftSerialPort.DataReceived += portComReader_DataReceived;
+            }
+
+            if (Program.readerCarRightSerialPort != null && Program.readerCarRightSerialPort.IsOpen)
+            {
+                Program.readerCarRightSerialPort.DataReceived += portComReader_DataReceived;
+            }
+        }
+
+        private void removeEventReadPegasusReaderCOM()
+        {
+            if (Program.readerLeftSerialPort != null && Program.readerLeftSerialPort.IsOpen)
+            {
+                Program.readerLeftSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+
+            if (Program.readerRightSerialPort != null && Program.readerRightSerialPort.IsOpen)
+            {
+                Program.readerRightSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+
+            if (Program.readerCarLeftSerialPort != null && Program.readerCarLeftSerialPort.IsOpen)
+            {
+                Program.readerCarLeftSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+
+            if (Program.readerCarRightSerialPort != null && Program.readerCarRightSerialPort.IsOpen)
+            {
+                Program.readerCarRightSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+        }
+
+        private void portComReader_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string data = sp.ReadLine();
+            Console.WriteLine(data);
+            string cardID = data.Trim();
+            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
+
+            handleReceiveComReaderData(cardID);
+        }
+
+        public void handleReceiveComReaderData(string uhfCardId)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                if (uhfCardId != null && !uhfCardId.Equals(""))
+                {
+                    if (tbCarIDSearch.Focused)
+                    {
+                        tbCarIDSearch.Text = uhfCardId;
+                    }
+                }
+            }));
+        }
+
+        private void FormQuanLyXeTon_Activated(object sender, EventArgs e)
+        {
+            addEventReadPegasusReaderCOM();
+        }
+
+        private void FormQuanLyXeTon_Deactivate(object sender, EventArgs e)
+        {
+            removeEventReadPegasusReaderCOM();
         }
     }
 }

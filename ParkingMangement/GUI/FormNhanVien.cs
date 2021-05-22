@@ -38,6 +38,7 @@ using CameraViewer;
 using System.Text.RegularExpressions;
 using SimpleLPR3;
 using Image = System.Drawing.Image;
+using System.Runtime.InteropServices;
 
 namespace ParkingMangement.GUI
 {
@@ -88,8 +89,6 @@ namespace ParkingMangement.GUI
         SerialPort leftLedPort;
         SerialPort rightLedPort;
         SerialPort lostAvailablePort;
-        SerialPort leftUhfPort;
-        SerialPort rightUhfPort;
 
         private Config mConfig;
 
@@ -105,6 +104,7 @@ namespace ParkingMangement.GUI
         private int mCarSpace;
         private bool isUhfCard = false;
         private bool mIsUpdatingDB = false;
+        private bool mIsFormActive = true;
 
         private Size oldSize;
         private const float LARGER_FONT_FACTOR = 1.5f;
@@ -393,60 +393,38 @@ namespace ParkingMangement.GUI
             aTimer.Start();
         }
 
-        SerialPort readerLeftSerialPort;
-        SerialPort readerRightSerialPort;
-        SerialPort readerCarLeftSerialPort;
-        SerialPort readerCarRightSerialPort;
+        
 
         private void readPegasusReaderCOM()
         {
-            try
+            if (Program.readerLeftSerialPort != null && Program.readerLeftSerialPort.IsOpen)
             {
-                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);
-                readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
-                readerLeftSerialPort.Open();
-            }
-            catch (Exception e)
-            {
-
+                Program.readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
             }
 
-            try
+            if (Program.readerRightSerialPort != null && Program.readerRightSerialPort.IsOpen)
             {
-                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
-                readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
-                readerRightSerialPort.Open();
-            }
-            catch (Exception e)
-            {
-
+                Program.readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
             }
 
-            try
+            if (Program.readerCarLeftSerialPort != null && Program.readerCarLeftSerialPort.IsOpen)
             {
-                readerCarLeftSerialPort = new SerialPort(mConfig.comReaderCarLeft, 9600, Parity.None, 8, StopBits.One);
-                readerCarLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderCarLeft_DataReceived);
-                readerCarLeftSerialPort.Open();
-            }
-            catch (Exception e)
-            {
-
+                Program.readerCarLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderCarLeft_DataReceived);
             }
 
-            try
+            if (Program.readerCarRightSerialPort != null && Program.readerCarRightSerialPort.IsOpen)
             {
-                readerCarRightSerialPort = new SerialPort(mConfig.comReaderCarRight, 9600, Parity.None, 8, StopBits.One);
-                readerCarRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderCarRight_DataReceived);
-                readerCarRightSerialPort.Open();
-            }
-            catch (Exception e)
-            {
-
+                Program.readerCarRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderCarRight_DataReceived);
             }
         }
 
         private void DataReceivedEvent(object sender)
         {
+            if (!mIsFormActive && Application.OpenForms.Count > 2)
+            {
+                return;
+            }
+
             SerialPort sp = (SerialPort)sender;
             string data = sp.ReadLine();
             string cardID = data.Trim();
@@ -2260,7 +2238,9 @@ namespace ParkingMangement.GUI
             axVLCPlugin2.volume = 0;
             axVLCPlugin3.volume = 0;
             axVLCPlugin4.volume = 0;
+            axVLCPluginCar1.volume = 0;
             axVLCPluginCar2.volume = 0;
+            axVLCPluginCar3.volume = 0;
             axVLCPluginCar4.volume = 0;
         }
 
@@ -3592,44 +3572,6 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void readDataFromLeftUhfPort(string data, string portName)
-        {
-            if (portName.Equals(""))
-            {
-                return;
-            }
-            try
-            {
-                if (leftUhfPort == null || !leftUhfPort.IsOpen)
-                {
-                    leftUhfPort = new SerialPort(portName, 9600, Parity.None, 8, StopBits.One);
-                }
-
-                leftUhfPort.DataReceived += leftUhfPort_OnReceiveData;
-
-                if (!leftUhfPort.IsOpen)
-                {
-                    leftUhfPort.Open();
-                }
-
-                Console.WriteLine(data);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("bug: " + e.Message);
-            }
-        }
-
-        private void leftUhfPort_OnReceiveData(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort spL = (SerialPort)sender;
-            byte[] buf = new byte[spL.BytesToRead];
-            Console.WriteLine("DATA RECEIVED!");
-            string cardID = spL.ReadExisting();
-            bool isInputLeftSide = inputIsLeftSide(cardID);
-            readCardEvent(cardID, isInputLeftSide);
-        }
-
         //SerialPort port;
         SerialPort port;
         private void writeDataToPort(string data, string portName)
@@ -3786,11 +3728,6 @@ namespace ParkingMangement.GUI
             //    Program.newUhfCardId = Program.oldUhfCardId + " " + Program.newUhfCardId;
             //    Console.WriteLine("Combine UHF: " + Program.newUhfCardId);
             //}
-            if (ActiveForm != this)
-            {
-                return;
-            }
-
             if (Program.newUhfCardId.Length == 53)
             {
                 handleUhfData();
@@ -3909,6 +3846,7 @@ namespace ParkingMangement.GUI
 
         private void FormNhanVien_Activated(object sender, EventArgs e)
         {
+            mIsFormActive = true;
             _rawinput.KeyPressed -= OnKeyPressed;
             _rawinput.KeyPressed += OnKeyPressed;
             tbRFIDCardID.Focus();
@@ -4406,6 +4344,11 @@ namespace ParkingMangement.GUI
                 setTopVisibleForCamera(axVLCPluginCar3, isVisible);
                 setTopVisibleForCamera(axVLCPluginCar4, isVisible);
             }
+        }
+
+        private void FormNhanVien_Deactivate(object sender, EventArgs e)
+        {
+            mIsFormActive = false;
         }
     }
 }

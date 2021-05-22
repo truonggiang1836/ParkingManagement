@@ -37,6 +37,12 @@ namespace ParkingMangement
 
         public static SerialPort portComLeftUhf;
         public static SerialPort portComRightUhf;
+
+        public static SerialPort readerLeftSerialPort;
+        public static SerialPort readerRightSerialPort;
+        public static SerialPort readerCarLeftSerialPort;
+        public static SerialPort readerCarRightSerialPort;
+
         public static int sCountConnection = 0;
         public static int MAX_CONNECTION = 5;
 
@@ -50,6 +56,7 @@ namespace ParkingMangement
             Application.SetCompatibleTextRenderingDefault(false);
 
             initUhfReader();
+            initPegasusComReader();
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
          
@@ -70,20 +77,48 @@ namespace ParkingMangement
             Util.doLogOut();
         }
 
-        private static void initData()
+        private static void initPegasusComReader()
         {
-            //if (!Constant.IS_SYNC_DATA_APP)
-            //{
-            //    if (Util.getConfigFile().isUsingUhf.Equals("yes"))
-            //    {
-            //        uhfInReader = new UHFReader();
-            //        uhfInReader.openComPort(Util.getConfigFile().comReceiveIn, true);
-            //        uhfOutReader = new UHFReader();
-            //        uhfOutReader.openComPort(Util.getConfigFile().comReceiveOut, true);
-            //    }
-            //}
-            
-            //Util.sendPriceConfigListToServer(ComputerDAO.GetAllDataForSync());
+            Config mConfig = Util.getConfigFile();
+            try
+            {
+                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);              
+                readerLeftSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            try
+            {
+                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
+                readerRightSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            try
+            {
+                readerCarLeftSerialPort = new SerialPort(mConfig.comReaderCarLeft, 9600, Parity.None, 8, StopBits.One);
+                readerCarLeftSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            try
+            {
+                readerCarRightSerialPort = new SerialPort(mConfig.comReaderCarRight, 9600, Parity.None, 8, StopBits.One);
+                readerCarRightSerialPort.Open();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public static void initUhfReader()

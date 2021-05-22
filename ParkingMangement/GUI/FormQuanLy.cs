@@ -89,8 +89,6 @@ namespace ParkingMangement.GUI
             getDataFromUhfReader();
 
             tbCardIDCreate.GotFocus += textBox_Enter;
-
-            readPegasusReaderCOM();
         }
 
         void textBox_Enter(object sender, EventArgs e)
@@ -5349,7 +5347,7 @@ namespace ParkingMangement.GUI
             {
                 if (Program.newUhfCardId.Length == 53)
                 {
-                    handleReceiveUhfData(Program.newUhfCardId);
+                    handleReceiveComReaderData(Program.newUhfCardId);
                 }              
             }));
         }
@@ -5360,13 +5358,13 @@ namespace ParkingMangement.GUI
             {
                 if (Program.newUhfCardId.Length == 53)
                 {
-                    handleReceiveUhfData(Program.newUhfCardId);
+                    handleReceiveComReaderData(Program.newUhfCardId);
                 }
             }));
         }
 
         private TextBox focusedTextbox = null;
-        public void handleReceiveUhfData(string uhfCardId)
+        public void handleReceiveComReaderData(string uhfCardId)
         {
             Invoke(new MethodInvoker(() =>
             {
@@ -5399,10 +5397,18 @@ namespace ParkingMangement.GUI
                     if (tbLostTicketMonthID.Focused)
                     {
                         focusedTextbox = tbLostTicketMonthID;
+                    }                
+                    if (tbBlockTicketMonthKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbBlockTicketMonthKeyWordSearch;
                     }
                     if (tbActiveTicketMonthKeyWordSearch.Focused)
                     {
                         focusedTextbox = tbActiveTicketMonthKeyWordSearch;
+                    }                  
+                    if (tbDebtReportKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbDebtReportKeyWordSearch;
                     }
                     if (tbCarIDSearch.Focused)
                     {
@@ -5416,6 +5422,15 @@ namespace ParkingMangement.GUI
                     {
                         focusedTextbox = tbTicketLogKeyWordSearch;
                     }
+                    if (tbPrintReceiptKeyWordSearch.Focused)
+                    {
+                        focusedTextbox = tbPrintReceiptKeyWordSearch;
+                    }
+                    if (tbReceiptLogDetailCardID.Focused)
+                    {
+                        focusedTextbox = tbReceiptLogDetailCardID;
+                    }
+                    
                     if (focusedTextbox != null)
                     {
                         focusedTextbox.Text = uhfCardId;
@@ -6746,34 +6761,53 @@ namespace ParkingMangement.GUI
             exportDanhSachBaoCaoCongNoToExcel();
         }
 
-        SerialPort readerLeftSerialPort;
-        SerialPort readerRightSerialPort;
-        private void readPegasusReaderCOM()
+        private void addEventReadPegasusReaderCOM()
         {
-            try
+            if (Program.readerLeftSerialPort != null && Program.readerLeftSerialPort.IsOpen)
             {
-                readerLeftSerialPort = new SerialPort(mConfig.comReaderLeft, 9600, Parity.None, 8, StopBits.One);
-                readerLeftSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderLeft_DataReceived);
-                readerLeftSerialPort.Open();
-            }
-            catch (Exception e)
-            {
-
+                Program.readerLeftSerialPort.DataReceived += portComReader_DataReceived;
             }
 
-            try
+            if (Program.readerRightSerialPort != null && Program.readerRightSerialPort.IsOpen)
             {
-                readerRightSerialPort = new SerialPort(mConfig.comReaderRight, 9600, Parity.None, 8, StopBits.One);
-                readerRightSerialPort.DataReceived += new SerialDataReceivedEventHandler(portComReaderRight_DataReceived);
-                readerRightSerialPort.Open();
+                Program.readerRightSerialPort.DataReceived += portComReader_DataReceived;
             }
-            catch (Exception e)
-            {
 
+            if (Program.readerCarLeftSerialPort != null && Program.readerCarLeftSerialPort.IsOpen)
+            {
+                Program.readerCarLeftSerialPort.DataReceived += portComReader_DataReceived;
+            }
+
+            if (Program.readerCarRightSerialPort != null && Program.readerCarRightSerialPort.IsOpen)
+            {
+                Program.readerCarRightSerialPort.DataReceived += portComReader_DataReceived;
             }
         }
 
-        private void portComReaderLeft_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void removeEventReadPegasusReaderCOM()
+        {
+            if (Program.readerLeftSerialPort != null && Program.readerLeftSerialPort.IsOpen)
+            {
+                Program.readerLeftSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+
+            if (Program.readerRightSerialPort != null && Program.readerRightSerialPort.IsOpen)
+            {
+                Program.readerRightSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+
+            if (Program.readerCarLeftSerialPort != null && Program.readerCarLeftSerialPort.IsOpen)
+            {
+                Program.readerCarLeftSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+
+            if (Program.readerCarRightSerialPort != null && Program.readerCarRightSerialPort.IsOpen)
+            {
+                Program.readerCarRightSerialPort.DataReceived -= portComReader_DataReceived;
+            }
+        }
+
+        private void portComReader_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             SerialPort sp = (SerialPort)sender;
             string data = sp.ReadLine();
@@ -6781,18 +6815,7 @@ namespace ParkingMangement.GUI
             string cardID = data.Trim();
             cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
 
-            handleReceiveUhfData(cardID);
-        }
-
-        private void portComReaderRight_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;
-            string data = sp.ReadLine();
-            Console.WriteLine(data);
-            string cardID = data.Trim();
-            cardID = Regex.Replace(cardID, @"[^\u0009\u000A\u000D\u0020-\u007E]", "");
-
-            handleReceiveUhfData(cardID);
+            handleReceiveComReaderData(cardID);
         }
 
         private void label263_Click(object sender, EventArgs e)
@@ -6856,6 +6879,16 @@ namespace ParkingMangement.GUI
 
                 dgvCardList.DataSource = data;
             }
+        }
+
+        private void FormQuanLy_Activated(object sender, EventArgs e)
+        {
+            addEventReadPegasusReaderCOM();
+        }
+
+        private void FormQuanLy_Deactivate(object sender, EventArgs e)
+        {
+            removeEventReadPegasusReaderCOM();
         }
     }
 }
