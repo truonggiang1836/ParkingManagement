@@ -2365,14 +2365,46 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    return getCostTinhTienCongVan(timeIn, timeOut, computerDTO);
+                    return getCostTinhTienCongVan(timeIn, timeOut, computerDTO, cardID);
                 }
 
             }
             return 0;
         }
 
-        private int getCostTinhTienCongVan(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO)
+        private int getNightCostTheoCongVan(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO, string cardID)
+        {
+            if (mConfig.projectId.Equals(Constant.API_KEY_BV_HOAN_MY_THU_DUC) && timeOut.Hour < 21 && Util.getTotalTimeByHour(timeIn, timeOut) < 2)
+            {
+                // case BV HOAN MY THU DUC
+                // before 21h
+                // total time < 2h
+                string type = CardDAO.GetTypeByID(cardID);
+                if (type == TypeDTO.TYPE_CAR)
+                {
+                    // Xe oto
+                    if (Util.getTotalTimeByHour(timeIn, timeOut) < 1)
+                    {
+                        // < 1h
+                        return computerDTO.NightCost - 20000;
+                    }
+                    else
+                    {
+                        // 1h ~ 2h
+                        return computerDTO.NightCost - 10000;
+                    }
+                } else
+                {
+                    return computerDTO.NightCost;
+                }
+            }
+            else
+            {
+                return computerDTO.NightCost;
+            }
+        }
+
+        private int getCostTinhTienCongVan(DateTime timeIn, DateTime timeOut, ComputerDTO computerDTO, string cardID)
         {
             double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
             double limit = (double)computerDTO.Limit / 60; // (hour)
@@ -2401,7 +2433,7 @@ namespace ParkingMangement.GUI
                     if (Util.getTotalTimeByHour(timeIn, timeOut) <= computerDTO.IntervalBetweenDayNight)
                     {
                         // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
-                        return computerDTO.NightCost;
+                        return getNightCostTheoCongVan(timeIn, timeOut, computerDTO, cardID);
                     }
                     else
                     {
@@ -2417,7 +2449,7 @@ namespace ParkingMangement.GUI
                         // thời gian trong bãi nhỏ hơn khoảng giao ngày - đêm
                         if (timeIn.Hour < computerDTO.StartHourNight && timeOut.Hour >= computerDTO.EndHourNight && Util.getTotalTimeByDay(timeIn.Date, timeOut.Date) == 1) {
                             // thời gian đêm trọn khung giờ
-                            return computerDTO.NightCost;
+                            return getNightCostTheoCongVan(timeIn, timeOut, computerDTO, cardID);
                         } else if (getTotalHourOfDay(timeIn, timeOut, computerDTO) >= getTotalHourOfNight(timeIn, timeOut, computerDTO))
                         {
                             // thời gian ngày lớn hơn đêm
@@ -2429,13 +2461,13 @@ namespace ParkingMangement.GUI
                             else
                             {
                                 // thời gian ngày lớn hơn giới hạn
-                                return computerDTO.NightCost;
+                                return getNightCostTheoCongVan(timeIn, timeOut, computerDTO, cardID);
                             }
                         }
                         else
                         {
                             // thời gian ngày nhỏ hơn đêm
-                            return computerDTO.NightCost;
+                            return getNightCostTheoCongVan(timeIn, timeOut, computerDTO, cardID);
                         }
                     }
                     else
@@ -2449,7 +2481,7 @@ namespace ParkingMangement.GUI
             {
                 int temp1 = ((int)spentTimeByHour) / 24;
                 DateTime newTimeIn = timeIn.AddHours(temp1 * 24);
-                int costMilestoneRemain = getCostTinhTienCongVan(newTimeIn, timeOut, computerDTO);
+                int costMilestoneRemain = getCostTinhTienCongVan(newTimeIn, timeOut, computerDTO, cardID);
                 return costMilestoneRemain + temp1 * computerDTO.DayNightCost;
             }
         }

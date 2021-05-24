@@ -16,6 +16,7 @@ namespace ParkingMangement.Utils
         public const string BREAK_LINE = "\r\n";
         public const string ARROW_STRING = " -> ";
         public const int PROJECT_ID = 2;
+        public const string API_KEY_BV_HOAN_MY_THU_DUC = "02822109199-41";
 
         // common
         public static string sHintTextUsername = "User";
