@@ -344,7 +344,7 @@ namespace ParkingMangement.GUI
             {
                 // Thread.CurrentThread.IsBackground = true;
 
-                updateThongKeXeTrongBaiByTimer();
+                updateDataByTimer();
                 //resetUhfByTimer();
 
 
@@ -3323,7 +3323,7 @@ namespace ParkingMangement.GUI
         //    }
         //}
 
-        private void updateThongKeXeTrongBaiByTimer()
+        private void updateDataByTimer()
         {
             mBindingSource = new BindingSource();
             mListCarSurvive = CarDAO.GetListCarSurvive();
@@ -3333,6 +3333,8 @@ namespace ParkingMangement.GUI
             aTimer.Interval = 30 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
+
+            checkAndUpdateLostAvailable();
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -3341,24 +3343,32 @@ namespace ParkingMangement.GUI
             GC.Collect();
             // Wait for all finalizers to complete before continuing.
             GC.WaitForPendingFinalizers();
+
+            loadConfigInfoDB();
+            checkAndUpdateLostAvailable();
+        }
+
+        private void checkAndUpdateLostAvailable()
+        {
             try
             {
                 new Thread(() =>
                 {
-                    // Thread.CurrentThread.IsBackground = true;
-                    loadConfigInfoDB();
                     mListCarSurvive = CarDAO.GetListCarSurvive();
                     Invoke(new MethodInvoker(() =>
                     {
                         mBindingSource.DataSource = mListCarSurvive;
-                        showLostAvailableToLed();
+                        if (mConfig.comLostAvailable.Length > 0)
+                        {
+                            showLostAvailableToLed();
+                        }                     
                     }));
                 }).Start();
             }
             catch (Exception)
             {
 
-            }
+            }           
         }
 
         private void updateXeRaVaoTimer()
@@ -3389,26 +3399,62 @@ namespace ParkingMangement.GUI
 
         private void showLostAvailableToLed()
         {
-            loadConfigInfoDB();
             string portName = mConfig.comLostAvailable;
-            int countBikeEmpty = mBikeSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_BIKE);
-            if (countBikeEmpty < 0)
+            foreach (DataRow row in mListCarSurvive.Rows)
             {
-                countBikeEmpty = 0;
-            }
-            //string dataBike = "@xemay_" + countBikeEmpty.ToString("D" + 4) + "&" + "\r\n";
-            string dataBike = "@xemay_" + countBikeEmpty.ToString() + "&";
-            writeDataToLostAvailablePort(dataBike, portName);
+                int countEmpty = int.TryParse(row["CountCarEmpty"].ToString(), out countEmpty) ? countEmpty : 0;
+                if (countEmpty < 0)
+                {
+                    countEmpty = 0;
+                }
+                string data;
 
-            Thread.Sleep(1000);
-            int countCarEmpty = mCarSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_CAR);
-            if (countCarEmpty < 0)
-            {
-                countCarEmpty = 0;
+                if (row["TypeID"].ToString() == TypeDTO.TYPE_BIKE)
+                {               
+                    //string data = "@xemay_" + countBikeEmpty.ToString("D" + 4) + "&" + "\r\n";
+                    data = "@xemay_" + countEmpty.ToString() + "&";
+                    
+                } else
+                {
+                    data = "@oto_" + countEmpty.ToString() + "&";
+                }
+
+                writeDataToLostAvailablePort(data, portName);
+                Thread.Sleep(1000);
             }
-            //string dataCar = "@oto_" + countCarEmpty.ToString("D" + 4) + "&" + "\r\n";
-            string dataCar = "@oto_" + countCarEmpty.ToString() + "&";
-            writeDataToLostAvailablePort(dataCar, portName);
+
+
+            
+            //string exceptPartSignBike = null;
+            //if (mConfig.projectId.Equals(Constant.API_KEY_GREEN_HILLS))
+            //{
+            //    exceptPartSignBike = "XeMayLuotTrenG";
+            //}
+
+            //int countBikeEmpty = mBikeSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_BIKE, exceptPartSignBike);
+            //if (countBikeEmpty < 0)
+            //{
+            //    countBikeEmpty = 0;
+            //}
+            ////string dataBike = "@xemay_" + countBikeEmpty.ToString("D" + 4) + "&" + "\r\n";
+            //string dataBike = "@xemay_" + countBikeEmpty.ToString() + "&";
+            //writeDataToLostAvailablePort(dataBike, portName);
+
+            //Thread.Sleep(1000);
+            //string exceptPartSignCar = null;
+            //if (mConfig.projectId.Equals(Constant.API_KEY_GREEN_HILLS))
+            //{
+            //    exceptPartSignCar = "OTOLuotTrenG";
+            //}
+
+            //int countCarEmpty = mCarSpace - CarDAO.GetCountCarSurvive(TypeDTO.TYPE_CAR, exceptPartSignCar);
+            //if (countCarEmpty < 0)
+            //{
+            //    countCarEmpty = 0;
+            //}
+            ////string dataCar = "@oto_" + countCarEmpty.ToString("D" + 4) + "&" + "\r\n";
+            //string dataCar = "@oto_" + countCarEmpty.ToString() + "&";
+            //writeDataToLostAvailablePort(dataCar, portName);
         }
 
         //private void updateDataToServerByTimer()

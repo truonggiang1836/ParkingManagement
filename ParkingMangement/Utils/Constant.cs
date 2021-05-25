@@ -17,6 +17,7 @@ namespace ParkingMangement.Utils
         public const string ARROW_STRING = " -> ";
         public const int PROJECT_ID = 2;
         public const string API_KEY_BV_HOAN_MY_THU_DUC = "02822109199-41";
+        public const string API_KEY_GREEN_HILLS = "02822109199-039";
 
         // common
         public static string sHintTextUsername = "User";
