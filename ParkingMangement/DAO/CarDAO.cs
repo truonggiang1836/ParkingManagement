@@ -466,7 +466,10 @@ namespace ParkingMangement.DAO
                     long countCar = GetCountTicketMonthCarByTypeAndDate(startTime, endTime, partID);
                     data.Rows[row].SetField("CountCar", countCar);
                     long countCost = GetCountCostByTypeAndDate(startTime, endTime, partID, isTicketMonth, userInID, userOutID);
-                    countCost += GetCountTicketMonthCostByTypeAndDate(startTime, endTime, partID);
+                    if (isTicketMonth)
+                    {
+                        countCost += GetCountTicketMonthCostByTypeAndDate(startTime, endTime, partID);
+                    }
                     data.Rows[row].SetField("SumCost", Util.formatNumberAsMoney(countCost));
                     countAllCarIn += countCarIn;
                     countAllCarOut += countCarOut;
@@ -606,7 +609,6 @@ namespace ParkingMangement.DAO
                     long countCarSurvive = GetCountCarSurviveByTypeAndDate(startTime, endTime, partID, isTicketMonth, userID);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                     long countCost = GetCountCostByTypeAndDate(startTime, endTime, partID, isTicketMonth, null, userID);
-                    countCost += GetCountTicketMonthCostByTypeAndDate(startTime, endTime, partID);
                     data.Rows[row].SetField("SumCost", countCost);
                     countAllCarIn += countCarIn;
                     countAllCarOut += countCarOut;
