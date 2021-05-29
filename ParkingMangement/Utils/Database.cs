@@ -19,7 +19,7 @@ namespace ParkingMangement
         //protected static String _connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=ParkingManagement.mdb;Mode=Share Deny None";
 
         //static OleDbConnection connection;
-        private SqlConnection mySqlConnection;
+        //private SqlConnection mySqlConnection;
         //static Config config;
 
         public SqlConnection GetDBConnection()
@@ -45,7 +45,7 @@ namespace ParkingMangement
         {
             Program.sCountConnection++;
 
-            mySqlConnection = GetDBConnection();
+            SqlConnection mySqlConnection = GetDBConnection();
 
             try
             {
@@ -62,24 +62,11 @@ namespace ParkingMangement
             Console.Read();
         }
 
-        public void CloseConnection()
-        {
-            Program.sCountConnection--;
-
-            // Đóng kết nối.
-            if (mySqlConnection.State != ConnectionState.Closed)
-            {
-                mySqlConnection.Close();
-            }
-            // Tiêu hủy đối tượng, giải phóng tài nguyên.
-            //mySqlConnection.Dispose();
-        }
-
         public int ExcuValueQuery(string sql)
         {
+            SqlConnection mySqlConnection = GetDBConnection();
             try
-            {
-                mySqlConnection = GetDBConnection();
+            {       
                 DataTable dt = new DataTable();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
@@ -96,6 +83,7 @@ namespace ParkingMangement
             {
                 if (mySqlConnection != null)
                 {
+                    mySqlConnection.Close();
                     mySqlConnection.Dispose();
                 }
             }
@@ -104,9 +92,9 @@ namespace ParkingMangement
         public DataTable ExcuQuery(string sql)
         {
             DataTable dt = new DataTable();
+            SqlConnection mySqlConnection = GetDBConnection();
             try
             {
-                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
@@ -124,6 +112,7 @@ namespace ParkingMangement
             {
                 if (mySqlConnection != null)
                 {
+                    mySqlConnection.Close();
                     mySqlConnection.Dispose();
                 }
             }
@@ -133,9 +122,9 @@ namespace ParkingMangement
         public DataTable ExcuQueryNoErrorMessage(string sql)
         {
             DataTable dt = new DataTable();
+            SqlConnection mySqlConnection = GetDBConnection();
             try
             {
-                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
@@ -152,6 +141,7 @@ namespace ParkingMangement
             {
                 if (mySqlConnection != null)
                 {
+                    mySqlConnection.Close();
                     mySqlConnection.Dispose();
                 }
             }
@@ -160,16 +150,15 @@ namespace ParkingMangement
 
         public bool ExcuNonQuery(string sql)
         {
+            SqlConnection mySqlConnection = GetDBConnection();
             try
             {
                 int result = 0;
-                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
                 mySqlConnection.Open();
                 result = command.ExecuteNonQuery();
-                CloseConnection();
                 if (result > 0)
                 {
                     return true;
@@ -200,6 +189,7 @@ namespace ParkingMangement
             {
                 if (mySqlConnection != null)
                 {
+                    mySqlConnection.Close();
                     mySqlConnection.Dispose();
                 }
             }
@@ -207,9 +197,9 @@ namespace ParkingMangement
 
         public bool ExcuNonQueryNoErrorMessage(string sql)
         {
+            SqlConnection mySqlConnection = GetDBConnection();
             try
             {
-                mySqlConnection = GetDBConnection();
                 SqlCommand command = mySqlConnection.CreateCommand();
                 command.Connection = mySqlConnection;
                 command.CommandText = sql;
@@ -232,12 +222,13 @@ namespace ParkingMangement
             {
                 if (mySqlConnection != null)
                 {
+                    mySqlConnection.Close();
                     mySqlConnection.Dispose();
                 }
             }
         }
 
-        static public void UpdateDB()
+        public void UpdateDB()
         {
             try
             {
@@ -265,7 +256,7 @@ namespace ParkingMangement
             }
         }
 
-        static public void backupDB()
+        public void backupDB()
         {
             try
             {
@@ -303,7 +294,7 @@ namespace ParkingMangement
             }
         }
 
-        static public void backupDB(string folderPath, string fileName)
+        public void backupDB(string folderPath, string fileName)
         {           
             DirectoryInfo di = new DirectoryInfo(folderPath);
             foreach (FileInfo file in di.GetFiles())

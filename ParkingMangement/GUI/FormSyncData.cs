@@ -40,7 +40,12 @@ namespace ParkingMangement.GUI
             base.OnLoad(e);
         }
 
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        private void OnTimedEventRevenueData(object source, ElapsedEventArgs e)
+        {
+            doSyncRevenueData();
+        }
+
+        private void doSyncRevenueData()
         {
             try
             {
@@ -96,12 +101,12 @@ namespace ParkingMangement.GUI
         private void syncOrderData()
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 5 * 60 * 1000; // 5'
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventRevenueData);
+            aTimer.Interval = Constant.SYNC_REVENUE_PERIOD_MINUTE * 60 * 1000; // 15'
             aTimer.Enabled = true;
             aTimer.Start();
 
-            Util.syncRevenueToSPMServer();
+            doSyncRevenueData();
         }
 
         private void syncCardData()

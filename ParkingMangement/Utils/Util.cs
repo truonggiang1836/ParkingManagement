@@ -17,6 +17,7 @@ using System.Management;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -1369,7 +1370,7 @@ namespace ParkingMangement.Utils
 
                 string startPreviousDateTimeString = startDatePreviousShift.ToString("yyyyMMdd_HH");
                 string previousRevenueId = RevenueDAO.GetRevenueId(startPreviousDateTimeString, userID);
-                if (previousRevenueId == null || (DateTime.Now - startDateCurrentShift).TotalMinutes <= 10)
+                if (previousRevenueId == null || (DateTime.Now - startDateCurrentShift).TotalMinutes <= Constant.SYNC_REVENUE_PERIOD_MINUTE * 2)
                 {
                     InsertOrUpdateRevenue(startDatePreviousShift, endDatePreviousShift, userID, userName);
                 }

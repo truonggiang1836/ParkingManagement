@@ -13,6 +13,7 @@ namespace ParkingMangement.Utils
         public const bool IS_NEW_CAMERA = false;
         public const bool IS_NAPSHOT_FULL_IMAGE = false;
         public const int AUTO_CLOSE_MESSAGE_BOX_TIME = 2000;
+        public const int SYNC_REVENUE_PERIOD_MINUTE = 30;
         public const string BREAK_LINE = "\r\n";
         public const string ARROW_STRING = " -> ";
         public const int PROJECT_ID = 2;

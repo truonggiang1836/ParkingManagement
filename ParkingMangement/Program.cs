@@ -59,15 +59,14 @@ namespace ParkingMangement
             initPegasusComReader();
 
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
-         
-            Database.UpdateDB();           
+                    
+            doTimerPeriodAction();
 
             if (Constant.IS_SYNC_DATA_APP)
             {
                 Application.Run(new FormSyncData());
             } else
-            {
-                doTimerAutoLockCard();
+            {             
                 Application.Run(new FormLogin());              
             }
         }
@@ -254,19 +253,18 @@ namespace ParkingMangement
             }
         }
 
-        private static void doTimerAutoLockCard()
+        private static void doTimerPeriodAction()
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventAutoLockCard);
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventPeriodAction);
             //aTimer.Interval = 1 * 60 * 60 * 1000; //1h
             aTimer.Interval = 60 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
 
-            checkForAutoLockCard();
-            runSyncDataProcess();           
+            (new Database()).UpdateDB();
             generateConfigFile();
-            backupDB();           
+            doPeriodAction();
         }
 
         private static void generateConfigFile()
@@ -284,11 +282,19 @@ namespace ParkingMangement
             }
         }
 
-        private static void OnTimedEventAutoLockCard(object source, ElapsedEventArgs e)
+        private static void OnTimedEventPeriodAction(object source, ElapsedEventArgs e)
+        {
+            doPeriodAction();
+        }
+
+        private static void doPeriodAction()
         {
             checkForAutoLockCard();
-            runSyncDataProcess();
             backupDB();
+            if (!Constant.IS_SYNC_DATA_APP)
+            {
+                runSyncDataProcess();               
+            }      
         }
 
         private static void backupDB()
@@ -298,14 +304,14 @@ namespace ParkingMangement
                 new Thread(() =>
                 {
                     Thread.CurrentThread.IsBackground = true;
-                    Database.backupDB();
+                    (new Database()).backupDB();
                 }).Start();
             }           
         }
 
         private static void checkForAutoLockCard()
         {
-            if (!Constant.IS_SYNC_DATA_APP && Environment.MachineName.Equals(Util.getConfigFile().computerName))
+            if (Environment.MachineName.Equals(Util.getConfigFile().computerName))
             {
                 if (ConfigDAO.GetIsAutoLockCard(ConfigDAO.GetConfig()) == ConfigDTO.AUTO_LOCK_CARD_YES)
                 {
