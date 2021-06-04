@@ -491,6 +491,23 @@ namespace ParkingMangement.DAO
             return ticketMonthDTO;
         }
 
+        public static TicketMonthDTO GetDTODataByIDForReadCard(string id)
+        {
+            string sql = "select top 1 Digit, CustomerName, IdPart,ExpirationDate from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
+            DataTable dt = (new Database()).ExcuQuery(sql);
+            TicketMonthDTO ticketMonthDTO = null;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                ticketMonthDTO = new TicketMonthDTO();
+
+                ticketMonthDTO.Digit = dt.Rows[0].Field<string>("Digit");
+                ticketMonthDTO.CustomerName = dt.Rows[0].Field<string>("CustomerName");
+                ticketMonthDTO.IdPart = dt.Rows[0].Field<string>("IdPart");
+                ticketMonthDTO.ExpirationDate = dt.Rows[0].Field<DateTime?>("ExpirationDate");
+            }
+            return ticketMonthDTO;
+        }
+
         public static DataTable GetDataByDigit(string digit)
         {
             string sql = "select * from TicketMonth where Digit = '" + digit + "' and TicketMonth.IsDeleted = '0'";

@@ -262,7 +262,11 @@ namespace ParkingMangement
             aTimer.Enabled = true;
             aTimer.Start();
 
-            (new Database()).UpdateDB();
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                (new Database()).UpdateDB();
+            }).Start();
             generateConfigFile();
             doPeriodAction();
         }
@@ -314,8 +318,12 @@ namespace ParkingMangement
             if (Environment.MachineName.Equals(Util.getConfigFile().computerName))
             {
                 if (ConfigDAO.GetIsAutoLockCard(ConfigDAO.GetConfig()) == ConfigDTO.AUTO_LOCK_CARD_YES)
-                {
-                    Util.autoLockExpiredCard();
+                {                  
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        Util.autoLockExpiredCard();
+                    }).Start();
                 }
             }
         }

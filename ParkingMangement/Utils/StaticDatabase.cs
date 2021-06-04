@@ -86,7 +86,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
-                command.CommandTimeout = 60;
+
                 int value = Convert.ToInt32(command.ExecuteScalar());
                 mySqlTransaction.Commit();
                 return value;
@@ -114,7 +114,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
-                command.CommandTimeout = 60;
+
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
@@ -145,7 +145,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
-                command.CommandTimeout = 60;
+
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 adapter.SelectCommand = command;
                 adapter.Fill(dt);
@@ -176,7 +176,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
-                command.CommandTimeout = 60;
+
                 result = command.ExecuteNonQuery();
                 mySqlTransaction.Commit();
                 if (result > 0)
@@ -195,6 +195,10 @@ namespace ParkingMangement
                     //This code happens ONLY when trying to add duplicated values to the primary key in the database, 
                     // in this case just do nothing and continue loading the other no duplicated values
                     MessageBox.Show(Constant.sMessageDuplicateDataError);
+                }
+                else if (Ex.Number == 1205)
+                {
+                    // Deadlock 
                 }
                 else
                 {
@@ -220,7 +224,7 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 mySqlTransaction = mySqlConnection.BeginTransaction();
                 SqlCommand command = createSqlCommand(sql, mySqlConnection, mySqlTransaction);
-                command.CommandTimeout = 60;
+
                 int result = command.ExecuteNonQuery();
                 mySqlTransaction.Commit();
                 if (result > 0)

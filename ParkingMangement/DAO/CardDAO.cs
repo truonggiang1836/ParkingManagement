@@ -288,6 +288,12 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
+        public static DataTable GetNotDeletedCardByIDForCardReader(string id)
+        {
+            string sql = "select top 1 SmartCard.Identify, SmartCard.IsUsing, SmartCard.Type, SmartCard.IsDeleted, Part.PartName, Part.CardTypeID from SmartCard inner join Part on SmartCard.Type = Part.ID where SmartCard.ID = '" + id + "' and SmartCard.IsDeleted = 0";
+            return (new Database()).ExcuQuery(sql);
+        }
+
         public static DataTable GetCardByIdentify(string identify)
         {
             string sql = "select * from SmartCard where Identify = '" + identify + "' and SmartCard.IsDeleted = 0";
@@ -332,6 +338,23 @@ namespace ParkingMangement.DAO
                 {
                     cardDTO.DayUnlimit = dt.Rows[0].Field<DateTime>("DayUnlimit");
                 }
+                return cardDTO;
+            }
+            return null;
+        }
+
+        public static CardDTO GetNotDeletedCardModelByIDForReadCard(string id)
+        {
+            CardDTO cardDTO = null;
+            DataTable dt = GetNotDeletedCardByIDForCardReader(id);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                cardDTO = new CardDTO();
+                cardDTO.Identify = dt.Rows[0].Field<string>("Identify");
+                cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
+                cardDTO.Type = dt.Rows[0].Field<string>("Type");
+                cardDTO.CardTypeID = dt.Rows[0].Field<string>("CardTypeID");
+                cardDTO.PartName = dt.Rows[0].Field<string>("PartName");
                 return cardDTO;
             }
             return null;

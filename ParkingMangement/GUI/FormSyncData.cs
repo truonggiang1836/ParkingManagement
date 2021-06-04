@@ -102,7 +102,7 @@ namespace ParkingMangement.GUI
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventRevenueData);
-            aTimer.Interval = Constant.SYNC_REVENUE_PERIOD_MINUTE * 60 * 1000; // 15'
+            aTimer.Interval = Constant.SYNC_REVENUE_PERIOD_MINUTE * 60 * 1000; // 60'
             aTimer.Enabled = true;
             aTimer.Start();
 
