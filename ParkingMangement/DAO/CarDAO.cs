@@ -171,7 +171,7 @@ namespace ParkingMangement.DAO
                     sql += " and Car.IDOut like '" + carDTO.IdOut + "'";
                 }
             }
-            
+
             return sql;
         }
 
@@ -229,7 +229,8 @@ namespace ParkingMangement.DAO
             if (ticketType == COMMON_TICKET)
             {
                 sql += sqlQueryTicketCommon;
-            } else if (ticketType == MONTH_TICKET)
+            }
+            else if (ticketType == MONTH_TICKET)
             {
                 sql += sqlQueryTicketMonth;
             }
@@ -354,12 +355,12 @@ namespace ParkingMangement.DAO
                 long countAllCarIn = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarInCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInCommonData)? countCarInCommonData : 0;
+                    long countCarInCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInCommonData) ? countCarInCommonData : 0;
                     countAllCarIn += countCarInCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarInTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInTicketData)? countCarInTicketData : 0;
+                    long countCarInTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInTicketData) ? countCarInTicketData : 0;
                     countAllCarIn += countCarInTicketData;
                 }
                 dataRow.SetField("CountCarIn", countAllCarIn);
@@ -368,12 +369,12 @@ namespace ParkingMangement.DAO
                 long countAllCarOut = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarOutCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutCommonData)? countCarOutCommonData : 0;
+                    long countCarOutCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutCommonData) ? countCarOutCommonData : 0;
                     countAllCarOut += countCarOutCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarOutTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutTicketData)? countCarOutTicketData : 0;
+                    long countCarOutTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutTicketData) ? countCarOutTicketData : 0;
                     countAllCarOut += countCarOutTicketData;
                 }
                 dataRow.SetField("CountCarOut", countAllCarOut);
@@ -381,12 +382,12 @@ namespace ParkingMangement.DAO
                 long countAllCarSurvive = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarSurviveCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveCommonData)? countCarSurviveCommonData : 0;
+                    long countCarSurviveCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveCommonData) ? countCarSurviveCommonData : 0;
                     countAllCarSurvive += countCarSurviveCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarSurviveTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveTicketData)? countCarSurviveTicketData : 0;
+                    long countCarSurviveTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveTicketData) ? countCarSurviveTicketData : 0;
                     countAllCarSurvive += countCarSurviveTicketData;
                 }
                 dataRow.SetField("CountCarSurvive", countAllCarSurvive);
@@ -394,12 +395,12 @@ namespace ParkingMangement.DAO
                 long countAllCar = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long countCarCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCar"].ToString(), out countCarCommonData)? countCarCommonData : 0;
+                    long countCarCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCar"].ToString(), out countCarCommonData) ? countCarCommonData : 0;
                     countAllCar += countCarCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long countCarTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCar"].ToString(), out countCarTicketData)? countCarTicketData : 0;
+                    long countCarTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCar"].ToString(), out countCarTicketData) ? countCarTicketData : 0;
                     countAllCar += countCarTicketData;
                 }
                 dataRow.SetField("CountCar", countAllCar);
@@ -407,12 +408,12 @@ namespace ParkingMangement.DAO
                 long sumCost = 0;
                 if (commonData.Rows.Count > 0)
                 {
-                    long sumCostCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostCommonData)? sumCostCommonData : 0;
+                    long sumCostCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostCommonData) ? sumCostCommonData : 0;
                     sumCost += sumCostCommonData;
                 }
                 if (ticketData.Rows.Count > 0)
                 {
-                    long sumCostTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostTicketData)? sumCostTicketData : 0;
+                    long sumCostTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostTicketData) ? sumCostTicketData : 0;
                     sumCost += sumCostTicketData;
                 }
                 dataRow.SetField("SumCost", Util.formatNumberAsMoney(sumCost));
@@ -428,7 +429,8 @@ namespace ParkingMangement.DAO
             if (isTicketMonth)
             {
                 sql += " and Part.CardTypeID = 2";
-            } else
+            }
+            else
             {
                 sql += " and Part.CardTypeID = 1";
             }
@@ -516,48 +518,48 @@ namespace ParkingMangement.DAO
             long countAllCarIn = 0;
             if (commonData.Rows.Count > 0)
             {
-                long countCarInCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInCommonData)? countCarInCommonData : 0;
+                long countCarInCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInCommonData) ? countCarInCommonData : 0;
                 countAllCarIn += countCarInCommonData;
             }
             if (ticketData.Rows.Count > 0)
             {
-                long countCarInTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInTicketData)? countCarInTicketData : 0;
+                long countCarInTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarIn"].ToString(), out countCarInTicketData) ? countCarInTicketData : 0;
                 countAllCarIn += countCarInTicketData;
             }
 
             long countAllCarOut = 0;
             if (commonData.Rows.Count > 0)
             {
-                long countCarOutCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutCommonData)? countCarOutCommonData : 0;
+                long countCarOutCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutCommonData) ? countCarOutCommonData : 0;
                 countAllCarOut += countCarOutCommonData;
             }
             if (ticketData.Rows.Count > 0)
             {
-                long countCarOutTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutTicketData)? countCarOutTicketData : 0;
+                long countCarOutTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarOut"].ToString(), out countCarOutTicketData) ? countCarOutTicketData : 0;
                 countAllCarOut += countCarOutTicketData;
             }
 
             long countAllCarSurvive = 0;
             if (commonData.Rows.Count > 0)
             {
-                long countCarSurviveCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveCommonData)? countCarSurviveCommonData : 0;
+                long countCarSurviveCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveCommonData) ? countCarSurviveCommonData : 0;
                 countAllCarSurvive += countCarSurviveCommonData;
             }
             if (ticketData.Rows.Count > 0)
             {
-                long countCarSurviveTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveTicketData)? countCarSurviveTicketData : 0;
+                long countCarSurviveTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["CountCarSurvive"].ToString(), out countCarSurviveTicketData) ? countCarSurviveTicketData : 0;
                 countAllCarSurvive += countCarSurviveTicketData;
             }
 
             long sumCost = 0;
             if (commonData.Rows.Count > 0)
             {
-                long sumCostCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostCommonData)? sumCostCommonData : 0;
+                long sumCostCommonData = long.TryParse(commonData.Rows[commonData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostCommonData) ? sumCostCommonData : 0;
                 sumCost += sumCostCommonData;
             }
             if (ticketData.Rows.Count > 0)
             {
-                long sumCostTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostTicketData)? sumCostTicketData : 0;
+                long sumCostTicketData = long.TryParse(ticketData.Rows[ticketData.Rows.Count - 1]["SumCost"].ToString().Replace(".", ""), out sumCostTicketData) ? sumCostTicketData : 0;
                 sumCost += sumCostTicketData;
             }
 
@@ -634,7 +636,7 @@ namespace ParkingMangement.DAO
             dataRow.SetField("CountCarSurvive", countAllCarSurvive);
 
             dataRow.SetField("SumCost", sumCost);
-            data.Rows.Add(dataRow);          
+            data.Rows.Add(dataRow);
 
             return data;
         }
@@ -674,7 +676,7 @@ namespace ParkingMangement.DAO
 
                     if (typeID == TypeDTO.TYPE_BIKE)
                     {
-                        bitmap = sBitmapBikeIcon;                      
+                        bitmap = sBitmapBikeIcon;
                         if (Util.getConfigFile().projectId.Equals(Constant.API_KEY_GREEN_HILLS))
                         {
                             exceptPartSign = "XeMayLuotTrenG";
@@ -698,7 +700,7 @@ namespace ParkingMangement.DAO
                     {
                         countCarEmpty = 0;
                     }
-                    data.Rows[row].SetField("TypeName", bitmap);                   
+                    data.Rows[row].SetField("TypeName", bitmap);
                     data.Rows[row].SetField("CountCarSurvive", countCarSurvive);
                     data.Rows[row].SetField("CountCarEmpty", countCarEmpty);
                 }
@@ -765,7 +767,7 @@ namespace ParkingMangement.DAO
         {
             string sql = "select sum(cast(ReceiptLogDetail.Cost as bigint)) as SumCost from ReceiptLogDetail join Part on ReceiptLogDetail.PartID = Part.ID";
             sql += sqlQueryTicketMonth;
-            
+
             if (partID != null)
             {
                 sql += " and ReceiptLogDetail.PartID = '" + partID + "'";
@@ -861,7 +863,7 @@ namespace ParkingMangement.DAO
 
         public static long GetCountCarSurviveByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool? isTicketMonth, string userInID)
         {
-            string sql = "select count(DISTINCT(Car.ID)) from Car join Part on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID";
+            string sql = "select MAX(Car.Identify), Car.ID from Car join Part on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID";
             if (isTicketMonth == false)
             {
                 sql += sqlQueryTicketCommon;
@@ -888,13 +890,14 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Car.IDIn = '" + userInID + "'";
             }
+            sql += " GROUP BY Car.ID";
 
-            return (new Database()).ExcuValueQuery(sql);
+            return (new Database()).ExcuQuery(sql).Rows.Count;
         }
 
         public static int GetCountCarSurvive(string typeID, string exceptPartSign)
         {
-            string sql = "select count(DISTINCT(Car.ID)) from Part inner join Car on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID where Car.IDIn <> '' and Car.IDOut = '' ";
+            string sql = "select MAX(Car.Identify), Car.ID from Part inner join Car on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID where Car.IDOut = '' ";
             if (typeID != null)
             {
                 sql += " and Part.TypeID = '" + typeID + "'";
@@ -903,8 +906,9 @@ namespace ParkingMangement.DAO
             {
                 sql += " and Part.Sign <> '" + exceptPartSign + "'";
             }
+            sql += " GROUP BY Car.ID";
 
-            return (new Database()).ExcuValueQuery(sql);
+            return (new Database()).ExcuQuery(sql).Rows.Count;
         }
 
         public static DataTable GetCarByIdentify(int identify)

@@ -93,7 +93,6 @@ namespace ParkingMangement.GUI
         private Config mConfig;
 
         private DataTable mListCarSurvive;
-        private BindingSource mBindingSource;
         private bool mIsUseCostDeposit = true;
         private int mNoticeExpiredDate;
         private int mNoticeToBeExpireDate;
@@ -2602,9 +2601,7 @@ namespace ParkingMangement.GUI
                     return computerDTO.MinCost;
                 }
                 else
-                {
-                    timeIn = timeIn.AddMinutes(computerDTO.MinMinute);
-
+                {                   
                     return getCostTinhTienTongHop2(timeIn, timeOut, computerDTO);
 
                 }
@@ -2638,15 +2635,14 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    //if (totalHourOfDay >= totalHourOfNight)
-                    //{
-                    //    return computerDTO.CostMilestone1;
-                    //}
-                    //else
-                    //{
-                    //    return computerDTO.CostMilestoneNight1;
-                    //}
-                    return computerDTO.CostMilestoneNight1;
+                    if (totalHourOfDay >= totalHourOfNight)
+                    {
+                        return computerDTO.CostMilestone1;
+                    }
+                    else
+                    {
+                        return computerDTO.CostMilestoneNight1;
+                    }
                 }
             }
             else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone2)
@@ -2664,14 +2660,15 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    if (totalHourOfDay >= totalHourOfNight)
-                    {
-                        return computerDTO.CostMilestone2;
-                    }
-                    else
-                    {
-                        return computerDTO.CostMilestoneNight2;
-                    }
+                    //if (totalHourOfDay >= totalHourOfNight)
+                    //{
+                    //    return computerDTO.CostMilestone2;
+                    //}
+                    //else
+                    //{
+                    //    return computerDTO.CostMilestoneNight2;
+                    //}
+                    return computerDTO.CostMilestoneNight2;
                 }
             }
             else if (spentTimeByHour >= computerDTO.HourMilestone2 && spentTimeByHour < computerDTO.HourMilestone3)
@@ -2689,14 +2686,15 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    if (totalHourOfDay >= totalHourOfNight)
-                    {
-                        return computerDTO.CostMilestone3;
-                    }
-                    else
-                    {
-                        return computerDTO.CostMilestoneNight3;
-                    }
+                    //if (totalHourOfDay >= totalHourOfNight)
+                    //{
+                    //    return computerDTO.CostMilestone3;
+                    //}
+                    //else
+                    //{
+                    //    return computerDTO.CostMilestoneNight3;
+                    //}
+                    return computerDTO.CostMilestoneNight3;
                 }
             }
             else
@@ -3322,10 +3320,7 @@ namespace ParkingMangement.GUI
         //}
 
         private void updateDataByTimer()
-        {
-            mBindingSource = new BindingSource();
-            mListCarSurvive = CarDAO.GetListCarSurvive();
-            dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
+        {           
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
             aTimer.Interval = 30 * 1000;
@@ -3355,7 +3350,7 @@ namespace ParkingMangement.GUI
                     mListCarSurvive = CarDAO.GetListCarSurvive();
                     Invoke(new MethodInvoker(() =>
                     {
-                        mBindingSource.DataSource = mListCarSurvive;
+                        dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
                         if (mConfig.comLostAvailable.Length > 0)
                         {
                             showLostAvailableToLed();
