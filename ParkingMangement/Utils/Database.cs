@@ -103,10 +103,16 @@ namespace ParkingMangement
                 mySqlConnection.Open();
                 adapter.Fill(dt);
             }
-            catch (Exception Ex)
+            catch (SqlException Ex)
             {
-                //MessageBox.Show(Constant.sMessageCommonError);
-                MessageBox.Show(Ex.Message + "_sql: " + sql);
+                if (Ex.Number == 1205)
+                {
+                    // Deadlock 
+                }
+                else
+                {
+                    MessageBox.Show(Ex.Message + "_sql: " + sql);
+                }
             }
             finally
             {

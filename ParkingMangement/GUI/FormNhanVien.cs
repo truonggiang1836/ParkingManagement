@@ -3343,25 +3343,28 @@ namespace ParkingMangement.GUI
 
         private void checkAndUpdateLostAvailable()
         {
-            try
+            if (!mIsUpdatingDB)
             {
-                new Thread(() =>
+                try
                 {
-                    mListCarSurvive = CarDAO.GetListCarSurvive();
-                    Invoke(new MethodInvoker(() =>
+                    new Thread(() =>
                     {
-                        dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
-                        if (mConfig.comLostAvailable.Length > 0)
+                        mListCarSurvive = CarDAO.GetListCarSurvive();
+                        Invoke(new MethodInvoker(() =>
                         {
-                            showLostAvailableToLed();
-                        }                     
-                    }));
-                }).Start();
-            }
-            catch (Exception)
-            {
+                            dgvThongKeXeTrongBai.DataSource = mListCarSurvive;
+                            if (mConfig.comLostAvailable.Length > 0)
+                            {
+                                showLostAvailableToLed();
+                            }
+                        }));
+                    }).Start();
+                }
+                catch (Exception)
+                {
 
-            }           
+                }
+            }
         }
 
         private void updateXeRaVaoTimer()

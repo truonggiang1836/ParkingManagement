@@ -784,7 +784,7 @@ namespace ParkingMangement.DAO
 
         public static long GetCountTicketMonthCarByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID)
         {
-            string sql = "select COUNT(DISTINCT ReceiptLogDetail.CardID) as CountCar from ReceiptLogDetail join Part on ReceiptLogDetail.PartID = Part.ID";
+            string sql = "select MAX(ReceiptLogDetail.ID), ReceiptLogDetail.CardID from ReceiptLogDetail join Part on ReceiptLogDetail.PartID = Part.ID";
             sql += sqlQueryTicketMonth;
 
             if (partID != null)
@@ -797,8 +797,9 @@ namespace ParkingMangement.DAO
                 DateTime endTime1 = endTime ?? DateTime.Now;
                 sql += " and ReceiptLogDetail.PrintDate between '" + startTime1.ToString(Constant.sDateTimeFormatForQuery) + "' and '" + endTime1.ToString(Constant.sDateTimeFormatForQuery) + "'";
             }
+            sql += " GROUP BY ReceiptLogDetail.CardID";
 
-            return (new Database()).ExcuValueQuery(sql);
+            return (new Database()).ExcuQuery(sql).Rows.Count;
         }
 
         public static long GetCountCarInByTypeAndDate(DateTime? startTime, DateTime? endTime, string partID, bool? isTicketMonth, string userInID)
