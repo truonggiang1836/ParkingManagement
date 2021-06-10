@@ -491,7 +491,7 @@ namespace ParkingMangement.DAO
             return ticketMonthDTO;
         }
 
-        public static TicketMonthDTO GetDTODataByIDForReadCard(string id)
+        public TicketMonthDTO GetDTODataByIDForReadCard(string id)
         {
             string sql = "select top 1 Digit, CustomerName, IdPart,ExpirationDate from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
             DataTable dt = (new Database()).ExcuQuery(sql);
@@ -520,7 +520,7 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
-        public static string GetDigitByID(string id)
+        public string GetDigitByID(string id)
         {
             string sql = "select top 1 Digit from TicketMonth where ID = '" + id + "' and TicketMonth.IsDeleted = '0'";
             DataTable dt = (new Database()).ExcuQuery(sql);

@@ -257,8 +257,8 @@ namespace ParkingMangement
         {
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventPeriodAction);
-            //aTimer.Interval = 1 * 60 * 60 * 1000; //1h
-            aTimer.Interval = 60 * 1000;
+            aTimer.Interval = 8 * 60 * 60 * 1000; //8h
+            //aTimer.Interval = 3000;
             aTimer.Enabled = true;
             aTimer.Start();
 
@@ -289,12 +289,12 @@ namespace ParkingMangement
         private static void OnTimedEventPeriodAction(object source, ElapsedEventArgs e)
         {
             doPeriodAction();
+            backupDB();
         }
 
         private static void doPeriodAction()
         {
             checkForAutoLockCard();
-            backupDB();
             if (!Constant.IS_SYNC_DATA_APP)
             {
                 runSyncDataProcess();               

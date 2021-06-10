@@ -72,16 +72,27 @@ namespace ParkingMangement.Model
         public int inOutType { get; set; } = 1;
 
         [XmlElement(ElementName = "zoom_camera_1")]
-        public float ZoomCamera1 { get; set; } = 30;
+        public float ZoomCamera1 { get; set; } = 50;
 
         [XmlElement(ElementName = "zoom_camera_2")]
-        public float ZoomCamera2 { get; set; } = 30;
+        public float ZoomCamera2 { get; set; } = 50;
 
         [XmlElement(ElementName = "zoom_camera_3")]
-        public float ZoomCamera3 { get; set; } = 30;
+        public float ZoomCamera3 { get; set; } = 50;
 
         [XmlElement(ElementName = "zoom_camera_4")]
-        public float ZoomCamera4 { get; set; } = 30;
+        public float ZoomCamera4 { get; set; } = 50;
+        [XmlElement(ElementName = "zoom_camera_car_1")]
+        public float ZoomCameraCar1 { get; set; } = 50;
+
+        [XmlElement(ElementName = "zoom_camera_car_2")]
+        public float ZoomCameraCar2 { get; set; } = 50;
+
+        [XmlElement(ElementName = "zoom_camera_car_3")]
+        public float ZoomCameraCar3 { get; set; } = 50;
+
+        [XmlElement(ElementName = "zoom_camera_car_4")]
+        public float ZoomCameraCar4 { get; set; } = 50;
 
         [XmlElement(ElementName = "com_receive_in")]
         public string comReceiveIn { get; set; } = "";

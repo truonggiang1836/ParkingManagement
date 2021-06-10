@@ -539,7 +539,7 @@ namespace ParkingMangement.Utils
             revenueDetail.SoXeVao = dtRow.Field<long>("CountCarIn");
             revenueDetail.SoXeRa = dtRow.Field<long>("CountCarOut");
             revenueDetail.SoXeTon = dtRow.Field<long>("CountCarSurvive");
-            revenueDetail.SoTien = dtRow.Field<long>("SumCost");
+            revenueDetail.SoTien = dtRow.Field<long?>("SumCost") ?? 0;
             return revenueDetail;
         }
 
@@ -563,7 +563,7 @@ namespace ParkingMangement.Utils
                     revenue.TongXeVao = dtRow.Field<long>("CountCarIn");
                     revenue.TongXeRa = dtRow.Field<long>("CountCarOut");
                     revenue.TongXeTon = dtRow.Field<long>("CountCarSurvive");
-                    revenue.TongTien = dtRow.Field<long>("SumCost");
+                    revenue.TongTien = dtRow.Field<long?>("SumCost") ?? 0;
                 } else
                 {
                     RevenueDetail revenueDetail = getRevenueDetailFromData(dtRow);

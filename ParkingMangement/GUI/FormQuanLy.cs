@@ -455,6 +455,8 @@ namespace ParkingMangement.GUI
                 ticketType = CarDAO.MONTH_TICKET;
             }
             dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCost(startDateReport, endDateReport, userInID, userOutID, ticketType);
+            //dgvThongKeDoanhThu.DataSource = CarDAO.GetTotalCostForSyncToWeb(startDateReport, endDateReport, userOutID);
+
             //string json = Util.getRevenueData(startDateReport, endDateReport, userOutID);
             //Util.syncRevenueToSPMServer(json);
         }
@@ -2862,7 +2864,7 @@ namespace ParkingMangement.GUI
                 DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    if (CarDAO.UpdateLostCard(carDTO))
+                    if ((new CarDAO()).UpdateLostCard(carDTO))
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         searchCar();

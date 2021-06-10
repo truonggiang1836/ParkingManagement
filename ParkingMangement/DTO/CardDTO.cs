@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ParkingMangement.DTO
 {
-    class CardDTO
+    class CardDTO : ICloneable
     {
         private string systemId;
         private string identify;
@@ -37,6 +37,11 @@ namespace ParkingMangement.DTO
                 isUsing = "có";
             }
             return isUsing;
+        }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
         }
     }
 }
