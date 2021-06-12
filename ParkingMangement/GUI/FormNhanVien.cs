@@ -790,7 +790,10 @@ namespace ParkingMangement.GUI
             {
                 return;
             }
-            checkForShowCarCamera(cardID, isInputLeftSide);
+            if (!Constant.IS_NEW_CAMERA)
+            {
+                checkForShowCarCamera(cardID, isInputLeftSide);
+            }
            
             mCurrentCardID = cardID;
             isShowExpiredMessage = false;
@@ -1194,7 +1197,7 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentStaffUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
-                string inputDigit = docBienSo(cardID, isInputLeftSide);
+                string inputDigit = docBienSo(cardID, isInputLeftSide, imagePath1, imagePath2);
                 if (!inputDigit.Equals(""))
                 {
                     carDTO.DigitIn = inputDigit;
@@ -1269,7 +1272,7 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentStaffUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
-                string inputDigit = docBienSo(cardID, isInputLeftSide);
+                string inputDigit = docBienSo(cardID, isInputLeftSide, imagePath1, imagePath2);
                 if (!inputDigit.Equals(""))
                 {
                     carDTO.DigitIn = inputDigit;
@@ -1493,8 +1496,7 @@ namespace ParkingMangement.GUI
                     }
                 }               
 
-                loadCarInData(dtLastCar, cardID, isInputLeftSide);
-                string inputDigit = docBienSo(cardID, isInputLeftSide);
+                loadCarInData(dtLastCar, cardID, isInputLeftSide);               
 
                 if (!isUpdateCarOut)
                 {
@@ -1503,8 +1505,10 @@ namespace ParkingMangement.GUI
                     Invoke((MethodInvoker)(delegate ()
                     {
                         imagePath3 = saveImage3ToFile(cardID, isInputLeftSide);
-                        imagePath4 = saveImage3ToFile(cardID, isInputLeftSide);
+                        imagePath4 = saveImage4ToFile(cardID, isInputLeftSide);
                     }));
+
+                    string inputDigit = docBienSo(cardID, isInputLeftSide, imagePath3, imagePath4);
 
                     await Task.Run(() =>
                     {
@@ -4119,33 +4123,33 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private string docBienSo(string cardID, bool isInputLeftSide)
+        private string docBienSo(string cardID, bool isInputLeftSide, string imagePath1, string imagePath2)
         {
             // DocBienSo
             string type = CardDAO.GetTypeByID(cardID);;
-            AxVLCPlugin2 axVLCPlugin;
+            string imagePath;
             if (isInputLeftSide)
             {
                 if (mConfig.readDigitLeftLane.Equals("2"))
                 {
                     if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
-                        axVLCPlugin = axVLCPlugin2;
+                        imagePath = imagePath2;
                     }
                     else
                     {
-                        axVLCPlugin = axVLCPlugin1;
+                        imagePath = imagePath1;
                     }
                 }
                 else
                 {
                     if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
-                        axVLCPlugin = axVLCPlugin1;
+                        imagePath = imagePath1;
                     }
                     else
                     {
-                        axVLCPlugin = axVLCPlugin2;
+                        imagePath = imagePath2;
                     };
                 }
             }
@@ -4155,32 +4159,31 @@ namespace ParkingMangement.GUI
                 {
                     if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
-                        axVLCPlugin = axVLCPlugin4;
+                        imagePath = imagePath2;
                     }
                     else
                     {
-                        axVLCPlugin = axVLCPlugin3;
+                        imagePath = imagePath1;
                     }
                 }
                 else
                 {
                     if (type == TypeDTO.TYPE_BIKE || inputIsCarLane())
                     {
-                        axVLCPlugin = axVLCPlugin3;
+                        imagePath = imagePath1;
                     }
                     else
                     {
-                        axVLCPlugin = axVLCPlugin4;
+                        imagePath = imagePath2;
                     }
                 }
             }
-            Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-
             string fileName = cardID + DateTime.Now.ToString("_yyyyMMdd_HHmmss_") + DateTime.Now.Ticks + ".jpg";
-            saveBitmapToFile(bmpScreenshot, Util.getFolderPath(mConfig.readDigitFolder), fileName);
+
+            string filePath = Constant.getSharedImageFolder() + imagePath;
+            File.Copy(filePath, Util.getFolderPath(mConfig.readDigitFolder) + fileName);
 
             string plateNumber = readDigitWareLogic();
-            bmpScreenshot.Dispose();
 
             DirectoryInfo di = new DirectoryInfo(Util.getFolderPath(mConfig.readDigitFolder));
             try

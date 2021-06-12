@@ -64,6 +64,10 @@ namespace ParkingMangement.GUI
                     cbZoomValue2.Items.Add(value);
                     cbZoomValue3.Items.Add(value);
                     cbZoomValue4.Items.Add(value);
+                    cbZoomCarValue1.Items.Add(value);
+                    cbZoomCarValue2.Items.Add(value);
+                    cbZoomCarValue3.Items.Add(value);
+                    cbZoomCarValue4.Items.Add(value);
                 }
 
                 Configuration configuration = new Configuration(Path.GetDirectoryName(Application.ExecutablePath));
@@ -71,6 +75,10 @@ namespace ParkingMangement.GUI
                 cbZoomValue2.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam2"));
                 cbZoomValue3.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam3"));
                 cbZoomValue4.SelectedIndex = listZoomValue.IndexOf(configuration.GetZoomCamera("cam4"));
+                cbZoomCarValue1.SelectedIndex = listZoomValue.IndexOf(1);
+                cbZoomCarValue2.SelectedIndex = listZoomValue.IndexOf(1);
+                cbZoomCarValue3.SelectedIndex = listZoomValue.IndexOf(1);
+                cbZoomCarValue4.SelectedIndex = listZoomValue.IndexOf(1);
             }
         }
 
