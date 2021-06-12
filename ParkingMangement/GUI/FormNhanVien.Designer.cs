@@ -37,6 +37,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelRightError = new System.Windows.Forms.Label();
+            this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
+            this.labelLeftError = new System.Windows.Forms.Label();
             this.axVLCPluginCar3 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPluginCar1 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPluginCar4 = new AxAXVLC.AxVLCPlugin2();
@@ -55,7 +58,6 @@
             this.axVLCPlugin1 = new AxAXVLC.AxVLCPlugin2();
             this.pictureBoxImage1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage2 = new System.Windows.Forms.PictureBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
@@ -159,6 +161,7 @@
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).BeginInit();
@@ -169,7 +172,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             this.panel3.SuspendLayout();
@@ -211,6 +213,9 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Controls.Add(this.labelRightError);
+            this.panel1.Controls.Add(this.labelLeftError);
             this.panel1.Controls.Add(this.axVLCPluginCar3);
             this.panel1.Controls.Add(this.axVLCPluginCar1);
             this.panel1.Controls.Add(this.axVLCPluginCar4);
@@ -229,13 +234,49 @@
             this.panel1.Controls.Add(this.axVLCPlugin1);
             this.panel1.Controls.Add(this.pictureBoxImage1);
             this.panel1.Controls.Add(this.pictureBoxImage4);
-            this.panel1.Controls.Add(this.pictureBoxImage3);
             this.panel1.Controls.Add(this.pictureBoxImage2);
             this.panel1.Controls.Add(this.pictureBox23);
+            this.panel1.Controls.Add(this.pictureBoxImage3);
             this.panel1.Location = new System.Drawing.Point(129, 38);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(891, 562);
+            this.panel1.Size = new System.Drawing.Size(891, 570);
             this.panel1.TabIndex = 0;
+            // 
+            // labelRightError
+            // 
+            this.labelRightError.BackColor = System.Drawing.Color.White;
+            this.labelRightError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRightError.ForeColor = System.Drawing.Color.Red;
+            this.labelRightError.Location = new System.Drawing.Point(448, 291);
+            this.labelRightError.Name = "labelRightError";
+            this.labelRightError.Size = new System.Drawing.Size(442, 22);
+            this.labelRightError.TabIndex = 134;
+            this.labelRightError.Text = "-";
+            this.labelRightError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBoxImage3
+            // 
+            this.pictureBoxImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
+            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 298);
+            this.pictureBoxImage3.Name = "pictureBoxImage3";
+            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 270);
+            this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxImage3.TabIndex = 5;
+            this.pictureBoxImage3.TabStop = false;
+            // 
+            // labelLeftError
+            // 
+            this.labelLeftError.BackColor = System.Drawing.Color.White;
+            this.labelLeftError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLeftError.ForeColor = System.Drawing.Color.Red;
+            this.labelLeftError.Location = new System.Drawing.Point(0, 291);
+            this.labelLeftError.Name = "labelLeftError";
+            this.labelLeftError.Size = new System.Drawing.Size(442, 22);
+            this.labelLeftError.TabIndex = 128;
+            this.labelLeftError.Text = "-";
+            this.labelLeftError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // axVLCPluginCar3
             // 
@@ -404,7 +445,7 @@
             this.pictureBoxImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage1.ErrorImage = null;
             this.pictureBoxImage1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage1.Image")));
-            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 293);
+            this.pictureBoxImage1.Location = new System.Drawing.Point(0, 298);
             this.pictureBoxImage1.Name = "pictureBoxImage1";
             this.pictureBoxImage1.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -416,31 +457,19 @@
             this.pictureBoxImage4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage4.Image")));
-            this.pictureBoxImage4.Location = new System.Drawing.Point(670, 293);
+            this.pictureBoxImage4.Location = new System.Drawing.Point(670, 298);
             this.pictureBoxImage4.Name = "pictureBoxImage4";
             this.pictureBoxImage4.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxImage4.TabIndex = 7;
             this.pictureBoxImage4.TabStop = false;
             // 
-            // pictureBoxImage3
-            // 
-            this.pictureBoxImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
-            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 293);
-            this.pictureBoxImage3.Name = "pictureBoxImage3";
-            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 270);
-            this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxImage3.TabIndex = 5;
-            this.pictureBoxImage3.TabStop = false;
-            // 
             // pictureBoxImage2
             // 
             this.pictureBoxImage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxImage2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage2.Image")));
-            this.pictureBoxImage2.Location = new System.Drawing.Point(222, 293);
+            this.pictureBoxImage2.Location = new System.Drawing.Point(222, 298);
             this.pictureBoxImage2.Name = "pictureBoxImage2";
             this.pictureBoxImage2.Size = new System.Drawing.Size(220, 270);
             this.pictureBoxImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -630,9 +659,9 @@
             this.panel3.Controls.Add(this.labelTongXeTrongBaiValue);
             this.panel3.Controls.Add(this.labelTongXeTrongBai);
             this.panel3.Controls.Add(this.dgvThongKeXeTrongBai);
-            this.panel3.Location = new System.Drawing.Point(1024, 465);
+            this.panel3.Location = new System.Drawing.Point(1024, 463);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(116, 134);
+            this.panel3.Size = new System.Drawing.Size(116, 143);
             this.panel3.TabIndex = 70;
             // 
             // labelTongXeTrongBaiValue
@@ -1033,9 +1062,9 @@
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.labelComputer);
             this.panel5.Controls.Add(this.label1);
-            this.panel5.Location = new System.Drawing.Point(8, 465);
+            this.panel5.Location = new System.Drawing.Point(8, 463);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(116, 134);
+            this.panel5.Size = new System.Drawing.Size(116, 143);
             this.panel5.TabIndex = 126;
             // 
             // label2
@@ -1501,7 +1530,7 @@
             this.labelVND_HeaderLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderLeft.Location = new System.Drawing.Point(329, 9);
             this.labelVND_HeaderLeft.Name = "labelVND_HeaderLeft";
-            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(41, 16);
+            this.labelVND_HeaderLeft.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderLeft.TabIndex = 72;
             this.labelVND_HeaderLeft.Text = "VNĐ";
             // 
@@ -1522,7 +1551,7 @@
             this.labelVND_HeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 10);
             this.labelVND_HeaderRight.Name = "labelVND_HeaderRight";
-            this.labelVND_HeaderRight.Size = new System.Drawing.Size(41, 16);
+            this.labelVND_HeaderRight.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderRight.TabIndex = 48;
             this.labelVND_HeaderRight.Text = "VNĐ";
             // 
@@ -1649,6 +1678,7 @@
             this.Shown += new System.EventHandler(this.FormNhanVien_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).EndInit();
@@ -1659,7 +1689,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPlugin1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             this.panel3.ResumeLayout(false);
@@ -1830,5 +1859,7 @@
         private AxAXVLC.AxVLCPlugin2 axVLCPluginCar2;
         private AxAXVLC.AxVLCPlugin2 axVLCPluginCar3;
         private AxAXVLC.AxVLCPlugin2 axVLCPluginCar1;
+        private System.Windows.Forms.Label labelLeftError;
+        private System.Windows.Forms.Label labelRightError;
     }
 }

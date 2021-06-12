@@ -2385,7 +2385,7 @@ namespace ParkingMangement.GUI
             }
             if (!CardDAO.isUsingByCardID(ticketMonthID))
             {
-                MessageBox.Show(Constant.sMessageCardIsLost);
+                MessageBox.Show(Constant.sMessageCardBeLocked);
                 return false;
             }
             return true;
@@ -5185,7 +5185,7 @@ namespace ParkingMangement.GUI
             {
                 if (!CardDAO.isUsingByCardID(cardDTO.Id))
                 {
-                    return Constant.sMessageCardIsLost;
+                    return Constant.sMessageCardBeLocked;
                 }
                 string cardTypeID = PartDAO.GetCardTypeByID(cardDTO.Type);
                 if (cardTypeID.Equals(CardTypeDTO.CARD_TYPE_TICKET_COMMON))

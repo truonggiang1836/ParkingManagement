@@ -69,12 +69,15 @@ namespace ParkingMangement.Utils
         public static string sMessageConfirmSaveLostCard = "Bạn có muốn lưu mất thẻ?";
         public static string sMessageCardIdNullError = "Mã thẻ chíp không được để trống";
         public static string sMessageCardIdNotExist = "Thẻ chưa được thêm vào hệ thống";
-        public static string sMessageCardIsLost = "THẺ ĐÃ BỊ KHÓA";
+        public static string sMessageCardBeLocked = "THẺ ĐÃ BỊ KHÓA!";
         public static string sLabelCardUsing = "Dùng";
         public static string sLabelCardNotUsing = "Không dùng";
         public static string sMessageCardIdentifyExisted = "Số thẻ đã tồn tại";
         public static string sMessageCardIdExisted = "Mã thẻ chíp đã tồn tại";
         public static string sMessageCardNotUpdate = "Thẻ chưa nhận vào hệ thống. Xin vui lòng quẹt lại!";
+        public static string sMessageCardNotTapeOut = "Thẻ này chưa được quẹt đầu ra";
+        public static string sMessageCardNotTapeIn = "Thẻ này chưa được quẹt đầu vào";
+        public static string sMessageDigitNotMatch = "Biển số không khớp hoặc không đọc được!";
 
         // car
         public static string sMessageXeDaRaKhoiBai = "Xe này đã ra khỏi bãi";
