@@ -22,7 +22,7 @@ namespace ParkingMangement
         //private SqlConnection mySqlConnection;
         //static Config config;
 
-        public SqlConnection GetDBConnection()
+        public static SqlConnection GetDBConnection()
         {
             string datasource = Util.getConfigFile().sqlDataSource + @"," + Util.getConfigFile().sqlPort;
             string database = "ParkingManagement";
@@ -31,14 +31,13 @@ namespace ParkingMangement
 
             return GetDBConnection(datasource, database, username, password);
         }
-        public SqlConnection GetDBConnection(string datasource, string database, string username, string password)
+        public static SqlConnection GetDBConnection(string datasource, string database, string username, string password)
         {
             // Connection String.
             string connString = @"Data Source=" + datasource + ";Initial Catalog="
-                        + database + ";Integrated Security=False;Network Library=dbmssocn;Connect Timeout=30;User Instance=False;User ID=" + username + ";Password=" + password;
-            SqlConnection conn = new SqlConnection(connString);
+                        + database + ";Integrated Security=false;Connection Timeout=10;User Instance=False;User ID=" + username + ";Password=" + password;
 
-            return conn;
+            return new SqlConnection(connString);
         }
 
         public void OpenConnection()
@@ -184,6 +183,59 @@ namespace ParkingMangement
                 } else if (Ex.Number == 1205)
                 {
                     // Deadlock 
+                }
+                else
+                {
+                    MessageBox.Show(Ex.Message + "_sql: " + sql);
+                }
+                return false;
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Close();
+                    mySqlConnection.Dispose();
+                }
+            }
+        }
+
+        public bool ExcuNonQueryWithTimeOut(string sql)
+        {
+            SqlConnection mySqlConnection = GetDBConnection();
+            try
+            {
+                int result = 0;
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
+                command.CommandTimeout = 3;  // seconds
+                mySqlConnection.Open();
+                result = command.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException Ex)
+            {
+                if (Ex.ErrorCode == -2147467259)
+                {
+                    //This code happens ONLY when trying to add duplicated values to the primary key in the database, 
+                    // in this case just do nothing and continue loading the other no duplicated values
+                    MessageBox.Show(Constant.sMessageDuplicateDataError);
+                }
+                else if (Ex.Number == 1205)
+                {
+                    // Deadlock 
+                }
+                else if (Ex.Number == -2)
+                {
+                    // Time out
                 }
                 else
                 {

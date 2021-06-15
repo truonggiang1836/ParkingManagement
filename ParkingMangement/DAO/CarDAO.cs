@@ -681,7 +681,7 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public DataTable GetListCarSurvive(int bikeSpace, int carSpace)
+        public static DataTable GetListCarSurvive(int bikeSpace, int carSpace)
         {
             string groupBySql = " group by Part.TypeID";
             string sql = "select Part.TypeID from Part inner join Car on Car.IDPart = Part.ID where 0 = 0";
@@ -1043,7 +1043,7 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuQuery(sql);
         }
 
-        public DataTable GetLastCarByID(string id)
+        public static DataTable GetLastCarByID(string id)
         {
             string sql = "select top 1 Identify, ID, TimeStart, TimeEnd, Digit, DigitIn, Images, Images2, Cost from Car where ID = '" + id + "' order by TimeStart desc, Identify desc";
             return (new Database()).ExcuQuery(sql);
@@ -1067,27 +1067,33 @@ namespace ParkingMangement.DAO
             return "";
         }
 
-        public bool Insert(CarDTO carDTO)
+        public static bool Insert(CarDTO carDTO)
         {
             string sql = "insert into Car(ID, TimeStart, Digit, DigitIn, IDIn, IDOut, IDTicketMonth, IDPart, Images, Images2, Computer, Account, DateUpdate) values ('" + carDTO.Id + "', '" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', '" + carDTO.Digit + "', '" + carDTO.DigitIn
                 + "', '" + carDTO.IdIn + "', '" + carDTO.IdOut + "', '" + carDTO.IdTicketMonth + "', '" + carDTO.IdPart + "', '" + carDTO.Images + "', '" + carDTO.Images2 + "', '" + carDTO.Computer + "', '" + carDTO.Account + "', '" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "')";
-            return (new Database()).ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQueryWithTimeOut(sql);
         }
 
-        public bool UpdateCarIn(CarDTO carDTO)
+        public static bool UpdateCarIn(CarDTO carDTO)
         {
             string sql = "update Car set TimeStart ='" + carDTO.TimeStart.ToString(Constant.sDateTimeFormatForQuery) + "', IDIn ='" + carDTO.IdIn + "', DigitIn ='" + carDTO.DigitIn + "', Images ='" + carDTO.Images + "', Images2 ='" + carDTO.Images2 + "', Computer ='" + carDTO.Computer + "', Account ='" + carDTO.Account +
-                "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
-            return (new Database()).ExcuNonQuery(sql);
+                "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify + " and ID = '" + carDTO.Id + "'";
+            return (new Database()).ExcuNonQueryWithTimeOut(sql);
         }
 
-        public bool UpdateCarOut(CarDTO carDTO)
+        public static bool UpdateCarOut(CarDTO carDTO)
         {
             string sql = "update Car set DigitOut = '" + carDTO.DigitOut + "', TimeEnd ='" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "', DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify = " + carDTO.Identify + " and ID = '" + carDTO.Id + "'";
-            return (new Database()).ExcuNonQuery(sql);
+            return (new Database()).ExcuNonQueryWithTimeOut(sql);
         }
 
-        public bool UpdateLostCard(CarDTO carDTO)
+        public static bool UpdateImageCarOut(CarDTO carDTO)
+        {
+            string sql = "update Car set DigitOut = '" + carDTO.DigitOut + "', Images3 ='" + carDTO.Images3 + "', Images4 ='" + carDTO.Images4 + "' where Identify = " + carDTO.Identify + " and ID = '" + carDTO.Id + "'";
+            return (new Database()).ExcuNonQueryWithTimeOut(sql);
+        }
+
+        public static bool UpdateLostCard(CarDTO carDTO)
         {
             string sql = "update Car set TimeEnd ='" + carDTO.TimeEnd.ToString(Constant.sDateTimeFormatForQuery) + "', IDOut ='" + carDTO.IdOut + "', Cost =" + carDTO.Cost + ", IsLostCard =" + carDTO.IsLostCard + ", DateUpdate ='" + carDTO.DateUpdate.ToString(Constant.sDateTimeFormatForQuery) + "', DateLostCard ='" + carDTO.DateLostCard.ToString(Constant.sDateTimeFormatForQuery) + "' where Identify =" + carDTO.Identify;
             string cardId = getIdByIdentify(carDTO.Identify);
@@ -1099,12 +1105,12 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
-        public void UpdateDigitIn(string id, String digit)
+        public static void UpdateDigitIn(string id, String digit)
         {
             int identify = GetLastIdentifyByID(id);
             if (identify != 0)
             {
-                string sql = "update Car set DigitIn ='" + digit + "' where Identify =" + identify;
+                string sql = "update Car set DigitIn ='" + digit + "' where Identify =" + identify + " and ID = '" + id + "'";
                 (new Database()).ExcuNonQuery(sql);
             }
         }
@@ -1114,7 +1120,7 @@ namespace ParkingMangement.DAO
             int identify = GetLastIdentifyByID(id);
             if (identify != 0)
             {
-                string sql = "update Car set DigitOut ='" + digit + "' where Identify =" + identify;
+                string sql = "update Car set DigitOut ='" + digit + "' where Identify =" + identify + " and ID = '" + id + "'";
                 (new Database()).ExcuNonQuery(sql);
             }
         }
@@ -1131,7 +1137,7 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
-        public bool DeleteCarNotOutToday(string cardId)
+        public static bool DeleteCarNotOutToday(string cardId)
         {
             var now = DateTime.Now;
             DateTime time = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0);

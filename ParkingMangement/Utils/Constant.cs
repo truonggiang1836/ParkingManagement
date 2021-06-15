@@ -78,6 +78,7 @@ namespace ParkingMangement.Utils
         public static string sMessageCardNotTapeOut = "Thẻ này chưa được quẹt đầu ra";
         public static string sMessageCardNotTapeIn = "Thẻ này chưa được quẹt đầu vào";
         public static string sMessageDigitNotMatch = "Biển số không khớp hoặc không đọc được!";
+        public static string sMessageDigitNotIdentified = "Biển số không đọc được!";
 
         // car
         public static string sMessageXeDaRaKhoiBai = "Xe này đã ra khỏi bãi";

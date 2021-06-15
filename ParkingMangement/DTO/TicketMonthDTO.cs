@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ParkingMangement.DTO
 {
-    class TicketMonthDTO
+    class TicketMonthDTO : ICloneable
     {
         private string cardIdentify;
         private string id;
@@ -58,5 +58,10 @@ namespace ParkingMangement.DTO
         public string IsDeleted { get => isDeleted; set => isDeleted = value; }
         public string CardNumber { get => cardNumber; set => cardNumber = value; }
         public string PartSign { get => partSign; set => partSign = value; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

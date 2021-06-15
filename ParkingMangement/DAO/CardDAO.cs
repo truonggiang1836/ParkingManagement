@@ -343,7 +343,7 @@ namespace ParkingMangement.DAO
             return null;
         }
 
-        public CardDTO GetNotDeletedCardModelByIDForReadCard(string id)
+        public static CardDTO GetNotDeletedCardModelByIDForReadCard(string id)
         {
             CardDTO cardDTO = null;
             DataTable dt = GetNotDeletedCardByIDForCardReader(id);

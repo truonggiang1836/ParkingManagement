@@ -323,7 +323,7 @@ namespace ParkingMangement.GUI
                 DialogResult result = MessageBox.Show(Constant.sMessageConfirmSaveLostCard, Constant.sLabelAlert, MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    if ((new CarDAO()).UpdateLostCard(carDTO))
+                    if (CarDAO.UpdateLostCard(carDTO))
                     {
                         MessageBox.Show(Constant.sMessageUpdateSuccess);
                         if (isXemDanhSachXeTon)
