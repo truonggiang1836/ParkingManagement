@@ -816,7 +816,7 @@ namespace ParkingMangement.GUI
 
             if (!cardID.Equals(""))
             {
-                resetDataOneSide(false, null);
+                resetDataOneSide(false, isInputLeftSide);
                 CardDTO dtCommonCard = CardDAO.GetNotDeletedCardModelByIDForReadCard(cardID);
                 if (dtCommonCard != null)
                 {
@@ -936,19 +936,13 @@ namespace ParkingMangement.GUI
             {
                 isLockedCard = true;
                 isShowTicketMonthErrorMessage = true;
-                if (isCarIn(cardID, isInputLeftSide))
-                {
-                    //mIsUpdatingDB = false;
-                    resetPictureBoxImage1(cardID, isInputLeftSide);
-                    resetPictureBoxImage2(cardID, isInputLeftSide);
-                }
                 setErrorMessage(Constant.sMessageCardBeLocked, isInputLeftSide);
                 Util.playAudio(Constant.locked);                
 
                 if (isCarIn(cardID, isInputLeftSide))
                 {
-                    resetPictureBoxImage1(cardID, isInputLeftSide);
-                    resetPictureBoxImage2(cardID, isInputLeftSide);
+                    resetPictureBoxImage1(isInputLeftSide);
+                    resetPictureBoxImage2(isInputLeftSide);
                     return false;
                 }
             }
@@ -966,8 +960,8 @@ namespace ParkingMangement.GUI
                     {
                         setErrorMessage(Constant.sMessageCardNotTapeOut, isInputLeftSide);
                         Program.oldUhfCardId = "";
-                        resetPictureBoxImage1(cardID, isInputLeftSide);
-                        resetPictureBoxImage2(cardID, isInputLeftSide);
+                        resetPictureBoxImage1(isInputLeftSide);
+                        resetPictureBoxImage2(isInputLeftSide);
                         tbRFIDCardID.Focus();
                         return false;
                     }
@@ -1029,8 +1023,8 @@ namespace ParkingMangement.GUI
                 {
                     tbRFIDCardID.Focus();
                     setErrorMessage(Constant.sMessageCardNotTapeIn, isInputLeftSide);
-                    resetPictureBoxImage1(cardID, isInputLeftSide);
-                    resetPictureBoxImage2(cardID, isInputLeftSide);
+                    resetPictureBoxImage1(isInputLeftSide);
+                    resetPictureBoxImage2(isInputLeftSide);
                     Program.oldUhfCardId = "";
                     return false;
                 }
@@ -2065,48 +2059,24 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void resetPictureBoxImage1(string cardID, bool isInputLeftSide)
+        private void resetPictureBoxImage1(bool isInputLeftSide)
         {
             PictureBox pictureBox = pictureBoxImage1;
-            int inOutType = mConfig.inOutType;
-            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            if (!isInputLeftSide)
             {
                 pictureBox = pictureBoxImage3;
             }
-            else if (inOutType == ConfigDTO.TYPE_IN_IN)
-            {
-                if (inputIsRightSide(cardID))
-                {
-                    pictureBox = pictureBoxImage3;
-                }
-            }
-
-            if (isCarIn(cardID, isInputLeftSide))
-            {
-                pictureBox.Image = Properties.Resources.ic_logo;
-            }
+            pictureBox.Image = Properties.Resources.ic_logo;
         }
 
-        private void resetPictureBoxImage2(string cardID, bool isInputLeftSide)
+        private void resetPictureBoxImage2(bool isInputLeftSide)
         {
             PictureBox pictureBox = pictureBoxImage2;
-            int inOutType = mConfig.inOutType;
-            if (inOutType == ConfigDTO.TYPE_OUT_IN)
+            if (!isInputLeftSide)
             {
                 pictureBox = pictureBoxImage4;
             }
-            else if (inOutType == ConfigDTO.TYPE_IN_IN)
-            {
-                if (inputIsRightSide(cardID))
-                {
-                    pictureBox = pictureBoxImage4;
-                }
-            }
-
-            if (isCarIn(cardID, isInputLeftSide))
-            {
-                pictureBox.Image = Properties.Resources.ic_logo;
-            }
+            pictureBox.Image = Properties.Resources.ic_logo;
         }
 
         private void loadCameraVLC(AxVLCPlugin2 axVLCPlugin, String cameraUrl)
@@ -3162,9 +3132,7 @@ namespace ParkingMangement.GUI
 
         private void resetDataOneSide(bool isResetImage, Boolean? isInputLeftSide)
         {
-            //Program.oldUhfCardId = "";         
-            labelMoiVao.Text = "";
-            labelMoiRa.Text = "";
+            //Program.oldUhfCardId = "";                              
 
             if (isInputLeftSide == null)
             {
@@ -3173,6 +3141,7 @@ namespace ParkingMangement.GUI
 
             if ((bool) isInputLeftSide)
             {
+                labelMoiVao.Text = "";
                 labelCardIDLeft.Text = "-";
                 labelPartNameTypeNameLeft.Text = "-";
                 labelCustomerNameLeft.Text = "-";
@@ -3184,9 +3153,17 @@ namespace ParkingMangement.GUI
                 labelDigitInLeft.Text = "";
                 labelDigitOutLeft.Text = "-";
                 labelDigitRegisterLeft.Text = "-";
+
+                if (isResetImage)
+                {
+                    pictureBoxImage1.Image = Properties.Resources.ic_logo;
+                    pictureBoxImage2.Image = Properties.Resources.ic_logo;
+
+                }
             }
             else
             {
+                labelMoiRa.Text = "";
                 labelCardIDRight.Text = "-";
                 labelPartNameTypeNameRight.Text = "-";
                 labelCustomerNameRight.Text = "-";
@@ -3198,14 +3175,12 @@ namespace ParkingMangement.GUI
                 labelDigitInRight.Text = "";
                 labelDigitOutRight.Text = "-";
                 labelDigitRegisterRight.Text = "-";
-            }            
 
-            if (isResetImage)
-            {
-                pictureBoxImage1.Image = Properties.Resources.ic_logo;
-                pictureBoxImage2.Image = Properties.Resources.ic_logo;
-                pictureBoxImage3.Image = Properties.Resources.ic_logo;
-                pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                if (isResetImage)
+                {
+                    pictureBoxImage3.Image = Properties.Resources.ic_logo;
+                    pictureBoxImage4.Image = Properties.Resources.ic_logo;
+                }
             }
         }
 
@@ -4207,7 +4182,7 @@ namespace ParkingMangement.GUI
         private void FormNhanVien_Shown(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
-            AutoClosingMessageBox.Show("", "", 200);
+            AutoClosingMessageBox.Show("OK", "", 200);
         }
 
         private void labelDigitInLeft_KeyDown(object sender, KeyEventArgs e)
