@@ -794,6 +794,7 @@ namespace ParkingMangement.GUI
 
             numericTinhTienTongHop2MinTime.Value = mComputerDTO.MinMinute;
             numericTinhTienTongHop2MinCost.Value = mComputerDTO.MinCost;
+            numericTinhTienTongHop2Limit.Value = mComputerDTO.Limit;
         }
 
         private void updateTinhTienTongHopTheoNgayDem()
@@ -819,6 +820,7 @@ namespace ParkingMangement.GUI
 
                 mComputerDTO.MinMinute = (int)numericTinhTienTongHop2MinTime.Value;
                 mComputerDTO.MinCost = (int)numericTinhTienTongHop2MinCost.Value;
+                mComputerDTO.Limit = (int)numericTinhTienTongHop2Limit.Value;
 
                 mComputerDTO.CycleMilestone3 = trackBarTinhTienTongHop2CycleMilestone.Value;
                 mComputerDTO.IsAdd = "";

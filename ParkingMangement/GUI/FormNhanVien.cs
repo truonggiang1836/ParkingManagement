@@ -2814,6 +2814,7 @@ namespace ParkingMangement.GUI
             double spentTimeByHour = Util.getTotalTimeByHour(timeIn, timeOut);
             double totalHourOfDay = getTotalHourOfDay(timeIn, timeOut, computerDTO);
             double totalHourOfNight = getTotalHourOfNight(timeIn, timeOut, computerDTO);
+            double limit = (double)computerDTO.Limit / 60; // (hour)
 
             if (spentTimeByHour < computerDTO.HourMilestone1)
             {
@@ -2830,15 +2831,24 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    //if (totalHourOfDay >= totalHourOfNight)
-                    //{
-                    //    return computerDTO.CostMilestone1;
-                    //}
-                    //else
-                    //{
-                    //    return computerDTO.CostMilestoneNight1;
-                    //}
-                    return computerDTO.CostMilestoneNight1;
+                    if (totalHourOfDay >= totalHourOfNight)
+                    {
+                        // thời gian ngày lớn hơn đêm
+                        if (totalHourOfDay <= limit)
+                        {
+                            // thời gian ngày nhỏ hơn giới hạn
+                            return computerDTO.CostMilestone1;
+                        }
+                        else
+                        {
+                            // thời gian ngày lớn hơn giới hạn
+                            return computerDTO.CostMilestoneNight1;
+                        }
+                    }
+                    else
+                    {
+                        return computerDTO.CostMilestoneNight1;
+                    }
                 }
             }
             else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone2)
@@ -2856,15 +2866,23 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    //if (totalHourOfDay >= totalHourOfNight)
-                    //{
-                    //    return computerDTO.CostMilestone2;
-                    //}
-                    //else
-                    //{
-                    //    return computerDTO.CostMilestoneNight2;
-                    //}
-                    return computerDTO.CostMilestoneNight2;
+                    if (totalHourOfDay >= totalHourOfNight)
+                    {
+                        if (totalHourOfDay <= limit)
+                        {
+                            // thời gian ngày nhỏ hơn giới hạn
+                            return computerDTO.CostMilestone2;
+                        }
+                        else
+                        {
+                            // thời gian ngày lớn hơn giới hạn
+                            return computerDTO.CostMilestoneNight2;
+                        }
+                    }
+                    else
+                    {
+                        return computerDTO.CostMilestoneNight2;
+                    }           
                 }
             }
             else if (spentTimeByHour >= computerDTO.HourMilestone2 && spentTimeByHour < computerDTO.HourMilestone3)
@@ -2882,15 +2900,23 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    //if (totalHourOfDay >= totalHourOfNight)
-                    //{
-                    //    return computerDTO.CostMilestone3;
-                    //}
-                    //else
-                    //{
-                    //    return computerDTO.CostMilestoneNight3;
-                    //}
-                    return computerDTO.CostMilestoneNight3;
+                    if (totalHourOfDay >= totalHourOfNight)
+                    {
+                        if (totalHourOfDay <= limit)
+                        {
+                            // thời gian ngày nhỏ hơn giới hạn
+                            return computerDTO.CostMilestone3;
+                        }
+                        else
+                        {
+                            // thời gian ngày lớn hơn giới hạn
+                            return computerDTO.CostMilestoneNight3;
+                        }
+                    }
+                    else
+                    {
+                        return computerDTO.CostMilestoneNight3;
+                    }
                 }
             }
             else
