@@ -237,21 +237,24 @@ namespace ParkingMangement.GUI
                 CurrentUserID = Program.CurrentStaffUserID;
 
 
-                // WareLogic Read Digit
-                try
+                if (mConfig.readDigitFolder.Length > 0)
                 {
-                    EngineSetupParms setupP;
-                    setupP.cudaDeviceId = -1; // Use CPU
-                    setupP.enableImageProcessingWithGPU = true;
-                    setupP.enableClassificationWithGPU = true;
-                    setupP.maxConcurrentImageProcessingOps = 0;  // Use the default value.  
+                    // WareLogic Read Digit
+                    try
+                    {
+                        EngineSetupParms setupP;
+                        setupP.cudaDeviceId = -1; // Use CPU
+                        setupP.enableImageProcessingWithGPU = true;
+                        setupP.enableClassificationWithGPU = true;
+                        setupP.maxConcurrentImageProcessingOps = 0;  // Use the default value.  
 
-                    _lpr = SimpleLPR.Setup(setupP);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(this, ex.Message, "Unable to initialize the SimpleLPR library", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    throw;
+                        _lpr = SimpleLPR.Setup(setupP);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "Unable to initialize the SimpleLPR library", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        throw;
+                    }
                 }
 
                 files = new List<string>();
@@ -382,7 +385,7 @@ namespace ParkingMangement.GUI
         {
             Invoke(new MethodInvoker(() =>
             {
-                string cardID = "2596580772";
+                string cardID = "3113934112";
                 if (rfidInput == rfidIn)
                 {
                     rfidInput = rfidOut;
@@ -2827,14 +2830,15 @@ namespace ParkingMangement.GUI
                 }
                 else
                 {
-                    if (totalHourOfDay >= totalHourOfNight)
-                    {
-                        return computerDTO.CostMilestone1;
-                    }
-                    else
-                    {
-                        return computerDTO.CostMilestoneNight1;
-                    }
+                    //if (totalHourOfDay >= totalHourOfNight)
+                    //{
+                    //    return computerDTO.CostMilestone1;
+                    //}
+                    //else
+                    //{
+                    //    return computerDTO.CostMilestoneNight1;
+                    //}
+                    return computerDTO.CostMilestoneNight1;
                 }
             }
             else if (spentTimeByHour >= computerDTO.HourMilestone1 && spentTimeByHour < computerDTO.HourMilestone2)
