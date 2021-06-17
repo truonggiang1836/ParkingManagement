@@ -21,12 +21,12 @@ namespace ParkingMangement.DTO
         }
 
         [JsonProperty("id")]
-        public int Identify { get; set; } = -1;
+        public long Identify { get; set; } = -1;
         [JsonProperty("card_code")]
         public string CardIdentify { get; set; } = "";
         public string Id { get; set; }
         public DateTime TimeStart { get; set; }
-        public DateTime TimeEnd { get; set; }
+        public DateTime? TimeEnd = null;
         [JsonProperty("car_number")]
         public string Digit { get; set; }
         public string DigitIn { get; set; }

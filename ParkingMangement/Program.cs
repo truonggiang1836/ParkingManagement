@@ -258,7 +258,7 @@ namespace ParkingMangement
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventPeriodAction);
             aTimer.Interval = 8 * 60 * 60 * 1000; //8h
-            //aTimer.Interval = 3000;
+            //aTimer.Interval = 60000;
             aTimer.Enabled = true;
             aTimer.Start();
 

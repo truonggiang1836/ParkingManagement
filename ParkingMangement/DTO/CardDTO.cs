@@ -27,6 +27,7 @@ namespace ParkingMangement.DTO
         public string IsDeleted { get => isDeleted; set => isDeleted = value; }
         public string IsSync { get => isSync; set => isSync = value; }
         public string CardTypeID { get; set; }
+        public string TypeID { get; set; }
         public string PartName { get; set; }
 
         public static string IsUsingString(string IsUsing)

@@ -290,7 +290,7 @@ namespace ParkingMangement.DAO
 
         public static DataTable GetNotDeletedCardByIDForCardReader(string id)
         {
-            string sql = "select top 1 SmartCard.Identify, SmartCard.IsUsing, SmartCard.Type, SmartCard.IsDeleted, Part.PartName, Part.CardTypeID from SmartCard inner join Part on SmartCard.Type = Part.ID where SmartCard.ID = '" + id + "' and SmartCard.IsDeleted = 0";
+            string sql = "select top 1 SmartCard.Identify, SmartCard.IsUsing, SmartCard.Type, SmartCard.IsDeleted, Part.PartName, Part.CardTypeID, Part.TypeID from SmartCard inner join Part on SmartCard.Type = Part.ID where SmartCard.ID = '" + id + "' and SmartCard.IsDeleted = 0";
             return (new Database()).ExcuQuery(sql);
         }
 
@@ -354,6 +354,7 @@ namespace ParkingMangement.DAO
                 cardDTO.IsUsing = dt.Rows[0].Field<string>("IsUsing");
                 cardDTO.Type = dt.Rows[0].Field<string>("Type");
                 cardDTO.CardTypeID = dt.Rows[0].Field<string>("CardTypeID");
+                cardDTO.TypeID = dt.Rows[0].Field<string>("TypeID");
                 cardDTO.PartName = dt.Rows[0].Field<string>("PartName");
                 return cardDTO;
             }
