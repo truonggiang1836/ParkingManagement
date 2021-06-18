@@ -266,6 +266,7 @@ namespace ParkingMangement
             {
                 Thread.CurrentThread.IsBackground = true;
                 (new Database()).UpdateDB();
+                CarDAO.deleteVirtualSurvivalMonthCar();
             }).Start();
             generateConfigFile();
             doPeriodAction();

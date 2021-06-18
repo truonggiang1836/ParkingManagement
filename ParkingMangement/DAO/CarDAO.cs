@@ -1207,6 +1207,13 @@ namespace ParkingMangement.DAO
             return null;
         }
 
+        public static bool deleteVirtualSurvivalMonthCar()
+        {
+            string sql = "delete car1 from Car car1 inner join Part on car1.IDPart = Part.ID where car1.IDOut = '' and" +
+                " part.CardTypeID = 2 and car1.Identify < (SELECT MAX(Identify) FROM Car car2 where car2.ID = car1.ID)";
+            return (new Database()).ExcuNonQuery(sql);
+        }
+
         //public static int GetLastIdentifyByID(string id)
         //{
         //    string sql = "select top 1 Identify from Car where ID = '" + id + "'" + " order by Identify desc";
