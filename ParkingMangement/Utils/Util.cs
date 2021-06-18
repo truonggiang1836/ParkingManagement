@@ -2301,6 +2301,13 @@ namespace ParkingMangement.Utils
             return dateTime;
         }
 
+        public static string getShortDigit(string digit)
+        {
+            string output = digit.Replace("-", "").Replace(".", "").Replace(" ", "");
+            output = output.Substring(Math.Max(0, output.Length - 5));
+            return output;
+        }
+
         private static string Chu(string gNumber)
         {
             string result = "";

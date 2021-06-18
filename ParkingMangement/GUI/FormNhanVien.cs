@@ -1299,7 +1299,8 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentStaffUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
-                string inputDigit = docBienSo(cardID, isInputLeftSide, dtCommonCard.TypeID, imagePath1, imagePath2);            
+                string inputDigit = docBienSo(cardID, isInputLeftSide, dtCommonCard.TypeID, imagePath1, imagePath2);
+                string digit = "";
                 if (!inputDigit.Equals(""))
                 {
                     carDTO.DigitIn = inputDigit;
@@ -1309,20 +1310,12 @@ namespace ParkingMangement.GUI
                 {
                     carDTO.IdTicketMonth = cardID;
                     carDTO.Digit = dtTicketCard.Digit;
+                    digit = dtTicketCard.Digit;
                 }
 
                 //_ProcessTimer = new Stopwatch();
                 //_ProcessTimer.Start();               
 
-                if (mIsSelectingCarTable)
-                {
-                    setErrorMessage(Constant.sMessageCardNotUpdate, isInputLeftSide);
-                    if (cardID.Length < 53)
-                    {
-                        resetDataOneSide(true, isInputLeftSide);
-                    }
-                    return;
-                }
                 mIsUpdatingCarTable = true;
                 CarDAO.DeleteCarNotOutToday(cardID);
                 if (!CarDAO.Insert(carDTO))
@@ -1338,20 +1331,13 @@ namespace ParkingMangement.GUI
 
                 updateScreenForCarIn(dtTicketCard, isInputLeftSide);
 
+                checkDigitIn(inputDigit, digit, isTicketMonthCard, isInputLeftSide);
                 new Thread(() =>
                 {
                     // play audio
                     if (!isShowTicketMonthErrorMessage)
                     {
                         Util.playAudio(Constant.goIn);
-                        if (mConfig.readDigitFolder.Length > 0 && inputDigit.Length == 0)
-                        {
-                            setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
-                        }
-                        else
-                        {
-                            setErrorMessage("", isInputLeftSide);
-                        }
                     }
                 }).Start();
 
@@ -1380,6 +1366,7 @@ namespace ParkingMangement.GUI
             bool isTicketMonthCard = dtTicketCard != null;
             if (dtLastCar != null)
             {
+                string digit = "";
                 updateScreenForCarIn(dtTicketCard, isInputLeftSide);
 
                 long identify = dtLastCar.Identify;
@@ -1394,36 +1381,20 @@ namespace ParkingMangement.GUI
                 carDTO.Account = Program.CurrentStaffUserID;
                 carDTO.DateUpdate = DateTime.Now;
 
-                string inputDigit = docBienSo(cardID, isInputLeftSide, dtCommonCard.TypeID, imagePath1, imagePath2);
-
-                if (isTicketMonthCard)
-                {
-                    if (!isShowTicketMonthErrorMessage)
-                    {
-                        if (mConfig.readDigitFolder.Length > 0 && inputDigit.Length == 0)
-                        {
-                            setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
-                        }
-                    }
-                }
-                else
-                {
-                    if (mConfig.readDigitFolder.Length > 0 && inputDigit.Length == 0)
-                    {
-                        setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
-                    }
-                }
-
-                if (!inputDigit.Equals(""))
-                {
-                    carDTO.DigitIn = inputDigit;
-                }
-
                 if (isTicketMonthCard)
                 {
                     carDTO.IdTicketMonth = cardID;
                     carDTO.Digit = dtTicketCard.Digit;
+                    digit = dtTicketCard.Digit;
                 }
+
+                string inputDigit = docBienSo(cardID, isInputLeftSide, dtCommonCard.TypeID, imagePath1, imagePath2);
+                checkDigitIn(inputDigit, digit, isTicketMonthCard, isInputLeftSide);
+
+                if (!inputDigit.Equals(""))
+                {
+                    carDTO.DigitIn = inputDigit;
+                }               
 
                 mIsUpdatingCarTable = true;
                 if (!CarDAO.UpdateCarIn(carDTO))
@@ -1436,18 +1407,6 @@ namespace ParkingMangement.GUI
                 mIsUpdatingCarTable = false;
                 _ProcessTimer.Stop();
                 Console.WriteLine("Tape update in : " + _ProcessTimer.ElapsedMilliseconds);
-
-                if (!isShowTicketMonthErrorMessage)
-                {
-                    if (mConfig.readDigitFolder.Length > 0 && inputDigit.Length == 0)
-                    {
-                        setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
-                    }
-                    else
-                    {
-                        setErrorMessage("", isInputLeftSide);
-                    }
-                }
             }
         }
 
@@ -1702,15 +1661,6 @@ namespace ParkingMangement.GUI
                         //_ProcessTimer = new Stopwatch();
                         //_ProcessTimer.Start();
 
-                        if (mIsSelectingCarTable)
-                        {
-                            setErrorMessage(Constant.sMessageCardNotUpdate, isInputLeftSide);
-                            if (cardID.Length < 53)
-                            {
-                                resetDataOneSide(true, isInputLeftSide);
-                            }
-                            return;
-                        }
                         mIsUpdatingCarTable = true;
                         if (!CarDAO.UpdateCarOut(carDTO))
                         {
@@ -1746,43 +1696,24 @@ namespace ParkingMangement.GUI
                         // play audio
                         new Thread(() =>
                         {
-                            string compareInputDigit = inputDigit.Replace("-", "").Replace(".", "").Replace(" ", "");
-                            compareInputDigit = compareInputDigit.Substring(Math.Max(0, compareInputDigit.Length - 5));
-
-                            string compareDigitIn = digitIn.Replace("-", "").Replace(".", "").Replace(" ", "");
-                            compareDigitIn = compareDigitIn.Substring(Math.Max(0, compareDigitIn.Length - 5));
-
-                            string compareDigit = digit.Replace("-", "").Replace(".", "").Replace(" ", "");
-                            compareDigit = compareDigit.Substring(Math.Max(0, compareDigit.Length - 5));
+                            bool checkDigit = checkDigitOut(inputDigit, digit, digitIn, isTicketMonthCard, isInputLeftSide);
 
                             if (isTicketMonthCard)
                             {
                                 if (!isShowTicketMonthErrorMessage)
                                 {
-                                    if (mConfig.readDigitFolder.Length == 0 ||
-                                    (compareInputDigit.Length > 0 && (compareInputDigit.Equals(compareDigitIn) || compareInputDigit.Equals(compareDigit))))
-                                    {
-                                        setErrorMessage("", isInputLeftSide);
-                                    }
-                                    else
-                                    {
-                                        setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
-                                    }
                                     Util.playAudio(Constant.goOut);
                                 }
                             }
                             else
                             {
-                                if (mConfig.readDigitFolder.Length == 0 ||
-                                (compareInputDigit.Length > 0 && compareInputDigit.Equals(compareDigitIn)))
+                                if (checkDigit)
                                 {
-                                    setErrorMessage("", isInputLeftSide);
                                     playCostToAudio(cost.ToString());
                                     Util.playAudio(Constant.goOut);
                                 }
                                 else
                                 {
-                                    setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
                                     playCostToAudio(cost.ToString());
                                 }
                             }
@@ -1815,43 +1746,11 @@ namespace ParkingMangement.GUI
                     // play audio
                     new Thread(() =>
                     {
-                        string compareInputDigit = inputDigit.Replace("-", "").Replace(".", "").Replace(" ", "");
-                        compareInputDigit = compareInputDigit.Substring(Math.Max(0, compareInputDigit.Length - 5));
+                        bool checkDigit = checkDigitOut(inputDigit, digit, digitIn, isTicketMonthCard, isInputLeftSide);
 
-                        string compareDigitIn = digitIn.Replace("-", "").Replace(".", "").Replace(" ", "");
-                        compareDigitIn = compareDigitIn.Substring(Math.Max(0, compareDigitIn.Length - 5));
-
-                        string compareDigit = digit.Replace("-", "").Replace(".", "").Replace(" ", "");
-                        compareDigit = compareDigit.Substring(Math.Max(0, compareDigit.Length - 5));
-
-                        if (isTicketMonthCard)
+                        if (!isTicketMonthCard)
                         {
-                            if (!isShowTicketMonthErrorMessage)
-                            {
-                                if (mConfig.readDigitFolder.Length == 0 ||
-                                (compareInputDigit.Length > 0 && (compareInputDigit.Equals(compareDigitIn) || compareInputDigit.Equals(compareDigit))))
-                                {
-                                    setErrorMessage("", isInputLeftSide);
-                                }
-                                else
-                                {
-                                    setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (mConfig.readDigitFolder.Length == 0 ||
-                            (compareInputDigit.Length > 0 && compareInputDigit.Equals(compareDigitIn)))
-                            {
-                                setErrorMessage("", isInputLeftSide);
-                                playCostToAudio(cost.ToString());
-                            }
-                            else
-                            {
-                                setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
-                                playCostToAudio(cost.ToString());
-                            }
+                            playCostToAudio(cost.ToString());
                         }
                     }).Start();
 
@@ -1885,6 +1784,103 @@ namespace ParkingMangement.GUI
             {
 
             }
+        }
+
+        private bool checkDigitIn(string inputDigit, string digit, bool isTicketMonthCard, bool isInputLeftSide)
+        {
+            if (!isShowTicketMonthErrorMessage)
+            {
+                if (mConfig.readDigitFolder.Length > 0)
+                {
+                    if (inputDigit.Length == 0)
+                    {
+                        setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
+                    }
+                    else
+                    {
+                        if (isTicketMonthCard)
+                        {
+                            string compareInputDigit = Util.getShortDigit(inputDigit);
+                            string compareDigit = Util.getShortDigit(digit);
+                            if (compareInputDigit.Equals(compareDigit))
+                            {
+                                setErrorMessage("", isInputLeftSide);
+                                return true;
+                            }
+                            else
+                            {
+                                setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
+                            }
+                        }
+                        else
+                        {
+                            setErrorMessage("", isInputLeftSide);
+                            return true;
+                        }
+                    }   
+                }
+                else
+                {
+                    setErrorMessage("", isInputLeftSide);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool checkDigitOut(string inputDigit, string digit, string digitIn, bool isTicketMonthCard, bool isInputLeftSide)
+        {
+            if (!isShowTicketMonthErrorMessage)
+            {
+                if (mConfig.readDigitFolder.Length > 0)
+                {
+                    if (inputDigit.Length == 0)
+                    {
+                        setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
+                    }
+                    else
+                    if (digitIn.Length == 0)
+                    {
+                        setErrorMessage(Constant.sMessageDigitInNotIdentified, isInputLeftSide);
+                    }
+                    else
+                    {
+                        string compareInputDigit = Util.getShortDigit(inputDigit);
+                        string compareDigitIn = Util.getShortDigit(digitIn);
+                        if (isTicketMonthCard)
+                        {                            
+                            string compareDigit = Util.getShortDigit(digit);
+                            if (compareInputDigit.Equals(compareDigitIn) || compareInputDigit.Equals(compareDigit))
+                            {
+                                setErrorMessage("", isInputLeftSide);
+                                return true;
+                            }
+                            else
+                            {
+                                setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
+                            }
+                        }
+                        else
+                        {
+                            if (compareInputDigit.Equals(compareDigitIn))
+                            {
+                                setErrorMessage("", isInputLeftSide);
+                                return true;
+                            }
+                            else
+                            {
+                                setErrorMessage(Constant.sMessageDigitNotMatch, isInputLeftSide);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    setErrorMessage("", isInputLeftSide);
+                    return true;
+                }
+            }
+            return false;
         }
 
         private void playCostToAudio(string cost)
