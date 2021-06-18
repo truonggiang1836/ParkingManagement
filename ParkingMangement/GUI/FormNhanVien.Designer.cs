@@ -38,7 +38,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelRightError = new System.Windows.Forms.Label();
-            this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
             this.labelLeftError = new System.Windows.Forms.Label();
             this.axVLCPluginCar3 = new AxAXVLC.AxVLCPlugin2();
             this.axVLCPluginCar1 = new AxAXVLC.AxVLCPlugin2();
@@ -60,6 +59,7 @@
             this.pictureBoxImage4 = new System.Windows.Forms.PictureBox();
             this.pictureBoxImage2 = new System.Windows.Forms.PictureBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxImage3 = new System.Windows.Forms.PictureBox();
             this.timerCurrentTime = new System.Windows.Forms.Timer(this.components);
             this.tbRFIDCardID = new System.Windows.Forms.TextBox();
             this.labelCardIDHeaderRight = new System.Windows.Forms.Label();
@@ -161,7 +161,6 @@
             this.labelError = new System.Windows.Forms.Label();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).BeginInit();
@@ -174,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeXeTrongBai)).BeginInit();
             this.panel5.SuspendLayout();
@@ -253,18 +253,6 @@
             this.labelRightError.TabIndex = 134;
             this.labelRightError.Text = "-";
             this.labelRightError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pictureBoxImage3
-            // 
-            this.pictureBoxImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
-            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 297);
-            this.pictureBoxImage3.Name = "pictureBoxImage3";
-            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 270);
-            this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxImage3.TabIndex = 5;
-            this.pictureBoxImage3.TabStop = false;
             // 
             // labelLeftError
             // 
@@ -486,6 +474,18 @@
             this.pictureBox23.TabIndex = 121;
             this.pictureBox23.TabStop = false;
             // 
+            // pictureBoxImage3
+            // 
+            this.pictureBoxImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxImage3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxImage3.Image")));
+            this.pictureBoxImage3.Location = new System.Drawing.Point(448, 297);
+            this.pictureBoxImage3.Name = "pictureBoxImage3";
+            this.pictureBoxImage3.Size = new System.Drawing.Size(220, 270);
+            this.pictureBoxImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxImage3.TabIndex = 5;
+            this.pictureBoxImage3.TabStop = false;
+            // 
             // timerCurrentTime
             // 
             this.timerCurrentTime.Tick += new System.EventHandler(this.timerCurrentTime_Tick);
@@ -545,7 +545,7 @@
             this.labelDateOutRight.BackColor = System.Drawing.Color.Transparent;
             this.labelDateOutRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateOutRight.ForeColor = System.Drawing.Color.Black;
-            this.labelDateOutRight.Location = new System.Drawing.Point(1064, 303);
+            this.labelDateOutRight.Location = new System.Drawing.Point(1065, 303);
             this.labelDateOutRight.Name = "labelDateOutRight";
             this.labelDateOutRight.Size = new System.Drawing.Size(11, 13);
             this.labelDateOutRight.TabIndex = 39;
@@ -557,7 +557,7 @@
             this.labelTimeOutRight.BackColor = System.Drawing.Color.Transparent;
             this.labelTimeOutRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeOutRight.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeOutRight.Location = new System.Drawing.Point(1026, 303);
+            this.labelTimeOutRight.Location = new System.Drawing.Point(1027, 303);
             this.labelTimeOutRight.Name = "labelTimeOutRight";
             this.labelTimeOutRight.Size = new System.Drawing.Size(11, 13);
             this.labelTimeOutRight.TabIndex = 40;
@@ -589,7 +589,7 @@
             this.labelTimeInRight.BackColor = System.Drawing.Color.Transparent;
             this.labelTimeInRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeInRight.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeInRight.Location = new System.Drawing.Point(1026, 347);
+            this.labelTimeInRight.Location = new System.Drawing.Point(1027, 347);
             this.labelTimeInRight.Name = "labelTimeInRight";
             this.labelTimeInRight.Size = new System.Drawing.Size(11, 13);
             this.labelTimeInRight.TabIndex = 45;
@@ -601,7 +601,7 @@
             this.labelDateInRight.BackColor = System.Drawing.Color.Transparent;
             this.labelDateInRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateInRight.ForeColor = System.Drawing.Color.Black;
-            this.labelDateInRight.Location = new System.Drawing.Point(1064, 347);
+            this.labelDateInRight.Location = new System.Drawing.Point(1065, 347);
             this.labelDateInRight.Name = "labelDateInRight";
             this.labelDateInRight.Size = new System.Drawing.Size(11, 13);
             this.labelDateInRight.TabIndex = 44;
@@ -609,13 +609,12 @@
             // 
             // labelGetCardRight
             // 
-            this.labelGetCardRight.AutoSize = true;
             this.labelGetCardRight.BackColor = System.Drawing.Color.Transparent;
-            this.labelGetCardRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGetCardRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGetCardRight.ForeColor = System.Drawing.Color.White;
-            this.labelGetCardRight.Location = new System.Drawing.Point(1060, 436);
+            this.labelGetCardRight.Location = new System.Drawing.Point(1058, 437);
             this.labelGetCardRight.Name = "labelGetCardRight";
-            this.labelGetCardRight.Size = new System.Drawing.Size(85, 13);
+            this.labelGetCardRight.Size = new System.Drawing.Size(77, 13);
             this.labelGetCardRight.TabIndex = 57;
             this.labelGetCardRight.Text = "THU LẠI THẺ";
             this.labelGetCardRight.Click += new System.EventHandler(this.labelGetCardRight_Click);
@@ -625,7 +624,7 @@
             this.labelDigitOutRight.AutoEllipsis = true;
             this.labelDigitOutRight.AutoSize = true;
             this.labelDigitOutRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitOutRight.Location = new System.Drawing.Point(1029, 172);
+            this.labelDigitOutRight.Location = new System.Drawing.Point(1027, 172);
             this.labelDigitOutRight.Name = "labelDigitOutRight";
             this.labelDigitOutRight.Size = new System.Drawing.Size(11, 13);
             this.labelDigitOutRight.TabIndex = 60;
@@ -636,7 +635,7 @@
             this.labelDigitRegisterRight.AutoEllipsis = true;
             this.labelDigitRegisterRight.AutoSize = true;
             this.labelDigitRegisterRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitRegisterRight.Location = new System.Drawing.Point(1029, 260);
+            this.labelDigitRegisterRight.Location = new System.Drawing.Point(1027, 260);
             this.labelDigitRegisterRight.Name = "labelDigitRegisterRight";
             this.labelDigitRegisterRight.Size = new System.Drawing.Size(11, 13);
             this.labelDigitRegisterRight.TabIndex = 63;
@@ -647,7 +646,7 @@
             this.labelCardIDRight.AutoEllipsis = true;
             this.labelCardIDRight.AutoSize = true;
             this.labelCardIDRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCardIDRight.Location = new System.Drawing.Point(1071, 43);
+            this.labelCardIDRight.Location = new System.Drawing.Point(1070, 43);
             this.labelCardIDRight.Name = "labelCardIDRight";
             this.labelCardIDRight.Size = new System.Drawing.Size(11, 13);
             this.labelCardIDRight.TabIndex = 67;
@@ -796,7 +795,7 @@
             // 
             this.labelCustomerNameRight.AutoEllipsis = true;
             this.labelCustomerNameRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCustomerNameRight.Location = new System.Drawing.Point(1029, 128);
+            this.labelCustomerNameRight.Location = new System.Drawing.Point(1027, 128);
             this.labelCustomerNameRight.Name = "labelCustomerNameRight";
             this.labelCustomerNameRight.Size = new System.Drawing.Size(108, 13);
             this.labelCustomerNameRight.TabIndex = 78;
@@ -820,7 +819,7 @@
             // 
             this.labelDigitInRight.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelDigitInRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitInRight.Location = new System.Drawing.Point(1031, 217);
+            this.labelDigitInRight.Location = new System.Drawing.Point(1029, 217);
             this.labelDigitInRight.Name = "labelDigitInRight";
             this.labelDigitInRight.Size = new System.Drawing.Size(103, 13);
             this.labelDigitInRight.TabIndex = 80;
@@ -831,7 +830,7 @@
             this.labelPartNameTypeNameRight.AutoEllipsis = true;
             this.labelPartNameTypeNameRight.AutoSize = true;
             this.labelPartNameTypeNameRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPartNameTypeNameRight.Location = new System.Drawing.Point(1028, 85);
+            this.labelPartNameTypeNameRight.Location = new System.Drawing.Point(1027, 85);
             this.labelPartNameTypeNameRight.Name = "labelPartNameTypeNameRight";
             this.labelPartNameTypeNameRight.Size = new System.Drawing.Size(11, 13);
             this.labelPartNameTypeNameRight.TabIndex = 82;
@@ -862,7 +861,7 @@
             this.labelPartNameTypeNameLeft.AutoEllipsis = true;
             this.labelPartNameTypeNameLeft.AutoSize = true;
             this.labelPartNameTypeNameLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPartNameTypeNameLeft.Location = new System.Drawing.Point(12, 85);
+            this.labelPartNameTypeNameLeft.Location = new System.Drawing.Point(11, 85);
             this.labelPartNameTypeNameLeft.Name = "labelPartNameTypeNameLeft";
             this.labelPartNameTypeNameLeft.Size = new System.Drawing.Size(11, 13);
             this.labelPartNameTypeNameLeft.TabIndex = 110;
@@ -872,7 +871,7 @@
             // 
             this.labelDigitInLeft.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.labelDigitInLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitInLeft.Location = new System.Drawing.Point(14, 218);
+            this.labelDigitInLeft.Location = new System.Drawing.Point(13, 218);
             this.labelDigitInLeft.Name = "labelDigitInLeft";
             this.labelDigitInLeft.Size = new System.Drawing.Size(103, 13);
             this.labelDigitInLeft.TabIndex = 108;
@@ -882,7 +881,7 @@
             // 
             this.labelCustomerNameLeft.AutoEllipsis = true;
             this.labelCustomerNameLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCustomerNameLeft.Location = new System.Drawing.Point(12, 128);
+            this.labelCustomerNameLeft.Location = new System.Drawing.Point(11, 128);
             this.labelCustomerNameLeft.Name = "labelCustomerNameLeft";
             this.labelCustomerNameLeft.Size = new System.Drawing.Size(108, 13);
             this.labelCustomerNameLeft.TabIndex = 107;
@@ -903,7 +902,7 @@
             this.labelCardIDLeft.AutoEllipsis = true;
             this.labelCardIDLeft.AutoSize = true;
             this.labelCardIDLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCardIDLeft.Location = new System.Drawing.Point(56, 43);
+            this.labelCardIDLeft.Location = new System.Drawing.Point(55, 43);
             this.labelCardIDLeft.Name = "labelCardIDLeft";
             this.labelCardIDLeft.Size = new System.Drawing.Size(11, 13);
             this.labelCardIDLeft.TabIndex = 104;
@@ -914,7 +913,7 @@
             this.labelDigitRegisterLeft.AutoEllipsis = true;
             this.labelDigitRegisterLeft.AutoSize = true;
             this.labelDigitRegisterLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitRegisterLeft.Location = new System.Drawing.Point(12, 260);
+            this.labelDigitRegisterLeft.Location = new System.Drawing.Point(11, 260);
             this.labelDigitRegisterLeft.Name = "labelDigitRegisterLeft";
             this.labelDigitRegisterLeft.Size = new System.Drawing.Size(11, 13);
             this.labelDigitRegisterLeft.TabIndex = 102;
@@ -925,7 +924,7 @@
             this.labelDigitOutLeft.AutoEllipsis = true;
             this.labelDigitOutLeft.AutoSize = true;
             this.labelDigitOutLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDigitOutLeft.Location = new System.Drawing.Point(12, 172);
+            this.labelDigitOutLeft.Location = new System.Drawing.Point(11, 172);
             this.labelDigitOutLeft.Name = "labelDigitOutLeft";
             this.labelDigitOutLeft.Size = new System.Drawing.Size(11, 13);
             this.labelDigitOutLeft.TabIndex = 100;
@@ -987,7 +986,7 @@
             this.labelTimeInLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelTimeInLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeInLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeInLeft.Location = new System.Drawing.Point(10, 347);
+            this.labelTimeInLeft.Location = new System.Drawing.Point(11, 347);
             this.labelTimeInLeft.Name = "labelTimeInLeft";
             this.labelTimeInLeft.Size = new System.Drawing.Size(11, 13);
             this.labelTimeInLeft.TabIndex = 118;
@@ -999,7 +998,7 @@
             this.labelDateInLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelDateInLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateInLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelDateInLeft.Location = new System.Drawing.Point(49, 347);
+            this.labelDateInLeft.Location = new System.Drawing.Point(50, 347);
             this.labelDateInLeft.Name = "labelDateInLeft";
             this.labelDateInLeft.Size = new System.Drawing.Size(11, 13);
             this.labelDateInLeft.TabIndex = 117;
@@ -1021,7 +1020,7 @@
             this.labelTimeOutLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelTimeOutLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTimeOutLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelTimeOutLeft.Location = new System.Drawing.Point(10, 305);
+            this.labelTimeOutLeft.Location = new System.Drawing.Point(11, 305);
             this.labelTimeOutLeft.Name = "labelTimeOutLeft";
             this.labelTimeOutLeft.Size = new System.Drawing.Size(11, 13);
             this.labelTimeOutLeft.TabIndex = 114;
@@ -1033,7 +1032,7 @@
             this.labelDateOutLeft.BackColor = System.Drawing.Color.Transparent;
             this.labelDateOutLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDateOutLeft.ForeColor = System.Drawing.Color.Black;
-            this.labelDateOutLeft.Location = new System.Drawing.Point(49, 305);
+            this.labelDateOutLeft.Location = new System.Drawing.Point(50, 305);
             this.labelDateOutLeft.Name = "labelDateOutLeft";
             this.labelDateOutLeft.Size = new System.Drawing.Size(11, 13);
             this.labelDateOutLeft.TabIndex = 113;
@@ -1041,13 +1040,12 @@
             // 
             // labelGetCardLeft
             // 
-            this.labelGetCardLeft.AutoSize = true;
             this.labelGetCardLeft.BackColor = System.Drawing.Color.Transparent;
-            this.labelGetCardLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelGetCardLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelGetCardLeft.ForeColor = System.Drawing.Color.White;
-            this.labelGetCardLeft.Location = new System.Drawing.Point(44, 436);
+            this.labelGetCardLeft.Location = new System.Drawing.Point(42, 437);
             this.labelGetCardLeft.Name = "labelGetCardLeft";
-            this.labelGetCardLeft.Size = new System.Drawing.Size(85, 13);
+            this.labelGetCardLeft.Size = new System.Drawing.Size(77, 13);
             this.labelGetCardLeft.TabIndex = 125;
             this.labelGetCardLeft.Text = "THU LẠI THẺ";
             this.labelGetCardLeft.Click += new System.EventHandler(this.labelGetCardLeft_Click);
@@ -1435,12 +1433,12 @@
             this.labelCostRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCostRight.ForeColor = System.Drawing.Color.Red;
             this.labelCostRight.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.labelCostRight.Location = new System.Drawing.Point(817, 6);
+            this.labelCostRight.Location = new System.Drawing.Point(798, 6);
             this.labelCostRight.Name = "labelCostRight";
             this.labelCostRight.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelCostRight.Size = new System.Drawing.Size(85, 23);
+            this.labelCostRight.Size = new System.Drawing.Size(95, 23);
             this.labelCostRight.TabIndex = 108;
-            this.labelCostRight.Text = "-";
+            this.labelCostRight.Text = "VE THANG";
             this.labelCostRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelCostLeft
@@ -1450,12 +1448,12 @@
             this.labelCostLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCostLeft.ForeColor = System.Drawing.Color.Red;
             this.labelCostLeft.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.labelCostLeft.Location = new System.Drawing.Point(240, 6);
+            this.labelCostLeft.Location = new System.Drawing.Point(253, 6);
             this.labelCostLeft.Name = "labelCostLeft";
             this.labelCostLeft.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.labelCostLeft.Size = new System.Drawing.Size(85, 23);
+            this.labelCostLeft.Size = new System.Drawing.Size(95, 23);
             this.labelCostLeft.TabIndex = 106;
-            this.labelCostLeft.Text = "-";
+            this.labelCostLeft.Text = "VE THANG";
             this.labelCostLeft.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBoxChangeLeftCamera
@@ -1528,7 +1526,7 @@
             // 
             this.labelVND_HeaderLeft.AutoSize = true;
             this.labelVND_HeaderLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVND_HeaderLeft.Location = new System.Drawing.Point(329, 9);
+            this.labelVND_HeaderLeft.Location = new System.Drawing.Point(352, 10);
             this.labelVND_HeaderLeft.Name = "labelVND_HeaderLeft";
             this.labelVND_HeaderLeft.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderLeft.TabIndex = 72;
@@ -1538,9 +1536,9 @@
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(207, 4);
+            this.pictureBox12.Location = new System.Drawing.Point(224, 6);
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(27, 27);
+            this.pictureBox12.Size = new System.Drawing.Size(23, 23);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox12.TabIndex = 73;
             this.pictureBox12.TabStop = false;
@@ -1549,7 +1547,7 @@
             // 
             this.labelVND_HeaderRight.AutoSize = true;
             this.labelVND_HeaderRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVND_HeaderRight.Location = new System.Drawing.Point(907, 10);
+            this.labelVND_HeaderRight.Location = new System.Drawing.Point(897, 10);
             this.labelVND_HeaderRight.Name = "labelVND_HeaderRight";
             this.labelVND_HeaderRight.Size = new System.Drawing.Size(39, 16);
             this.labelVND_HeaderRight.TabIndex = 48;
@@ -1559,9 +1557,9 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(784, 4);
+            this.pictureBox7.Location = new System.Drawing.Point(770, 6);
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(27, 27);
+            this.pictureBox7.Size = new System.Drawing.Size(22, 23);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox7.TabIndex = 49;
             this.pictureBox7.TabStop = false;
@@ -1678,7 +1676,6 @@
             this.Shown += new System.EventHandler(this.FormNhanVien_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormNhanVien_KeyDown);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVLCPluginCar4)).EndInit();
@@ -1691,6 +1688,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage3)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvThongKeXeTrongBai)).EndInit();
