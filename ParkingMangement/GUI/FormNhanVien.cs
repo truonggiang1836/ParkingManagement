@@ -101,6 +101,7 @@ namespace ParkingMangement.GUI
         private int mExpiredTicketMonthTypeID;
         private int mBikeSpace;
         private int mCarSpace;
+        private bool mIsUpdateLostAvailable = true;
         private bool isUhfCard = false;
         private bool mIsUpdatingCarTable = false;
         private bool mIsSelectingCarTable = false;
@@ -386,7 +387,7 @@ namespace ParkingMangement.GUI
         {
             Invoke(new MethodInvoker(() =>
             {
-                string cardID = "3113934112";
+                string cardID = "3113963712";
                 if (rfidInput == rfidIn)
                 {
                     rfidInput = rfidOut;
@@ -409,7 +410,7 @@ namespace ParkingMangement.GUI
             rfidInput = rfidIn;
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEventTest);
-            aTimer.Interval = 1 * 500;
+            aTimer.Interval = 1 * 1000;
             aTimer.Enabled = true;
             aTimer.Start();
         }
@@ -815,17 +816,13 @@ namespace ParkingMangement.GUI
         {
             _ProcessTimer = new Stopwatch();
             _ProcessTimer.Start();
-            this.BringToFront();
-            resetErrorMessage(isInputLeftSide);
+            this.BringToFront();          
             if ((mIsUpdatingCarTable && (cardID.Equals(mLastCardIdLeft) || cardID.Equals(mLastCardIdRight))))
             {
-                setErrorMessage(Constant.sMessageCardNotUpdate, isInputLeftSide);
-                if (cardID.Length < 53)
-                {
-                    resetDataOneSide(true, isInputLeftSide);
-                }
+                // prevent multi tape one card
                 return;
             }
+            resetErrorMessage(isInputLeftSide);
 
             mCurrentCardID = cardID;
             isShowTicketMonthErrorMessage = false;
@@ -905,13 +902,16 @@ namespace ParkingMangement.GUI
         private void checkUsingCardForShowError(string cardID, bool isInputLeftSide)
         {
             bool isValidCard = false;
-            if ((cardID.Length == 8 && !isUhfCard) || (cardID.Length == 10 && !isUhfCard) || cardID.Length == 53)
+            if ((cardID.Length == 8 && !isUhfCard) || (cardID.Length == 10 && !isUhfCard))
             {
                 if (cardID.Length == mLastCardIdLeft.Length
                     || cardID.Length == mLastCardIdRight.Length
                     || (mLastCardIdLeft.Length == 0 && mLastCardIdRight.Length == 0)) {
-                    isValidCard = true;                   
+                    isValidCard = true;                
                 }
+            } else if (cardID.Length == 53)
+            {
+                isValidCard = true;
             }
             
             if (isValidCard)
@@ -1098,8 +1098,8 @@ namespace ParkingMangement.GUI
                 {
                     tbRFIDCardID.Focus();
                     setErrorMessage(Constant.sMessageCardNotTapeIn, isInputLeftSide);
-                    resetPictureBoxImage1(isInputLeftSide);
-                    resetPictureBoxImage2(isInputLeftSide);
+                    //resetPictureBoxImage1(isInputLeftSide);
+                    //resetPictureBoxImage2(isInputLeftSide);
                     Program.oldUhfCardId = "";
                     return false;
                 }
@@ -1341,7 +1341,11 @@ namespace ParkingMangement.GUI
                     }
                 }).Start();
 
-                updateListCarSurvice();
+                new Thread(() =>
+                {
+                    updateListCarSurvice();
+                    ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+                }).Start();
             });            
         }
 
@@ -1719,7 +1723,11 @@ namespace ParkingMangement.GUI
                             }
                         }).Start();
 
-                        updateListCarSurvice();
+                        new Thread(() =>
+                        {
+                            updateListCarSurvice();
+                            ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+                        }).Start();
                         tbRFIDCardID.Focus();
                     });
                 }
@@ -1837,12 +1845,7 @@ namespace ParkingMangement.GUI
                     if (inputDigit.Length == 0)
                     {
                         setErrorMessage(Constant.sMessageDigitNotIdentified, isInputLeftSide);
-                    }
-                    else
-                    if (digitIn.Length == 0)
-                    {
-                        setErrorMessage(Constant.sMessageDigitInNotIdentified, isInputLeftSide);
-                    }
+                    }                   
                     else
                     {
                         string compareInputDigit = Util.getShortDigit(inputDigit);
@@ -1862,7 +1865,11 @@ namespace ParkingMangement.GUI
                         }
                         else
                         {
-                            if (compareInputDigit.Equals(compareDigitIn))
+                            if (digitIn.Length == 0)
+                            {
+                                setErrorMessage(Constant.sMessageDigitInNotIdentified, isInputLeftSide);
+                            }
+                            else if (compareInputDigit.Equals(compareDigitIn))
                             {
                                 setErrorMessage("", isInputLeftSide);
                                 return true;
@@ -1992,7 +1999,7 @@ namespace ParkingMangement.GUI
                     string lastCardId = dtLastCar.Id;
                     if (cardID.Equals(lastCardId))
                     {
-                        if (Util.getMillisecondBetweenTwoDate(timeIn, DateTime.Now) < 30000)
+                        if (Util.getMillisecondBetweenTwoDate(timeIn, DateTime.Now) < 60000)
                         {
                             return true;
                         }
@@ -2011,7 +2018,7 @@ namespace ParkingMangement.GUI
                 {
                     double longTime = Util.getMillisecondBetweenTwoDate(timeEndLeft, DateTime.Now);
                     string lastCardId = mLastCarOutDTOLeft.Id;
-                    if (cardID.Equals(lastCardId) && longTime < 30000)
+                    if (cardID.Equals(lastCardId) && longTime < 60000)
                     {
                         return true;
                     }
@@ -2024,7 +2031,7 @@ namespace ParkingMangement.GUI
                 {
                     double longTime = Util.getMillisecondBetweenTwoDate(timeEndRight, DateTime.Now);
                     string lastCardId = mLastCarOutDTORight.Id;
-                    if (cardID.Equals(lastCardId) && longTime < 30000)
+                    if (cardID.Equals(lastCardId) && longTime < 60000)
                     {
                         return true;
                     }
@@ -3679,7 +3686,7 @@ namespace ParkingMangement.GUI
 
         private void checkAndUpdateLostAvailable()
         {
-            if (mConfig.comLostAvailable.Length > 0)
+            if (mConfig.comLostAvailable.Length > 0 && mIsUpdateLostAvailable)
             {
                 try
                 {
@@ -3703,6 +3710,7 @@ namespace ParkingMangement.GUI
                             {
                                 showLostAvailableToLed();
                             }
+                            ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_NO);
                         }                       
                     }).Start();
                 }
@@ -4733,6 +4741,7 @@ namespace ParkingMangement.GUI
             mExpiredTicketMonthTypeID = ConfigDAO.GetExpiredTicketMonthTypeID(dtConfig);
             mBikeSpace = ConfigDAO.GetBikeSpace(dtConfig);
             mCarSpace = ConfigDAO.GetCarSpace(dtConfig);
+            mIsUpdateLostAvailable = ConfigDAO.GetIsUpdateLostAvailable(dtConfig) == ConfigDTO.UPDATE_LOST_AVAILABLE_YES;
         }
 
         private void pictureBoxChangeLaneLeft_Click(object sender, EventArgs e)

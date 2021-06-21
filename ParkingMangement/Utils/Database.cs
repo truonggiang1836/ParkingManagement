@@ -307,6 +307,9 @@ namespace ParkingMangement
 
                 sql = "ALTER TABLE Config ADD NoticeToBeExpireDate int NOT NULL DEFAULT(20);";
                 (new Database()).ExcuQueryNoErrorMessage(sql);
+
+                sql = "ALTER TABLE Config ADD IsUpdateLostAvailable int NOT NULL DEFAULT(1);";
+                (new Database()).ExcuQueryNoErrorMessage(sql);
             }
             catch (Exception)
             {

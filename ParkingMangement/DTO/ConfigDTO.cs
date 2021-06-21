@@ -18,6 +18,8 @@ namespace ParkingMangement.DTO
         public const int AUTO_LOCK_CARD_YES = 1;
         public const int USE_COST_DEPOSIT_NO = 0;
         public const int USE_COST_DEPOSIT_YES = 1;
+        public const int UPDATE_LOST_AVAILABLE_NO = 0;
+        public const int UPDATE_LOST_AVAILABLE_YES = 1;
 
         private int lostCard;
         private int bikeSpace;
@@ -70,5 +72,6 @@ namespace ParkingMangement.DTO
         public int EndHourNightShift { get; set; }
         public int IsUseCostDeposit { get; set; }
         public int NoticeToBeExpireDate { get; set; }
+        public int IsUpdateLostAvailable { get; set; }
     }
 }

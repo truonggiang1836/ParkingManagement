@@ -136,6 +136,17 @@ namespace ParkingMangement.DAO
             {
                 return -1;
             }
+        }  
+        public static int GetIsUpdateLostAvailable(DataTable dt)
+        {
+            if (dt != null & dt.Rows.Count > 0)
+            {
+                return dt.Rows[0].Field<int>("IsUpdateLostAvailable");
+            }
+            else
+            {
+                return -1;
+            }
         }
 
         public static int GetIsAutoLockCard(DataTable dt)
@@ -247,6 +258,12 @@ namespace ParkingMangement.DAO
         public static bool UpdateNoticeFeeContent(string noticeFeeContent)
         {
             string sql = "update Config set NoticeFeeContent =" + noticeFeeContent;
+            return (new Database()).ExcuNonQuery(sql);
+        }
+
+        public static bool UpdateIsUpdateLostAvailable(int isUpdateLostAvailable)
+        {
+            string sql = "update Config set IsUpdateLostAvailable = " + isUpdateLostAvailable;
             return (new Database()).ExcuNonQuery(sql);
         }
 
