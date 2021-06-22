@@ -423,12 +423,14 @@ namespace ParkingMangement.DAO
             }
         }
 
-        public static void InsertOrUpdate(CardDTO cardDTO)
+        public static bool InsertOrUpdate(CardDTO cardDTO)
         {
-            if (!Insert(cardDTO))
+            bool isSuccess = Insert(cardDTO);
+            if (!isSuccess)
             {
-                UpdateNoErrorMessage(cardDTO);
+                isSuccess = UpdateNoErrorMessage(cardDTO);
             }
+            return isSuccess;
         }
     }
 }

@@ -131,10 +131,10 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
-        public static void UpdateSyncSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
+        public static bool UpdateSyncSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
             string sql = getUpdateSyncSPMSql(ticketMonthDTO);
-            (new Database()).ExcuNonQueryNoErrorMessage(sql);
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
         }
 
         public static void UpdateSyncPiHomeNoErrorMessage(TicketMonthDTO ticketMonthDTO)
@@ -665,10 +665,14 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.IsDeleted = "0";
                 ticketMonthDTO.IsSync = "1";
 
+                bool isSuccess = false;
                 if (trangThai.Equals("BiXoa"))
                 {
-                    DeleteNoErrorMessage(id);
-                    CardDAO.DeleteNoErrorMessage(id);
+                    isSuccess = DeleteNoErrorMessage(id);
+                    if (isSuccess)
+                    {
+                        isSuccess = CardDAO.DeleteNoErrorMessage(id);
+                    }
                 }
                 else
                 {
@@ -684,22 +688,26 @@ namespace ParkingMangement.DAO
                         cardDTO.DayUnlimit = DateTime.Now;
                         cardDTO.IsSync = "1";
 
-                        CardDAO.InsertOrUpdate(cardDTO);
-
-                        if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
-                        && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals(""))
+                        isSuccess = CardDAO.InsertOrUpdate(cardDTO);
+                        if (isSuccess)
                         {
-                            DeleteNoErrorMessage(id);
-                        }
-                        else
-                        {
-                            InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
+                            if (ticketMonthDTO.CustomerName.Equals("") && bienSo.Equals("")
+                            && ticketMonthDTO.Company.Equals("") && ticketMonthDTO.Phone.Equals(""))
+                            {
+                                isSuccess = DeleteNoErrorMessage(id);
+                            }
+                            else
+                            {
+                                isSuccess = InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
+                            }
                         }
                     }
                 }
 
-                Util.setSyncDoneMonthlyCardListToSPMServer(soThe);
-                //break;
+                if (isSuccess)
+                {
+                    Util.setSyncDoneMonthlyCardListToSPMServer(soThe);
+                }
 
                 Console.WriteLine("Sync API doing: " + index);
 
@@ -815,16 +823,18 @@ namespace ParkingMangement.DAO
             Console.WriteLine("Sync API done!");
         }
 
-        public static void InsertOrUpdateSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
+        public static bool InsertOrUpdateSPMNoErrorMessage(TicketMonthDTO ticketMonthDTO)
         {
-            if (!InsertNoErrorMessage(ticketMonthDTO))
+            bool isSuccess = InsertNoErrorMessage(ticketMonthDTO);
+            if (!isSuccess)
             {
-                UpdateSyncSPMNoErrorMessage(ticketMonthDTO);
+                isSuccess = UpdateSyncSPMNoErrorMessage(ticketMonthDTO);
                 Console.WriteLine("Update Sync API");
             } else
             {
                 Console.WriteLine("Insert Sync API");
             }
+            return isSuccess;
         }
 
         public static void InsertOrUpdatePiHomeNoErrorMessage(TicketMonthDTO ticketMonthDTO)
