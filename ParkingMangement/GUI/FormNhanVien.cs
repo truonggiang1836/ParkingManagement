@@ -1107,6 +1107,7 @@ namespace ParkingMangement.GUI
                     return false;
                 }
             }
+            rfidInput = "";
             checkForOpenBarie(dtCommonCard, cardID, isInputLeftSide);
             return true;
         }
@@ -1178,6 +1179,42 @@ namespace ParkingMangement.GUI
             }
         }
 
+        private void openBarie(string type, bool isInputLeftSide)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (rfidInput.Equals(""))
+                {
+                    if (type == TypeDTO.TYPE_CAR)
+                    {
+                        if (isInputLeftSide)
+                        {
+                            openBarieInCar();
+                        }
+                        else
+                        {
+                            openBarieOutCar();
+                        }
+                    }
+                    else
+                    {
+                        if (isInputLeftSide)
+                        {
+                            openBarieInMotorbike();
+                        }
+                        else
+                        {
+                            openBarieOutMotorbike();
+                        }
+                    }
+                } else
+                {
+                    openBarie(type, isInputLeftSide);
+                }
+            }        
+        }
+
         private void checkForOpenBarieIn(bool isUhfCard, string cardID, string type)
         {
             if (mConfig.signalOpenBarieIn.Equals("") && mConfig.signalOpenBarieInMotorbike.Equals(""))
@@ -1207,11 +1244,7 @@ namespace ParkingMangement.GUI
                     // truong hop xe oto
                     if (!mConfig.signalOpenBarieIn.Equals(""))
                     {
-                        DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            openBarieInCar();
-                        }
+                        openBarie(type, true);
                     }
                 }
                 else
@@ -1219,11 +1252,7 @@ namespace ParkingMangement.GUI
                     // truong hop xe may
                     if (!mConfig.signalOpenBarieInMotorbike.Equals(""))
                     {
-                        DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            openBarieInMotorbike();
-                        }
+                        openBarie(type, true);
                     }
                 }
             }
@@ -1258,11 +1287,7 @@ namespace ParkingMangement.GUI
                     // truong hop xe oto
                     if (!mConfig.signalOpenBarieOut.Equals(""))
                     {
-                        DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            openBarieOutCar();
-                        }
+                        openBarie(type, false);
                     }
                 }
                 else
@@ -1270,11 +1295,7 @@ namespace ParkingMangement.GUI
                     // truong hop xe may
                     if (!mConfig.signalOpenBarieOutMotorbike.Equals(""))
                     {
-                        DialogResult dialogResult = MessageBox.Show("Bạn có đồng ý mở barie?", "Mở barie", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
-                            openBarieOutMotorbike();
-                        }
+                        openBarie(type, false);
                     }
                 }
             }
