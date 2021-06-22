@@ -111,6 +111,7 @@ namespace ParkingMangement.GUI
         private CarDTO mLastCarOutDTORight;
         private string mLastCardIdLeft = "";
         private string mLastCardIdRight = "";
+        private DateTime mLastReadCardTime = DateTime.Now;
 
         private Size oldSize;
         private const float LARGER_FONT_FACTOR = 1.5f;
@@ -378,6 +379,7 @@ namespace ParkingMangement.GUI
             new Thread(() =>
             {
                 updateListCarSurvice();
+                checkForShowLostAvailableToLed();
             }).Start();
 
             readPegasusReaderCOM();
@@ -825,6 +827,7 @@ namespace ParkingMangement.GUI
             resetErrorMessage(isInputLeftSide);
 
             mCurrentCardID = cardID;
+            mLastReadCardTime = DateTime.Now;
             isShowTicketMonthErrorMessage = false;
             Program.isHasCarInOut = true;
 
@@ -1344,7 +1347,7 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     updateListCarSurvice();
-                    ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+                    checkForShowLostAvailableToLed();
                 }).Start();
             });            
         }
@@ -1713,12 +1716,12 @@ namespace ParkingMangement.GUI
                             {
                                 if (checkDigit)
                                 {
-                                    playCostToAudio(cost.ToString());
+                                    playCostToAudioAsync(cost.ToString());
                                     Util.playAudio(Constant.goOut);
                                 }
                                 else
                                 {
-                                    playCostToAudio(cost.ToString());
+                                    playCostToAudioAsync(cost.ToString());
                                 }
                             }
                         }).Start();
@@ -1726,7 +1729,7 @@ namespace ParkingMangement.GUI
                         new Thread(() =>
                         {
                             updateListCarSurvice();
-                            ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+                            checkForShowLostAvailableToLed();
                         }).Start();
                         tbRFIDCardID.Focus();
                     });
@@ -1758,7 +1761,7 @@ namespace ParkingMangement.GUI
 
                         if (!isTicketMonthCard)
                         {
-                            playCostToAudio(cost.ToString());
+                            playCostToAudioAsync(cost.ToString());
                         }
                     }).Start();
 
@@ -1890,13 +1893,14 @@ namespace ParkingMangement.GUI
             return false;
         }
 
-        private void playCostToAudio(string cost)
+        private async Task playCostToAudioAsync(string cost)
         {
             ArrayList numberList = Util.ChuyenSo(cost);
             foreach (string item in numberList)
             {
                 Util.playAudio(item);
-                Thread.Sleep(700);
+                await Task.Delay(700);
+                //Thread.Sleep(700);
             }
         }
 
@@ -2121,41 +2125,18 @@ namespace ParkingMangement.GUI
             {
                 try
                 {
-                    //System.Drawing.Image img = System.Drawing.Image.FromFile(filePath);
                     byte[] bytes = File.ReadAllBytes(filePath);
                     MemoryStream ms = new MemoryStream(bytes);
                     Image img = Image.FromStream(ms);
-                    System.Drawing.Image image = pictureBox.Image;
-                    if (Constant.IS_NAPSHOT_FULL_IMAGE)
+                    new Thread(() =>
                     {
-                        float zoomImageRatio = 0.5f;
-                        if (pictureBox == pictureBoxImage1)
-                        {
-                            zoomImageRatio = (float)mConfig.ZoomCamera1 / 100;
-                        }
-                        else if (pictureBox == pictureBoxImage2)
-                        {
-                            zoomImageRatio = (float)mConfig.ZoomCamera2 / 100;
-                        }
-                        else if (pictureBox == pictureBoxImage3)
-                        {
-                            zoomImageRatio = (float)mConfig.ZoomCamera3 / 100;
-                        }
-                        else if (pictureBox == pictureBoxImage4)
-                        {
-                            zoomImageRatio = (float)mConfig.ZoomCamera4 / 100;
-                        }
-                        zoomImageRatio = 1 - zoomImageRatio * 1.2f;
-                        pictureBox.Image = Util.ResizeImage(img, zoomImageRatio);
-                    }
-                    else
-                    {
+                        Image oldImage = pictureBox.Image;
                         pictureBox.Image = img;
-                    }
-                    if (image != null)
-                    {
-                        image.Dispose();
-                    }
+                        if (oldImage != null)
+                        {
+                            oldImage.Dispose();
+                        }
+                    }).Start();                   
                 }
                 catch (Exception)
                 {
@@ -2224,7 +2205,16 @@ namespace ParkingMangement.GUI
             if (isCarIn(cardID, isInputLeftSide))
             {
                 Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;
+                new Thread(() =>
+                {
+                    Image oldImage = pictureBox.Image;
+                    pictureBox.Image = bmpScreenshot;
+                    if (oldImage != null)
+                    {
+                        oldImage.Dispose();
+                    }
+                }).Start();
+                
                 return bmpScreenshot;           
             }
             return null;
@@ -2304,7 +2294,15 @@ namespace ParkingMangement.GUI
             if (isCarIn(cardID, isInputLeftSide))
             {
                 Bitmap bmpScreenshot = getBitMapFromCamera(axVLCPlugin);
-                pictureBox.Image = bmpScreenshot;
+                new Thread(() =>
+                {
+                    Image oldImage = pictureBox.Image;
+                    pictureBox.Image = bmpScreenshot;
+                    if (oldImage != null)
+                    {
+                        oldImage.Dispose();
+                    }
+                }).Start();
                 return bmpScreenshot;
             }
             return null;
@@ -3669,8 +3667,6 @@ namespace ParkingMangement.GUI
             aTimer.Interval = 10 * 1000; // 10s
             aTimer.Enabled = true;
             aTimer.Start();
-
-            checkAndUpdateLostAvailable();
         }
 
         private void OnTimedEvent(object source, ElapsedEventArgs e)
@@ -3681,12 +3677,15 @@ namespace ParkingMangement.GUI
             GC.WaitForPendingFinalizers();
 
             loadConfigInfoDB();
-            checkAndUpdateLostAvailable();
+            checkForAutoUpdateLostAvailable();
         }
 
-        private void checkAndUpdateLostAvailable()
+        private void checkForAutoUpdateLostAvailable()
         {
-            if (mConfig.comLostAvailable.Length > 0 && mIsUpdateLostAvailable)
+            double distant = Util.getMillisecondBetweenTwoDate(mLastReadCardTime, DateTime.Now);
+            if (mConfig.comLostAvailable.Length > 0 
+                && mIsUpdateLostAvailable
+                && distant >= 10000)
             {
                 try
                 {
@@ -3703,12 +3702,12 @@ namespace ParkingMangement.GUI
                             {
                                 Invoke((MethodInvoker)(delegate ()
                                 {
-                                    showLostAvailableToLed();
+                                    showLostAvailableToLedAsync();
                                 }));
                             }
                             else
                             {
-                                showLostAvailableToLed();
+                                showLostAvailableToLedAsync();
                             }
                             ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_NO);
                         }                       
@@ -3747,7 +3746,30 @@ namespace ParkingMangement.GUI
             }
         }
 
-        private void showLostAvailableToLed()
+        private void checkForShowLostAvailableToLed()
+        {
+            if (mConfig.comLostAvailable.Length > 0)
+            {
+                if (IsHandleCreated)
+                {
+                    Invoke((MethodInvoker)(delegate ()
+                    {
+                        showLostAvailableToLedAsync();
+                    }));
+                }
+                else
+                {
+                    showLostAvailableToLedAsync();
+                }
+                ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_NO);
+            }
+            else
+            {
+                ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+            }
+        }
+
+        private async Task showLostAvailableToLedAsync()
         {
             string portName = mConfig.comLostAvailable;
             foreach (DataRow row in mListCarSurvive.Rows)
@@ -3770,10 +3792,9 @@ namespace ParkingMangement.GUI
                 }
 
                 writeDataToLostAvailablePort(data, portName);
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
-
-
+           
             
             //string exceptPartSignBike = null;
             //if (mConfig.projectId.Equals(Constant.API_KEY_GREEN_HILLS))
