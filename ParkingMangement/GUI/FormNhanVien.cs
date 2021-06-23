@@ -1737,12 +1737,11 @@ namespace ParkingMangement.GUI
                             {
                                 if (checkDigit)
                                 {
-                                    playCostToAudioAsync(cost.ToString());
-                                    Util.playAudio(Constant.goOut);
+                                    playCostToAudioAsync(cost.ToString(), true);
                                 }
                                 else
                                 {
-                                    playCostToAudioAsync(cost.ToString());
+                                    playCostToAudioAsync(cost.ToString(), false);
                                 }
                             }
                         }).Start();
@@ -1778,11 +1777,9 @@ namespace ParkingMangement.GUI
                     // play audio
                     new Thread(() =>
                     {
-                        bool checkDigit = checkDigitOut(inputDigit, digit, digitIn, isTicketMonthCard, isInputLeftSide);
-
                         if (!isTicketMonthCard)
                         {
-                            playCostToAudioAsync(cost.ToString());
+                            playCostToAudioAsync(cost.ToString(), false);
                         }
                     }).Start();
 
@@ -1914,7 +1911,7 @@ namespace ParkingMangement.GUI
             return false;
         }
 
-        private async Task playCostToAudioAsync(string cost)
+        private async Task playCostToAudioAsync(string cost, bool isPlayGoOut)
         {
             ArrayList numberList = Util.ChuyenSo(cost);
             foreach (string item in numberList)
@@ -1922,6 +1919,10 @@ namespace ParkingMangement.GUI
                 Util.playAudio(item);
                 await Task.Delay(700);
                 //Thread.Sleep(700);
+            }
+            if (isPlayGoOut)
+            {
+                Util.playAudio(Constant.goOut);
             }
         }
 
