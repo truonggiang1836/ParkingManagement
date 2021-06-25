@@ -269,7 +269,7 @@ namespace ParkingMangement
                 CarDAO.deleteVirtualSurvivalMonthCar();
             }).Start();
             generateConfigFile();
-            doPeriodAction();
+            doPeriodActionAsync();
         }
 
         private static void generateConfigFile()
@@ -289,16 +289,18 @@ namespace ParkingMangement
 
         private static void OnTimedEventPeriodAction(object source, ElapsedEventArgs e)
         {
-            doPeriodAction();
+            doPeriodActionAsync();
             backupDB();
         }
 
-        private static void doPeriodAction()
+        private static async Task doPeriodActionAsync()
         {
             checkForAutoLockCard();
             if (!Constant.IS_SYNC_DATA_APP)
             {
-                runSyncDataProcess();               
+                stopSyncDataProcess();
+                await Task.Delay(1000);
+                startSyncDataProcess();
             }      
         }
 
@@ -367,16 +369,25 @@ namespace ParkingMangement
             }
         }
 
-        private static void runSyncDataProcess()
+        private static void startSyncDataProcess()
         {
-            Process[] pname = Process.GetProcessesByName("ParkingMangement_SyncData");
-            if (pname.Length == 0)
+            Process[] pnames = Process.GetProcessesByName("ParkingMangement_SyncData");
+            if (pnames.Length == 0)
             {
                 string filePath = Application.StartupPath + "\\ParkingMangement_SyncData.exe";
                 if (File.Exists(filePath))
                 {
                     Process.Start(filePath);
                 }
+            }
+        }
+
+        private static void stopSyncDataProcess()
+        {
+            Process[] pnames = Process.GetProcessesByName("ParkingMangement_SyncData");
+            foreach (Process pname in pnames)
+            {
+                pname.Kill();
             }
         }
     }
