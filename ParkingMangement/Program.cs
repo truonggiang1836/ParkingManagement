@@ -289,8 +289,7 @@ namespace ParkingMangement
 
         private static void OnTimedEventPeriodAction(object source, ElapsedEventArgs e)
         {
-            doPeriodActionAsync();
-            backupDB();
+            doPeriodActionAsync();            
         }
 
         private static async Task doPeriodActionAsync()
@@ -301,7 +300,8 @@ namespace ParkingMangement
                 stopSyncDataProcess();
                 await Task.Delay(1000);
                 startSyncDataProcess();
-            }      
+            }
+            backupDB();
         }
 
         private static void backupDB()
