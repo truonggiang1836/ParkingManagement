@@ -2308,6 +2308,16 @@ namespace ParkingMangement.Utils
             return output;
         }
 
+        public static string ReplaceFirstAtPosition(string text, string search, string replace, int position)
+        {
+            int pos = text.IndexOf(search);
+            if (pos == position)
+            {
+                return text.Substring(0, pos) + replace + text.Substring(pos + search.Length);
+            }
+            return text;
+        }
+
         private static string Chu(string gNumber)
         {
             string result = "";

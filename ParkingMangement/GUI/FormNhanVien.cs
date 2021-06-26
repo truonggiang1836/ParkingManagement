@@ -4718,6 +4718,7 @@ namespace ParkingMangement.GUI
             {
                 digit = bestMatch.text.Replace(".", "");
             }
+            digit = Util.ReplaceFirstAtPosition(digit, "-", "", 2);
             return digit;
         }
 
