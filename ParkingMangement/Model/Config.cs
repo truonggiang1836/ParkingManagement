@@ -167,14 +167,10 @@ namespace ParkingMangement.Model
         public string projectId { get; set; } = "";
         [XmlElement(ElementName = "signature")]
         public string signature { get; set; } = "";
-        [XmlElement(ElementName = "python_folder")]
-        public string pythonFolder { get; set; } = "";
-        [XmlElement(ElementName = "python_run_file")]
-        public string pythonRunFile { get; set; } = "";
-        [XmlElement(ElementName = "python_server_url")]
-        public string pythonServerUrl { get; set; } = "";
         [XmlElement(ElementName = "is_include_min_minute")]
         public string isIncludeMinMinute { get; set; } = "yes";
+        [XmlElement(ElementName = "is_use_lost_available_led")]
+        public string isUseLostAvailableLed { get; set; } = "yes";
         [XmlElement(ElementName = "backup_computer_name")]
         public string backupComputerName { get; set; } = "";
     }

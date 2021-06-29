@@ -124,6 +124,48 @@ namespace ParkingMangement
             return dt;
         }
 
+        public DataTable ExcuQueryWithTimeOut(string sql)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection mySqlConnection = GetDBConnection();
+            try
+            {
+                SqlCommand command = mySqlConnection.CreateCommand();
+                command.Connection = mySqlConnection;
+                command.CommandText = sql;
+                command.CommandTimeout = 3;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                adapter.SelectCommand = command;
+                mySqlConnection.Open();
+                adapter.Fill(dt);
+            }
+            catch (SqlException Ex)
+            {
+                if (Ex.Number == 1205)
+                {
+                    // Deadlock 
+                }
+                else if (Ex.Number == -2)
+                {
+                    // Time out
+                    return null;
+                }
+                else
+                {
+                    MessageBox.Show(Ex.Message + "_sql: " + sql);
+                }
+            }
+            finally
+            {
+                if (mySqlConnection != null)
+                {
+                    mySqlConnection.Close();
+                    mySqlConnection.Dispose();
+                }
+            }
+            return dt;
+        }
+
         public DataTable ExcuQueryNoErrorMessage(string sql)
         {
             DataTable dt = new DataTable();

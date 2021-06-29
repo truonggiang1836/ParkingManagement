@@ -1046,7 +1046,7 @@ namespace ParkingMangement.DAO
         public static DataTable GetLastCarNotOutByID(string id)
         {
             string sql = "select top 1 Identify, ID, TimeStart, TimeEnd, Digit, DigitIn, Images, Images2, Cost from Car where ID = '" + id + "' and IDOut = '' order by TimeStart desc, Identify desc";
-            return (new Database()).ExcuQuery(sql);
+            return (new Database()).ExcuQueryWithTimeOut(sql);
         }
 
         public static long GetLastIdentifyByID(string id)
@@ -1065,20 +1065,31 @@ namespace ParkingMangement.DAO
         public static CarDTO GetLastCarNotOutModelByID(string id)
         {
             DataTable dt = GetLastCarNotOutByID(id);
-            if (dt != null && dt.Rows.Count > 0)
+            CarDTO carDTO = new CarDTO();
+            if (dt != null)
             {
-                DataRow dtRow = dt.Rows[0];
-                CarDTO carDTO = new CarDTO();
-                carDTO.Identify = dtRow.Field<int>("Identify");
-                carDTO.Id = dtRow.Field<string>("ID");
-                carDTO.TimeStart = dtRow.Field<DateTime>("TimeStart");
-                carDTO.DigitIn = dtRow.Field<string>("DigitIn");
-                carDTO.Digit = dtRow.Field<string>("Digit");
-                carDTO.Images = dtRow.Field<string>("Images");
-                carDTO.Images2 = dtRow.Field<string>("Images2");
-                return carDTO;
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow dtRow = dt.Rows[0];                   
+                    carDTO.Identify = dtRow.Field<int>("Identify");
+                    carDTO.Id = dtRow.Field<string>("ID");
+                    carDTO.TimeStart = dtRow.Field<DateTime>("TimeStart");
+                    carDTO.DigitIn = dtRow.Field<string>("DigitIn");
+                    carDTO.Digit = dtRow.Field<string>("Digit");
+                    carDTO.Images = dtRow.Field<string>("Images");
+                    carDTO.Images2 = dtRow.Field<string>("Images2");
+                    return carDTO;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            return null;
+            else
+            {
+                carDTO.Id = "-1";
+                return carDTO;
+            }           
         }
 
         public static DataTable GetCarGoOut(int month)

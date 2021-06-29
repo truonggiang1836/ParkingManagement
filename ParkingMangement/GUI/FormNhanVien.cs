@@ -551,27 +551,22 @@ namespace ParkingMangement.GUI
                     //Program.closeUhfReader();
                     //Program.initUhfReader();
                     //oldUhfCardTime = DateTime.Now;
-                    if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
+                    new Thread(() =>
                     {
-                        resetAllData();
-                    }
-                    else
-                    {
-                        if (!labelDigitInLeft.Focused && !labelDigitInRight.Focused)
+                        if (Program.oldUhfCardId != null && !Program.oldUhfCardId.Equals(""))
                         {
                             resetAllData();
                         }
-                    }
-                    tbRFIDCardID.Focus();
+                        else
+                        {
+                            if (!labelDigitInLeft.Focused && !labelDigitInRight.Focused)
+                            {
+                                resetAllData();
+                            }
+                        }
+                        tbRFIDCardID.Focus();
+                    }).Start();
                     //readDigitWareLogic();
-                    break;
-                case Keys.Q:
-                    rbLeftSide.Checked = true;
-                    tbRFIDCardID.Focus();
-                    break;
-                case Keys.W:
-                    rbRightSide.Checked = true;
-                    tbRFIDCardID.Focus();
                     break;
                 case Keys.F1:
                     //case Keys.ControlKey:
@@ -818,10 +813,18 @@ namespace ParkingMangement.GUI
         {
             _ProcessTimer = new Stopwatch();
             _ProcessTimer.Start();
-            this.BringToFront();          
+            this.BringToFront();
             if ((mIsUpdatingCarTable && (cardID.Equals(mLastCardIdLeft) || cardID.Equals(mLastCardIdRight))))
             {
                 // prevent multi tape one card
+                return;
+            } else if (mIsUpdatingCarTable || mIsSelectingCarTable)
+            {
+                setErrorMessage(Constant.sMessageCardNotUpdate, isInputLeftSide);
+                if (cardID.Length < 53)
+                {
+                    resetDataOneSide(true, isInputLeftSide);
+                }
                 return;
             }
             resetErrorMessage(isInputLeftSide);
@@ -1008,6 +1011,17 @@ namespace ParkingMangement.GUI
             watch1.Start();
             mIsSelectingCarTable = true;
             CarDTO dtLastCar = CarDAO.GetLastCarNotOutModelByID(cardID);
+            if (dtLastCar != null && dtLastCar.Id.Equals("-1"))
+            {
+                // Time out
+                setErrorMessage(Constant.sMessageCardNotUpdate, isInputLeftSide);
+                if (cardID.Length < 53)
+                {
+                    resetDataOneSide(true, isInputLeftSide);
+                }
+                return false;
+            }
+
             mIsSelectingCarTable = false;
             watch1.Stop();
             Console.WriteLine("GetLastCarByID : " + watch1.ElapsedMilliseconds);                   
@@ -1368,8 +1382,17 @@ namespace ParkingMangement.GUI
                 new Thread(() =>
                 {
                     updateListCarSurvice();
-                    checkForShowLostAvailableToLed();
                 }).Start();
+
+                if (!mIsUpdateLostAvailable && mConfig.isUseLostAvailableLed.Equals("yes"))
+                {
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+                        mIsUpdateLostAvailable = true;
+                    }).Start();
+                }
             });            
         }
 
@@ -1749,8 +1772,17 @@ namespace ParkingMangement.GUI
                         new Thread(() =>
                         {
                             updateListCarSurvice();
-                            checkForShowLostAvailableToLed();
                         }).Start();
+
+                        if (!mIsUpdateLostAvailable && mConfig.isUseLostAvailableLed.Equals("yes"))
+                        {
+                            new Thread(() =>
+                            {
+                                Thread.CurrentThread.IsBackground = true;
+                                ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
+                                mIsUpdateLostAvailable = true;
+                            }).Start();
+                        }
                         tbRFIDCardID.Focus();
                     });
                 }
@@ -1997,9 +2029,9 @@ namespace ParkingMangement.GUI
                         // Ve thang
                         return true;
                     } 
-                    else if (Util.getTotalTimeByHour(dtLastCar.TimeStart, DateTime.Now) <= 48)
+                    else if (Util.getTotalTimeByHour(dtLastCar.TimeStart, DateTime.Now) <= 168)
                     {
-                        // below 48h
+                        // below 7 days
                         return true;
                     }
                     else
@@ -3396,11 +3428,11 @@ namespace ParkingMangement.GUI
                     if (!cardID.Equals(""))
                     {
                         bool isInputLeftSide = inputIsLeftSide(cardID);
-                        new Thread(() =>
-                        {
-                            readCardEvent(cardID, isInputLeftSide);
-                        }).Start();
-                        //readCardEvent(cardID, isInputLeftSide);
+                        //new Thread(() =>
+                        //{
+                        //    readCardEvent(cardID, isInputLeftSide);
+                        //}).Start();
+                        readCardEvent(cardID, isInputLeftSide);
                         tbRFIDCardID.Focus();
                     }
                     break;
@@ -3699,7 +3731,10 @@ namespace ParkingMangement.GUI
             GC.WaitForPendingFinalizers();
 
             loadConfigInfoDB();
-            checkForAutoUpdateLostAvailable();
+            if (mConfig.isUseLostAvailableLed.Equals("yes"))
+            {
+                checkForAutoUpdateLostAvailable();
+            }
         }
 
         private void checkForAutoUpdateLostAvailable()
@@ -3731,8 +3766,14 @@ namespace ParkingMangement.GUI
                             {
                                 showLostAvailableToLedAsync();
                             }
-                            ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_NO);
                         }                       
+                    }).Start();
+
+                    new Thread(() =>
+                    {
+                        Thread.CurrentThread.IsBackground = true;
+                        ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_NO);
+                        mIsUpdateLostAvailable = false;
                     }).Start();
                 }
                 catch (Exception)
@@ -3770,7 +3811,7 @@ namespace ParkingMangement.GUI
 
         private void checkForShowLostAvailableToLed()
         {
-            if (mConfig.comLostAvailable.Length > 0)
+            if (mConfig.comLostAvailable.Length > 0 && mConfig.isUseLostAvailableLed.Equals("yes"))
             {
                 if (IsHandleCreated)
                 {
@@ -3783,11 +3824,6 @@ namespace ParkingMangement.GUI
                 {
                     showLostAvailableToLedAsync();
                 }
-                ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_NO);
-            }
-            else
-            {
-                ConfigDAO.UpdateIsUpdateLostAvailable(ConfigDTO.UPDATE_LOST_AVAILABLE_YES);
             }
         }
 
@@ -4411,87 +4447,61 @@ namespace ParkingMangement.GUI
             AutoClosingMessageBox.Show("Barie đã mở", "", 500);
         }
 
-        private string uploadCarNumberImage(string fileName, bool isLeftSide, bool isCarIn)
-        {
-            WebClient webClient = (new ApiUtil()).getWebClient();
-            try
-            {
-                string pythonServerUrl = Util.getConfigFile().pythonServerUrl;
-                //string url = @"http://127.0.0.1:8000/getPlateNumber?imagepath=" + fileName;
-                string url = pythonServerUrl + "?imagepath=" + fileName;
-                String responseString = webClient.DownloadString(url);
-                string plateNumber = responseString;
-                if (plateNumber.Equals(""))
-                {
-                    plateNumber = "-";
-                }
-                if (isLeftSide)
-                {
-                    if (isCarIn)
-                    {
-                        labelDigitInLeft.Text = plateNumber;
-                    }
-                    else
-                    {
-                        labelDigitOutLeft.Text = plateNumber;
-                    }
-                }
-                else
-                {
-                    if (isCarIn)
-                    {
-                        labelDigitInRight.Text = plateNumber;
-                    }
-                    else
-                    {
-                        labelDigitOutRight.Text = plateNumber;
-                    }
-                }
+        //private string uploadCarNumberImage(string fileName, bool isLeftSide, bool isCarIn)
+        //{
+        //    WebClient webClient = (new ApiUtil()).getWebClient();
+        //    try
+        //    {
+        //        string pythonServerUrl = Util.getConfigFile().pythonServerUrl;
+        //        //string url = @"http://127.0.0.1:8000/getPlateNumber?imagepath=" + fileName;
+        //        string url = pythonServerUrl + "?imagepath=" + fileName;
+        //        String responseString = webClient.DownloadString(url);
+        //        string plateNumber = responseString;
+        //        if (plateNumber.Equals(""))
+        //        {
+        //            plateNumber = "-";
+        //        }
+        //        if (isLeftSide)
+        //        {
+        //            if (isCarIn)
+        //            {
+        //                labelDigitInLeft.Text = plateNumber;
+        //            }
+        //            else
+        //            {
+        //                labelDigitOutLeft.Text = plateNumber;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if (isCarIn)
+        //            {
+        //                labelDigitInRight.Text = plateNumber;
+        //            }
+        //            else
+        //            {
+        //                labelDigitOutRight.Text = plateNumber;
+        //            }
+        //        }
 
-                return plateNumber;
-            }
-            catch (WebException exception)
-            {
-                //string responseText;
-                //var responseStream = exception.Response?.GetResponseStream();
+        //        return plateNumber;
+        //    }
+        //    catch (WebException exception)
+        //    {
+        //        //string responseText;
+        //        //var responseStream = exception.Response?.GetResponseStream();
 
-                //if (responseStream != null)
-                //{
-                //    using (var reader = new StreamReader(responseStream))
-                //    {
-                //        responseText = reader.ReadToEnd();
-                //        MessageBox.Show(responseText);
-                //    }
-                //}
-            }
-            return "";
-        }
-
-        private void testDocBienSo()
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog
-            {
-                InitialDirectory = @"E:\HINH_BIEN_SO\",
-                Title = "Browse Files",
-
-                CheckFileExists = true,
-                CheckPathExists = true,
-
-                DefaultExt = "txt",
-                Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF|All files (*.*)|*.*",
-                FilterIndex = 2,
-                RestoreDirectory = true,
-
-                ReadOnlyChecked = true,
-                ShowReadOnly = true
-            };
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string fileName = openFileDialog1.SafeFileName;
-                uploadCarNumberImage(fileName, true, true);
-            }
-        }
+        //        //if (responseStream != null)
+        //        //{
+        //        //    using (var reader = new StreamReader(responseStream))
+        //        //    {
+        //        //        responseText = reader.ReadToEnd();
+        //        //        MessageBox.Show(responseText);
+        //        //    }
+        //        //}
+        //    }
+        //    return "";
+        //}        
 
         private string docBienSo(string cardID, bool isInputLeftSide, string type, string imagePath1, string imagePath2)
         {
@@ -4735,31 +4745,6 @@ namespace ParkingMangement.GUI
         private void pictureBox8_Click(object sender, EventArgs e)
         {
             //testDocBienSo();
-        }
-
-        private void runPythonServer()
-        {
-            foreach (var process in Process.GetProcessesByName("Python"))
-            {
-                process.Kill();
-            }
-
-            //string directory = @"E:\WORK\GIT\DOC BIEN SO XE\GIT\license_plate_recognition\";
-            //directory = @"D:\\DOC BIEN SO XE\Detect number plate\";
-            string directory = Util.getConfigFile().pythonFolder;
-            if (Directory.Exists(directory))
-            {
-                System.Environment.CurrentDirectory = directory;
-                Process myProcess = new Process();
-                myProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                myProcess.StartInfo.CreateNoWindow = true;
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.FileName = "cmd.exe";
-                //myProcess.StartInfo.Arguments = "/c " + "python release_v3.py runserver";
-                myProcess.StartInfo.Arguments = "/c " + "python " + Util.getConfigFile().pythonRunFile + " runserver";
-                myProcess.EnableRaisingEvents = true;
-                myProcess.Start();
-            }
         }
 
         private void resetForm()
