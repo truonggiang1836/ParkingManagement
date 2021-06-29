@@ -706,34 +706,28 @@ namespace ParkingMangement.DAO
                 }
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
-                    string typeID = data.Rows[row].Field<string>("TypeID");
-                    int countCarSurvive;
+                    string typeID = data.Rows[row].Field<string>("TypeID");                   
                     int countCarEmpty;
                     Bitmap bitmap;
-                    string exceptPartSign = null;
+                    string computerName = null;
+                    if (Environment.MachineName.Equals(Util.getConfigFile().computerName) &&
+                        Util.getConfigFile().projectId.Equals(Constant.API_KEY_GREEN_HILLS))
+                    {
+                        computerName = Environment.MachineName;
+                    }
 
+                    int countCarSurvive = GetCountCarSurvive(typeID, computerName);
                     if (typeID == TypeDTO.TYPE_BIKE)
                     {
-                        bitmap = sBitmapBikeIcon;
-                        if (Util.getConfigFile().projectId.Equals(Constant.API_KEY_GREEN_HILLS))
-                        {
-                            exceptPartSign = "XeMayLuotTrenG";
-                        }
-
-                        countCarSurvive = GetCountCarSurvive(typeID, exceptPartSign);
+                        bitmap = sBitmapBikeIcon;                                           
                         countCarEmpty = bikeSpace - countCarSurvive;
                     }
                     else
                     {
                         bitmap = sBitmapCarIcon;
-                        if (Util.getConfigFile().projectId.Equals(Constant.API_KEY_GREEN_HILLS))
-                        {
-                            exceptPartSign = "OTOLuotTrenG";
-                        }
-
-                        countCarSurvive = GetCountCarSurvive(typeID, exceptPartSign);
                         countCarEmpty = carSpace - countCarSurvive;
-                    }
+                    }                    
+
                     if (countCarEmpty < 0)
                     {
                         countCarEmpty = 0;
@@ -1021,16 +1015,16 @@ namespace ParkingMangement.DAO
             return sql;
         }
 
-        public static int GetCountCarSurvive(string typeID, string exceptPartSign)
+        public static int GetCountCarSurvive(string typeID, string computerName)
         {
             string sql = "select MAX(Car.Identify), Car.ID from Part inner join Car on Car.IDPart = Part.ID inner join SmartCard on SmartCard.ID = Car.ID where Car.IDOut = '' ";
             if (typeID != null)
             {
                 sql += " and Part.TypeID = '" + typeID + "'";
             }
-            if (exceptPartSign != null)
+            if (computerName != null)
             {
-                sql += " and Part.Sign <> '" + exceptPartSign + "'";
+                sql += " and Car.Computer = '" + computerName + "'";
             }
             sql += " GROUP BY Car.ID";
 
