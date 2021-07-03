@@ -99,7 +99,7 @@ namespace ParkingMangement.DAO
         public static string getUpdateSyncSPMSql(TicketMonthDTO ticketMonthDTO)
         {
             string sql = "update TicketMonth set ProcessDate ='" + ticketMonthDTO.ProcessDate?.ToString(Constant.sDateTimeFormatForQuery) + "', Digit =N'" + ticketMonthDTO.Digit + "', CustomerName =N'"
-                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart 
+                + ticketMonthDTO.CustomerName + "', Company =N'" + ticketMonthDTO.Company + "', Address =N'" + ticketMonthDTO.Address + "', RegistrationDate ='" + ticketMonthDTO.RegistrationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', ExpirationDate ='" + ticketMonthDTO.ExpirationDate?.ToString(Constant.sDateTimeFormatForQuery) + "', IdPart ='" + ticketMonthDTO.IdPart 
                 + "', IsSync ='" + ticketMonthDTO.IsSync + "', IsDeleted ='" + ticketMonthDTO.IsDeleted + "', ChargesAmount =N'" + ticketMonthDTO.ChargesAmount + "', Phone =N'" + ticketMonthDTO.Phone + "' where ID ='" + ticketMonthDTO.Id + "'";
             return sql;
         }
@@ -148,7 +148,7 @@ namespace ParkingMangement.DAO
             //string sql = "delete from TicketMonth where ID ='" + id + "'";
             string sql = "update TicketMonth set IsDeleted = 1, IsSync = 0 where ID ='" + id + "'";
             return (new Database()).ExcuNonQuery(sql);
-        }
+        }       
 
         public static bool DeleteNoErrorMessage(string id)
         {
@@ -642,6 +642,7 @@ namespace ParkingMangement.DAO
                 ticketMonthDTO.Account = Program.CurrentUserID;
                 ticketMonthDTO.Digit = bienSo;
                 ticketMonthDTO.Company = jObject.GetValue("soPhong").ToString();
+                ticketMonthDTO.Address = "";
                 ticketMonthDTO.CustomerName = jObject.GetValue("chuXe").ToString();
                 try
                 {
@@ -688,6 +689,7 @@ namespace ParkingMangement.DAO
                         cardDTO.DayUnlimit = DateTime.Now;
                         cardDTO.IsSync = "1";
 
+                        CardDAO.DeleteWithoutIdNoErrorMessage(id, soThe);
                         isSuccess = CardDAO.InsertOrUpdate(cardDTO);
                         if (isSuccess)
                         {

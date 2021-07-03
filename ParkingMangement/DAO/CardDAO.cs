@@ -209,6 +209,13 @@ namespace ParkingMangement.DAO
             return (new Database()).ExcuNonQuery(sql);
         }
 
+        public static bool DeleteWithoutIdNoErrorMessage(string id, string cardIdentify)
+        {
+            string sql = "update SmartCard set IsDeleted = 1, IsSync = 0 where ID <> '" + id + 
+                "' and Identify = '" + cardIdentify + "'";
+            return (new Database()).ExcuNonQueryNoErrorMessage(sql);
+        }
+
         public static bool DeleteNoErrorMessage(string id)
         {
             string sql = "update SmartCard set IsDeleted = 1, IsSync = 0 where ID = '" + id + "'";
