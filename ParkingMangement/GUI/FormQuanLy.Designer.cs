@@ -406,6 +406,13 @@
             this.btnCardDelete = new System.Windows.Forms.Button();
             this.btnCardSelectAll = new System.Windows.Forms.Button();
             this.dgvCardList = new System.Windows.Forms.DataGridView();
+            this.SelectCard = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Identify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CardTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsUsing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExportDanhSachTheXe = new System.Windows.Forms.Button();
             this.dgvCardStatistic = new System.Windows.Forms.DataGridView();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -1240,13 +1247,6 @@
             this.tbReceiptLogDetailDigit = new System.Windows.Forms.TextBox();
             this.dtReceiptLogDetailEndDate = new System.Windows.Forms.DateTimePicker();
             this.dtReceiptLogDetailStartDate = new System.Windows.Forms.DateTimePicker();
-            this.SelectCard = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Identify = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CardTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsUsing = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabQuanLy.SuspendLayout();
             this.tabPageQuanLyNhanSu.SuspendLayout();
             this.tabQuanLyNhanSu.SuspendLayout();
@@ -2421,7 +2421,7 @@
             this.dtEndTimeSaleReport.Name = "dtEndTimeSaleReport";
             this.dtEndTimeSaleReport.Size = new System.Drawing.Size(80, 22);
             this.dtEndTimeSaleReport.TabIndex = 29;
-            this.dtEndTimeSaleReport.Value = new System.DateTime(2018, 9, 28, 23, 59, 0, 0);
+            this.dtEndTimeSaleReport.Value = new System.DateTime(2018, 9, 28, 23, 59, 59, 0);
             // 
             // dtStartTimeSaleReport
             // 
@@ -4676,6 +4676,64 @@
             this.dgvCardList.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvCardList_CurrentCellDirtyStateChanged);
             this.dgvCardList.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvCardList_DataBindingComplete);
             this.dgvCardList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvCardList_MouseClick);
+            // 
+            // SelectCard
+            // 
+            this.SelectCard.HeaderText = "Chọn";
+            this.SelectCard.MinimumWidth = 6;
+            this.SelectCard.Name = "SelectCard";
+            this.SelectCard.Width = 50;
+            // 
+            // STT
+            // 
+            this.STT.HeaderText = "STT";
+            this.STT.MinimumWidth = 6;
+            this.STT.Name = "STT";
+            this.STT.Width = 50;
+            // 
+            // Identify
+            // 
+            this.Identify.DataPropertyName = "Identify";
+            this.Identify.HeaderText = "Số thẻ";
+            this.Identify.MinimumWidth = 6;
+            this.Identify.Name = "Identify";
+            this.Identify.ReadOnly = true;
+            this.Identify.Width = 75;
+            // 
+            // CardID
+            // 
+            this.CardID.DataPropertyName = "ID";
+            this.CardID.HeaderText = "Mã chíp";
+            this.CardID.MinimumWidth = 6;
+            this.CardID.Name = "CardID";
+            this.CardID.ReadOnly = true;
+            this.CardID.Width = 110;
+            // 
+            // CardPartName
+            // 
+            this.CardPartName.DataPropertyName = "PartName";
+            this.CardPartName.HeaderText = "Loại xe";
+            this.CardPartName.MinimumWidth = 6;
+            this.CardPartName.Name = "CardPartName";
+            this.CardPartName.ReadOnly = true;
+            this.CardPartName.Width = 115;
+            // 
+            // CardTypeName
+            // 
+            this.CardTypeName.DataPropertyName = "CardTypeName";
+            this.CardTypeName.HeaderText = "Loại vé";
+            this.CardTypeName.MinimumWidth = 6;
+            this.CardTypeName.Name = "CardTypeName";
+            this.CardTypeName.Width = 90;
+            // 
+            // IsUsing
+            // 
+            this.IsUsing.DataPropertyName = "IsUsing";
+            this.IsUsing.HeaderText = "Còn sử dụng";
+            this.IsUsing.MinimumWidth = 6;
+            this.IsUsing.Name = "IsUsing";
+            this.IsUsing.ReadOnly = true;
+            this.IsUsing.Width = 105;
             // 
             // btnExportDanhSachTheXe
             // 
@@ -11261,7 +11319,7 @@
             this.dateTimePickerCarTimeOut.Name = "dateTimePickerCarTimeOut";
             this.dateTimePickerCarTimeOut.Size = new System.Drawing.Size(111, 22);
             this.dateTimePickerCarTimeOut.TabIndex = 28;
-            this.dateTimePickerCarTimeOut.Value = new System.DateTime(2018, 9, 28, 23, 59, 0, 0);
+            this.dateTimePickerCarTimeOut.Value = new System.DateTime(2018, 9, 28, 23, 59, 59, 0);
             // 
             // dateTimePickerCarTimeIn
             // 
@@ -13383,64 +13441,6 @@
             this.dtReceiptLogDetailStartDate.Name = "dtReceiptLogDetailStartDate";
             this.dtReceiptLogDetailStartDate.Size = new System.Drawing.Size(135, 22);
             this.dtReceiptLogDetailStartDate.TabIndex = 32;
-            // 
-            // SelectCard
-            // 
-            this.SelectCard.HeaderText = "Chọn";
-            this.SelectCard.MinimumWidth = 6;
-            this.SelectCard.Name = "SelectCard";
-            this.SelectCard.Width = 50;
-            // 
-            // STT
-            // 
-            this.STT.HeaderText = "STT";
-            this.STT.MinimumWidth = 6;
-            this.STT.Name = "STT";
-            this.STT.Width = 50;
-            // 
-            // Identify
-            // 
-            this.Identify.DataPropertyName = "Identify";
-            this.Identify.HeaderText = "Số thẻ";
-            this.Identify.MinimumWidth = 6;
-            this.Identify.Name = "Identify";
-            this.Identify.ReadOnly = true;
-            this.Identify.Width = 75;
-            // 
-            // CardID
-            // 
-            this.CardID.DataPropertyName = "ID";
-            this.CardID.HeaderText = "Mã chíp";
-            this.CardID.MinimumWidth = 6;
-            this.CardID.Name = "CardID";
-            this.CardID.ReadOnly = true;
-            this.CardID.Width = 110;
-            // 
-            // CardPartName
-            // 
-            this.CardPartName.DataPropertyName = "PartName";
-            this.CardPartName.HeaderText = "Loại xe";
-            this.CardPartName.MinimumWidth = 6;
-            this.CardPartName.Name = "CardPartName";
-            this.CardPartName.ReadOnly = true;
-            this.CardPartName.Width = 115;
-            // 
-            // CardTypeName
-            // 
-            this.CardTypeName.DataPropertyName = "CardTypeName";
-            this.CardTypeName.HeaderText = "Loại vé";
-            this.CardTypeName.MinimumWidth = 6;
-            this.CardTypeName.Name = "CardTypeName";
-            this.CardTypeName.Width = 90;
-            // 
-            // IsUsing
-            // 
-            this.IsUsing.DataPropertyName = "IsUsing";
-            this.IsUsing.HeaderText = "Còn sử dụng";
-            this.IsUsing.MinimumWidth = 6;
-            this.IsUsing.Name = "IsUsing";
-            this.IsUsing.ReadOnly = true;
-            this.IsUsing.Width = 105;
             // 
             // FormQuanLy
             // 
