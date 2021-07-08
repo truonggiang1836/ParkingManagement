@@ -46,6 +46,8 @@ namespace ParkingMangement.Utils
         public static string sMessageCommonError = "Có lỗi xảy ra";
         public static string sMessageDuplicateDataError = "Dữ liệu đã tồn tại";
         public static string sMessageInvalidError = "Dữ liệu không hợp lệ";
+        public static string sMessageInvalidMonthRange = "Tháng bắt đầu không được lớn hơn tháng kết thúc";
+        public static string sMessageInvalidEndMonth = "Tháng kết thúc không được lớn hơn tháng hiện tại";
         public static string FUNCTION_ID_NHAN_VIEN = "Nh";
         public static string FUNCTION_ID_ADMIN = "Ad";
         public static string sMessageCanNotSeeReport = "Bạn không có quyền xem báo cáo";

@@ -305,14 +305,7 @@ namespace ParkingMangement
                 command.CommandText = sql;
                 mySqlConnection.Open();
                 int result = command.ExecuteNonQuery();
-                if (result > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return true;
             }
             catch (SqlException Ex)
             {

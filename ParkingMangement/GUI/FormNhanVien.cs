@@ -2245,6 +2245,7 @@ namespace ParkingMangement.GUI
             if (inOutType == ConfigDTO.TYPE_OUT_IN)
             {
                 axVLCPlugin = axVLCPlugin3;
+                axVLCPlugin = axVLCPlugin3;
                 pictureBox = pictureBoxImage3;
             }
             else if (inOutType == ConfigDTO.TYPE_IN_IN)
@@ -4398,7 +4399,7 @@ namespace ParkingMangement.GUI
         private void FormNhanVien_Shown(object sender, EventArgs e)
         {
             tbRFIDCardID.Focus();
-            AutoClosingMessageBox.Show("OK", "", 200);
+            AutoClosingMessageBox.Show("OK", "", 300);
         }
 
         private void labelDigitInLeft_KeyDown(object sender, KeyEventArgs e)

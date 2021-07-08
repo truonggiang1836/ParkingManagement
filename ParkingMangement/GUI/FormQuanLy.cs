@@ -1664,29 +1664,51 @@ namespace ParkingMangement.GUI
 
         private async Task searchDebtReportTicketMonthDataAsync()
         {
-            progressBarDebtReport.Show();
-
             string key = tbDebtReportKeyWordSearch.Text;
+            int? daysRemaining = null;
             if (!string.IsNullOrWhiteSpace(tbDebtReportDaysRemainingSearch.Text))
             {
-                int daysRemaining = 0;
-                if (int.TryParse(tbDebtReportDaysRemainingSearch.Text, out daysRemaining))
+                int daysRemainingTemp = 0;
+                if (int.TryParse(tbDebtReportDaysRemainingSearch.Text, out daysRemainingTemp))
                 {
-
+                    daysRemaining = daysRemainingTemp;
                 }
                 else
                 {
                     MessageBox.Show(Constant.sMessageInvalidError);
                     return;
-                }
-                var data = await TicketMonthDAO.SearchDebtReportTicketData(key, daysRemaining);
-                dgvDebtReport.DataSource = data;
+                }               
             }
-            else
+
+            DateTime? startTime = null;
+            DateTime? endTime = null;
+            if (cbDebtReportMonth.Checked)
             {
-                var data = await TicketMonthDAO.SearchDebtReportTicketData(key, null);
-                dgvDebtReport.DataSource = data;
+                DateTime startTime1 = dtDebtReportStartMonth.Value;
+                DateTime endTime1 = dtDebtReportEndMonth.Value;
+
+                startTime1 = new DateTime(startTime1.Year, startTime1.Month, 1, 0, 0, 0);
+                endTime1 = new DateTime(endTime1.Year, endTime1.Month, 1, 0, 0, 0);
+                DateTime nowTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
+
+                if (DateTime.Compare(startTime1, endTime1) > 0)
+                {
+                    MessageBox.Show(Constant.sMessageInvalidMonthRange);
+                    return;
+                } else if (DateTime.Compare(endTime1, nowTime) > 0)
+                {
+                    MessageBox.Show(Constant.sMessageInvalidEndMonth);
+                    return;
+                } else
+                {
+                    startTime = startTime1;
+                    endTime = endTime1.AddMonths(1);
+                }
             }
+
+            progressBarDebtReport.Show();
+            var data = await TicketMonthDAO.SearchDebtReportTicketData(key, daysRemaining, startTime, endTime);
+            dgvDebtReport.DataSource = data;
             setColorForDebtReportTicketMonthList();
 
             progressBarDebtReport.Hide();

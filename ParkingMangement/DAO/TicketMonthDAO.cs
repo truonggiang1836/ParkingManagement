@@ -229,7 +229,7 @@ namespace ParkingMangement.DAO
             return data;
         }
 
-        public async static Task<DataTable> SearchDebtReportTicketData(string key, int? daysRemaining)
+        public async static Task<DataTable> SearchDebtReportTicketData(string key, int? daysRemaining, DateTime? startTime, DateTime? endTime)
         {
             DataTable data = new DataTable();
             await Task.Run(() => {
@@ -251,9 +251,27 @@ namespace ParkingMangement.DAO
                 for (int row = 0; row < data.Rows.Count; row++)
                 {
                     DateTime expirationDate = data.Rows[row].Field<DateTime>("ExpirationDate");
+                    if (startTime != null)
+                    {
+                        DateTime startTime1 = startTime ?? DateTime.Now;
+                        if (DateTime.Compare(expirationDate, startTime1) < 0)
+                        {
+                            expirationDate = startTime1;
+                        }
+                    }
+
                     string chargesAmount = data.Rows[row].Field<string>("ChargesAmount");
 
                     DateTime newExpirationDate = Util.getLastDateOfCurrentMonth();
+                    if (endTime != null)
+                    {
+                        DateTime endTime1 = endTime ?? DateTime.Now;
+                        if (DateTime.Compare(newExpirationDate, endTime1) > 0)
+                        {
+                            newExpirationDate = endTime1;
+                        }
+                    }
+
                     string monthlyCostString = chargesAmount.Replace(".", "").Replace(",", "");
 
                     int monthlyCost = 0;
@@ -273,10 +291,24 @@ namespace ParkingMangement.DAO
                     }
                     int previousCharge = 0;
                     int currentCharge = extendCardCost;
+                    
                     if (extendCardCost > monthlyCost)
-                    {
-                        previousCharge = extendCardCost - monthlyCost;
+                    {                       
                         currentCharge = monthlyCost;
+                    }
+
+                    if (endTime != null)
+                    {
+                        DateTime endTime1 = (endTime ?? DateTime.Now).AddMonths(-1);
+                        if (endTime1.Month < DateTime.Now.Month || endTime1.Year < DateTime.Now.Year)
+                        {
+                            currentCharge = 0;
+                        }
+                    }
+
+                    if (extendCardCost > currentCharge)
+                    {
+                        previousCharge = extendCardCost - currentCharge;
                     }
 
                     data.Rows[row].SetField("PreviousCharge", Util.formatNumberAsMoney(previousCharge));
@@ -698,7 +730,7 @@ namespace ParkingMangement.DAO
                             {
                                 isSuccess = DeleteNoErrorMessage(id);
                             }
-                            else
+                            else if (!ticketMonthDTO.Company.Equals(""))
                             {
                                 isSuccess = InsertOrUpdateSPMNoErrorMessage(ticketMonthDTO);
                             }
